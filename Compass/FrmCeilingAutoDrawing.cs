@@ -739,35 +739,17 @@ namespace Compass
         /// <param name="e"></param>
         private void btnPrintCeilingPackingList_Click(object sender, EventArgs e)
         {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            if(dgvCeilingPackingList.RowCount==0)return;
+            btnPrintCeilingPackingList.Enabled = false;
+            tspbStatus.Value = 0;
+            tspbStatus.Maximum = 1;
+            tsslStatus.Text = "发货清单打印中...";
+            if (new PrintReports().ExecPrintCeilingPackingList(objProject, dgvCeilingPackingList)) MessageBox.Show("发货清单打印完成", "打印完成");
+            tsslStatus.Text = "发货清单打印完成！";
+            tspbStatus.Value = 1;
+            btnPrintCeilingPackingList.Enabled = true;
         }
+        
         /// <summary>
         /// 删除没用的发货清单条目
         /// </summary>

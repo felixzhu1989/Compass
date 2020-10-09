@@ -166,13 +166,81 @@ namespace Compass
         #region 装箱清单
         /// <summary>
         /// 天花烟罩导出发货清单excel文件
+        /// <param name="objProject"></param>
+        /// <param name="dgvCeilingPackingList"></param>
         /// </summary>
-        public void ExecExportCeilingPackingList()
+        public bool ExecExportCeilingPackingList(Project objProject, DataGridView dgvCeilingPackingList)
         {
-            
 
 
+            return true;
         }
+        /// <summary>
+        /// 打印发货清单
+        /// </summary>
+        /// <param name="objProject"></param>
+        /// <param name="dgvCeilingPackingList"></param>
+        /// <returns></returns>
+        public bool ExecPrintCeilingPackingList(Project objProject, DataGridView dgv)
+        {
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            string excelBookPath = Environment.CurrentDirectory + "\\CeilingPackingList.xlsx";
+            excelApp.Workbooks.Add(excelBookPath);
+            Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
+            workSheet.Cells[1, 1] = objProject.ODPNo + "-天花烟罩发货清单(Ceiling Hood Packing List)";
+            workSheet.Cells[2, 3] = objProject.ProjectName;
+            workSheet.Cells[3, 3] = DateTime.Now.ToShortDateString();
+            workSheet.Cells[4, 3] = dgv.Rows[1].Cells["UserAccount"].Value;
+            
+            FillCeilingPackingListDate(workSheet, dgv);
+            //预览
+            //excelApp.Visible = true;
+            //excelApp.Sheets.PrintPreview(true);
+            //打印
+            workSheet.PrintOutEx();
+            KillProcess(excelApp);
+            excelApp = null;//对象置空
+            GC.Collect(); //垃圾回收机制
+            return true;
+        }
+        /// <summary>
+        /// 填天花烟罩发货清单数据方法
+        /// </summary>
+        /// <param name="workSheet"></param>
+        /// <param name="dgv"></param>
+        private void FillCeilingPackingListDate(Worksheet workSheet, DataGridView dgv)
+        {
+            for (int i = 0; i < dgv.RowCount; i++)
+            {
+                workSheet.Cells[i + 7, 2] = dgv.Rows[i].Cells["Location"].Value;
+                workSheet.Cells[i + 7, 3] = dgv.Rows[i].Cells["PartDescription"].Value;
+                workSheet.Cells[i + 7, 4] = dgv.Rows[i].Cells["PartNo"].Value;
+                workSheet.Cells[i + 7, 5] = dgv.Rows[i].Cells["Quantity"].Value;
+                workSheet.Cells[i + 7, 6] = dgv.Rows[i].Cells["Unit"].Value;
+                workSheet.Cells[i + 7, 7] = dgv.Rows[i].Cells["Length"].Value;
+                workSheet.Cells[i + 7, 8] = dgv.Rows[i].Cells["Width"].Value;
+                workSheet.Cells[i + 7, 9] = dgv.Rows[i].Cells["Height"].Value;
+                workSheet.Cells[i + 7, 10] = dgv.Rows[i].Cells["Material"].Value;
+                workSheet.Cells[i + 7, 11] = dgv.Rows[i].Cells["Remark"].Value;
+            }
+            //设置边框
+            Microsoft.Office.Interop.Excel.Range range = workSheet.get_Range("A7", "K" + (dgv.RowCount + 6));
+            range.Borders.Value = 1;
+            //设置列宽
+            workSheet.Columns.AutoFit();
+            //workSheet.Cells[1, 1].ColumnWidth = 30;
+            //workSheet.Cells[1, 2].ColumnWidth = 10;
+            //workSheet.Cells[1, 3].ColumnWidth = 10;
+            //workSheet.Cells[1, 4].ColumnWidth = 5;
+            //workSheet.Cells[1, 5].ColumnWidth = 5;
+            //workSheet.Cells[1, 6].ColumnWidth = 28;
+            //workSheet.Cells[1, 7].ColumnWidth = 30;
+            //workSheet.Cells[1, 8].ColumnWidth = 8;
+            //workSheet.Cells[1, 9].ColumnWidth = 8;
+            //workSheet.Cells[1, 10].ColumnWidth = 8;
+            //workSheet.Cells[1, 11].ColumnWidth = 5;
+        }
+
         /// <summary>
         /// 标准烟罩导出装箱清单
         /// </summary>
@@ -341,6 +409,7 @@ namespace Compass
         }
         #endregion
         
+
         /// <summary>
         /// 引用Windows句柄，获取程序PID
         /// </summary>
@@ -373,5 +442,6 @@ namespace Compass
                 System.Diagnostics.Debug.WriteLine("进程关闭失败！异常信息：" + ex);
             }
         }
+        
     }
 }

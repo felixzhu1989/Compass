@@ -93,7 +93,6 @@ namespace SolidWorksHelper
                                         if (sheetMetaDic.ContainsKey(keyWord)) sheetMetaDic[keyWord] += 1;
                                         else sheetMetaDic.Add(keyWord, 1);
                                     }
-                                    
                                 }
                             }
                         }
@@ -155,7 +154,5 @@ namespace SolidWorksHelper
                 throw new Exception("Cutlist导入数据库失败" + ex.Message);
             }
         }
-
-
     }
 }
