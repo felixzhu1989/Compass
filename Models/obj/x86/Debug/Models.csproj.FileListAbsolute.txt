@@ -1,0 +1,6 @@
+E:\Compass\Models\bin\x86\Debug\Models.dll
+E:\Compass\Models\bin\x86\Debug\Models.pdb
+E:\Compass\Models\obj\x86\Debug\Models.csprojAssemblyReference.cache
+E:\Compass\Models\obj\x86\Debug\Models.csproj.CoreCompileInputs.cache
+E:\Compass\Models\obj\x86\Debug\Models.dll
+E:\Compass\Models\obj\x86\Debug\Models.pdb

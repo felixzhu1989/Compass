@@ -1,0 +1,13 @@
+E:\Compass\SolidWorksHelper\bin\Debug\SolidWorksHelper.dll
+E:\Compass\SolidWorksHelper\bin\Debug\SolidWorksHelper.pdb
+E:\Compass\SolidWorksHelper\bin\Debug\DAL.dll
+E:\Compass\SolidWorksHelper\bin\Debug\Models.dll
+E:\Compass\SolidWorksHelper\bin\Debug\Common.dll
+E:\Compass\SolidWorksHelper\bin\Debug\DAL.pdb
+E:\Compass\SolidWorksHelper\bin\Debug\Models.pdb
+E:\Compass\SolidWorksHelper\bin\Debug\Common.pdb
+E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csprojAssemblyReference.cache
+E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.CoreCompileInputs.cache
+E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.CopyComplete
+E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.dll
+E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.pdb

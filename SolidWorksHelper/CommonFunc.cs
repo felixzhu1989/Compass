@@ -1,0 +1,82 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using SolidWorks.Interop.swconst;
+using SolidWorks.Interop.sldworks;
+
+namespace SolidWorksHelper
+{
+    public static class CommonFunc
+    {
+        /// <summary>
+        /// 文件名添加后缀
+        /// </summary>
+        /// <param name="suffix">后缀</param>
+        /// <param name="partName">文件名</param>
+        /// <returns></returns>
+        public static string AddSuffix(string suffix, string partName)
+        {
+            return partName.Substring(0, partName.LastIndexOf("-")) + suffix + partName.Substring(partName.LastIndexOf("-"));
+        }
+        
+        /// <summary>
+        /// 模型打包
+        /// </summary>
+        /// <param name="suffix">后缀</param>
+        /// <param name="swApp">SW程序</param>
+        /// <param name="modelPath">模型地址</param>
+        /// <param name="itemPath">目标地址</param>
+        /// <returns></returns>
+        public static string PackAndGoFunc(string suffix, SldWorks swApp, string modelPath, string itemPath)
+        {
+            swApp.CommandInProgress = true;
+            int warnings = 0;
+            int errors = 0;
+            ModelDoc2 swModelDoc = default(ModelDoc2);
+            ModelDocExtension swModelDocExt = default(ModelDocExtension);
+            PackAndGo swPackAndGo = default(PackAndGo);
+            //打开需要pack的模型
+            swModelDoc = (ModelDoc2)swApp.OpenDoc6(modelPath, (int)swDocumentTypes_e.swDocASSEMBLY,
+                (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings);
+            swModelDocExt = (ModelDocExtension)swModelDoc.Extension;
+            swPackAndGo = (PackAndGo)swModelDocExt.GetPackAndGo();
+            // Get number of documents in assembly
+            //namesCount = swPackAndGo.GetDocumentNamesCount();
+            //Debug.Print("  Number of model documents: " + namesCount);
+            // Include any drawings, SOLIDWORKS Simulation results, and SOLIDWORKS Toolbox components
+            swPackAndGo.IncludeDrawings = false;
+            swPackAndGo.IncludeSimulationResults = false;
+            swPackAndGo.IncludeToolboxComponents = false;
+
+            // Set folder where to save the files,目标存放地址
+            swPackAndGo.SetSaveToName(true, itemPath);
+            //将文件展开到一个文件夹内，不要原始模型的文件夹结构
+            // Flatten the Pack and Go folder structure; save all files to the root directory
+            swPackAndGo.FlattenToSingleFolder = true;
+
+            // Add a prefix and suffix to the filenames
+            //swPackAndGo.AddPrefix = "SW_";添加后缀
+            swPackAndGo.AddSuffix = "_" + suffix;
+            try
+            {
+                // Pack and Go，执行PackAndGo
+                swModelDocExt.SavePackAndGo(swPackAndGo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("PackandGo过程中出现异常：" + ex.Message);
+            }
+            finally
+            {
+                swApp.CloseDoc(swModelDoc.GetTitle());
+                swModelDoc = null;
+                swApp.CommandInProgress = false;//及时关闭外部命令调用，否则影响SolidWorks的使用
+            }
+            string modelPathName = modelPath.Substring(modelPath.LastIndexOf(@"\") + 1);
+            //返回packandgo后模型的地址
+            return itemPath + @"\" + modelPathName.Substring(0, modelPathName.LastIndexOf(".")) + "_" + suffix + ".sldasm";
+        }
+    }
+}

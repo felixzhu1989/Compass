@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E38420C8-B37C-4B26-A77E-AE60BC495395}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Models</RootNamespace>
+    <AssemblyName>Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AfterSaleFeedback.cs" />
+    <Compile Include="CeilingAccessory.cs" />
+    <Compile Include="CeilingCutList.cs" />
+    <Compile Include="Ceiling\BCJ300.cs" />
+    <Compile Include="Ceiling\BF200.cs" />
+    <Compile Include="Ceiling\AN.cs" />
+    <Compile Include="Category.cs" />
+    <Compile Include="CheckComment.cs" />
+    <Compile Include="Ceiling\CJ300.cs" />
+    <Compile Include="Ceiling\DP330.cs" />
+    <Compile Include="Ceiling\DP340.cs" />
+    <Compile Include="Ceiling\DPCJ330.cs" />
+    <Compile Include="Hood\CMODI555.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="DesignWorkload.cs" />
+    <Compile Include="Drawing.cs" />
+    <Compile Include="DrawingPlan.cs" />
+    <Compile Include="GeneralRequirement.cs" />
+    <Compile Include="HoodCutList.cs" />
+    <Compile Include="Ceiling\INF.cs" />
+    <Compile Include="JobCard.cs" />
+    <Compile Include="Hood\KVI555.cs" />
+    <Compile Include="IModel.cs" />
+    <Compile Include="Hood\KWI555.cs" />
+    <Compile Include="Hood\KWF555.cs" />
+    <Compile Include="Hood\UWI555.cs" />
+    <Compile Include="Hood\UWF555.cs" />
+    <Compile Include="Ceiling\KCJSB265.cs" />
+    <Compile Include="Ceiling\KCJSB290.cs" />
+    <Compile Include="Ceiling\KCJSB535.cs" />
+    <Compile Include="Ceiling\KCJDB800.cs" />
+    <Compile Include="Ceiling\KCWSB265.cs" />
+    <Compile Include="Ceiling\KCWSB535.cs" />
+    <Compile Include="Ceiling\KCWDB800.cs" />
+    <Compile Include="Ceiling\LFUSA.cs" />
+    <Compile Include="Ceiling\LFUP.cs" />
+    <Compile Include="Ceiling\LFUSC.cs" />
+    <Compile Include="Ceiling\LFUSS.cs" />
+    <Compile Include="Ceiling\LKS270.cs" />
+    <Compile Include="Ceiling\LKST270.cs" />
+    <Compile Include="Ceiling\LKSSPEC.cs" />
+    <Compile Include="Ceiling\LLEDS.cs" />
+    <Compile Include="Ceiling\LLKS.cs" />
+    <Compile Include="Ceiling\LLKSJ.cs" />
+    <Compile Include="Ceiling\LPZ.cs" />
+    <Compile Include="Ceiling\LKA258.cs" />
+    <Compile Include="Ceiling\LKASPEC.cs" />
+    <Compile Include="Ceiling\LLEDA.cs" />
+    <Compile Include="Ceiling\LLKA.cs" />
+    <Compile Include="Ceiling\LLKAJ.cs" />
+    <Compile Include="Hood\KVS.cs" />
+    <Compile Include="Hood\LSDOST.cs" />
+    <Compile Include="ModuleTree.cs" />
+    <Compile Include="Ceiling\NOCJ300.cs" />
+    <Compile Include="Ceiling\NOCJ340.cs" />
+    <Compile Include="Ceiling\NOCJSPEC.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="ProjectLearned.cs" />
+    <Compile Include="ProjectStatus.cs" />
+    <Compile Include="ProjectTracking.cs" />
+    <Compile Include="ProjectType.cs" />
+    <Compile Include="ProjectVault.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QualityFeedback.cs" />
+    <Compile Include="SpecialRequirement.cs" />
+    <Compile Include="Ceiling\UCJSB385.cs" />
+    <Compile Include="Ceiling\UCJSB535.cs" />
+    <Compile Include="Ceiling\UCJDB800.cs" />
+    <Compile Include="Ceiling\UCWSB535.cs" />
+    <Compile Include="Ceiling\UCWDB800.cs" />
+    <Compile Include="Ceiling\SSPDOME.cs" />
+    <Compile Include="Ceiling\SSPTBD.cs" />
+    <Compile Include="Ceiling\SSPTSD.cs" />
+    <Compile Include="Ceiling\SSPHFD.cs" />
+    <Compile Include="Ceiling\SSPFLAT.cs" />
+    <Compile Include="SubAssy.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserGroup.cs" />
+    <Compile Include="Hood\UVI555.cs" />
+    <Compile Include="Hood\UVF555.cs" />
+    <Compile Include="Hood\KVF555.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

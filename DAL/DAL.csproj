@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2479EC41-D7CB-47FA-A3F5-2A5080050FDD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DAL</RootNamespace>
+    <AssemblyName>DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CeilingAccessoryService.cs" />
+    <Compile Include="CeilingCutListService.cs" />
+    <Compile Include="CeilingService\BCJ300Service.cs" />
+    <Compile Include="CeilingService\BF200Service.cs" />
+    <Compile Include="CeilingService\ANService.cs" />
+    <Compile Include="CategoryService.cs" />
+    <Compile Include="CeilingService\CJ300Service.cs" />
+    <Compile Include="CeilingService\DP330Service.cs" />
+    <Compile Include="CeilingService\DP340Service.cs" />
+    <Compile Include="CeilingService\DPCJ330Service.cs" />
+    <Compile Include="HoodService\CMODI555Service.cs" />
+    <Compile Include="CustomerService.cs" />
+    <Compile Include="DesignWorkloadService.cs" />
+    <Compile Include="DrawingPlanService.cs" />
+    <Compile Include="DrawingService.cs" />
+    <Compile Include="HoodCutListService.cs" />
+    <Compile Include="IModelService.cs" />
+    <Compile Include="CeilingService\INFService.cs" />
+    <Compile Include="JobCardService.cs" />
+    <Compile Include="HoodService\KVI555Service.cs" />
+    <Compile Include="HoodService\KVF555Service.cs" />
+    <Compile Include="HoodService\KWI555Service.cs" />
+    <Compile Include="HoodService\KWF555Service.cs" />
+    <Compile Include="HoodService\UWI555Service.cs" />
+    <Compile Include="HoodService\UWF555Service.cs" />
+    <Compile Include="CeilingService\KCJSB265Service.cs" />
+    <Compile Include="CeilingService\KCJSB290Service.cs" />
+    <Compile Include="CeilingService\KCJSB535Service.cs" />
+    <Compile Include="CeilingService\KCJDB800Service.cs" />
+    <Compile Include="CeilingService\KCWSB265Service.cs" />
+    <Compile Include="CeilingService\KCWSB535Service.cs" />
+    <Compile Include="CeilingService\KCWDB800Service.cs" />
+    <Compile Include="CeilingService\LFUSAService.cs" />
+    <Compile Include="CeilingService\LFUPService.cs" />
+    <Compile Include="CeilingService\LFUSCService.cs" />
+    <Compile Include="CeilingService\LFUSSService.cs" />
+    <Compile Include="CeilingService\LKS270Service.cs" />
+    <Compile Include="CeilingService\LKST270Service.cs" />
+    <Compile Include="CeilingService\LKSSPECService.cs" />
+    <Compile Include="CeilingService\LLEDSService.cs" />
+    <Compile Include="CeilingService\LLKSService.cs" />
+    <Compile Include="CeilingService\LLKSJService.cs" />
+    <Compile Include="CeilingService\LPZService.cs" />
+    <Compile Include="CeilingService\LKA258Service.cs" />
+    <Compile Include="CeilingService\LKASPECService.cs" />
+    <Compile Include="CeilingService\LLEDAService.cs" />
+    <Compile Include="CeilingService\LLKAService.cs" />
+    <Compile Include="CeilingService\LLKAJService.cs" />
+    <Compile Include="HoodService\KVSService.cs" />
+    <Compile Include="HoodService\LSDOSTService.cs" />
+    <Compile Include="ModuleTreeService.cs" />
+    <Compile Include="CeilingService\NOCJ300Service.cs" />
+    <Compile Include="CeilingService\NOCJ340Service.cs" />
+    <Compile Include="CeilingService\NOCJSPECService.cs" />
+    <Compile Include="RequirementService.cs" />
+    <Compile Include="ImportDataFormExcel.cs" />
+    <Compile Include="OleDbHelper.cs" />
+    <Compile Include="ProjectService.cs" />
+    <Compile Include="ProjectStatusService.cs" />
+    <Compile Include="ProjectTrackingService.cs" />
+    <Compile Include="ProjectTypeService.cs" />
+    <Compile Include="ProjectVaultService.cs" />
+    <Compile Include="SQLHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CeilingService\UCJSB385Service.cs" />
+    <Compile Include="CeilingService\UCJSB535Service.cs" />
+    <Compile Include="CeilingService\UCJDB800Service.cs" />
+    <Compile Include="CeilingService\UCWSB535Service.cs" />
+    <Compile Include="CeilingService\UCWDB800Service.cs" />
+    <Compile Include="CeilingService\SSPDOMEService.cs" />
+    <Compile Include="CeilingService\SSPTBDService.cs" />
+    <Compile Include="CeilingService\SSPTSDService.cs" />
+    <Compile Include="CeilingService\SSPHFDService.cs" />
+    <Compile Include="CeilingService\SSPFLATService.cs" />
+    <Compile Include="SubAssyService.cs" />
+    <Compile Include="UserService.cs" />
+    <Compile Include="HoodService\UVI555Service.cs" />
+    <Compile Include="HoodService\UVF555Service.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{c8373b8f-13e5-4dde-9903-6637bdd5fe1e}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{e38420c8-b37c-4b26-a77e-ae60bc495395}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

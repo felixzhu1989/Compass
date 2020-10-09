@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<autoUpdater>
+  <!--升级文件所在服务器端的网址-->
+  <URLAddress URL="http://10.9.18.31/DownLoadFiles/"/>
+  <!--升级文件信息-->
+  <UpdateInfo>
+    <!--升级文件的更新日期-->
+    <UpdateTime Date="2020-08-07 16:00"/>
+    <!--升级文件的版本号-->
+    <Version Num="1.0.0.1"/>
+  </UpdateInfo>
+  <!--升级文件列表-->
+  <UpdateFileList>
+    <UpdateFile Ver="1.0.0.1" FileName="UpdateList.xml" ContentLength="1KB"/>
+    <UpdateFile Ver="1.0.0.1" FileName="Compass.exe" ContentLength="710KB"/>
+    <UpdateFile Ver="1.0.0.1" FileName="Common.dll" ContentLength="10KB"/>
+    <UpdateFile Ver="1.0.0.1" FileName="DAL.dll" ContentLength="114KB"/>
+    <UpdateFile Ver="1.0.0.1" FileName="Models.dll" ContentLength="58KB"/>
+    <UpdateFile Ver="1.0.0.1" FileName="SolidWorksHelper.dll" ContentLength="290KB"/>
+  </UpdateFileList>
+</autoUpdater>

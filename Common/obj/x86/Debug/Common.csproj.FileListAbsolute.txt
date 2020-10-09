@@ -1,0 +1,5 @@
+E:\Compass\Common\bin\x86\Debug\Common.dll
+E:\Compass\Common\bin\x86\Debug\Common.pdb
+E:\Compass\Common\obj\x86\Debug\Common.csproj.CoreCompileInputs.cache
+E:\Compass\Common\obj\x86\Debug\Common.dll
+E:\Compass\Common\obj\x86\Debug\Common.pdb
