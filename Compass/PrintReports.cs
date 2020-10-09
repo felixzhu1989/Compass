@@ -229,18 +229,40 @@ namespace Compass
             //设置列宽
             workSheet.Columns.AutoFit();
             //workSheet.Cells[1, 1].ColumnWidth = 30;
-            //workSheet.Cells[1, 2].ColumnWidth = 10;
-            //workSheet.Cells[1, 3].ColumnWidth = 10;
-            //workSheet.Cells[1, 4].ColumnWidth = 5;
-            //workSheet.Cells[1, 5].ColumnWidth = 5;
-            //workSheet.Cells[1, 6].ColumnWidth = 28;
-            //workSheet.Cells[1, 7].ColumnWidth = 30;
-            //workSheet.Cells[1, 8].ColumnWidth = 8;
-            //workSheet.Cells[1, 9].ColumnWidth = 8;
-            //workSheet.Cells[1, 10].ColumnWidth = 8;
-            //workSheet.Cells[1, 11].ColumnWidth = 5;
         }
-
+        /// <summary>
+        /// 打印天花烟罩标签
+        /// </summary>
+        /// <param name="objProject"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        internal bool ExecPrintCeilingLabel(Project objProject, List<CeilingAccessory> itemList)
+        {
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            string excelBookPath = Environment.CurrentDirectory + "\\CeilingLabel.xlsx";
+            excelApp.Workbooks.Add(excelBookPath);
+            Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
+            foreach (var item in itemList)
+            {
+                workSheet.Cells[1, 1] = objProject.ODPNo;
+                string descEng = item.PartDescription.Substring(item.PartDescription.IndexOf("(")+1);
+                workSheet.Cells[2, 1] = item.PartDescription.Substring(0,item.PartDescription.IndexOf("("));
+                workSheet.Cells[3, 1] = descEng.Substring(0, descEng.Length - 1);
+                workSheet.Cells[4, 1] = item.PartNo;
+                workSheet.Cells[5, 1] = item.Quantity+"-"+item.Unit+" ("+item.Location+")";
+                workSheet.Cells[6, 1] = item.Material;
+                workSheet.Cells[7, 1] = item.Length+"x"+item.Width+"x"+item.Height+"(mm)";
+                //打印
+                workSheet.PrintOutEx();
+            }
+            //预览
+            //excelApp.Visible = true;
+            //excelApp.Sheets.PrintPreview(true);
+            KillProcess(excelApp);
+            excelApp = null;//对象置空
+            GC.Collect(); //垃圾回收机制
+            return true;
+        }
         /// <summary>
         /// 标准烟罩导出装箱清单
         /// </summary>
@@ -442,6 +464,5 @@ namespace Compass
                 System.Diagnostics.Debug.WriteLine("进程关闭失败！异常信息：" + ex);
             }
         }
-        
     }
 }

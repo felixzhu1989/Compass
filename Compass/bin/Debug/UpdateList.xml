@@ -5,7 +5,7 @@
   <!--升级文件信息-->
   <UpdateInfo>
     <!--升级文件的更新日期-->
-    <UpdateTime Date="2020-10-09 11:00"/>
+    <UpdateTime Date="2020-10-09 15:00"/>
     <!--升级文件的版本号-->
     <Version Num="1.0.0.1"/>
   </UpdateInfo>
@@ -27,7 +27,8 @@
 	<UpdateFile Ver="1.0.0.1" FileName="NoPic.png" ContentLength="1715KB"/>
     <!--excel文件-->
 	<UpdateFile Ver="1.0.0.1" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
-	<UpdateFile Ver="1.0.0.1" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>	
+	<UpdateFile Ver="1.0.0.1" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>
+	<UpdateFile Ver="1.0.0.1" FileName="CeilingLabel.xlsx" ContentLength="5KB"/>	
 	<UpdateFile Ver="1.0.0.1" FileName="JobCard.xlsx" ContentLength="39KB"/>
 	<UpdateFile Ver="1.0.0.1" FileName="JobCard_Ceiling.xlsx" ContentLength="36KB"/>	
 	<UpdateFile Ver="1.0.0.1" FileName="CutList.xlsx" ContentLength="11KB"/>	

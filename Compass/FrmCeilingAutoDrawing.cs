@@ -24,7 +24,7 @@ namespace Compass
         private CeilingCutListService objCeilingCutListService = new CeilingCutListService();
         private RequirementService objRequirementService = new RequirementService();
         private CeilingAccessoryService objCeilingAccessoryService = new CeilingAccessoryService();
-        private DrawingPlanService objDrawingPlanService=new DrawingPlanService();
+        private DrawingPlanService objDrawingPlanService = new DrawingPlanService();
         private GeneralRequirement objGeneralRequirement = null;
         private Project objProject = null;
         private List<SubAssy> subAssyTreeList = new List<SubAssy>();
@@ -51,10 +51,15 @@ namespace Compass
             this.tvSubAssyTree.AllowDrop = true;//允许文件拖拽
             this.txtMainAssyPath.AllowDrop = true;
             btnEditCeilingAccessory.Enabled = false;
+            //按钮权限
             btnPrintLabel.Enabled = false;
-            if(Program.ObjCurrentUser.UserId==8) btnPrintLabel.Enabled = true;
+            if (Program.ObjCurrentUser.UserId == 8) btnPrintLabel.Enabled = true;//只有生产fsprod才能打印标签
+            btnCeilingPackingList.Enabled = false;
+            if (Program.ObjCurrentUser.UserGroupId < 3)
+            {
+                btnCeilingPackingList.Enabled = true;//只有技术部能够导出发货清单
+            }
             dgvCeilingPackingList.AutoGenerateColumns = false;
-
         }
         public FrmCeilingAutoDrawing(string odpNo) : this()
         {
@@ -85,7 +90,7 @@ namespace Compass
             {
                 txtTypeName.Text = objGeneralRequirement.TypeName;
                 txtMainAssyPath.Text = objGeneralRequirement.MainAssyPath;
-                if (objGeneralRequirement.MainAssyPath.Length > 0) btnCeilingPackingList.Enabled = true;
+                if (objGeneralRequirement.MainAssyPath.Length > 0 && Program.ObjCurrentUser.UserGroupId < 3) btnCeilingPackingList.Enabled = true;
                 if (dgvCeilingPackingList.RowCount > 0) btnPrintCeilingPackingList.Enabled = true;
             }
         }
@@ -659,7 +664,6 @@ namespace Compass
         /// <param name="e"></param>
         private async void btnCeilingPackingList_Click(object sender, EventArgs e)
         {
-            
             //计算时间
             DateTime startTime = DateTime.Now;
             tspbStatus.Value = 0;
@@ -670,7 +674,12 @@ namespace Compass
             List<CeilingAccessory> ceilingPackingList = null;
             if (dgvCeilingPackingList.RowCount > 0)
             {
-                MessageBox.Show("发货清单有内容，标准配件将不会重复添加，如果需要添加标准件请手动添加或者删除本数据后再生成发货清单", "提示信息");
+                DialogResult result = MessageBox.Show("发货清单有内容，标准配件将不会重复添加，如果需要添加标准件请手动添加或者删除本数据后再生成发货清单,继续请按YES，不生成发货清单请按NO?", "生成发货清单询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                {
+                    btnCeilingPackingList.Enabled = true;
+                    return;
+                }
             }
             else
             {
@@ -697,10 +706,10 @@ namespace Compass
                 tsslStatus.Text = "正在打开(/连接)SolidWorks程序...";
                 swApp = await SolidWorksSingleton.GetApplicationAsync();
                 //执行SolidWorks,打开总装并执行导出发货清单程序
-                
-                    tsslStatus.Text = "正在导出发货清单...";
-                    //以异步的方式执行，让窗口可操作并且进度条更新
-                    await exportCeilingPackingListAsync(txtMainAssyPath.Text,objProject);
+
+                tsslStatus.Text = "正在导出发货清单...";
+                //以异步的方式执行，让窗口可操作并且进度条更新
+                await exportCeilingPackingListAsync(txtMainAssyPath.Text, objProject);
             }
             catch (Exception ex)
             {
@@ -718,7 +727,7 @@ namespace Compass
             tspbStatus.Value = 2;
             btnCeilingPackingList.Enabled = true;
         }
-        private Task exportCeilingPackingListAsync(string mainAssyPath,Project objProject)
+        private Task exportCeilingPackingListAsync(string mainAssyPath, Project objProject)
         {
             return Task.Run(() =>
             {
@@ -739,7 +748,7 @@ namespace Compass
         /// <param name="e"></param>
         private void btnPrintCeilingPackingList_Click(object sender, EventArgs e)
         {
-            if(dgvCeilingPackingList.RowCount==0)return;
+            if (dgvCeilingPackingList.RowCount == 0) return;
             btnPrintCeilingPackingList.Enabled = false;
             tspbStatus.Value = 0;
             tspbStatus.Maximum = 1;
@@ -749,7 +758,37 @@ namespace Compass
             tspbStatus.Value = 1;
             btnPrintCeilingPackingList.Enabled = true;
         }
-        
+        /// <summary>
+        /// 打印标签
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPrintLabel_Click(object sender, EventArgs e)
+        {
+            //判断有没有数据，弹窗确定要打印选中的条目
+            if (dgvCeilingPackingList.RowCount == 0) return;
+            DialogResult result = MessageBox.Show("确定要打印选中的多行打标签吗?", "打标签询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.No || dgvCeilingPackingList.SelectedRows.Count == 0) return;
+            //获取选择的标签
+            List<CeilingAccessory> ceilingAccessories = new List<CeilingAccessory>();
+            foreach (DataGridViewRow row in dgvCeilingPackingList.SelectedRows)
+            {
+                //循环选中的行，并根据ID查询对象，判断ClassNo==4，将对象填入List
+                CeilingAccessory objCeilingAccessory =
+                    objCeilingAccessoryService.GetCeilingPackingItemById(row.Cells["CeilingPackingListId"].Value
+                        .ToString());
+
+                if (objCeilingAccessory.ClassNo == 4)
+                {
+                    for (int i = 1; i <= objCeilingAccessory.Quantity; i++)//根据数量添加多个标签
+                    {
+                        ceilingAccessories.Add(objCeilingAccessory);
+                    }
+                }
+            }
+            //调用打印程序
+            if (new PrintReports().ExecPrintCeilingLabel(objProject, ceilingAccessories)) MessageBox.Show("标签打印完成", "打印完成");
+        }
         /// <summary>
         /// 删除没用的发货清单条目
         /// </summary>
@@ -880,8 +919,9 @@ namespace Compass
 
 
 
+
         #endregion
 
-        
+
     }
 }
