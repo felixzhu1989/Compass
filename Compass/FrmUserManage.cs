@@ -217,6 +217,12 @@ namespace Compass
             User objUser = objUserService.GetUserByUserId(userId);
             //初始化修改信息
             grbEditUser.Visible = true;//显示
+            //不显示用户分组，不支持修改分组
+            cobEditGroupName.Visible = false;
+            lblEditGroupName.Visible = false;
+            //将用户名只读，不允许修改
+            txtEditUserAccount.ReadOnly = true;
+
             IniGroupName(cobEditGroupName);
             txtUserId.Text = objUser.UserId.ToString();
             cobEditGroupName.SelectedValue = objUser.UserGroupId;

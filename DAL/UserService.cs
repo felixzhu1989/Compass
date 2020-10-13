@@ -64,7 +64,7 @@ namespace DAL
         /// <returns></returns>
         public List<User> GetUserByWhereSql(string whereSql)
         {
-            string sql = "select UserId,GroupName,UserAccount,UserPwd,Email,Contact from Users";
+            string sql = "select UserId,GroupName,UserAccount,UserGroups.UserGroupId,UserPwd,Email,Contact from Users";
             sql += " inner join UserGroups on UserGroups.UserGroupId=Users.UserGroupId";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -76,6 +76,7 @@ namespace DAL
                     UserId = Convert.ToInt32(objReader["UserId"]),
                     GroupName = objReader["GroupName"].ToString(),
                     UserAccount = objReader["UserAccount"].ToString(),
+                    UserGroupId = Convert.ToInt32(objReader["UserGroupId"]),
                     UserPwd = objReader["UserPwd"].ToString(),
                     Email = objReader["Email"].ToString(),
                     Contact = objReader["Contact"].ToString()

@@ -33,12 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvUser = new System.Windows.Forms.DataGridView();
-            this.UserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserPwd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Contact = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditUser = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteUser = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +67,13 @@
             this.lblEditGroupName = new System.Windows.Forms.Label();
             this.cobEditGroupName = new System.Windows.Forms.ComboBox();
             this.grbAddUser = new System.Windows.Forms.GroupBox();
+            this.UserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserPwd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserGroupId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Contact = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUser)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.grbAddUserGroup.SuspendLayout();
@@ -116,6 +117,7 @@
             this.UserAccount,
             this.UserPwd,
             this.GroupName,
+            this.UserGroupId,
             this.Email,
             this.Contact});
             this.dgvUser.ContextMenuStrip = this.contextMenuStrip;
@@ -130,53 +132,6 @@
             this.dgvUser.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvUser_RowPostPaint);
             this.dgvUser.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvUser_KeyDown);
             // 
-            // UserId
-            // 
-            this.UserId.DataPropertyName = "UserId";
-            this.UserId.HeaderText = "序号";
-            this.UserId.Name = "UserId";
-            this.UserId.ReadOnly = true;
-            this.UserId.Width = 60;
-            // 
-            // UserAccount
-            // 
-            this.UserAccount.DataPropertyName = "UserAccount";
-            this.UserAccount.HeaderText = "用户账号";
-            this.UserAccount.Name = "UserAccount";
-            this.UserAccount.ReadOnly = true;
-            this.UserAccount.Width = 150;
-            // 
-            // UserPwd
-            // 
-            this.UserPwd.DataPropertyName = "UserPwd";
-            this.UserPwd.HeaderText = "用户密码";
-            this.UserPwd.Name = "UserPwd";
-            this.UserPwd.ReadOnly = true;
-            this.UserPwd.Width = 150;
-            // 
-            // GroupName
-            // 
-            this.GroupName.DataPropertyName = "GroupName";
-            this.GroupName.HeaderText = "用户分组";
-            this.GroupName.Name = "GroupName";
-            this.GroupName.ReadOnly = true;
-            // 
-            // Email
-            // 
-            this.Email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "用户邮箱";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // Contact
-            // 
-            this.Contact.DataPropertyName = "Contact";
-            this.Contact.HeaderText = "联系方式";
-            this.Contact.Name = "Contact";
-            this.Contact.ReadOnly = true;
-            this.Contact.Width = 150;
-            // 
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -184,26 +139,26 @@
             this.tsmiDeleteUser,
             this.tsmiAddUserGroup});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(192, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(186, 70);
             // 
             // tsmiEditUser
             // 
             this.tsmiEditUser.Name = "tsmiEditUser";
-            this.tsmiEditUser.Size = new System.Drawing.Size(191, 22);
+            this.tsmiEditUser.Size = new System.Drawing.Size(185, 22);
             this.tsmiEditUser.Text = "修改用户";
             this.tsmiEditUser.Click += new System.EventHandler(this.tsmiEditUser_Click);
             // 
             // tsmiDeleteUser
             // 
             this.tsmiDeleteUser.Name = "tsmiDeleteUser";
-            this.tsmiDeleteUser.Size = new System.Drawing.Size(191, 22);
+            this.tsmiDeleteUser.Size = new System.Drawing.Size(185, 22);
             this.tsmiDeleteUser.Text = "删除用户";
             this.tsmiDeleteUser.Click += new System.EventHandler(this.tsmiDeleteUser_Click);
             // 
             // tsmiAddUserGroup
             // 
             this.tsmiAddUserGroup.Name = "tsmiAddUserGroup";
-            this.tsmiAddUserGroup.Size = new System.Drawing.Size(191, 22);
+            this.tsmiAddUserGroup.Size = new System.Drawing.Size(185, 22);
             this.tsmiAddUserGroup.Text = "添加分组(显示/隐藏)";
             this.tsmiAddUserGroup.Click += new System.EventHandler(this.tsmiAddUserGroup_Click);
             // 
@@ -506,6 +461,60 @@
             this.grbAddUser.TabStop = false;
             this.grbAddUser.Text = "添加用户";
             // 
+            // UserId
+            // 
+            this.UserId.DataPropertyName = "UserId";
+            this.UserId.HeaderText = "序号";
+            this.UserId.Name = "UserId";
+            this.UserId.ReadOnly = true;
+            this.UserId.Width = 60;
+            // 
+            // UserAccount
+            // 
+            this.UserAccount.DataPropertyName = "UserAccount";
+            this.UserAccount.HeaderText = "用户账号";
+            this.UserAccount.Name = "UserAccount";
+            this.UserAccount.ReadOnly = true;
+            this.UserAccount.Width = 150;
+            // 
+            // UserPwd
+            // 
+            this.UserPwd.DataPropertyName = "UserPwd";
+            this.UserPwd.HeaderText = "用户密码";
+            this.UserPwd.Name = "UserPwd";
+            this.UserPwd.ReadOnly = true;
+            this.UserPwd.Width = 150;
+            // 
+            // GroupName
+            // 
+            this.GroupName.DataPropertyName = "GroupName";
+            this.GroupName.HeaderText = "用户分组";
+            this.GroupName.Name = "GroupName";
+            this.GroupName.ReadOnly = true;
+            // 
+            // UserGroupId
+            // 
+            this.UserGroupId.DataPropertyName = "UserGroupId";
+            this.UserGroupId.HeaderText = "分组号";
+            this.UserGroupId.Name = "UserGroupId";
+            this.UserGroupId.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "用户邮箱";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // Contact
+            // 
+            this.Contact.DataPropertyName = "Contact";
+            this.Contact.HeaderText = "联系方式";
+            this.Contact.Name = "Contact";
+            this.Contact.ReadOnly = true;
+            this.Contact.Width = 150;
+            // 
             // FrmUserManage
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -577,6 +586,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserPwd;
         private System.Windows.Forms.DataGridViewTextBoxColumn GroupName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserGroupId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Contact;
     }
