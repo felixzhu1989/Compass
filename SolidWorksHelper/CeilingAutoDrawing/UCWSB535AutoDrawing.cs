@@ -76,7 +76,7 @@ namespace SolidWorksHelper
             {
                 //----------Top Level----------
                 //防水棉
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCO0004[WPSSB535]{535}-1"));
+                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCO0004[WPSSB535]-1"));
                 if (item.SidePanel == "LEFT") swComp.SetSuppression2(2); //2解压缩，0压缩.
                 else swComp.SetSuppression2(0); //2解压缩，0压缩.
                 //水洗挡板挂钩,水洗挂管长度
