@@ -339,7 +339,14 @@ namespace SolidWorksHelper
                 }
                 //MARVEL
                 swFeat = swComp.FeatureByName("MA-NTC");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                if (item.MARVEL == "YES")
+                {
+                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    if (item.ExNo == 1) swPart.Parameter("D1@Sketch21").SystemValue = (item.ExRightDis + item.ExLength / 2 + 50m) / 1000m;
+                    else swPart.Parameter("D1@Sketch21").SystemValue = (item.ExRightDis + item.ExDis / 2 + item.ExLength + 50m) / 1000m;
+                }
+                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+
                 //UVHood,UVRack-UV灯架孔和UV cable-UV灯线缆穿孔//非UVHood压缩
                 swFeat = swComp.FeatureByName("UVRACK");
                 swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
@@ -922,8 +929,10 @@ namespace SolidWorksHelper
                 swFeat = swComp.FeatureByName("SUCABLE-LEFT");
                 swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
-                if (item.SidePanel == "LEFT" || item.SidePanel == "BOTH") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                if (item.SidePanel == "LEFT" || item.SidePanel == "BOTH" || item.MARVEL=="YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+
+
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0007-1"));
                 swPart = swComp.GetModelDoc2();
