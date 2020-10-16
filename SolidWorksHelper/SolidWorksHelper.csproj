@@ -69,6 +69,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HoodAutoDrawing\ABD300AutoDrawing.cs" />
+    <Compile Include="HoodAutoDrawing\ABD200AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\BCJ300AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\BF200AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\ANAutoDrawing.cs" />

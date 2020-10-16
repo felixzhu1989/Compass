@@ -108,6 +108,18 @@
     <Compile Include="CeilingForm\FrmBCJ300.Designer.cs">
       <DependentUpon>FrmBCJ300.cs</DependentUpon>
     </Compile>
+    <Compile Include="HoodForm\FrmABD300.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoodForm\FrmABD300.Designer.cs">
+      <DependentUpon>FrmABD300.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HoodForm\FrmABD200.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoodForm\FrmABD200.Designer.cs">
+      <DependentUpon>FrmABD200.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmAddCeilingPackingList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -676,6 +688,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmJobCardCeiling.resx">
       <DependentUpon>FrmJobCardCeiling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoodForm\FrmABD200.resx">
+      <DependentUpon>FrmABD200.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoodForm\FrmABD300.resx">
+      <DependentUpon>FrmABD300.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmKVS.resx">
       <DependentUpon>FrmKVS.cs</DependentUpon>

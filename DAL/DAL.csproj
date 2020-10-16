@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HoodService\ABD300Service.cs" />
+    <Compile Include="HoodService\ABD200Service.cs" />
     <Compile Include="CeilingAccessoryService.cs" />
     <Compile Include="CeilingCutListService.cs" />
     <Compile Include="CeilingService\BCJ300Service.cs" />

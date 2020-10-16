@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hood\ABD300.cs" />
+    <Compile Include="Hood\ABD200.cs" />
     <Compile Include="AfterSaleFeedback.cs" />
     <Compile Include="CeilingAccessory.cs" />
     <Compile Include="CeilingCutList.cs" />

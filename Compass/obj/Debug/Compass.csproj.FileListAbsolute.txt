@@ -101,3 +101,5 @@ E:\Compass\Compass\obj\Debug\Compass.FrmDPCJ330.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmJobCardCeiling.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmCeilingAccessories.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmAddCeilingPackingList.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmABD200.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmABD300.resources
