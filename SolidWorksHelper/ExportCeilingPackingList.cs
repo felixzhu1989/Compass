@@ -45,9 +45,8 @@ namespace SolidWorksHelper
                 //遍历集合中的所有零部件对象
                 foreach (var swComp in compList)
                 {
-                    //判断零件是否被压缩，不显示，封套，零件名称不是以sldprt或SLDPRT结尾
-                    if (swComp.Visible == 1 && !swComp.IsEnvelope() && !swComp.IsSuppressed() &&
-                        (swComp.GetPathName().EndsWith(".sldprt") || swComp.GetPathName().EndsWith(".SLDPRT")))
+                    //判断零件是否被压缩，不显示，封套，零件名称不是以sldprt或SLDPRT结尾，(导出发货清单无需判断可见，封套，无需判断钣金，只要没有被压缩就行了)
+                    if (!swComp.IsSuppressed() && (swComp.GetPathName().EndsWith(".sldprt") || swComp.GetPathName().EndsWith(".SLDPRT")))
                     {
                         Component2 swParentComp = swComp.GetParent();
                         //总装没有父装配体
@@ -57,43 +56,33 @@ namespace SolidWorksHelper
                             Configuration swConfig2 = swConfigMgr.ActiveConfiguration;
                             swParentComp = swConfig2.GetRootComponent3(true);
                         }
-                        //判断父装配体是否可视，并且不封套
-                        if (swParentComp.Visible == 1 && !swParentComp.IsEnvelope() && !swComp.IsSuppressed())
-                        {
-                            PartDoc swPart = swComp.GetModelDoc2();
-                            //获取文档中的额Body对象集合
-                            var bodyList = swPart.GetBodies2(0, false);
-                            //遍历集合中的所有Body对象,判断是否为钣金
-                            foreach (var swBody in bodyList)
-                            {
-                                //如果是钣金则将零件地址添加到列表中
-                                if (swBody.IsSheetMetal())
-                                {
-                                    //过滤需要的零件，全部转换成大写
-                                    if (swComp.GetPathName().Contains("["))
-                                    {
-                                        //截取关键字
-                                        string keyWord = swComp.GetPathName();
-                                        if (keyWord.Contains(")"))
-                                        {
-                                            keyWord = keyWord.Substring(0, keyWord.IndexOf(")")+1);
-                                            keyWord = keyWord.Substring(keyWord.IndexOf("[")).ToUpper();
-                                        }
-                                        else if(keyWord.Contains("}"))
-                                        {
-                                            keyWord = keyWord.Substring(0, keyWord.IndexOf("}")+1);
-                                            keyWord = keyWord.Substring(keyWord.IndexOf("[")).ToUpper();
-                                        }
-                                        else
-                                        {
-                                            keyWord = keyWord.Substring(0, keyWord.IndexOf("]")+1);
-                                            keyWord = keyWord.Substring(keyWord.IndexOf("[")).ToUpper();
-                                        }
 
-                                        if (sheetMetaDic.ContainsKey(keyWord)) sheetMetaDic[keyWord] += 1;
-                                        else sheetMetaDic.Add(keyWord, 1);
-                                    }
+                        //判断父装配体是否可视，并且不封套(导出发货清单无需判断可见，封套，无需判断钣金，只要没有被压缩就行了)
+                        if (swParentComp.Visible == 1 && !swComp.IsSuppressed())
+                        {
+                            //过滤需要的零件，全部转换成大写
+                            if (swComp.GetPathName().Contains("["))
+                            {
+                                //截取关键字
+                                string keyWord = swComp.GetPathName();
+                                if (keyWord.Contains(")"))
+                                {
+                                    keyWord = keyWord.Substring(0, keyWord.IndexOf(")") + 1);
+                                    keyWord = keyWord.Substring(keyWord.IndexOf("[")).ToUpper();
                                 }
+                                else if (keyWord.Contains("}"))
+                                {
+                                    keyWord = keyWord.Substring(0, keyWord.IndexOf("}") + 1);
+                                    keyWord = keyWord.Substring(keyWord.IndexOf("[")).ToUpper();
+                                }
+                                else
+                                {
+                                    keyWord = keyWord.Substring(0, keyWord.IndexOf("]") + 1);
+                                    keyWord = keyWord.Substring(keyWord.IndexOf("[")).ToUpper();
+                                }
+
+                                if (sheetMetaDic.ContainsKey(keyWord)) sheetMetaDic[keyWord] += 1;
+                                else sheetMetaDic.Add(keyWord, 1);
                             }
                         }
                     }
