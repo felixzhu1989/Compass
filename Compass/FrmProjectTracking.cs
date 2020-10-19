@@ -206,10 +206,16 @@ namespace Compass
             //初始化修改信息
             grbEditProjectTracking.Visible = true;//显示修改框
             txtEditProjectTrackingId.Text = objProjectTracking.ProjectTrackingId.ToString();
-            IniProjectStatus(cobEditProjectStatus);
             IniODPNo(cobEditODPNo);
-            cobEditODPNo.Text = objProjectTracking.ODPNo;
+            IniProjectStatus(cobEditProjectStatus);
+            cobEditKickOffStatus.Items.Clear();
+            cobEditKickOffStatus.Items.Add("Yes");
+            cobEditKickOffStatus.Items.Add("No");
 
+            cobEditODPNo.Text = objProjectTracking.ODPNo;
+            cobEditProjectStatus.Text = objProjectTracking.ProjectStatusName;
+            cobEditKickOffStatus.Text = objProjectTracking.KickOffStatus;
+            
             dtpEditDrReleaseActual.Text = objProjectTracking.DrReleaseActual == DateTime.MinValue ?
                 Convert.ToDateTime("1/1/2020").ToShortDateString() :
                 objProjectTracking.DrReleaseActual.ToShortDateString();
@@ -219,7 +225,7 @@ namespace Compass
             dtpEditDeliverActual.Text = objProjectTracking.DeliverActual == DateTime.MinValue ?
                 Convert.ToDateTime("1/1/2020").ToShortDateString() :
                 objProjectTracking.DeliverActual.ToShortDateString();
-            cobEditProjectStatus.Text = objProjectTracking.ProjectStatusName;
+            
         }
         /// <summary>
         /// 双击单元格修改记录
@@ -246,8 +252,14 @@ namespace Compass
             }
             if (cobEditODPNo.SelectedIndex == -1)
             {
-                MessageBox.Show("请选择或者输入项目编号，如果没有，请到项目列表中添加后再选择", "验证信息");
+                MessageBox.Show("请选择项目编号，如果没有，请到项目列表中添加后再选择", "验证信息");
                 cobEditODPNo.Focus();
+                return;
+            }
+            if (cobEditKickOffStatus.SelectedIndex == -1)
+            {
+                MessageBox.Show("请选择Kick-Off状态", "验证信息");
+                cobEditKickOffStatus.Focus();
                 return;
             }
             //验证日期顺序的正确性
@@ -268,6 +280,7 @@ namespace Compass
                 ProjectTrackingId = Convert.ToInt32(txtEditProjectTrackingId.Text.Trim()),
                 ProjectId = Convert.ToInt32(cobEditODPNo.SelectedValue),
                 ProjectStatusId = Convert.ToInt32(cobEditProjectStatus.SelectedValue),
+                KickOffStatus=cobEditKickOffStatus.Text,
                 DrReleaseActual = Convert.ToDateTime(dtpEditDrReleaseActual.Text) == Convert.ToDateTime("1/1/2020") ?
                     DateTime.MinValue : Convert.ToDateTime(dtpEditDrReleaseActual.Text),
                 ProdFinishActual = Convert.ToDateTime(dtpEditProdFinishActual.Text) == Convert.ToDateTime("1/1/2020") ?

@@ -22,6 +22,8 @@ namespace Models
         public DateTime ProdFinishTarget { get; set; }
         public DateTime ProdFinishActual { get; set; }
         public DateTime DeliverActual { get; set; }
+        public string KickOffStatus { get; set; }
+
         //简单扩展
         public string ODPNo { get; set; }
         public string ProjectStatusName { get; set; }

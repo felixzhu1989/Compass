@@ -46,7 +46,7 @@ namespace DAL
         /// <returns></returns>
         public List<ProjectTracking> GetProjectTrackingsByWhereSql(string whereSql)
         {
-            string sql = "select distinct ProjectTracking.ProjectId,ProjectTrackingId,ODPNo,ProjectTracking.ProjectStatusId,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName from ProjectTracking";
+            string sql = "select distinct ProjectTracking.ProjectId,ProjectTrackingId,ODPNo,ProjectTracking.ProjectStatusId,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName,KickOffStatus from ProjectTracking";
             sql += " inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId";
             sql += " inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId";
             sql += " left join (select ProjectId,max(DrReleaseTarget)as DrReleaseTarget from DrawingPlan group by ProjectId) as PlanList on PlanList.ProjectId=Projects.ProjectId";
@@ -68,7 +68,8 @@ namespace DAL
                     ProdFinishTarget = objReader["ShippingTime"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ShippingTime"]),
                     ProdFinishActual = objReader["ProdFinishActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ProdFinishActual"]),
                     DeliverActual = objReader["DeliverActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["DeliverActual"]),
-                    ProjectName = objReader["ProjectName"].ToString()
+                    ProjectName = objReader["ProjectName"].ToString(),
+                    KickOffStatus=objReader["KickOffStatus"].ToString()
                 });
             }
             objReader.Close();
@@ -108,7 +109,7 @@ namespace DAL
         /// <returns></returns>
         public ProjectTracking GetProjectTrackingByWhereSql(string whereSql)
         {
-            string sql = "select ProjectTrackingId,ProjectTracking.ProjectId,ODPNo,ProjectTracking.ProjectStatusId,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName from ProjectTracking";
+            string sql = "select ProjectTrackingId,ProjectTracking.ProjectId,ODPNo,ProjectTracking.ProjectStatusId,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName,KickOffStatus from ProjectTracking";
             sql += " inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId";
             sql += " inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId";
             sql += " left join (select ProjectId,max(DrReleaseTarget)as DrReleaseTarget from DrawingPlan group by ProjectId) as PlanList on PlanList.ProjectId=Projects.ProjectId";
@@ -129,7 +130,8 @@ namespace DAL
                     ProdFinishTarget = objReader["ShippingTime"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ShippingTime"]),
                     ProdFinishActual = objReader["ProdFinishActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ProdFinishActual"]),
                     DeliverActual = objReader["DeliverActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["DeliverActual"]),
-                    ProjectName=objReader["ProjectName"].ToString()
+                    ProjectName=objReader["ProjectName"].ToString(),
+                    KickOffStatus=objReader["KickOffStatus"].ToString()
                 };
             }
             objReader.Close();
@@ -177,9 +179,9 @@ namespace DAL
         public int EditProjectTracing(ProjectTracking objProjectTracking)
         {
             string sql = "update ProjectTracking set ProjectId={0},ProjectStatusId={1},DrReleaseActual='{2}',";
-            sql += "ProdFinishActual='{3}',DeliverActual='{4}' where ProjectTrackingId={5}";
+            sql += "ProdFinishActual='{3}',DeliverActual='{4}',KickOffStatus='{5}' where ProjectTrackingId={6}";
             sql = string.Format(sql, objProjectTracking.ProjectId, objProjectTracking.ProjectStatusId, objProjectTracking.DrReleaseActual,
-                objProjectTracking.ProdFinishActual, objProjectTracking.DeliverActual, objProjectTracking.ProjectTrackingId);
+                objProjectTracking.ProdFinishActual, objProjectTracking.DeliverActual,objProjectTracking.KickOffStatus,objProjectTracking.ProjectTrackingId);
             try
             {
                 return SQLHelper.Update(sql);

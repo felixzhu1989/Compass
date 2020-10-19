@@ -234,7 +234,7 @@
             // 
             this.tsbUsersManage.Image = ((System.Drawing.Image)(resources.GetObject("tsbUsersManage.Image")));
             this.tsbUsersManage.Name = "tsbUsersManage";
-            this.tsbUsersManage.Size = new System.Drawing.Size(180, 22);
+            this.tsbUsersManage.Size = new System.Drawing.Size(172, 22);
             this.tsbUsersManage.Text = "用户与分组";
             this.tsbUsersManage.Click += new System.EventHandler(this.tsbUsersManage_Click);
             // 
@@ -242,7 +242,7 @@
             // 
             this.tsbCategories.Image = ((System.Drawing.Image)(resources.GetObject("tsbCategories.Image")));
             this.tsbCategories.Name = "tsbCategories";
-            this.tsbCategories.Size = new System.Drawing.Size(180, 22);
+            this.tsbCategories.Size = new System.Drawing.Size(172, 22);
             this.tsbCategories.Text = "产品模型分类";
             this.tsbCategories.Click += new System.EventHandler(this.tsbCategories_Click);
             // 
@@ -250,7 +250,7 @@
             // 
             this.tsbCeilingAccessories.Image = ((System.Drawing.Image)(resources.GetObject("tsbCeilingAccessories.Image")));
             this.tsbCeilingAccessories.Name = "tsbCeilingAccessories";
-            this.tsbCeilingAccessories.Size = new System.Drawing.Size(180, 22);
+            this.tsbCeilingAccessories.Size = new System.Drawing.Size(172, 22);
             this.tsbCeilingAccessories.Text = "天花发货清单配件";
             this.tsbCeilingAccessories.Click += new System.EventHandler(this.tsbCeilingAccessories_Click);
             // 
@@ -258,7 +258,7 @@
             // 
             this.tsbWorkLoad.Image = ((System.Drawing.Image)(resources.GetObject("tsbWorkLoad.Image")));
             this.tsbWorkLoad.Name = "tsbWorkLoad";
-            this.tsbWorkLoad.Size = new System.Drawing.Size(180, 22);
+            this.tsbWorkLoad.Size = new System.Drawing.Size(172, 22);
             this.tsbWorkLoad.Text = "设计工作量";
             this.tsbWorkLoad.Click += new System.EventHandler(this.tsbWorkLoad_Click);
             // 
@@ -266,7 +266,7 @@
             // 
             this.tsbVaultsStatusTypes.Image = ((System.Drawing.Image)(resources.GetObject("tsbVaultsStatusTypes.Image")));
             this.tsbVaultsStatusTypes.Name = "tsbVaultsStatusTypes";
-            this.tsbVaultsStatusTypes.Size = new System.Drawing.Size(180, 22);
+            this.tsbVaultsStatusTypes.Size = new System.Drawing.Size(172, 22);
             this.tsbVaultsStatusTypes.Text = "项目状态/类型";
             this.tsbVaultsStatusTypes.Click += new System.EventHandler(this.tsbVaultsStatusTypes_Click);
             // 
@@ -274,7 +274,7 @@
             // 
             this.tsbUpdate.Image = ((System.Drawing.Image)(resources.GetObject("tsbUpdate.Image")));
             this.tsbUpdate.Name = "tsbUpdate";
-            this.tsbUpdate.Size = new System.Drawing.Size(180, 22);
+            this.tsbUpdate.Size = new System.Drawing.Size(172, 22);
             this.tsbUpdate.Text = "系统升级";
             this.tsbUpdate.Click += new System.EventHandler(this.tsbUpdate_Click);
             // 

@@ -32,15 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvProjectTracking = new System.Windows.Forms.DataGridView();
-            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DrReleaseTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProdFinishTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProdFinishActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeliverActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectTrackingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiQueryAllProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +62,18 @@
             this.button1 = new System.Windows.Forms.Button();
             this.cobODPNo = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KickOffStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DrReleaseTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProdFinishTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProdFinishActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeliverActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectTrackingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cobEditKickOffStatus = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTracking)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.grbEditProjectTracking.SuspendLayout();
@@ -100,6 +103,7 @@
             this.ODPNo,
             this.ProjectStatusName,
             this.ProjectName,
+            this.KickOffStatus,
             this.DrReleaseTarget,
             this.Item,
             this.ProdFinishTarget,
@@ -118,79 +122,6 @@
             this.dgvProjectTracking.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjectTracking_RowPostPaint);
             this.dgvProjectTracking.SelectionChanged += new System.EventHandler(this.dgvProjectTracking_SelectionChanged);
             this.dgvProjectTracking.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjectTracking_KeyDown);
-            // 
-            // ODPNo
-            // 
-            this.ODPNo.DataPropertyName = "ODPNo";
-            this.ODPNo.HeaderText = "ODP";
-            this.ODPNo.Name = "ODPNo";
-            this.ODPNo.ReadOnly = true;
-            this.ODPNo.Width = 95;
-            // 
-            // ProjectStatusName
-            // 
-            this.ProjectStatusName.DataPropertyName = "ProjectStatusName";
-            this.ProjectStatusName.HeaderText = "项目状态";
-            this.ProjectStatusName.Name = "ProjectStatusName";
-            this.ProjectStatusName.ReadOnly = true;
-            this.ProjectStatusName.Width = 150;
-            // 
-            // ProjectName
-            // 
-            this.ProjectName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.ProjectName.DataPropertyName = "ProjectName";
-            this.ProjectName.HeaderText = "项目名称";
-            this.ProjectName.Name = "ProjectName";
-            this.ProjectName.ReadOnly = true;
-            this.ProjectName.Width = 86;
-            // 
-            // DrReleaseTarget
-            // 
-            this.DrReleaseTarget.DataPropertyName = "DrReleaseTarget";
-            this.DrReleaseTarget.HeaderText = "计划发图";
-            this.DrReleaseTarget.Name = "DrReleaseTarget";
-            this.DrReleaseTarget.ReadOnly = true;
-            this.DrReleaseTarget.Width = 90;
-            // 
-            // Item
-            // 
-            this.Item.DataPropertyName = "DrReleaseActual";
-            this.Item.HeaderText = "实际发图";
-            this.Item.Name = "Item";
-            this.Item.ReadOnly = true;
-            this.Item.Width = 90;
-            // 
-            // ProdFinishTarget
-            // 
-            this.ProdFinishTarget.DataPropertyName = "ProdFinishTarget";
-            this.ProdFinishTarget.HeaderText = "计划完工";
-            this.ProdFinishTarget.Name = "ProdFinishTarget";
-            this.ProdFinishTarget.ReadOnly = true;
-            this.ProdFinishTarget.Width = 90;
-            // 
-            // ProdFinishActual
-            // 
-            this.ProdFinishActual.DataPropertyName = "ProdFinishActual";
-            this.ProdFinishActual.HeaderText = "实际完工";
-            this.ProdFinishActual.Name = "ProdFinishActual";
-            this.ProdFinishActual.ReadOnly = true;
-            this.ProdFinishActual.Width = 90;
-            // 
-            // DeliverActual
-            // 
-            this.DeliverActual.DataPropertyName = "DeliverActual";
-            this.DeliverActual.HeaderText = "实际发货";
-            this.DeliverActual.Name = "DeliverActual";
-            this.DeliverActual.ReadOnly = true;
-            this.DeliverActual.Width = 90;
-            // 
-            // ProjectTrackingId
-            // 
-            this.ProjectTrackingId.DataPropertyName = "ProjectTrackingId";
-            this.ProjectTrackingId.HeaderText = "ID";
-            this.ProjectTrackingId.Name = "ProjectTrackingId";
-            this.ProjectTrackingId.ReadOnly = true;
-            this.ProjectTrackingId.Width = 40;
             // 
             // contextMenuStrip
             // 
@@ -385,8 +316,10 @@
             this.grbEditProjectTracking.Controls.Add(this.label9);
             this.grbEditProjectTracking.Controls.Add(this.dtpEditDrReleaseActual);
             this.grbEditProjectTracking.Controls.Add(this.txtEditProjectTrackingId);
+            this.grbEditProjectTracking.Controls.Add(this.cobEditKickOffStatus);
             this.grbEditProjectTracking.Controls.Add(this.cobEditProjectStatus);
             this.grbEditProjectTracking.Controls.Add(this.label15);
+            this.grbEditProjectTracking.Controls.Add(this.label5);
             this.grbEditProjectTracking.Controls.Add(this.label11);
             this.grbEditProjectTracking.Controls.Add(this.label10);
             this.grbEditProjectTracking.Location = new System.Drawing.Point(10, 462);
@@ -506,6 +439,105 @@
             this.label7.TabIndex = 19;
             this.label7.Text = "查询用，添加时不要点击";
             // 
+            // ODPNo
+            // 
+            this.ODPNo.DataPropertyName = "ODPNo";
+            this.ODPNo.HeaderText = "ODP";
+            this.ODPNo.Name = "ODPNo";
+            this.ODPNo.ReadOnly = true;
+            this.ODPNo.Width = 95;
+            // 
+            // ProjectStatusName
+            // 
+            this.ProjectStatusName.DataPropertyName = "ProjectStatusName";
+            this.ProjectStatusName.HeaderText = "项目状态";
+            this.ProjectStatusName.Name = "ProjectStatusName";
+            this.ProjectStatusName.ReadOnly = true;
+            this.ProjectStatusName.Width = 150;
+            // 
+            // ProjectName
+            // 
+            this.ProjectName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ProjectName.DataPropertyName = "ProjectName";
+            this.ProjectName.HeaderText = "项目名称";
+            this.ProjectName.Name = "ProjectName";
+            this.ProjectName.ReadOnly = true;
+            this.ProjectName.Width = 86;
+            // 
+            // KickOffStatus
+            // 
+            this.KickOffStatus.DataPropertyName = "KickOffStatus";
+            this.KickOffStatus.HeaderText = "Kick-Off";
+            this.KickOffStatus.Name = "KickOffStatus";
+            this.KickOffStatus.ReadOnly = true;
+            this.KickOffStatus.Width = 70;
+            // 
+            // DrReleaseTarget
+            // 
+            this.DrReleaseTarget.DataPropertyName = "DrReleaseTarget";
+            this.DrReleaseTarget.HeaderText = "计划发图";
+            this.DrReleaseTarget.Name = "DrReleaseTarget";
+            this.DrReleaseTarget.ReadOnly = true;
+            this.DrReleaseTarget.Width = 90;
+            // 
+            // Item
+            // 
+            this.Item.DataPropertyName = "DrReleaseActual";
+            this.Item.HeaderText = "实际发图";
+            this.Item.Name = "Item";
+            this.Item.ReadOnly = true;
+            this.Item.Width = 90;
+            // 
+            // ProdFinishTarget
+            // 
+            this.ProdFinishTarget.DataPropertyName = "ProdFinishTarget";
+            this.ProdFinishTarget.HeaderText = "计划完工";
+            this.ProdFinishTarget.Name = "ProdFinishTarget";
+            this.ProdFinishTarget.ReadOnly = true;
+            this.ProdFinishTarget.Width = 90;
+            // 
+            // ProdFinishActual
+            // 
+            this.ProdFinishActual.DataPropertyName = "ProdFinishActual";
+            this.ProdFinishActual.HeaderText = "实际完工";
+            this.ProdFinishActual.Name = "ProdFinishActual";
+            this.ProdFinishActual.ReadOnly = true;
+            this.ProdFinishActual.Width = 90;
+            // 
+            // DeliverActual
+            // 
+            this.DeliverActual.DataPropertyName = "DeliverActual";
+            this.DeliverActual.HeaderText = "实际发货";
+            this.DeliverActual.Name = "DeliverActual";
+            this.DeliverActual.ReadOnly = true;
+            this.DeliverActual.Width = 90;
+            // 
+            // ProjectTrackingId
+            // 
+            this.ProjectTrackingId.DataPropertyName = "ProjectTrackingId";
+            this.ProjectTrackingId.HeaderText = "ID";
+            this.ProjectTrackingId.Name = "ProjectTrackingId";
+            this.ProjectTrackingId.ReadOnly = true;
+            this.ProjectTrackingId.Width = 40;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(214, 30);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 19);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Kick-Off";
+            // 
+            // cobEditKickOffStatus
+            // 
+            this.cobEditKickOffStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobEditKickOffStatus.FormattingEnabled = true;
+            this.cobEditKickOffStatus.Location = new System.Drawing.Point(282, 26);
+            this.cobEditKickOffStatus.Name = "cobEditKickOffStatus";
+            this.cobEditKickOffStatus.Size = new System.Drawing.Size(117, 27);
+            this.cobEditKickOffStatus.TabIndex = 14;
+            // 
             // FrmProjectTracking
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -573,11 +605,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ODPNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectStatusName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KickOffStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn DrReleaseTarget;
         private System.Windows.Forms.DataGridViewTextBoxColumn Item;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProdFinishTarget;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProdFinishActual;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeliverActual;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectTrackingId;
+        private System.Windows.Forms.ComboBox cobEditKickOffStatus;
+        private System.Windows.Forms.Label label5;
     }
 }
