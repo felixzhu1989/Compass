@@ -112,19 +112,19 @@
             this.tsmiEditCustomer,
             this.tsmiDeleteCustomer});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuStrip.Size = new System.Drawing.Size(149, 48);
             // 
             // tsmiEditCustomer
             // 
             this.tsmiEditCustomer.Name = "tsmiEditCustomer";
-            this.tsmiEditCustomer.Size = new System.Drawing.Size(152, 22);
+            this.tsmiEditCustomer.Size = new System.Drawing.Size(148, 22);
             this.tsmiEditCustomer.Text = "修改客户名称";
             this.tsmiEditCustomer.Click += new System.EventHandler(this.tsmiEditCustomer_Click);
             // 
             // tsmiDeleteCustomer
             // 
             this.tsmiDeleteCustomer.Name = "tsmiDeleteCustomer";
-            this.tsmiDeleteCustomer.Size = new System.Drawing.Size(152, 22);
+            this.tsmiDeleteCustomer.Size = new System.Drawing.Size(148, 22);
             this.tsmiDeleteCustomer.Text = "删除客户名称";
             this.tsmiDeleteCustomer.Click += new System.EventHandler(this.tsmiDeleteCustomer_Click);
             // 

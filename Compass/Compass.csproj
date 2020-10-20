@@ -108,6 +108,18 @@
     <Compile Include="CeilingForm\FrmBCJ300.Designer.cs">
       <DependentUpon>FrmBCJ300.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmDXFCutList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDXFCutList.Designer.cs">
+      <DependentUpon>FrmDXFCutList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HoodForm\FrmUCPDXF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoodForm\FrmUCPDXF.Designer.cs">
+      <DependentUpon>FrmUCPDXF.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmABD300.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -686,6 +698,9 @@
     <EmbeddedResource Include="CeilingForm\FrmDPCJ330.resx">
       <DependentUpon>FrmDPCJ330.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmDXFCutList.resx">
+      <DependentUpon>FrmDXFCutList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmJobCardCeiling.resx">
       <DependentUpon>FrmJobCardCeiling.cs</DependentUpon>
     </EmbeddedResource>
@@ -793,6 +808,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmLSDOST.resx">
       <DependentUpon>FrmLSDOST.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoodForm\FrmUCPDXF.resx">
+      <DependentUpon>FrmUCPDXF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmUWF555.resx">
       <DependentUpon>FrmUWF555.cs</DependentUpon>
@@ -906,8 +924,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="images\" />
+    <None Include="images\Cutlist.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

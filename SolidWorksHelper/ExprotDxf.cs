@@ -20,7 +20,6 @@ namespace SolidWorksHelper
         int warnings = 0;
         int errors = 0;
         Dictionary<string, int> sheetMetaDic = new Dictionary<string, int>();
-
         /// <summary>
         /// 天花子装配导出DXF图纸
         /// </summary>

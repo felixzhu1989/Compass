@@ -217,7 +217,7 @@ namespace Compass
             {
                 if (objCeilingAccessoryService.DeleteCeilingAccessory(id) == 1)
                     dgvCeilingAccessories.DataSource = objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
-                else MessageBox.Show("删除项目出错，项目是否被其他数据关联，请联系管理员查看后台数据。");
+                else MessageBox.Show("删除配件信息出错，项目是否被其他数据关联，请联系管理员查看后台数据。");
             }
             catch (Exception ex)
             {

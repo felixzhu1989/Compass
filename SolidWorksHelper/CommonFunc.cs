@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using SolidWorks.Interop.swconst;
@@ -10,6 +12,18 @@ namespace SolidWorksHelper
 {
     public static class CommonFunc
     {
+        public static bool CopyDxfFiles(string oldPath,string newPath)
+        {
+            string[] files = Directory.GetFiles(oldPath);
+            foreach (var name in files)
+            {
+                string currentFile = newPath + name.Substring(name.LastIndexOf(@"\") + 1);
+                //如果文件在程序目录中已经存在，则删除，避免弹窗中断程序
+                if (File.Exists(currentFile)) File.Delete(currentFile);
+                File.Copy(name, currentFile);
+            }
+            return true;
+        }
         /// <summary>
         /// 文件名添加后缀
         /// </summary>

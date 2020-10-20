@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DXFCutListService.cs" />
     <Compile Include="HoodService\ABD300Service.cs" />
     <Compile Include="HoodService\ABD200Service.cs" />
     <Compile Include="CeilingAccessoryService.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="CeilingService\SSPHFDService.cs" />
     <Compile Include="CeilingService\SSPFLATService.cs" />
     <Compile Include="SubAssyService.cs" />
+    <Compile Include="UCPDXFService.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="HoodService\UVI555Service.cs" />
     <Compile Include="HoodService\UVF555Service.cs" />

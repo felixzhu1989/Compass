@@ -103,3 +103,5 @@ E:\Compass\Compass\obj\Debug\Compass.FrmCeilingAccessories.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmAddCeilingPackingList.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmABD200.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmABD300.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmUCPDXF.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmDXFCutList.resources

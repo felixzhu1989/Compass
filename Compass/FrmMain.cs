@@ -111,6 +111,11 @@ namespace Compass
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmCategories(), splitContainer.Panel2);
         }
+        private void tsbDXFCutList_Click(object sender, EventArgs e)
+        {
+            ClosePreForm(splitContainer.Panel2);
+            OpenForm(new FrmDXFCutList(), splitContainer.Panel2);
+        }
 
         private void tsbWorkLoad_Click(object sender, EventArgs e)
         {

@@ -73,7 +73,7 @@ namespace DAL
             return GetCeilingAccessoryByWhereSql(string.Format(" where CeilingAccessoryId='{0}'", ceilingAccessoryId));
         }
         /// <summary>
-        /// 根据部件编号返回发货清单1个条目
+        /// 根据部件编号返回配件1个条目
         /// </summary>
         /// <param name="partNo"></param>
         /// <returns></returns>
