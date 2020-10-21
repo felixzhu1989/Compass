@@ -5,7 +5,7 @@
   <!--升级文件信息-->
   <UpdateInfo>
     <!--升级文件的更新日期-->
-    <UpdateTime Date="2020-10-20 13:00"/>
+    <UpdateTime Date="2020-10-21 15:00"/>
     <!--升级文件的版本号-->
     <Version Num="1.0.0.1"/>
   </UpdateInfo>
@@ -22,7 +22,7 @@
 	<!--主程序文件-->
     <UpdateFile Ver="1.0.0.1" FileName="Compass.exe" ContentLength="1715KB"/>	
 	<!--图标文件-->
-	<UpdateFile Ver="1.0.0.1" FileName="compass_64px.ico" ContentLength="1715KB"/>	
+	<UpdateFile Ver="1.0.0.1" FileName="compass_64px.ico" ContentLength="1715KB"/>
 	<!--缺省图文件-->
 	<UpdateFile Ver="1.0.0.1" FileName="NoPic.png" ContentLength="1715KB"/>
     <!--excel文件-->

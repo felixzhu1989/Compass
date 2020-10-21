@@ -924,7 +924,31 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="images\Categories.png" />
+    <Content Include="images\Category.png" />
+    <Content Include="images\CategoryItem.png" />
+    <Content Include="images\CeilingAutoDrawing.png" />
+    <Content Include="images\compass_64px.ico" />
+    <Content Include="images\customer_service_68.646575342466px_1208508_easyicon.net.png" />
+    <Content Include="images\DrawingPlan.png" />
+    <Content Include="images\FolderClosed.png" />
+    <Content Include="images\FolderOpen.png" />
+    <Content Include="images\HoodAutoDrawing.png" />
+    <Content Include="images\NewUpdate.png" />
+    <Content Include="images\PackingList.png" />
+    <Content Include="images\Project.png" />
+    <Content Include="images\ProjectInfo.png" />
+    <Content Include="images\ProjectList.png" />
+    <Content Include="images\ProjectTracking.png" />
+    <Content Include="images\Setting.png" />
+    <Content Include="images\Status.png" />
+    <Content Include="images\Update.png" />
+    <Content Include="images\UpdateIcon.png" />
+    <Content Include="images\UpdateStart.png" />
+    <Content Include="images\UsersManage.png" />
+    <Content Include="images\Workload.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="images\Cutlist.png" />
   </ItemGroup>

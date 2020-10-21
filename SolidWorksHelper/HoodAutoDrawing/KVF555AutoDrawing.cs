@@ -929,7 +929,7 @@ namespace SolidWorksHelper
                 swFeat = swComp.FeatureByName("SUCABLE-LEFT");
                 swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
-                if (item.SidePanel == "LEFT" || item.SidePanel == "BOTH" || item.MARVEL=="YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                if (item.MARVEL=="YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
 
 
