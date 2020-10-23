@@ -15,6 +15,9 @@ namespace Compass
 
     public partial class FrmCategoryTree : MetroFramework.Forms.MetroForm
     {
+        //创建委托变量
+        public RefreshTreeDelegate RefreshTreeDeg = null;
+
         ModuleTreeService objModuleTreeService = new ModuleTreeService();
         private Drawing objDrawing = null;
         public FrmCategoryTree()
@@ -163,8 +166,11 @@ namespace Compass
                     if (result)
                     {
                         MessageBox.Show("烟罩分段添加成功");
-                        this.Close();
-                        this.DialogResult = DialogResult.OK;
+                        //this.Close();不关闭窗口
+                        //this.DialogResult = DialogResult.OK;
+
+                        //调用委托更新模型树
+                        RefreshTreeDeg();
                     }
                 }
                 catch (Exception ex)

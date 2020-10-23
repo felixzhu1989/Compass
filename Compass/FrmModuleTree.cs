@@ -17,6 +17,9 @@ using MetroFramework.Interfaces;
 
 namespace Compass
 {
+    //声明委托
+    public delegate void RefreshTreeDelegate();
+
     public partial class FrmModuleTree : Form
     {
         ProjectService objProjectService = new ProjectService();
@@ -145,12 +148,18 @@ namespace Compass
                 drawingPlanId = drawingPlanId.Substring(4);//除去item
                 Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId);
                 FrmCategoryTree objFrmCategoryTree = new FrmCategoryTree(objDrawing);
-                DialogResult result = objFrmCategoryTree.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    //更新模型树
-                    RefreshTree();
-                }
+                //关联委托方法和委托变量
+                objFrmCategoryTree.RefreshTreeDeg = RefreshTree;
+                objFrmCategoryTree.Show();
+
+                //模式窗口
+                //DialogResult result = objFrmCategoryTree.ShowDialog();
+                //if (result == DialogResult.OK)
+                //{
+                //    //更新模型树
+                //    RefreshTree();
+                //}
+
             }
         }
         /// <summary>
