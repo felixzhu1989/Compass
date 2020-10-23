@@ -84,6 +84,12 @@
             this.lblSensorDis2 = new System.Windows.Forms.Label();
             this.lblSensorDis1 = new System.Windows.Forms.Label();
             this.txtSensorDis1 = new System.Windows.Forms.TextBox();
+            this.cobHCLSide = new System.Windows.Forms.ComboBox();
+            this.lblHCLSide = new System.Windows.Forms.Label();
+            this.txtHCLSideLeft = new System.Windows.Forms.TextBox();
+            this.lblHCLSideLeft = new System.Windows.Forms.Label();
+            this.lblHCLSideRight = new System.Windows.Forms.Label();
+            this.txtHCLSideRight = new System.Windows.Forms.TextBox();
             this.grbMARVEL.SuspendLayout();
             this.grbANSUL.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -97,11 +103,17 @@
             // grbMARVEL
             // 
             this.grbMARVEL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbMARVEL.Controls.Add(this.lblHCLSide);
+            this.grbMARVEL.Controls.Add(this.txtHCLSideRight);
+            this.grbMARVEL.Controls.Add(this.cobHCLSide);
             this.grbMARVEL.Controls.Add(this.lblLightType);
             this.grbMARVEL.Controls.Add(this.cobLightType);
+            this.grbMARVEL.Controls.Add(this.lblHCLSideRight);
             this.grbMARVEL.Controls.Add(this.cobSSPType);
             this.grbMARVEL.Controls.Add(this.label30);
+            this.grbMARVEL.Controls.Add(this.lblHCLSideLeft);
             this.grbMARVEL.Controls.Add(this.label22);
+            this.grbMARVEL.Controls.Add(this.txtHCLSideLeft);
             this.grbMARVEL.Controls.Add(this.cobJapan);
             this.grbMARVEL.Location = new System.Drawing.Point(779, 372);
             this.grbMARVEL.Name = "grbMARVEL";
@@ -113,7 +125,7 @@
             // lblLightType
             // 
             this.lblLightType.AutoSize = true;
-            this.lblLightType.Location = new System.Drawing.Point(11, 58);
+            this.lblLightType.Location = new System.Drawing.Point(6, 58);
             this.lblLightType.Name = "lblLightType";
             this.lblLightType.Size = new System.Drawing.Size(61, 19);
             this.lblLightType.TabIndex = 4;
@@ -130,6 +142,7 @@
             this.cobLightType.Name = "cobLightType";
             this.cobLightType.Size = new System.Drawing.Size(100, 27);
             this.cobLightType.TabIndex = 2;
+            this.cobLightType.SelectedIndexChanged += new System.EventHandler(this.cobLightType_SelectedIndexChanged);
             // 
             // cobSSPType
             // 
@@ -698,6 +711,68 @@
             this.txtSensorDis1.TabIndex = 2;
             this.txtSensorDis1.Visible = false;
             // 
+            // cobHCLSide
+            // 
+            this.cobHCLSide.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobHCLSide.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobHCLSide.BackColor = System.Drawing.Color.Azure;
+            this.cobHCLSide.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobHCLSide.FormattingEnabled = true;
+            this.cobHCLSide.Location = new System.Drawing.Point(280, 58);
+            this.cobHCLSide.Name = "cobHCLSide";
+            this.cobHCLSide.Size = new System.Drawing.Size(100, 27);
+            this.cobHCLSide.TabIndex = 3;
+            this.cobHCLSide.Visible = false;
+            this.cobHCLSide.SelectedIndexChanged += new System.EventHandler(this.cobHCLSide_SelectedIndexChanged);
+            // 
+            // lblHCLSide
+            // 
+            this.lblHCLSide.AutoSize = true;
+            this.lblHCLSide.Location = new System.Drawing.Point(199, 62);
+            this.lblHCLSide.Name = "lblHCLSide";
+            this.lblHCLSide.Size = new System.Drawing.Size(61, 19);
+            this.lblHCLSide.TabIndex = 4;
+            this.lblHCLSide.Text = "HCL侧板";
+            this.lblHCLSide.Visible = false;
+            // 
+            // txtHCLSideLeft
+            // 
+            this.txtHCLSideLeft.BackColor = System.Drawing.Color.Azure;
+            this.txtHCLSideLeft.Location = new System.Drawing.Point(92, 96);
+            this.txtHCLSideLeft.Name = "txtHCLSideLeft";
+            this.txtHCLSideLeft.Size = new System.Drawing.Size(100, 25);
+            this.txtHCLSideLeft.TabIndex = 4;
+            this.txtHCLSideLeft.Visible = false;
+            // 
+            // lblHCLSideLeft
+            // 
+            this.lblHCLSideLeft.AutoSize = true;
+            this.lblHCLSideLeft.Location = new System.Drawing.Point(6, 99);
+            this.lblHCLSideLeft.Name = "lblHCLSideLeft";
+            this.lblHCLSideLeft.Size = new System.Drawing.Size(74, 19);
+            this.lblHCLSideLeft.TabIndex = 2;
+            this.lblHCLSideLeft.Text = "HCL左侧板";
+            this.lblHCLSideLeft.Visible = false;
+            // 
+            // lblHCLSideRight
+            // 
+            this.lblHCLSideRight.AutoSize = true;
+            this.lblHCLSideRight.Location = new System.Drawing.Point(200, 99);
+            this.lblHCLSideRight.Name = "lblHCLSideRight";
+            this.lblHCLSideRight.Size = new System.Drawing.Size(74, 19);
+            this.lblHCLSideRight.TabIndex = 2;
+            this.lblHCLSideRight.Text = "HCL右侧板";
+            this.lblHCLSideRight.Visible = false;
+            // 
+            // txtHCLSideRight
+            // 
+            this.txtHCLSideRight.BackColor = System.Drawing.Color.Azure;
+            this.txtHCLSideRight.Location = new System.Drawing.Point(281, 97);
+            this.txtHCLSideRight.Name = "txtHCLSideRight";
+            this.txtHCLSideRight.Size = new System.Drawing.Size(100, 25);
+            this.txtHCLSideRight.TabIndex = 5;
+            this.txtHCLSideRight.Visible = false;
+            // 
             // FrmUCWSB535
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -792,5 +867,11 @@
         private System.Windows.Forms.Label lblSensorDis2;
         private System.Windows.Forms.Label lblSensorDis1;
         private System.Windows.Forms.TextBox txtSensorDis1;
+        private System.Windows.Forms.Label lblHCLSide;
+        private System.Windows.Forms.TextBox txtHCLSideRight;
+        private System.Windows.Forms.ComboBox cobHCLSide;
+        private System.Windows.Forms.Label lblHCLSideRight;
+        private System.Windows.Forms.Label lblHCLSideLeft;
+        private System.Windows.Forms.TextBox txtHCLSideLeft;
     }
 }

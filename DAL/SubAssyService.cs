@@ -127,5 +127,36 @@ namespace DAL
         }
 
 
+        /// <summary>
+        /// 添加SubAssy
+        /// </summary>
+        /// <param name="objSubAssy"></param>
+        /// <returns></returns>
+        public int AddSubAssy(SubAssy objSubAssy)
+        {
+            string sql = "insert into SubAssy (ProjectId,SubAssyName)";
+            sql += " values({0},'{1}');select @@identity";
+            sql = string.Format(sql, objSubAssy.ProjectId, objSubAssy.SubAssyName);
+            try
+            {
+                return Convert.ToInt32(SQLHelper.GetSingleResult(sql));
+            }
+            catch (SqlException ex)
+            {
+                //2627
+                if (ex.Number == 2627)
+                {
+                    throw new Exception("子装配重复,不能添加重复的子装配信息");
+                }
+                else
+                {
+                    throw new Exception("添加子装配时数据库访问异常" + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -346,7 +346,7 @@ namespace Compass
             btnHoodPackingList.Enabled = false;
             tspbStatus.Value = 0;
             tspbStatus.Step = 1;
-            tspbStatus.Maximum = waitingList.Count;
+            tspbStatus.Maximum = execList.Count;
             List<JobCard> jobCardList=new List<JobCard>();
             foreach (var item in execList)
             {
@@ -364,7 +364,7 @@ namespace Compass
             tsslStatus.Text = "正在将数据写入excel文件...";
             await ExportHoodPackingListAsync(jobCardList);
             tsslStatus.Text = "装箱清单导出完成，请在项目文件夹中查看！";
-            tspbStatus.Value = waitingList.Count;
+            tspbStatus.Value = execList.Count;
             btnHoodPackingList.Enabled = true;
         }
         /// <summary>

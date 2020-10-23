@@ -93,6 +93,12 @@ namespace Compass
             cobFCBlindNo.Items.Add("2");
             cobFCBlindNo.Items.Add("3");
             cobFCBlindNo.SelectedIndex = 0;
+            //HCL左右
+            cobHCLSide.Items.Add("LEFT");
+            cobHCLSide.Items.Add("RIGHT");
+            cobHCLSide.Items.Add("BOTH");
+            cobHCLSide.Items.Add("NO");
+            
         }
 
         private void txtLength_TextChanged(object sender, EventArgs e)
@@ -117,8 +123,9 @@ namespace Compass
             cobJapan.Text = objUCWSB535.Japan;
             cobFCSide.Text = objUCWSB535.FCSide;
             cobFCBlindNo.Text = objUCWSB535.FCBlindNo.ToString();
-            cobUVType.Text = objUCWSB535.UVType.ToString();
+            cobUVType.Text = objUCWSB535.UVType;
             cobSensorNo.Text = objUCWSB535.SensorNo.ToString();
+            cobHCLSide.Text = objUCWSB535.HCLSide;
 
             txtLength.Text = objUCWSB535.Length.ToString();
             txtExRightDis.Text = objUCWSB535.ExRightDis.ToString();
@@ -130,6 +137,8 @@ namespace Compass
             txtFCSideRight.Text = objUCWSB535.FCSideRight.ToString();
             txtSensorDis1.Text = objUCWSB535.SensorDis1.ToString();
             txtSensorDis2.Text = objUCWSB535.SensorDis2.ToString();
+            txtHCLSideLeft.Text = objUCWSB535.HCLSideLeft.ToString();
+            txtHCLSideRight.Text = objUCWSB535.HCLSideRight.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -257,6 +266,30 @@ namespace Compass
                 cobLightType.Focus();
                 return;
             }
+            //HCL
+            if (cobLightType.SelectedIndex == 2)
+            {
+                if (cobHCLSide.SelectedIndex == -1)
+                {
+                    MessageBox.Show("请选择HCL侧板位置", "提示信息");
+                    cobHCLSide.Focus();
+                    return;
+                }
+                if ((cobHCLSide.SelectedIndex == 0 || cobHCLSide.SelectedIndex == 2) && (!DataValidate.IsDecimal(txtHCLSideLeft.Text.Trim()) || Convert.ToDecimal(txtHCLSideLeft.Text.Trim()) < 10m))
+                {
+                    MessageBox.Show("请认真检查左HCL侧板长度", "提示信息");
+                    txtHCLSideLeft.Focus();
+                    txtHCLSideLeft.SelectAll();
+                    return;
+                }
+                if ((cobHCLSide.SelectedIndex == 1 || cobHCLSide.SelectedIndex == 2) && (!DataValidate.IsDecimal(txtHCLSideRight.Text.Trim()) || Convert.ToDecimal(txtHCLSideRight.Text.Trim()) < 10m))
+                {
+                    MessageBox.Show("请认真检查右HCL侧板长度", "提示信息");
+                    txtHCLSideRight.Focus();
+                    txtHCLSideRight.SelectAll();
+                    return;
+                }
+            }
             //排水槽位置
             if (cobDPSide.SelectedIndex == -1)
             {
@@ -273,14 +306,14 @@ namespace Compass
             }
             if ((cobFCSide.SelectedIndex == 0 || cobFCSide.SelectedIndex == 2) && (!DataValidate.IsDecimal(txtFCSideLeft.Text.Trim()) || Convert.ToDecimal(txtFCSideLeft.Text.Trim()) < 10m))
             {
-                MessageBox.Show("请认真检查左油网侧板长度", "提示信息");//当脖颈大于2时需要填写脖颈间距
+                MessageBox.Show("请认真检查左油网侧板长度", "提示信息");
                 txtFCSideLeft.Focus();
                 txtFCSideLeft.SelectAll();
                 return;
             }
             if ((cobFCSide.SelectedIndex == 1 || cobFCSide.SelectedIndex == 2) && (!DataValidate.IsDecimal(txtFCSideRight.Text.Trim()) || Convert.ToDecimal(txtFCSideRight.Text.Trim()) < 10m))
             {
-                MessageBox.Show("请认真检查右油网侧板长度", "提示信息");//当脖颈大于2时需要填写脖颈间距
+                MessageBox.Show("请认真检查右油网侧板长度", "提示信息");
                 txtFCSideRight.Focus();
                 txtFCSideRight.SelectAll();
                 return;
@@ -304,6 +337,7 @@ namespace Compass
                 DPSide = cobDPSide.Text,
                 UVType = cobUVType.Text,
                 SensorNo = Convert.ToInt32(cobSensorNo.Text.Trim()),
+                HCLSide = cobHCLSide.Text,
 
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),
                 ExRightDis = Convert.ToDecimal(txtExRightDis.Text.Trim()),
@@ -314,7 +348,9 @@ namespace Compass
                 FCSideLeft = Convert.ToDecimal(txtFCSideLeft.Text.Trim()),
                 FCSideRight = Convert.ToDecimal(txtFCSideRight.Text.Trim()),
                 SensorDis1 = Convert.ToDecimal(txtSensorDis1.Text.Trim()),
-                SensorDis2 = Convert.ToDecimal(txtSensorDis2.Text.Trim())
+                SensorDis2 = Convert.ToDecimal(txtSensorDis2.Text.Trim()),
+                HCLSideLeft = Convert.ToDecimal(txtHCLSideLeft.Text.Trim()),
+                HCLSideRight = Convert.ToDecimal(txtHCLSideRight.Text.Trim()),
             };
             //提交修改
             try
@@ -412,6 +448,51 @@ namespace Compass
                 lblSensorDis2.Visible = false;
                 txtSensorDis1.Visible = false;
                 txtSensorDis2.Visible = false;
+            }
+        }
+
+        private void cobLightType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cobLightType.SelectedIndex == 2)
+            {
+                lblHCLSide.Visible = true;
+                cobHCLSide.Visible = true;
+            }
+            else
+            {
+                lblHCLSide.Visible = false;
+                cobHCLSide.Visible = false;
+            }
+        }
+
+        private void cobHCLSide_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cobHCLSide.Text.Trim())
+            {
+                case "LEFT":
+                    lblHCLSideLeft.Visible = true;
+                    lblHCLSideRight.Visible = false;
+                    txtHCLSideLeft.Visible = true;
+                    txtHCLSideRight.Visible = false;
+                    break;
+                case "RIGHT":
+                    lblHCLSideLeft.Visible = false;
+                    lblHCLSideRight.Visible = true;
+                    txtHCLSideLeft.Visible = false;
+                    txtHCLSideRight.Visible = true;
+                    break;
+                case "BOTH":
+                    lblHCLSideLeft.Visible = true;
+                    lblHCLSideRight.Visible = true;
+                    txtHCLSideLeft.Visible = true;
+                    txtHCLSideRight.Visible = true;
+                    break;
+                default:
+                    lblHCLSideLeft.Visible = false;
+                    lblHCLSideRight.Visible = false;
+                    txtHCLSideLeft.Visible = false;
+                    txtHCLSideRight.Visible = false;
+                    break;
             }
         }
     }

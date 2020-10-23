@@ -40,5 +40,9 @@ namespace Models
         public int SensorNo { get; set; }
         public decimal SensorDis1 { get; set; }
         public decimal SensorDis2 { get; set; }
+        //HCL
+        public string HCLSide { get; set; }
+        public decimal HCLSideLeft { get; set; }
+        public decimal HCLSideRight { get; set; }
     }
 }

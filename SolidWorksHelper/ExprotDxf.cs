@@ -32,6 +32,7 @@ namespace SolidWorksHelper
             swApp.CommandInProgress = true;
             List<CeilingCutList> celingCutLists=new List<CeilingCutList>();
             string assyPath = subAssy.SubAssyPath;
+            if(assyPath.Length==0)return;
             try
             {
                 //打开模型
