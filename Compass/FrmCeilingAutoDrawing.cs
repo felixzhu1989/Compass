@@ -918,10 +918,15 @@ namespace Compass
         }
 
 
-
-
         #endregion
-
-
+        /// <summary>
+        /// 切换标签重新加载树形菜单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            RefreshTree();
+        }
     }
 }

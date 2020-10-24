@@ -122,7 +122,7 @@ namespace Compass
                 ModuleTree objModuleTree = new ModuleTree()
                 {
                     ModuleTreeId = Convert.ToInt32(btnAddModule.Tag),
-                    Module = txtModule.Text
+                    Module = txtModule.Text.ToUpper()
                 };
                 //提交修改
                 try
@@ -150,7 +150,7 @@ namespace Compass
                 {
                     DrawingPlanId = objDrawing.DrawingPlanId,
                     CategoryId = Convert.ToInt32(btnAddModule.Tag),
-                    Module = txtModule.Text
+                    Module = txtModule.Text.ToUpper()
                 };
                 //提交添加
                 try

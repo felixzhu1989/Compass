@@ -106,12 +106,6 @@ namespace SolidWorksHelper
                 {
                     throw new Exception("UCPDXF的CeilingCutlist导入数据库失败" + ex.Message);
                 }
-
-
-
-
-
-
             }
             #endregion
         }

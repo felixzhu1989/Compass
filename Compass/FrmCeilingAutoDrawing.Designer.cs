@@ -209,7 +209,7 @@
             this.dgvExecList.Name = "dgvExecList";
             this.dgvExecList.ReadOnly = true;
             this.dgvExecList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvExecList.Size = new System.Drawing.Size(540, 450);
+            this.dgvExecList.Size = new System.Drawing.Size(540, 444);
             this.dgvExecList.TabIndex = 58;
             this.dgvExecList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvExecList_RowPostPaint);
             // 
@@ -282,7 +282,7 @@
             this.dgvWaitingList.Name = "dgvWaitingList";
             this.dgvWaitingList.ReadOnly = true;
             this.dgvWaitingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvWaitingList.Size = new System.Drawing.Size(540, 450);
+            this.dgvWaitingList.Size = new System.Drawing.Size(540, 444);
             this.dgvWaitingList.TabIndex = 59;
             this.dgvWaitingList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvWaitingList_RowPostPaint);
             // 
@@ -399,7 +399,7 @@
             this.btnExec.FlatAppearance.BorderSize = 0;
             this.btnExec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExec.ForeColor = System.Drawing.Color.White;
-            this.btnExec.Location = new System.Drawing.Point(549, 390);
+            this.btnExec.Location = new System.Drawing.Point(549, 384);
             this.btnExec.Name = "btnExec";
             this.btnExec.Size = new System.Drawing.Size(52, 85);
             this.btnExec.TabIndex = 56;
@@ -487,6 +487,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1160, 567);
             this.tabControl1.TabIndex = 63;
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tbAutoDrawing
             // 
@@ -515,7 +516,7 @@
             this.btnJobCard.FlatAppearance.BorderSize = 0;
             this.btnJobCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJobCard.ForeColor = System.Drawing.Color.White;
-            this.btnJobCard.Location = new System.Drawing.Point(549, 299);
+            this.btnJobCard.Location = new System.Drawing.Point(549, 293);
             this.btnJobCard.Name = "btnJobCard";
             this.btnJobCard.Size = new System.Drawing.Size(52, 85);
             this.btnJobCard.TabIndex = 63;
@@ -558,7 +559,7 @@
             this.tvSubAssyTree.Location = new System.Drawing.Point(936, 41);
             this.tvSubAssyTree.Name = "tvSubAssyTree";
             this.tvSubAssyTree.SelectedImageIndex = 0;
-            this.tvSubAssyTree.Size = new System.Drawing.Size(210, 446);
+            this.tvSubAssyTree.Size = new System.Drawing.Size(210, 440);
             this.tvSubAssyTree.TabIndex = 45;
             this.tvSubAssyTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvSubAssyTree_AfterSelect);
             this.tvSubAssyTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.tvSubAssy_DragDrop);
@@ -813,7 +814,7 @@
             this.dgvCutList.ReadOnly = true;
             this.dgvCutList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvCutList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCutList.Size = new System.Drawing.Size(924, 204);
+            this.dgvCutList.Size = new System.Drawing.Size(924, 198);
             this.dgvCutList.TabIndex = 47;
             this.dgvCutList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvCutList_RowPostPaint);
             this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
@@ -887,10 +888,10 @@
             this.tabPage1.Controls.Add(this.btnPrintLabel);
             this.tabPage1.Controls.Add(this.btnPrintCeilingPackingList);
             this.tabPage1.Controls.Add(this.btnCeilingPackingList);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1152, 535);
+            this.tabPage1.Size = new System.Drawing.Size(1152, 541);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "发货清单";
             this.tabPage1.UseVisualStyleBackColor = true;
