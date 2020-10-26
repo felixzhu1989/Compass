@@ -603,6 +603,8 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("ANSULSIDE LEFT");
                         swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("MA-TAB");
+                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("UV");
                         swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                         swPart.Parameter("D4@Sketch15").SystemValue = item.ExRightDis / 1000m;
@@ -657,15 +659,11 @@ namespace SolidWorksHelper
                             swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                             swPart.Parameter("D1@Sketch27").SystemValue =
                                 (item.ExRightDis + item.ExLength / 2m + 50m) / 1000m;
-                            swFeat = swComp.FeatureByName("MA-TAB");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                         }
                         else
                         {
                             swFeat = swComp.FeatureByName("MA-NTC");
                             swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                            swFeat = swComp.FeatureByName("MA-TAB");
-                            swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
                         }
                         swFeat = swComp.FeatureByName("LF");
                         if (item.SidePanel == "LEFT" || item.SidePanel == "BOTH")
@@ -818,6 +816,8 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("Cut-Extrude4");
                         swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("MA-TAB");
+                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                         swPart.Parameter("D3@Sketch1").SystemValue = item.ExRightDis / 1000m;
                         swPart.Parameter("D1@Sketch1").SystemValue = item.ExLength / 1000m;
                         swPart.Parameter("D2@Sketch1").SystemValue = item.ExWidth / 1000m;
@@ -907,15 +907,11 @@ namespace SolidWorksHelper
                             swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                             swPart.Parameter("D3@Sketch24").SystemValue =
                                 (item.ExRightDis + item.ExLength / 2m + 50m) / 1000m;
-                            swFeat = swComp.FeatureByName("MA-TAB");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                         }
                         else
                         {
                             swFeat = swComp.FeatureByName("MA-NTC");
-                            swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                            swFeat = swComp.FeatureByName("MA-TAB");
-                            swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩s 
                         }
                         swFeat = swComp.FeatureByName("LF");
                         if (item.SidePanel == "LEFT" || item.SidePanel == "BOTH")
