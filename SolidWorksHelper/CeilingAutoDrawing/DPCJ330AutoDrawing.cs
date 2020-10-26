@@ -217,6 +217,8 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "DP330INDPCJ-1"));
                 swSubAssy = swComp.GetModelDoc2(); //打开零件
                 swSubModel = (ModelDoc2)swSubAssy;
+                subAssyName = swSubModel.GetTitle().Substring(0, swSubModel.GetTitle().Length - 7);//获取装配体名称
+                swSubModelDocExt = (ModelDocExtension)swSubModel.Extension;
                 //----------吊装扣板----------
                 if (item.Length < 1000m)
                 {
@@ -283,14 +285,14 @@ namespace SolidWorksHelper
                 //----------NOCJ腔主体----------
                 //重命名装配体内部
                 compReName = "FNCS0001[DPCJ330-" + tree.Module + "]{" + (int)item.Length + "}";
-                status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCS0001-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
-                if (status) swModelDocExt.RenameDocument(compReName);
-                swModel.ClearSelection2(true);
-                status = swModelDocExt.SelectByID2(compReName + "-1" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
-                swModel.ClearSelection2(true);
+                status = swSubModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCS0001-1") + "@" + subAssyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                if (status) swSubModelDocExt.RenameDocument(compReName);
+                swSubModel.ClearSelection2(true);
+                status = swSubModelDocExt.SelectByID2(compReName + "-1" + "@" + subAssyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                swSubModel.ClearSelection2(true);
                 if (status)
                 {
-                    swComp = swAssy.GetComponentByName(compReName + "-1");
+                    swComp = swSubAssy.GetComponentByName(compReName + "-1");
                     swPart = swComp.GetModelDoc2(); //打开零件
                     swPart.Parameter("D2@Skizze1").SystemValue = item.Length / 1000m;
                     if (item.Outlet == "LEFT")
