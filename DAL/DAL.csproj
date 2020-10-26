@@ -142,7 +142,9 @@
     <Compile Include="CeilingService\SSPHFDService.cs" />
     <Compile Include="CeilingService\SSPFLATService.cs" />
     <Compile Include="SubAssyService.cs" />
-    <Compile Include="UCPDXFService.cs" />
+    <Compile Include="HoodService\UCPDXFService.cs" />
+    <Compile Include="CeilingService\UCWUVR4SDXFService.cs" />
+    <Compile Include="CeilingService\UCWUVR4LDXFService.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="HoodService\UVI555Service.cs" />
     <Compile Include="HoodService\UVF555Service.cs" />

@@ -136,6 +136,8 @@
     <Compile Include="CeilingAutoDrawing\SSPHFDAutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\SSPFLATAutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\UCPDXFAutoDrawing.cs" />
+    <Compile Include="CeilingAutoDrawing\UCWUVR4SDXFAutoDrawing.cs" />
+    <Compile Include="CeilingAutoDrawing\UCWUVR4LDXFAutoDrawing.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

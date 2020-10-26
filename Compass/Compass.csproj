@@ -132,6 +132,18 @@
     <Compile Include="CeilingForm\FrmLFUMC250DXF.Designer.cs">
       <DependentUpon>FrmLFUMC250DXF.cs</DependentUpon>
     </Compile>
+    <Compile Include="CeilingForm\FrmUCWUVR4SDXF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CeilingForm\FrmUCWUVR4SDXF.Designer.cs">
+      <DependentUpon>FrmUCWUVR4SDXF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUCWUVR4LDXF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUCWUVR4LDXF.Designer.cs">
+      <DependentUpon>FrmUCWUVR4LDXF.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmUCPDXF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -730,6 +742,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CeilingForm\FrmLFUMC200DXF.resx">
       <DependentUpon>FrmLFUMC200DXF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CeilingForm\FrmUCWUVR4SDXF.resx">
+      <DependentUpon>FrmUCWUVR4SDXF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUCWUVR4LDXF.resx">
+      <DependentUpon>FrmUCWUVR4LDXF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmABD200.resx">
       <DependentUpon>FrmABD200.cs</DependentUpon>

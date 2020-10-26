@@ -108,3 +108,5 @@ E:\Compass\Compass\obj\Debug\Compass.FrmDXFCutList.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmLFUMC150DXF.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmLFUMC200DXF.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmLFUMC250DXF.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmUCWUVR4SDXF.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmUCWUVR4LDXF.resources

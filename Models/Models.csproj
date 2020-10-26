@@ -144,6 +144,8 @@
     <Compile Include="Ceiling\SSPFLAT.cs" />
     <Compile Include="SubAssy.cs" />
     <Compile Include="Hood\UCPDXF.cs" />
+    <Compile Include="Ceiling\UCWUVR4SDXF.cs" />
+    <Compile Include="Ceiling\UCWUVR4LDXF.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserGroup.cs" />
     <Compile Include="Hood\UVI555.cs" />
