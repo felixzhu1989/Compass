@@ -99,7 +99,7 @@ namespace SolidWorksHelper
                 }
 
                 //重命名装配体内部
-                compReName = "2200600027[BFHT-" + tree.Module + "]{" + ((int)item.Length - 30) + "}";
+                compReName = "2200600027[BFHT-" + ((int)item.Length - 30) + "]{" + ((int)item.Length - 30) + "}";
                 status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "2200600027[BFHT-]{}-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                 if (status) swModelDocExt.RenameDocument(compReName);
                 swModel.ClearSelection2(true);

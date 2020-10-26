@@ -264,7 +264,7 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                     //排风腔
                     //重命名装配体内部
-                    compReName = "FNCE0115[KCJDB00-" + tree.Module + "]{" + (int)item.Length + "}";
+                    compReName = "FNCE0115[KCJDB800-" + tree.Module + "]{" + (int)item.Length + "}";
                     status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0115-1") + "@" + assyName,
                         "COMPONENT", 0, 0, 0, false, 0, null, 0);
                     if (status) swModelDocExt.RenameDocument(compReName);
@@ -362,7 +362,7 @@ namespace SolidWorksHelper
                     swPart.Parameter("D2@Sketch1").SystemValue = (item.ExWidth + 40m) / 1000m;
                     //排风腔
                     //重命名装配体内部
-                    compReName = "FNCE0115[KCJDB00-" + tree.Module + "]{" + (int)item.Length + "}";
+                    compReName = "FNCE0115[KCJDB800-" + tree.Module + "]{" + (int)item.Length + "}";
                     status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0115-1") + "@" + assyName,
                         "COMPONENT", 0, 0, 0, false, 0, null, 0);
                     if (status) swModelDocExt.RenameDocument(compReName);
