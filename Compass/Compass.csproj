@@ -108,6 +108,12 @@
     <Compile Include="CeilingForm\FrmBCJ300.Designer.cs">
       <DependentUpon>FrmBCJ300.cs</DependentUpon>
     </Compile>
+    <Compile Include="CeilingForm\FrmBCJ330.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CeilingForm\FrmBCJ330.Designer.cs">
+      <DependentUpon>FrmBCJ330.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDXFCutList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,10 +144,10 @@
     <Compile Include="CeilingForm\FrmUCWUVR4SDXF.Designer.cs">
       <DependentUpon>FrmUCWUVR4SDXF.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUCWUVR4LDXF.cs">
+    <Compile Include="CeilingForm\FrmUCWUVR4LDXF.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmUCWUVR4LDXF.Designer.cs">
+    <Compile Include="CeilingForm\FrmUCWUVR4LDXF.Designer.cs">
       <DependentUpon>FrmUCWUVR4LDXF.cs</DependentUpon>
     </Compile>
     <Compile Include="HoodForm\FrmUCPDXF.cs">
@@ -620,6 +626,9 @@
     <EmbeddedResource Include="CeilingForm\FrmBCJ300.resx">
       <DependentUpon>FrmBCJ300.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CeilingForm\FrmBCJ330.resx">
+      <DependentUpon>FrmBCJ330.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CeilingForm\FrmBF200.resx">
       <DependentUpon>FrmBF200.cs</DependentUpon>
     </EmbeddedResource>
@@ -746,7 +755,7 @@
     <EmbeddedResource Include="CeilingForm\FrmUCWUVR4SDXF.resx">
       <DependentUpon>FrmUCWUVR4SDXF.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUCWUVR4LDXF.resx">
+    <EmbeddedResource Include="CeilingForm\FrmUCWUVR4LDXF.resx">
       <DependentUpon>FrmUCWUVR4LDXF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmABD200.resx">
