@@ -54,6 +54,7 @@
             this.tsbWorkLoad = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbVaultsStatusTypes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsbUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.llblHistory = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -62,7 +63,7 @@
             // llblHelp
             // 
             this.llblHelp.AutoSize = true;
-            this.llblHelp.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.llblHelp.LinkColor = System.Drawing.Color.Blue;
             this.llblHelp.Location = new System.Drawing.Point(216, 31);
             this.llblHelp.Name = "llblHelp";
             this.llblHelp.Size = new System.Drawing.Size(61, 19);
@@ -105,7 +106,7 @@
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.lblVersion.Location = new System.Drawing.Point(297, 31);
+            this.lblVersion.Location = new System.Drawing.Point(366, 31);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(74, 19);
             this.lblVersion.TabIndex = 3;
@@ -121,7 +122,7 @@
             // 
             this.lblUpdateTime.AutoSize = true;
             this.lblUpdateTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.lblUpdateTime.Location = new System.Drawing.Point(437, 31);
+            this.lblUpdateTime.Location = new System.Drawing.Point(506, 31);
             this.lblUpdateTime.Name = "lblUpdateTime";
             this.lblUpdateTime.Size = new System.Drawing.Size(74, 19);
             this.lblUpdateTime.TabIndex = 3;
@@ -236,7 +237,7 @@
             // 
             this.tsbUsersManage.Image = ((System.Drawing.Image)(resources.GetObject("tsbUsersManage.Image")));
             this.tsbUsersManage.Name = "tsbUsersManage";
-            this.tsbUsersManage.Size = new System.Drawing.Size(180, 22);
+            this.tsbUsersManage.Size = new System.Drawing.Size(172, 22);
             this.tsbUsersManage.Text = "用户与分组";
             this.tsbUsersManage.Click += new System.EventHandler(this.tsbUsersManage_Click);
             // 
@@ -244,7 +245,7 @@
             // 
             this.tsbCategories.Image = ((System.Drawing.Image)(resources.GetObject("tsbCategories.Image")));
             this.tsbCategories.Name = "tsbCategories";
-            this.tsbCategories.Size = new System.Drawing.Size(180, 22);
+            this.tsbCategories.Size = new System.Drawing.Size(172, 22);
             this.tsbCategories.Text = "产品模型分类";
             this.tsbCategories.Click += new System.EventHandler(this.tsbCategories_Click);
             // 
@@ -252,7 +253,7 @@
             // 
             this.tsbDXFCutList.Image = global::Compass.Properties.Resources.Cutlist;
             this.tsbDXFCutList.Name = "tsbDXFCutList";
-            this.tsbDXFCutList.Size = new System.Drawing.Size(180, 22);
+            this.tsbDXFCutList.Size = new System.Drawing.Size(172, 22);
             this.tsbDXFCutList.Text = "CutList模板管理";
             this.tsbDXFCutList.Click += new System.EventHandler(this.tsbDXFCutList_Click);
             // 
@@ -260,7 +261,7 @@
             // 
             this.tsbCeilingAccessories.Image = ((System.Drawing.Image)(resources.GetObject("tsbCeilingAccessories.Image")));
             this.tsbCeilingAccessories.Name = "tsbCeilingAccessories";
-            this.tsbCeilingAccessories.Size = new System.Drawing.Size(180, 22);
+            this.tsbCeilingAccessories.Size = new System.Drawing.Size(172, 22);
             this.tsbCeilingAccessories.Text = "天花发货清单配件";
             this.tsbCeilingAccessories.Click += new System.EventHandler(this.tsbCeilingAccessories_Click);
             // 
@@ -268,7 +269,7 @@
             // 
             this.tsbWorkLoad.Image = ((System.Drawing.Image)(resources.GetObject("tsbWorkLoad.Image")));
             this.tsbWorkLoad.Name = "tsbWorkLoad";
-            this.tsbWorkLoad.Size = new System.Drawing.Size(180, 22);
+            this.tsbWorkLoad.Size = new System.Drawing.Size(172, 22);
             this.tsbWorkLoad.Text = "设计工作量";
             this.tsbWorkLoad.Click += new System.EventHandler(this.tsbWorkLoad_Click);
             // 
@@ -276,7 +277,7 @@
             // 
             this.tsbVaultsStatusTypes.Image = ((System.Drawing.Image)(resources.GetObject("tsbVaultsStatusTypes.Image")));
             this.tsbVaultsStatusTypes.Name = "tsbVaultsStatusTypes";
-            this.tsbVaultsStatusTypes.Size = new System.Drawing.Size(180, 22);
+            this.tsbVaultsStatusTypes.Size = new System.Drawing.Size(172, 22);
             this.tsbVaultsStatusTypes.Text = "项目状态/类型";
             this.tsbVaultsStatusTypes.Click += new System.EventHandler(this.tsbVaultsStatusTypes_Click);
             // 
@@ -284,9 +285,21 @@
             // 
             this.tsbUpdate.Image = ((System.Drawing.Image)(resources.GetObject("tsbUpdate.Image")));
             this.tsbUpdate.Name = "tsbUpdate";
-            this.tsbUpdate.Size = new System.Drawing.Size(180, 22);
+            this.tsbUpdate.Size = new System.Drawing.Size(172, 22);
             this.tsbUpdate.Text = "系统升级";
             this.tsbUpdate.Click += new System.EventHandler(this.tsbUpdate_Click);
+            // 
+            // llblHistory
+            // 
+            this.llblHistory.AutoSize = true;
+            this.llblHistory.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.llblHistory.Location = new System.Drawing.Point(288, 31);
+            this.llblHistory.Name = "llblHistory";
+            this.llblHistory.Size = new System.Drawing.Size(61, 19);
+            this.llblHistory.TabIndex = 2;
+            this.llblHistory.TabStop = true;
+            this.llblHistory.Text = "更新历史";
+            this.llblHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblHistory_LinkClicked);
             // 
             // FrmMain
             // 
@@ -297,6 +310,7 @@
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblUpdateTime);
             this.Controls.Add(this.lblCurrentUser);
+            this.Controls.Add(this.llblHistory);
             this.Controls.Add(this.llblHelp);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -338,6 +352,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem tsbCeilingAccessories;
         private System.Windows.Forms.ToolStripMenuItem tsbDXFCutList;
+        private System.Windows.Forms.LinkLabel llblHistory;
     }
 }
 

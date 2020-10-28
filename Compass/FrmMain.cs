@@ -244,7 +244,11 @@ namespace Compass
         /// <param name="e"></param>
         private void llblHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", "http://10.9.18.31/ProgramHelp/PHcontents.html");
+            System.Diagnostics.Process.Start("explorer.exe", "http://10.9.18.31:8080/");
+        }
+        private void llblHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", "https://github.com/felixzhu1989/Compass/commits/main");
         }
         /// <summary>
         /// 退出询问
