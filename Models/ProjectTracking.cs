@@ -28,5 +28,6 @@ namespace Models
         public string ODPNo { get; set; }
         public string ProjectStatusName { get; set; }
         public string ProjectName { get; set; }
+        public string UserAccount { get; set; }
     }
 }

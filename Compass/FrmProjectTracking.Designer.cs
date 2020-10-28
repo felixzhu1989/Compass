@@ -55,8 +55,10 @@
             this.btnEditProjectTracking = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.txtEditProjectTrackingId = new System.Windows.Forms.TextBox();
+            this.cobEditKickOffStatus = new System.Windows.Forms.ComboBox();
             this.cobEditProjectStatus = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -72,8 +74,7 @@
             this.ProdFinishActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeliverActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjectTrackingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cobEditKickOffStatus = new System.Windows.Forms.ComboBox();
+            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTracking)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.grbEditProjectTracking.SuspendLayout();
@@ -88,6 +89,7 @@
             this.dgvProjectTracking.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvProjectTracking.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvProjectTracking.BackgroundColor = System.Drawing.Color.White;
             this.dgvProjectTracking.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -109,7 +111,8 @@
             this.ProdFinishTarget,
             this.ProdFinishActual,
             this.DeliverActual,
-            this.ProjectTrackingId});
+            this.ProjectTrackingId,
+            this.UserAccount});
             this.dgvProjectTracking.ContextMenuStrip = this.contextMenuStrip;
             this.dgvProjectTracking.EnableHeadersVisualStyles = false;
             this.dgvProjectTracking.Location = new System.Drawing.Point(12, 110);
@@ -370,6 +373,15 @@
             this.txtEditProjectTrackingId.Size = new System.Drawing.Size(85, 25);
             this.txtEditProjectTrackingId.TabIndex = 15;
             // 
+            // cobEditKickOffStatus
+            // 
+            this.cobEditKickOffStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobEditKickOffStatus.FormattingEnabled = true;
+            this.cobEditKickOffStatus.Location = new System.Drawing.Point(282, 26);
+            this.cobEditKickOffStatus.Name = "cobEditKickOffStatus";
+            this.cobEditKickOffStatus.Size = new System.Drawing.Size(117, 27);
+            this.cobEditKickOffStatus.TabIndex = 14;
+            // 
             // cobEditProjectStatus
             // 
             this.cobEditProjectStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -387,6 +399,15 @@
             this.label15.Size = new System.Drawing.Size(49, 19);
             this.label15.TabIndex = 18;
             this.label15.Text = "跟踪ID";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(214, 30);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 19);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Kick-Off";
             // 
             // label11
             // 
@@ -445,7 +466,7 @@
             this.ODPNo.HeaderText = "ODP";
             this.ODPNo.Name = "ODPNo";
             this.ODPNo.ReadOnly = true;
-            this.ODPNo.Width = 95;
+            this.ODPNo.Width = 63;
             // 
             // ProjectStatusName
             // 
@@ -453,7 +474,7 @@
             this.ProjectStatusName.HeaderText = "项目状态";
             this.ProjectStatusName.Name = "ProjectStatusName";
             this.ProjectStatusName.ReadOnly = true;
-            this.ProjectStatusName.Width = 150;
+            this.ProjectStatusName.Width = 86;
             // 
             // ProjectName
             // 
@@ -470,7 +491,7 @@
             this.KickOffStatus.HeaderText = "Kick-Off";
             this.KickOffStatus.Name = "KickOffStatus";
             this.KickOffStatus.ReadOnly = true;
-            this.KickOffStatus.Width = 70;
+            this.KickOffStatus.Width = 86;
             // 
             // DrReleaseTarget
             // 
@@ -478,7 +499,7 @@
             this.DrReleaseTarget.HeaderText = "计划发图";
             this.DrReleaseTarget.Name = "DrReleaseTarget";
             this.DrReleaseTarget.ReadOnly = true;
-            this.DrReleaseTarget.Width = 90;
+            this.DrReleaseTarget.Width = 86;
             // 
             // Item
             // 
@@ -486,7 +507,7 @@
             this.Item.HeaderText = "实际发图";
             this.Item.Name = "Item";
             this.Item.ReadOnly = true;
-            this.Item.Width = 90;
+            this.Item.Width = 86;
             // 
             // ProdFinishTarget
             // 
@@ -494,7 +515,7 @@
             this.ProdFinishTarget.HeaderText = "计划完工";
             this.ProdFinishTarget.Name = "ProdFinishTarget";
             this.ProdFinishTarget.ReadOnly = true;
-            this.ProdFinishTarget.Width = 90;
+            this.ProdFinishTarget.Width = 86;
             // 
             // ProdFinishActual
             // 
@@ -502,7 +523,7 @@
             this.ProdFinishActual.HeaderText = "实际完工";
             this.ProdFinishActual.Name = "ProdFinishActual";
             this.ProdFinishActual.ReadOnly = true;
-            this.ProdFinishActual.Width = 90;
+            this.ProdFinishActual.Width = 86;
             // 
             // DeliverActual
             // 
@@ -510,7 +531,7 @@
             this.DeliverActual.HeaderText = "实际发货";
             this.DeliverActual.Name = "DeliverActual";
             this.DeliverActual.ReadOnly = true;
-            this.DeliverActual.Width = 90;
+            this.DeliverActual.Width = 86;
             // 
             // ProjectTrackingId
             // 
@@ -518,25 +539,15 @@
             this.ProjectTrackingId.HeaderText = "ID";
             this.ProjectTrackingId.Name = "ProjectTrackingId";
             this.ProjectTrackingId.ReadOnly = true;
-            this.ProjectTrackingId.Width = 40;
+            this.ProjectTrackingId.Width = 48;
             // 
-            // label5
+            // UserAccount
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(214, 30);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 19);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "Kick-Off";
-            // 
-            // cobEditKickOffStatus
-            // 
-            this.cobEditKickOffStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobEditKickOffStatus.FormattingEnabled = true;
-            this.cobEditKickOffStatus.Location = new System.Drawing.Point(282, 26);
-            this.cobEditKickOffStatus.Name = "cobEditKickOffStatus";
-            this.cobEditKickOffStatus.Size = new System.Drawing.Size(117, 27);
-            this.cobEditKickOffStatus.TabIndex = 14;
+            this.UserAccount.DataPropertyName = "UserAccount";
+            this.UserAccount.HeaderText = "制图";
+            this.UserAccount.Name = "UserAccount";
+            this.UserAccount.ReadOnly = true;
+            this.UserAccount.Width = 60;
             // 
             // FrmProjectTracking
             // 
@@ -602,6 +613,8 @@
         private System.Windows.Forms.ComboBox cobEditODPNo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cobEditKickOffStatus;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewTextBoxColumn ODPNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectStatusName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectName;
@@ -612,7 +625,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProdFinishActual;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeliverActual;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectTrackingId;
-        private System.Windows.Forms.ComboBox cobEditKickOffStatus;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
     }
 }

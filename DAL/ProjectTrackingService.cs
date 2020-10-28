@@ -46,9 +46,10 @@ namespace DAL
         /// <returns></returns>
         public List<ProjectTracking> GetProjectTrackingsByWhereSql(string whereSql)
         {
-            string sql = "select distinct ProjectTracking.ProjectId,ProjectTrackingId,ODPNo,ProjectTracking.ProjectStatusId,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName,KickOffStatus from ProjectTracking";
+            string sql = "select distinct ProjectTracking.ProjectId,ProjectTrackingId,ODPNo,ProjectTracking.ProjectStatusId,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName,KickOffStatus,UserAccount from ProjectTracking";
             sql += " inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId";
             sql += " inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId";
+            sql += " inner join Users on Projects.UserId=Users.UserId";
             sql += " left join (select ProjectId,max(DrReleaseTarget)as DrReleaseTarget from DrawingPlan group by ProjectId) as PlanList on PlanList.ProjectId=Projects.ProjectId";
             sql += whereSql;
             sql += " order by ShippingTime desc";//按照计划发货日期，倒序排列
@@ -69,7 +70,8 @@ namespace DAL
                     ProdFinishActual = objReader["ProdFinishActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ProdFinishActual"]),
                     DeliverActual = objReader["DeliverActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["DeliverActual"]),
                     ProjectName = objReader["ProjectName"].ToString(),
-                    KickOffStatus=objReader["KickOffStatus"].ToString()
+                    KickOffStatus=objReader["KickOffStatus"].ToString(),
+                    UserAccount = objReader["UserAccount"].ToString(),
                 });
             }
             objReader.Close();
