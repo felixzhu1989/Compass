@@ -120,6 +120,7 @@
     <Compile Include="Ceiling\LFUMC150DXF.cs" />
     <Compile Include="Ceiling\LFUMC200DXF.cs" />
     <Compile Include="Ceiling\LFUMC250DXF.cs" />
+    <Compile Include="Ceiling\LKS258HCL.cs" />
     <Compile Include="ModuleTree.cs" />
     <Compile Include="Ceiling\NOCJ300.cs" />
     <Compile Include="Ceiling\NOCJ340.cs" />

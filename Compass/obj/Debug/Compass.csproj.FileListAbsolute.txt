@@ -111,3 +111,4 @@ E:\Compass\Compass\obj\Debug\Compass.FrmLFUMC250DXF.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmUCWUVR4SDXF.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmUCWUVR4LDXF.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmBCJ330.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmLKS258HCL.resources

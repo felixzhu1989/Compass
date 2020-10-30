@@ -118,6 +118,7 @@
     <Compile Include="CeilingService\LFUMC150DXFService.cs" />
     <Compile Include="CeilingService\LFUMC200DXFService.cs" />
     <Compile Include="CeilingService\LFUMC250DXFService.cs" />
+    <Compile Include="CeilingService\LKS258HCLService.cs" />
     <Compile Include="ModuleTreeService.cs" />
     <Compile Include="CeilingService\NOCJ300Service.cs" />
     <Compile Include="CeilingService\NOCJ340Service.cs" />
