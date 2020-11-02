@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ceiling\BCJ330.cs" />
+    <Compile Include="Ceiling\CJ330.cs" />
     <Compile Include="DXFCutList.cs" />
     <Compile Include="Hood\ABD300.cs" />
     <Compile Include="Hood\ABD200.cs" />

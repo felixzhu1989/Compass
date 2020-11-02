@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CeilingAutoDrawing\BCJ330AutoDrawing.cs" />
+    <Compile Include="CeilingAutoDrawing\CJ330AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\ABD300AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\ABD200AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\BCJ300AutoDrawing.cs" />
