@@ -148,6 +148,7 @@
     <Compile Include="HoodService\UCPDXFService.cs" />
     <Compile Include="CeilingService\UCWUVR4SDXFService.cs" />
     <Compile Include="CeilingService\UCWUVR4LDXFService.cs" />
+    <Compile Include="CeilingService\UCJFCCOMBIDXFService.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="HoodService\UVI555Service.cs" />
     <Compile Include="HoodService\UVF555Service.cs" />

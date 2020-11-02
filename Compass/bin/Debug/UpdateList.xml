@@ -5,34 +5,34 @@
   <!--升级文件信息-->
   <UpdateInfo>
     <!--升级文件的更新日期-->
-    <UpdateTime Date="2020-11-02 9:30"/>
+    <UpdateTime Date="2020-11-02 14:00"/>
     <!--升级文件的版本号-->
-    <Version Num="1.0.0.19"/>
+    <Version Num="1.0.0.20"/>
   </UpdateInfo>
   <!--升级文件列表-->
   <UpdateFileList>   
 	<!--DLL文件-->
-    <UpdateFile Ver="1.0.0.19" FileName="Common.dll" ContentLength="10KB"/>
-    <UpdateFile Ver="1.0.0.19" FileName="DAL.dll" ContentLength="227KB"/>
-    <UpdateFile Ver="1.0.0.19" FileName="MetroFramework.Design.dll" ContentLength="11KB"/>
-    <UpdateFile Ver="1.0.0.19" FileName="MetroFramework.dll" ContentLength="11KB"/>	
-	<UpdateFile Ver="1.0.0.19" FileName="MetroFramework.Fonts.dll" ContentLength="11KB"/>	
-	<UpdateFile Ver="1.0.0.19" FileName="Models.dll" ContentLength="114KB"/>	
-	<UpdateFile Ver="1.0.0.19" FileName="SolidWorksHelper.dll" ContentLength="630KB"/>	
+    <UpdateFile Ver="1.0.0.20" FileName="Common.dll" ContentLength="10KB"/>
+    <UpdateFile Ver="1.0.0.20" FileName="DAL.dll" ContentLength="227KB"/>
+    <UpdateFile Ver="1.0.0.20" FileName="MetroFramework.Design.dll" ContentLength="11KB"/>
+    <UpdateFile Ver="1.0.0.20" FileName="MetroFramework.dll" ContentLength="11KB"/>	
+	<UpdateFile Ver="1.0.0.20" FileName="MetroFramework.Fonts.dll" ContentLength="11KB"/>	
+	<UpdateFile Ver="1.0.0.20" FileName="Models.dll" ContentLength="114KB"/>	
+	<UpdateFile Ver="1.0.0.20" FileName="SolidWorksHelper.dll" ContentLength="630KB"/>	
 	<!--主程序文件-->
-    <UpdateFile Ver="1.0.0.19" FileName="Compass.exe" ContentLength="1815KB"/>	
+    <UpdateFile Ver="1.0.0.20" FileName="Compass.exe" ContentLength="1815KB"/>	
 	<!--图标文件-->
-	<UpdateFile Ver="1.0.0.19" FileName="compass_64px.ico" ContentLength="1815KB"/>
+	<UpdateFile Ver="1.0.0.20" FileName="compass_64px.ico" ContentLength="1815KB"/>
 	<!--缺省图文件-->
-	<UpdateFile Ver="1.0.0.19" FileName="NoPic.png" ContentLength="1815KB"/>
+	<UpdateFile Ver="1.0.0.20" FileName="NoPic.png" ContentLength="1815KB"/>
     <!--excel文件-->
-	<UpdateFile Ver="1.0.0.19" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
-	<UpdateFile Ver="1.0.0.19" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>
-	<UpdateFile Ver="1.0.0.19" FileName="CeilingLabel.xlsx" ContentLength="5KB"/>	
-	<UpdateFile Ver="1.0.0.19" FileName="JobCard.xlsx" ContentLength="39KB"/>
-	<UpdateFile Ver="1.0.0.19" FileName="JobCard_Ceiling.xlsx" ContentLength="36KB"/>	
-	<UpdateFile Ver="1.0.0.19" FileName="CutList.xlsx" ContentLength="11KB"/>	
+	<UpdateFile Ver="1.0.0.20" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
+	<UpdateFile Ver="1.0.0.20" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>
+	<UpdateFile Ver="1.0.0.20" FileName="CeilingLabel.xlsx" ContentLength="5KB"/>	
+	<UpdateFile Ver="1.0.0.20" FileName="JobCard.xlsx" ContentLength="39KB"/>
+	<UpdateFile Ver="1.0.0.20" FileName="JobCard_Ceiling.xlsx" ContentLength="36KB"/>	
+	<UpdateFile Ver="1.0.0.20" FileName="CutList.xlsx" ContentLength="11KB"/>	
 	<!--xml文件-->
-	<UpdateFile Ver="1.0.0.19" FileName="UpdateList.xml" ContentLength="2KB"/>
+	<UpdateFile Ver="1.0.0.20" FileName="UpdateList.xml" ContentLength="2KB"/>
   </UpdateFileList>
 </autoUpdater>

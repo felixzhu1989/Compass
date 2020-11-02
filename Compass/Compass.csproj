@@ -162,6 +162,12 @@
     <Compile Include="CeilingForm\FrmLKS258HCL.Designer.cs">
       <DependentUpon>FrmLKS258HCL.cs</DependentUpon>
     </Compile>
+    <Compile Include="CeilingForm\FrmUCJFCCOMBIDXF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CeilingForm\FrmUCJFCCOMBIDXF.Designer.cs">
+      <DependentUpon>FrmUCJFCCOMBIDXF.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmUCPDXF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -721,6 +727,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CeilingForm\FrmUCJDB800.resx">
       <DependentUpon>FrmUCJDB800.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CeilingForm\FrmUCJFCCOMBIDXF.resx">
+      <DependentUpon>FrmUCJFCCOMBIDXF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CeilingForm\FrmUCJSB385.resx">
       <DependentUpon>FrmUCJSB385.cs</DependentUpon>
