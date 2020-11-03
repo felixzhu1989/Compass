@@ -168,6 +168,12 @@
     <Compile Include="CeilingForm\FrmUCJFCCOMBIDXF.Designer.cs">
       <DependentUpon>FrmUCJFCCOMBIDXF.cs</DependentUpon>
     </Compile>
+    <Compile Include="CeilingForm\FrmNOCJ330.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CeilingForm\FrmNOCJ330.Designer.cs">
+      <DependentUpon>FrmNOCJ330.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmUCPDXF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -784,6 +790,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CeilingForm\FrmUCWUVR4LDXF.resx">
       <DependentUpon>FrmUCWUVR4LDXF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CeilingForm\FrmNOCJ330.resx">
+      <DependentUpon>FrmNOCJ330.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmABD200.resx">
       <DependentUpon>FrmABD200.cs</DependentUpon>

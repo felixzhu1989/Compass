@@ -54,15 +54,15 @@
             this.cobLKSide = new System.Windows.Forms.ComboBox();
             this.btnEditData = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtWidth = new System.Windows.Forms.TextBox();
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
             this.txtLength = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.pbModelImage = new System.Windows.Forms.PictureBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -139,6 +139,7 @@
             this.txtRightBeamDis.Name = "txtRightBeamDis";
             this.txtRightBeamDis.Size = new System.Drawing.Size(100, 25);
             this.txtRightBeamDis.TabIndex = 6;
+            this.txtRightBeamDis.Visible = false;
             // 
             // txtLeftBeamDis
             // 
@@ -147,6 +148,7 @@
             this.txtLeftBeamDis.Name = "txtLeftBeamDis";
             this.txtLeftBeamDis.Size = new System.Drawing.Size(100, 25);
             this.txtLeftBeamDis.TabIndex = 4;
+            this.txtLeftBeamDis.Visible = false;
             // 
             // txtLeftDis
             // 
@@ -182,6 +184,7 @@
             this.lblRightBeamDis.Size = new System.Drawing.Size(87, 19);
             this.lblRightBeamDis.TabIndex = 2;
             this.lblRightBeamDis.Text = "双排前端距左";
+            this.lblRightBeamDis.Visible = false;
             // 
             // label14
             // 
@@ -200,6 +203,7 @@
             this.lblLeftBeamDis.Size = new System.Drawing.Size(87, 19);
             this.lblLeftBeamDis.TabIndex = 2;
             this.lblLeftBeamDis.Text = "双排前端距右";
+            this.lblLeftBeamDis.Visible = false;
             // 
             // txtRightDis
             // 
@@ -280,6 +284,7 @@
             this.lblGutterWidth.Size = new System.Drawing.Size(84, 19);
             this.lblGutterWidth.TabIndex = 2;
             this.lblGutterWidth.Text = "GUTTER宽度";
+            this.lblGutterWidth.Visible = false;
             // 
             // cobGutterSide
             // 
@@ -301,6 +306,7 @@
             this.txtGutterWidth.Name = "txtGutterWidth";
             this.txtGutterWidth.Size = new System.Drawing.Size(100, 25);
             this.txtGutterWidth.TabIndex = 2;
+            this.txtGutterWidth.Visible = false;
             // 
             // cobLKSide
             // 
@@ -348,15 +354,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "NOCJ高度300";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 19);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "NOCJ腔侧板";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -365,6 +362,26 @@
             this.label5.Size = new System.Drawing.Size(84, 19);
             this.label5.TabIndex = 2;
             this.label5.Text = "NOCJ腔宽度";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label13.Location = new System.Drawing.Point(207, 43);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(47, 19);
+            this.label13.TabIndex = 3;
+            this.label13.Text = "90/45";
+            this.label13.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 68);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 19);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "NOCJ腔侧板";
             // 
             // label1
             // 
@@ -427,17 +444,6 @@
             this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbModelImage.TabIndex = 47;
             this.pbModelImage.TabStop = false;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label13.Location = new System.Drawing.Point(207, 43);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(47, 19);
-            this.label13.TabIndex = 3;
-            this.label13.Text = "90/45";
-            this.label13.Visible = false;
             // 
             // FrmNOCJ300
             // 

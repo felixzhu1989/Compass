@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmCJ330
+    partial class FrmNOCJ330
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCJ330));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNOCJ330));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cobRightBeamType = new System.Windows.Forms.ComboBox();
             this.cobLeftBeamType = new System.Windows.Forms.ComboBox();
@@ -53,20 +53,18 @@
             this.txtGutterWidth = new System.Windows.Forms.TextBox();
             this.cobLKSide = new System.Windows.Forms.ComboBox();
             this.btnEditData = new System.Windows.Forms.Button();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.cobSuType = new System.Windows.Forms.ComboBox();
-            this.lblSuDis = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtSuDis = new System.Windows.Forms.TextBox();
             this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtWidth = new System.Windows.Forms.TextBox();
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
             this.txtLength = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -89,10 +87,10 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(779, 340);
+            this.groupBox2.Location = new System.Drawing.Point(779, 316);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(398, 168);
-            this.groupBox2.TabIndex = 2;
+            this.groupBox2.Size = new System.Drawing.Size(398, 192);
+            this.groupBox2.TabIndex = 49;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "射钉参数";
             // 
@@ -230,9 +228,9 @@
             this.label9.ForeColor = System.Drawing.SystemColors.Highlight;
             this.label9.Location = new System.Drawing.Point(11, 124);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(161, 19);
+            this.label9.Size = new System.Drawing.Size(183, 19);
             this.label9.TabIndex = 2;
-            this.label9.Text = "如果CJ左右没有凸出则为0";
+            this.label9.Text = "如果NOCJ左右没有凸出则为0";
             this.label9.Visible = false;
             // 
             // label4
@@ -256,7 +254,7 @@
             this.groupBox7.Location = new System.Drawing.Point(779, 517);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(398, 135);
-            this.groupBox7.TabIndex = 3;
+            this.groupBox7.TabIndex = 50;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "其他配置";
             // 
@@ -333,62 +331,10 @@
             this.btnEditData.Location = new System.Drawing.Point(575, 616);
             this.btnEditData.Name = "btnEditData";
             this.btnEditData.Size = new System.Drawing.Size(198, 36);
-            this.btnEditData.TabIndex = 4;
+            this.btnEditData.TabIndex = 51;
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
             this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox6.Controls.Add(this.cobSuType);
-            this.groupBox6.Controls.Add(this.lblSuDis);
-            this.groupBox6.Controls.Add(this.label5);
-            this.groupBox6.Controls.Add(this.txtSuDis);
-            this.groupBox6.Location = new System.Drawing.Point(231, 517);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(338, 135);
-            this.groupBox6.TabIndex = 1;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "脖颈";
-            // 
-            // cobSuType
-            // 
-            this.cobSuType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobSuType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobSuType.BackColor = System.Drawing.Color.Azure;
-            this.cobSuType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobSuType.FormattingEnabled = true;
-            this.cobSuType.Location = new System.Drawing.Point(91, 25);
-            this.cobSuType.Name = "cobSuType";
-            this.cobSuType.Size = new System.Drawing.Size(100, 27);
-            this.cobSuType.TabIndex = 0;
-            // 
-            // lblSuDis
-            // 
-            this.lblSuDis.AutoSize = true;
-            this.lblSuDis.Location = new System.Drawing.Point(6, 68);
-            this.lblSuDis.Name = "lblSuDis";
-            this.lblSuDis.Size = new System.Drawing.Size(61, 19);
-            this.lblSuDis.TabIndex = 2;
-            this.lblSuDis.Text = "脖颈距右";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 28);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 19);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "脖颈方向";
-            // 
-            // txtSuDis
-            // 
-            this.txtSuDis.BackColor = System.Drawing.Color.Azure;
-            this.txtSuDis.Location = new System.Drawing.Point(90, 65);
-            this.txtSuDis.Name = "txtSuDis";
-            this.txtSuDis.Size = new System.Drawing.Size(100, 25);
-            this.txtSuDis.TabIndex = 1;
             // 
             // pbModelImage
             // 
@@ -400,40 +346,72 @@
             this.pbModelImage.Name = "pbModelImage";
             this.pbModelImage.Size = new System.Drawing.Size(750, 445);
             this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 47;
+            this.pbModelImage.TabIndex = 52;
             this.pbModelImage.TabStop = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtWidth);
             this.groupBox1.Controls.Add(this.cobSidePanel);
             this.groupBox1.Controls.Add(this.txtLength);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Location = new System.Drawing.Point(24, 517);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(201, 135);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.Size = new System.Drawing.Size(545, 135);
+            this.groupBox1.TabIndex = 48;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "CJ高度330";
+            this.groupBox1.Text = "NOCJ高度300";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(207, 28);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(84, 19);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "NOCJ腔宽度";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label13.Location = new System.Drawing.Point(207, 43);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(47, 19);
+            this.label13.TabIndex = 3;
+            this.label13.Text = "90/45";
+            this.label13.Visible = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(4, 68);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 19);
+            this.label3.Size = new System.Drawing.Size(84, 19);
             this.label3.TabIndex = 2;
-            this.label3.Text = "CJ腔侧板";
+            this.label3.Text = "NOCJ腔侧板";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(4, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 19);
+            this.label1.Size = new System.Drawing.Size(84, 19);
             this.label1.TabIndex = 2;
-            this.label1.Text = "CJ腔长度";
+            this.label1.Text = "NOCJ腔长度";
+            // 
+            // txtWidth
+            // 
+            this.txtWidth.BackColor = System.Drawing.Color.Azure;
+            this.txtWidth.Location = new System.Drawing.Point(294, 28);
+            this.txtWidth.Name = "txtWidth";
+            this.txtWidth.Size = new System.Drawing.Size(100, 25);
+            this.txtWidth.TabIndex = 1;
             // 
             // cobSidePanel
             // 
@@ -443,40 +421,48 @@
             this.cobSidePanel.BackColor = System.Drawing.Color.Azure;
             this.cobSidePanel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobSidePanel.FormattingEnabled = true;
-            this.cobSidePanel.Location = new System.Drawing.Point(85, 64);
+            this.cobSidePanel.Location = new System.Drawing.Point(91, 64);
             this.cobSidePanel.Name = "cobSidePanel";
             this.cobSidePanel.Size = new System.Drawing.Size(100, 27);
-            this.cobSidePanel.TabIndex = 1;
+            this.cobSidePanel.TabIndex = 2;
             // 
             // txtLength
             // 
             this.txtLength.BackColor = System.Drawing.Color.Azure;
-            this.txtLength.Location = new System.Drawing.Point(85, 25);
+            this.txtLength.Location = new System.Drawing.Point(91, 25);
             this.txtLength.Name = "txtLength";
             this.txtLength.Size = new System.Drawing.Size(100, 25);
             this.txtLength.TabIndex = 0;
             // 
-            // FrmCJ330
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label7.Location = new System.Drawing.Point(4, 94);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(254, 19);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "注意背面有NOCJ的情况选择NOCJBL/R/B";
+            this.label7.Visible = false;
+            // 
+            // FrmNOCJ330
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.btnEditData);
-            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.pbModelImage);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmCJ330";
-            this.Text = "CJ330";
+            this.Name = "FrmNOCJ330";
+            this.Text = "NOCJ330";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -510,16 +496,15 @@
         private System.Windows.Forms.TextBox txtGutterWidth;
         private System.Windows.Forms.ComboBox cobLKSide;
         private System.Windows.Forms.Button btnEditData;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.ComboBox cobSuType;
-        private System.Windows.Forms.Label lblSuDis;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtSuDis;
         private System.Windows.Forms.PictureBox pbModelImage;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtWidth;
         private System.Windows.Forms.ComboBox cobSidePanel;
         private System.Windows.Forms.TextBox txtLength;
+        private System.Windows.Forms.Label label7;
     }
 }

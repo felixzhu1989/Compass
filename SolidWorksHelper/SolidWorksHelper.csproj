@@ -121,6 +121,7 @@
     <Compile Include="CeilingAutoDrawing\LFUMC200DXFAutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\LFUMC250DXFAutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\LKS258HCLAutoDrawing.cs" />
+    <Compile Include="CeilingAutoDrawing\NOCJ330AutoDrawing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HoodAutoDrawing\KVF555AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\KWF555AutoDrawing.cs" />

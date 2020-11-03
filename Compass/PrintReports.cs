@@ -20,7 +20,7 @@ namespace Compass
     {
         #region JobCard
         /// <summary>
-        /// 标准烟罩打印JobCard
+        /// 天花烟罩打印JobCard
         /// </summary>
         /// <param name="tree"></param>
         public void ExecPrintCeilingJobCard(Project objProject,string itemNo,string model)
@@ -32,7 +32,7 @@ namespace Compass
             
             //通用信息
             workSheet.Cells[3, 3] = objProject.ODPNo;
-            workSheet.Cells[2, 3] = objProject.BPONo;
+            workSheet.Cells[4, 3] = objProject.BPONo;
             workSheet.Cells[5, 3] = objProject.ProjectName;
             workSheet.Cells[6, 3] = objProject.CustomerName;
             workSheet.Cells[13, 7] = objProject.ShippingTime.ToShortDateString();
