@@ -29,7 +29,7 @@ namespace DAL
             string sql = "select CutListId,ModuleTreeId,PartDescription,Length,Width,Thickness,Quantity,Materials,PartNo,AddedDate,HoodCutList.UserId,UserAccount from HoodCutList";
             sql += " inner join Users on Users.UserId=HoodCutList.UserId";
             sql += whereSql;
-            sql += " order by Thickness desc,Materials desc,Length desc,PartNo asc";
+            sql += " order by Thickness desc,Materials desc,PartNo asc";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<HoodCutList> list=new List<HoodCutList>();
             while (objReader.Read())
