@@ -95,7 +95,7 @@ namespace SolidWorksHelper
                 if (stdPanelNo > 0)
                 {
                     //重命名装配体内部
-                    compReName = "FNCA0004[LFUP-1000]{1000}(" + (int)(item.Width - 81m) + ")";
+                    compReName = "FNCA0004[LFUP-1000x" + (int)(item.Width - 81m) + "]{1000}(" + (int)(item.Width - 81m) + ")";
                     status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCA0004[LFUP-1000]{1000}()-3") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                     if (status) swModelDocExt.RenameDocument(compReName);
                     swModel.ClearSelection2(true);
