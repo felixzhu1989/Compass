@@ -85,13 +85,18 @@ namespace Compass
                 MessageBox.Show("请注意，项目通用技术要求没有添加，可能导致发货清单无法正常输出", "提示信息");
                 btnCeilingPackingList.Enabled = false;
                 btnPrintCeilingPackingList.Enabled = false;
+                btnSaveToExcel.Enabled = false;
             }
             else
             {
                 txtTypeName.Text = objGeneralRequirement.TypeName;
                 txtMainAssyPath.Text = objGeneralRequirement.MainAssyPath;
                 if (objGeneralRequirement.MainAssyPath.Length > 0 && Program.ObjCurrentUser.UserGroupId < 3) btnCeilingPackingList.Enabled = true;
-                if (dgvCeilingPackingList.RowCount > 0) btnPrintCeilingPackingList.Enabled = true;
+                if (dgvCeilingPackingList.RowCount > 0)
+                {
+                    btnPrintCeilingPackingList.Enabled = true;
+                    btnSaveToExcel.Enabled = true;
+                }
             }
         }
         /// <summary>
@@ -129,6 +134,7 @@ namespace Compass
         /// </summary>
         private void RefreshDgv()
         {
+            if (objProject == null) return;
             execList.Clear();
             waitingList = new BindingList<ModuleTree>(objModuleTreeService.GetModuleTreesByProjectId(cobODPNo.SelectedValue.ToString()));
             subAssyExecList.Clear();
@@ -759,6 +765,23 @@ namespace Compass
             btnPrintCeilingPackingList.Enabled = true;
         }
         /// <summary>
+        /// 保存为Excel文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSaveToExcel_Click(object sender, EventArgs e)
+        {
+            if (dgvCeilingPackingList.RowCount == 0) return;
+            btnSaveToExcel.Enabled = false;
+            tspbStatus.Value = 0;
+            tspbStatus.Maximum = 1;
+            tsslStatus.Text = "发货清单Excel文件正在保存中...";
+            if (new PrintReports().ExecSaveCeilingPackingList(objProject, dgvCeilingPackingList)) MessageBox.Show("发货清单Excel文件保存完成", "保存完成");
+            tsslStatus.Text = "发货清单Excel文件保存完成，请至D盘MyProjects中项目文件夹下查看！";
+            tspbStatus.Value = 1;
+            btnSaveToExcel.Enabled = true;
+        }
+        /// <summary>
         /// 打印标签
         /// </summary>
         /// <param name="sender"></param>
@@ -927,6 +950,9 @@ namespace Compass
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             RefreshTree();
+            RefreshDgv();
         }
+
+
     }
 }

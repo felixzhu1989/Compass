@@ -60,6 +60,8 @@ namespace Compass
             excelApp = null;//对象置空
             GC.Collect(); //垃圾回收机制
         }
+        
+
         /// <summary>
         /// 标准烟罩打印JobCard
         /// </summary>
@@ -171,8 +173,6 @@ namespace Compass
         /// </summary>
         public bool ExecExportCeilingPackingList(Project objProject, DataGridView dgvCeilingPackingList)
         {
-
-
             return true;
         }
         /// <summary>
@@ -203,6 +203,40 @@ namespace Compass
             GC.Collect(); //垃圾回收机制
             return true;
         }
+        /// <summary>
+        /// 保存发货清单excel文件
+        /// </summary>
+        /// <param name="objProject"></param>
+        /// <param name="dgvCeilingPackingList"></param>
+        /// <returns></returns>
+        public bool ExecSaveCeilingPackingList(Project objProject, DataGridView dgv)
+        {
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            string excelBookPath = Environment.CurrentDirectory + "\\CeilingPackingList.xlsx";
+            Workbook workBook = excelApp.Workbooks.Add(excelBookPath);
+            Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
+            workSheet.Cells[1, 1] = objProject.ODPNo + "-天花烟罩发货清单(Ceiling Hood Packing List)";
+            workSheet.Cells[2, 3] = objProject.ProjectName;
+            workSheet.Cells[3, 3] = DateTime.Now.ToShortDateString();
+            workSheet.Cells[4, 3] = dgv.Rows[1].Cells["UserAccount"].Value;
+
+            FillCeilingPackingListDate(workSheet, dgv);
+            //预览
+            //excelApp.Visible = true;
+            //excelApp.Sheets.PrintPreview(true);
+            //另存为
+            string excelPath = @"D:\MyProjects\" + objProject.ODPNo;
+            if (!Directory.Exists(excelPath)) Directory.CreateDirectory(excelPath);
+            workBook.SaveAs(excelPath + @"\" + objProject.ODPNo + "天花烟罩发货清单.xlsx", XlFileFormat.xlOpenXMLWorkbook);
+            
+            KillProcess(excelApp);
+            excelApp = null;//对象置空
+            GC.Collect(); //垃圾回收机制
+            return true;
+        }
+
+
+
         /// <summary>
         /// 填天花烟罩发货清单数据方法
         /// </summary>

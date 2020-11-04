@@ -16,6 +16,8 @@ namespace Compass
     {
         private Project objProject = null;
         private CeilingAccessory objCeilingAccessory = null;
+        DrawingService objDrawingService = new DrawingService();
+        private List<Drawing> objDrawings = null;
         CeilingAccessoryService objCeilingAccessoryService=new CeilingAccessoryService();
         public FrmAddCeilingPackingList()
         {
@@ -47,6 +49,7 @@ namespace Compass
                 rootNode.Nodes.Add(node);
             }
             this.tvCeilingAccessories.ExpandAll();
+            objDrawings = objDrawingService.GetDrawingsByProjectId(objProject.ProjectId.ToString());
         }
         /// <summary>
         /// 选中节点后复制给配件对象，并反填数据到txt中
@@ -92,6 +95,7 @@ namespace Compass
             objCeilingAccessory.Height = txtHeight.Text.Trim();
             objCeilingAccessory.ProjectId = objProject.ProjectId;
             objCeilingAccessory.UserId = Program.ObjCurrentUser.UserId;
+            objCeilingAccessory.Location = objDrawings[0].Item;//填写区域
             List<CeilingAccessory> ceilingAccessoriesList = new List<CeilingAccessory>();
             ceilingAccessoriesList.Add(objCeilingAccessory);
             objCeilingAccessoryService.ImportCeilingPackingListByTran(ceilingAccessoriesList);
