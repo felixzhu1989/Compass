@@ -821,6 +821,7 @@ namespace Compass
         private void tsmiDeleteCeilingPackingList_Click(object sender, EventArgs e)
         {
             if (dgvCeilingPackingList.RowCount == 0) return;
+            int firstRowIndex = dgvCeilingPackingList.CurrentRow.Index;
             DialogResult result = MessageBox.Show("确定删除选中的多行数据吗?", "删除询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No || dgvCeilingPackingList.SelectedRows.Count == 0) return;
             List<int> idList = new List<int>();
@@ -837,6 +838,8 @@ namespace Compass
             {
                 MessageBox.Show(ex.Message);
             }
+            dgvCeilingPackingList.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
+            dgvCeilingPackingList.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
         /// <summary>
         /// 修改发货清单条目
@@ -950,9 +953,11 @@ namespace Compass
         /// <param name="e"></param>
         private void tsmiChangeLocation_Click(object sender, EventArgs e)
         {
+
             if (dgvCeilingPackingList.RowCount == 0 || dgvCeilingPackingList.SelectedRows.Count == 0) return;
             string newLocation = Interaction.InputBox("将选中的区域添加到其他区域中，请输入要变换的区域。", "变换区域", "", -1, -1);
             if(newLocation.Length==0)return;
+            int firstRowIndex = dgvCeilingPackingList.CurrentRow.Index;
             //根据选中的行，获得id并查询发货清单对象，添加倒集合（旧）
             List<CeilingAccessory> oldCeilingAccessories = new List<CeilingAccessory>();
             foreach (DataGridViewRow row in dgvCeilingPackingList.SelectedRows)
@@ -1011,6 +1016,8 @@ namespace Compass
             {
                 MessageBox.Show(ex.Message);
             }
+            dgvCeilingPackingList.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
+            dgvCeilingPackingList.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
         #endregion
         /// <summary>

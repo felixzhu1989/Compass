@@ -75,7 +75,7 @@ namespace Compass
                 return;
             }
             #endregion
-
+            int firstRowIndex = dgvCeilingAccessories.CurrentRow.Index;
             if (btnCeilingAccessory.Tag.Equals(0))
             {
                 //提交添加
@@ -169,6 +169,8 @@ namespace Compass
                     txtCeilingAccessoryId.ReadOnly = false;
                 }
             }
+            dgvCeilingAccessories.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
+            dgvCeilingAccessories.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
         /// <summary>
         /// 修改菜单
@@ -213,6 +215,7 @@ namespace Compass
             DialogResult result = MessageBox.Show("确定要删除【 " + partDescription + " 】这个配件的信息吗？", "删除询问", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (result == DialogResult.No) return;
+            int firstRowIndex = dgvCeilingAccessories.CurrentRow.Index;
             try
             {
                 if (objCeilingAccessoryService.DeleteCeilingAccessory(id) == 1)
@@ -223,6 +226,8 @@ namespace Compass
             {
                 MessageBox.Show(ex.Message);
             }
+            dgvCeilingAccessories.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
+            dgvCeilingAccessories.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
         /// <summary>
         /// 添加行号
