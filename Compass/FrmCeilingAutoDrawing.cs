@@ -1003,8 +1003,7 @@ namespace Compass
                     {
                         objCeilingAccessoryService.EditCeilingPackingList(item);
                     }
-                    if(deleteIdList.Count==0)return;
-                    objCeilingAccessoryService.DeleteCeilingPackingListByTran(deleteIdList);
+                    if(deleteIdList.Count!=0) objCeilingAccessoryService.DeleteCeilingPackingListByTran(deleteIdList); 
                 }
                 dgvCeilingPackingList.DataSource = objCeilingAccessoryService.GetCeilingPackingListByProjectId(objProject.ProjectId.ToString());
             }
