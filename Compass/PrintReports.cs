@@ -23,13 +23,13 @@ namespace Compass
         /// 天花烟罩打印JobCard
         /// </summary>
         /// <param name="tree"></param>
-        public void ExecPrintCeilingJobCard(Project objProject,string itemNo,string model)
+        public void ExecPrintCeilingJobCard(Project objProject, string itemNo, string model)
         {
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             string excelBookPath = Environment.CurrentDirectory + "\\JobCard_Ceiling.xlsx";
             excelApp.Workbooks.Add(excelBookPath);
             Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
-            
+
             //通用信息
             workSheet.Cells[3, 3] = objProject.ODPNo;
             workSheet.Cells[4, 3] = objProject.BPONo;
@@ -37,13 +37,13 @@ namespace Compass
             workSheet.Cells[6, 3] = objProject.CustomerName;
             workSheet.Cells[13, 7] = objProject.ShippingTime.ToShortDateString();
             //天花烟罩
-                workSheet.Cells[7, 3] = itemNo;
-                workSheet.Cells[8, 3] = model;
-                workSheet.Cells[20, 4] = "";
-                workSheet.Cells[20, 5] = "";
-                workSheet.Cells[20, 6] = "";
-                workSheet.Cells[20, 7] = "";
-                workSheet.Cells[20, 8] = "";
+            workSheet.Cells[7, 3] = itemNo;
+            workSheet.Cells[8, 3] = model;
+            workSheet.Cells[20, 4] = "";
+            workSheet.Cells[20, 5] = "";
+            workSheet.Cells[20, 6] = "";
+            workSheet.Cells[20, 7] = "";
+            workSheet.Cells[20, 8] = "";
             //特殊要求
             List<string> srList = new RequirementService().GetSpecialRequirementList(objProject.ODPNo);
             for (int i = 0; i < srList.Count; i++)
@@ -60,7 +60,7 @@ namespace Compass
             excelApp = null;//对象置空
             GC.Collect(); //垃圾回收机制
         }
-        
+
 
         /// <summary>
         /// 标准烟罩打印JobCard
@@ -187,17 +187,37 @@ namespace Compass
             string excelBookPath = Environment.CurrentDirectory + "\\CeilingPackingList.xlsx";
             excelApp.Workbooks.Add(excelBookPath);
             Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
-            workSheet.Cells[1, 1] = objProject.ODPNo + "-天花烟罩发货清单(Ceiling Hood Packing List)";
-            workSheet.Cells[2, 3] = objProject.ProjectName;
-            workSheet.Cells[3, 3] = DateTime.Now.ToShortDateString();
-            workSheet.Cells[4, 3] = dgv.Rows[1].Cells["UserAccount"].Value;
-            
-            FillCeilingPackingListDate(workSheet, dgv);
-            //预览
-            //excelApp.Visible = true;
-            //excelApp.Sheets.PrintPreview(true);
-            //打印
-            workSheet.PrintOutEx();
+
+            //将区域添加到字典中并计数
+            Dictionary<string, int> locationList = new Dictionary<string, int>();
+            for (int i = 0; i < dgv.RowCount; i++)
+            {
+                if (locationList.ContainsKey(dgv.Rows[i].Cells["Location"].Value.ToString())) locationList[dgv.Rows[i].Cells["Location"].Value.ToString()] += 1;
+                else locationList.Add(dgv.Rows[i].Cells["Location"].Value.ToString(), 1);
+            }
+            int startRow = 0;
+            int endRow = 0;
+            int countRow = 0;
+            foreach (var item in locationList)
+            {
+                endRow = startRow + item.Value;
+                workSheet.Cells[1, 1] = objProject.ODPNo + "-天花烟罩发货清单(Ceiling Hood Packing List)-" + item.Key;
+                workSheet.Cells[2, 3] = objProject.ProjectName;
+                workSheet.Cells[3, 3] = DateTime.Now.ToShortDateString();
+                workSheet.Cells[4, 3] = dgv.Rows[1].Cells["UserAccount"].Value;
+
+                FillCeilingPackingListDate(workSheet, dgv, startRow, endRow);
+                //预览
+                //excelApp.Visible = true;
+                //excelApp.Sheets.PrintPreview(true);
+                //打印
+                workSheet.PrintOutEx();
+
+                Microsoft.Office.Interop.Excel.Range range = workSheet.Rows["7:" + (item.Value + 7), Missing.Value];
+                range.Delete(Microsoft.Office.Interop.Excel.XlDirection.xlDown);
+                startRow = endRow;
+            }
+
             KillProcess(excelApp);
             excelApp = null;//对象置空
             GC.Collect(); //垃圾回收机制
@@ -215,20 +235,43 @@ namespace Compass
             string excelBookPath = Environment.CurrentDirectory + "\\CeilingPackingList.xlsx";
             Workbook workBook = excelApp.Workbooks.Add(excelBookPath);
             Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
-            workSheet.Cells[1, 1] = objProject.ODPNo + "-天花烟罩发货清单(Ceiling Hood Packing List)";
-            workSheet.Cells[2, 3] = objProject.ProjectName;
-            workSheet.Cells[3, 3] = DateTime.Now.ToShortDateString();
-            workSheet.Cells[4, 3] = dgv.Rows[1].Cells["UserAccount"].Value;
 
-            FillCeilingPackingListDate(workSheet, dgv);
-            //预览
-            //excelApp.Visible = true;
-            //excelApp.Sheets.PrintPreview(true);
-            //另存为
-            string excelPath = @"D:\MyProjects\" + objProject.ODPNo;
-            if (!Directory.Exists(excelPath)) Directory.CreateDirectory(excelPath);
-            workBook.SaveAs(excelPath + @"\" + objProject.ODPNo + "天花烟罩发货清单.xlsx", XlFileFormat.xlOpenXMLWorkbook);
+            //将区域添加到字典中并计数
+            Dictionary<string, int> locationList = new Dictionary<string, int>();
+            for (int i = 0; i < dgv.RowCount; i++)
+            {
+                if (locationList.ContainsKey(dgv.Rows[i].Cells["Location"].Value.ToString())) locationList[dgv.Rows[i].Cells["Location"].Value.ToString()] += 1;
+                else locationList.Add(dgv.Rows[i].Cells["Location"].Value.ToString(), 1);
+            }
+            int startRow = 0;
+            int endRow = 0;
+            int countRow = 0;
+            foreach (var item in locationList)
+            {
+                endRow = startRow + item.Value;
+                workSheet.Cells[1, 1] = objProject.ODPNo + "-天花烟罩发货清单(Ceiling Hood Packing List)-" + item.Key;
+                workSheet.Cells[2, 3] = objProject.ProjectName;
+                workSheet.Cells[3, 3] = DateTime.Now.ToShortDateString();
+                workSheet.Cells[4, 3] = dgv.Rows[1].Cells["UserAccount"].Value;
+
+                FillCeilingPackingListDate(workSheet, dgv, startRow, endRow);
+                //预览
+                //excelApp.Visible = true;
+                //excelApp.Sheets.PrintPreview(true);
+                //打印
+                //workSheet.PrintOutEx();
+                //另存为
+                string excelPath = @"D:\MyProjects\" + objProject.ODPNo;
+                if (!Directory.Exists(excelPath)) Directory.CreateDirectory(excelPath);
+                workBook.SaveAs(excelPath + @"\" + objProject.ODPNo + "-"+ item.Key + "天花烟罩发货清单.xlsx", XlFileFormat.xlOpenXMLWorkbook);
+                
+                Microsoft.Office.Interop.Excel.Range range = workSheet.Rows["7:" + (item.Value + 7), Missing.Value];
+                range.Delete(Microsoft.Office.Interop.Excel.XlDirection.xlDown);
+                startRow = endRow;
+            }
             
+            
+
             KillProcess(excelApp);
             excelApp = null;//对象置空
             GC.Collect(); //垃圾回收机制
@@ -242,23 +285,25 @@ namespace Compass
         /// </summary>
         /// <param name="workSheet"></param>
         /// <param name="dgv"></param>
-        private void FillCeilingPackingListDate(Worksheet workSheet, DataGridView dgv)
+        private void FillCeilingPackingListDate(Worksheet workSheet, DataGridView dgv, int startRow, int endRow)
         {
-            for (int i = 0; i < dgv.RowCount; i++)
+            int j = 0;
+            for (int i = startRow; i < endRow; i++)
             {
-                workSheet.Cells[i + 7, 2] = dgv.Rows[i].Cells["Location"].Value;
-                workSheet.Cells[i + 7, 3] = dgv.Rows[i].Cells["PartDescription"].Value;
-                workSheet.Cells[i + 7, 4] = dgv.Rows[i].Cells["PartNo"].Value;
-                workSheet.Cells[i + 7, 5] = dgv.Rows[i].Cells["Quantity"].Value;
-                workSheet.Cells[i + 7, 6] = dgv.Rows[i].Cells["Unit"].Value;
-                workSheet.Cells[i + 7, 7] = dgv.Rows[i].Cells["Length"].Value;
-                workSheet.Cells[i + 7, 8] = dgv.Rows[i].Cells["Width"].Value;
-                workSheet.Cells[i + 7, 9] = dgv.Rows[i].Cells["Height"].Value;
-                workSheet.Cells[i + 7, 10] = dgv.Rows[i].Cells["Material"].Value;
-                workSheet.Cells[i + 7, 11] = dgv.Rows[i].Cells["Remark"].Value;
+                workSheet.Cells[j + 7, 2] = dgv.Rows[i].Cells["Location"].Value;
+                workSheet.Cells[j + 7, 3] = dgv.Rows[i].Cells["PartDescription"].Value;
+                workSheet.Cells[j + 7, 4] = dgv.Rows[i].Cells["PartNo"].Value;
+                workSheet.Cells[j + 7, 5] = dgv.Rows[i].Cells["Quantity"].Value;
+                workSheet.Cells[j + 7, 6] = dgv.Rows[i].Cells["Unit"].Value;
+                workSheet.Cells[j + 7, 7] = dgv.Rows[i].Cells["Length"].Value;
+                workSheet.Cells[j + 7, 8] = dgv.Rows[i].Cells["Width"].Value;
+                workSheet.Cells[j + 7, 9] = dgv.Rows[i].Cells["Height"].Value;
+                workSheet.Cells[j + 7, 10] = dgv.Rows[i].Cells["Material"].Value;
+                workSheet.Cells[j + 7, 11] = dgv.Rows[i].Cells["Remark"].Value;
+                j++;
             }
             //设置边框
-            Microsoft.Office.Interop.Excel.Range range = workSheet.get_Range("A7", "K" + (dgv.RowCount + 6));
+            Microsoft.Office.Interop.Excel.Range range = workSheet.get_Range("A7", "K" + (endRow - startRow + 6));
             range.Borders.Value = 1;
             //设置列宽
             workSheet.Columns.AutoFit();
@@ -279,13 +324,13 @@ namespace Compass
             foreach (var item in itemList)
             {
                 workSheet.Cells[1, 1] = objProject.ODPNo;
-                string descEng = item.PartDescription.Substring(item.PartDescription.IndexOf("(")+1);
-                workSheet.Cells[2, 1] = item.PartDescription.Substring(0,item.PartDescription.IndexOf("("));
+                string descEng = item.PartDescription.Substring(item.PartDescription.IndexOf("(") + 1);
+                workSheet.Cells[2, 1] = item.PartDescription.Substring(0, item.PartDescription.IndexOf("("));
                 workSheet.Cells[3, 1] = descEng.Substring(0, descEng.Length - 1);
                 workSheet.Cells[4, 1] = item.PartNo;
-                workSheet.Cells[5, 1] = item.Quantity+"-"+item.Unit+" ("+item.Location+")";
+                workSheet.Cells[5, 1] = item.Quantity + "-" + item.Unit + " (" + item.Location + ")";
                 workSheet.Cells[6, 1] = item.Material;
-                workSheet.Cells[7, 1] = item.Length+"x"+item.Width+"x"+item.Height+"(mm)";
+                workSheet.Cells[7, 1] = item.Length + "x" + item.Width + "x" + item.Height + "(mm)";
                 //打印
                 workSheet.PrintOutEx();
             }
@@ -348,7 +393,7 @@ namespace Compass
             excelApp = null;//对象置空
             GC.Collect(); //垃圾回收机制
         }
-#endregion
+        #endregion
 
         #region CutList
         /// <summary>
@@ -464,7 +509,7 @@ namespace Compass
             workSheet.Cells[1, 11].ColumnWidth = 5;
         }
         #endregion
-        
+
 
         /// <summary>
         /// 引用Windows句柄，获取程序PID

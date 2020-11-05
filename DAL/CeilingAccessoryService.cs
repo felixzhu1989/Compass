@@ -215,7 +215,7 @@ namespace DAL
 
 
         /// <summary>
-        /// 根据项目Id返回发货清单
+        /// 根据项目Id返回发货清单集合
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
@@ -233,7 +233,7 @@ namespace DAL
             StringBuilder sql = new StringBuilder("select PartDescription,Quantity,PartNo,Unit,Length,Width,Height,Material,Remark,CountingRule,AddedDate,CeilingPackingList.UserId,UserAccount,ProjectId,CeilingAccessoryId,ClassNo,CeilingPackingListId,Location from CeilingPackingList");
             sql.Append(" inner join Users on Users.UserId=CeilingPackingList.UserId");
             sql.Append(whereSql);
-            sql.Append(" order by CeilingAccessoryId asc, PartNo asc");//优先按照Id排列，再排部件编号
+            sql.Append(" order by Location asc, CeilingAccessoryId asc, PartNo asc");//优先按照区域排序，然后Id，再部件编号
 
             SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             List<CeilingAccessory> list = new List<CeilingAccessory>();
@@ -265,7 +265,7 @@ namespace DAL
             return list;
         }
         /// <summary>
-        /// 根据序号返回发货清单1个条目
+        /// 根据序号返回发货清单个条目
         /// </summary>
         /// <param name="packingListId"></param>
         /// <returns></returns>

@@ -13,6 +13,7 @@ using DAL;
 using Models;
 using SolidWorks.Interop.sldworks;
 using SolidWorksHelper;
+using Microsoft.VisualBasic;
 
 namespace Compass
 {
@@ -880,6 +881,7 @@ namespace Compass
         private void btnEditCeilingAccessory_Click(object sender, EventArgs e)
         {
             if (txtPartDescription.Tag == null) return;
+            int firstRowIndex = dgvCeilingPackingList.CurrentRow.Index;
             //封装对象
             CeilingAccessory objCeilingPackingItem = new CeilingAccessory()
             {
@@ -919,6 +921,8 @@ namespace Compass
                 MessageBox.Show(ex.Message);
             }
             btnEditCeilingAccessory.Enabled = false;
+            dgvCeilingPackingList.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
+            dgvCeilingPackingList.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
         private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
         {
@@ -939,8 +943,76 @@ namespace Compass
                 dgvCeilingPackingList.DataSource = objCeilingAccessoryService.GetCeilingPackingListByProjectId(objProject.ProjectId.ToString());
             }
         }
-
-
+        /// <summary>
+        /// 改变分区
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmiChangeLocation_Click(object sender, EventArgs e)
+        {
+            if (dgvCeilingPackingList.RowCount == 0 || dgvCeilingPackingList.SelectedRows.Count == 0) return;
+            string newLocation = Interaction.InputBox("将选中的区域添加到其他区域中，请输入要变换的区域。", "变换区域", "", -1, -1);
+            if(newLocation.Length==0)return;
+            //根据选中的行，获得id并查询发货清单对象，添加倒集合（旧）
+            List<CeilingAccessory> oldCeilingAccessories = new List<CeilingAccessory>();
+            foreach (DataGridViewRow row in dgvCeilingPackingList.SelectedRows)
+            {
+                oldCeilingAccessories.Add(objCeilingAccessoryService.GetCeilingPackingItemById(row.Cells["CeilingPackingListId"].Value.ToString()));
+            }
+            //新建新集合，循环旧集合将对象添加到新集合并赋值数量为1，区域为新值
+            //判断对象数量 >1时减1（最后用于修改），否则将id添加到新的idList中（删除）
+            List<CeilingAccessory> addCeilingAccessories = new List<CeilingAccessory>();
+            List<CeilingAccessory> editCeilingAccessories = new List<CeilingAccessory>();
+            List<int> deleteIdList = new List<int>();
+            foreach (var item in oldCeilingAccessories)
+            {
+                addCeilingAccessories.Add(new CeilingAccessory()
+                {
+                    ProjectId = item.ProjectId,
+                    CeilingAccessoryId = item.CeilingAccessoryId,
+                    ClassNo = item.ClassNo,
+                    PartDescription = item.PartDescription,
+                    Quantity = 1,//数量为1
+                    PartNo = item.PartNo,
+                    Unit = item.Unit,
+                    Length = item.Length,
+                    Width = item.Width,
+                    Height = item.Height,
+                    Material = item.Material,
+                    Remark = item.Remark,
+                    CountingRule = item.CountingRule,
+                    UserId = item.UserId,
+                    Location = newLocation
+                });
+                if (item.Quantity > 1)
+                {
+                    item.Quantity = item.Quantity - 1;
+                    editCeilingAccessories.Add(item);
+                }
+                else
+                {
+                    deleteIdList.Add(item.CeilingPackingListId);
+                }
+            }
+            //将新集合添加到SQL,修改对象,删除对象
+            try
+            {
+                if (objCeilingAccessoryService.ImportCeilingPackingListByTran(addCeilingAccessories))
+                {
+                    foreach (var item in editCeilingAccessories)
+                    {
+                        objCeilingAccessoryService.EditCeilingPackingList(item);
+                    }
+                    if(deleteIdList.Count==0)return;
+                    objCeilingAccessoryService.DeleteCeilingPackingListByTran(deleteIdList);
+                }
+                dgvCeilingPackingList.DataSource = objCeilingAccessoryService.GetCeilingPackingListByProjectId(objProject.ProjectId.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         #endregion
         /// <summary>
         /// 切换标签重新加载树形菜单
@@ -953,6 +1025,6 @@ namespace Compass
             RefreshDgv();
         }
 
-
+        
     }
 }
