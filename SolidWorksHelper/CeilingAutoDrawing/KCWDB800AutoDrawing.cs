@@ -590,7 +590,13 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("ANSULSIDE LEFT");
                         swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                        swFeat = swComp.FeatureByName("UV");
+                        swFeat = swComp.FeatureByName("UV S");
+                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("UV L");
+                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("UV CABLE S");
+                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("UV CABLE L");
                         swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("HALL SENSOR FRONT");
                         swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
@@ -780,7 +786,13 @@ namespace SolidWorksHelper
                         swPart.Parameter("D3@Sketch1").SystemValue = item.ExRightDis / 1000m;
                         swPart.Parameter("D1@Sketch1").SystemValue = item.ExLength / 1000m;
                         swPart.Parameter("D2@Sketch1").SystemValue = item.ExWidth / 1000m;
-                        swFeat = swComp.FeatureByName("UV");
+                        swFeat = swComp.FeatureByName("UV S");
+                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("UV L");
+                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("UV CABLE S");
+                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("UV CABLE L");
                         swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("HALL SENSOR FRONT");
                         swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
