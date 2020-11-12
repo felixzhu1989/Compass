@@ -75,6 +75,9 @@ namespace Compass
                     case "ProductionCompleted":
                         dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 206, 209);
                         break;
+                    case "ProjectCompleted":
+                        dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(95, 158, 160);
+                        break;
                     default:
                         break;
                 }
