@@ -94,7 +94,7 @@ namespace SolidWorksHelper
                     subAssyName = swSubModel.GetTitle().Substring(0, swSubModel.GetTitle().Length - 7);//获取装配体名称
                     swSubModelDocExt = (ModelDocExtension)swSubModel.Extension;
                     //重命名装配体内部
-                    compReName = "FNCE0120[BFM-" + tree.Module + "]{" + (int)item.MPanelLength + "}";
+                    compReName = "FNCE0120[BFM-" + (int)item.MPanelLength + "]{" + (int)item.MPanelLength + "}";
                     status = swSubModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0120[BFM-]{}-1") + "@" + subAssyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                     if (status) swSubModelDocExt.RenameDocument(compReName);
                     swSubModel.ClearSelection2(true);
@@ -151,7 +151,7 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                 }
                 //重命名装配体内部
-                compReName = "FNCE0121[BFW-" + tree.Module + "]{" + (int)item.WPanelLength + "}";
+                compReName = "FNCE0121[BFW-" + (int)item.WPanelLength + "]{" + (int)item.WPanelLength + "}";
                 status = swSubModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0121[BFW-]{}-1") + "@" + subAssyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                 if (status) swSubModelDocExt.RenameDocument(compReName);
                 swSubModel.ClearSelection2(true);
