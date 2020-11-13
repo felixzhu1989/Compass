@@ -238,7 +238,7 @@
             this.dtpEditDrReleaseActual.Name = "dtpEditDrReleaseActual";
             this.dtpEditDrReleaseActual.Size = new System.Drawing.Size(117, 25);
             this.dtpEditDrReleaseActual.TabIndex = 20;
-            this.dtpEditDrReleaseActual.ValueChanged += new System.EventHandler(this.dtpEditDrReleaseActual_ValueChanged);
+            
             // 
             // label6
             // 
@@ -256,7 +256,7 @@
             this.dtpEditProdFinishActual.Name = "dtpEditProdFinishActual";
             this.dtpEditProdFinishActual.Size = new System.Drawing.Size(117, 25);
             this.dtpEditProdFinishActual.TabIndex = 20;
-            this.dtpEditProdFinishActual.ValueChanged += new System.EventHandler(this.dtpEditProdFinishActual_ValueChanged);
+            
             // 
             // label9
             // 
@@ -275,7 +275,7 @@
             this.dtpEditDeliverActual.Name = "dtpEditDeliverActual";
             this.dtpEditDeliverActual.Size = new System.Drawing.Size(117, 25);
             this.dtpEditDeliverActual.TabIndex = 20;
-            this.dtpEditDeliverActual.ValueChanged += new System.EventHandler(this.dtpEditDeliverActual_ValueChanged);
+            
             // 
             // btnQueryAllProjectTracking
             // 

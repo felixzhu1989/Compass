@@ -218,7 +218,12 @@ namespace Compass
             cobEditODPNo.Text = objProjectTracking.ODPNo;
             cobEditProjectStatus.Text = objProjectTracking.ProjectStatusName;
             cobEditKickOffStatus.Text = objProjectTracking.KickOffStatus;
-            
+
+            //断开事件委托
+            this.dtpEditDrReleaseActual.ValueChanged -= new System.EventHandler(this.dtpEditDrReleaseActual_ValueChanged);
+            this.dtpEditProdFinishActual.ValueChanged -= new System.EventHandler(this.dtpEditProdFinishActual_ValueChanged);
+            this.dtpEditDeliverActual.ValueChanged -= new System.EventHandler(this.dtpEditDeliverActual_ValueChanged);
+
             dtpEditDrReleaseActual.Text = objProjectTracking.DrReleaseActual == DateTime.MinValue ?
                 Convert.ToDateTime("1/1/2020").ToShortDateString() :
                 objProjectTracking.DrReleaseActual.ToShortDateString();
@@ -228,7 +233,11 @@ namespace Compass
             dtpEditDeliverActual.Text = objProjectTracking.DeliverActual == DateTime.MinValue ?
                 Convert.ToDateTime("1/1/2020").ToShortDateString() :
                 objProjectTracking.DeliverActual.ToShortDateString();
-            
+
+            //重新建立事件委托
+            this.dtpEditDrReleaseActual.ValueChanged += new System.EventHandler(this.dtpEditDrReleaseActual_ValueChanged);
+            this.dtpEditProdFinishActual.ValueChanged += new System.EventHandler(this.dtpEditProdFinishActual_ValueChanged);
+            this.dtpEditDeliverActual.ValueChanged += new System.EventHandler(this.dtpEditDeliverActual_ValueChanged);
         }
         /// <summary>
         /// 双击单元格修改记录
