@@ -13,21 +13,21 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmKVF555 : MetroFramework.Forms.MetroForm
+    public partial class FrmCMODF555 : MetroFramework.Forms.MetroForm
     {
         CategoryService objCategoryService = new CategoryService();
-        KVF555Service objKvf555Service = new KVF555Service();
-        private KVF555 objKvf555 = null;
-        public FrmKVF555()
+        CMODF555Service objCMODF555Service = new CMODF555Service();
+        private CMODF555 objCMODF555 = null;
+        public FrmCMODF555()
         {
             InitializeComponent();
             SetVisibleFalse();
             IniCob();
         }
-        public FrmKVF555(Drawing drawing, ModuleTree tree) : this()
+        public FrmCMODF555(Drawing drawing, ModuleTree tree) : this()
         {
-            objKvf555 = (KVF555)objKvf555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objKvf555 == null) return;
+            objCMODF555 = (CMODF555)objCMODF555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (objCMODF555 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString());
             pbModelImage.Image = objCategory.ModelImage.Length == 0
@@ -72,11 +72,17 @@ namespace Compass
             cobANSide.Items.Add("LEFT");
             cobANSide.Items.Add("RIGHT");
             cobANSide.Items.Add("NO");
-            //ANSUL探测器
-            cobANDetector.Items.Add("LEFT");
-            cobANDetector.Items.Add("RIGHT");
-            cobANDetector.Items.Add("BOTH");
-            cobANDetector.Items.Add("NO");
+            //ANSUL末端探测器
+            cobANDetectorEnd.Items.Add("LEFT");
+            cobANDetectorEnd.Items.Add("RIGHT");
+            cobANDetectorEnd.Items.Add("NO");
+            //ANSUL探测器数量
+            cobANDetectorNo.Items.Add("0");
+            cobANDetectorNo.Items.Add("1");
+            cobANDetectorNo.Items.Add("2");
+            cobANDetectorNo.Items.Add("3");
+            cobANDetectorNo.Items.Add("4");
+            cobANDetectorNo.Items.Add("5");
             //ANSUL下喷
             cobANDropNo.Items.Add("0");
             cobANDropNo.Items.Add("1");
@@ -87,7 +93,7 @@ namespace Compass
             //MARVEL
             cobMARVEL.Items.Add("YES");
             cobMARVEL.Items.Add("NO");
-            cobMARVEL.SelectedIndex = 1;
+            cobMARVEL.SelectedIndex = 0;
             //IR数量
             cobIRNo.Items.Add("0");
             cobIRNo.Items.Add("1");
@@ -97,15 +103,15 @@ namespace Compass
             //LOGO
             cobLEDLogo.Items.Add("YES");
             cobLEDLogo.Items.Add("NO");
-            //油塞
-            cobOutlet.Items.Add("LEFTTAP");
-            cobOutlet.Items.Add("RIGHTTAP");
-            cobOutlet.Items.Add("VESSEL");//油盒
-            cobOutlet.SelectedIndex = 1;
-            //集水翻边
-            cobWaterCollection.Items.Add("YES");
-            cobWaterCollection.Items.Add("NO");
-            cobWaterCollection.SelectedIndex = 1;
+            //排水口、上排水
+            cobOutlet.Items.Add("LEFT");
+            cobOutlet.Items.Add("RIGHT");
+            cobOutlet.Items.Add("UPLEFT");
+            cobOutlet.Items.Add("UPRIGHT");
+            cobOutlet.Items.Add("NO");
+            //入水口
+            cobInlet.Items.Add("LEFT");
+            cobInlet.Items.Add("RIGHT");
             //背靠背
             cobBackToBack.Items.Add("YES");
             cobBackToBack.Items.Add("NO");
@@ -125,45 +131,51 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objKvf555 == null) return;
-            pbModelImage.Tag = objKvf555.KVF555Id;
+            if (objCMODF555 == null) return;
+            pbModelImage.Tag = objCMODF555.CMODF555Id;
 
-            cobSidePanel.Text = objKvf555.SidePanel;
+            cobSidePanel.Text = objCMODF555.SidePanel;
             //默认ExNo为1
-            cobExNo.Text = objKvf555.ExNo == 0 ? "1" : objKvf555.ExNo.ToString();
-            cobSuNo.Text = objKvf555.ExNo == 0 ? "2" : objKvf555.SuNo.ToString();
-            cobLightType.Text = objKvf555.LightType;
-            cobLEDSpotNo.Text = objKvf555.LEDSpotNo.ToString();
-            cobANSUL.Text = objKvf555.ANSUL;
-            cobANSide.Text = objKvf555.ANSide;
-            cobANDetector.Text = objKvf555.ANDetector;
-            cobANDropNo.Text = objKvf555.ANDropNo.ToString();
-            cobMARVEL.Text = objKvf555.MARVEL;
-            cobIRNo.Text = objKvf555.IRNo.ToString();
-            cobLEDLogo.Text = objKvf555.LEDlogo;
-            cobOutlet.Text = objKvf555.Outlet;
-            cobWaterCollection.Text = objKvf555.WaterCollection;
-            cobBackToBack.Text = objKvf555.BackToBack;
+            cobExNo.Text = objCMODF555.ExNo == 0 ? "1" : objCMODF555.ExNo.ToString();
+            cobSuNo.Text = objCMODF555.ExNo == 0 ? "2" : objCMODF555.SuNo.ToString();
+            cobLightType.Text = objCMODF555.LightType;
+            cobLEDSpotNo.Text = objCMODF555.LEDSpotNo.ToString();
+            cobANSUL.Text = objCMODF555.ANSUL;
+            cobANSide.Text = objCMODF555.ANSide;
+            cobANDetectorEnd.Text = objCMODF555.ANDetectorEnd;
+            cobANDropNo.Text = objCMODF555.ANDropNo.ToString();
+            cobANDetectorNo.Text = objCMODF555.ANDetectorNo.ToString();
+            cobMARVEL.Text = objCMODF555.MARVEL;
+            cobIRNo.Text = objCMODF555.IRNo.ToString();
+            cobLEDLogo.Text = objCMODF555.LEDlogo;
+            cobOutlet.Text = objCMODF555.Outlet;
+            cobInlet.Text = objCMODF555.Inlet;
+            cobBackToBack.Text = objCMODF555.BackToBack;
 
-            txtLength.Text = objKvf555.Length.ToString();
-            txtDeepth.Text = objKvf555.Deepth.ToString();
-            txtExRightDis.Text = objKvf555.ExRightDis.ToString();
-            txtExDis.Text = objKvf555.ExDis.ToString();
-            txtSuDis.Text = objKvf555.SuDis.ToString();
-            txtExLength.Text = objKvf555.ExLength.ToString();
-            txtExWidth.Text = objKvf555.ExWidth.ToString();
-            txtExHeight.Text = objKvf555.ExHeight.ToString();
+            txtLength.Text = objCMODF555.Length.ToString();
+            txtDeepth.Text = objCMODF555.Deepth.ToString();
+            txtExRightDis.Text = objCMODF555.ExRightDis.ToString();
+            txtExDis.Text = objCMODF555.ExDis.ToString();
+            txtSuDis.Text = objCMODF555.SuDis.ToString();
+            txtExLength.Text = objCMODF555.ExLength.ToString();
+            txtExWidth.Text = objCMODF555.ExWidth.ToString();
+            txtExHeight.Text = objCMODF555.ExHeight.ToString();
             //LEDSpotDis默认400
-            txtLEDSpotDis.Text = objKvf555.LEDSpotDis == 0 ? "400" : objKvf555.LEDSpotDis.ToString();
-            txtANYDis.Text = objKvf555.ANYDis.ToString();
-            txtDropDis1.Text = objKvf555.ANDropDis1.ToString();
-            txtDropDis2.Text = objKvf555.ANDropDis2.ToString();
-            txtDropDis3.Text = objKvf555.ANDropDis3.ToString();
-            txtDropDis4.Text = objKvf555.ANDropDis4.ToString();
-            txtDropDis5.Text = objKvf555.ANDropDis5.ToString();
-            txtIRDis1.Text = objKvf555.IRDis1.ToString();
-            txtIRDis2.Text = objKvf555.IRDis2.ToString();
-            txtIRDis3.Text = objKvf555.IRDis3.ToString();
+            txtLEDSpotDis.Text = objCMODF555.LEDSpotDis == 0 ? "400" : objCMODF555.LEDSpotDis.ToString();
+            txtANYDis.Text = objCMODF555.ANYDis.ToString();
+            txtANDropDis1.Text = objCMODF555.ANDropDis1.ToString();
+            txtANDropDis2.Text = objCMODF555.ANDropDis2.ToString();
+            txtANDropDis3.Text = objCMODF555.ANDropDis3.ToString();
+            txtANDropDis4.Text = objCMODF555.ANDropDis4.ToString();
+            txtANDropDis5.Text = objCMODF555.ANDropDis5.ToString();
+            txtANDetectorDis1.Text = objCMODF555.ANDetectorDis1.ToString();
+            txtANDetectorDis2.Text = objCMODF555.ANDetectorDis2.ToString();
+            txtANDetectorDis3.Text = objCMODF555.ANDetectorDis3.ToString();
+            txtANDetectorDis4.Text = objCMODF555.ANDetectorDis4.ToString();
+            txtANDetectorDis5.Text = objCMODF555.ANDetectorDis5.ToString();
+            txtIRDis1.Text = objCMODF555.IRDis1.ToString();
+            txtIRDis2.Text = objCMODF555.IRDis2.ToString();
+            txtIRDis3.Text = objCMODF555.IRDis3.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -208,7 +220,6 @@ namespace Compass
                 txtExDis.SelectAll();
                 return;
             }
-            
             if (!DataValidate.IsDecimal(txtExLength.Text.Trim()) || Convert.ToDecimal(txtExLength.Text.Trim()) < 50m)
             {
                 MessageBox.Show("请填写脖颈长度", "提示信息");
@@ -243,13 +254,13 @@ namespace Compass
                 txtSuDis.SelectAll();
                 return;
             }
-            
             if (cobLightType.SelectedIndex == -1)
             {
                 MessageBox.Show("请选择灯具类型", "提示信息");
                 cobLightType.Focus();
                 return;
             }
+
             if (cobANSUL.SelectedIndex == -1)
             {
                 MessageBox.Show("是否带ANSUL", "提示信息");
@@ -286,10 +297,10 @@ namespace Compass
                     cobANSide.Focus();
                     return;
                 }
-                if (cobANDetector.SelectedIndex == -1)
+                if (cobANDetectorEnd.SelectedIndex == -1)
                 {
-                    MessageBox.Show("请选择ANSUL探测器进出口位置", "提示信息");
-                    cobANDetector.Focus();
+                    MessageBox.Show("请选择ANSUL末端探测器位置", "提示信息");
+                    cobANDetectorEnd.Focus();
                     return;
                 }
                 if (cobANDropNo.SelectedIndex == -1)
@@ -307,53 +318,109 @@ namespace Compass
                         txtANYDis.SelectAll();
                         return;
                     }
-                    if (!DataValidate.IsDecimal(txtDropDis1.Text.Trim()) || Convert.ToDecimal(txtDropDis1.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDecimal(txtANDropDis1.Text.Trim()) || Convert.ToDecimal(txtANDropDis1.Text.Trim()) < 30m)
                     {
                         MessageBox.Show("请检查下喷间距1", "提示信息");
-                        txtDropDis1.Focus();
-                        txtDropDis1.SelectAll();
+                        txtANDropDis1.Focus();
+                        txtANDropDis1.SelectAll();
                         return;
                     }
                 }
                 if (cobANDropNo.SelectedIndex > 1)
                 {
-                    if (!DataValidate.IsDecimal(txtDropDis2.Text.Trim()) || Convert.ToDecimal(txtDropDis2.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDecimal(txtANDropDis2.Text.Trim()) || Convert.ToDecimal(txtANDropDis2.Text.Trim()) < 30m)
                     {
                         MessageBox.Show("请检查下喷间距2", "提示信息");
-                        txtDropDis2.Focus();
-                        txtDropDis2.SelectAll();
+                        txtANDropDis2.Focus();
+                        txtANDropDis2.SelectAll();
                         return;
                     }
                 }
                 if (cobANDropNo.SelectedIndex > 2)
                 {
-                    if (!DataValidate.IsDecimal(txtDropDis3.Text.Trim()) || Convert.ToDecimal(txtDropDis3.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDecimal(txtANDropDis3.Text.Trim()) || Convert.ToDecimal(txtANDropDis3.Text.Trim()) < 30m)
                     {
                         MessageBox.Show("请检查下喷间距3", "提示信息");
-                        txtDropDis3.Focus();
-                        txtDropDis3.SelectAll();
+                        txtANDropDis3.Focus();
+                        txtANDropDis3.SelectAll();
                         return;
                     }
                 }
                 if (cobANDropNo.SelectedIndex > 3)
                 {
-                    if (!DataValidate.IsDecimal(txtDropDis4.Text.Trim()) || Convert.ToDecimal(txtDropDis4.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDecimal(txtANDropDis4.Text.Trim()) || Convert.ToDecimal(txtANDropDis4.Text.Trim()) < 30m)
                     {
                         MessageBox.Show("请检查下喷间距4", "提示信息");
-                        txtDropDis4.Focus();
-                        txtDropDis4.SelectAll();
+                        txtANDropDis4.Focus();
+                        txtANDropDis4.SelectAll();
                         return;
                     }
                 }
                 if (cobANDropNo.SelectedIndex > 4)
                 {
-                    if (!DataValidate.IsDecimal(txtDropDis5.Text.Trim()) || Convert.ToDecimal(txtDropDis5.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDecimal(txtANDropDis5.Text.Trim()) || Convert.ToDecimal(txtANDropDis5.Text.Trim()) < 30m)
                     {
                         MessageBox.Show("请检查下喷间距5", "提示信息");
-                        txtDropDis5.Focus();
-                        txtDropDis5.SelectAll();
+                        txtANDropDis5.Focus();
+                        txtANDropDis5.SelectAll();
                         return;
                     }
+                }
+            }
+            if (cobANDetectorNo.SelectedIndex == -1)
+            {
+                MessageBox.Show("请检查探测器数量", "提示信息");
+                cobANDetectorNo.Focus();
+                return;
+            }
+            if (cobANDetectorNo.SelectedIndex > 0)
+            {
+                if (!DataValidate.IsDecimal(txtANDetectorDis1.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis1.Text.Trim()) < 30m)
+                {
+                    MessageBox.Show("请检查探测器间距1", "提示信息");
+                    txtANDetectorDis1.Focus();
+                    txtANDetectorDis1.SelectAll();
+                    return;
+                }
+            }
+            if (cobANDetectorNo.SelectedIndex > 1)
+            {
+                if (!DataValidate.IsDecimal(txtANDetectorDis2.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis2.Text.Trim()) < 30m)
+                {
+                    MessageBox.Show("请检查探测器间距2", "提示信息");
+                    txtANDetectorDis2.Focus();
+                    txtANDetectorDis2.SelectAll();
+                    return;
+                }
+            }
+            if (cobANDetectorNo.SelectedIndex > 2)
+            {
+                if (!DataValidate.IsDecimal(txtANDetectorDis3.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis3.Text.Trim()) < 30m)
+                {
+                    MessageBox.Show("请检查探测器间距3", "提示信息");
+                    txtANDetectorDis3.Focus();
+                    txtANDetectorDis3.SelectAll();
+                    return;
+                }
+            }
+            if (cobANDetectorNo.SelectedIndex > 3)
+            {
+                if (!DataValidate.IsDecimal(txtANDetectorDis4.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis4.Text.Trim()) < 30m)
+                {
+                    MessageBox.Show("请检查探测器间距4", "提示信息");
+                    txtANDetectorDis4.Focus();
+                    txtANDetectorDis4.SelectAll();
+                    return;
+                }
+            }
+            if (cobANDetectorNo.SelectedIndex > 4)
+            {
+                if (!DataValidate.IsDecimal(txtANDetectorDis5.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis5.Text.Trim()) < 30m)
+                {
+                    MessageBox.Show("请检查探测器间距5", "提示信息");
+                    txtANDetectorDis5.Focus();
+                    txtANDetectorDis5.SelectAll();
+                    return;
                 }
             }
             if (cobMARVEL.SelectedIndex == 0)
@@ -403,16 +470,17 @@ namespace Compass
             }
             if (cobOutlet.SelectedIndex == -1)
             {
-                MessageBox.Show("请检查油塞位置", "提示信息");
+                MessageBox.Show("请检查排水口位置", "提示信息");
                 cobOutlet.Focus();
                 return;
             }
-            if (cobWaterCollection.SelectedIndex == -1)
+            if (cobInlet.SelectedIndex == -1)
             {
-                MessageBox.Show("请检查是否带集水翻遍", "提示信息");
-                cobWaterCollection.Focus();
+                MessageBox.Show("请检查入水口位置", "提示信息");
+                cobInlet.Focus();
                 return;
             }
+
             if (cobBackToBack.SelectedIndex == -1)
             {
                 MessageBox.Show("请检查是否背靠背", "提示信息");
@@ -420,11 +488,12 @@ namespace Compass
                 return;
             }
 
+
             #endregion
             //封装对象
-            KVF555 objKvf555 = new KVF555()
+            CMODF555 objCMODF555 = new CMODF555()
             {
-                KVF555Id = Convert.ToInt32(pbModelImage.Tag),
+                CMODF555Id = Convert.ToInt32(pbModelImage.Tag),
                 SidePanel = cobSidePanel.Text,
                 ExNo = Convert.ToInt32(cobExNo.Text),
                 SuNo = Convert.ToInt32(cobSuNo.Text),
@@ -432,13 +501,14 @@ namespace Compass
                 LEDSpotNo = cobLEDSpotNo.Text.Trim().Length == 0 ? 0 : Convert.ToInt32(cobLEDSpotNo.Text),
                 ANSUL = cobANSUL.Text,
                 ANSide = cobANSide.Text.Trim().Length == 0 ? "NO" : cobANSide.Text,
-                ANDetector = cobANDetector.Text.Trim().Length == 0 ? "NO" : cobANDetector.Text,
+                ANDetectorEnd = cobANDetectorEnd.Text.Trim().Length == 0 ? "NO" : cobANDetectorEnd.Text,
                 ANDropNo = cobANDropNo.Text.Trim().Length == 0 ? 0 : Convert.ToInt32(cobANDropNo.Text),
+                ANDetectorNo = cobANDetectorNo.Text.Trim().Length == 0 ? 0 : Convert.ToInt32(cobANDetectorNo.Text),
                 MARVEL = cobMARVEL.Text,
                 IRNo = cobIRNo.Text.Trim().Length == 0 ? 0 : Convert.ToInt32(cobIRNo.Text),
                 LEDlogo = cobLEDLogo.Text,
                 Outlet = cobOutlet.Text,
-                WaterCollection = cobWaterCollection.Text,
+                Inlet = cobInlet.Text,
                 BackToBack = cobBackToBack.Text,
 
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),
@@ -451,11 +521,16 @@ namespace Compass
                 ExHeight = Convert.ToDecimal(txtExHeight.Text.Trim()),
                 LEDSpotDis = Convert.ToDecimal(txtLEDSpotDis.Text.Trim()),
                 ANYDis = Convert.ToDecimal(txtANYDis.Text.Trim()),
-                ANDropDis1 = Convert.ToDecimal(txtDropDis1.Text.Trim()),
-                ANDropDis2 = Convert.ToDecimal(txtDropDis2.Text.Trim()),
-                ANDropDis3 = Convert.ToDecimal(txtDropDis3.Text.Trim()),
-                ANDropDis4 = Convert.ToDecimal(txtDropDis4.Text.Trim()),
-                ANDropDis5 = Convert.ToDecimal(txtDropDis5.Text.Trim()),
+                ANDropDis1 = Convert.ToDecimal(txtANDropDis1.Text.Trim()),
+                ANDropDis2 = Convert.ToDecimal(txtANDropDis2.Text.Trim()),
+                ANDropDis3 = Convert.ToDecimal(txtANDropDis3.Text.Trim()),
+                ANDropDis4 = Convert.ToDecimal(txtANDropDis4.Text.Trim()),
+                ANDropDis5 = Convert.ToDecimal(txtANDropDis5.Text.Trim()),
+                ANDetectorDis1 = Convert.ToDecimal(txtANDetectorDis1.Text.Trim()),
+                ANDetectorDis2 = Convert.ToDecimal(txtANDetectorDis2.Text.Trim()),
+                ANDetectorDis3 = Convert.ToDecimal(txtANDetectorDis3.Text.Trim()),
+                ANDetectorDis4 = Convert.ToDecimal(txtANDetectorDis4.Text.Trim()),
+                ANDetectorDis5 = Convert.ToDecimal(txtANDetectorDis5.Text.Trim()),
                 IRDis1 = Convert.ToDecimal(txtIRDis1.Text.Trim()),
                 IRDis2 = Convert.ToDecimal(txtIRDis2.Text.Trim()),
                 IRDis3 = Convert.ToDecimal(txtIRDis3.Text.Trim())
@@ -463,7 +538,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objKvf555Service.EditModel(objKvf555) == 1)
+                if (objCMODF555Service.EditModel(objCMODF555) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;
@@ -474,7 +549,6 @@ namespace Compass
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
         /// <summary>
         /// 筒灯分组显示
@@ -526,92 +600,92 @@ namespace Compass
             if (cobANDropNo.SelectedIndex == 0)
             {
                 lblANYDis.Visible = false;
-                lblDropDis1.Visible = false;
-                lblDropDis2.Visible = false;
-                lblDropDis3.Visible = false;
-                lblDropDis4.Visible = false;
-                lblDropDis5.Visible = false;
+                lblANDropDis1.Visible = false;
+                lblANDropDis2.Visible = false;
+                lblANDropDis3.Visible = false;
+                lblANDropDis4.Visible = false;
+                lblANDropDis5.Visible = false;
                 txtANYDis.Visible = false;
-                txtDropDis1.Visible = false;
-                txtDropDis2.Visible = false;
-                txtDropDis3.Visible = false;
-                txtDropDis4.Visible = false;
-                txtDropDis5.Visible = false;
+                txtANDropDis1.Visible = false;
+                txtANDropDis2.Visible = false;
+                txtANDropDis3.Visible = false;
+                txtANDropDis4.Visible = false;
+                txtANDropDis5.Visible = false;
             }
             else if (cobANDropNo.SelectedIndex == 1)
             {
                 lblANYDis.Visible = true;
-                lblDropDis1.Visible = true;
+                lblANDropDis1.Visible = true;
                 txtANYDis.Visible = true;
-                txtDropDis1.Visible = true;
-                lblDropDis2.Visible = false;
-                lblDropDis3.Visible = false;
-                lblDropDis4.Visible = false;
-                lblDropDis5.Visible = false;
-                txtDropDis2.Visible = false;
-                txtDropDis3.Visible = false;
-                txtDropDis4.Visible = false;
-                txtDropDis5.Visible = false;
+                txtANDropDis1.Visible = true;
+                lblANDropDis2.Visible = false;
+                lblANDropDis3.Visible = false;
+                lblANDropDis4.Visible = false;
+                lblANDropDis5.Visible = false;
+                txtANDropDis2.Visible = false;
+                txtANDropDis3.Visible = false;
+                txtANDropDis4.Visible = false;
+                txtANDropDis5.Visible = false;
             }
             else if (cobANDropNo.SelectedIndex == 2)
             {
                 lblANYDis.Visible = true;
-                lblDropDis1.Visible = true;
+                lblANDropDis1.Visible = true;
                 txtANYDis.Visible = true;
-                txtDropDis1.Visible = true;
-                lblDropDis2.Visible = true;
-                txtDropDis2.Visible = true;
-                lblDropDis3.Visible = false;
-                lblDropDis4.Visible = false;
-                lblDropDis5.Visible = false;
-                txtDropDis3.Visible = false;
-                txtDropDis4.Visible = false;
-                txtDropDis5.Visible = false;
+                txtANDropDis1.Visible = true;
+                lblANDropDis2.Visible = true;
+                txtANDropDis2.Visible = true;
+                lblANDropDis3.Visible = false;
+                lblANDropDis4.Visible = false;
+                lblANDropDis5.Visible = false;
+                txtANDropDis3.Visible = false;
+                txtANDropDis4.Visible = false;
+                txtANDropDis5.Visible = false;
             }
             else if (cobANDropNo.SelectedIndex == 3)
             {
                 lblANYDis.Visible = true;
-                lblDropDis1.Visible = true;
+                lblANDropDis1.Visible = true;
                 txtANYDis.Visible = true;
-                txtDropDis1.Visible = true;
-                lblDropDis2.Visible = true;
-                txtDropDis2.Visible = true;
-                lblDropDis3.Visible = true;
-                txtDropDis3.Visible = true;
-                lblDropDis4.Visible = false;
-                lblDropDis5.Visible = false;
-                txtDropDis4.Visible = false;
-                txtDropDis5.Visible = false;
+                txtANDropDis1.Visible = true;
+                lblANDropDis2.Visible = true;
+                txtANDropDis2.Visible = true;
+                lblANDropDis3.Visible = true;
+                txtANDropDis3.Visible = true;
+                lblANDropDis4.Visible = false;
+                lblANDropDis5.Visible = false;
+                txtANDropDis4.Visible = false;
+                txtANDropDis5.Visible = false;
             }
             else if (cobANDropNo.SelectedIndex == 4)
             {
                 lblANYDis.Visible = true;
-                lblDropDis1.Visible = true;
+                lblANDropDis1.Visible = true;
                 txtANYDis.Visible = true;
-                txtDropDis1.Visible = true;
-                lblDropDis2.Visible = true;
-                txtDropDis2.Visible = true;
-                lblDropDis3.Visible = true;
-                txtDropDis3.Visible = true;
-                lblDropDis4.Visible = true;
-                txtDropDis4.Visible = true;
-                lblDropDis5.Visible = false;
-                txtDropDis5.Visible = false;
+                txtANDropDis1.Visible = true;
+                lblANDropDis2.Visible = true;
+                txtANDropDis2.Visible = true;
+                lblANDropDis3.Visible = true;
+                txtANDropDis3.Visible = true;
+                lblANDropDis4.Visible = true;
+                txtANDropDis4.Visible = true;
+                lblANDropDis5.Visible = false;
+                txtANDropDis5.Visible = false;
             }
             else if (cobANDropNo.SelectedIndex == 5)
             {
                 lblANYDis.Visible = true;
-                lblDropDis1.Visible = true;
+                lblANDropDis1.Visible = true;
                 txtANYDis.Visible = true;
-                txtDropDis1.Visible = true;
-                lblDropDis2.Visible = true;
-                txtDropDis2.Visible = true;
-                lblDropDis3.Visible = true;
-                txtDropDis3.Visible = true;
-                lblDropDis4.Visible = true;
-                txtDropDis4.Visible = true;
-                lblDropDis5.Visible = true;
-                txtDropDis5.Visible = true;
+                txtANDropDis1.Visible = true;
+                lblANDropDis2.Visible = true;
+                txtANDropDis2.Visible = true;
+                lblANDropDis3.Visible = true;
+                txtANDropDis3.Visible = true;
+                lblANDropDis4.Visible = true;
+                txtANDropDis4.Visible = true;
+                lblANDropDis5.Visible = true;
+                txtANDropDis5.Visible = true;
             }
         }
         /// <summary>
@@ -630,24 +704,6 @@ namespace Compass
             {
                 lblExDis.Visible = false;
                 txtExDis.Visible = false;
-            }
-        }
-        /// <summary>
-        /// 动态选择新风脖颈数量
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cobSuNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cobSuNo.SelectedIndex > 0)
-            {
-                lblSuDis.Visible = true;
-                txtSuDis.Visible = true;
-            }
-            else
-            {
-                lblSuDis.Visible = false;
-                txtSuDis.Visible = false;
             }
         }
         /// <summary>
@@ -692,6 +748,111 @@ namespace Compass
                 txtIRDis2.Visible = true;
                 lblIRDis3.Visible = true;
                 txtIRDis3.Visible = true;
+            }
+        }
+        /// <summary>
+        /// 探测器数量
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cobDetectorNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cobANDetectorNo.SelectedIndex == 0)
+            {
+                lblANDetectorDis1.Visible = false;
+                lblANDetectorDis2.Visible = false;
+                lblANDetectorDis3.Visible = false;
+                lblANDetectorDis4.Visible = false;
+                lblANDetectorDis5.Visible = false;
+                txtANDetectorDis1.Visible = false;
+                txtANDetectorDis2.Visible = false;
+                txtANDetectorDis3.Visible = false;
+                txtANDetectorDis4.Visible = false;
+                txtANDetectorDis5.Visible = false;
+            }
+            else if (cobANDetectorNo.SelectedIndex == 1)
+            {
+                lblANDetectorDis1.Visible = true;
+                txtANDetectorDis1.Visible = true;
+                lblANDetectorDis2.Visible = false;
+                lblANDetectorDis3.Visible = false;
+                lblANDetectorDis4.Visible = false;
+                lblANDetectorDis5.Visible = false;
+                txtANDetectorDis2.Visible = false;
+                txtANDetectorDis3.Visible = false;
+                txtANDetectorDis4.Visible = false;
+                txtANDetectorDis5.Visible = false;
+            }
+            else if (cobANDetectorNo.SelectedIndex == 2)
+            {
+                lblANDetectorDis1.Visible = true;
+                txtANDetectorDis1.Visible = true;
+                lblANDetectorDis2.Visible = true;
+                txtANDetectorDis2.Visible = true;
+                lblANDetectorDis3.Visible = false;
+                lblANDetectorDis4.Visible = false;
+                lblANDetectorDis5.Visible = false;
+                txtANDetectorDis3.Visible = false;
+                txtANDetectorDis4.Visible = false;
+                txtANDetectorDis5.Visible = false;
+            }
+            else if (cobANDetectorNo.SelectedIndex == 3)
+            {
+                lblANDetectorDis1.Visible = true;
+                txtANDetectorDis1.Visible = true;
+                lblANDetectorDis2.Visible = true;
+                txtANDetectorDis2.Visible = true;
+                lblANDetectorDis3.Visible = true;
+                txtANDetectorDis3.Visible = true;
+                lblANDetectorDis4.Visible = false;
+                lblANDetectorDis5.Visible = false;
+                txtANDetectorDis4.Visible = false;
+                txtANDetectorDis5.Visible = false;
+            }
+            else if (cobANDetectorNo.SelectedIndex == 4)
+            {
+                lblANDetectorDis1.Visible = true;
+                txtANDetectorDis1.Visible = true;
+                lblANDetectorDis2.Visible = true;
+                txtANDetectorDis2.Visible = true;
+                lblANDetectorDis3.Visible = true;
+                txtANDetectorDis3.Visible = true;
+                lblANDetectorDis4.Visible = true;
+                txtANDetectorDis4.Visible = true;
+                lblANDetectorDis5.Visible = false;
+                txtANDetectorDis5.Visible = false;
+            }
+            else if (cobANDetectorNo.SelectedIndex == 5)
+            {
+
+                lblANDetectorDis1.Visible = true;
+                txtANDetectorDis1.Visible = true;
+                lblANDetectorDis2.Visible = true;
+                txtANDetectorDis2.Visible = true;
+                lblANDetectorDis3.Visible = true;
+                txtANDetectorDis3.Visible = true;
+                lblANDetectorDis4.Visible = true;
+                txtANDetectorDis4.Visible = true;
+                lblANDetectorDis5.Visible = true;
+                txtANDetectorDis5.Visible = true;
+            }
+        }
+        /// <summary>
+        /// 动态选择新风脖颈数量
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cobSuNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cobSuNo.SelectedIndex > 0)
+            {
+                lblSuDis.Visible = true;
+                txtSuDis.Visible = true;
+            }
+            else
+            {
+                lblSuDis.Visible = false;
+                txtSuDis.Visible = false;
             }
         }
     }

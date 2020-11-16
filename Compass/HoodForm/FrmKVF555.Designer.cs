@@ -98,12 +98,12 @@
             this.lblIRDis2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
+            this.txtDeepth = new System.Windows.Forms.TextBox();
             this.txtLength = new System.Windows.Forms.TextBox();
             this.pbModelImage = new System.Windows.Forms.PictureBox();
-            this.txtDeepth = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.grbLEDSpot.SuspendLayout();
@@ -137,6 +137,7 @@
             this.lblSuDis.Size = new System.Drawing.Size(87, 19);
             this.lblSuDis.TabIndex = 22;
             this.lblSuDis.Text = "新风脖颈间距";
+            this.lblSuDis.Visible = false;
             // 
             // cobSuNo
             // 
@@ -158,6 +159,7 @@
             this.txtSuDis.Name = "txtSuDis";
             this.txtSuDis.Size = new System.Drawing.Size(100, 25);
             this.txtSuDis.TabIndex = 1;
+            this.txtSuDis.Visible = false;
             // 
             // label23
             // 
@@ -324,6 +326,7 @@
             this.grbLEDSpot.TabIndex = 3;
             this.grbLEDSpot.TabStop = false;
             this.grbLEDSpot.Text = "筒灯";
+            this.grbLEDSpot.Visible = false;
             // 
             // txtLEDSpotDis
             // 
@@ -474,6 +477,7 @@
             this.lblExDis.Size = new System.Drawing.Size(87, 19);
             this.lblExDis.TabIndex = 2;
             this.lblExDis.Text = "排风脖颈间距";
+            this.lblExDis.Visible = false;
             // 
             // label5
             // 
@@ -508,6 +512,7 @@
             this.txtExDis.Name = "txtExDis";
             this.txtExDis.Size = new System.Drawing.Size(100, 25);
             this.txtExDis.TabIndex = 5;
+            this.txtExDis.Visible = false;
             // 
             // txtExRightDis
             // 
@@ -569,6 +574,7 @@
             this.grbANSUL.TabIndex = 4;
             this.grbANSUL.TabStop = false;
             this.grbANSUL.Text = "ANSUL";
+            this.grbANSUL.Visible = false;
             // 
             // txtDropDis5
             // 
@@ -754,6 +760,7 @@
             this.grbMARVEL.TabIndex = 5;
             this.grbMARVEL.TabStop = false;
             this.grbMARVEL.Text = "MARVEL";
+            this.grbMARVEL.Visible = false;
             // 
             // cobIRNo
             // 
@@ -775,6 +782,7 @@
             this.txtIRDis3.Name = "txtIRDis3";
             this.txtIRDis3.Size = new System.Drawing.Size(100, 25);
             this.txtIRDis3.TabIndex = 3;
+            this.txtIRDis3.Visible = false;
             // 
             // label30
             // 
@@ -792,6 +800,7 @@
             this.txtIRDis2.Name = "txtIRDis2";
             this.txtIRDis2.Size = new System.Drawing.Size(100, 25);
             this.txtIRDis2.TabIndex = 2;
+            this.txtIRDis2.Visible = false;
             // 
             // txtIRDis1
             // 
@@ -800,6 +809,7 @@
             this.txtIRDis1.Name = "txtIRDis1";
             this.txtIRDis1.Size = new System.Drawing.Size(100, 25);
             this.txtIRDis1.TabIndex = 1;
+            this.txtIRDis1.Visible = false;
             // 
             // lblIRDis1
             // 
@@ -809,6 +819,7 @@
             this.lblIRDis1.Size = new System.Drawing.Size(55, 19);
             this.lblIRDis1.TabIndex = 2;
             this.lblIRDis1.Text = "IR间距1";
+            this.lblIRDis1.Visible = false;
             // 
             // lblIRDis3
             // 
@@ -818,6 +829,7 @@
             this.lblIRDis3.Size = new System.Drawing.Size(55, 19);
             this.lblIRDis3.TabIndex = 2;
             this.lblIRDis3.Text = "IR间距3";
+            this.lblIRDis3.Visible = false;
             // 
             // lblIRDis2
             // 
@@ -827,6 +839,7 @@
             this.lblIRDis2.Size = new System.Drawing.Size(55, 19);
             this.lblIRDis2.TabIndex = 2;
             this.lblIRDis2.Text = "IR间距2";
+            this.lblIRDis2.Visible = false;
             // 
             // groupBox1
             // 
@@ -853,6 +866,15 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "大侧板";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 19);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "烟罩深度";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -875,6 +897,14 @@
             this.cobSidePanel.Size = new System.Drawing.Size(100, 27);
             this.cobSidePanel.TabIndex = 2;
             // 
+            // txtDeepth
+            // 
+            this.txtDeepth.BackColor = System.Drawing.Color.Azure;
+            this.txtDeepth.Location = new System.Drawing.Point(76, 58);
+            this.txtDeepth.Name = "txtDeepth";
+            this.txtDeepth.Size = new System.Drawing.Size(100, 25);
+            this.txtDeepth.TabIndex = 1;
+            // 
             // txtLength
             // 
             this.txtLength.BackColor = System.Drawing.Color.Azure;
@@ -896,23 +926,6 @@
             this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbModelImage.TabIndex = 31;
             this.pbModelImage.TabStop = false;
-            // 
-            // txtDeepth
-            // 
-            this.txtDeepth.BackColor = System.Drawing.Color.Azure;
-            this.txtDeepth.Location = new System.Drawing.Point(76, 58);
-            this.txtDeepth.Name = "txtDeepth";
-            this.txtDeepth.Size = new System.Drawing.Size(100, 25);
-            this.txtDeepth.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 19);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "烟罩深度";
             // 
             // FrmKVF555
             // 

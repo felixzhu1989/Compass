@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmCMODI555
+    partial class FrmCMODF555
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCMODI555));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCMODF555));
             this.label11 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.cobLightType = new System.Windows.Forms.ComboBox();
@@ -105,6 +105,7 @@
             this.cobANDropNo = new System.Windows.Forms.ComboBox();
             this.cobANDetectorEnd = new System.Windows.Forms.ComboBox();
             this.cobANSide = new System.Windows.Forms.ComboBox();
+            this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -112,14 +113,19 @@
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
             this.txtDeepth = new System.Windows.Forms.TextBox();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblSuDis = new System.Windows.Forms.Label();
+            this.cobSuNo = new System.Windows.Forms.ComboBox();
+            this.txtSuDis = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.groupBox7.SuspendLayout();
             this.grbMARVEL.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.grbLEDSpot.SuspendLayout();
             this.grbANSUL.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label11
@@ -130,7 +136,7 @@
             this.label11.Location = new System.Drawing.Point(789, 63);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(61, 19);
-            this.label11.TabIndex = 77;
+            this.label11.TabIndex = 91;
             this.label11.Text = "灯具类型";
             // 
             // label19
@@ -141,7 +147,7 @@
             this.label19.Location = new System.Drawing.Point(785, 127);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(80, 19);
-            this.label19.TabIndex = 78;
+            this.label19.TabIndex = 92;
             this.label19.Text = "有无ANSUL";
             // 
             // cobLightType
@@ -155,7 +161,7 @@
             this.cobLightType.Location = new System.Drawing.Point(871, 62);
             this.cobLightType.Name = "cobLightType";
             this.cobLightType.Size = new System.Drawing.Size(100, 27);
-            this.cobLightType.TabIndex = 2;
+            this.cobLightType.TabIndex = 3;
             this.cobLightType.SelectedIndexChanged += new System.EventHandler(this.cobLightType_SelectedIndexChanged);
             // 
             // label29
@@ -166,7 +172,7 @@
             this.label29.Location = new System.Drawing.Point(785, 387);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(65, 19);
-            this.label29.TabIndex = 76;
+            this.label29.TabIndex = 90;
             this.label29.Text = "有无MRV";
             // 
             // cobMARVEL
@@ -180,7 +186,7 @@
             this.cobMARVEL.Location = new System.Drawing.Point(871, 387);
             this.cobMARVEL.Name = "cobMARVEL";
             this.cobMARVEL.Size = new System.Drawing.Size(100, 27);
-            this.cobMARVEL.TabIndex = 6;
+            this.cobMARVEL.TabIndex = 7;
             this.cobMARVEL.SelectedIndexChanged += new System.EventHandler(this.cobMARVEL_SelectedIndexChanged);
             // 
             // cobANSUL
@@ -194,8 +200,8 @@
             this.cobANSUL.Location = new System.Drawing.Point(871, 127);
             this.cobANSUL.Name = "cobANSUL";
             this.cobANSUL.Size = new System.Drawing.Size(100, 27);
-            this.cobANSUL.TabIndex = 4;
-            this.cobANSUL.SelectedIndexChanged += new System.EventHandler(this.cobANSUL_SelectedIndexChanged);
+            this.cobANSUL.TabIndex = 5;
+            this.cobANSUL.SelectedValueChanged += new System.EventHandler(this.cobANSUL_SelectedIndexChanged);
             // 
             // groupBox7
             // 
@@ -211,7 +217,7 @@
             this.groupBox7.Location = new System.Drawing.Point(779, 517);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(398, 135);
-            this.groupBox7.TabIndex = 8;
+            this.groupBox7.TabIndex = 9;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "烟罩配置";
             // 
@@ -314,7 +320,7 @@
             this.grbMARVEL.Location = new System.Drawing.Point(779, 409);
             this.grbMARVEL.Name = "grbMARVEL";
             this.grbMARVEL.Size = new System.Drawing.Size(398, 99);
-            this.grbMARVEL.TabIndex = 7;
+            this.grbMARVEL.TabIndex = 8;
             this.grbMARVEL.TabStop = false;
             this.grbMARVEL.Text = "MARVEL";
             this.grbMARVEL.Visible = false;
@@ -330,7 +336,7 @@
             this.cobIRNo.Name = "cobIRNo";
             this.cobIRNo.Size = new System.Drawing.Size(100, 27);
             this.cobIRNo.TabIndex = 0;
-            this.cobIRNo.SelectedValueChanged += new System.EventHandler(this.cobIRNo_SelectedIndexChanged);
+            this.cobIRNo.SelectedIndexChanged += new System.EventHandler(this.cobIRNo_SelectedIndexChanged);
             // 
             // txtIRDis3
             // 
@@ -556,7 +562,7 @@
             this.btnEditData.Location = new System.Drawing.Point(575, 616);
             this.btnEditData.Name = "btnEditData";
             this.btnEditData.Size = new System.Drawing.Size(198, 36);
-            this.btnEditData.TabIndex = 9;
+            this.btnEditData.TabIndex = 10;
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
             this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
@@ -571,7 +577,7 @@
             this.grbLEDSpot.Location = new System.Drawing.Point(779, 81);
             this.grbLEDSpot.Name = "grbLEDSpot";
             this.grbLEDSpot.Size = new System.Drawing.Size(398, 45);
-            this.grbLEDSpot.TabIndex = 3;
+            this.grbLEDSpot.TabIndex = 4;
             this.grbLEDSpot.TabStop = false;
             this.grbLEDSpot.Text = "筒灯";
             this.grbLEDSpot.Visible = false;
@@ -650,7 +656,7 @@
             this.grbANSUL.Location = new System.Drawing.Point(779, 146);
             this.grbANSUL.Name = "grbANSUL";
             this.grbANSUL.Size = new System.Drawing.Size(398, 238);
-            this.grbANSUL.TabIndex = 5;
+            this.grbANSUL.TabIndex = 6;
             this.grbANSUL.TabStop = false;
             this.grbANSUL.Text = "ANSUL";
             this.grbANSUL.Visible = false;
@@ -928,6 +934,19 @@
             this.cobANSide.Size = new System.Drawing.Size(100, 27);
             this.cobANSide.TabIndex = 0;
             // 
+            // pbModelImage
+            // 
+            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
+            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
+            this.pbModelImage.Name = "pbModelImage";
+            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
+            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbModelImage.TabIndex = 89;
+            this.pbModelImage.TabStop = false;
+            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1001,23 +1020,67 @@
             this.txtLength.TabIndex = 0;
             this.txtLength.TextChanged += new System.EventHandler(this.txtLength_TextChanged);
             // 
-            // pbModelImage
+            // groupBox2
             // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 75;
-            this.pbModelImage.TabStop = false;
+            this.groupBox2.Controls.Add(this.lblSuDis);
+            this.groupBox2.Controls.Add(this.cobSuNo);
+            this.groupBox2.Controls.Add(this.txtSuDis);
+            this.groupBox2.Controls.Add(this.label23);
+            this.groupBox2.Location = new System.Drawing.Point(575, 517);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 97);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "新风脖颈";
             // 
-            // FrmCMODI555
+            // lblSuDis
+            // 
+            this.lblSuDis.AutoSize = true;
+            this.lblSuDis.Location = new System.Drawing.Point(5, 63);
+            this.lblSuDis.Name = "lblSuDis";
+            this.lblSuDis.Size = new System.Drawing.Size(87, 19);
+            this.lblSuDis.TabIndex = 22;
+            this.lblSuDis.Text = "新风脖颈间距";
+            this.lblSuDis.Visible = false;
+            // 
+            // cobSuNo
+            // 
+            this.cobSuNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobSuNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobSuNo.BackColor = System.Drawing.Color.Azure;
+            this.cobSuNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobSuNo.FormattingEnabled = true;
+            this.cobSuNo.Location = new System.Drawing.Point(93, 23);
+            this.cobSuNo.Name = "cobSuNo";
+            this.cobSuNo.Size = new System.Drawing.Size(100, 27);
+            this.cobSuNo.TabIndex = 0;
+            this.cobSuNo.SelectedIndexChanged += new System.EventHandler(this.cobSuNo_SelectedIndexChanged);
+            // 
+            // txtSuDis
+            // 
+            this.txtSuDis.BackColor = System.Drawing.Color.Azure;
+            this.txtSuDis.Location = new System.Drawing.Point(93, 60);
+            this.txtSuDis.Name = "txtSuDis";
+            this.txtSuDis.Size = new System.Drawing.Size(100, 25);
+            this.txtSuDis.TabIndex = 1;
+            this.txtSuDis.Visible = false;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(4, 27);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(87, 19);
+            this.label23.TabIndex = 23;
+            this.label23.Text = "新风脖颈数量";
+            // 
+            // FrmCMODF555
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.cobLightType);
@@ -1035,8 +1098,8 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmCMODI555";
-            this.Text = "CMODI555";
+            this.Name = "FrmCMODF555";
+            this.Text = "CMODF555";
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.grbMARVEL.ResumeLayout(false);
@@ -1047,9 +1110,11 @@
             this.grbLEDSpot.PerformLayout();
             this.grbANSUL.ResumeLayout(false);
             this.grbANSUL.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1088,6 +1153,8 @@
         private System.Windows.Forms.ComboBox cobExNo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblExDis;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -1139,7 +1206,10 @@
         private System.Windows.Forms.ComboBox cobSidePanel;
         private System.Windows.Forms.TextBox txtDeepth;
         private System.Windows.Forms.TextBox txtLength;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblSuDis;
+        private System.Windows.Forms.ComboBox cobSuNo;
+        private System.Windows.Forms.TextBox txtSuDis;
+        private System.Windows.Forms.Label label23;
     }
 }

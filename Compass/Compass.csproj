@@ -121,6 +121,12 @@
     <Compile Include="CeilingForm\FrmCJ330.Designer.cs">
       <DependentUpon>FrmCJ330.cs</DependentUpon>
     </Compile>
+    <Compile Include="HoodForm\FrmCMODF555.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoodForm\FrmCMODF555.Designer.cs">
+      <DependentUpon>FrmCMODF555.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDXFCutList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -800,6 +806,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmABD300.resx">
       <DependentUpon>FrmABD300.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoodForm\FrmCMODF555.resx">
+      <DependentUpon>FrmCMODF555.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmKVS.resx">
       <DependentUpon>FrmKVS.cs</DependentUpon>
