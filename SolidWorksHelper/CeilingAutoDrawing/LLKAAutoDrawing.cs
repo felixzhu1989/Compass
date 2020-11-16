@@ -121,14 +121,14 @@ namespace SolidWorksHelper
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2200600011-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2200600003-21"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2200600003-23"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                 }
                 else
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2200600011-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2200600003-21"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2200600003-23"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                 }
                 swFeat = swAssy.FeatureByName("LocalLPattern2");

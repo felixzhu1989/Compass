@@ -92,11 +92,11 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-4");
                             swComp.SetSuppression2(0); //2解压缩，0压缩.
                         }
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0016[LKRP-S]{80}-6"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0016[LKRPS]-6"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0016[LKRP-S]{80}-7"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0016[LKRPS]-7"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0017[LKRP-T]{250}-3"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0017[LKRPT]-3"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
                         break;
                     case "MIDDLE":
@@ -118,11 +118,11 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0032[LKEC-]{255}()-4"));
                             swComp.SetSuppression2(0); //2解压缩，0压缩. 
                         }
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0016[LKRPS]{80}-6"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0016[LKRPS]-6"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0016[LKRPS]{80}-7"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0016[LKRPS]-7"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0017[LKRPT]{250}-3"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0017[LKRPT]-3"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
                         break;
                     default:
@@ -139,14 +139,14 @@ namespace SolidWorksHelper
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2(); //打开零件
                             swPart.Parameter("D1@Sketch1").SystemValue = (item.Height - 5m) / 1000m;
-                            swComp = swAssy.GetComponentByName(compReName + "-2");
+                            swComp = swAssy.GetComponentByName(compReName + "-4");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                         }
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0016[LKRPS]{80}-6"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0016[LKRPS]-6"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0016[LKRPS]{80}-7"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0016[LKRPS]-7"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0017[LKRPT]{250}-3"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0017[LKRPT]-3"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         break;
                 }
