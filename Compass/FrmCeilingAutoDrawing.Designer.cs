@@ -140,12 +140,12 @@
             this.tsmic = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditCeilingPackingList = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAddCeilingPackingList = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiChangeLocation = new System.Windows.Forms.ToolStripMenuItem();
             this.btnPrintLabel = new System.Windows.Forms.Button();
             this.btnSaveToExcel = new System.Windows.Forms.Button();
             this.btnPrintCeilingPackingList = new System.Windows.Forms.Button();
             this.btnCeilingPackingList = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.tsmiChangeLocation = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExecList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWaitingList)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -211,7 +211,7 @@
             this.dgvExecList.Name = "dgvExecList";
             this.dgvExecList.ReadOnly = true;
             this.dgvExecList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvExecList.Size = new System.Drawing.Size(540, 432);
+            this.dgvExecList.Size = new System.Drawing.Size(540, 426);
             this.dgvExecList.TabIndex = 58;
             this.dgvExecList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvExecList_RowPostPaint);
             // 
@@ -284,7 +284,7 @@
             this.dgvWaitingList.Name = "dgvWaitingList";
             this.dgvWaitingList.ReadOnly = true;
             this.dgvWaitingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvWaitingList.Size = new System.Drawing.Size(540, 432);
+            this.dgvWaitingList.Size = new System.Drawing.Size(540, 426);
             this.dgvWaitingList.TabIndex = 59;
             this.dgvWaitingList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvWaitingList_RowPostPaint);
             // 
@@ -401,7 +401,7 @@
             this.btnExec.FlatAppearance.BorderSize = 0;
             this.btnExec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExec.ForeColor = System.Drawing.Color.White;
-            this.btnExec.Location = new System.Drawing.Point(549, 372);
+            this.btnExec.Location = new System.Drawing.Point(549, 366);
             this.btnExec.Name = "btnExec";
             this.btnExec.Size = new System.Drawing.Size(52, 85);
             this.btnExec.TabIndex = 56;
@@ -518,7 +518,7 @@
             this.btnJobCard.FlatAppearance.BorderSize = 0;
             this.btnJobCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJobCard.ForeColor = System.Drawing.Color.White;
-            this.btnJobCard.Location = new System.Drawing.Point(549, 281);
+            this.btnJobCard.Location = new System.Drawing.Point(549, 275);
             this.btnJobCard.Name = "btnJobCard";
             this.btnJobCard.Size = new System.Drawing.Size(52, 85);
             this.btnJobCard.TabIndex = 63;
@@ -540,10 +540,10 @@
             this.tbExportDxf.Controls.Add(this.dgvCutList);
             this.tbExportDxf.Controls.Add(this.lblModule);
             this.tbExportDxf.Controls.Add(this.btnExportDxf);
-            this.tbExportDxf.Location = new System.Drawing.Point(4, 22);
+            this.tbExportDxf.Location = new System.Drawing.Point(4, 28);
             this.tbExportDxf.Name = "tbExportDxf";
             this.tbExportDxf.Padding = new System.Windows.Forms.Padding(3);
-            this.tbExportDxf.Size = new System.Drawing.Size(1152, 541);
+            this.tbExportDxf.Size = new System.Drawing.Size(1152, 535);
             this.tbExportDxf.TabIndex = 1;
             this.tbExportDxf.Text = "导出DXF图纸";
             this.tbExportDxf.UseVisualStyleBackColor = true;
@@ -561,7 +561,7 @@
             this.tvSubAssyTree.Location = new System.Drawing.Point(936, 41);
             this.tvSubAssyTree.Name = "tvSubAssyTree";
             this.tvSubAssyTree.SelectedImageIndex = 0;
-            this.tvSubAssyTree.Size = new System.Drawing.Size(210, 440);
+            this.tvSubAssyTree.Size = new System.Drawing.Size(210, 434);
             this.tvSubAssyTree.TabIndex = 45;
             this.tvSubAssyTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvSubAssyTree_AfterSelect);
             this.tvSubAssyTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.tvSubAssy_DragDrop);
@@ -816,7 +816,7 @@
             this.dgvCutList.ReadOnly = true;
             this.dgvCutList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvCutList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCutList.Size = new System.Drawing.Size(924, 198);
+            this.dgvCutList.Size = new System.Drawing.Size(924, 192);
             this.dgvCutList.TabIndex = 47;
             this.dgvCutList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvCutList_RowPostPaint);
             this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
@@ -891,10 +891,10 @@
             this.tabPage1.Controls.Add(this.btnSaveToExcel);
             this.tabPage1.Controls.Add(this.btnPrintCeilingPackingList);
             this.tabPage1.Controls.Add(this.btnCeilingPackingList);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1152, 535);
+            this.tabPage1.Size = new System.Drawing.Size(1152, 541);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "发货清单";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1279,28 +1279,35 @@
             this.tsmiAddCeilingPackingList,
             this.tsmiChangeLocation});
             this.cmsCeilingPackingList.Name = "cmsCeilingPackingList";
-            this.cmsCeilingPackingList.Size = new System.Drawing.Size(181, 114);
+            this.cmsCeilingPackingList.Size = new System.Drawing.Size(125, 92);
             // 
             // tsmic
             // 
             this.tsmic.Name = "tsmic";
-            this.tsmic.Size = new System.Drawing.Size(180, 22);
+            this.tsmic.Size = new System.Drawing.Size(124, 22);
             this.tsmic.Text = "删除多行";
             this.tsmic.Click += new System.EventHandler(this.tsmiDeleteCeilingPackingList_Click);
             // 
             // tsmiEditCeilingPackingList
             // 
             this.tsmiEditCeilingPackingList.Name = "tsmiEditCeilingPackingList";
-            this.tsmiEditCeilingPackingList.Size = new System.Drawing.Size(180, 22);
+            this.tsmiEditCeilingPackingList.Size = new System.Drawing.Size(124, 22);
             this.tsmiEditCeilingPackingList.Text = "修改条目";
             this.tsmiEditCeilingPackingList.Click += new System.EventHandler(this.tsmiEditCeilingPackingList_Click);
             // 
             // tsmiAddCeilingPackingList
             // 
             this.tsmiAddCeilingPackingList.Name = "tsmiAddCeilingPackingList";
-            this.tsmiAddCeilingPackingList.Size = new System.Drawing.Size(180, 22);
+            this.tsmiAddCeilingPackingList.Size = new System.Drawing.Size(124, 22);
             this.tsmiAddCeilingPackingList.Text = "添加配件";
             this.tsmiAddCeilingPackingList.Click += new System.EventHandler(this.tsmiAddCeilingPackingList_Click);
+            // 
+            // tsmiChangeLocation
+            // 
+            this.tsmiChangeLocation.Name = "tsmiChangeLocation";
+            this.tsmiChangeLocation.Size = new System.Drawing.Size(124, 22);
+            this.tsmiChangeLocation.Text = "变换区域";
+            this.tsmiChangeLocation.Click += new System.EventHandler(this.tsmiChangeLocation_Click);
             // 
             // btnPrintLabel
             // 
@@ -1371,13 +1378,6 @@
             this.label7.Size = new System.Drawing.Size(204, 19);
             this.label7.TabIndex = 64;
             this.label7.Text = "请确保这里有数据后执行下列操作";
-            // 
-            // tsmiChangeLocation
-            // 
-            this.tsmiChangeLocation.Name = "tsmiChangeLocation";
-            this.tsmiChangeLocation.Size = new System.Drawing.Size(180, 22);
-            this.tsmiChangeLocation.Text = "变换区域";
-            this.tsmiChangeLocation.Click += new System.EventHandler(this.tsmiChangeLocation_Click);
             // 
             // FrmCeilingAutoDrawing
             // 

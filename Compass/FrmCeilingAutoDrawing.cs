@@ -43,6 +43,10 @@ namespace Compass
             InitializeComponent();
             dgvWaitingList.AutoGenerateColumns = false;
             dgvExecList.AutoGenerateColumns = false;
+            dgvSubAssyWaitingList.AutoGenerateColumns = false;
+            dgvSubAssyExecList.AutoGenerateColumns = false;
+            dgvCutList.AutoGenerateColumns = false;
+
             //项目编号下拉框
             cobODPNo.DataSource = objProjectService.GetProjectsByHoodType("Ceiling");
             cobODPNo.DisplayMember = "ODPNo";
