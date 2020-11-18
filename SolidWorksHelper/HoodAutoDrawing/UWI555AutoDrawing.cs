@@ -1198,7 +1198,7 @@ namespace SolidWorksHelper
                 if (item.Bluetooth == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
-                if (item.SidePanel == "LEFT" || item.SidePanel == "BOTH" || item.MARVEL == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                if (item.SidePanel == "LEFT" || item.SidePanel == "BOTH") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0003-1"));
