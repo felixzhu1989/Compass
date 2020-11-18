@@ -140,7 +140,7 @@
             this.cobMARVEL.Location = new System.Drawing.Point(871, 376);
             this.cobMARVEL.Name = "cobMARVEL";
             this.cobMARVEL.Size = new System.Drawing.Size(100, 27);
-            this.cobMARVEL.TabIndex = 5;
+            this.cobMARVEL.TabIndex = 7;
             this.cobMARVEL.SelectedValueChanged += new System.EventHandler(this.cobMARVEL_SelectedIndexChanged);
             // 
             // groupBox7
@@ -161,7 +161,7 @@
             this.groupBox7.Location = new System.Drawing.Point(779, 517);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(398, 135);
-            this.groupBox7.TabIndex = 6;
+            this.groupBox7.TabIndex = 9;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "烟罩配置";
             // 
@@ -355,6 +355,7 @@
             this.lblExDis.Size = new System.Drawing.Size(87, 19);
             this.lblExDis.TabIndex = 2;
             this.lblExDis.Text = "排风脖颈间距";
+            this.lblExDis.Visible = false;
             // 
             // label5
             // 
@@ -389,6 +390,7 @@
             this.txtExDis.Name = "txtExDis";
             this.txtExDis.Size = new System.Drawing.Size(100, 25);
             this.txtExDis.TabIndex = 5;
+            this.txtExDis.Visible = false;
             // 
             // txtExRightDis
             // 
@@ -409,7 +411,7 @@
             this.btnEditData.Location = new System.Drawing.Point(575, 616);
             this.btnEditData.Name = "btnEditData";
             this.btnEditData.Size = new System.Drawing.Size(198, 36);
-            this.btnEditData.TabIndex = 7;
+            this.btnEditData.TabIndex = 10;
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
             this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
@@ -424,7 +426,7 @@
             this.grbLEDSpot.Location = new System.Drawing.Point(779, 95);
             this.grbLEDSpot.Name = "grbLEDSpot";
             this.grbLEDSpot.Size = new System.Drawing.Size(398, 51);
-            this.grbLEDSpot.TabIndex = 3;
+            this.grbLEDSpot.TabIndex = 4;
             this.grbLEDSpot.TabStop = false;
             this.grbLEDSpot.Text = "筒灯";
             // 
@@ -535,7 +537,7 @@
             this.cobANSUL.Location = new System.Drawing.Point(871, 157);
             this.cobANSUL.Name = "cobANSUL";
             this.cobANSUL.Size = new System.Drawing.Size(100, 27);
-            this.cobANSUL.TabIndex = 4;
+            this.cobANSUL.TabIndex = 5;
             this.cobANSUL.SelectedValueChanged += new System.EventHandler(this.cobANSUL_SelectedIndexChanged);
             // 
             // txtDropDis5
@@ -545,6 +547,7 @@
             this.txtDropDis5.Name = "txtDropDis5";
             this.txtDropDis5.Size = new System.Drawing.Size(100, 25);
             this.txtDropDis5.TabIndex = 8;
+            this.txtDropDis5.Visible = false;
             // 
             // grbANSUL
             // 
@@ -570,7 +573,7 @@
             this.grbANSUL.Location = new System.Drawing.Point(779, 187);
             this.grbANSUL.Name = "grbANSUL";
             this.grbANSUL.Size = new System.Drawing.Size(398, 183);
-            this.grbANSUL.TabIndex = 4;
+            this.grbANSUL.TabIndex = 6;
             this.grbANSUL.TabStop = false;
             this.grbANSUL.Text = "ANSUL";
             // 
@@ -581,6 +584,7 @@
             this.txtDropDis4.Name = "txtDropDis4";
             this.txtDropDis4.Size = new System.Drawing.Size(100, 25);
             this.txtDropDis4.TabIndex = 7;
+            this.txtDropDis4.Visible = false;
             // 
             // txtDropDis3
             // 
@@ -589,6 +593,7 @@
             this.txtDropDis3.Name = "txtDropDis3";
             this.txtDropDis3.Size = new System.Drawing.Size(100, 25);
             this.txtDropDis3.TabIndex = 6;
+            this.txtDropDis3.Visible = false;
             // 
             // txtDropDis2
             // 
@@ -597,6 +602,7 @@
             this.txtDropDis2.Name = "txtDropDis2";
             this.txtDropDis2.Size = new System.Drawing.Size(100, 25);
             this.txtDropDis2.TabIndex = 5;
+            this.txtDropDis2.Visible = false;
             // 
             // txtDropDis1
             // 
@@ -605,6 +611,7 @@
             this.txtDropDis1.Name = "txtDropDis1";
             this.txtDropDis1.Size = new System.Drawing.Size(100, 25);
             this.txtDropDis1.TabIndex = 4;
+            this.txtDropDis1.Visible = false;
             // 
             // lblDropDis5
             // 
@@ -614,6 +621,7 @@
             this.lblDropDis5.Size = new System.Drawing.Size(69, 19);
             this.lblDropDis5.TabIndex = 2;
             this.lblDropDis5.Text = "下喷间距5";
+            this.lblDropDis5.Visible = false;
             // 
             // lblDropDis4
             // 
@@ -623,6 +631,7 @@
             this.lblDropDis4.Size = new System.Drawing.Size(69, 19);
             this.lblDropDis4.TabIndex = 2;
             this.lblDropDis4.Text = "下喷间距4";
+            this.lblDropDis4.Visible = false;
             // 
             // lblDropDis3
             // 
@@ -632,6 +641,7 @@
             this.lblDropDis3.Size = new System.Drawing.Size(69, 19);
             this.lblDropDis3.TabIndex = 2;
             this.lblDropDis3.Text = "下喷间距3";
+            this.lblDropDis3.Visible = false;
             // 
             // lblDropDis2
             // 
@@ -641,6 +651,7 @@
             this.lblDropDis2.Size = new System.Drawing.Size(69, 19);
             this.lblDropDis2.TabIndex = 2;
             this.lblDropDis2.Text = "下喷间距2";
+            this.lblDropDis2.Visible = false;
             // 
             // lblDropDis1
             // 
@@ -650,6 +661,7 @@
             this.lblDropDis1.Size = new System.Drawing.Size(69, 19);
             this.lblDropDis1.TabIndex = 2;
             this.lblDropDis1.Text = "下喷间距1";
+            this.lblDropDis1.Visible = false;
             // 
             // txtANYDis
             // 
@@ -658,6 +670,7 @@
             this.txtANYDis.Name = "txtANYDis";
             this.txtANYDis.Size = new System.Drawing.Size(100, 25);
             this.txtANYDis.TabIndex = 3;
+            this.txtANYDis.Visible = false;
             // 
             // lblANYDis
             // 
@@ -667,6 +680,7 @@
             this.lblANYDis.Size = new System.Drawing.Size(74, 19);
             this.lblANYDis.TabIndex = 2;
             this.lblANYDis.Text = "下喷距前端";
+            this.lblANYDis.Visible = false;
             // 
             // label22
             // 
@@ -747,7 +761,7 @@
             this.grbMARVEL.Location = new System.Drawing.Point(779, 404);
             this.grbMARVEL.Name = "grbMARVEL";
             this.grbMARVEL.Size = new System.Drawing.Size(398, 104);
-            this.grbMARVEL.TabIndex = 5;
+            this.grbMARVEL.TabIndex = 8;
             this.grbMARVEL.TabStop = false;
             this.grbMARVEL.Text = "MARVEL";
             // 
@@ -771,6 +785,7 @@
             this.txtIRDis3.Name = "txtIRDis3";
             this.txtIRDis3.Size = new System.Drawing.Size(100, 25);
             this.txtIRDis3.TabIndex = 3;
+            this.txtIRDis3.Visible = false;
             // 
             // label30
             // 
@@ -788,6 +803,7 @@
             this.txtIRDis2.Name = "txtIRDis2";
             this.txtIRDis2.Size = new System.Drawing.Size(100, 25);
             this.txtIRDis2.TabIndex = 2;
+            this.txtIRDis2.Visible = false;
             // 
             // txtIRDis1
             // 
@@ -796,6 +812,7 @@
             this.txtIRDis1.Name = "txtIRDis1";
             this.txtIRDis1.Size = new System.Drawing.Size(100, 25);
             this.txtIRDis1.TabIndex = 1;
+            this.txtIRDis1.Visible = false;
             // 
             // lblIRDis1
             // 
@@ -805,6 +822,7 @@
             this.lblIRDis1.Size = new System.Drawing.Size(55, 19);
             this.lblIRDis1.TabIndex = 2;
             this.lblIRDis1.Text = "IR间距1";
+            this.lblIRDis1.Visible = false;
             // 
             // lblIRDis3
             // 
@@ -814,6 +832,7 @@
             this.lblIRDis3.Size = new System.Drawing.Size(55, 19);
             this.lblIRDis3.TabIndex = 2;
             this.lblIRDis3.Text = "IR间距3";
+            this.lblIRDis3.Visible = false;
             // 
             // lblIRDis2
             // 
@@ -823,6 +842,7 @@
             this.lblIRDis2.Size = new System.Drawing.Size(55, 19);
             this.lblIRDis2.TabIndex = 2;
             this.lblIRDis2.Text = "IR间距2";
+            this.lblIRDis2.Visible = false;
             // 
             // txtDeepth
             // 
@@ -918,6 +938,7 @@
             this.lblSuDis.Size = new System.Drawing.Size(87, 19);
             this.lblSuDis.TabIndex = 22;
             this.lblSuDis.Text = "新风脖颈间距";
+            this.lblSuDis.Visible = false;
             // 
             // label23
             // 
@@ -935,6 +956,7 @@
             this.txtSuDis.Name = "txtSuDis";
             this.txtSuDis.Size = new System.Drawing.Size(100, 25);
             this.txtSuDis.TabIndex = 1;
+            this.txtSuDis.Visible = false;
             // 
             // groupBox2
             // 

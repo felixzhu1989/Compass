@@ -150,7 +150,7 @@
             this.groupBox7.Location = new System.Drawing.Point(779, 517);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(398, 135);
-            this.groupBox7.TabIndex = 58;
+            this.groupBox7.TabIndex = 8;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "烟罩配置";
             // 
@@ -357,7 +357,7 @@
             this.grbMARVEL.Location = new System.Drawing.Point(779, 409);
             this.grbMARVEL.Name = "grbMARVEL";
             this.grbMARVEL.Size = new System.Drawing.Size(398, 99);
-            this.grbMARVEL.TabIndex = 56;
+            this.grbMARVEL.TabIndex = 7;
             this.grbMARVEL.TabStop = false;
             this.grbMARVEL.Text = "MARVEL";
             // 
@@ -481,7 +481,7 @@
             this.cobLightType.Location = new System.Drawing.Point(871, 62);
             this.cobLightType.Name = "cobLightType";
             this.cobLightType.Size = new System.Drawing.Size(100, 27);
-            this.cobLightType.TabIndex = 52;
+            this.cobLightType.TabIndex = 2;
             this.cobLightType.SelectedIndexChanged += new System.EventHandler(this.cobLightType_SelectedIndexChanged);
             // 
             // label29
@@ -506,7 +506,7 @@
             this.cobMARVEL.Location = new System.Drawing.Point(871, 387);
             this.cobMARVEL.Name = "cobMARVEL";
             this.cobMARVEL.Size = new System.Drawing.Size(100, 27);
-            this.cobMARVEL.TabIndex = 57;
+            this.cobMARVEL.TabIndex = 6;
             this.cobMARVEL.SelectedIndexChanged += new System.EventHandler(this.cobMARVEL_SelectedIndexChanged);
             // 
             // label22
@@ -553,7 +553,7 @@
             this.groupBox6.Location = new System.Drawing.Point(210, 517);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(359, 135);
-            this.groupBox6.TabIndex = 50;
+            this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "排风脖颈";
             // 
@@ -576,7 +576,7 @@
             this.btnEditData.Location = new System.Drawing.Point(575, 616);
             this.btnEditData.Name = "btnEditData";
             this.btnEditData.Size = new System.Drawing.Size(198, 36);
-            this.btnEditData.TabIndex = 59;
+            this.btnEditData.TabIndex = 9;
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
             this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
@@ -591,7 +591,7 @@
             this.grbLEDSpot.Location = new System.Drawing.Point(779, 81);
             this.grbLEDSpot.Name = "grbLEDSpot";
             this.grbLEDSpot.Size = new System.Drawing.Size(398, 45);
-            this.grbLEDSpot.TabIndex = 53;
+            this.grbLEDSpot.TabIndex = 3;
             this.grbLEDSpot.TabStop = false;
             this.grbLEDSpot.Text = "筒灯";
             // 
@@ -840,7 +840,7 @@
             this.grbANSUL.Location = new System.Drawing.Point(779, 146);
             this.grbANSUL.Name = "grbANSUL";
             this.grbANSUL.Size = new System.Drawing.Size(398, 238);
-            this.grbANSUL.TabIndex = 54;
+            this.grbANSUL.TabIndex = 5;
             this.grbANSUL.TabStop = false;
             this.grbANSUL.Text = "ANSUL";
             // 
@@ -1001,7 +1001,7 @@
             this.cobANSUL.Location = new System.Drawing.Point(871, 127);
             this.cobANSUL.Name = "cobANSUL";
             this.cobANSUL.Size = new System.Drawing.Size(100, 27);
-            this.cobANSUL.TabIndex = 55;
+            this.cobANSUL.TabIndex = 4;
             this.cobANSUL.SelectedIndexChanged += new System.EventHandler(this.cobANSUL_SelectedIndexChanged);
             // 
             // groupBox1
@@ -1016,7 +1016,7 @@
             this.groupBox1.Location = new System.Drawing.Point(24, 517);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(183, 135);
-            this.groupBox1.TabIndex = 49;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "烟罩尺寸及侧板";
             // 

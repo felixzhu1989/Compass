@@ -90,7 +90,7 @@ namespace SolidWorksHelper
             //水洗烟罩KW/UW
             //int sidePanelSideCjNo = (int)((item.Deepth - 380m) / 32m);
 
-            //CMOD555400斜侧板CJ孔计算
+            //CMOD555400斜侧板CJ孔计算，175为CMOD底部长度，555-400为高度差
             int sidePanelDownCjNo = (int)(((decimal)(Math.Sqrt(Math.Pow((double)item.Deepth-175d,2)+ Math.Pow(555d-400d,2))) - 95m) / 32m);
             int sidePanelSideCjNo = sidePanelDownCjNo-3;
 

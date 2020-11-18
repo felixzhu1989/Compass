@@ -200,7 +200,7 @@
             this.grbMARVEL.Location = new System.Drawing.Point(779, 404);
             this.grbMARVEL.Name = "grbMARVEL";
             this.grbMARVEL.Size = new System.Drawing.Size(398, 104);
-            this.grbMARVEL.TabIndex = 4;
+            this.grbMARVEL.TabIndex = 7;
             this.grbMARVEL.TabStop = false;
             this.grbMARVEL.Text = "MARVEL";
             // 
@@ -301,7 +301,7 @@
             this.grbANSUL.Location = new System.Drawing.Point(779, 187);
             this.grbANSUL.Name = "grbANSUL";
             this.grbANSUL.Size = new System.Drawing.Size(398, 183);
-            this.grbANSUL.TabIndex = 3;
+            this.grbANSUL.TabIndex = 5;
             this.grbANSUL.TabStop = false;
             this.grbANSUL.Text = "ANSUL";
             // 
@@ -481,7 +481,7 @@
             this.grbLEDSpot.Location = new System.Drawing.Point(779, 95);
             this.grbLEDSpot.Name = "grbLEDSpot";
             this.grbLEDSpot.Size = new System.Drawing.Size(398, 51);
-            this.grbLEDSpot.TabIndex = 2;
+            this.grbLEDSpot.TabIndex = 3;
             this.grbLEDSpot.TabStop = false;
             this.grbLEDSpot.Text = "筒灯";
             // 
@@ -695,7 +695,7 @@
             this.groupBox7.Location = new System.Drawing.Point(779, 517);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(398, 135);
-            this.groupBox7.TabIndex = 5;
+            this.groupBox7.TabIndex = 8;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "烟罩配置";
             // 
@@ -836,7 +836,7 @@
             this.cobANSUL.Location = new System.Drawing.Point(871, 157);
             this.cobANSUL.Name = "cobANSUL";
             this.cobANSUL.Size = new System.Drawing.Size(100, 27);
-            this.cobANSUL.TabIndex = 3;
+            this.cobANSUL.TabIndex = 4;
             this.cobANSUL.SelectedIndexChanged += new System.EventHandler(this.cobANSUL_SelectedIndexChanged);
             // 
             // label19
@@ -861,7 +861,7 @@
             this.cobMARVEL.Location = new System.Drawing.Point(871, 376);
             this.cobMARVEL.Name = "cobMARVEL";
             this.cobMARVEL.Size = new System.Drawing.Size(100, 27);
-            this.cobMARVEL.TabIndex = 4;
+            this.cobMARVEL.TabIndex = 6;
             this.cobMARVEL.SelectedIndexChanged += new System.EventHandler(this.cobMARVEL_SelectedIndexChanged);
             // 
             // label29
@@ -886,7 +886,7 @@
             this.btnEditData.Location = new System.Drawing.Point(651, 616);
             this.btnEditData.Name = "btnEditData";
             this.btnEditData.Size = new System.Drawing.Size(122, 36);
-            this.btnEditData.TabIndex = 6;
+            this.btnEditData.TabIndex = 9;
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
             this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);

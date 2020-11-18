@@ -46,8 +46,8 @@
             this.txtExDis = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtDeepth = new System.Windows.Forms.TextBox();
             this.txtLength = new System.Windows.Forms.TextBox();
             this.pbModelImage = new System.Windows.Forms.PictureBox();
@@ -244,15 +244,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "烟罩尺寸及侧板";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 19);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "烟罩深度";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -261,6 +252,15 @@
             this.label1.Size = new System.Drawing.Size(61, 19);
             this.label1.TabIndex = 2;
             this.label1.Text = "烟罩长度";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 19);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "烟罩深度";
             // 
             // txtDeepth
             // 

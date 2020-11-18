@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmKVF555
+    partial class FrmUVF450400
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmKVF555));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUVF450400));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblSuDis = new System.Windows.Forms.Label();
             this.cobSuNo = new System.Windows.Forms.ComboBox();
@@ -37,10 +37,14 @@
             this.label29 = new System.Windows.Forms.Label();
             this.cobMARVEL = new System.Windows.Forms.ComboBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.cobUVType = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.cobWaterCollection = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.cobBackToBack = new System.Windows.Forms.ComboBox();
+            this.cobBluetooth = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.cobLEDLogo = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -66,6 +70,7 @@
             this.txtExLength = new System.Windows.Forms.TextBox();
             this.txtExDis = new System.Windows.Forms.TextBox();
             this.txtExRightDis = new System.Windows.Forms.TextBox();
+            this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.label19 = new System.Windows.Forms.Label();
             this.cobANSUL = new System.Windows.Forms.ComboBox();
             this.grbANSUL = new System.Windows.Forms.GroupBox();
@@ -103,15 +108,14 @@
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
             this.txtDeepth = new System.Windows.Forms.TextBox();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.grbLEDSpot.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.grbANSUL.SuspendLayout();
             this.grbMARVEL.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -178,7 +182,7 @@
             this.label29.Location = new System.Drawing.Point(785, 377);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(65, 19);
-            this.label29.TabIndex = 32;
+            this.label29.TabIndex = 27;
             this.label29.Text = "有无MRV";
             // 
             // cobMARVEL
@@ -198,10 +202,14 @@
             // groupBox7
             // 
             this.groupBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox7.Controls.Add(this.label18);
             this.groupBox7.Controls.Add(this.label17);
+            this.groupBox7.Controls.Add(this.cobUVType);
             this.groupBox7.Controls.Add(this.label16);
             this.groupBox7.Controls.Add(this.cobWaterCollection);
+            this.groupBox7.Controls.Add(this.label15);
             this.groupBox7.Controls.Add(this.cobBackToBack);
+            this.groupBox7.Controls.Add(this.cobBluetooth);
             this.groupBox7.Controls.Add(this.label14);
             this.groupBox7.Controls.Add(this.cobLEDLogo);
             this.groupBox7.Controls.Add(this.label10);
@@ -213,6 +221,15 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "烟罩配置";
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(10, 25);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(67, 19);
+            this.label18.TabIndex = 2;
+            this.label18.Text = "UV灯类型";
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -221,6 +238,18 @@
             this.label17.Size = new System.Drawing.Size(61, 19);
             this.label17.TabIndex = 2;
             this.label17.Text = "集水翻边";
+            // 
+            // cobUVType
+            // 
+            this.cobUVType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobUVType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobUVType.BackColor = System.Drawing.Color.Azure;
+            this.cobUVType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobUVType.FormattingEnabled = true;
+            this.cobUVType.Location = new System.Drawing.Point(92, 24);
+            this.cobUVType.Name = "cobUVType";
+            this.cobUVType.Size = new System.Drawing.Size(100, 27);
+            this.cobUVType.TabIndex = 0;
             // 
             // label16
             // 
@@ -241,7 +270,16 @@
             this.cobWaterCollection.Location = new System.Drawing.Point(279, 60);
             this.cobWaterCollection.Name = "cobWaterCollection";
             this.cobWaterCollection.Size = new System.Drawing.Size(100, 27);
-            this.cobWaterCollection.TabIndex = 2;
+            this.cobWaterCollection.TabIndex = 4;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 66);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(61, 19);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "内置蓝牙";
             // 
             // cobBackToBack
             // 
@@ -253,7 +291,19 @@
             this.cobBackToBack.Location = new System.Drawing.Point(279, 94);
             this.cobBackToBack.Name = "cobBackToBack";
             this.cobBackToBack.Size = new System.Drawing.Size(100, 27);
-            this.cobBackToBack.TabIndex = 3;
+            this.cobBackToBack.TabIndex = 5;
+            // 
+            // cobBluetooth
+            // 
+            this.cobBluetooth.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobBluetooth.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobBluetooth.BackColor = System.Drawing.Color.Azure;
+            this.cobBluetooth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobBluetooth.FormattingEnabled = true;
+            this.cobBluetooth.Location = new System.Drawing.Point(92, 60);
+            this.cobBluetooth.Name = "cobBluetooth";
+            this.cobBluetooth.Size = new System.Drawing.Size(100, 27);
+            this.cobBluetooth.TabIndex = 1;
             // 
             // label14
             // 
@@ -274,7 +324,7 @@
             this.cobLEDLogo.Location = new System.Drawing.Point(92, 94);
             this.cobLEDLogo.Name = "cobLEDLogo";
             this.cobLEDLogo.Size = new System.Drawing.Size(100, 27);
-            this.cobLEDLogo.TabIndex = 0;
+            this.cobLEDLogo.TabIndex = 2;
             // 
             // label10
             // 
@@ -295,7 +345,7 @@
             this.cobOutlet.Location = new System.Drawing.Point(279, 22);
             this.cobOutlet.Name = "cobOutlet";
             this.cobOutlet.Size = new System.Drawing.Size(100, 27);
-            this.cobOutlet.TabIndex = 1;
+            this.cobOutlet.TabIndex = 3;
             // 
             // btnEditData
             // 
@@ -326,7 +376,6 @@
             this.grbLEDSpot.TabIndex = 4;
             this.grbLEDSpot.TabStop = false;
             this.grbLEDSpot.Text = "筒灯";
-            this.grbLEDSpot.Visible = false;
             // 
             // txtLEDSpotDis
             // 
@@ -388,7 +437,7 @@
             this.label11.Location = new System.Drawing.Point(789, 63);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(61, 19);
-            this.label11.TabIndex = 33;
+            this.label11.TabIndex = 28;
             this.label11.Text = "灯具类型";
             // 
             // groupBox6
@@ -522,6 +571,19 @@
             this.txtExRightDis.Size = new System.Drawing.Size(100, 25);
             this.txtExRightDis.TabIndex = 0;
             // 
+            // pbModelImage
+            // 
+            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
+            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
+            this.pbModelImage.Name = "pbModelImage";
+            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
+            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbModelImage.TabIndex = 26;
+            this.pbModelImage.TabStop = false;
+            // 
             // label19
             // 
             this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -530,7 +592,7 @@
             this.label19.Location = new System.Drawing.Point(785, 157);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(80, 19);
-            this.label19.TabIndex = 34;
+            this.label19.TabIndex = 29;
             this.label19.Text = "有无ANSUL";
             // 
             // cobANSUL
@@ -574,100 +636,110 @@
             this.grbANSUL.TabIndex = 6;
             this.grbANSUL.TabStop = false;
             this.grbANSUL.Text = "ANSUL";
-            this.grbANSUL.Visible = false;
             // 
             // txtDropDis5
             // 
             this.txtDropDis5.BackColor = System.Drawing.Color.Azure;
-            this.txtDropDis5.Location = new System.Drawing.Point(279, 141);
+            this.txtDropDis5.Location = new System.Drawing.Point(279, 147);
             this.txtDropDis5.Name = "txtDropDis5";
             this.txtDropDis5.Size = new System.Drawing.Size(100, 25);
             this.txtDropDis5.TabIndex = 8;
+            this.txtDropDis5.Visible = false;
             // 
             // txtDropDis4
             // 
             this.txtDropDis4.BackColor = System.Drawing.Color.Azure;
-            this.txtDropDis4.Location = new System.Drawing.Point(279, 111);
+            this.txtDropDis4.Location = new System.Drawing.Point(279, 116);
             this.txtDropDis4.Name = "txtDropDis4";
             this.txtDropDis4.Size = new System.Drawing.Size(100, 25);
             this.txtDropDis4.TabIndex = 7;
+            this.txtDropDis4.Visible = false;
             // 
             // txtDropDis3
             // 
             this.txtDropDis3.BackColor = System.Drawing.Color.Azure;
-            this.txtDropDis3.Location = new System.Drawing.Point(279, 77);
+            this.txtDropDis3.Location = new System.Drawing.Point(279, 85);
             this.txtDropDis3.Name = "txtDropDis3";
             this.txtDropDis3.Size = new System.Drawing.Size(100, 25);
             this.txtDropDis3.TabIndex = 6;
+            this.txtDropDis3.Visible = false;
             // 
             // txtDropDis2
             // 
             this.txtDropDis2.BackColor = System.Drawing.Color.Azure;
-            this.txtDropDis2.Location = new System.Drawing.Point(279, 47);
+            this.txtDropDis2.Location = new System.Drawing.Point(279, 54);
             this.txtDropDis2.Name = "txtDropDis2";
             this.txtDropDis2.Size = new System.Drawing.Size(100, 25);
             this.txtDropDis2.TabIndex = 5;
+            this.txtDropDis2.Visible = false;
             // 
             // txtDropDis1
             // 
             this.txtDropDis1.BackColor = System.Drawing.Color.Azure;
-            this.txtDropDis1.Location = new System.Drawing.Point(279, 15);
+            this.txtDropDis1.Location = new System.Drawing.Point(279, 23);
             this.txtDropDis1.Name = "txtDropDis1";
             this.txtDropDis1.Size = new System.Drawing.Size(100, 25);
             this.txtDropDis1.TabIndex = 4;
+            this.txtDropDis1.Visible = false;
             // 
             // lblDropDis5
             // 
             this.lblDropDis5.AutoSize = true;
-            this.lblDropDis5.Location = new System.Drawing.Point(193, 142);
+            this.lblDropDis5.Location = new System.Drawing.Point(193, 149);
             this.lblDropDis5.Name = "lblDropDis5";
             this.lblDropDis5.Size = new System.Drawing.Size(69, 19);
             this.lblDropDis5.TabIndex = 2;
             this.lblDropDis5.Text = "下喷间距5";
+            this.lblDropDis5.Visible = false;
             // 
             // lblDropDis4
             // 
             this.lblDropDis4.AutoSize = true;
-            this.lblDropDis4.Location = new System.Drawing.Point(193, 112);
+            this.lblDropDis4.Location = new System.Drawing.Point(193, 118);
             this.lblDropDis4.Name = "lblDropDis4";
             this.lblDropDis4.Size = new System.Drawing.Size(69, 19);
             this.lblDropDis4.TabIndex = 2;
             this.lblDropDis4.Text = "下喷间距4";
+            this.lblDropDis4.Visible = false;
             // 
             // lblDropDis3
             // 
             this.lblDropDis3.AutoSize = true;
-            this.lblDropDis3.Location = new System.Drawing.Point(193, 78);
+            this.lblDropDis3.Location = new System.Drawing.Point(193, 87);
             this.lblDropDis3.Name = "lblDropDis3";
             this.lblDropDis3.Size = new System.Drawing.Size(69, 19);
             this.lblDropDis3.TabIndex = 2;
             this.lblDropDis3.Text = "下喷间距3";
+            this.lblDropDis3.Visible = false;
             // 
             // lblDropDis2
             // 
             this.lblDropDis2.AutoSize = true;
-            this.lblDropDis2.Location = new System.Drawing.Point(193, 48);
+            this.lblDropDis2.Location = new System.Drawing.Point(193, 56);
             this.lblDropDis2.Name = "lblDropDis2";
             this.lblDropDis2.Size = new System.Drawing.Size(69, 19);
             this.lblDropDis2.TabIndex = 2;
             this.lblDropDis2.Text = "下喷间距2";
+            this.lblDropDis2.Visible = false;
             // 
             // lblDropDis1
             // 
             this.lblDropDis1.AutoSize = true;
-            this.lblDropDis1.Location = new System.Drawing.Point(193, 16);
+            this.lblDropDis1.Location = new System.Drawing.Point(193, 25);
             this.lblDropDis1.Name = "lblDropDis1";
             this.lblDropDis1.Size = new System.Drawing.Size(69, 19);
             this.lblDropDis1.TabIndex = 2;
             this.lblDropDis1.Text = "下喷间距1";
+            this.lblDropDis1.Visible = false;
             // 
             // txtANYDis
             // 
             this.txtANYDis.BackColor = System.Drawing.Color.Azure;
-            this.txtANYDis.Location = new System.Drawing.Point(92, 115);
+            this.txtANYDis.Location = new System.Drawing.Point(92, 114);
             this.txtANYDis.Name = "txtANYDis";
             this.txtANYDis.Size = new System.Drawing.Size(100, 25);
             this.txtANYDis.TabIndex = 3;
+            this.txtANYDis.Visible = false;
             // 
             // lblANYDis
             // 
@@ -677,6 +749,7 @@
             this.lblANYDis.Size = new System.Drawing.Size(74, 19);
             this.lblANYDis.TabIndex = 2;
             this.lblANYDis.Text = "下喷距前端";
+            this.lblANYDis.Visible = false;
             // 
             // label22
             // 
@@ -690,7 +763,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 55);
+            this.label21.Location = new System.Drawing.Point(6, 53);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(74, 19);
             this.label21.TabIndex = 2;
@@ -712,7 +785,7 @@
             this.cobANDropNo.BackColor = System.Drawing.Color.Azure;
             this.cobANDropNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobANDropNo.FormattingEnabled = true;
-            this.cobANDropNo.Location = new System.Drawing.Point(92, 85);
+            this.cobANDropNo.Location = new System.Drawing.Point(92, 83);
             this.cobANDropNo.Name = "cobANDropNo";
             this.cobANDropNo.Size = new System.Drawing.Size(100, 27);
             this.cobANDropNo.TabIndex = 2;
@@ -725,7 +798,7 @@
             this.cobANDetector.BackColor = System.Drawing.Color.Azure;
             this.cobANDetector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobANDetector.FormattingEnabled = true;
-            this.cobANDetector.Location = new System.Drawing.Point(92, 55);
+            this.cobANDetector.Location = new System.Drawing.Point(92, 52);
             this.cobANDetector.Name = "cobANDetector";
             this.cobANDetector.Size = new System.Drawing.Size(100, 27);
             this.cobANDetector.TabIndex = 1;
@@ -760,7 +833,6 @@
             this.grbMARVEL.TabIndex = 8;
             this.grbMARVEL.TabStop = false;
             this.grbMARVEL.Text = "MARVEL";
-            this.grbMARVEL.Visible = false;
             // 
             // cobIRNo
             // 
@@ -914,20 +986,7 @@
             this.txtLength.TabIndex = 0;
             this.txtLength.TextChanged += new System.EventHandler(this.txtLength_TextChanged);
             // 
-            // pbModelImage
-            // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 31;
-            this.pbModelImage.TabStop = false;
-            // 
-            // FrmKVF555
+            // FrmUVF450400
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
@@ -948,10 +1007,9 @@
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmKVF555";
-            this.Text = "KVF555";
+            this.Name = "FrmUVF450400";
+            this.Text = "UVF450400";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -960,13 +1018,13 @@
             this.grbLEDSpot.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.grbANSUL.ResumeLayout(false);
             this.grbANSUL.PerformLayout();
             this.grbMARVEL.ResumeLayout(false);
             this.grbMARVEL.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -982,10 +1040,14 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ComboBox cobMARVEL;
         private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox cobUVType;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox cobWaterCollection;
+        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox cobBackToBack;
+        private System.Windows.Forms.ComboBox cobBluetooth;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cobLEDLogo;
         private System.Windows.Forms.Label label10;
@@ -1044,10 +1106,10 @@
         private System.Windows.Forms.Label lblIRDis2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cobSidePanel;
-        private System.Windows.Forms.TextBox txtLength;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDeepth;
+        private System.Windows.Forms.TextBox txtLength;
     }
 }
