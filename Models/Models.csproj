@@ -130,6 +130,7 @@
     <Compile Include="Ceiling\NOCJ340.cs" />
     <Compile Include="Ceiling\NOCJSPEC.cs" />
     <Compile Include="Ceiling\NOCJ330.cs" />
+    <Compile Include="Hood\MU1BOXDXF.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectLearned.cs" />
     <Compile Include="ProjectStatus.cs" />
