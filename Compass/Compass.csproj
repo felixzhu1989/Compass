@@ -121,6 +121,12 @@
     <Compile Include="CeilingForm\FrmCJ330.Designer.cs">
       <DependentUpon>FrmCJ330.cs</DependentUpon>
     </Compile>
+    <Compile Include="HoodForm\FrmTCSBOXDXF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoodForm\FrmTCSBOXDXF.Designer.cs">
+      <DependentUpon>FrmTCSBOXDXF.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmMU1BOXDXF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -944,6 +950,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmMU1BOXDXF.resx">
       <DependentUpon>FrmMU1BOXDXF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoodForm\FrmTCSBOXDXF.resx">
+      <DependentUpon>FrmTCSBOXDXF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmUCPDXF.resx">
       <DependentUpon>FrmUCPDXF.cs</DependentUpon>

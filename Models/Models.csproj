@@ -155,6 +155,7 @@
     <Compile Include="Ceiling\UCWUVR4SDXF.cs" />
     <Compile Include="Ceiling\UCWUVR4LDXF.cs" />
     <Compile Include="Ceiling\UCJFCCOMBIDXF.cs" />
+    <Compile Include="Hood\TCSBOXDXF.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserGroup.cs" />
     <Compile Include="Hood\UVI555.cs" />
