@@ -151,6 +151,10 @@
     <Compile Include="HoodAutoDrawing\TCSBOXDXFAutoDrawing.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{c8373b8f-13e5-4dde-9903-6637bdd5fe1e}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{2479ec41-d7cb-47fa-a3f5-2a5080050fdd}</Project>
       <Name>DAL</Name>
