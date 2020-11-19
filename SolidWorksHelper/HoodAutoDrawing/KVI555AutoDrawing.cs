@@ -697,7 +697,14 @@ namespace SolidWorksHelper
                 //UV灯线缆穿孔
                 swFeat = swComp.FeatureByName("UVCABLE");
                 swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
-                
+
+                swFeat = swComp.FeatureByName("MAINS1");
+                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MAINS2");
+                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MAINS3");
+                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+
                 //----------吊装槽钢----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100001-1"));
                 swPart = swComp.GetModelDoc2();

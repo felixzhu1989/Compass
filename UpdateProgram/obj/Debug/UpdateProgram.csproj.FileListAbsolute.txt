@@ -9,3 +9,4 @@ E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csproj.GenerateResource.cache
 E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csproj.CoreCompileInputs.cache
 E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.exe
 E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.pdb
+E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csprojAssemblyReference.cache
