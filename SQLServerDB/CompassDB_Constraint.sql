@@ -708,6 +708,29 @@ GO
 alter table KVI555 add constraint df_Height_KVI555 default ('555') for Height
 GO
 
+
+--KVIR555
+if exists (select * from sysobjects where name='pk_KVIR555Id')
+    alter table KVIR555 drop constraint pk_KVIR555Id
+GO
+alter table KVIR555 add constraint pk_KVIR555Id primary key (KVIR555Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_KVIR555')
+    alter table KVIR555 drop constraint fk_ModuleTreeId_KVIR555
+GO
+alter table KVIR555 add constraint fk_ModuleTreeId_KVIR555 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_KVIR555')
+    alter table KVIR555 drop constraint df_Height_KVIR555
+GO
+alter table KVIR555 add constraint df_Height_KVIR555 default ('555') for Height
+GO
+if exists (select * from sysobjects where name='df_SidePanel_KVIR555')
+    alter table KVIR555 drop constraint df_SidePanel_KVIR555
+GO
+alter table KVIR555 add constraint df_SidePanel_KVIR555 default ('BOTH') for SidePanel
+GO
+
 --UVF555
 if exists (select * from sysobjects where name='pk_UVF555Id')
     alter table UVF555 drop constraint pk_UVF555Id

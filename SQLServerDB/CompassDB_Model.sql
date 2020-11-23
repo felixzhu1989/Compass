@@ -166,6 +166,50 @@ create table KVI555
     IRDis2 decimal(6,2),
     IRDis3 decimal(6,2)
 )
+
+
+if exists (select * from sysobjects where name='KVIR555')
+drop table KVIR555
+go
+create table KVIR555
+(
+    KVIR555Id int identity(1,1),
+    ModuleTreeId int,
+	ExBeamLength decimal(6,2),
+    Length decimal(6,2),
+    Deepth decimal(6,2),
+	Height varchar(10),
+    ExRightDis decimal(6,2),
+    ExNo int,
+    ExDis decimal(6,2),
+    ExLength decimal(6,2),
+    ExWidth decimal(6,2),
+    ExHeight decimal(6,2),
+	SidePanel varchar(6),    
+    Outlet varchar(9),       
+    
+    LEDSpotNo int,
+    LEDSpotDis decimal(6,2),
+    LightType varchar(7),
+    
+    ANSUL varchar(3),
+    ANSide varchar(5),
+    ANDetector varchar(5),
+    ANYDis decimal(6,2),
+    ANDropNo int,
+    ANDropDis1 decimal(6,2),
+    ANDropDis2 decimal(6,2),
+    ANDropDis3 decimal(6,2),
+    ANDropDis4 decimal(6,2),
+    ANDropDis5 decimal(6,2),
+    MARVEL varchar(3),
+    IRNo int,
+    IRDis1 decimal(6,2),
+    IRDis2 decimal(6,2),
+    IRDis3 decimal(6,2)
+)
+
+
 if exists (select * from sysobjects where name='UVF555')
 drop table UVF555
 go

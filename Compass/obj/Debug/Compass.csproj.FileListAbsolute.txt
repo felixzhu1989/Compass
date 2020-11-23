@@ -123,3 +123,4 @@ E:\Compass\Compass\obj\Debug\Compass.FrmMU1BOXDXF.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmTCSBOXDXF.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmUVIMR555.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmUVIR555.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmKVIR555.resources

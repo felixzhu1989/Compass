@@ -115,7 +115,7 @@ select * from CeilingPackingList
 
 select PartDescription,Quantity,PartNo,Unit,Length,Width,Height,Material,Remark,CountingRule,AddedDate,CeilingPackingList.UserId,UserAccount,ProjectId,CeilingAccessoryId,ClassNo,CeilingPackingListId,Location from CeilingPackingList inner join Users on Users.UserId=CeilingPackingList.UserId where CeilingPackingListId=2629
 
-
+select * from UVIR555 
 
 
 
