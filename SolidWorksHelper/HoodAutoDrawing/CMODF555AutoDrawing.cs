@@ -403,7 +403,7 @@ namespace SolidWorksHelper
                         swPart.Parameter("D3@LPattern2").SystemValue = item.LEDSpotDis / 1000m;
                     }
                 }
-                else if (item.LightType == "LED60")
+                else if (item.LightType == "LED140")
                 {
                     swFeat = swComp.FeatureByName("LED60");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 

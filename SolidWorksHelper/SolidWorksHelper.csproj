@@ -150,6 +150,7 @@
     <Compile Include="HoodAutoDrawing\UVF450400AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\TCSBOXDXFAutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\UVIMR555AutoDrawing.cs" />
+    <Compile Include="HoodAutoDrawing\UVIR555AutoDrawing.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

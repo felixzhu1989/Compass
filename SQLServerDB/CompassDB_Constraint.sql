@@ -669,7 +669,27 @@ if exists (select * from sysobjects where name='df_Height_UVIMR555')
 GO
 alter table UVIMR555 add constraint df_Height_UVIMR555 default ('555') for Height
 GO
-
+--UVIR555
+if exists (select * from sysobjects where name='pk_UVIR555Id')
+    alter table UVIR555 drop constraint pk_UVIR555Id
+GO
+alter table UVIR555 add constraint pk_UVIR555Id primary key (UVIR555Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_UVIR555')
+    alter table UVIR555 drop constraint fk_ModuleTreeId_UVIR555
+GO
+alter table UVIR555 add constraint fk_ModuleTreeId_UVIR555 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_UVIR555')
+    alter table UVIR555 drop constraint df_Height_UVIR555
+GO
+alter table UVIR555 add constraint df_Height_UVIR555 default ('555') for Height
+GO
+if exists (select * from sysobjects where name='df_SidePanel_UVIR555')
+    alter table UVIR555 drop constraint df_SidePanel_UVIR555
+GO
+alter table UVIR555 add constraint df_SidePanel_UVIR555 default ('BOTH') for SidePanel
+GO
 
 --KVI555
 if exists (select * from sysobjects where name='pk_KVI555Id')
