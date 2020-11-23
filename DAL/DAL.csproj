@@ -159,6 +159,7 @@
     <Compile Include="HoodService\UVI555Service.cs" />
     <Compile Include="HoodService\UVF555Service.cs" />
     <Compile Include="HoodService\UVF450400Service.cs" />
+    <Compile Include="HoodService\UVIMR555Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

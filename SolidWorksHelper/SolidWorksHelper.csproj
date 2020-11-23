@@ -149,6 +149,7 @@
     <Compile Include="CeilingAutoDrawing\UCJFCCOMBIDXFAutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\UVF450400AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\TCSBOXDXFAutoDrawing.cs" />
+    <Compile Include="HoodAutoDrawing\UVIMR555AutoDrawing.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
