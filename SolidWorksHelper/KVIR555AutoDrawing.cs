@@ -78,9 +78,9 @@ namespace SolidWorksHelper
             decimal midRoofTopHoleDis =
                 Convert.ToDecimal(item.Deepth - 535m - 360m - 90m -
                                   (int)((item.Deepth - 535m - 360m - 90m - 100m) / 50m) * 50m) / 1000m;
-            //KSA数量，KSA侧板长度(以全长计算)
-            int ksaNo = (int)((item.ExBeamLength + 1) / 498m);
-            decimal ksaSideLength = Convert.ToDecimal((item.ExBeamLength - ksaNo * 498m) / 2) / 1000m;
+            //KSA数量，KSA侧板长度(以全长计算)/M型侧板与MESH一样需要减去三角板厚度
+            int ksaNo = (int)((item.ExBeamLength -2m) / 498m);
+            decimal ksaSideLength = Convert.ToDecimal((item.ExBeamLength - 3m - ksaNo * 498m) / 2) / 1000m;
             //MESH侧板长度(除去排风三角板3mm计算)
             decimal meshSideLength = Convert.ToDecimal((item.ExBeamLength - 3m - (int)((item.ExBeamLength - 2m) / 498m) * 498m) / 2) / 1000m;
 
