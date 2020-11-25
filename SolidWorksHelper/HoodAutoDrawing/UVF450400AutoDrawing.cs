@@ -443,6 +443,8 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();
                     swPart.Parameter("D1@草图1").SystemValue = ksaSideLength * 2;
+                    swFeat = swComp.FeatureByName("Cut-Extrude1");
+                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 }
                 else if (ksaSideLength < 25m / 1000m && ksaSideLength >= 12m / 1000m)
                 {
@@ -450,6 +452,13 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();
                     swPart.Parameter("D2@草图1").SystemValue = ksaSideLength * 2;
+                    swFeat = swComp.FeatureByName("Cut-Extrude2");
+                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    if (item.WaterCollection == "YES" && (item.SidePanel == "BOTH" || item.SidePanel == "LEFT"))
+                    {
+                        swFeat = swComp.FeatureByName("DRAINCHANNEL");
+                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    }
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0004-2"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0005-1"));
@@ -461,10 +470,24 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();
                     swPart.Parameter("D2@草图1").SystemValue = ksaSideLength;
+                    swFeat = swComp.FeatureByName("Cut-Extrude2");
+                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    if (item.WaterCollection == "YES" && (item.SidePanel == "BOTH" || item.SidePanel == "LEFT"))
+                    {
+                        swFeat = swComp.FeatureByName("DRAINCHANNEL");
+                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    }
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0004-2"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();
                     swPart.Parameter("D2@草图1").SystemValue = ksaSideLength;
+                    swFeat = swComp.FeatureByName("Cut-Extrude2");
+                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    if (item.WaterCollection == "YES" && (item.SidePanel == "BOTH" || item.SidePanel == "RIGHT"))
+                    {
+                        swFeat = swComp.FeatureByName("DRAINCHANNEL");
+                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    }
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0005-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
@@ -541,7 +564,7 @@ namespace SolidWorksHelper
                     swFeat = swComp.FeatureByName("ANDTEC");
                     swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
                 }
-                
+
                 //----------UV灯，UV灯门----------
                 if (item.UVType == "LONG")
                 {
@@ -1260,7 +1283,7 @@ namespace SolidWorksHelper
                     swFeat = swComp.FeatureByName("MAINS3");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 }
-                
+
                 //UV HOOD
                 swFeat = swComp.FeatureByName("SUCABLE-LEFT");
                 if (item.Bluetooth == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
@@ -1268,7 +1291,7 @@ namespace SolidWorksHelper
                 swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
                 if (item.SidePanel == "LEFT" || item.SidePanel == "BOTH") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                
+
 
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0027-1"));
@@ -1384,7 +1407,7 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201010401-2"));
                 if (item.LEDlogo == "YES") swComp.SetSuppression2(2); //2解压缩，0压缩
                 else swComp.SetSuppression2(0); //2解压缩，0压缩
-                
+
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
                 swModel.Save();//保存，很耗时间
