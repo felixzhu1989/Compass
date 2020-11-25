@@ -13,21 +13,21 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmUVIMR555 : MetroFramework.Forms.MetroForm
+    public partial class FrmKVIMR555 : MetroFramework.Forms.MetroForm
     {
         CategoryService objCategoryService = new CategoryService();
-        UVIMR555Service objUVIMR555Service = new UVIMR555Service();
-        private UVIMR555 objUVIMR555 = null;
-        public FrmUVIMR555()
+        KVIMR555Service objKVIMR555Service = new KVIMR555Service();
+        private KVIMR555 objKVIMR555 = null;
+        public FrmKVIMR555()
         {
             InitializeComponent();
             SetVisibleFalse();
             IniCob();
         }
-        public FrmUVIMR555(Drawing drawing, ModuleTree tree) : this()
+        public FrmKVIMR555(Drawing drawing, ModuleTree tree) : this()
         {
-            objUVIMR555 = (UVIMR555)objUVIMR555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objUVIMR555 == null) return;
+            objKVIMR555 = (KVIMR555)objKVIMR555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (objKVIMR555 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString());
             pbModelImage.Image = objCategory.ModelImage.Length == 0
@@ -92,12 +92,7 @@ namespace Compass
             cobIRNo.Items.Add("2");
             cobIRNo.Items.Add("3");
             //烟罩配置信息
-            //UV灯类型
-            cobUVType.Items.Add("LONG");
-            cobUVType.Items.Add("SHORT");
-            //蓝牙面板
-            cobBluetooth.Items.Add("YES");
-            cobBluetooth.Items.Add("NO");
+            
             //LOGO
             cobLEDLogo.Items.Add("YES");
             cobLEDLogo.Items.Add("NO");
@@ -125,44 +120,42 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objUVIMR555 == null) return;
-            pbModelImage.Tag = objUVIMR555.UVIMR555Id;
+            if (objKVIMR555 == null) return;
+            pbModelImage.Tag = objKVIMR555.KVIMR555Id;
 
-            cobSidePanel.Text = objUVIMR555.SidePanel;
+            cobSidePanel.Text = objKVIMR555.SidePanel;
             //默认ExNo为1
-            cobExNo.Text = objUVIMR555.ExNo == 0 ? "1" : objUVIMR555.ExNo.ToString();
-            cobLightType.Text = objUVIMR555.LightType;
-            cobLEDSpotNo.Text = objUVIMR555.LEDSpotNo.ToString();
-            cobANSUL.Text = objUVIMR555.ANSUL;
-            cobANSide.Text = objUVIMR555.ANSide;
-            cobANDetector.Text = objUVIMR555.ANDetector;
-            cobANDropNo.Text = objUVIMR555.ANDropNo.ToString();
-            cobMARVEL.Text = objUVIMR555.MARVEL;
-            cobIRNo.Text = objUVIMR555.IRNo.ToString();
-            cobUVType.Text = objUVIMR555.UVType;
-            cobBluetooth.Text = objUVIMR555.Bluetooth;
-            cobLEDLogo.Text = objUVIMR555.LEDlogo;
-            cobOutlet.Text = objUVIMR555.Outlet;
-            cobWaterCollection.Text = objUVIMR555.WaterCollection;
+            cobExNo.Text = objKVIMR555.ExNo == 0 ? "1" : objKVIMR555.ExNo.ToString();
+            cobLightType.Text = objKVIMR555.LightType;
+            cobLEDSpotNo.Text = objKVIMR555.LEDSpotNo.ToString();
+            cobANSUL.Text = objKVIMR555.ANSUL;
+            cobANSide.Text = objKVIMR555.ANSide;
+            cobANDetector.Text = objKVIMR555.ANDetector;
+            cobANDropNo.Text = objKVIMR555.ANDropNo.ToString();
+            cobMARVEL.Text = objKVIMR555.MARVEL;
+            cobIRNo.Text = objKVIMR555.IRNo.ToString();
+            cobLEDLogo.Text = objKVIMR555.LEDlogo;
+            cobOutlet.Text = objKVIMR555.Outlet;
+            cobWaterCollection.Text = objKVIMR555.WaterCollection;
 
-            txtLength.Text = objUVIMR555.Length.ToString();
-            txtDeepth.Text = objUVIMR555.Deepth.ToString();
-            txtExRightDis.Text = objUVIMR555.ExRightDis.ToString();
-            txtExDis.Text = objUVIMR555.ExDis.ToString();
-            txtExLength.Text = objUVIMR555.ExLength.ToString();
-            txtExWidth.Text = objUVIMR555.ExWidth.ToString();
-            txtExHeight.Text = objUVIMR555.ExHeight.ToString();
+            txtLength.Text = objKVIMR555.Length.ToString();
+            txtDeepth.Text = objKVIMR555.Deepth.ToString();
+            txtExRightDis.Text = objKVIMR555.ExRightDis.ToString();
+            txtExDis.Text = objKVIMR555.ExDis.ToString();
+            txtExLength.Text = objKVIMR555.ExLength.ToString();
+            txtExWidth.Text = objKVIMR555.ExWidth.ToString();
+            txtExHeight.Text = objKVIMR555.ExHeight.ToString();
             //LEDSpotDis默认400
-            txtLEDSpotDis.Text = objUVIMR555.LEDSpotDis == 0 ? "400" : objUVIMR555.LEDSpotDis.ToString();
-            txtANYDis.Text = objUVIMR555.ANYDis.ToString();
-            txtDropDis1.Text = objUVIMR555.ANDropDis1.ToString();
-            txtDropDis2.Text = objUVIMR555.ANDropDis2.ToString();
-            txtDropDis3.Text = objUVIMR555.ANDropDis3.ToString();
-            txtDropDis4.Text = objUVIMR555.ANDropDis4.ToString();
-            txtDropDis5.Text = objUVIMR555.ANDropDis5.ToString();
-            txtIRDis1.Text = objUVIMR555.IRDis1.ToString();
-            txtIRDis2.Text = objUVIMR555.IRDis2.ToString();
-            txtIRDis3.Text = objUVIMR555.IRDis3.ToString();
+            txtLEDSpotDis.Text = objKVIMR555.LEDSpotDis == 0 ? "400" : objKVIMR555.LEDSpotDis.ToString();
+            txtANYDis.Text = objKVIMR555.ANYDis.ToString();
+            txtDropDis1.Text = objKVIMR555.ANDropDis1.ToString();
+            txtDropDis2.Text = objKVIMR555.ANDropDis2.ToString();
+            txtDropDis3.Text = objKVIMR555.ANDropDis3.ToString();
+            txtDropDis4.Text = objKVIMR555.ANDropDis4.ToString();
+            txtDropDis5.Text = objKVIMR555.ANDropDis5.ToString();
+            txtIRDis1.Text = objKVIMR555.IRDis1.ToString();
+            txtIRDis2.Text = objKVIMR555.IRDis2.ToString();
+            txtIRDis3.Text = objKVIMR555.IRDis3.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -381,18 +374,7 @@ namespace Compass
                     }
                 }
             }
-            if (cobUVType.SelectedIndex == -1)
-            {
-                MessageBox.Show("请检查UV灯类型", "提示信息");
-                cobUVType.Focus();
-                return;
-            }
-            if (cobBluetooth.SelectedIndex == -1)
-            {
-                MessageBox.Show("请检查是否内置蓝牙", "提示信息");
-                cobBluetooth.Focus();
-                return;
-            }
+            
             if (cobLEDLogo.SelectedIndex == -1)
             {
                 MessageBox.Show("请检查是否带LOGO", "提示信息");
@@ -414,9 +396,9 @@ namespace Compass
 
             #endregion
             //封装对象
-            UVIMR555 objUVIMR555 = new UVIMR555()
+            KVIMR555 objKVIMR555 = new KVIMR555()
             {
-                UVIMR555Id = Convert.ToInt32(pbModelImage.Tag),
+                KVIMR555Id = Convert.ToInt32(pbModelImage.Tag),
                 SidePanel = cobSidePanel.Text,
                 ExNo = Convert.ToInt32(cobExNo.Text),
                 LightType = cobLightType.Text,
@@ -427,8 +409,6 @@ namespace Compass
                 ANDropNo = cobANDropNo.Text.Trim().Length == 0 ? 0 : Convert.ToInt32(cobANDropNo.Text),
                 MARVEL = cobMARVEL.Text,
                 IRNo = cobIRNo.Text.Trim().Length == 0 ? 0 : Convert.ToInt32(cobIRNo.Text),
-                UVType = cobUVType.Text,
-                Bluetooth = cobBluetooth.Text,
                 LEDlogo = cobLEDLogo.Text,
                 Outlet = cobOutlet.Text,
                 WaterCollection = cobWaterCollection.Text,
@@ -454,7 +434,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objUVIMR555Service.EditModel(objUVIMR555) == 1)
+                if (objKVIMR555Service.EditModel(objKVIMR555) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;
