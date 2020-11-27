@@ -127,6 +127,7 @@
     <Compile Include="Hood\MCPDXF.cs" />
     <Compile Include="Hood\KVIR555.cs" />
     <Compile Include="Hood\KVIMR555.cs" />
+    <Compile Include="Hood\KCHF555.cs" />
     <Compile Include="ModuleTree.cs" />
     <Compile Include="Ceiling\NOCJ300.cs" />
     <Compile Include="Ceiling\NOCJ340.cs" />

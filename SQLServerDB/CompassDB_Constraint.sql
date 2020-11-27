@@ -800,6 +800,24 @@ if exists (select * from sysobjects where name='df_Height_KVF555')
 GO
 alter table KVF555 add constraint df_Height_KVF555 default ('555') for Height
 GO
+
+--KCHF555
+if exists (select * from sysobjects where name='pk_KCHF555Id')
+    alter table KCHF555 drop constraint pk_KCHF555Id
+GO
+alter table KCHF555 add constraint pk_KCHF555Id primary key (KCHF555Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_KCHF555')
+    alter table KCHF555 drop constraint fk_ModuleTreeId_KCHF555
+GO
+alter table KCHF555 add constraint fk_ModuleTreeId_KCHF555 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_KCHF555')
+    alter table KCHF555 drop constraint df_Height_KCHF555
+GO
+alter table KCHF555 add constraint df_Height_KCHF555 default ('555') for Height
+GO
+
 --UWF555
 if exists (select * from sysobjects where name='pk_UWF555Id')
     alter table UWF555 drop constraint pk_UWF555Id
