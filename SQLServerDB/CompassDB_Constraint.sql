@@ -707,6 +707,22 @@ if exists (select * from sysobjects where name='df_Height_KVI555')
 GO
 alter table KVI555 add constraint df_Height_KVI555 default ('555') for Height
 GO
+--KCHI555
+if exists (select * from sysobjects where name='pk_KCHI555Id')
+    alter table KCHI555 drop constraint pk_KCHI555Id
+GO
+alter table KCHI555 add constraint pk_KCHI555Id primary key (KCHI555Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_KCHI555')
+    alter table KCHI555 drop constraint fk_ModuleTreeId_KCHI555
+GO
+alter table KCHI555 add constraint fk_ModuleTreeId_KCHI555 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_KCHI555')
+    alter table KCHI555 drop constraint df_Height_KCHI555
+GO
+alter table KCHI555 add constraint df_Height_KCHI555 default ('555') for Height
+GO
 --KVIMR555
 if exists (select * from sysobjects where name='pk_KVIMR555Id')
     alter table KVIMR555 drop constraint pk_KVIMR555Id
