@@ -335,6 +335,7 @@ namespace Compass
                 return;
             }
             #endregion
+            int firstRowIndex = dgvDrawingPlan.CurrentRow.Index;
             //封装制图计划对象
             DrawingPlan objDrawingPlan = new DrawingPlan()
             {
@@ -361,6 +362,8 @@ namespace Compass
             {
                 MessageBox.Show(ex.Message);
             }
+            dgvDrawingPlan.Rows[firstRowIndex].Selected = true;
+            dgvDrawingPlan.FirstDisplayedScrollingRowIndex = firstRowIndex;
         }
         /// <summary>
         /// 删除计划菜单
@@ -385,6 +388,7 @@ namespace Compass
             DialogResult result = MessageBox.Show("确定要删除（项目编号ODP： " + odpNo + " 烟罩编号Item：" + item + " ）这条计划吗？", "删除询问", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (result == DialogResult.No) return;
+            int firstRowIndex = dgvDrawingPlan.CurrentRow.Index;
             try
             {
                 if (objDrawingPlanService.DeleteDrawingPlan(drawingPlanId) == 1)
@@ -397,6 +401,8 @@ namespace Compass
                 MessageBox.Show(ex.Message);
             }
             grbEditDrawingPlan.Visible = false;
+            dgvDrawingPlan.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
+            dgvDrawingPlan.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
         /// <summary>
         /// 按下删除键执行删除

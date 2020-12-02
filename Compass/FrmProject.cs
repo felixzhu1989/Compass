@@ -191,6 +191,7 @@ namespace Compass
             }
             else
             {
+                int firstRowIndex = dgvProjects.CurrentRow.Index;
                 //封装对象
                 Project objProject = new Project()
                 {
@@ -229,6 +230,8 @@ namespace Compass
                 {
                     MessageBox.Show(ex.Message);
                 }
+                dgvProjects.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
+                dgvProjects.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
             }
         }
         /// <summary>
@@ -294,6 +297,7 @@ namespace Compass
             DialogResult result = MessageBox.Show("确定要删除（项目编号ODP： " + odpNo + " ）这个项目的信息吗？", "删除询问", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (result == DialogResult.No) return;
+            int firstRowIndex = dgvProjects.CurrentRow.Index;
             try
             {
                 //if (objProjectService.DeleteProject(projectId) == 1)
@@ -304,6 +308,8 @@ namespace Compass
             {
                 MessageBox.Show(ex.Message);
             }
+            dgvProjects.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
+            dgvProjects.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
         /// <summary>
         /// delete键
@@ -420,20 +426,7 @@ namespace Compass
             txtODPNo.Text = this.dgvProjects.CurrentRow.Cells["ODPNo"].Value.ToString();
             ShowModelTreeDeg(txtODPNo.Text);
         }
-        /// <summary>
-        /// 根据列的值改变行的颜色
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void dgvProjects_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            
-
-
-
-
-
-        }
+        
         /// <summary>
         /// 按回车键按人员提交查询订单
         /// </summary>

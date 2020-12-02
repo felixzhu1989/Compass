@@ -286,6 +286,7 @@ namespace Compass
                 return;
             }
             #endregion
+            int firstRowIndex = dgvProjectTracking.CurrentRow.Index;
             //封装项目跟踪对象
             ProjectTracking objProjectTracking = new ProjectTracking()
             {
@@ -314,6 +315,8 @@ namespace Compass
             {
                 MessageBox.Show(ex.Message);
             }
+            dgvProjectTracking.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
+            dgvProjectTracking.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
         /// <summary>
         /// 删除跟踪记录菜单
@@ -337,6 +340,7 @@ namespace Compass
             DialogResult result = MessageBox.Show("确定要删除（项目编号ODP： " + odpNo + " ）这条跟踪记录吗？", "删除询问", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (result == DialogResult.No) return;
+            int firstRowIndex = dgvProjectTracking.CurrentRow.Index;
             try
             {
                 if (objProjectTrackingService.DeleteProjectTracking(projectTrackingId) == 1)
@@ -349,6 +353,8 @@ namespace Compass
                 MessageBox.Show(ex.Message);
             }
             grbEditProjectTracking.Visible = false;
+            dgvProjectTracking.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
+            dgvProjectTracking.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
 
         private void dgvProjectTracking_KeyDown(object sender, KeyEventArgs e)
