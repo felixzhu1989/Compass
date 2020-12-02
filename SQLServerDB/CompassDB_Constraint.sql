@@ -996,6 +996,18 @@ if exists (select * from sysobjects where name='df_Height_LSDOST')
 GO
 alter table LSDOST add constraint df_Height_LSDOST default ('285') for Height
 GO
+
+--HOODBCJ
+if exists (select * from sysobjects where name='pk_HOODBCJId')
+    alter table HOODBCJ drop constraint pk_HOODBCJId
+GO
+alter table HOODBCJ add constraint pk_HOODBCJId primary key (HOODBCJId)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_HOODBCJ')
+    alter table HOODBCJ drop constraint fk_ModuleTreeId_HOODBCJ
+GO
+alter table HOODBCJ add constraint fk_ModuleTreeId_HOODBCJ foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
 --ABD200
 if exists (select * from sysobjects where name='pk_ABD200Id')
     alter table ABD200 drop constraint pk_ABD200Id

@@ -844,6 +844,19 @@ create table LSDOST
 
 )
 
+--HOODBCJ
+if exists (select * from sysobjects where name='HOODBCJ')
+drop table HOODBCJ
+go
+create table HOODBCJ
+(
+    HOODBCJId int identity(1,1),
+    ModuleTreeId int,
+    Length decimal(6,2),
+	Height decimal(6,2),	
+	SuDis decimal(6,2)	
+)
+
 --ABD200
 if exists (select * from sysobjects where name='ABD200')
 drop table ABD200

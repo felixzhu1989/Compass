@@ -127,3 +127,4 @@ E:\Compass\Compass\obj\Debug\Compass.FrmKVIR555.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmKVIMR555.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmKCHF555.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmKCHI555.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmHOODBCJ.resources
