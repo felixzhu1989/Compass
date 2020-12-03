@@ -26,6 +26,15 @@ namespace Compass
         {
             InitializeComponent();
             IniUserId(cobUserId);
+            if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
+            {
+                //技术部和管理员登陆后选中当前登陆用户
+                cobUserId.Text = Program.ObjCurrentUser.UserAccount;
+            }
+            else
+            {
+                cobUserId.SelectedIndex = -1; //默认选中
+            }
             IniModel(cobModel);
             IniODPNo(cobODPNo);
             dgvDrawingPlan.AutoGenerateColumns = false;

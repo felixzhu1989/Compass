@@ -118,6 +118,12 @@ select PartDescription,Quantity,PartNo,Unit,Length,Width,Height,Material,Remark,
 select * from UVIR555 
 
 
+delete from Projects where ProjectId=57
+select * from Projects  order by ShippingTime desc
+select * from SpecialRequirements
+delete from SpecialRequirements where ProjectId=104
+
+
 
 
 

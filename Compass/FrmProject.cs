@@ -29,6 +29,15 @@ namespace Compass
             InitializeComponent();
             IniCustomerId(cobCustomerId);
             IniUserId(cobUserId);
+            if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
+            {
+                //技术部和管理员登陆后选中当前登陆用户
+                cobUserId.Text = Program.ObjCurrentUser.UserAccount;
+            }
+            else
+            {
+                cobUserId.SelectedIndex = -1; //默认选中
+            }
             IniVaultId(cobVaultId);
             cobHoodType.Items.Add("Hood");
             cobHoodType.Items.Add("Ceiling");
@@ -47,6 +56,7 @@ namespace Compass
             cobItem.DataSource = objUserService.GetUserTech();
             cobItem.DisplayMember = "UserAccount";
             cobItem.ValueMember = "UserId";
+
             cobItem.SelectedIndex = -1;//默认不要选中
         }
         /// <summary>
@@ -58,7 +68,6 @@ namespace Compass
             cobItem.DataSource = objCustomerService.GetAllCustomers();
             cobItem.DisplayMember = "CustomerName";
             cobItem.ValueMember = "CustomerId";
-            cobItem.SelectedIndex = -1;//默认不要选中
         }
         /// <summary>
         /// 初始化PDM项目库

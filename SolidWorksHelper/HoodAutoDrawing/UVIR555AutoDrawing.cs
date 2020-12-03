@@ -742,7 +742,7 @@ namespace SolidWorksHelper
                 swPart.Parameter("D1@草图1").SystemValue = (item.ExBeamLength - 3.5m) / 1000m;
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0049-1"));
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D1@草图1").SystemValue = (item.ExBeamLength - 5m) / 1000m;
+                swPart.Parameter("D1@草图1").SystemValue = (item.ExBeamLength - 9m) / 1000m;
 
                 //----------灯具----------
                 //日光灯

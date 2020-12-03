@@ -204,3 +204,33 @@ where ProjectId=65
 group by Model
 
 
+--分页查询
+select * from Projects  order by ShippingTime desc
+--查询完工日期在2020年的订单 where ShippingTime>'2019/12/31' and ShippingTime<'2021/1/1'
+--第一页     
+select top 10 * from Projects where ShippingTime>'2019/12/31' and ShippingTime<'2021/1/1' order by ShippingTime desc
+--第二页
+select top 10 * from projects where ShippingTime>'2019/12/31' and ShippingTime<'2021/1/1' and ProjectId not in
+(select top 10 ProjectId from Projects where ShippingTime>'2019/12/31' and ShippingTime<'2021/1/1' order by ShippingTime desc)
+order by ShippingTime desc
+--第三页（过滤条数=每页显示的条数*（显示的第几页-1））
+select top 10 * from projects where ShippingTime>'2019/12/31' and ShippingTime<'2021/1/1' and ProjectId not in
+(select top 20 ProjectId from Projects where ShippingTime>'2019/12/31' and ShippingTime<'2021/1/1' order by ShippingTime desc)
+order by ShippingTime desc
+
+
+--查询符合条件的记录总数
+select COUNT(*) from Projects where ShippingTime>'2019/12/31' and ShippingTime<'2021/1/1'
+
+--计算符合条件的总页数（）
+
+--------分页实现的基本思路----------
+--每页显示的条数
+--过滤掉的总数=每页显示的条数*（当前显示的页数-1）
+--查询条件的确定
+--排序条件
+
+--获取满足条件的记录总数
+--知道查询结果需要显示的页数=记录总数/每页显示条数+1（如果【记录总数%每页显示条数】取模后不为0【未除尽】，则+1）
+
+

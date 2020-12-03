@@ -32,6 +32,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvProjectTracking = new System.Windows.Forms.DataGridView();
+            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KickOffStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DrReleaseTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProdFinishTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProdFinishActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeliverActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectTrackingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiQueryAllProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,17 +75,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.cobODPNo = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KickOffStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DrReleaseTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProdFinishTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProdFinishActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeliverActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectTrackingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTracking)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.grbEditProjectTracking.SuspendLayout();
@@ -126,6 +126,95 @@
             this.dgvProjectTracking.SelectionChanged += new System.EventHandler(this.dgvProjectTracking_SelectionChanged);
             this.dgvProjectTracking.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjectTracking_KeyDown);
             // 
+            // ODPNo
+            // 
+            this.ODPNo.DataPropertyName = "ODPNo";
+            this.ODPNo.HeaderText = "ODP";
+            this.ODPNo.Name = "ODPNo";
+            this.ODPNo.ReadOnly = true;
+            this.ODPNo.Width = 63;
+            // 
+            // ProjectStatusName
+            // 
+            this.ProjectStatusName.DataPropertyName = "ProjectStatusName";
+            this.ProjectStatusName.HeaderText = "项目状态";
+            this.ProjectStatusName.Name = "ProjectStatusName";
+            this.ProjectStatusName.ReadOnly = true;
+            this.ProjectStatusName.Width = 86;
+            // 
+            // ProjectName
+            // 
+            this.ProjectName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ProjectName.DataPropertyName = "ProjectName";
+            this.ProjectName.HeaderText = "项目名称";
+            this.ProjectName.Name = "ProjectName";
+            this.ProjectName.ReadOnly = true;
+            this.ProjectName.Width = 86;
+            // 
+            // KickOffStatus
+            // 
+            this.KickOffStatus.DataPropertyName = "KickOffStatus";
+            this.KickOffStatus.HeaderText = "Kick-Off";
+            this.KickOffStatus.Name = "KickOffStatus";
+            this.KickOffStatus.ReadOnly = true;
+            this.KickOffStatus.Width = 86;
+            // 
+            // DrReleaseTarget
+            // 
+            this.DrReleaseTarget.DataPropertyName = "DrReleaseTarget";
+            this.DrReleaseTarget.HeaderText = "计划发图";
+            this.DrReleaseTarget.Name = "DrReleaseTarget";
+            this.DrReleaseTarget.ReadOnly = true;
+            this.DrReleaseTarget.Width = 86;
+            // 
+            // Item
+            // 
+            this.Item.DataPropertyName = "DrReleaseActual";
+            this.Item.HeaderText = "实际发图";
+            this.Item.Name = "Item";
+            this.Item.ReadOnly = true;
+            this.Item.Width = 86;
+            // 
+            // ProdFinishTarget
+            // 
+            this.ProdFinishTarget.DataPropertyName = "ProdFinishTarget";
+            this.ProdFinishTarget.HeaderText = "计划完工";
+            this.ProdFinishTarget.Name = "ProdFinishTarget";
+            this.ProdFinishTarget.ReadOnly = true;
+            this.ProdFinishTarget.Width = 86;
+            // 
+            // ProdFinishActual
+            // 
+            this.ProdFinishActual.DataPropertyName = "ProdFinishActual";
+            this.ProdFinishActual.HeaderText = "实际完工";
+            this.ProdFinishActual.Name = "ProdFinishActual";
+            this.ProdFinishActual.ReadOnly = true;
+            this.ProdFinishActual.Width = 86;
+            // 
+            // DeliverActual
+            // 
+            this.DeliverActual.DataPropertyName = "DeliverActual";
+            this.DeliverActual.HeaderText = "实际发货";
+            this.DeliverActual.Name = "DeliverActual";
+            this.DeliverActual.ReadOnly = true;
+            this.DeliverActual.Width = 86;
+            // 
+            // ProjectTrackingId
+            // 
+            this.ProjectTrackingId.DataPropertyName = "ProjectTrackingId";
+            this.ProjectTrackingId.HeaderText = "ID";
+            this.ProjectTrackingId.Name = "ProjectTrackingId";
+            this.ProjectTrackingId.ReadOnly = true;
+            this.ProjectTrackingId.Width = 48;
+            // 
+            // UserAccount
+            // 
+            this.UserAccount.DataPropertyName = "UserAccount";
+            this.UserAccount.HeaderText = "制图";
+            this.UserAccount.Name = "UserAccount";
+            this.UserAccount.ReadOnly = true;
+            this.UserAccount.Width = 60;
+            // 
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -133,27 +222,29 @@
             this.tsmiEditProjectTracking,
             this.tsmiDeleteProjectTracking});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(173, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(181, 92);
             // 
             // tsmiQueryAllProjectTracking
             // 
             this.tsmiQueryAllProjectTracking.Name = "tsmiQueryAllProjectTracking";
-            this.tsmiQueryAllProjectTracking.Size = new System.Drawing.Size(172, 22);
+            this.tsmiQueryAllProjectTracking.Size = new System.Drawing.Size(180, 22);
             this.tsmiQueryAllProjectTracking.Text = "显示全部跟踪记录";
             this.tsmiQueryAllProjectTracking.Click += new System.EventHandler(this.tsmiQueryAllProjectTracking_Click);
             // 
             // tsmiEditProjectTracking
             // 
             this.tsmiEditProjectTracking.Name = "tsmiEditProjectTracking";
-            this.tsmiEditProjectTracking.Size = new System.Drawing.Size(172, 22);
+            this.tsmiEditProjectTracking.Size = new System.Drawing.Size(180, 22);
             this.tsmiEditProjectTracking.Text = "修改项目跟踪记录";
             this.tsmiEditProjectTracking.Click += new System.EventHandler(this.tsmiEditProjectTracking_Click);
             // 
             // tsmiDeleteProjectTracking
             // 
+            this.tsmiDeleteProjectTracking.Enabled = false;
             this.tsmiDeleteProjectTracking.Name = "tsmiDeleteProjectTracking";
-            this.tsmiDeleteProjectTracking.Size = new System.Drawing.Size(172, 22);
+            this.tsmiDeleteProjectTracking.Size = new System.Drawing.Size(180, 22);
             this.tsmiDeleteProjectTracking.Text = "删除项目跟踪记录";
+            this.tsmiDeleteProjectTracking.Visible = false;
             this.tsmiDeleteProjectTracking.Click += new System.EventHandler(this.tsmiDeleteProjectTracking_Click);
             // 
             // label1
@@ -238,7 +329,6 @@
             this.dtpEditDrReleaseActual.Name = "dtpEditDrReleaseActual";
             this.dtpEditDrReleaseActual.Size = new System.Drawing.Size(117, 25);
             this.dtpEditDrReleaseActual.TabIndex = 20;
-            
             // 
             // label6
             // 
@@ -256,7 +346,6 @@
             this.dtpEditProdFinishActual.Name = "dtpEditProdFinishActual";
             this.dtpEditProdFinishActual.Size = new System.Drawing.Size(117, 25);
             this.dtpEditProdFinishActual.TabIndex = 20;
-            
             // 
             // label9
             // 
@@ -275,7 +364,6 @@
             this.dtpEditDeliverActual.Name = "dtpEditDeliverActual";
             this.dtpEditDeliverActual.Size = new System.Drawing.Size(117, 25);
             this.dtpEditDeliverActual.TabIndex = 20;
-            
             // 
             // btnQueryAllProjectTracking
             // 
@@ -459,95 +547,6 @@
             this.label7.Size = new System.Drawing.Size(152, 19);
             this.label7.TabIndex = 19;
             this.label7.Text = "查询用，添加时不要点击";
-            // 
-            // ODPNo
-            // 
-            this.ODPNo.DataPropertyName = "ODPNo";
-            this.ODPNo.HeaderText = "ODP";
-            this.ODPNo.Name = "ODPNo";
-            this.ODPNo.ReadOnly = true;
-            this.ODPNo.Width = 63;
-            // 
-            // ProjectStatusName
-            // 
-            this.ProjectStatusName.DataPropertyName = "ProjectStatusName";
-            this.ProjectStatusName.HeaderText = "项目状态";
-            this.ProjectStatusName.Name = "ProjectStatusName";
-            this.ProjectStatusName.ReadOnly = true;
-            this.ProjectStatusName.Width = 86;
-            // 
-            // ProjectName
-            // 
-            this.ProjectName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.ProjectName.DataPropertyName = "ProjectName";
-            this.ProjectName.HeaderText = "项目名称";
-            this.ProjectName.Name = "ProjectName";
-            this.ProjectName.ReadOnly = true;
-            this.ProjectName.Width = 86;
-            // 
-            // KickOffStatus
-            // 
-            this.KickOffStatus.DataPropertyName = "KickOffStatus";
-            this.KickOffStatus.HeaderText = "Kick-Off";
-            this.KickOffStatus.Name = "KickOffStatus";
-            this.KickOffStatus.ReadOnly = true;
-            this.KickOffStatus.Width = 86;
-            // 
-            // DrReleaseTarget
-            // 
-            this.DrReleaseTarget.DataPropertyName = "DrReleaseTarget";
-            this.DrReleaseTarget.HeaderText = "计划发图";
-            this.DrReleaseTarget.Name = "DrReleaseTarget";
-            this.DrReleaseTarget.ReadOnly = true;
-            this.DrReleaseTarget.Width = 86;
-            // 
-            // Item
-            // 
-            this.Item.DataPropertyName = "DrReleaseActual";
-            this.Item.HeaderText = "实际发图";
-            this.Item.Name = "Item";
-            this.Item.ReadOnly = true;
-            this.Item.Width = 86;
-            // 
-            // ProdFinishTarget
-            // 
-            this.ProdFinishTarget.DataPropertyName = "ProdFinishTarget";
-            this.ProdFinishTarget.HeaderText = "计划完工";
-            this.ProdFinishTarget.Name = "ProdFinishTarget";
-            this.ProdFinishTarget.ReadOnly = true;
-            this.ProdFinishTarget.Width = 86;
-            // 
-            // ProdFinishActual
-            // 
-            this.ProdFinishActual.DataPropertyName = "ProdFinishActual";
-            this.ProdFinishActual.HeaderText = "实际完工";
-            this.ProdFinishActual.Name = "ProdFinishActual";
-            this.ProdFinishActual.ReadOnly = true;
-            this.ProdFinishActual.Width = 86;
-            // 
-            // DeliverActual
-            // 
-            this.DeliverActual.DataPropertyName = "DeliverActual";
-            this.DeliverActual.HeaderText = "实际发货";
-            this.DeliverActual.Name = "DeliverActual";
-            this.DeliverActual.ReadOnly = true;
-            this.DeliverActual.Width = 86;
-            // 
-            // ProjectTrackingId
-            // 
-            this.ProjectTrackingId.DataPropertyName = "ProjectTrackingId";
-            this.ProjectTrackingId.HeaderText = "ID";
-            this.ProjectTrackingId.Name = "ProjectTrackingId";
-            this.ProjectTrackingId.ReadOnly = true;
-            this.ProjectTrackingId.Width = 48;
-            // 
-            // UserAccount
-            // 
-            this.UserAccount.DataPropertyName = "UserAccount";
-            this.UserAccount.HeaderText = "制图";
-            this.UserAccount.Name = "UserAccount";
-            this.UserAccount.ReadOnly = true;
-            this.UserAccount.Width = 60;
             // 
             // FrmProjectTracking
             // 
