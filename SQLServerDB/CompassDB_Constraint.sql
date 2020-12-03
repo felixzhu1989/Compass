@@ -36,11 +36,7 @@ if exists (select * from sysobjects where name='pk_ProjectTrackingId')
 GO
 alter table ProjectTracking add constraint pk_ProjectTrackingId primary key (ProjectTrackingId)
 GO
---if exists (select * from sysobjects where name='pk_VaultId')
---    alter table ProjectVaults drop constraint pk_VaultId
---GO
---alter table ProjectVaults add constraint pk_VaultId primary key (VaultId)
---GO
+
 if exists (select * from sysobjects where name='pk_ProjectId')
     alter table Projects drop constraint pk_ProjectId
 GO
@@ -154,11 +150,7 @@ if exists (select * from sysobjects where name='uq_ProjectStatus')
 GO
 alter table ProjectStatus add constraint uq_ProjectStatus unique (ProjectStatus)
 GO
---if exists (select * from sysobjects where name='uq_VaultName')
---    alter table ProjectVaults drop constraint uq_VaultName
---GO
---alter table ProjectVaults add constraint uq_VaultName unique (VaultName)
---GO
+
 if exists (select * from sysobjects where name='uq_ProjectId_ProjectTracking')
     alter table ProjectTracking drop constraint uq_ProjectId_ProjectTracking
 GO
@@ -166,11 +158,6 @@ alter table ProjectTracking add constraint uq_ProjectId_ProjectTracking unique (
 GO
 
 
---if exists (select * from sysobjects where name='uq_Vault')
---    alter table ProjectVaults drop constraint uq_Vault
---GO
---alter table ProjectVaults add constraint uq_Vault unique (Vault)
---GO
 if exists (select * from sysobjects where name='uq_ODPNo')
     alter table Projects drop constraint uq_ODPNo
 GO
@@ -481,11 +468,7 @@ if exists (select * from sysobjects where name='fk_ProjectStatusId')
 GO
 alter table ProjectTracking add constraint fk_ProjectStatusId foreign key(ProjectStatusId) references ProjectStatus (ProjectStatusId)
 GO
---if exists (select * from sysobjects where name='fk_VaultId')
---    alter table Projects drop constraint fk_VaultId
---GO
---alter table Projects add constraint fk_VaultId foreign key(VaultId) references ProjectVaults (VaultId)
---GO
+
 if exists (select * from sysobjects where name='fk_CustomerId')
     alter table Projects drop constraint fk_CustomerId
 GO
