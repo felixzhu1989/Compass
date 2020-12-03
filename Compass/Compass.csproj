@@ -715,11 +715,11 @@
     <Compile Include="HoodForm\FrmUVI555.Designer.cs">
       <DependentUpon>FrmUVI555.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmVaultsStatusTypes.cs">
+    <Compile Include="FrmStatusTypes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmVaultsStatusTypes.Designer.cs">
-      <DependentUpon>FrmVaultsStatusTypes.cs</DependentUpon>
+    <Compile Include="FrmStatusTypes.Designer.cs">
+      <DependentUpon>FrmStatusTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelFormFactory.cs" />
     <Compile Include="PrintReports.cs" />
@@ -1035,8 +1035,8 @@
     <EmbeddedResource Include="HoodForm\FrmUVI555.resx">
       <DependentUpon>FrmUVI555.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmVaultsStatusTypes.resx">
-      <DependentUpon>FrmVaultsStatusTypes.cs</DependentUpon>
+    <EmbeddedResource Include="FrmStatusTypes.resx">
+      <DependentUpon>FrmStatusTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmUWI555.resx">
       <DependentUpon>FrmUWI555.cs</DependentUpon>

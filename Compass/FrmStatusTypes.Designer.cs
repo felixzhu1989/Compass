@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmVaultsStatusTypes
+    partial class FrmStatusTypes
     {
         /// <summary>
         /// Required designer variable.
@@ -33,15 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgvProjectVaults = new System.Windows.Forms.DataGridView();
-            this.VaultId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VaultName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cmsProjectVaults = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiEditProjectValut = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDeleteProjectVault = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvProjectStatus = new System.Windows.Forms.DataGridView();
             this.ProjectStatusId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,13 +48,6 @@
             this.cmsProjectTypes = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditProjectType = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteProjectType = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnEditProjectVault = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtVaultId = new System.Windows.Forms.TextBox();
-            this.grbProjectVaults = new System.Windows.Forms.GroupBox();
-            this.btnAddProjectVault = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtVaultName = new System.Windows.Forms.TextBox();
             this.grbProjectStatus = new System.Windows.Forms.GroupBox();
             this.btnAddProjectStatus = new System.Windows.Forms.Button();
             this.btnEditProjectStatus = new System.Windows.Forms.Button();
@@ -81,13 +66,10 @@
             this.txtTypeName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtTypeId = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProjectVaults)).BeginInit();
-            this.cmsProjectVaults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectStatus)).BeginInit();
             this.cmsProjectStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTypes)).BeginInit();
             this.cmsProjectTypes.SuspendLayout();
-            this.grbProjectVaults.SuspendLayout();
             this.grbProjectStatus.SuspendLayout();
             this.grbProjectType.SuspendLayout();
             this.SuspendLayout();
@@ -99,20 +81,20 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             this.label1.Location = new System.Drawing.Point(5, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(163, 26);
+            this.label1.Size = new System.Drawing.Size(135, 26);
             this.label1.TabIndex = 11;
-            this.label1.Text = "项目库/状态/类型";
+            this.label1.Text = "项目状态/类型";
             // 
-            // dgvProjectVaults
+            // dgvProjectStatus
             // 
-            this.dgvProjectVaults.AllowUserToAddRows = false;
-            this.dgvProjectVaults.AllowUserToDeleteRows = false;
+            this.dgvProjectStatus.AllowUserToAddRows = false;
+            this.dgvProjectStatus.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
-            this.dgvProjectVaults.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvProjectVaults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvProjectStatus.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvProjectStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dgvProjectVaults.BackgroundColor = System.Drawing.Color.White;
-            this.dgvProjectVaults.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvProjectStatus.BackgroundColor = System.Drawing.Color.White;
+            this.dgvProjectStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -120,80 +102,7 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProjectVaults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvProjectVaults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProjectVaults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.VaultId,
-            this.VaultName});
-            this.dgvProjectVaults.ContextMenuStrip = this.cmsProjectVaults;
-            this.dgvProjectVaults.EnableHeadersVisualStyles = false;
-            this.dgvProjectVaults.Location = new System.Drawing.Point(10, 160);
-            this.dgvProjectVaults.Name = "dgvProjectVaults";
-            this.dgvProjectVaults.ReadOnly = true;
-            this.dgvProjectVaults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProjectVaults.Size = new System.Drawing.Size(241, 396);
-            this.dgvProjectVaults.TabIndex = 12;
-            this.dgvProjectVaults.Visible = false;
-            this.dgvProjectVaults.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjectVaults_CellDoubleClick);
-            this.dgvProjectVaults.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjectVaults_RowPostPaint);
-            this.dgvProjectVaults.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjectVaults_KeyDown);
-            // 
-            // VaultId
-            // 
-            this.VaultId.DataPropertyName = "VaultId";
-            this.VaultId.HeaderText = "序号";
-            this.VaultId.Name = "VaultId";
-            this.VaultId.ReadOnly = true;
-            this.VaultId.Width = 60;
-            // 
-            // VaultName
-            // 
-            this.VaultName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.VaultName.DataPropertyName = "VaultName";
-            this.VaultName.HeaderText = "库名称";
-            this.VaultName.Name = "VaultName";
-            this.VaultName.ReadOnly = true;
-            // 
-            // cmsProjectVaults
-            // 
-            this.cmsProjectVaults.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiEditProjectValut,
-            this.tsmiDeleteProjectVault});
-            this.cmsProjectVaults.Name = "cmsProjectVaults";
-            this.cmsProjectVaults.Size = new System.Drawing.Size(166, 48);
-            // 
-            // tsmiEditProjectValut
-            // 
-            this.tsmiEditProjectValut.Name = "tsmiEditProjectValut";
-            this.tsmiEditProjectValut.Size = new System.Drawing.Size(165, 22);
-            this.tsmiEditProjectValut.Text = "修改项目库名称";
-            this.tsmiEditProjectValut.Click += new System.EventHandler(this.tsmiEditProjectValut_Click);
-            // 
-            // tsmiDeleteProjectVault
-            // 
-            this.tsmiDeleteProjectVault.Name = "tsmiDeleteProjectVault";
-            this.tsmiDeleteProjectVault.Size = new System.Drawing.Size(165, 22);
-            this.tsmiDeleteProjectVault.Text = "删除项目库名称";
-            this.tsmiDeleteProjectVault.Click += new System.EventHandler(this.tsmiDeleteProjectVault_Click);
-            // 
-            // dgvProjectStatus
-            // 
-            this.dgvProjectStatus.AllowUserToAddRows = false;
-            this.dgvProjectStatus.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Azure;
-            this.dgvProjectStatus.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvProjectStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.dgvProjectStatus.BackgroundColor = System.Drawing.Color.White;
-            this.dgvProjectStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProjectStatus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvProjectStatus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProjectStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProjectStatus.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProjectStatusId,
@@ -201,7 +110,7 @@
             this.StatusDesc});
             this.dgvProjectStatus.ContextMenuStrip = this.cmsProjectStatus;
             this.dgvProjectStatus.EnableHeadersVisualStyles = false;
-            this.dgvProjectStatus.Location = new System.Drawing.Point(257, 160);
+            this.dgvProjectStatus.Location = new System.Drawing.Point(12, 160);
             this.dgvProjectStatus.Name = "dgvProjectStatus";
             this.dgvProjectStatus.ReadOnly = true;
             this.dgvProjectStatus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -241,19 +150,19 @@
             this.tsmiEditProjectStatus,
             this.tsmiDeleteProjectStatus});
             this.cmsProjectStatus.Name = "cmsProjectStatus";
-            this.cmsProjectStatus.Size = new System.Drawing.Size(153, 48);
+            this.cmsProjectStatus.Size = new System.Drawing.Size(149, 48);
             // 
             // tsmiEditProjectStatus
             // 
             this.tsmiEditProjectStatus.Name = "tsmiEditProjectStatus";
-            this.tsmiEditProjectStatus.Size = new System.Drawing.Size(152, 22);
+            this.tsmiEditProjectStatus.Size = new System.Drawing.Size(148, 22);
             this.tsmiEditProjectStatus.Text = "修改项目状态";
             this.tsmiEditProjectStatus.Click += new System.EventHandler(this.tsmiEditProjectStatus_Click);
             // 
             // tsmiDeleteProjectStatus
             // 
             this.tsmiDeleteProjectStatus.Name = "tsmiDeleteProjectStatus";
-            this.tsmiDeleteProjectStatus.Size = new System.Drawing.Size(152, 22);
+            this.tsmiDeleteProjectStatus.Size = new System.Drawing.Size(148, 22);
             this.tsmiDeleteProjectStatus.Text = "删除项目状态";
             this.tsmiDeleteProjectStatus.Click += new System.EventHandler(this.tsmiDeleteProjectStatus_Click);
             // 
@@ -261,20 +170,20 @@
             // 
             this.dgvProjectTypes.AllowUserToAddRows = false;
             this.dgvProjectTypes.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Azure;
-            this.dgvProjectTypes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Azure;
+            this.dgvProjectTypes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvProjectTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvProjectTypes.BackgroundColor = System.Drawing.Color.White;
             this.dgvProjectTypes.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProjectTypes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProjectTypes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvProjectTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProjectTypes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TypeId,
@@ -282,7 +191,7 @@
             this.KMLink});
             this.dgvProjectTypes.ContextMenuStrip = this.cmsProjectTypes;
             this.dgvProjectTypes.EnableHeadersVisualStyles = false;
-            this.dgvProjectTypes.Location = new System.Drawing.Point(611, 160);
+            this.dgvProjectTypes.Location = new System.Drawing.Point(366, 160);
             this.dgvProjectTypes.Name = "dgvProjectTypes";
             this.dgvProjectTypes.ReadOnly = true;
             this.dgvProjectTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -321,99 +230,21 @@
             this.tsmiEditProjectType,
             this.tsmiDeleteProjectType});
             this.cmsProjectTypes.Name = "cmsProjectTypes";
-            this.cmsProjectTypes.Size = new System.Drawing.Size(153, 48);
+            this.cmsProjectTypes.Size = new System.Drawing.Size(149, 48);
             // 
             // tsmiEditProjectType
             // 
             this.tsmiEditProjectType.Name = "tsmiEditProjectType";
-            this.tsmiEditProjectType.Size = new System.Drawing.Size(152, 22);
+            this.tsmiEditProjectType.Size = new System.Drawing.Size(148, 22);
             this.tsmiEditProjectType.Text = "修改项目类型";
             this.tsmiEditProjectType.Click += new System.EventHandler(this.tsmiEditProjectType_Click);
             // 
             // tsmiDeleteProjectType
             // 
             this.tsmiDeleteProjectType.Name = "tsmiDeleteProjectType";
-            this.tsmiDeleteProjectType.Size = new System.Drawing.Size(152, 22);
+            this.tsmiDeleteProjectType.Size = new System.Drawing.Size(148, 22);
             this.tsmiDeleteProjectType.Text = "删除项目类型";
             this.tsmiDeleteProjectType.Click += new System.EventHandler(this.tsmiDeleteProjectType_Click);
-            // 
-            // btnEditProjectVault
-            // 
-            this.btnEditProjectVault.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.btnEditProjectVault.FlatAppearance.BorderSize = 0;
-            this.btnEditProjectVault.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditProjectVault.ForeColor = System.Drawing.Color.White;
-            this.btnEditProjectVault.Location = new System.Drawing.Point(124, 84);
-            this.btnEditProjectVault.Name = "btnEditProjectVault";
-            this.btnEditProjectVault.Size = new System.Drawing.Size(108, 28);
-            this.btnEditProjectVault.TabIndex = 2;
-            this.btnEditProjectVault.Text = "修改项目库";
-            this.btnEditProjectVault.UseVisualStyleBackColor = false;
-            this.btnEditProjectVault.Click += new System.EventHandler(this.btnEditProjectVault_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 19);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "项目库序号";
-            // 
-            // txtVaultId
-            // 
-            this.txtVaultId.Location = new System.Drawing.Point(124, 23);
-            this.txtVaultId.Name = "txtVaultId";
-            this.txtVaultId.ReadOnly = true;
-            this.txtVaultId.Size = new System.Drawing.Size(108, 25);
-            this.txtVaultId.TabIndex = 23;
-            // 
-            // grbProjectVaults
-            // 
-            this.grbProjectVaults.Controls.Add(this.btnAddProjectVault);
-            this.grbProjectVaults.Controls.Add(this.btnEditProjectVault);
-            this.grbProjectVaults.Controls.Add(this.label2);
-            this.grbProjectVaults.Controls.Add(this.txtVaultName);
-            this.grbProjectVaults.Controls.Add(this.label3);
-            this.grbProjectVaults.Controls.Add(this.txtVaultId);
-            this.grbProjectVaults.Location = new System.Drawing.Point(10, 34);
-            this.grbProjectVaults.Name = "grbProjectVaults";
-            this.grbProjectVaults.Size = new System.Drawing.Size(241, 120);
-            this.grbProjectVaults.TabIndex = 0;
-            this.grbProjectVaults.TabStop = false;
-            this.grbProjectVaults.Text = "项目库管理";
-            this.grbProjectVaults.Visible = false;
-            // 
-            // btnAddProjectVault
-            // 
-            this.btnAddProjectVault.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.btnAddProjectVault.FlatAppearance.BorderSize = 0;
-            this.btnAddProjectVault.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddProjectVault.ForeColor = System.Drawing.Color.White;
-            this.btnAddProjectVault.Location = new System.Drawing.Point(10, 84);
-            this.btnAddProjectVault.Name = "btnAddProjectVault";
-            this.btnAddProjectVault.Size = new System.Drawing.Size(108, 28);
-            this.btnAddProjectVault.TabIndex = 1;
-            this.btnAddProjectVault.Text = "添加项目库";
-            this.btnAddProjectVault.UseVisualStyleBackColor = false;
-            this.btnAddProjectVault.Click += new System.EventHandler(this.btnAddProjectVault_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 56);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 19);
-            this.label2.TabIndex = 24;
-            this.label2.Text = "项目库名称";
-            // 
-            // txtVaultName
-            // 
-            this.txtVaultName.Location = new System.Drawing.Point(124, 53);
-            this.txtVaultName.Name = "txtVaultName";
-            this.txtVaultName.Size = new System.Drawing.Size(108, 25);
-            this.txtVaultName.TabIndex = 0;
-            this.txtVaultName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtVaultName_KeyDown);
             // 
             // grbProjectStatus
             // 
@@ -425,7 +256,7 @@
             this.grbProjectStatus.Controls.Add(this.txtProjectStatusId);
             this.grbProjectStatus.Controls.Add(this.label5);
             this.grbProjectStatus.Controls.Add(this.txtProjectStatusName);
-            this.grbProjectStatus.Location = new System.Drawing.Point(257, 34);
+            this.grbProjectStatus.Location = new System.Drawing.Point(12, 34);
             this.grbProjectStatus.Name = "grbProjectStatus";
             this.grbProjectStatus.Size = new System.Drawing.Size(348, 120);
             this.grbProjectStatus.TabIndex = 0;
@@ -520,7 +351,7 @@
             this.grbProjectType.Controls.Add(this.txtTypeName);
             this.grbProjectType.Controls.Add(this.label7);
             this.grbProjectType.Controls.Add(this.txtTypeId);
-            this.grbProjectType.Location = new System.Drawing.Point(611, 34);
+            this.grbProjectType.Location = new System.Drawing.Point(366, 34);
             this.grbProjectType.Name = "grbProjectType";
             this.grbProjectType.Size = new System.Drawing.Size(327, 120);
             this.grbProjectType.TabIndex = 0;
@@ -605,30 +436,24 @@
             this.txtTypeId.Size = new System.Drawing.Size(108, 25);
             this.txtTypeId.TabIndex = 23;
             // 
-            // FrmVaultsStatusTypes
+            // FrmStatusTypes
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(950, 568);
             this.Controls.Add(this.dgvProjectTypes);
             this.Controls.Add(this.dgvProjectStatus);
-            this.Controls.Add(this.dgvProjectVaults);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.grbProjectStatus);
             this.Controls.Add(this.grbProjectType);
-            this.Controls.Add(this.grbProjectVaults);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmVaultsStatusTypes";
-            this.Text = "FrmVaultsStatusTypes";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProjectVaults)).EndInit();
-            this.cmsProjectVaults.ResumeLayout(false);
+            this.Name = "FrmStatusTypes";
+            this.Text = "FrmStatusTypes";
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectStatus)).EndInit();
             this.cmsProjectStatus.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTypes)).EndInit();
             this.cmsProjectTypes.ResumeLayout(false);
-            this.grbProjectVaults.ResumeLayout(false);
-            this.grbProjectVaults.PerformLayout();
             this.grbProjectStatus.ResumeLayout(false);
             this.grbProjectStatus.PerformLayout();
             this.grbProjectType.ResumeLayout(false);
@@ -641,16 +466,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dgvProjectVaults;
         private System.Windows.Forms.DataGridView dgvProjectStatus;
         private System.Windows.Forms.DataGridView dgvProjectTypes;
-        private System.Windows.Forms.Button btnEditProjectVault;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtVaultId;
-        private System.Windows.Forms.GroupBox grbProjectVaults;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtVaultName;
-        private System.Windows.Forms.Button btnAddProjectVault;
         private System.Windows.Forms.GroupBox grbProjectStatus;
         private System.Windows.Forms.Button btnAddProjectStatus;
         private System.Windows.Forms.Button btnEditProjectStatus;
@@ -665,9 +482,6 @@
         private System.Windows.Forms.TextBox txtTypeName;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtTypeId;
-        private System.Windows.Forms.ContextMenuStrip cmsProjectVaults;
-        private System.Windows.Forms.ToolStripMenuItem tsmiEditProjectValut;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDeleteProjectVault;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtProjectStatusId;
         private System.Windows.Forms.Label label9;
@@ -678,8 +492,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiDeleteProjectStatus;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditProjectType;
         private System.Windows.Forms.ToolStripMenuItem tsmiDeleteProjectType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VaultId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VaultName;
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeId;
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn KMLink;

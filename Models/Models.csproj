@@ -141,7 +141,6 @@
     <Compile Include="ProjectStatus.cs" />
     <Compile Include="ProjectTracking.cs" />
     <Compile Include="ProjectType.cs" />
-    <Compile Include="ProjectVault.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QualityFeedback.cs" />
     <Compile Include="SpecialRequirement.cs" />

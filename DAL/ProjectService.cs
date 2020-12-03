@@ -37,15 +37,7 @@ namespace DAL
         {
             return GetProjectsByWhereSql(string.Format(" where Projects.UserId = {0}", userId));
         }
-        /// <summary>
-        /// 根据项目库返回项目集合
-        /// </summary>
-        /// <param name="vaultId"></param>
-        /// <returns></returns>
-        public List<Project> GetProjectsByVaultId(string vaultId)
-        {
-            return GetProjectsByWhereSql(string.Format(" where Projects.VaultId = {0}", vaultId));
-        }
+        
         /// <summary>
         /// 根据where条件返回项目集合
         /// </summary>
@@ -53,8 +45,7 @@ namespace DAL
         /// <returns></returns>
         public List<Project> GetProjectsByWhereSql(string whereSql)
         {
-            StringBuilder sql = new StringBuilder("select Projects.ProjectId,ODPNo,BPONo,Projects.VaultId,VaultName,ProjectName,Projects.CustomerId,CustomerName,ShippingTime,Projects.UserId,UserAccount,RiskLevel,ProjectStatusName,HoodType from Projects");
-            sql.Append(" inner join ProjectVaults on Projects.VaultId=ProjectVaults.VaultId");
+            StringBuilder sql = new StringBuilder("select Projects.ProjectId,ODPNo,BPONo,ProjectName,Projects.CustomerId,CustomerName,ShippingTime,Projects.UserId,UserAccount,RiskLevel,ProjectStatusName,HoodType from Projects");
             sql.Append(" inner join Users on Projects.UserId=Users.UserId");
             sql.Append(" inner join Customers on Projects.CustomerId=Customers.CustomerId");
             sql.Append(" inner join ProjectTracking on Projects.ProjectId=ProjectTracking.ProjectId");
@@ -72,8 +63,6 @@ namespace DAL
                     ProjectId = Convert.ToInt32(objReader["ProjectId"]),
                     ODPNo = objReader["ODPNo"].ToString(),
                     BPONo = objReader["BPONo"].ToString(),
-                    VaultId = Convert.ToInt32(objReader["VaultId"]),
-                    VaultName = objReader["VaultName"].ToString(),
                     ProjectName = objReader["ProjectName"].ToString(),
                     CustomerId = Convert.ToInt32(objReader["CustomerId"]),
                     CustomerName = objReader["CustomerName"].ToString(),
@@ -113,8 +102,7 @@ namespace DAL
         /// <returns></returns>
         public Project GetProjectByWhereSql(string whereSql)
         {
-            string sql = "select Projects.ProjectId,ODPNo,BPONo,Projects.VaultId,VaultName,ProjectName,Projects.CustomerId,CustomerName,ShippingTime,Projects.UserId,UserAccount,RiskLevel,HoodType from Projects";
-            sql += " inner join ProjectVaults on Projects.VaultId=ProjectVaults.VaultId";
+            string sql = "select Projects.ProjectId,ODPNo,BPONo,ProjectName,Projects.CustomerId,CustomerName,ShippingTime,Projects.UserId,UserAccount,RiskLevel,HoodType from Projects";
             sql += " inner join Users on Projects.UserId=Users.UserId";
             sql += " inner join Customers on Projects.CustomerId=Customers.CustomerId";
             sql += " left join GeneralRequirements on Projects.ProjectId=GeneralRequirements.ProjectId";
@@ -128,8 +116,6 @@ namespace DAL
                     ProjectId = Convert.ToInt32(objReader["ProjectId"]),
                     ODPNo = objReader["ODPNo"].ToString(),
                     BPONo = objReader["BPONo"].ToString(),
-                    VaultId = Convert.ToInt32(objReader["VaultId"]),
-                    VaultName = objReader["VaultName"].ToString(),
                     ProjectName = objReader["ProjectName"].ToString(),
                     CustomerId = Convert.ToInt32(objReader["CustomerId"]),
                     CustomerName = objReader["CustomerName"].ToString(),
@@ -150,9 +136,9 @@ namespace DAL
         /// <returns></returns>
         public int AddProject(Project objProject)
         {
-            string sql = "insert into Projects (ODPNo,BPONo,VaultId,ProjectName,CustomerId,ShippingTime,UserId,HoodType)";
+            string sql = "insert into Projects (ODPNo,BPONo,ProjectName,CustomerId,ShippingTime,UserId,HoodType)";
             sql += " values('{0}','{1}',{2},'{3}',{4},'{5}',{6},'{7}');select @@identity";
-            sql = string.Format(sql, objProject.ODPNo, objProject.BPONo, objProject.VaultId,
+            sql = string.Format(sql, objProject.ODPNo, objProject.BPONo, 
                 objProject.ProjectName, objProject.CustomerId, objProject.ShippingTime, objProject.UserId,objProject.HoodType);
             try
             {
@@ -182,9 +168,9 @@ namespace DAL
         /// <returns></returns>
         public int EditProject(Project objProject)
         {
-            string sql = "update Projects set ODPNo='{0}',BPONo='{1}',VaultId={2},ProjectName='{3}',CustomerId={4},";
+            string sql = "update Projects set ODPNo='{0}',BPONo='{1}',ProjectName='{3}',CustomerId={4},";
             sql += "ShippingTime='{5}',UserId={6},HoodType='{7}' where ProjectId={8}";
-            sql = string.Format(sql, objProject.ODPNo, objProject.BPONo, objProject.VaultId, objProject.ProjectName, objProject.CustomerId,
+            sql = string.Format(sql, objProject.ODPNo, objProject.BPONo,  objProject.ProjectName, objProject.CustomerId,
                 objProject.ShippingTime, objProject.UserId,objProject.HoodType, objProject.ProjectId);
             try
             {
@@ -238,9 +224,9 @@ namespace DAL
         public bool AddProjectAndTracking(Project objProject)
         {
             //编写SQL语句
-            string sql = "insert into Projects (ODPNo,BPONo,VaultId,ProjectName,CustomerId,ShippingTime,UserId,HoodType)";
+            string sql = "insert into Projects (ODPNo,BPONo,ProjectName,CustomerId,ShippingTime,UserId,HoodType)";
             sql += " values('{0}','{1}',{2},'{3}',{4},'{5}',{6},'{7}');select @@identity";
-            sql = string.Format(sql, objProject.ODPNo, objProject.BPONo, objProject.VaultId,
+            sql = string.Format(sql, objProject.ODPNo, objProject.BPONo, 
                 objProject.ProjectName, objProject.CustomerId, objProject.ShippingTime, objProject.UserId,objProject.HoodType);
             List<string> sqlList = new List<string>();
             sqlList.Add(sql);

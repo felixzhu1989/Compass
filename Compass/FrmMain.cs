@@ -67,7 +67,7 @@ namespace Compass
                 default:
                     tsbCategories.Visible = false;
                     tsbWorkLoad.Visible = false;
-                    tsbVaultsStatusTypes.Visible = false;
+                    tsbStatusTypes.Visible = false;
                     break;
             }
             
@@ -123,10 +123,10 @@ namespace Compass
             OpenForm(new FrmDesignWorkload(), splitContainer.Panel2);
         }
 
-        private void tsbVaultsStatusTypes_Click(object sender, EventArgs e)
+        private void tsbStatusTypes_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
-            OpenForm(new FrmVaultsStatusTypes(), splitContainer.Panel2);
+            OpenForm(new FrmStatusTypes(), splitContainer.Panel2);
         }
         /// <summary>
         /// 天花烟罩发货清单配件

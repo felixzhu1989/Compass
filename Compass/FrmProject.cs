@@ -18,7 +18,6 @@ namespace Compass
         private CustomerService objCustomerService = new CustomerService();
         private UserService objUserService = new UserService();
         private ProjectService objProjectService = new ProjectService();
-        private ProjectVaultService objProjectVaultService = new ProjectVaultService();
         private string projectId = string.Empty;
         //创建委托变量
         public ShowProjectInfoDelegate ShowProjectInfoDeg = null;
@@ -38,7 +37,6 @@ namespace Compass
             {
                 cobUserId.SelectedIndex = -1; //默认选中
             }
-            IniVaultId(cobVaultId);
             cobHoodType.Items.Add("Hood");
             cobHoodType.Items.Add("Ceiling");
             cobHoodType.SelectedIndex = -1;
@@ -69,17 +67,7 @@ namespace Compass
             cobItem.DisplayMember = "CustomerName";
             cobItem.ValueMember = "CustomerId";
         }
-        /// <summary>
-        /// 初始化PDM项目库
-        /// </summary>
-        /// <param name="cobItem"></param>
-        private void IniVaultId(ComboBox cobItem)
-        {
-            cobItem.DataSource = objProjectVaultService.GetAllProjectVaults();
-            cobItem.DisplayMember = "VaultName";
-            cobItem.ValueMember = "VaultId";
-            cobItem.SelectedIndex = 0;//默认
-        }
+        
         /// <summary>
         /// 弹出添加客户窗口（以模式窗口弹出）
         /// </summary>
@@ -114,12 +102,7 @@ namespace Compass
                 cobUserId.Focus();
                 return;
             }
-            if (cobVaultId.SelectedIndex == -1)
-            {
-                MessageBox.Show("请选择PDM库", "验证信息");
-                cobVaultId.Focus();
-                return;
-            }
+            
             if (cobHoodType.SelectedIndex == -1)
             {
                 MessageBox.Show("请选择烟罩类型", "验证信息");
@@ -160,7 +143,6 @@ namespace Compass
                 {
                     ODPNo = txtODPNo.Text.Trim().ToUpper(),
                     BPONo = txtBPONo.Text.Trim().ToUpper(),
-                    VaultId = Convert.ToInt32(cobVaultId.SelectedValue),
                     ProjectName = txtProjectName.Text.Trim(),
                     CustomerId = Convert.ToInt32(cobCustomerId.SelectedValue),
                     ShippingTime = Convert.ToDateTime(dtpShippingTime.Text),
@@ -207,7 +189,6 @@ namespace Compass
                     ProjectId = Convert.ToInt32(txtProjectId.Text.Trim()),
                     ODPNo = txtODPNo.Text.Trim().ToUpper(),
                     BPONo = txtBPONo.Text.Trim().ToUpper(),
-                    VaultId = Convert.ToInt32(cobVaultId.SelectedValue),
                     ProjectName = txtProjectName.Text.Trim(),
                     CustomerId = Convert.ToInt32(cobCustomerId.SelectedValue),
                     ShippingTime = Convert.ToDateTime(dtpShippingTime.Text),
@@ -257,7 +238,6 @@ namespace Compass
             //初始化修改信息
             txtProjectId.Text = objProject.ProjectId.ToString();
             cobUserId.Text = objProject.UserAccount;
-            cobVaultId.Text = objProject.VaultName;
             cobCustomerId.Text = objProject.CustomerName;
             txtODPNo.Text = objProject.ODPNo;
             txtBPONo.Text = objProject.BPONo;

@@ -15,7 +15,6 @@ namespace Models
         public int ProjectId { get; set; }
         public string ODPNo { get; set; }
         public string BPONo { get; set; }
-        public int VaultId { get; set; }
         public string ProjectName { get; set; }
         public int CustomerId { get; set; }
         public DateTime ShippingTime { get; set; }
@@ -23,7 +22,6 @@ namespace Models
         public int UserId { get; set; }
         public string HoodType { get; set; }
         //简单扩展
-        public string VaultName { get; set; }
         public string UserAccount { get; set; }
         public string CustomerName { get; set; }
         public int RiskLevel { get; set; }

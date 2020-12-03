@@ -13,18 +13,13 @@ using DAL;
 
 namespace Compass
 {
-    public partial class FrmVaultsStatusTypes : Form
+    public partial class FrmStatusTypes : Form
     {
-        private ProjectVaultService objProjectVaultService=new ProjectVaultService();
         private ProjectStatusService objProjectStatusService =new ProjectStatusService();
         private ProjectTypeService objProjectTypeService=new ProjectTypeService();
-        public FrmVaultsStatusTypes()
+        public FrmStatusTypes()
         {
             InitializeComponent();
-            dgvProjectVaults.AutoGenerateColumns = false;
-            dgvProjectVaults.DataSource = objProjectVaultService.GetAllProjectVaults();
-            btnEditProjectVault.Visible = false;
-            btnAddProjectVault.Visible = true;
 
             dgvProjectStatus.AutoGenerateColumns = false;
             dgvProjectStatus.DataSource = objProjectStatusService.GetAllProjectStatus();
@@ -41,10 +36,6 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvProjectVaults_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
-        {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvProjectVaults, e);
-        }
         private void dgvProjectStatus_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvProjectStatus, e);
@@ -60,20 +51,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtVaultName_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue == 13)
-            {
-                if (txtVaultId.Text.Length == 0)//如果编号有内容则是修改，如果没有内容则是添加
-                {
-                    btnAddProjectVault_Click(null, null);
-                }
-                else
-                {
-                    btnEditProjectVault_Click(null, null);
-                }
-            }
-        }
+        
         private void txtProjectStatusName_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 13)
@@ -104,45 +82,7 @@ namespace Compass
         }
         #endregion
         #region 添加操作
-        /// <summary>
-        /// 添加项目库
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnAddProjectVault_Click(object sender, EventArgs e)
-        {
-            #region 数据验证
-            if (txtVaultName.Text.Trim().Length == 0)
-            {
-                MessageBox.Show("请输入项目库名称", "验证信息");
-                txtVaultName.Focus();
-                return;
-            }
-            #endregion
-            //封装对象
-            ProjectVault objProjectVault = new ProjectVault()
-            {
-                VaultName = txtVaultName.Text.Trim()
-            };
-            //提交添加
-            try
-            {
-                int vaultId = objProjectVaultService.AddProjectVault(objProjectVault);
-                if (vaultId > 1)
-                {
-                    //提示添加成功
-                    MessageBox.Show("项目库添加成功", "提示信息");
-                    //刷新显示
-                    dgvProjectVaults.DataSource = objProjectVaultService.GetAllProjectVaults();
-                    //清空内容
-                    txtVaultName.Text ="";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
         /// <summary>
         /// 添加项目状态
         /// </summary>
@@ -228,76 +168,8 @@ namespace Compass
         #endregion
 
         #region 修改操作
-        /// <summary>
-        /// 修改项目库
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tsmiEditProjectValut_Click(object sender, EventArgs e)
-        {
-            btnAddProjectVault.Visible = false;
-            btnEditProjectVault.Visible = true;
-
-            if (dgvProjectVaults.RowCount == 0)
-            {
-                return;
-            }
-            if (dgvProjectVaults.CurrentRow == null)
-            {
-                MessageBox.Show("请选中需要修改的项目库名称", "提示信息");
-                return;
-            }
-            string vaultId = dgvProjectVaults.CurrentRow.Cells["VaultId"].Value.ToString();
-            ProjectVault objProjectVault = objProjectVaultService.GetProjectVaultById(vaultId);
-            //初始化修改信息
-            txtVaultId.Text = objProjectVault.VaultId.ToString();
-            txtVaultName.Text = objProjectVault.VaultName;
-        }
-        private void dgvProjectVaults_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            tsmiEditProjectValut_Click(null, null);
-        }
-        /// <summary>
-        /// 提交修改项目库
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnEditProjectVault_Click(object sender, EventArgs e)
-        {
-            #region 数据验证
-            if (txtVaultName.Text.Trim().Length == 0)
-            {
-                MessageBox.Show("项目库名称不能为空", "验证信息");
-                txtVaultName.Focus();
-                return;
-            }
-            #endregion
-            //封装项目跟踪对象
-            ProjectVault objProjectVault = new ProjectVault()
-            {
-                VaultId = Convert.ToInt32(txtVaultId.Text.Trim()),
-                VaultName = txtVaultName.Text.Trim()
-            };
-            //调用后台方法修改对象
-            try
-            {
-                if (objProjectVaultService.EditProjectValult(objProjectVault) == 1)
-                {
-                    MessageBox.Show("修改项目库名称成功！", "提示信息");
-                    //刷新内容
-                    dgvProjectVaults.DataSource = objProjectVaultService.GetAllProjectVaults();
-                    //清空内容
-                    txtVaultId.Text = "";
-                    txtVaultName.Text = "";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            btnAddProjectVault.Visible = true;
-            btnEditProjectVault.Visible = false;
-        }
+        
+        
         /// <summary>
         /// 修改项目状态菜单
         /// </summary>
@@ -446,40 +318,7 @@ namespace Compass
         }
         #endregion
         #region 删除操作
-        /// <summary>
-        /// 删除项目库
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tsmiDeleteProjectVault_Click(object sender, EventArgs e)
-        {
-            if (dgvProjectVaults.RowCount == 0)
-            {
-                return;
-            }
-            if (dgvProjectVaults.CurrentRow == null)
-            {
-                MessageBox.Show("请选中需要删除的项目库名称", "验证信息");
-                return;
-            }
-            string vaultId = dgvProjectVaults.CurrentRow.Cells["VaultId"].Value.ToString();
-            string vaultName = dgvProjectVaults.CurrentRow.Cells["VaultName"].Value.ToString();
-            //删除询问
-            DialogResult result = MessageBox.Show("确定要删除（ " + vaultName + " ）这个库名称吗？", "删除询问", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-            if (result == DialogResult.No) return;
-            try
-            {
-                if (objProjectVaultService.DeleteProjectVault(vaultId) == 1)
-                {
-                   dgvProjectVaults.DataSource=objProjectVaultService.GetAllProjectVaults();//同步刷新显示数据
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
         /// <summary>
         /// 删除项目状态菜单
         /// </summary>
@@ -573,10 +412,7 @@ namespace Compass
 
         #endregion
 
-        private void dgvProjectVaults_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue == 46)tsmiDeleteProjectVault_Click(null,null);
-        }
+        
 
         private void dgvProjectStatus_KeyDown(object sender, KeyEventArgs e)
         {

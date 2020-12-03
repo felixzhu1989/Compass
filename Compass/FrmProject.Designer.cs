@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnQueryAllProjects = new System.Windows.Forms.Button();
             this.btnProject = new System.Windows.Forms.Button();
             this.dtpShippingTime = new System.Windows.Forms.DateTimePicker();
@@ -54,8 +54,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtBPONo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.cobVaultId = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtProjectName = new System.Windows.Forms.TextBox();
             this.txtProjectId = new System.Windows.Forms.TextBox();
@@ -113,16 +111,16 @@
             // dtpShippingTime
             // 
             this.dtpShippingTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpShippingTime.Location = new System.Drawing.Point(711, 43);
+            this.dtpShippingTime.Location = new System.Drawing.Point(723, 43);
             this.dtpShippingTime.Name = "dtpShippingTime";
-            this.dtpShippingTime.Size = new System.Drawing.Size(117, 25);
+            this.dtpShippingTime.Size = new System.Drawing.Size(105, 25);
             this.dtpShippingTime.TabIndex = 31;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(621, 46);
+            this.label7.Location = new System.Drawing.Point(719, 21);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(87, 19);
             this.label7.TabIndex = 32;
@@ -257,7 +255,7 @@
             this.cobCustomerId.FormattingEnabled = true;
             this.cobCustomerId.Location = new System.Drawing.Point(476, 42);
             this.cobCustomerId.Name = "cobCustomerId";
-            this.cobCustomerId.Size = new System.Drawing.Size(139, 27);
+            this.cobCustomerId.Size = new System.Drawing.Size(237, 27);
             this.cobCustomerId.TabIndex = 25;
             // 
             // cmsCustomer
@@ -299,28 +297,6 @@
             this.label5.TabIndex = 29;
             this.label5.Text = "大工单号";
             // 
-            // cobVaultId
-            // 
-            this.cobVaultId.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cobVaultId.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobVaultId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobVaultId.FormattingEnabled = true;
-            this.cobVaultId.Location = new System.Drawing.Point(711, 12);
-            this.cobVaultId.Name = "cobVaultId";
-            this.cobVaultId.Size = new System.Drawing.Size(117, 27);
-            this.cobVaultId.TabIndex = 25;
-            this.cobVaultId.Visible = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(654, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 19);
-            this.label6.TabIndex = 30;
-            this.label6.Text = "PDM库";
-            this.label6.Visible = false;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -358,22 +334,22 @@
             // 
             this.dgvProjects.AllowUserToAddRows = false;
             this.dgvProjects.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Azure;
-            this.dgvProjects.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
+            this.dgvProjects.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvProjects.BackgroundColor = System.Drawing.Color.White;
             this.dgvProjects.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProjects.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UserAccount,
@@ -556,12 +532,10 @@
             this.Controls.Add(this.btnQueryByODPNo);
             this.Controls.Add(this.btnQueryByUserId);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cobHoodType);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.cobVaultId);
             this.Controls.Add(this.cobCustomerId);
             this.Controls.Add(this.txtProjectId);
             this.Controls.Add(this.label4);
@@ -601,8 +575,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiAddCustomer;
         private System.Windows.Forms.TextBox txtBPONo;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cobVaultId;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtProjectName;
         private System.Windows.Forms.TextBox txtProjectId;

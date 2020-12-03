@@ -85,14 +85,14 @@ create table ProjectTracking
 	KickOffStatus varchar(3)
 )
 
-if exists (select * from sysobjects where name='ProjectVaults')
-drop table ProjectVaults
-go
-create table ProjectVaults
-(
-    VaultId int identity(1,1),
-    VaultName varchar(15) not null,   
-)
+--if exists (select * from sysobjects where name='ProjectVaults')
+--drop table ProjectVaults
+--go
+--create table ProjectVaults
+--(
+--    VaultId int identity(1,1),
+--    VaultName varchar(15) not null,   
+--)
 
 if exists (select * from sysobjects where name='Customers')
 drop table Customers
@@ -111,7 +111,7 @@ create table Projects
     ProjectId int identity(1,1),
     ODPNo varchar(10) not null,
     BPONo varchar(10),
-    VaultId int,--后面再统一建立主外键关系
+    --VaultId int,--后面再统一建立主外键关系
     ProjectName varchar(100),
     CustomerId int,
     ShippingTime date,

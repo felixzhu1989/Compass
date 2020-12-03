@@ -81,7 +81,6 @@ E:\Compass\Compass\obj\Debug\Compass.FrmKVF555.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmKVI555.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmUVF555.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmUVI555.resources
-E:\Compass\Compass\obj\Debug\Compass.FrmVaultsStatusTypes.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmUWI555.resources
 E:\Compass\Compass\obj\Debug\Compass.Properties.Resources.resources
 E:\Compass\Compass\obj\Debug\Compass.csproj.GenerateResource.cache
@@ -128,3 +127,4 @@ E:\Compass\Compass\obj\Debug\Compass.FrmKVIMR555.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmKCHF555.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmKCHI555.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmHOODBCJ.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmStatusTypes.resources
