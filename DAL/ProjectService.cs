@@ -137,7 +137,7 @@ namespace DAL
         public int AddProject(Project objProject)
         {
             string sql = "insert into Projects (ODPNo,BPONo,ProjectName,CustomerId,ShippingTime,UserId,HoodType)";
-            sql += " values('{0}','{1}',{2},'{3}',{4},'{5}',{6},'{7}');select @@identity";
+            sql += " values('{0}','{1}','{2}',{3},'{4}',{5},'{6}');select @@identity";
             sql = string.Format(sql, objProject.ODPNo, objProject.BPONo, 
                 objProject.ProjectName, objProject.CustomerId, objProject.ShippingTime, objProject.UserId,objProject.HoodType);
             try
@@ -168,8 +168,8 @@ namespace DAL
         /// <returns></returns>
         public int EditProject(Project objProject)
         {
-            string sql = "update Projects set ODPNo='{0}',BPONo='{1}',ProjectName='{3}',CustomerId={4},";
-            sql += "ShippingTime='{5}',UserId={6},HoodType='{7}' where ProjectId={8}";
+            string sql = "update Projects set ODPNo='{0}',BPONo='{1}',ProjectName='{2}',CustomerId={3},";
+            sql += "ShippingTime='{4}',UserId={5},HoodType='{6}' where ProjectId={7}";
             sql = string.Format(sql, objProject.ODPNo, objProject.BPONo,  objProject.ProjectName, objProject.CustomerId,
                 objProject.ShippingTime, objProject.UserId,objProject.HoodType, objProject.ProjectId);
             try
@@ -225,7 +225,7 @@ namespace DAL
         {
             //编写SQL语句
             string sql = "insert into Projects (ODPNo,BPONo,ProjectName,CustomerId,ShippingTime,UserId,HoodType)";
-            sql += " values('{0}','{1}',{2},'{3}',{4},'{5}',{6},'{7}');select @@identity";
+            sql += " values('{0}','{1}','{2}',{3},'{4}',{5},'{6}');select @@identity";
             sql = string.Format(sql, objProject.ODPNo, objProject.BPONo, 
                 objProject.ProjectName, objProject.CustomerId, objProject.ShippingTime, objProject.UserId,objProject.HoodType);
             List<string> sqlList = new List<string>();

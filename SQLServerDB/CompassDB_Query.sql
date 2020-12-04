@@ -20,7 +20,7 @@ select * from ProjectLearneds
 select * from ModuleTree
 select * from UVI555
 go
-
+select * from CeilingCutList order by cutlistid desc
 
 select distinct ProjectTracking.ProjectId,ProjectTrackingId,ODPNo,ProjectTracking.ProjectStatusId,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ProdFinishTarget,ProdFinishActual,ShippingTime,DeliverActual from ProjectTracking 
 inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId 
@@ -123,10 +123,5 @@ select * from Projects  order by ShippingTime desc
 select * from SpecialRequirements
 delete from SpecialRequirements where ProjectId=104
 
-
-
-
-
-
-
+select CutListId,SubAssyId,PartDescription,Length,Width,Thickness,Quantity,Materials,PartNo,AddedDate,CeilingCutList.UserId,UserAccount from CeilingCutList inner join Users on Users.UserId=CeilingCutList.UserId where SubAssyId = '228' order by Thickness desc,Materials desc,PartNo asc
 
