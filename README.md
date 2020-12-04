@@ -1,5 +1,6 @@
 # Compass
 
+![image](https://raw.githubusercontent.com/felixzhu1989/Compass/main/Compass/images/COMPASS.png)
 Halton项目管理及钣金SolidWorks自动作图程序.
 
 # 数据库
