@@ -67,6 +67,7 @@ namespace DAL
             string sql = "select UserId,GroupName,UserAccount,UserGroups.UserGroupId,UserPwd,Email,Contact from Users";
             sql += " inner join UserGroups on UserGroups.UserGroupId=Users.UserGroupId";
             sql += whereSql;
+            sql += " order by Users.UserGroupId ASC";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<User> list=new List<User>();
             while (objReader.Read())
