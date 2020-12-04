@@ -1091,6 +1091,10 @@
       <Project>{e38420c8-b37c-4b26-a77e-ae60bc495395}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MyUIControls\MyUIControls.csproj">
+      <Project>{92c324d1-096a-497b-8e45-90a5279303f7}</Project>
+      <Name>MyUIControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SolidWorksHelper\SolidWorksHelper.csproj">
       <Project>{a99d5aeb-2fd5-430b-9d56-dbf20c5c873f}</Project>
       <Name>SolidWorksHelper</Name>

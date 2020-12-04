@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidWorksHelper", "SolidWo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateProgram", "UpdateProgram\UpdateProgram.csproj", "{F37EDCC1-5A3F-4234-AED9-A4E6E02A1413}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyUIControls", "MyUIControls\MyUIControls.csproj", "{92C324D1-096A-497B-8E45-90A5279303F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,14 @@ Global
 		{F37EDCC1-5A3F-4234-AED9-A4E6E02A1413}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F37EDCC1-5A3F-4234-AED9-A4E6E02A1413}.Release|x86.ActiveCfg = Release|Any CPU
 		{F37EDCC1-5A3F-4234-AED9-A4E6E02A1413}.Release|x86.Build.0 = Release|Any CPU
+		{92C324D1-096A-497B-8E45-90A5279303F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92C324D1-096A-497B-8E45-90A5279303F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92C324D1-096A-497B-8E45-90A5279303F7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{92C324D1-096A-497B-8E45-90A5279303F7}.Debug|x86.Build.0 = Debug|Any CPU
+		{92C324D1-096A-497B-8E45-90A5279303F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92C324D1-096A-497B-8E45-90A5279303F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92C324D1-096A-497B-8E45-90A5279303F7}.Release|x86.ActiveCfg = Release|Any CPU
+		{92C324D1-096A-497B-8E45-90A5279303F7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

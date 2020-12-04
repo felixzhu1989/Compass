@@ -146,7 +146,7 @@
             this.dgvDrawingPlan.Name = "dgvDrawingPlan";
             this.dgvDrawingPlan.ReadOnly = true;
             this.dgvDrawingPlan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDrawingPlan.Size = new System.Drawing.Size(926, 446);
+            this.dgvDrawingPlan.Size = new System.Drawing.Size(926, 213);
             this.dgvDrawingPlan.TabIndex = 9;
             this.dgvDrawingPlan.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDrawingPlan_CellDoubleClick);
             this.dgvDrawingPlan.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvDrawingPlan_RowPostPaint);
@@ -473,6 +473,7 @@
             this.grbEditDrawingPlan.TabIndex = 15;
             this.grbEditDrawingPlan.TabStop = false;
             this.grbEditDrawingPlan.Text = "修改制图计划";
+            this.grbEditDrawingPlan.Visible = false;
             // 
             // cobEditODPNo
             // 
@@ -688,7 +689,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.label9.Location = new System.Drawing.Point(330, 15);
+            this.label9.Location = new System.Drawing.Point(325, 15);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(152, 19);
             this.label9.TabIndex = 44;

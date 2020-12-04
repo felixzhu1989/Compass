@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DAL;
 using Models;
 using Common;
+using MyUIControls;
 
 namespace Compass
 {

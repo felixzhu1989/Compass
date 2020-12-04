@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnQueryAllProjects = new System.Windows.Forms.Button();
             this.btnProject = new System.Windows.Forms.Button();
             this.dtpShippingTime = new System.Windows.Forms.DateTimePicker();
@@ -75,27 +75,49 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblRecordsCound = new System.Windows.Forms.Label();
+            this.lblCurrentPage = new System.Windows.Forms.Label();
+            this.lblPageCount = new System.Windows.Forms.Label();
+            this.cobRecordList = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnQueryByYear = new System.Windows.Forms.Button();
+            this.txtToPage = new MyUIControls.SuperTextBox(this.components);
+            this.btnToPage = new System.Windows.Forms.Button();
+            this.btnFirstPage = new System.Windows.Forms.Button();
+            this.btnPrePage = new System.Windows.Forms.Button();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.btnLastPage = new System.Windows.Forms.Button();
             this.cmsProject.SuspendLayout();
             this.cmsCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnQueryAllProjects
             // 
+            this.btnQueryAllProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnQueryAllProjects.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnQueryAllProjects.FlatAppearance.BorderSize = 0;
             this.btnQueryAllProjects.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQueryAllProjects.ForeColor = System.Drawing.Color.White;
-            this.btnQueryAllProjects.Location = new System.Drawing.Point(830, 74);
+            this.btnQueryAllProjects.Location = new System.Drawing.Point(830, 73);
             this.btnQueryAllProjects.Name = "btnQueryAllProjects";
             this.btnQueryAllProjects.Size = new System.Drawing.Size(108, 28);
             this.btnQueryAllProjects.TabIndex = 34;
-            this.btnQueryAllProjects.Text = "显示全部项目";
+            this.btnQueryAllProjects.Text = "显示全部";
             this.btnQueryAllProjects.UseVisualStyleBackColor = false;
             this.btnQueryAllProjects.Click += new System.EventHandler(this.btnQueryAllProjects_Click);
             // 
             // btnProject
             // 
+            this.btnProject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnProject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             this.btnProject.FlatAppearance.BorderSize = 0;
             this.btnProject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -110,6 +132,7 @@
             // 
             // dtpShippingTime
             // 
+            this.dtpShippingTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpShippingTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpShippingTime.Location = new System.Drawing.Point(723, 43);
             this.dtpShippingTime.Name = "dtpShippingTime";
@@ -118,6 +141,7 @@
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.Red;
             this.label7.Location = new System.Drawing.Point(719, 21);
@@ -137,7 +161,7 @@
             // 
             // btnQueryByODPNo
             // 
-            this.btnQueryByODPNo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.btnQueryByODPNo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnQueryByODPNo.FlatAppearance.BorderSize = 0;
             this.btnQueryByODPNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQueryByODPNo.ForeColor = System.Drawing.Color.White;
@@ -151,7 +175,7 @@
             // 
             // btnQueryByUserId
             // 
-            this.btnQueryByUserId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.btnQueryByUserId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnQueryByUserId.FlatAppearance.BorderSize = 0;
             this.btnQueryByUserId.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQueryByUserId.ForeColor = System.Drawing.Color.White;
@@ -249,6 +273,8 @@
             // 
             // cobCustomerId
             // 
+            this.cobCustomerId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cobCustomerId.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cobCustomerId.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cobCustomerId.ContextMenuStrip = this.cmsCustomer;
@@ -308,6 +334,8 @@
             // 
             // txtProjectName
             // 
+            this.txtProjectName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtProjectName.Location = new System.Drawing.Point(476, 76);
             this.txtProjectName.Name = "txtProjectName";
             this.txtProjectName.Size = new System.Drawing.Size(237, 25);
@@ -315,16 +343,18 @@
             // 
             // txtProjectId
             // 
-            this.txtProjectId.Location = new System.Drawing.Point(748, 76);
+            this.txtProjectId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtProjectId.Location = new System.Drawing.Point(753, 76);
             this.txtProjectId.Name = "txtProjectId";
             this.txtProjectId.ReadOnly = true;
-            this.txtProjectId.Size = new System.Drawing.Size(80, 25);
+            this.txtProjectId.Size = new System.Drawing.Size(75, 25);
             this.txtProjectId.TabIndex = 26;
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(719, 79);
+            this.label9.Location = new System.Drawing.Point(724, 79);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(23, 19);
             this.label9.TabIndex = 30;
@@ -334,22 +364,22 @@
             // 
             this.dgvProjects.AllowUserToAddRows = false;
             this.dgvProjects.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
-            this.dgvProjects.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Azure;
+            this.dgvProjects.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvProjects.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvProjects.BackgroundColor = System.Drawing.Color.White;
             this.dgvProjects.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvProjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProjects.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UserAccount,
@@ -365,11 +395,11 @@
             this.Id});
             this.dgvProjects.ContextMenuStrip = this.cmsProject;
             this.dgvProjects.EnableHeadersVisualStyles = false;
-            this.dgvProjects.Location = new System.Drawing.Point(12, 110);
+            this.dgvProjects.Location = new System.Drawing.Point(10, 106);
             this.dgvProjects.Name = "dgvProjects";
             this.dgvProjects.ReadOnly = true;
             this.dgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProjects.Size = new System.Drawing.Size(926, 446);
+            this.dgvProjects.Size = new System.Drawing.Size(928, 396);
             this.dgvProjects.TabIndex = 35;
             this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
             this.dgvProjects.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjects_RowPostPaint);
@@ -514,20 +544,250 @@
             this.label13.TabIndex = 36;
             this.label13.Text = "烟罩/天花";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtToPage);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.lblRecordsCound);
+            this.groupBox1.Controls.Add(this.lblCurrentPage);
+            this.groupBox1.Controls.Add(this.lblPageCount);
+            this.groupBox1.Controls.Add(this.cobRecordList);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.btnLastPage);
+            this.groupBox1.Controls.Add(this.btnNextPage);
+            this.groupBox1.Controls.Add(this.btnPrePage);
+            this.groupBox1.Controls.Add(this.btnFirstPage);
+            this.groupBox1.Controls.Add(this.btnToPage);
+            this.groupBox1.Controls.Add(this.btnQueryByYear);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox1.Location = new System.Drawing.Point(0, 508);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(950, 60);
+            this.groupBox1.TabIndex = 37;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "分页显示";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(578, 28);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(61, 19);
+            this.label17.TabIndex = 43;
+            this.label17.Text = "跳转到：";
+            // 
+            // lblRecordsCound
+            // 
+            this.lblRecordsCound.AutoSize = true;
+            this.lblRecordsCound.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblRecordsCound.Location = new System.Drawing.Point(542, 28);
+            this.lblRecordsCound.Name = "lblRecordsCound";
+            this.lblRecordsCound.Size = new System.Drawing.Size(17, 19);
+            this.lblRecordsCound.TabIndex = 37;
+            this.lblRecordsCound.Text = "0";
+            // 
+            // lblCurrentPage
+            // 
+            this.lblCurrentPage.AutoSize = true;
+            this.lblCurrentPage.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblCurrentPage.Location = new System.Drawing.Point(444, 28);
+            this.lblCurrentPage.Name = "lblCurrentPage";
+            this.lblCurrentPage.Size = new System.Drawing.Size(17, 19);
+            this.lblCurrentPage.TabIndex = 38;
+            this.lblCurrentPage.Text = "0";
+            // 
+            // lblPageCount
+            // 
+            this.lblPageCount.AutoSize = true;
+            this.lblPageCount.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblPageCount.Location = new System.Drawing.Point(359, 28);
+            this.lblPageCount.Name = "lblPageCount";
+            this.lblPageCount.Size = new System.Drawing.Size(17, 19);
+            this.lblPageCount.TabIndex = 39;
+            this.lblPageCount.Text = "0";
+            // 
+            // cobRecordList
+            // 
+            this.cobRecordList.FormattingEnabled = true;
+            this.cobRecordList.Items.AddRange(new object[] {
+            "15",
+            "30",
+            "50",
+            "100"});
+            this.cobRecordList.Location = new System.Drawing.Point(240, 24);
+            this.cobRecordList.Name = "cobRecordList";
+            this.cobRecordList.Size = new System.Drawing.Size(48, 27);
+            this.cobRecordList.TabIndex = 36;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(669, 28);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(22, 19);
+            this.label14.TabIndex = 40;
+            this.label14.Text = "页";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(308, 28);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(281, 19);
+            this.label15.TabIndex = 41;
+            this.label15.Text = "【总计：    页 当前第：    页 记录总数：      】";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(291, 28);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(22, 19);
+            this.label16.TabIndex = 42;
+            this.label16.Text = "行";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(174, 28);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(74, 19);
+            this.label18.TabIndex = 44;
+            this.label18.Text = "每页显示：";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(48, 24);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(68, 27);
+            this.comboBox1.TabIndex = 25;
+            this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cobUserId_KeyDown);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 19);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "年度：";
+            // 
+            // btnQueryByYear
+            // 
+            this.btnQueryByYear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnQueryByYear.FlatAppearance.BorderSize = 0;
+            this.btnQueryByYear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQueryByYear.ForeColor = System.Drawing.Color.White;
+            this.btnQueryByYear.Location = new System.Drawing.Point(122, 23);
+            this.btnQueryByYear.Name = "btnQueryByYear";
+            this.btnQueryByYear.Size = new System.Drawing.Size(46, 28);
+            this.btnQueryByYear.TabIndex = 28;
+            this.btnQueryByYear.Text = "查询";
+            this.btnQueryByYear.UseVisualStyleBackColor = false;
+            this.btnQueryByYear.Click += new System.EventHandler(this.btnQueryByUserId_Click);
+            // 
+            // txtToPage
+            // 
+            this.txtToPage.Location = new System.Drawing.Point(629, 25);
+            this.txtToPage.Name = "txtToPage";
+            this.txtToPage.Size = new System.Drawing.Size(34, 25);
+            this.txtToPage.TabIndex = 45;
+            // 
+            // btnToPage
+            // 
+            this.btnToPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnToPage.FlatAppearance.BorderSize = 0;
+            this.btnToPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToPage.ForeColor = System.Drawing.Color.White;
+            this.btnToPage.Location = new System.Drawing.Point(697, 23);
+            this.btnToPage.Name = "btnToPage";
+            this.btnToPage.Size = new System.Drawing.Size(42, 28);
+            this.btnToPage.TabIndex = 28;
+            this.btnToPage.Text = "GO";
+            this.btnToPage.UseVisualStyleBackColor = false;
+            this.btnToPage.Click += new System.EventHandler(this.btnQueryByUserId_Click);
+            // 
+            // btnFirstPage
+            // 
+            this.btnFirstPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFirstPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnFirstPage.FlatAppearance.BorderSize = 0;
+            this.btnFirstPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFirstPage.ForeColor = System.Drawing.Color.White;
+            this.btnFirstPage.Location = new System.Drawing.Point(748, 23);
+            this.btnFirstPage.Name = "btnFirstPage";
+            this.btnFirstPage.Size = new System.Drawing.Size(42, 28);
+            this.btnFirstPage.TabIndex = 28;
+            this.btnFirstPage.Text = "<<";
+            this.btnFirstPage.UseVisualStyleBackColor = false;
+            this.btnFirstPage.Click += new System.EventHandler(this.btnQueryByUserId_Click);
+            // 
+            // btnPrePage
+            // 
+            this.btnPrePage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnPrePage.FlatAppearance.BorderSize = 0;
+            this.btnPrePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrePage.ForeColor = System.Drawing.Color.White;
+            this.btnPrePage.Location = new System.Drawing.Point(799, 23);
+            this.btnPrePage.Name = "btnPrePage";
+            this.btnPrePage.Size = new System.Drawing.Size(42, 28);
+            this.btnPrePage.TabIndex = 28;
+            this.btnPrePage.Text = "<";
+            this.btnPrePage.UseVisualStyleBackColor = false;
+            this.btnPrePage.Click += new System.EventHandler(this.btnQueryByUserId_Click);
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnNextPage.FlatAppearance.BorderSize = 0;
+            this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNextPage.ForeColor = System.Drawing.Color.White;
+            this.btnNextPage.Location = new System.Drawing.Point(850, 23);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(42, 28);
+            this.btnNextPage.TabIndex = 28;
+            this.btnNextPage.Text = ">";
+            this.btnNextPage.UseVisualStyleBackColor = false;
+            this.btnNextPage.Click += new System.EventHandler(this.btnQueryByUserId_Click);
+            // 
+            // btnLastPage
+            // 
+            this.btnLastPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLastPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnLastPage.FlatAppearance.BorderSize = 0;
+            this.btnLastPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLastPage.ForeColor = System.Drawing.Color.White;
+            this.btnLastPage.Location = new System.Drawing.Point(901, 23);
+            this.btnLastPage.Name = "btnLastPage";
+            this.btnLastPage.Size = new System.Drawing.Size(42, 28);
+            this.btnLastPage.TabIndex = 28;
+            this.btnLastPage.Text = ">>";
+            this.btnLastPage.UseVisualStyleBackColor = false;
+            this.btnLastPage.Click += new System.EventHandler(this.btnQueryByUserId_Click);
+            // 
             // FrmProject
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(950, 568);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dgvProjects);
-            this.Controls.Add(this.btnQueryAllProjects);
             this.Controls.Add(this.btnProject);
             this.Controls.Add(this.dtpShippingTime);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.btnQueryAllProjects);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnQueryByODPNo);
             this.Controls.Add(this.btnQueryByUserId);
@@ -551,6 +811,8 @@
             this.cmsProject.ResumeLayout(false);
             this.cmsCustomer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -602,5 +864,24 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btnQueryByYear;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lblRecordsCound;
+        private System.Windows.Forms.Label lblCurrentPage;
+        private System.Windows.Forms.Label lblPageCount;
+        private System.Windows.Forms.ComboBox cobRecordList;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label18;
+        private MyUIControls.SuperTextBox txtToPage;
+        private System.Windows.Forms.Button btnToPage;
+        private System.Windows.Forms.Button btnLastPage;
+        private System.Windows.Forms.Button btnNextPage;
+        private System.Windows.Forms.Button btnPrePage;
+        private System.Windows.Forms.Button btnFirstPage;
     }
 }
