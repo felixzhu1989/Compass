@@ -5,7 +5,7 @@
   <!--升级文件信息-->
   <UpdateInfo>
     <!--升级文件的更新日期-->
-    <UpdateTime Date="2020-12-07 11:30"/>
+    <UpdateTime Date="2020-12-07 12:40"/>
     <!--升级文件的版本号-->
     <Version Num="1.0.1.00"/>
   </UpdateInfo>
@@ -18,6 +18,7 @@
     <UpdateFile Ver="1.0.1.00" FileName="MetroFramework.dll" ContentLength="11KB"/>	
 	<UpdateFile Ver="1.0.1.00" FileName="MetroFramework.Fonts.dll" ContentLength="11KB"/>	
 	<UpdateFile Ver="1.0.1.00" FileName="Models.dll" ContentLength="114KB"/>	
+	<UpdateFile Ver="1.0.1.00" FileName="MyUIControls.dll" ContentLength="6KB"/>
 	<UpdateFile Ver="1.0.1.00" FileName="SolidWorksHelper.dll" ContentLength="630KB"/>	
 	<!--主程序文件-->
     <UpdateFile Ver="1.0.1.00" FileName="Compass.exe" ContentLength="1815KB"/>	
