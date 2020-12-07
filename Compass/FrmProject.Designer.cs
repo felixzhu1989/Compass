@@ -44,7 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmsProject = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiShowProjectInfo = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiQueryAllProjects = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiShowModuleTree = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,6 +75,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtToPage = new MyUIControls.SuperTextBox(this.components);
             this.label17 = new System.Windows.Forms.Label();
             this.lblRecordsCound = new System.Windows.Forms.Label();
             this.lblCurrentPage = new System.Windows.Forms.Label();
@@ -85,15 +85,14 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cobQueryYear = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnQueryByYear = new System.Windows.Forms.Button();
-            this.txtToPage = new MyUIControls.SuperTextBox(this.components);
+            this.btnLast = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPre = new System.Windows.Forms.Button();
+            this.btnFirst = new System.Windows.Forms.Button();
             this.btnToPage = new System.Windows.Forms.Button();
-            this.btnFirstPage = new System.Windows.Forms.Button();
-            this.btnPrePage = new System.Windows.Forms.Button();
-            this.btnNextPage = new System.Windows.Forms.Button();
-            this.btnLastPage = new System.Windows.Forms.Button();
+            this.btnQueryByYear = new System.Windows.Forms.Button();
             this.cmsProject.SuspendLayout();
             this.cmsCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
@@ -111,7 +110,7 @@
             this.btnQueryAllProjects.Name = "btnQueryAllProjects";
             this.btnQueryAllProjects.Size = new System.Drawing.Size(108, 28);
             this.btnQueryAllProjects.TabIndex = 34;
-            this.btnQueryAllProjects.Text = "显示全部";
+            this.btnQueryAllProjects.Text = "显示全部项目";
             this.btnQueryAllProjects.UseVisualStyleBackColor = false;
             this.btnQueryAllProjects.Click += new System.EventHandler(this.btnQueryAllProjects_Click);
             // 
@@ -229,12 +228,11 @@
             // 
             this.cmsProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiShowProjectInfo,
-            this.tsmiQueryAllProjects,
             this.tsmiEditProject,
             this.tsmiDeleteProject,
             this.tsmiShowModuleTree});
             this.cmsProject.Name = "cmsProject";
-            this.cmsProject.Size = new System.Drawing.Size(149, 114);
+            this.cmsProject.Size = new System.Drawing.Size(149, 92);
             // 
             // tsmiShowProjectInfo
             // 
@@ -242,13 +240,6 @@
             this.tsmiShowProjectInfo.Size = new System.Drawing.Size(148, 22);
             this.tsmiShowProjectInfo.Text = "显示详细信息";
             this.tsmiShowProjectInfo.Click += new System.EventHandler(this.tsmiShowProjectInfo_Click);
-            // 
-            // tsmiQueryAllProjects
-            // 
-            this.tsmiQueryAllProjects.Name = "tsmiQueryAllProjects";
-            this.tsmiQueryAllProjects.Size = new System.Drawing.Size(148, 22);
-            this.tsmiQueryAllProjects.Text = "显示全部项目";
-            this.tsmiQueryAllProjects.Click += new System.EventHandler(this.tsmiQueryAllProjects_Click);
             // 
             // tsmiEditProject
             // 
@@ -556,12 +547,12 @@
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cobQueryYear);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.btnLastPage);
-            this.groupBox1.Controls.Add(this.btnNextPage);
-            this.groupBox1.Controls.Add(this.btnPrePage);
-            this.groupBox1.Controls.Add(this.btnFirstPage);
+            this.groupBox1.Controls.Add(this.btnLast);
+            this.groupBox1.Controls.Add(this.btnNext);
+            this.groupBox1.Controls.Add(this.btnPre);
+            this.groupBox1.Controls.Add(this.btnFirst);
             this.groupBox1.Controls.Add(this.btnToPage);
             this.groupBox1.Controls.Add(this.btnQueryByYear);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -571,6 +562,13 @@
             this.groupBox1.TabIndex = 37;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "分页显示";
+            // 
+            // txtToPage
+            // 
+            this.txtToPage.Location = new System.Drawing.Point(629, 25);
+            this.txtToPage.Name = "txtToPage";
+            this.txtToPage.Size = new System.Drawing.Size(34, 25);
+            this.txtToPage.TabIndex = 45;
             // 
             // label17
             // 
@@ -585,7 +583,7 @@
             // 
             this.lblRecordsCound.AutoSize = true;
             this.lblRecordsCound.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblRecordsCound.Location = new System.Drawing.Point(542, 28);
+            this.lblRecordsCound.Location = new System.Drawing.Point(528, 28);
             this.lblRecordsCound.Name = "lblRecordsCound";
             this.lblRecordsCound.Size = new System.Drawing.Size(17, 19);
             this.lblRecordsCound.TabIndex = 37;
@@ -595,7 +593,7 @@
             // 
             this.lblCurrentPage.AutoSize = true;
             this.lblCurrentPage.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblCurrentPage.Location = new System.Drawing.Point(444, 28);
+            this.lblCurrentPage.Location = new System.Drawing.Point(430, 28);
             this.lblCurrentPage.Name = "lblCurrentPage";
             this.lblCurrentPage.Size = new System.Drawing.Size(17, 19);
             this.lblCurrentPage.TabIndex = 38;
@@ -605,7 +603,7 @@
             // 
             this.lblPageCount.AutoSize = true;
             this.lblPageCount.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblPageCount.Location = new System.Drawing.Point(359, 28);
+            this.lblPageCount.Location = new System.Drawing.Point(345, 28);
             this.lblPageCount.Name = "lblPageCount";
             this.lblPageCount.Size = new System.Drawing.Size(17, 19);
             this.lblPageCount.TabIndex = 39;
@@ -618,7 +616,9 @@
             "15",
             "30",
             "50",
-            "100"});
+            "100",
+            "500",
+            "1000"});
             this.cobRecordList.Location = new System.Drawing.Point(240, 24);
             this.cobRecordList.Name = "cobRecordList";
             this.cobRecordList.Size = new System.Drawing.Size(48, 27);
@@ -638,9 +638,9 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(308, 28);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(281, 19);
+            this.label15.Size = new System.Drawing.Size(268, 19);
             this.label15.TabIndex = 41;
-            this.label15.Text = "【总计：    页 当前第：    页 记录总数：      】";
+            this.label15.Text = "【共：    页 当前第：    页 记录总数：      】";
             // 
             // label16
             // 
@@ -660,14 +660,14 @@
             this.label18.TabIndex = 44;
             this.label18.Text = "每页显示：";
             // 
-            // comboBox1
+            // cobQueryYear
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(48, 24);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(68, 27);
-            this.comboBox1.TabIndex = 25;
-            this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cobUserId_KeyDown);
+            this.cobQueryYear.FormattingEnabled = true;
+            this.cobQueryYear.Location = new System.Drawing.Point(48, 24);
+            this.cobQueryYear.Name = "cobQueryYear";
+            this.cobQueryYear.Size = new System.Drawing.Size(68, 27);
+            this.cobQueryYear.TabIndex = 25;
+            this.cobQueryYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cobUserId_KeyDown);
             // 
             // label6
             // 
@@ -678,26 +678,65 @@
             this.label6.TabIndex = 35;
             this.label6.Text = "年度：";
             // 
-            // btnQueryByYear
+            // btnLast
             // 
-            this.btnQueryByYear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnQueryByYear.FlatAppearance.BorderSize = 0;
-            this.btnQueryByYear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQueryByYear.ForeColor = System.Drawing.Color.White;
-            this.btnQueryByYear.Location = new System.Drawing.Point(122, 23);
-            this.btnQueryByYear.Name = "btnQueryByYear";
-            this.btnQueryByYear.Size = new System.Drawing.Size(46, 28);
-            this.btnQueryByYear.TabIndex = 28;
-            this.btnQueryByYear.Text = "查询";
-            this.btnQueryByYear.UseVisualStyleBackColor = false;
-            this.btnQueryByYear.Click += new System.EventHandler(this.btnQueryByUserId_Click);
+            this.btnLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnLast.FlatAppearance.BorderSize = 0;
+            this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLast.ForeColor = System.Drawing.Color.White;
+            this.btnLast.Location = new System.Drawing.Point(901, 23);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(42, 28);
+            this.btnLast.TabIndex = 28;
+            this.btnLast.Text = ">>";
+            this.btnLast.UseVisualStyleBackColor = false;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
-            // txtToPage
+            // btnNext
             // 
-            this.txtToPage.Location = new System.Drawing.Point(629, 25);
-            this.txtToPage.Name = "txtToPage";
-            this.txtToPage.Size = new System.Drawing.Size(34, 25);
-            this.txtToPage.TabIndex = 45;
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.ForeColor = System.Drawing.Color.White;
+            this.btnNext.Location = new System.Drawing.Point(850, 23);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(42, 28);
+            this.btnNext.TabIndex = 28;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnPre
+            // 
+            this.btnPre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnPre.FlatAppearance.BorderSize = 0;
+            this.btnPre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPre.ForeColor = System.Drawing.Color.White;
+            this.btnPre.Location = new System.Drawing.Point(799, 23);
+            this.btnPre.Name = "btnPre";
+            this.btnPre.Size = new System.Drawing.Size(42, 28);
+            this.btnPre.TabIndex = 28;
+            this.btnPre.Text = "<";
+            this.btnPre.UseVisualStyleBackColor = false;
+            this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
+            // 
+            // btnFirst
+            // 
+            this.btnFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFirst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnFirst.FlatAppearance.BorderSize = 0;
+            this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFirst.ForeColor = System.Drawing.Color.White;
+            this.btnFirst.Location = new System.Drawing.Point(748, 23);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(42, 28);
+            this.btnFirst.TabIndex = 28;
+            this.btnFirst.Text = "<<";
+            this.btnFirst.UseVisualStyleBackColor = false;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // btnToPage
             // 
@@ -711,67 +750,21 @@
             this.btnToPage.TabIndex = 28;
             this.btnToPage.Text = "GO";
             this.btnToPage.UseVisualStyleBackColor = false;
-            this.btnToPage.Click += new System.EventHandler(this.btnQueryByUserId_Click);
+            this.btnToPage.Click += new System.EventHandler(this.btnToPage_Click);
             // 
-            // btnFirstPage
+            // btnQueryByYear
             // 
-            this.btnFirstPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFirstPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnFirstPage.FlatAppearance.BorderSize = 0;
-            this.btnFirstPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFirstPage.ForeColor = System.Drawing.Color.White;
-            this.btnFirstPage.Location = new System.Drawing.Point(748, 23);
-            this.btnFirstPage.Name = "btnFirstPage";
-            this.btnFirstPage.Size = new System.Drawing.Size(42, 28);
-            this.btnFirstPage.TabIndex = 28;
-            this.btnFirstPage.Text = "<<";
-            this.btnFirstPage.UseVisualStyleBackColor = false;
-            this.btnFirstPage.Click += new System.EventHandler(this.btnQueryByUserId_Click);
-            // 
-            // btnPrePage
-            // 
-            this.btnPrePage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrePage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnPrePage.FlatAppearance.BorderSize = 0;
-            this.btnPrePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrePage.ForeColor = System.Drawing.Color.White;
-            this.btnPrePage.Location = new System.Drawing.Point(799, 23);
-            this.btnPrePage.Name = "btnPrePage";
-            this.btnPrePage.Size = new System.Drawing.Size(42, 28);
-            this.btnPrePage.TabIndex = 28;
-            this.btnPrePage.Text = "<";
-            this.btnPrePage.UseVisualStyleBackColor = false;
-            this.btnPrePage.Click += new System.EventHandler(this.btnQueryByUserId_Click);
-            // 
-            // btnNextPage
-            // 
-            this.btnNextPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNextPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnNextPage.FlatAppearance.BorderSize = 0;
-            this.btnNextPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNextPage.ForeColor = System.Drawing.Color.White;
-            this.btnNextPage.Location = new System.Drawing.Point(850, 23);
-            this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(42, 28);
-            this.btnNextPage.TabIndex = 28;
-            this.btnNextPage.Text = ">";
-            this.btnNextPage.UseVisualStyleBackColor = false;
-            this.btnNextPage.Click += new System.EventHandler(this.btnQueryByUserId_Click);
-            // 
-            // btnLastPage
-            // 
-            this.btnLastPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLastPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnLastPage.FlatAppearance.BorderSize = 0;
-            this.btnLastPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLastPage.ForeColor = System.Drawing.Color.White;
-            this.btnLastPage.Location = new System.Drawing.Point(901, 23);
-            this.btnLastPage.Name = "btnLastPage";
-            this.btnLastPage.Size = new System.Drawing.Size(42, 28);
-            this.btnLastPage.TabIndex = 28;
-            this.btnLastPage.Text = ">>";
-            this.btnLastPage.UseVisualStyleBackColor = false;
-            this.btnLastPage.Click += new System.EventHandler(this.btnQueryByUserId_Click);
+            this.btnQueryByYear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnQueryByYear.FlatAppearance.BorderSize = 0;
+            this.btnQueryByYear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQueryByYear.ForeColor = System.Drawing.Color.White;
+            this.btnQueryByYear.Location = new System.Drawing.Point(122, 23);
+            this.btnQueryByYear.Name = "btnQueryByYear";
+            this.btnQueryByYear.Size = new System.Drawing.Size(46, 28);
+            this.btnQueryByYear.TabIndex = 28;
+            this.btnQueryByYear.Text = "查询";
+            this.btnQueryByYear.UseVisualStyleBackColor = false;
+            this.btnQueryByYear.Click += new System.EventHandler(this.btnQueryByYear_Click);
             // 
             // FrmProject
             // 
@@ -842,7 +835,6 @@
         private System.Windows.Forms.TextBox txtProjectId;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ContextMenuStrip cmsProject;
-        private System.Windows.Forms.ToolStripMenuItem tsmiQueryAllProjects;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditProject;
         private System.Windows.Forms.ToolStripMenuItem tsmiDeleteProject;
         private System.Windows.Forms.ToolStripMenuItem tsmiShowProjectInfo;
@@ -866,7 +858,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cobQueryYear;
         private System.Windows.Forms.Button btnQueryByYear;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label lblRecordsCound;
@@ -879,9 +871,9 @@
         private System.Windows.Forms.Label label18;
         private MyUIControls.SuperTextBox txtToPage;
         private System.Windows.Forms.Button btnToPage;
-        private System.Windows.Forms.Button btnLastPage;
-        private System.Windows.Forms.Button btnNextPage;
-        private System.Windows.Forms.Button btnPrePage;
-        private System.Windows.Forms.Button btnFirstPage;
+        private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPre;
+        private System.Windows.Forms.Button btnFirst;
     }
 }

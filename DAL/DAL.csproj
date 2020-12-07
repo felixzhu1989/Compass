@@ -141,6 +141,7 @@
     <Compile Include="ProjectStatusService.cs" />
     <Compile Include="ProjectTrackingService.cs" />
     <Compile Include="ProjectTypeService.cs" />
+    <Compile Include="SqlDataPager.cs" />
     <Compile Include="SQLHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CeilingService\UCJSB385Service.cs" />

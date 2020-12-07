@@ -91,7 +91,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProjectTracking.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvProjectTracking.BackgroundColor = System.Drawing.Color.White;
-            this.dgvProjectTracking.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -119,7 +118,7 @@
             this.dgvProjectTracking.Name = "dgvProjectTracking";
             this.dgvProjectTracking.ReadOnly = true;
             this.dgvProjectTracking.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProjectTracking.Size = new System.Drawing.Size(926, 446);
+            this.dgvProjectTracking.Size = new System.Drawing.Size(926, 346);
             this.dgvProjectTracking.TabIndex = 11;
             this.dgvProjectTracking.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjectTracking_CellDoubleClick);
             this.dgvProjectTracking.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjectTracking_RowPostPaint);
@@ -222,19 +221,19 @@
             this.tsmiEditProjectTracking,
             this.tsmiDeleteProjectTracking});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(181, 92);
+            this.contextMenuStrip.Size = new System.Drawing.Size(173, 70);
             // 
             // tsmiQueryAllProjectTracking
             // 
             this.tsmiQueryAllProjectTracking.Name = "tsmiQueryAllProjectTracking";
-            this.tsmiQueryAllProjectTracking.Size = new System.Drawing.Size(180, 22);
+            this.tsmiQueryAllProjectTracking.Size = new System.Drawing.Size(172, 22);
             this.tsmiQueryAllProjectTracking.Text = "显示全部跟踪记录";
             this.tsmiQueryAllProjectTracking.Click += new System.EventHandler(this.tsmiQueryAllProjectTracking_Click);
             // 
             // tsmiEditProjectTracking
             // 
             this.tsmiEditProjectTracking.Name = "tsmiEditProjectTracking";
-            this.tsmiEditProjectTracking.Size = new System.Drawing.Size(180, 22);
+            this.tsmiEditProjectTracking.Size = new System.Drawing.Size(172, 22);
             this.tsmiEditProjectTracking.Text = "修改项目跟踪记录";
             this.tsmiEditProjectTracking.Click += new System.EventHandler(this.tsmiEditProjectTracking_Click);
             // 
@@ -242,7 +241,7 @@
             // 
             this.tsmiDeleteProjectTracking.Enabled = false;
             this.tsmiDeleteProjectTracking.Name = "tsmiDeleteProjectTracking";
-            this.tsmiDeleteProjectTracking.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDeleteProjectTracking.Size = new System.Drawing.Size(172, 22);
             this.tsmiDeleteProjectTracking.Text = "删除项目跟踪记录";
             this.tsmiDeleteProjectTracking.Visible = false;
             this.tsmiDeleteProjectTracking.Click += new System.EventHandler(this.tsmiDeleteProjectTracking_Click);

@@ -30,7 +30,7 @@ namespace Compass
         public FrmUserManage(User user) : this()
         {
             currentUser = user;
-            switch (currentUser.UserGroupId)
+            switch (currentUser.UserId)
             {
                 case 1:
                     break;
@@ -45,7 +45,7 @@ namespace Compass
         }
         private void RefreshData()
         {
-            switch (currentUser.UserGroupId)
+            switch (currentUser.UserId)
             {
                 case 1:
                     this.dgvUser.DataSource = objUserService.GetUserByWhereSql("");

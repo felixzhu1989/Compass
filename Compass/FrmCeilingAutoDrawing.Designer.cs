@@ -211,7 +211,7 @@
             this.dgvExecList.Name = "dgvExecList";
             this.dgvExecList.ReadOnly = true;
             this.dgvExecList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvExecList.Size = new System.Drawing.Size(540, 420);
+            this.dgvExecList.Size = new System.Drawing.Size(540, 504);
             this.dgvExecList.TabIndex = 58;
             this.dgvExecList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvExecList_RowPostPaint);
             // 
@@ -284,7 +284,7 @@
             this.dgvWaitingList.Name = "dgvWaitingList";
             this.dgvWaitingList.ReadOnly = true;
             this.dgvWaitingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvWaitingList.Size = new System.Drawing.Size(540, 420);
+            this.dgvWaitingList.Size = new System.Drawing.Size(540, 504);
             this.dgvWaitingList.TabIndex = 59;
             this.dgvWaitingList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvWaitingList_RowPostPaint);
             // 
@@ -401,7 +401,7 @@
             this.btnExec.FlatAppearance.BorderSize = 0;
             this.btnExec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExec.ForeColor = System.Drawing.Color.White;
-            this.btnExec.Location = new System.Drawing.Point(549, 360);
+            this.btnExec.Location = new System.Drawing.Point(549, 444);
             this.btnExec.Name = "btnExec";
             this.btnExec.Size = new System.Drawing.Size(52, 85);
             this.btnExec.TabIndex = 56;
@@ -518,7 +518,7 @@
             this.btnJobCard.FlatAppearance.BorderSize = 0;
             this.btnJobCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJobCard.ForeColor = System.Drawing.Color.White;
-            this.btnJobCard.Location = new System.Drawing.Point(549, 269);
+            this.btnJobCard.Location = new System.Drawing.Point(549, 353);
             this.btnJobCard.Name = "btnJobCard";
             this.btnJobCard.Size = new System.Drawing.Size(52, 85);
             this.btnJobCard.TabIndex = 63;
@@ -553,15 +553,15 @@
             this.tvSubAssyTree.AllowDrop = true;
             this.tvSubAssyTree.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tvSubAssyTree.BackColor = System.Drawing.Color.Turquoise;
-            this.tvSubAssyTree.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tvSubAssyTree.BackColor = System.Drawing.Color.Honeydew;
+            this.tvSubAssyTree.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tvSubAssyTree.ContextMenuStrip = this.cmsSubAssyTree;
             this.tvSubAssyTree.ImageIndex = 0;
             this.tvSubAssyTree.ImageList = this.imageList1;
             this.tvSubAssyTree.Location = new System.Drawing.Point(936, 41);
             this.tvSubAssyTree.Name = "tvSubAssyTree";
             this.tvSubAssyTree.SelectedImageIndex = 0;
-            this.tvSubAssyTree.Size = new System.Drawing.Size(210, 428);
+            this.tvSubAssyTree.Size = new System.Drawing.Size(210, 488);
             this.tvSubAssyTree.TabIndex = 45;
             this.tvSubAssyTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvSubAssyTree_AfterSelect);
             this.tvSubAssyTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.tvSubAssy_DragDrop);
@@ -799,7 +799,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCutList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvCutList.BackgroundColor = System.Drawing.Color.White;
-            this.dgvCutList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle10.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -816,7 +815,7 @@
             this.dgvCutList.ReadOnly = true;
             this.dgvCutList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvCutList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCutList.Size = new System.Drawing.Size(924, 186);
+            this.dgvCutList.Size = new System.Drawing.Size(924, 246);
             this.dgvCutList.TabIndex = 47;
             this.dgvCutList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvCutList_RowPostPaint);
             this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
@@ -891,10 +890,10 @@
             this.tabPage1.Controls.Add(this.btnSaveToExcel);
             this.tabPage1.Controls.Add(this.btnPrintCeilingPackingList);
             this.tabPage1.Controls.Add(this.btnCeilingPackingList);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1152, 541);
+            this.tabPage1.Size = new System.Drawing.Size(1152, 535);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "发货清单";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1111,7 +1110,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCeilingPackingList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvCeilingPackingList.BackgroundColor = System.Drawing.Color.White;
-            this.dgvCeilingPackingList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle12.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1142,7 +1140,7 @@
             this.dgvCeilingPackingList.Name = "dgvCeilingPackingList";
             this.dgvCeilingPackingList.ReadOnly = true;
             this.dgvCeilingPackingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCeilingPackingList.Size = new System.Drawing.Size(1140, 403);
+            this.dgvCeilingPackingList.Size = new System.Drawing.Size(1140, 439);
             this.dgvCeilingPackingList.TabIndex = 64;
             this.dgvCeilingPackingList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.CeilingPackingList_RowPostPaint);
             this.dgvCeilingPackingList.DoubleClick += new System.EventHandler(this.dgvCeilingPackingList_DoubleClick);
