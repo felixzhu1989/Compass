@@ -28,7 +28,24 @@ namespace Compass
             grbEditProjectTracking.Visible = false;
             //初始化下拉框后关联事件委托
             this.cobProjectStatus.SelectedIndexChanged += new System.EventHandler(this.cobProjectStatus_SelectedIndexChanged);
-            btnAddProjectTracking.Visible = false;
+            SetPermissions();
+        }
+        /// <summary>
+        /// 设置权限
+        /// </summary>
+        private void SetPermissions()
+        {
+            //管理员才能编辑跟踪信息
+            if (Program.ObjCurrentUser.UserGroupId == 1)
+            {
+                tsmiEditProjectTracking.Visible = true;
+                this.dgvProjectTracking.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjectTracking_CellDoubleClick);
+            }
+            else
+            {
+                tsmiEditProjectTracking.Visible = false;
+                this.dgvProjectTracking.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjectTracking_CellDoubleClick);
+            }
         }
         /// <summary>
         /// 初始化项目状态下拉框
@@ -208,6 +225,7 @@ namespace Compass
             ProjectTracking objProjectTracking = objProjectTrackingService.GetProjectTrackingById(projectTrackingId);
             //初始化修改信息
             grbEditProjectTracking.Visible = true;//显示修改框
+            grbEditProjectTracking.Location = new Point(10,9);
             txtEditProjectTrackingId.Text = objProjectTracking.ProjectTrackingId.ToString();
             IniODPNo(cobEditODPNo);
             IniProjectStatus(cobEditProjectStatus);
@@ -357,10 +375,6 @@ namespace Compass
             dgvProjectTracking.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
 
-        private void dgvProjectTracking_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue == 46) tsmiDeleteProjectTracking_Click(null, null);
-        }
         /// <summary>
         /// 更改实际发图日期时，项目状态自动切换成生产中
         /// </summary>

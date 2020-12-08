@@ -75,6 +75,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -86,11 +87,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompassDBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CompassDBDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="CeilingForm\FrmAN.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1051,17 +1047,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="CompassDBDataSet.xsc">
-      <DependentUpon>CompassDBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="CompassDBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CompassDBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="CompassDBDataSet.xss">
-      <DependentUpon>CompassDBDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1153,6 +1138,7 @@
     <Content Include="images\ProjectInfo.png" />
     <Content Include="images\ProjectList.png" />
     <Content Include="images\ProjectTracking.png" />
+    <None Include="images\Query.png" />
     <Content Include="images\Setting.png" />
     <Content Include="images\Status.png" />
     <Content Include="images\Update.png" />

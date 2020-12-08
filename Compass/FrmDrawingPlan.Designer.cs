@@ -84,16 +84,35 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtEditModuleNo = new System.Windows.Forms.TextBox();
-            this.btnShowInfo = new System.Windows.Forms.Button();
             this.cobODPNo = new System.Windows.Forms.ComboBox();
             this.btnQueryByUserId = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.cobUserId = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtToPage = new MyUIControls.SuperTextBox(this.components);
+            this.label18 = new System.Windows.Forms.Label();
+            this.lblRecordsCound = new System.Windows.Forms.Label();
+            this.lblCurrentPage = new System.Windows.Forms.Label();
+            this.lblPageCount = new System.Windows.Forms.Label();
+            this.cobRecordList = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.cobQueryYear = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.btnLast = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPre = new System.Windows.Forms.Button();
+            this.btnFirst = new System.Windows.Forms.Button();
+            this.btnToPage = new System.Windows.Forms.Button();
+            this.btnQueryByYear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingPlan)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.grbEditDrawingPlan.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -117,6 +136,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDrawingPlan.BackgroundColor = System.Drawing.Color.White;
+            this.dgvDrawingPlan.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -145,7 +165,7 @@
             this.dgvDrawingPlan.Name = "dgvDrawingPlan";
             this.dgvDrawingPlan.ReadOnly = true;
             this.dgvDrawingPlan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDrawingPlan.Size = new System.Drawing.Size(926, 347);
+            this.dgvDrawingPlan.Size = new System.Drawing.Size(926, 392);
             this.dgvDrawingPlan.TabIndex = 9;
             this.dgvDrawingPlan.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDrawingPlan_CellDoubleClick);
             this.dgvDrawingPlan.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvDrawingPlan_RowPostPaint);
@@ -419,7 +439,7 @@
             // 
             // btnQueryByProjectId
             // 
-            this.btnQueryByProjectId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.btnQueryByProjectId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnQueryByProjectId.FlatAppearance.BorderSize = 0;
             this.btnQueryByProjectId.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQueryByProjectId.ForeColor = System.Drawing.Color.White;
@@ -466,9 +486,9 @@
             this.grbEditDrawingPlan.Controls.Add(this.label12);
             this.grbEditDrawingPlan.Controls.Add(this.label10);
             this.grbEditDrawingPlan.Controls.Add(this.txtEditModuleNo);
-            this.grbEditDrawingPlan.Location = new System.Drawing.Point(12, 463);
+            this.grbEditDrawingPlan.Location = new System.Drawing.Point(10, 136);
             this.grbEditDrawingPlan.Name = "grbEditDrawingPlan";
-            this.grbEditDrawingPlan.Size = new System.Drawing.Size(926, 93);
+            this.grbEditDrawingPlan.Size = new System.Drawing.Size(928, 93);
             this.grbEditDrawingPlan.TabIndex = 15;
             this.grbEditDrawingPlan.TabStop = false;
             this.grbEditDrawingPlan.Text = "修改制图计划";
@@ -626,20 +646,6 @@
             this.txtEditModuleNo.TabIndex = 5;
             this.txtEditModuleNo.TextChanged += new System.EventHandler(this.txtEditModuleNo_TextChanged);
             // 
-            // btnShowInfo
-            // 
-            this.btnShowInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(136)))), ((int)(((byte)(242)))));
-            this.btnShowInfo.FlatAppearance.BorderSize = 0;
-            this.btnShowInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShowInfo.ForeColor = System.Drawing.Color.White;
-            this.btnShowInfo.Location = new System.Drawing.Point(618, 35);
-            this.btnShowInfo.Name = "btnShowInfo";
-            this.btnShowInfo.Size = new System.Drawing.Size(108, 28);
-            this.btnShowInfo.TabIndex = 7;
-            this.btnShowInfo.Text = "显示统计信息";
-            this.btnShowInfo.UseVisualStyleBackColor = false;
-            this.btnShowInfo.Click += new System.EventHandler(this.btnShowInfo_Click);
-            // 
             // cobODPNo
             // 
             this.cobODPNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -653,7 +659,7 @@
             // 
             // btnQueryByUserId
             // 
-            this.btnQueryByUserId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.btnQueryByUserId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnQueryByUserId.FlatAppearance.BorderSize = 0;
             this.btnQueryByUserId.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQueryByUserId.ForeColor = System.Drawing.Color.White;
@@ -705,17 +711,242 @@
             this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewImageColumn1.Width = 104;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtToPage);
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.lblRecordsCound);
+            this.groupBox1.Controls.Add(this.lblCurrentPage);
+            this.groupBox1.Controls.Add(this.lblPageCount);
+            this.groupBox1.Controls.Add(this.cobRecordList);
+            this.groupBox1.Controls.Add(this.label19);
+            this.groupBox1.Controls.Add(this.label20);
+            this.groupBox1.Controls.Add(this.label21);
+            this.groupBox1.Controls.Add(this.label22);
+            this.groupBox1.Controls.Add(this.cobQueryYear);
+            this.groupBox1.Controls.Add(this.label23);
+            this.groupBox1.Controls.Add(this.btnLast);
+            this.groupBox1.Controls.Add(this.btnNext);
+            this.groupBox1.Controls.Add(this.btnPre);
+            this.groupBox1.Controls.Add(this.btnFirst);
+            this.groupBox1.Controls.Add(this.btnToPage);
+            this.groupBox1.Controls.Add(this.btnQueryByYear);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox1.Location = new System.Drawing.Point(0, 508);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(950, 60);
+            this.groupBox1.TabIndex = 45;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "分页显示";
+            // 
+            // txtToPage
+            // 
+            this.txtToPage.Location = new System.Drawing.Point(629, 25);
+            this.txtToPage.Name = "txtToPage";
+            this.txtToPage.Size = new System.Drawing.Size(34, 25);
+            this.txtToPage.TabIndex = 45;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(578, 28);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(61, 19);
+            this.label18.TabIndex = 43;
+            this.label18.Text = "跳转到：";
+            // 
+            // lblRecordsCound
+            // 
+            this.lblRecordsCound.AutoSize = true;
+            this.lblRecordsCound.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblRecordsCound.Location = new System.Drawing.Point(528, 28);
+            this.lblRecordsCound.Name = "lblRecordsCound";
+            this.lblRecordsCound.Size = new System.Drawing.Size(17, 19);
+            this.lblRecordsCound.TabIndex = 37;
+            this.lblRecordsCound.Text = "0";
+            // 
+            // lblCurrentPage
+            // 
+            this.lblCurrentPage.AutoSize = true;
+            this.lblCurrentPage.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblCurrentPage.Location = new System.Drawing.Point(430, 28);
+            this.lblCurrentPage.Name = "lblCurrentPage";
+            this.lblCurrentPage.Size = new System.Drawing.Size(17, 19);
+            this.lblCurrentPage.TabIndex = 38;
+            this.lblCurrentPage.Text = "0";
+            // 
+            // lblPageCount
+            // 
+            this.lblPageCount.AutoSize = true;
+            this.lblPageCount.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblPageCount.Location = new System.Drawing.Point(345, 28);
+            this.lblPageCount.Name = "lblPageCount";
+            this.lblPageCount.Size = new System.Drawing.Size(17, 19);
+            this.lblPageCount.TabIndex = 39;
+            this.lblPageCount.Text = "0";
+            // 
+            // cobRecordList
+            // 
+            this.cobRecordList.FormattingEnabled = true;
+            this.cobRecordList.Items.AddRange(new object[] {
+            "15",
+            "30",
+            "50",
+            "100",
+            "500",
+            "1000"});
+            this.cobRecordList.Location = new System.Drawing.Point(240, 24);
+            this.cobRecordList.Name = "cobRecordList";
+            this.cobRecordList.Size = new System.Drawing.Size(48, 27);
+            this.cobRecordList.TabIndex = 36;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(669, 28);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(22, 19);
+            this.label19.TabIndex = 40;
+            this.label19.Text = "页";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(308, 28);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(268, 19);
+            this.label20.TabIndex = 41;
+            this.label20.Text = "【共：    页 当前第：    页 记录总数：      】";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(291, 28);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(22, 19);
+            this.label21.TabIndex = 42;
+            this.label21.Text = "行";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(174, 28);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(74, 19);
+            this.label22.TabIndex = 44;
+            this.label22.Text = "每页显示：";
+            // 
+            // cobQueryYear
+            // 
+            this.cobQueryYear.FormattingEnabled = true;
+            this.cobQueryYear.Location = new System.Drawing.Point(48, 24);
+            this.cobQueryYear.Name = "cobQueryYear";
+            this.cobQueryYear.Size = new System.Drawing.Size(68, 27);
+            this.cobQueryYear.TabIndex = 25;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(3, 28);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(48, 19);
+            this.label23.TabIndex = 35;
+            this.label23.Text = "年度：";
+            // 
+            // btnLast
+            // 
+            this.btnLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnLast.FlatAppearance.BorderSize = 0;
+            this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLast.ForeColor = System.Drawing.Color.White;
+            this.btnLast.Location = new System.Drawing.Point(901, 23);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(42, 28);
+            this.btnLast.TabIndex = 28;
+            this.btnLast.Text = ">>";
+            this.btnLast.UseVisualStyleBackColor = false;
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.ForeColor = System.Drawing.Color.White;
+            this.btnNext.Location = new System.Drawing.Point(850, 23);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(42, 28);
+            this.btnNext.TabIndex = 28;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = false;
+            // 
+            // btnPre
+            // 
+            this.btnPre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnPre.FlatAppearance.BorderSize = 0;
+            this.btnPre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPre.ForeColor = System.Drawing.Color.White;
+            this.btnPre.Location = new System.Drawing.Point(799, 23);
+            this.btnPre.Name = "btnPre";
+            this.btnPre.Size = new System.Drawing.Size(42, 28);
+            this.btnPre.TabIndex = 28;
+            this.btnPre.Text = "<";
+            this.btnPre.UseVisualStyleBackColor = false;
+            // 
+            // btnFirst
+            // 
+            this.btnFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFirst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnFirst.FlatAppearance.BorderSize = 0;
+            this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFirst.ForeColor = System.Drawing.Color.White;
+            this.btnFirst.Location = new System.Drawing.Point(748, 23);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(42, 28);
+            this.btnFirst.TabIndex = 28;
+            this.btnFirst.Text = "<<";
+            this.btnFirst.UseVisualStyleBackColor = false;
+            // 
+            // btnToPage
+            // 
+            this.btnToPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnToPage.FlatAppearance.BorderSize = 0;
+            this.btnToPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToPage.ForeColor = System.Drawing.Color.White;
+            this.btnToPage.Location = new System.Drawing.Point(697, 23);
+            this.btnToPage.Name = "btnToPage";
+            this.btnToPage.Size = new System.Drawing.Size(42, 28);
+            this.btnToPage.TabIndex = 28;
+            this.btnToPage.Text = "GO";
+            this.btnToPage.UseVisualStyleBackColor = false;
+            // 
+            // btnQueryByYear
+            // 
+            this.btnQueryByYear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnQueryByYear.FlatAppearance.BorderSize = 0;
+            this.btnQueryByYear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQueryByYear.ForeColor = System.Drawing.Color.White;
+            this.btnQueryByYear.Location = new System.Drawing.Point(122, 23);
+            this.btnQueryByYear.Name = "btnQueryByYear";
+            this.btnQueryByYear.Size = new System.Drawing.Size(46, 28);
+            this.btnQueryByYear.TabIndex = 28;
+            this.btnQueryByYear.Text = "查询";
+            this.btnQueryByYear.UseVisualStyleBackColor = false;
+            // 
             // FrmDrawingPlan
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(950, 568);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grbEditDrawingPlan);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.btnQueryByUserId);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cobUserId);
             this.Controls.Add(this.cobODPNo);
-            this.Controls.Add(this.grbEditDrawingPlan);
             this.Controls.Add(this.dtpDrReleaseTarget);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
@@ -723,7 +954,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnQueryByProjectId);
-            this.Controls.Add(this.btnShowInfo);
             this.Controls.Add(this.btnQueryAllPlan);
             this.Controls.Add(this.btnAddDrawingPlan);
             this.Controls.Add(this.txtModuleNo);
@@ -741,6 +971,8 @@
             this.contextMenuStrip.ResumeLayout(false);
             this.grbEditDrawingPlan.ResumeLayout(false);
             this.grbEditDrawingPlan.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -787,7 +1019,6 @@
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DateTimePicker dtpEditAddedDate;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button btnShowInfo;
         private System.Windows.Forms.ComboBox cobODPNo;
         private System.Windows.Forms.ComboBox cobEditODPNo;
         private System.Windows.Forms.ToolStripMenuItem tsmiRequirements;
@@ -808,5 +1039,24 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ModuleNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalWorkload;
         private System.Windows.Forms.DataGridViewTextBoxColumn DrawingPlanId;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private MyUIControls.SuperTextBox txtToPage;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblRecordsCound;
+        private System.Windows.Forms.Label lblCurrentPage;
+        private System.Windows.Forms.Label lblPageCount;
+        private System.Windows.Forms.ComboBox cobRecordList;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ComboBox cobQueryYear;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPre;
+        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Button btnToPage;
+        private System.Windows.Forms.Button btnQueryByYear;
     }
 }

@@ -40,7 +40,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmiProjectList = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tsmiProjectInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.制图计划ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDarwingPlan = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,15 +47,18 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHoodAutoDrawing = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCeilingAutoDrawing = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.查询页面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUsersManage = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCategories = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDXFCutList = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCeilingAccessories = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiWorkLoad = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiStatusTypes = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -185,6 +187,8 @@
             this.tsmiHoodAutoDrawing,
             this.tsmiCeilingAutoDrawing,
             this.toolStripMenuItem2,
+            this.查询页面ToolStripMenuItem,
+            this.toolStripMenuItem3,
             this.tsmiSetting});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -200,26 +204,6 @@
             this.tsmiProjectList.Size = new System.Drawing.Size(84, 21);
             this.tsmiProjectList.Text = "项目列表";
             this.tsmiProjectList.Click += new System.EventHandler(this.tsmiProjectList_Click);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "Category.png");
-            this.imageList1.Images.SetKeyName(1, "CeilingAutoDrawing.png");
-            this.imageList1.Images.SetKeyName(2, "customer_service_68.646575342466px_1208508_easyicon.net.png");
-            this.imageList1.Images.SetKeyName(3, "Cutlist.png");
-            this.imageList1.Images.SetKeyName(4, "DrawingPlan.png");
-            this.imageList1.Images.SetKeyName(5, "HoodAutoDrawing.png");
-            this.imageList1.Images.SetKeyName(6, "PackingList.png");
-            this.imageList1.Images.SetKeyName(7, "ProjectInfo.png");
-            this.imageList1.Images.SetKeyName(8, "ProjectList.png");
-            this.imageList1.Images.SetKeyName(9, "ProjectTracking.png");
-            this.imageList1.Images.SetKeyName(10, "Setting.png");
-            this.imageList1.Images.SetKeyName(11, "Status.png");
-            this.imageList1.Images.SetKeyName(12, "UpdateIcon.png");
-            this.imageList1.Images.SetKeyName(13, "UsersManage.png");
-            this.imageList1.Images.SetKeyName(14, "Workload.png");
             // 
             // tsmiProjectInfo
             // 
@@ -280,6 +264,27 @@
             this.tsmiCeilingAutoDrawing.Text = "天花烟罩";
             this.tsmiCeilingAutoDrawing.Click += new System.EventHandler(this.tsmiCeilingAutoDrawing_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Enabled = false;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(23, 21);
+            this.toolStripMenuItem2.Text = "|";
+            // 
+            // 查询页面ToolStripMenuItem
+            // 
+            this.查询页面ToolStripMenuItem.Image = global::Compass.Properties.Resources.Query;
+            this.查询页面ToolStripMenuItem.Name = "查询页面ToolStripMenuItem";
+            this.查询页面ToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
+            this.查询页面ToolStripMenuItem.Text = "查询页面";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Enabled = false;
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(23, 21);
+            this.toolStripMenuItem3.Text = "|";
+            // 
             // tsmiSetting
             // 
             this.tsmiSetting.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -300,22 +305,15 @@
             // 
             this.tsmiUsersManage.Image = global::Compass.Properties.Resources.UsersManage;
             this.tsmiUsersManage.Name = "tsmiUsersManage";
-            this.tsmiUsersManage.Size = new System.Drawing.Size(180, 22);
+            this.tsmiUsersManage.Size = new System.Drawing.Size(153, 22);
             this.tsmiUsersManage.Text = "用户信息";
             this.tsmiUsersManage.Click += new System.EventHandler(this.tsmiUsersManage_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Enabled = false;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(23, 21);
-            this.toolStripMenuItem2.Text = "|";
             // 
             // tsmiCategories
             // 
             this.tsmiCategories.Image = global::Compass.Properties.Resources.Category;
             this.tsmiCategories.Name = "tsmiCategories";
-            this.tsmiCategories.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCategories.Size = new System.Drawing.Size(153, 22);
             this.tsmiCategories.Text = "模型分类";
             this.tsmiCategories.Click += new System.EventHandler(this.tsmiCategories_Click);
             // 
@@ -323,7 +321,7 @@
             // 
             this.tsmiDXFCutList.Image = global::Compass.Properties.Resources.Cutlist;
             this.tsmiDXFCutList.Name = "tsmiDXFCutList";
-            this.tsmiDXFCutList.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDXFCutList.Size = new System.Drawing.Size(153, 22);
             this.tsmiDXFCutList.Text = "Cutlist模版";
             this.tsmiDXFCutList.Click += new System.EventHandler(this.tsmiDXFCutList_Click);
             // 
@@ -331,7 +329,7 @@
             // 
             this.tsmiCeilingAccessories.Image = global::Compass.Properties.Resources.PackingList;
             this.tsmiCeilingAccessories.Name = "tsmiCeilingAccessories";
-            this.tsmiCeilingAccessories.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCeilingAccessories.Size = new System.Drawing.Size(153, 22);
             this.tsmiCeilingAccessories.Text = "天花配件";
             this.tsmiCeilingAccessories.Click += new System.EventHandler(this.tsmiCeilingAccessories_Click);
             // 
@@ -339,25 +337,45 @@
             // 
             this.tsmiWorkLoad.Image = global::Compass.Properties.Resources.Workload;
             this.tsmiWorkLoad.Name = "tsmiWorkLoad";
-            this.tsmiWorkLoad.Size = new System.Drawing.Size(180, 22);
+            this.tsmiWorkLoad.Size = new System.Drawing.Size(153, 22);
             this.tsmiWorkLoad.Text = "设计工作量";
             this.tsmiWorkLoad.Click += new System.EventHandler(this.tsmiWorkLoad_Click);
-            // 
-            // tsmiUpdate
-            // 
-            this.tsmiUpdate.Image = global::Compass.Properties.Resources.UpdateIcon;
-            this.tsmiUpdate.Name = "tsmiUpdate";
-            this.tsmiUpdate.Size = new System.Drawing.Size(180, 22);
-            this.tsmiUpdate.Text = "系统升级";
-            this.tsmiUpdate.Click += new System.EventHandler(this.tsmiUpdate_Click);
             // 
             // tsmiStatusTypes
             // 
             this.tsmiStatusTypes.Image = global::Compass.Properties.Resources.Status;
             this.tsmiStatusTypes.Name = "tsmiStatusTypes";
-            this.tsmiStatusTypes.Size = new System.Drawing.Size(180, 22);
+            this.tsmiStatusTypes.Size = new System.Drawing.Size(153, 22);
             this.tsmiStatusTypes.Text = "项目状态/类型";
             this.tsmiStatusTypes.Click += new System.EventHandler(this.tsmiStatusTypes_Click);
+            // 
+            // tsmiUpdate
+            // 
+            this.tsmiUpdate.Image = global::Compass.Properties.Resources.UpdateIcon;
+            this.tsmiUpdate.Name = "tsmiUpdate";
+            this.tsmiUpdate.Size = new System.Drawing.Size(153, 22);
+            this.tsmiUpdate.Text = "系统升级";
+            this.tsmiUpdate.Click += new System.EventHandler(this.tsmiUpdate_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Category.png");
+            this.imageList1.Images.SetKeyName(1, "CeilingAutoDrawing.png");
+            this.imageList1.Images.SetKeyName(2, "customer_service_68.646575342466px_1208508_easyicon.net.png");
+            this.imageList1.Images.SetKeyName(3, "Cutlist.png");
+            this.imageList1.Images.SetKeyName(4, "DrawingPlan.png");
+            this.imageList1.Images.SetKeyName(5, "HoodAutoDrawing.png");
+            this.imageList1.Images.SetKeyName(6, "PackingList.png");
+            this.imageList1.Images.SetKeyName(7, "ProjectInfo.png");
+            this.imageList1.Images.SetKeyName(8, "ProjectList.png");
+            this.imageList1.Images.SetKeyName(9, "ProjectTracking.png");
+            this.imageList1.Images.SetKeyName(10, "Setting.png");
+            this.imageList1.Images.SetKeyName(11, "Status.png");
+            this.imageList1.Images.SetKeyName(12, "UpdateIcon.png");
+            this.imageList1.Images.SetKeyName(13, "UsersManage.png");
+            this.imageList1.Images.SetKeyName(14, "Workload.png");
             // 
             // FrmMain
             // 
@@ -416,6 +434,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiWorkLoad;
         private System.Windows.Forms.ToolStripMenuItem tsmiUpdate;
         private System.Windows.Forms.ToolStripMenuItem tsmiStatusTypes;
+        private System.Windows.Forms.ToolStripMenuItem 查询页面ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }
 

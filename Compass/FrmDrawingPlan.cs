@@ -26,6 +26,19 @@ namespace Compass
         {
             InitializeComponent();
             IniUserId(cobUserId);
+            IniModel(cobModel);
+            IniODPNo(cobODPNo);
+            dgvDrawingPlan.AutoGenerateColumns = false;
+            btnQueryAllPlan_Click(null, null);
+            grbEditDrawingPlan.Visible = false;
+            SetPermissions();
+            ShowInfo();
+        }
+        /// <summary>
+        /// 设置权限
+        /// </summary>
+        private void SetPermissions()
+        {
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
             {
                 //技术部和管理员登陆后选中当前登陆用户
@@ -35,13 +48,27 @@ namespace Compass
             {
                 cobUserId.SelectedIndex = -1; //默认选中
             }
-            IniModel(cobModel);
-            IniODPNo(cobODPNo);
-            dgvDrawingPlan.AutoGenerateColumns = false;
-            btnQueryAllPlan_Click(null, null);
-            grbEditDrawingPlan.Visible = false;
-            //this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.cobODPNo_SelectedIndexChanged);
+            //管理员才能添加、编辑、删除制图计划
+            if (Program.ObjCurrentUser.UserGroupId == 1)
+            {
+                btnAddDrawingPlan.Visible = true;
+                tsmiProjectTracking.Visible = false;//未做先隐藏
+                tsmiEditDrawingPlan.Visible = true;
+                tsmiDeleteDrawingPlan.Visible = true;
+                this.dgvDrawingPlan.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDrawingPlan_CellDoubleClick);
+                this.dgvDrawingPlan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvDrawingPlan_KeyDown);
+            }
+            else
+            {
+                btnAddDrawingPlan.Visible = false;
+                tsmiProjectTracking.Visible = false;
+                tsmiEditDrawingPlan.Visible = false;
+                tsmiDeleteDrawingPlan.Visible = false;
+                this.dgvDrawingPlan.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDrawingPlan_CellDoubleClick);
+                this.dgvDrawingPlan.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvDrawingPlan_KeyDown);
+            }
         }
+
         /// <summary>
         /// 显示全部计划
         /// </summary>
@@ -249,6 +276,7 @@ namespace Compass
             DrawingPlan objDrawingPlan = objDrawingPlanService.GetDrawingPlanById(drawingPlanId);
             //初始化修改信息
             grbEditDrawingPlan.Visible = true;//显示修改框
+            grbEditDrawingPlan.Location=new Point(10,9);
             IniModel(cobEditModel);
             IniODPNo(cobEditODPNo);
             txtEditDrawingPlanId.Text = objDrawingPlan.DrawingPlanId.ToString();
@@ -499,10 +527,10 @@ namespace Compass
             FrmRequirements objFrmRequirements = new FrmRequirements(objProject);
             objFrmRequirements.ShowDialog();
         }
-        private void btnShowInfo_Click(object sender, EventArgs e)
+        private void ShowInfo()
         {
             //调用委托执行委托方法
-            showDrawingPlanInfoDelegate();
+            //showDrawingPlanInfoDelegate();
         }
         /// <summary>
         /// 根据制图人员查询计划

@@ -46,7 +46,6 @@
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiQueryAllProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDeleteProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnQueryByProjectId = new System.Windows.Forms.Button();
@@ -60,7 +59,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.dtpEditDeliverActual = new System.Windows.Forms.DateTimePicker();
             this.btnQueryAllProjectTracking = new System.Windows.Forms.Button();
-            this.btnAddProjectTracking = new System.Windows.Forms.Button();
             this.grbEditProjectTracking = new System.Windows.Forms.GroupBox();
             this.cobEditODPNo = new System.Windows.Forms.ComboBox();
             this.btnEditProjectTracking = new System.Windows.Forms.Button();
@@ -74,10 +72,29 @@
             this.label10 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.cobODPNo = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtToPage = new MyUIControls.SuperTextBox(this.components);
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblRecordsCound = new System.Windows.Forms.Label();
+            this.lblCurrentPage = new System.Windows.Forms.Label();
+            this.lblPageCount = new System.Windows.Forms.Label();
+            this.cobRecordList = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cobQueryYear = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btnLast = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPre = new System.Windows.Forms.Button();
+            this.btnFirst = new System.Windows.Forms.Button();
+            this.btnToPage = new System.Windows.Forms.Button();
+            this.btnQueryByYear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTracking)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.grbEditProjectTracking.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvProjectTracking
@@ -91,6 +108,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProjectTracking.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvProjectTracking.BackgroundColor = System.Drawing.Color.White;
+            this.dgvProjectTracking.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -118,12 +136,11 @@
             this.dgvProjectTracking.Name = "dgvProjectTracking";
             this.dgvProjectTracking.ReadOnly = true;
             this.dgvProjectTracking.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProjectTracking.Size = new System.Drawing.Size(926, 346);
+            this.dgvProjectTracking.Size = new System.Drawing.Size(926, 392);
             this.dgvProjectTracking.TabIndex = 11;
             this.dgvProjectTracking.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjectTracking_CellDoubleClick);
             this.dgvProjectTracking.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjectTracking_RowPostPaint);
             this.dgvProjectTracking.SelectionChanged += new System.EventHandler(this.dgvProjectTracking_SelectionChanged);
-            this.dgvProjectTracking.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjectTracking_KeyDown);
             // 
             // ODPNo
             // 
@@ -218,10 +235,9 @@
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiQueryAllProjectTracking,
-            this.tsmiEditProjectTracking,
-            this.tsmiDeleteProjectTracking});
+            this.tsmiEditProjectTracking});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(173, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(173, 48);
             // 
             // tsmiQueryAllProjectTracking
             // 
@@ -236,15 +252,6 @@
             this.tsmiEditProjectTracking.Size = new System.Drawing.Size(172, 22);
             this.tsmiEditProjectTracking.Text = "修改项目跟踪记录";
             this.tsmiEditProjectTracking.Click += new System.EventHandler(this.tsmiEditProjectTracking_Click);
-            // 
-            // tsmiDeleteProjectTracking
-            // 
-            this.tsmiDeleteProjectTracking.Enabled = false;
-            this.tsmiDeleteProjectTracking.Name = "tsmiDeleteProjectTracking";
-            this.tsmiDeleteProjectTracking.Size = new System.Drawing.Size(172, 22);
-            this.tsmiDeleteProjectTracking.Text = "删除项目跟踪记录";
-            this.tsmiDeleteProjectTracking.Visible = false;
-            this.tsmiDeleteProjectTracking.Click += new System.EventHandler(this.tsmiDeleteProjectTracking_Click);
             // 
             // label1
             // 
@@ -268,7 +275,7 @@
             // 
             // btnQueryByProjectId
             // 
-            this.btnQueryByProjectId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.btnQueryByProjectId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnQueryByProjectId.FlatAppearance.BorderSize = 0;
             this.btnQueryByProjectId.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQueryByProjectId.ForeColor = System.Drawing.Color.White;
@@ -282,7 +289,7 @@
             // 
             // btnQueryByProjectStatus
             // 
-            this.btnQueryByProjectStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.btnQueryByProjectStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnQueryByProjectStatus.FlatAppearance.BorderSize = 0;
             this.btnQueryByProjectStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQueryByProjectStatus.ForeColor = System.Drawing.Color.White;
@@ -378,20 +385,6 @@
             this.btnQueryAllProjectTracking.UseVisualStyleBackColor = false;
             this.btnQueryAllProjectTracking.Click += new System.EventHandler(this.btnQueryAllProjectTracking_Click);
             // 
-            // btnAddProjectTracking
-            // 
-            this.btnAddProjectTracking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.btnAddProjectTracking.FlatAppearance.BorderSize = 0;
-            this.btnAddProjectTracking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddProjectTracking.ForeColor = System.Drawing.Color.White;
-            this.btnAddProjectTracking.Location = new System.Drawing.Point(830, 75);
-            this.btnAddProjectTracking.Name = "btnAddProjectTracking";
-            this.btnAddProjectTracking.Size = new System.Drawing.Size(108, 28);
-            this.btnAddProjectTracking.TabIndex = 22;
-            this.btnAddProjectTracking.Text = "添加跟踪记录";
-            this.btnAddProjectTracking.UseVisualStyleBackColor = false;
-            this.btnAddProjectTracking.Click += new System.EventHandler(this.btnAddProjectTracking_Click);
-            // 
             // grbEditProjectTracking
             // 
             this.grbEditProjectTracking.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -412,9 +405,9 @@
             this.grbEditProjectTracking.Controls.Add(this.label5);
             this.grbEditProjectTracking.Controls.Add(this.label11);
             this.grbEditProjectTracking.Controls.Add(this.label10);
-            this.grbEditProjectTracking.Location = new System.Drawing.Point(10, 462);
+            this.grbEditProjectTracking.Location = new System.Drawing.Point(12, 137);
             this.grbEditProjectTracking.Name = "grbEditProjectTracking";
-            this.grbEditProjectTracking.Size = new System.Drawing.Size(928, 94);
+            this.grbEditProjectTracking.Size = new System.Drawing.Size(926, 94);
             this.grbEditProjectTracking.TabIndex = 24;
             this.grbEditProjectTracking.TabStop = false;
             this.grbEditProjectTracking.Text = "修改项目跟踪记录";
@@ -454,10 +447,10 @@
             // 
             // txtEditProjectTrackingId
             // 
-            this.txtEditProjectTrackingId.Location = new System.Drawing.Point(838, 25);
+            this.txtEditProjectTrackingId.Location = new System.Drawing.Point(845, 25);
             this.txtEditProjectTrackingId.Name = "txtEditProjectTrackingId";
             this.txtEditProjectTrackingId.ReadOnly = true;
-            this.txtEditProjectTrackingId.Size = new System.Drawing.Size(85, 25);
+            this.txtEditProjectTrackingId.Size = new System.Drawing.Size(78, 25);
             this.txtEditProjectTrackingId.TabIndex = 15;
             // 
             // cobEditKickOffStatus
@@ -481,11 +474,11 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(775, 28);
+            this.label15.Location = new System.Drawing.Point(816, 28);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(49, 19);
+            this.label15.Size = new System.Drawing.Size(23, 19);
             this.label15.TabIndex = 18;
-            this.label15.Text = "跟踪ID";
+            this.label15.Text = "ID";
             // 
             // label5
             // 
@@ -537,30 +530,243 @@
             this.cobODPNo.Size = new System.Drawing.Size(139, 27);
             this.cobODPNo.TabIndex = 39;
             // 
-            // label7
+            // groupBox1
             // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.label7.Location = new System.Drawing.Point(119, 18);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(152, 19);
-            this.label7.TabIndex = 19;
-            this.label7.Text = "查询用，添加时不要点击";
+            this.groupBox1.Controls.Add(this.txtToPage);
+            this.groupBox1.Controls.Add(this.label17);
+            this.groupBox1.Controls.Add(this.lblRecordsCound);
+            this.groupBox1.Controls.Add(this.lblCurrentPage);
+            this.groupBox1.Controls.Add(this.lblPageCount);
+            this.groupBox1.Controls.Add(this.cobRecordList);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.label18);
+            this.groupBox1.Controls.Add(this.cobQueryYear);
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.btnLast);
+            this.groupBox1.Controls.Add(this.btnNext);
+            this.groupBox1.Controls.Add(this.btnPre);
+            this.groupBox1.Controls.Add(this.btnFirst);
+            this.groupBox1.Controls.Add(this.btnToPage);
+            this.groupBox1.Controls.Add(this.btnQueryByYear);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox1.Location = new System.Drawing.Point(0, 508);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(950, 60);
+            this.groupBox1.TabIndex = 40;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "分页显示";
+            // 
+            // txtToPage
+            // 
+            this.txtToPage.Location = new System.Drawing.Point(629, 25);
+            this.txtToPage.Name = "txtToPage";
+            this.txtToPage.Size = new System.Drawing.Size(34, 25);
+            this.txtToPage.TabIndex = 45;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(578, 28);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(61, 19);
+            this.label17.TabIndex = 43;
+            this.label17.Text = "跳转到：";
+            // 
+            // lblRecordsCound
+            // 
+            this.lblRecordsCound.AutoSize = true;
+            this.lblRecordsCound.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblRecordsCound.Location = new System.Drawing.Point(528, 28);
+            this.lblRecordsCound.Name = "lblRecordsCound";
+            this.lblRecordsCound.Size = new System.Drawing.Size(17, 19);
+            this.lblRecordsCound.TabIndex = 37;
+            this.lblRecordsCound.Text = "0";
+            // 
+            // lblCurrentPage
+            // 
+            this.lblCurrentPage.AutoSize = true;
+            this.lblCurrentPage.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblCurrentPage.Location = new System.Drawing.Point(430, 28);
+            this.lblCurrentPage.Name = "lblCurrentPage";
+            this.lblCurrentPage.Size = new System.Drawing.Size(17, 19);
+            this.lblCurrentPage.TabIndex = 38;
+            this.lblCurrentPage.Text = "0";
+            // 
+            // lblPageCount
+            // 
+            this.lblPageCount.AutoSize = true;
+            this.lblPageCount.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lblPageCount.Location = new System.Drawing.Point(345, 28);
+            this.lblPageCount.Name = "lblPageCount";
+            this.lblPageCount.Size = new System.Drawing.Size(17, 19);
+            this.lblPageCount.TabIndex = 39;
+            this.lblPageCount.Text = "0";
+            // 
+            // cobRecordList
+            // 
+            this.cobRecordList.FormattingEnabled = true;
+            this.cobRecordList.Items.AddRange(new object[] {
+            "15",
+            "30",
+            "50",
+            "100",
+            "500",
+            "1000"});
+            this.cobRecordList.Location = new System.Drawing.Point(240, 24);
+            this.cobRecordList.Name = "cobRecordList";
+            this.cobRecordList.Size = new System.Drawing.Size(48, 27);
+            this.cobRecordList.TabIndex = 36;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(669, 28);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(22, 19);
+            this.label14.TabIndex = 40;
+            this.label14.Text = "页";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(308, 28);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(268, 19);
+            this.label12.TabIndex = 41;
+            this.label12.Text = "【共：    页 当前第：    页 记录总数：      】";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(291, 28);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(22, 19);
+            this.label16.TabIndex = 42;
+            this.label16.Text = "行";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(174, 28);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(74, 19);
+            this.label18.TabIndex = 44;
+            this.label18.Text = "每页显示：";
+            // 
+            // cobQueryYear
+            // 
+            this.cobQueryYear.FormattingEnabled = true;
+            this.cobQueryYear.Location = new System.Drawing.Point(48, 24);
+            this.cobQueryYear.Name = "cobQueryYear";
+            this.cobQueryYear.Size = new System.Drawing.Size(68, 27);
+            this.cobQueryYear.TabIndex = 25;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(3, 28);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(48, 19);
+            this.label13.TabIndex = 35;
+            this.label13.Text = "年度：";
+            // 
+            // btnLast
+            // 
+            this.btnLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLast.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnLast.FlatAppearance.BorderSize = 0;
+            this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLast.ForeColor = System.Drawing.Color.White;
+            this.btnLast.Location = new System.Drawing.Point(901, 23);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(42, 28);
+            this.btnLast.TabIndex = 28;
+            this.btnLast.Text = ">>";
+            this.btnLast.UseVisualStyleBackColor = false;
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.ForeColor = System.Drawing.Color.White;
+            this.btnNext.Location = new System.Drawing.Point(850, 23);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(42, 28);
+            this.btnNext.TabIndex = 28;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = false;
+            // 
+            // btnPre
+            // 
+            this.btnPre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnPre.FlatAppearance.BorderSize = 0;
+            this.btnPre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPre.ForeColor = System.Drawing.Color.White;
+            this.btnPre.Location = new System.Drawing.Point(799, 23);
+            this.btnPre.Name = "btnPre";
+            this.btnPre.Size = new System.Drawing.Size(42, 28);
+            this.btnPre.TabIndex = 28;
+            this.btnPre.Text = "<";
+            this.btnPre.UseVisualStyleBackColor = false;
+            // 
+            // btnFirst
+            // 
+            this.btnFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFirst.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnFirst.FlatAppearance.BorderSize = 0;
+            this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFirst.ForeColor = System.Drawing.Color.White;
+            this.btnFirst.Location = new System.Drawing.Point(748, 23);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(42, 28);
+            this.btnFirst.TabIndex = 28;
+            this.btnFirst.Text = "<<";
+            this.btnFirst.UseVisualStyleBackColor = false;
+            // 
+            // btnToPage
+            // 
+            this.btnToPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnToPage.FlatAppearance.BorderSize = 0;
+            this.btnToPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToPage.ForeColor = System.Drawing.Color.White;
+            this.btnToPage.Location = new System.Drawing.Point(697, 23);
+            this.btnToPage.Name = "btnToPage";
+            this.btnToPage.Size = new System.Drawing.Size(42, 28);
+            this.btnToPage.TabIndex = 28;
+            this.btnToPage.Text = "GO";
+            this.btnToPage.UseVisualStyleBackColor = false;
+            // 
+            // btnQueryByYear
+            // 
+            this.btnQueryByYear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnQueryByYear.FlatAppearance.BorderSize = 0;
+            this.btnQueryByYear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQueryByYear.ForeColor = System.Drawing.Color.White;
+            this.btnQueryByYear.Location = new System.Drawing.Point(122, 23);
+            this.btnQueryByYear.Name = "btnQueryByYear";
+            this.btnQueryByYear.Size = new System.Drawing.Size(46, 28);
+            this.btnQueryByYear.TabIndex = 28;
+            this.btnQueryByYear.Text = "查询";
+            this.btnQueryByYear.UseVisualStyleBackColor = false;
             // 
             // FrmProjectTracking
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(950, 568);
-            this.Controls.Add(this.cobODPNo);
             this.Controls.Add(this.grbEditProjectTracking);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.cobODPNo);
             this.Controls.Add(this.btnQueryAllProjectTracking);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnAddProjectTracking);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnQueryByProjectId);
             this.Controls.Add(this.btnQueryByProjectStatus);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cobProjectStatus);
             this.Controls.Add(this.dgvProjectTracking);
@@ -573,6 +779,8 @@
             this.contextMenuStrip.ResumeLayout(false);
             this.grbEditProjectTracking.ResumeLayout(false);
             this.grbEditProjectTracking.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -594,7 +802,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker dtpEditDeliverActual;
         private System.Windows.Forms.Button btnQueryAllProjectTracking;
-        private System.Windows.Forms.Button btnAddProjectTracking;
         private System.Windows.Forms.GroupBox grbEditProjectTracking;
         private System.Windows.Forms.Button btnEditProjectTracking;
         private System.Windows.Forms.ComboBox cobEditProjectStatus;
@@ -603,13 +810,11 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem tsmiQueryAllProjectTracking;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditProjectTracking;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDeleteProjectTracking;
         private System.Windows.Forms.TextBox txtEditProjectTrackingId;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox cobODPNo;
         private System.Windows.Forms.ComboBox cobEditODPNo;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cobEditKickOffStatus;
         private System.Windows.Forms.Label label5;
@@ -624,5 +829,24 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DeliverActual;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectTrackingId;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private MyUIControls.SuperTextBox txtToPage;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lblRecordsCound;
+        private System.Windows.Forms.Label lblCurrentPage;
+        private System.Windows.Forms.Label lblPageCount;
+        private System.Windows.Forms.ComboBox cobRecordList;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox cobQueryYear;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnPre;
+        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Button btnToPage;
+        private System.Windows.Forms.Button btnQueryByYear;
     }
 }

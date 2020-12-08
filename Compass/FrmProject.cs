@@ -31,15 +31,7 @@ namespace Compass
             this.dgvProjects.SelectionChanged -= new System.EventHandler(this.dgvProjects_SelectionChanged);
             IniCustomerId(cobCustomerId);
             IniUserId(cobUserId);
-            if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
-            {
-                //技术部和管理员登陆后选中当前登陆用户
-                cobUserId.Text = Program.ObjCurrentUser.UserAccount;
-            }
-            else
-            {
-                cobUserId.SelectedIndex = -1; //默认选中
-            }
+            
             cobHoodType.Items.Add("Hood");
             cobHoodType.Items.Add("Ceiling");
             cobHoodType.SelectedIndex = -1;
@@ -79,6 +71,22 @@ namespace Compass
 
             btnQueryByYear_Click(null, null);
             this.dgvProjects.SelectionChanged += new System.EventHandler(this.dgvProjects_SelectionChanged);
+            SetPermissions();
+        }
+        /// <summary>
+        /// 设置权限
+        /// </summary>
+        private void SetPermissions()
+        {
+            if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
+            {
+                //技术部和管理员登陆后选中当前登陆用户
+                cobUserId.Text = Program.ObjCurrentUser.UserAccount;
+            }
+            else
+            {
+                cobUserId.SelectedIndex = -1; //默认选中
+            }
         }
         /// <summary>
         /// 执行查询的公共方法
@@ -628,6 +636,20 @@ namespace Compass
                     }
                 }
             }
+        }
+        /// <summary>
+        /// 添加特殊要求
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmiRequirements_Click(object sender, EventArgs e)
+        {
+            string odpNo = txtODPNo.Text;
+            if (odpNo.Length == 0) return;
+            Project objProject = objProjectService.GetProjectByODPNo(odpNo);
+            if (objProject == null) return;
+            FrmRequirements objFrmRequirements = new FrmRequirements(objProject);
+            objFrmRequirements.ShowDialog();
         }
     }
 }
