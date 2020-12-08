@@ -29,7 +29,7 @@ namespace Compass
     public delegate void QuickBrowseDelegate(Drawing drawing, ModuleTree tree);
 
 
-    public partial class FrmMain : MetroFramework.Forms.MetroForm
+    public partial class FrmMain : Form
     {
         public FrmMain()
         {
@@ -54,8 +54,8 @@ namespace Compass
             xmlReader.Close();
             myFile.Close();
             this.lblCurrentUser.Text = "当前用户：" + Program.ObjCurrentUser.UserAccount;
-            tsbProjectList_Click(null, null);
             SetTsmiVisible();
+            tsmiProjectList_Click(null, null);
         }
 
         private void SetTsmiVisible()
@@ -65,9 +65,9 @@ namespace Compass
                 case 1:
                     break;
                 default:
-                    tsbCategories.Visible = false;
-                    tsbWorkLoad.Visible = false;
-                    tsbStatusTypes.Visible = false;
+                    tsmiCategories.Visible = false;
+                    tsmiWorkLoad.Visible = false;
+                    tsmiStatusTypes.Visible = false;
                     break;
             }
             
@@ -100,30 +100,30 @@ namespace Compass
         #endregion
 
         #region 系统后台菜单
-        private void tsbUsersManage_Click(object sender, EventArgs e)
+        private void tsmiUsersManage_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmUserManage(Program.ObjCurrentUser), splitContainer.Panel2);
         }
 
-        private void tsbCategories_Click(object sender, EventArgs e)
+        private void tsmiCategories_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmCategories(), splitContainer.Panel2);
         }
-        private void tsbDXFCutList_Click(object sender, EventArgs e)
+        private void tsmiDXFCutList_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmDXFCutList(), splitContainer.Panel2);
         }
 
-        private void tsbWorkLoad_Click(object sender, EventArgs e)
+        private void tsmiWorkLoad_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmDesignWorkload(), splitContainer.Panel2);
         }
 
-        private void tsbStatusTypes_Click(object sender, EventArgs e)
+        private void tsmiStatusTypes_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmStatusTypes(), splitContainer.Panel2);
@@ -133,7 +133,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsbCeilingAccessories_Click(object sender, EventArgs e)
+        private void tsmiCeilingAccessories_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmCeilingAccessories(), splitContainer.Panel2);
@@ -147,7 +147,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsbDarwingPlan_Click(object sender, EventArgs e)
+        private void tsmiDarwingPlan_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             FrmDrawingPlan objFrmDrawingPlan = new FrmDrawingPlan();
@@ -166,7 +166,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsbProjectTracking_Click(object sender, EventArgs e)
+        private void tsmiProjectTracking_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmProjectTracking(), splitContainer.Panel2);
@@ -175,7 +175,7 @@ namespace Compass
         #endregion
 
         #region 项目信息菜单
-        private void tsbProjectList_Click(object sender, EventArgs e)
+        private void tsmiProjectList_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             //关联委托方法与委托变量
@@ -185,7 +185,7 @@ namespace Compass
             OpenForm(objFrmProject, splitContainer.Panel2);
         }
 
-        private void tsbProjectInfo_Click(object sender, EventArgs e)
+        private void tsmiProjectInfo_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             //关联委托方法与委托变量
@@ -268,13 +268,13 @@ namespace Compass
 
 
         #region SolidWorks自动绘图
-        private void tsbHoodAutoDrawing_Click(object sender, EventArgs e)
+        private void tsmiHoodAutoDrawing_Click(object sender, EventArgs e)
         {
             FrmHoodAutoDrawing objFrmHoodAutoDrawing = new FrmHoodAutoDrawing();
             objFrmHoodAutoDrawing.Show();
         }
 
-        private void tsbCeilingAutoDrawing_Click(object sender, EventArgs e)
+        private void tsmiCeilingAutoDrawing_Click(object sender, EventArgs e)
         {
             FrmCeilingAutoDrawing objFrmCeilingAutoDrawing = new FrmCeilingAutoDrawing();
             objFrmCeilingAutoDrawing.Show();
@@ -285,7 +285,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsbUpdate_Click(object sender, EventArgs e)
+        private void tsmiUpdate_Click(object sender, EventArgs e)
         {
             UpdateManager objUpdateManager = null;
             try

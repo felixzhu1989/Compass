@@ -28,6 +28,7 @@ namespace Compass
         public FrmProject()
         {
             InitializeComponent();
+            this.dgvProjects.SelectionChanged -= new System.EventHandler(this.dgvProjects_SelectionChanged);
             IniCustomerId(cobCustomerId);
             IniUserId(cobUserId);
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
@@ -77,6 +78,7 @@ namespace Compass
             };
 
             btnQueryByYear_Click(null, null);
+            this.dgvProjects.SelectionChanged += new System.EventHandler(this.dgvProjects_SelectionChanged);
         }
         /// <summary>
         /// 执行查询的公共方法

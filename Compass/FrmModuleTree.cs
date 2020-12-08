@@ -41,6 +41,7 @@ namespace Compass
         {
             objProject = objProjectService.GetProjectByODPNo(odpNo);
             RefreshTree();
+            this.tvModule.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvModule_AfterSelect);
         }
         private void RefreshTree()
         {
@@ -224,12 +225,7 @@ namespace Compass
         private void tvModule_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if(tvModule.SelectedNode==null)return;
-            if (e.Node.Level == 0)
-            {
-                pbLabelImage.Visible = false;
-                ShowProjectInfoDeg(tvModule.SelectedNode.Text);
-            }
-            else if (e.Node.Level == 1)
+            if (e.Node.Level == 1)
             {
                 string drawingPlanId = e.Node.Tag.ToString();
                 drawingPlanId = drawingPlanId.Substring(4);//除去item
@@ -278,20 +274,55 @@ namespace Compass
             if (e.Node.Level == 0) return;
             e.Node.ImageIndex = 1;//关闭的文件夹图标
         }
-
+        /// <summary>
+        /// 修改图片
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmiEditPic_Click(object sender, EventArgs e)
         {
             if (tvModule.SelectedNode == null) return;
+            TreeNode node = new TreeNode();
             if (tvModule.SelectedNode.Level == 1)
             {
-                string drawingPlanId = tvModule.SelectedNode.Tag.ToString();
-                drawingPlanId = drawingPlanId.Substring(4);//除去item
-                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId);
-                if (objDrawing == null) return;
-                FrmDrawing objFrmDrawing = new FrmDrawing(objDrawing);
-                DialogResult result = objFrmDrawing.ShowDialog();
-                if (result == DialogResult.OK) RefreshTree();
+                node = tvModule.SelectedNode;
             }
+            else if (tvModule.SelectedNode.Level == 2) //三级目录
+            {
+                node = tvModule.SelectedNode.Parent;
+            }
+            string drawingPlanId = node.Tag.ToString();
+            drawingPlanId = drawingPlanId.Substring(4);//除去item
+            Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId);
+            if (objDrawing == null) return;
+            FrmDrawing objFrmDrawing = new FrmDrawing(objDrawing);
+            DialogResult result = objFrmDrawing.ShowDialog();
+            if (result == DialogResult.OK) RefreshTree();
+        }
+        /// <summary>
+        /// 显示项目详细信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmiShowProjectInfo_Click(object sender, EventArgs e)
+        {
+            
+            if (tvModule.SelectedNode == null) return;
+            pbLabelImage.Visible = false;
+            TreeNode node=new TreeNode();
+            if (tvModule.SelectedNode.Level == 0)//一级目录
+            {
+                node = tvModule.SelectedNode;
+            }
+            else if(tvModule.SelectedNode.Level == 1)//二级目录，寻找父节点
+            {
+                node = tvModule.SelectedNode.Parent;
+            }
+            else if (tvModule.SelectedNode.Level == 2)//三级目录
+            {
+                node = tvModule.SelectedNode.Parent.Parent;
+            }
+            ShowProjectInfoDeg(node.Text);//使用委托显示项目信息
         }
     }
 }

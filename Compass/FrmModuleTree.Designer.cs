@@ -35,11 +35,12 @@
             this.tsmiAddModule = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditModule = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteModule = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiEditPic = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAutoDrawing = new System.Windows.Forms.Button();
             this.pbLabelImage = new System.Windows.Forms.PictureBox();
-            this.tsmiEditPic = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiShowProjectInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLabelImage)).BeginInit();
@@ -62,7 +63,6 @@
             this.tvModule.TabIndex = 0;
             this.tvModule.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.tvModule_AfterCollapse);
             this.tvModule.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvModule_AfterExpand);
-            this.tvModule.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvModule_AfterSelect);
             this.tvModule.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvModule_NodeMouseDoubleClick);
             // 
             // contextMenuStrip1
@@ -71,9 +71,10 @@
             this.tsmiAddModule,
             this.tsmiEditModule,
             this.tsmiDeleteModule,
-            this.tsmiEditPic});
+            this.tsmiEditPic,
+            this.tsmiShowProjectInfo});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
             // 
             // tsmiAddModule
             // 
@@ -95,6 +96,13 @@
             this.tsmiDeleteModule.Size = new System.Drawing.Size(180, 22);
             this.tsmiDeleteModule.Text = "删除分段";
             this.tsmiDeleteModule.Click += new System.EventHandler(this.tsmiDeleteModule_Click);
+            // 
+            // tsmiEditPic
+            // 
+            this.tsmiEditPic.Name = "tsmiEditPic";
+            this.tsmiEditPic.Size = new System.Drawing.Size(180, 22);
+            this.tsmiEditPic.Text = "修改截图";
+            this.tsmiEditPic.Click += new System.EventHandler(this.tsmiEditPic_Click);
             // 
             // imageList1
             // 
@@ -141,12 +149,12 @@
             this.pbLabelImage.TabIndex = 61;
             this.pbLabelImage.TabStop = false;
             // 
-            // tsmiEditPic
+            // tsmiShowProjectInfo
             // 
-            this.tsmiEditPic.Name = "tsmiEditPic";
-            this.tsmiEditPic.Size = new System.Drawing.Size(180, 22);
-            this.tsmiEditPic.Text = "修改截图";
-            this.tsmiEditPic.Click += new System.EventHandler(this.tsmiEditPic_Click);
+            this.tsmiShowProjectInfo.Name = "tsmiShowProjectInfo";
+            this.tsmiShowProjectInfo.Size = new System.Drawing.Size(180, 22);
+            this.tsmiShowProjectInfo.Text = "项目信息";
+            this.tsmiShowProjectInfo.Click += new System.EventHandler(this.tsmiShowProjectInfo_Click);
             // 
             // FrmModuleTree
             // 
@@ -179,5 +187,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiDeleteModule;
         private System.Windows.Forms.PictureBox pbLabelImage;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditPic;
+        private System.Windows.Forms.ToolStripMenuItem tsmiShowProjectInfo;
     }
 }

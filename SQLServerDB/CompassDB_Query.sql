@@ -8,7 +8,6 @@ select * from Projects
 select * from DrawingPlan
 select * from ProjectTracking
 select * from ProjectStatus
-select * from ProjectVaults
 select * from Projects
 select * from ProjectTypes
 select * from GeneralRequirements
@@ -125,3 +124,20 @@ delete from SpecialRequirements where ProjectId=104
 
 select CutListId,SubAssyId,PartDescription,Length,Width,Thickness,Quantity,Materials,PartNo,AddedDate,CeilingCutList.UserId,UserAccount from CeilingCutList inner join Users on Users.UserId=CeilingCutList.UserId where SubAssyId = '228' order by Thickness desc,Materials desc,PartNo asc
 
+
+
+
+
+
+
+
+select Top 30 Projects.ProjectId,ODPNo,BPONo,ProjectName,CustomerName,ShippingTime,UserAccount,RiskLevel,ProjectStatusName,HoodType from Projects
+  inner join Users on Projects.UserId=Users.UserId
+   inner join Customers on Projects.CustomerId=Customers.CustomerId
+    inner join ProjectTracking on Projects.ProjectId=ProjectTracking.ProjectId
+	 inner join ProjectStatus on ProjectTracking.ProjectStatusId=ProjectStatus.ProjectStatusId
+	  left join GeneralRequirements on Projects.ProjectId=GeneralRequirements.ProjectId
+	   where ShippingTime>='2020/01/01' and ShippingTime<='2020/12/31' and Projects.ProjectId not in 
+	   (select Top 0 Projects.ProjectId from Projects where ShippingTime>='2020/01/01' and ShippingTime<='2020/12/31' order by ShippingTime desc) 
+	   order by ShippingTime desc;
+select count(*) from Projects where ShippingTime>='2020/01/01' and ShippingTime<='2020/12/31'
