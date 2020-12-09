@@ -43,6 +43,7 @@
             this.txtODPNo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cmsProject = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiRequirements = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiShowProjectInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteProject = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,7 +94,7 @@
             this.btnFirst = new System.Windows.Forms.Button();
             this.btnToPage = new System.Windows.Forms.Button();
             this.btnQueryByYear = new System.Windows.Forms.Button();
-            this.tsmiRequirements = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.cmsProject.SuspendLayout();
             this.cmsCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
@@ -234,33 +235,40 @@
             this.tsmiDeleteProject,
             this.tsmiShowModuleTree});
             this.cmsProject.Name = "cmsProject";
-            this.cmsProject.Size = new System.Drawing.Size(181, 136);
+            this.cmsProject.Size = new System.Drawing.Size(149, 114);
+            // 
+            // tsmiRequirements
+            // 
+            this.tsmiRequirements.Name = "tsmiRequirements";
+            this.tsmiRequirements.Size = new System.Drawing.Size(148, 22);
+            this.tsmiRequirements.Text = "添加特殊要求";
+            this.tsmiRequirements.Click += new System.EventHandler(this.tsmiRequirements_Click);
             // 
             // tsmiShowProjectInfo
             // 
             this.tsmiShowProjectInfo.Name = "tsmiShowProjectInfo";
-            this.tsmiShowProjectInfo.Size = new System.Drawing.Size(180, 22);
+            this.tsmiShowProjectInfo.Size = new System.Drawing.Size(148, 22);
             this.tsmiShowProjectInfo.Text = "显示详细信息";
             this.tsmiShowProjectInfo.Click += new System.EventHandler(this.tsmiShowProjectInfo_Click);
             // 
             // tsmiEditProject
             // 
             this.tsmiEditProject.Name = "tsmiEditProject";
-            this.tsmiEditProject.Size = new System.Drawing.Size(180, 22);
+            this.tsmiEditProject.Size = new System.Drawing.Size(148, 22);
             this.tsmiEditProject.Text = "修改项目信息";
             this.tsmiEditProject.Click += new System.EventHandler(this.tsmiEditProject_Click);
             // 
             // tsmiDeleteProject
             // 
             this.tsmiDeleteProject.Name = "tsmiDeleteProject";
-            this.tsmiDeleteProject.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDeleteProject.Size = new System.Drawing.Size(148, 22);
             this.tsmiDeleteProject.Text = "删除项目信息";
             this.tsmiDeleteProject.Click += new System.EventHandler(this.tsmiDeleteProject_Click);
             // 
             // tsmiShowModuleTree
             // 
             this.tsmiShowModuleTree.Name = "tsmiShowModuleTree";
-            this.tsmiShowModuleTree.Size = new System.Drawing.Size(180, 22);
+            this.tsmiShowModuleTree.Size = new System.Drawing.Size(148, 22);
             this.tsmiShowModuleTree.Text = "显示模型树";
             this.tsmiShowModuleTree.Click += new System.EventHandler(this.tsmiShowModuleTree_Click);
             // 
@@ -767,13 +775,6 @@
             this.btnQueryByYear.UseVisualStyleBackColor = false;
             this.btnQueryByYear.Click += new System.EventHandler(this.btnQueryByYear_Click);
             // 
-            // tsmiRequirements
-            // 
-            this.tsmiRequirements.Name = "tsmiRequirements";
-            this.tsmiRequirements.Size = new System.Drawing.Size(180, 22);
-            this.tsmiRequirements.Text = "添加特殊要求";
-            this.tsmiRequirements.Click += new System.EventHandler(this.tsmiRequirements_Click);
-            // 
             // FrmProject
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -884,5 +885,6 @@
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.ToolStripMenuItem tsmiRequirements;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }

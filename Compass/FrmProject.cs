@@ -28,6 +28,7 @@ namespace Compass
         public FrmProject()
         {
             InitializeComponent();
+            toolTip.SetToolTip(cobQueryYear, "按照项目完工日期年度查询");
             this.dgvProjects.SelectionChanged -= new System.EventHandler(this.dgvProjects_SelectionChanged);
             IniCustomerId(cobCustomerId);
             IniUserId(cobUserId);
@@ -70,13 +71,10 @@ namespace Compass
                 CurrentPage = 1,
                 Sort = "ShippingTime desc",
             };
-
             btnQueryByYear_Click(null, null);
 
-
             this.dgvProjects.SelectionChanged += new System.EventHandler(this.dgvProjects_SelectionChanged);
-
-
+            
             SetPermissions();
         }
         /// <summary>

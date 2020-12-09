@@ -24,6 +24,7 @@ namespace Compass
         public FrmDrawingPlan()
         {
             InitializeComponent();
+            toolTip.SetToolTip(cobQueryYear, "按照项目完工日期年度查询");
             IniUserId(cobUserId);
             IniModel(cobModel);
             IniODPNo(cobODPNo);
