@@ -15,13 +15,12 @@ namespace Compass
 {
     public partial class FrmDrawingPlan : Form
     {
+        private SqlDataPager objSqlDataPager = null;
         private DrawingPlanService objDrawingPlanService = new DrawingPlanService();
         private UserService objUserService = new UserService();
         private DesignWorkloadService objDesignWorkloadService = new DesignWorkloadService();
-        private ProjectService objProjectService=new ProjectService();
+        private ProjectService objProjectService = new ProjectService();
 
-        //创建委托变量，显示统计信息
-        public ShowDrawingPlanInfoDelegate showDrawingPlanInfoDelegate = null;
         public FrmDrawingPlan()
         {
             InitializeComponent();
@@ -29,10 +28,45 @@ namespace Compass
             IniModel(cobModel);
             IniODPNo(cobODPNo);
             dgvDrawingPlan.AutoGenerateColumns = false;
-            btnQueryAllPlan_Click(null, null);
             grbEditDrawingPlan.Visible = false;
+
+            //查询年度初始化
+            int currentYear = DateTime.Now.Year;
+            cobQueryYear.Items.Add(currentYear + 1);//先添加下一年
+            for (int i = 0; i <= currentYear - 2020; i++)
+            {
+                cobQueryYear.Items.Add(currentYear - i);
+            }
+            cobQueryYear.SelectedIndex = 1;//默认定位当前年份
+            //设置默认的显示条数
+            this.cobRecordList.SelectedIndex = 1;
+            //初始无数据禁用相关按钮,考虑用户体验
+            this.btnToPage.Enabled = false;
+            this.btnFirst.Enabled = false;
+            this.btnPre.Enabled = false;
+            this.btnNext.Enabled = false;
+            this.btnLast.Enabled = false;
+            StringBuilder innerJoin1 = new StringBuilder("inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId");
+            innerJoin1.Append(" inner join Users on Users.UserId=Projects.UserId");
+            innerJoin1.Append(" left join ProjectTracking on DrawingPlan.ProjectId=ProjectTracking.ProjectId");
+
+            //初始化分页对象
+            objSqlDataPager = new SqlDataPager()
+            {
+                PrimaryKey = "DrawingPlanId",
+                TableName = "DrawingPlan",
+                InnerJoin1 = innerJoin1.ToString(),
+                InnerJoin2 = "inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId",
+                FiledName = "DrawingPlanId,UserAccount,ODPNo,Item,Model,ModuleNo,DrawingPlan.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,ProjectName," +
+                            "IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<0,0,DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)) as RemainingDays," +
+                            "IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<0,100,100*DATEDIFF(DAY,GETDATE(),DrawingPlan.AddedDate)/DATEDIFF(DAY,DrawingPlan.DrReleaseTarget,DrawingPlan.AddedDate)) as ProgressValue",
+                CurrentPage = 1,
+                Sort = "DrawingPlan.DrReleasetarget desc",
+            };
+
+            btnQueryByYear_Click(null, null);
+
             SetPermissions();
-            ShowInfo();
         }
         /// <summary>
         /// 设置权限
@@ -70,13 +104,68 @@ namespace Compass
         }
 
         /// <summary>
+        /// 执行查询的公共方法
+        /// </summary>
+        private void Query()
+        {
+            //开启所有的按钮
+            this.btnToPage.Enabled = true;
+            this.btnFirst.Enabled = true;
+            this.btnPre.Enabled = true;
+            this.btnNext.Enabled = true;
+            this.btnLast.Enabled = true;
+            //【1】设置分页查询的条件
+            //objSqlDataPager.Condition = string.Format("ShippingTime>='{0}/01/01' and ShippingTime<='{0}/12/31'", this.cobQueryYear.Text);
+            //【2】设置每页显示的条数
+            //objSqlDataPager.PageSize = Convert.ToInt32(this.cobRecordList.Text.Trim());
+            //【3】执行查询
+            this.dgvDrawingPlan.DataSource = objSqlDataPager.GetPagedData();
+            //【4】显示记录总数，显示总页数，显示当前页码
+            this.lblRecordsCound.Text = objSqlDataPager.RecordCount.ToString();
+            this.lblPageCount.Text = objSqlDataPager.TotalPages.ToString();
+            if (objSqlDataPager.RecordCount == 0)
+            {
+                this.lblCurrentPage.Text = "0";
+            }
+            else
+            {
+                this.lblCurrentPage.Text = objSqlDataPager.CurrentPage.ToString();
+            }
+            //禁用按钮的情况
+            if (this.lblPageCount.Text == "0" || this.lblPageCount.Text == "1")
+            {
+                this.btnToPage.Enabled = false;
+                this.btnFirst.Enabled = false;
+                this.btnPre.Enabled = false;
+                this.btnNext.Enabled = false;
+                this.btnLast.Enabled = false;
+            }
+            else
+            {
+                this.btnToPage.Enabled = true;
+            }
+        }
+        private void QueryByYear()
+        {
+            objSqlDataPager.Condition = string.Format("DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", this.cobQueryYear.Text);
+            objSqlDataPager.PageSize = Convert.ToInt32(this.cobRecordList.Text.Trim());
+            Query();
+        }
+        private void QureyAll()
+        {
+            objSqlDataPager.Condition = "DrawingPlan.DrReleasetarget>='2020/01/01'";
+            objSqlDataPager.PageSize = 10000;
+            Query();
+        }
+
+        /// <summary>
         /// 显示全部计划
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnQueryAllPlan_Click(object sender, EventArgs e)
         {
-            dgvDrawingPlan.DataSource = objDrawingPlanService.GetDrawingPlanByWhereSql("");//获取全部计划
+            QureyAll();
         }
         /// <summary>
         /// 初始化制图人员下拉框
@@ -241,7 +330,7 @@ namespace Compass
             }
 
         }
-        
+
         /// <summary>
         /// 根据项目ID查询制图计划
         /// </summary>
@@ -250,12 +339,11 @@ namespace Compass
         private void btnQueryByProjectId_Click(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
-            dgvDrawingPlan.DataSource = objDrawingPlanService.GetDrawingPlanByProjectId(cobODPNo.SelectedValue.ToString());
+            objSqlDataPager.Condition = string.Format("DrawingPlan.ProjectId={0}", cobODPNo.SelectedValue.ToString());
+            objSqlDataPager.PageSize = 10000;
+            Query();
         }
-        //private void cobODPNo_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    btnQueryByProjectId_Click(null, null);
-        //}
+        
         /// <summary>
         /// 修改计划菜单
         /// </summary>
@@ -276,7 +364,7 @@ namespace Compass
             DrawingPlan objDrawingPlan = objDrawingPlanService.GetDrawingPlanById(drawingPlanId);
             //初始化修改信息
             grbEditDrawingPlan.Visible = true;//显示修改框
-            grbEditDrawingPlan.Location=new Point(10,9);
+            grbEditDrawingPlan.Location = new Point(10, 9);
             IniModel(cobEditModel);
             IniODPNo(cobEditODPNo);
             txtEditDrawingPlanId.Text = objDrawingPlan.DrawingPlanId.ToString();
@@ -338,7 +426,7 @@ namespace Compass
         private void btnEditDrawingPlan_Click(object sender, EventArgs e)
         {
             #region 数据验证
-            
+
             if (cobEditModel.SelectedIndex == -1)
             {
                 MessageBox.Show("请选择烟罩型号", "验证信息");
@@ -448,7 +536,7 @@ namespace Compass
         /// <param name="e"></param>
         private void dgvDrawingPlan_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 46) tsmiDeleteDrawingPlan_Click(null,null);
+            if (e.KeyValue == 46) tsmiDeleteDrawingPlan_Click(null, null);
         }
         /// <summary>
         /// 输入Item后输入数量
@@ -492,6 +580,8 @@ namespace Compass
         /// <param name="e"></param>
         private void dgvDrawingPlan_SelectionChanged(object sender, EventArgs e)
         {
+            if (dgvDrawingPlan.RowCount == 0) return;
+            if (dgvDrawingPlan.CurrentRow == null) return;
             cobODPNo.Text = this.dgvDrawingPlan.CurrentRow.Cells["ODPNo"].Value.ToString();
         }
         /// <summary>
@@ -501,7 +591,7 @@ namespace Compass
         /// <param name="e"></param>
         private void tsmiQueryByODP_Click(object sender, EventArgs e)
         {
-            btnQueryByProjectId_Click(null, null); 
+            btnQueryByProjectId_Click(null, null);
         }
         /// <summary>
         /// 查询所有计划弹出菜单
@@ -527,11 +617,7 @@ namespace Compass
             FrmRequirements objFrmRequirements = new FrmRequirements(objProject);
             objFrmRequirements.ShowDialog();
         }
-        private void ShowInfo()
-        {
-            //调用委托执行委托方法
-            //showDrawingPlanInfoDelegate();
-        }
+
         /// <summary>
         /// 根据制图人员查询计划
         /// </summary>
@@ -539,8 +625,10 @@ namespace Compass
         /// <param name="e"></param>
         private void btnQueryByUserId_Click(object sender, EventArgs e)
         {
-            if(cobUserId.SelectedIndex==-1)return;
-            dgvDrawingPlan.DataSource = objDrawingPlanService.GetDrawingPlanByUserId(cobUserId.SelectedValue.ToString());
+            if (cobUserId.SelectedIndex == -1) return;
+            objSqlDataPager.Condition = string.Format("Projects.UserId={0}", cobUserId.SelectedValue.ToString());
+            objSqlDataPager.PageSize = 10000;
+            Query();
         }
         /// <summary>
         /// 按回车后根据项目查询计划
@@ -549,7 +637,7 @@ namespace Compass
         /// <param name="e"></param>
         private void cobODPNo_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13) btnQueryByProjectId_Click(null,null);
+            if (e.KeyValue == 13) btnQueryByProjectId_Click(null, null);
         }
         /// <summary>
         /// 按回车后根据人员查询
@@ -559,6 +647,132 @@ namespace Compass
         private void cobUserId_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 13) btnQueryByUserId_Click(null, null);
+        }
+        /// <summary>
+        /// 显示统计信息页面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDrawingPlanQuery_Click(object sender, EventArgs e)
+        {
+            FrmDrawingPlanQuery objDrawingPlanQuery = new FrmDrawingPlanQuery();
+            objDrawingPlanQuery.Show();
+        }
+
+        /// <summary>
+        /// 根据年份查询
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnQueryByYear_Click(object sender, EventArgs e)
+        {
+            if (this.cobQueryYear.SelectedIndex == -1)
+            {
+                MessageBox.Show("请选择要查询的年度", "提示信息");
+                return;
+            }
+            objSqlDataPager.CurrentPage = 1;//每次执行查询都必须设置为第一页
+            QueryByYear();
+            //禁用上一页按钮
+            this.btnFirst.Enabled = false;
+            this.btnPre.Enabled = false;
+        }
+
+        /// <summary>
+        /// 第一页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            objSqlDataPager.CurrentPage = 1;//每次执行查询都必须设置为第一页
+            QueryByYear();
+            //禁用上一页按钮和第一页
+            this.btnFirst.Enabled = false;
+            this.btnPre.Enabled = false;
+        }
+        /// <summary>
+        /// 上一页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPre_Click(object sender, EventArgs e)
+        {
+            objSqlDataPager.CurrentPage -= 1;//在当前页码上减一
+            QueryByYear();
+            //禁用下一页和最后一页按钮
+            if (objSqlDataPager.CurrentPage == 1)
+            {
+                this.btnFirst.Enabled = false;
+                this.btnPre.Enabled = false;
+            }
+        }
+        /// <summary>
+        /// 下一页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            objSqlDataPager.CurrentPage += 1;//在当前页码上加一
+            QueryByYear();
+            //禁用下一页和最后一页按钮
+            if (objSqlDataPager.CurrentPage == objSqlDataPager.TotalPages)
+            {
+                this.btnLast.Enabled = false;
+                this.btnNext.Enabled = false;
+            }
+        }
+        /// <summary>
+        /// 最后一页
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            objSqlDataPager.CurrentPage = objSqlDataPager.TotalPages;//在当前页码上加一
+            QueryByYear();
+            //禁用下一页和最后一页按钮
+            this.btnLast.Enabled = false;
+            this.btnNext.Enabled = false;
+        }
+        /// <summary>
+        /// 跳转到
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnToPage_Click(object sender, EventArgs e)
+        {
+            int a = this.txtToPage.IsInteger("跳转的页码");
+            if (a != 0)
+            {
+                int toPage = Convert.ToInt32(this.txtToPage.Text.Trim());
+                if (toPage > objSqlDataPager.TotalPages)
+                {
+                    btnLast_Click(null, null);//直接为最后一页
+                }
+                else if (toPage == 0)
+                {
+                    btnFirst_Click(null, null);//第一页
+                }
+                else
+                {
+                    objSqlDataPager.CurrentPage = toPage;//跳转到给定页码
+                    Query();
+                    if (objSqlDataPager.CurrentPage == 1)
+                    {
+                        //禁用上一页按钮和第一页
+                        this.btnFirst.Enabled = false;
+                        this.btnPre.Enabled = false;
+                    }
+                    else if (objSqlDataPager.CurrentPage == objSqlDataPager.TotalPages)
+                    {
+                        //禁用下一页和最后一页按钮
+                        this.btnLast.Enabled = false;
+                        this.btnNext.Enabled = false;
+                    }
+                }
+            }
         }
     }
 }

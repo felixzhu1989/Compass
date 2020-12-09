@@ -48,7 +48,8 @@
             this.tsmiHoodAutoDrawing = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCeilingAutoDrawing = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.查询页面ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiQuery = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDrawingPlanQuery = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUsersManage = new System.Windows.Forms.ToolStripMenuItem();
@@ -187,7 +188,7 @@
             this.tsmiHoodAutoDrawing,
             this.tsmiCeilingAutoDrawing,
             this.toolStripMenuItem2,
-            this.查询页面ToolStripMenuItem,
+            this.tsmiQuery,
             this.toolStripMenuItem3,
             this.tsmiSetting});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -271,12 +272,22 @@
             this.toolStripMenuItem2.Size = new System.Drawing.Size(23, 21);
             this.toolStripMenuItem2.Text = "|";
             // 
-            // 查询页面ToolStripMenuItem
+            // tsmiQuery
             // 
-            this.查询页面ToolStripMenuItem.Image = global::Compass.Properties.Resources.Query;
-            this.查询页面ToolStripMenuItem.Name = "查询页面ToolStripMenuItem";
-            this.查询页面ToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
-            this.查询页面ToolStripMenuItem.Text = "查询页面";
+            this.tsmiQuery.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiDrawingPlanQuery});
+            this.tsmiQuery.Image = global::Compass.Properties.Resources.Query;
+            this.tsmiQuery.Name = "tsmiQuery";
+            this.tsmiQuery.Size = new System.Drawing.Size(84, 21);
+            this.tsmiQuery.Text = "查询页面";
+            // 
+            // tsmiDrawingPlanQuery
+            // 
+            this.tsmiDrawingPlanQuery.Image = global::Compass.Properties.Resources.DrawingPlanQuery;
+            this.tsmiDrawingPlanQuery.Name = "tsmiDrawingPlanQuery";
+            this.tsmiDrawingPlanQuery.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDrawingPlanQuery.Text = "制图计划统计";
+            this.tsmiDrawingPlanQuery.Click += new System.EventHandler(this.tsmiDrawingPlanQuery_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -434,8 +445,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiWorkLoad;
         private System.Windows.Forms.ToolStripMenuItem tsmiUpdate;
         private System.Windows.Forms.ToolStripMenuItem tsmiStatusTypes;
-        private System.Windows.Forms.ToolStripMenuItem 查询页面ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiQuery;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDrawingPlanQuery;
     }
 }
 

@@ -46,8 +46,14 @@ namespace DAL
         /// 表名称
         /// </summary>
         public string TableName { get; set; }
-
-        public string InnerJoin { get; set; }
+        /// <summary>
+        /// 连接表1
+        /// </summary>
+        public string InnerJoin1 { get; set; }
+        /// <summary>
+        /// 连接表2
+        /// </summary>
+        public string InnerJoin2 { get; set; }
         /// <summary>
         /// 查询条件
         /// </summary>
@@ -115,10 +121,10 @@ namespace DAL
             //组合SQL语句
             string sql = "select Top {0} {1} from {2} {3} where {4} and {5} not in ";
             sql += "(select Top {6} {7} from {8} where {9} order by {10}) order by {11};";
-            sql += "select count(*) from {12} where {13}";
-            sql = string.Format(sql, PageSize, FiledName, TableName, InnerJoin, Condition, PrimaryKey,
+            sql += "select count(*) from {12} {13} where {14}";
+            sql = string.Format(sql, PageSize, FiledName, TableName, InnerJoin1, Condition, PrimaryKey,
                 filterCount, PrimaryKey, TableName, Condition, Sort, Sort,
-                TableName, Condition);
+                TableName, InnerJoin2, Condition);
             return sql;
         }
         /// <summary>

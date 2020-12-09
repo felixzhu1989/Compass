@@ -17,8 +17,8 @@ using UpdateProgram;
 
 namespace Compass
 {
-    //声明委托
-    public delegate void ShowDrawingPlanInfoDelegate();
+    
+    
     //显示项目信息委托
     public delegate void ShowProjectInfoDelegate(string odpNo);
     //显示项目列表委托
@@ -151,16 +151,9 @@ namespace Compass
         {
             ClosePreForm(splitContainer.Panel2);
             FrmDrawingPlan objFrmDrawingPlan = new FrmDrawingPlan();
-            //关联委托方法与委托对象
-            objFrmDrawingPlan.showDrawingPlanInfoDelegate = ShowDrawingPlanInfo;
             OpenForm(objFrmDrawingPlan, splitContainer.Panel2);
         }
-        //根据委托创建方法
-        private void ShowDrawingPlanInfo()
-        {
-            ClosePreForm(splitContainer.Panel1);
-            OpenForm(new FrmDrawingPlanInfo(), splitContainer.Panel1);
-        }
+        
         /// <summary>
         /// 项目跟踪
         /// </summary>
@@ -334,7 +327,15 @@ namespace Compass
             }
             this.timerUpdate.Enabled = false;//停止定时器，防止频繁弹出
         }
-
-        
+        /// <summary>
+        /// 制图计划统计
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmiDrawingPlanQuery_Click(object sender, EventArgs e)
+        {
+            FrmDrawingPlanQuery objFrmDrawingPlanQuery=new FrmDrawingPlanQuery();
+            objFrmDrawingPlanQuery.Show();
+        }
     }
 }

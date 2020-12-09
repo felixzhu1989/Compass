@@ -141,3 +141,38 @@ select Top 30 Projects.ProjectId,ODPNo,BPONo,ProjectName,CustomerName,ShippingTi
 	   (select Top 0 Projects.ProjectId from Projects where ShippingTime>='2020/01/01' and ShippingTime<='2020/12/31' order by ShippingTime desc) 
 	   order by ShippingTime desc;
 select count(*) from Projects where ShippingTime>='2020/01/01' and ShippingTime<='2020/12/31'
+
+select * from Projects
+select *¡¡from¡¡Users
+select SubTotalWorkload from DrawingPlan
+select * from DrawingPlan order by DrReleaseTarget desc
+
+select sum(SubTotalWorkload) from DrawingPlan where DrReleaseTarget>='2020/01/01' and DrReleaseTarget<='2020/12/31'
+
+select sum(SubTotalWorkload) from DrawingPlan 
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+inner join Users on Projects.UserId=Users.UserId
+where DrReleaseTarget>='2020/01/01' and DrReleaseTarget<='2020/12/31'
+ and UserAccount='hujian'
+
+ 
+
+
+
+ select DrawingPlan.DrReleaseTarget,DrReleaseActual,DrawingPlan.AddedDate,ProjectName,
+ IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<0,0,DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget))as RemainingDays,
+ IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<0,100,100*DATEDIFF(DAY,GETDATE(),DrawingPlan.AddedDate)/DATEDIFF(DAY,DrawingPlan.DrReleaseTarget,DrawingPlan.AddedDate)) as ProgressValue
+ 
+  from DrawingPlan
+  inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+  inner join Users on Users.UserId=Projects.UserId
+  left join ProjectTracking on DrawingPlan.ProjectId=ProjectTracking.ProjectId
+  order by DrawingPlan.DrReleasetarget desc
+
+
+
+
+--ProgressValue = Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(Convert.ToDateTime(objReader["AddedDate"])).Days<=0 ? 100:
+--(int)(100 * (Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(Convert.ToDateTime(objReader["AddedDate"])).Days
+--- Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(DateTime.Today).Days)
+--/ (Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(Convert.ToDateTime(objReader["AddedDate"])).Days))

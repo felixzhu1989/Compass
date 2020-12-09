@@ -1,8 +1,8 @@
 E:\Compass\MyUIControls\bin\Debug\MyUIControls.dll
 E:\Compass\MyUIControls\bin\Debug\MyUIControls.pdb
+E:\Compass\MyUIControls\obj\Debug\MyUIControls.csprojAssemblyReference.cache
 E:\Compass\MyUIControls\obj\Debug\MyUIControls.SuperTextBox.resources
 E:\Compass\MyUIControls\obj\Debug\MyUIControls.csproj.GenerateResource.cache
 E:\Compass\MyUIControls\obj\Debug\MyUIControls.csproj.CoreCompileInputs.cache
 E:\Compass\MyUIControls\obj\Debug\MyUIControls.dll
 E:\Compass\MyUIControls\obj\Debug\MyUIControls.pdb
-E:\Compass\MyUIControls\obj\Debug\MyUIControls.csprojAssemblyReference.cache

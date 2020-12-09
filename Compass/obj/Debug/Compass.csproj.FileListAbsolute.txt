@@ -65,7 +65,7 @@ E:\Compass\Compass\obj\Debug\Compass.FrmCMODI555.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmCustomer.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmDesignWorkload.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmDrawingPlan.resources
-E:\Compass\Compass\obj\Debug\Compass.FrmDrawingPlanInfo.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmDrawingPlanQuery.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmDrawing.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmEditCategory.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmKCJSB535.resources

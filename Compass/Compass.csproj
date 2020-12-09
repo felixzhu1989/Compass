@@ -381,11 +381,11 @@
     <Compile Include="FrmDrawingPlan.Designer.cs">
       <DependentUpon>FrmDrawingPlan.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDrawingPlanInfo.cs">
+    <Compile Include="FrmDrawingPlanQuery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDrawingPlanInfo.Designer.cs">
-      <DependentUpon>FrmDrawingPlanInfo.cs</DependentUpon>
+    <Compile Include="FrmDrawingPlanQuery.Designer.cs">
+      <DependentUpon>FrmDrawingPlanQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmDrawing.cs">
       <SubType>Form</SubType>
@@ -917,8 +917,8 @@
     <EmbeddedResource Include="FrmDrawingPlan.resx">
       <DependentUpon>FrmDrawingPlan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDrawingPlanInfo.resx">
-      <DependentUpon>FrmDrawingPlanInfo.cs</DependentUpon>
+    <EmbeddedResource Include="FrmDrawingPlanQuery.resx">
+      <DependentUpon>FrmDrawingPlanQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDrawing.resx">
       <DependentUpon>FrmDrawing.cs</DependentUpon>
@@ -1129,6 +1129,7 @@
     <Content Include="images\compass_64px.ico" />
     <Content Include="images\customer_service_68.646575342466px_1208508_easyicon.net.png" />
     <Content Include="images\DrawingPlan.png" />
+    <None Include="images\DrawingPlanQuery.png" />
     <Content Include="images\FolderClosed.png" />
     <Content Include="images\FolderOpen.png" />
     <Content Include="images\HoodAutoDrawing.png" />

@@ -37,13 +37,15 @@ namespace Compass
             cobHoodType.SelectedIndex = -1;
             dgvProjects.AutoGenerateColumns = false;
             btnProject.Text = "添加项目信息";
-            //显示全部项目
-            //btnQueryAllProjects_Click(null, null);
 
             //查询年度初始化
-            cobQueryYear.Items.Add("2020");
-            cobQueryYear.Items.Add("2021");
-            cobQueryYear.SelectedIndex = 0;
+            int currentYear = DateTime.Now.Year;
+            cobQueryYear.Items.Add(currentYear+1);//先添加下一年
+            for (int i = 0; i <= currentYear-2020; i++)
+            {
+                cobQueryYear.Items.Add(currentYear-i);
+            }
+            cobQueryYear.SelectedIndex = 1;//默认定位当前年份
             //设置默认的显示条数
             this.cobRecordList.SelectedIndex = 1;
             //初始无数据禁用相关按钮,考虑用户体验
@@ -52,7 +54,7 @@ namespace Compass
             this.btnPre.Enabled = false;
             this.btnNext.Enabled = false;
             this.btnLast.Enabled = false;
-            StringBuilder innerJoin = new StringBuilder(" inner join Users on Projects.UserId=Users.UserId");
+            StringBuilder innerJoin = new StringBuilder("inner join Users on Projects.UserId=Users.UserId");
             innerJoin.Append(" inner join Customers on Projects.CustomerId=Customers.CustomerId");
             innerJoin.Append(" inner join ProjectTracking on Projects.ProjectId=ProjectTracking.ProjectId");
             innerJoin.Append(" inner join ProjectStatus on ProjectTracking.ProjectStatusId=ProjectStatus.ProjectStatusId");
@@ -63,14 +65,18 @@ namespace Compass
             {
                 PrimaryKey = "Projects.ProjectId",
                 TableName = "Projects",
-                InnerJoin = innerJoin.ToString(),
+                InnerJoin1 = innerJoin.ToString(),
                 FiledName = "Projects.ProjectId,ODPNo,BPONo,ProjectName,CustomerName,ShippingTime,UserAccount,RiskLevel,ProjectStatusName,HoodType",
                 CurrentPage = 1,
                 Sort = "ShippingTime desc",
             };
 
             btnQueryByYear_Click(null, null);
+
+
             this.dgvProjects.SelectionChanged += new System.EventHandler(this.dgvProjects_SelectionChanged);
+
+
             SetPermissions();
         }
         /// <summary>
