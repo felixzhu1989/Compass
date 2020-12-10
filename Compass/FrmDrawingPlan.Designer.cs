@@ -34,18 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvDrawingPlan = new System.Windows.Forms.DataGridView();
-            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DrReleaseTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProgressValue = new Common.DataGridViewProgressColumn();
-            this.RemainingDays = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DrReleaseActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModuleNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotalWorkload = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DrawingPlanId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiRequirements = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,6 +100,19 @@
             this.btnQueryByYear = new System.Windows.Forms.Button();
             this.btnDrawingPlanQuery = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DrReleaseTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProgressValue = new Common.DataGridViewProgressColumn();
+            this.RemainingDays = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DrReleaseActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModuleNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotalWorkload = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DrawingPlanId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingPlan)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.grbEditDrawingPlan.SuspendLayout();
@@ -162,7 +163,8 @@
             this.Model,
             this.ModuleNo,
             this.SubTotalWorkload,
-            this.DrawingPlanId});
+            this.DrawingPlanId,
+            this.HoodType});
             this.dgvDrawingPlan.ContextMenuStrip = this.contextMenuStrip;
             this.dgvDrawingPlan.EnableHeadersVisualStyles = false;
             this.dgvDrawingPlan.Location = new System.Drawing.Point(12, 110);
@@ -175,113 +177,6 @@
             this.dgvDrawingPlan.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvDrawingPlan_RowPostPaint);
             this.dgvDrawingPlan.SelectionChanged += new System.EventHandler(this.dgvDrawingPlan_SelectionChanged);
             this.dgvDrawingPlan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvDrawingPlan_KeyDown);
-            // 
-            // UserAccount
-            // 
-            this.UserAccount.DataPropertyName = "UserAccount";
-            this.UserAccount.HeaderText = "制图";
-            this.UserAccount.Name = "UserAccount";
-            this.UserAccount.ReadOnly = true;
-            this.UserAccount.Width = 60;
-            // 
-            // ODPNo
-            // 
-            this.ODPNo.DataPropertyName = "ODPNo";
-            this.ODPNo.HeaderText = "ODP";
-            this.ODPNo.Name = "ODPNo";
-            this.ODPNo.ReadOnly = true;
-            this.ODPNo.Width = 63;
-            // 
-            // ProjectName
-            // 
-            this.ProjectName.DataPropertyName = "ProjectName";
-            this.ProjectName.HeaderText = "项目名称";
-            this.ProjectName.Name = "ProjectName";
-            this.ProjectName.ReadOnly = true;
-            this.ProjectName.Width = 86;
-            // 
-            // Item
-            // 
-            this.Item.DataPropertyName = "Item";
-            this.Item.HeaderText = "Item";
-            this.Item.Name = "Item";
-            this.Item.ReadOnly = true;
-            this.Item.Width = 62;
-            // 
-            // DrReleaseTarget
-            // 
-            this.DrReleaseTarget.DataPropertyName = "DrReleaseTarget";
-            this.DrReleaseTarget.HeaderText = "发图日期";
-            this.DrReleaseTarget.Name = "DrReleaseTarget";
-            this.DrReleaseTarget.ReadOnly = true;
-            this.DrReleaseTarget.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DrReleaseTarget.Width = 86;
-            // 
-            // ProgressValue
-            // 
-            this.ProgressValue.DataPropertyName = "ProgressValue";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.NullValue = "System.Drawing.Bitmap";
-            this.ProgressValue.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ProgressValue.HeaderText = "进度条";
-            this.ProgressValue.Name = "ProgressValue";
-            this.ProgressValue.ReadOnly = true;
-            this.ProgressValue.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProgressValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ProgressValue.ToolTipText = "(今日-添加日)/(计划日-添加日)";
-            this.ProgressValue.Width = 73;
-            // 
-            // RemainingDays
-            // 
-            this.RemainingDays.DataPropertyName = "RemainingDays";
-            this.RemainingDays.HeaderText = "剩余/天";
-            this.RemainingDays.Name = "RemainingDays";
-            this.RemainingDays.ReadOnly = true;
-            this.RemainingDays.ToolTipText = "今日-添加日";
-            this.RemainingDays.Width = 79;
-            // 
-            // DrReleaseActual
-            // 
-            this.DrReleaseActual.DataPropertyName = "DrReleaseActual";
-            this.DrReleaseActual.HeaderText = "实际发图";
-            this.DrReleaseActual.Name = "DrReleaseActual";
-            this.DrReleaseActual.ReadOnly = true;
-            this.DrReleaseActual.Width = 86;
-            // 
-            // Model
-            // 
-            this.Model.DataPropertyName = "Model";
-            this.Model.HeaderText = "烟罩型号";
-            this.Model.Name = "Model";
-            this.Model.ReadOnly = true;
-            this.Model.Width = 86;
-            // 
-            // ModuleNo
-            // 
-            this.ModuleNo.DataPropertyName = "ModuleNo";
-            this.ModuleNo.HeaderText = "分段数";
-            this.ModuleNo.Name = "ModuleNo";
-            this.ModuleNo.ReadOnly = true;
-            this.ModuleNo.ToolTipText = "一组烟罩分段数量";
-            this.ModuleNo.Width = 73;
-            // 
-            // SubTotalWorkload
-            // 
-            this.SubTotalWorkload.DataPropertyName = "SubTotalWorkload";
-            this.SubTotalWorkload.HeaderText = "工作量";
-            this.SubTotalWorkload.Name = "SubTotalWorkload";
-            this.SubTotalWorkload.ReadOnly = true;
-            this.SubTotalWorkload.ToolTipText = "分段数量x机型单位工作量";
-            this.SubTotalWorkload.Width = 73;
-            // 
-            // DrawingPlanId
-            // 
-            this.DrawingPlanId.DataPropertyName = "DrawingPlanId";
-            this.DrawingPlanId.HeaderText = "ID";
-            this.DrawingPlanId.Name = "DrawingPlanId";
-            this.DrawingPlanId.ReadOnly = true;
-            this.DrawingPlanId.Width = 48;
             // 
             // contextMenuStrip
             // 
@@ -966,6 +861,121 @@
             this.btnDrawingPlanQuery.UseVisualStyleBackColor = false;
             this.btnDrawingPlanQuery.Click += new System.EventHandler(this.btnDrawingPlanQuery_Click);
             // 
+            // UserAccount
+            // 
+            this.UserAccount.DataPropertyName = "UserAccount";
+            this.UserAccount.HeaderText = "制图";
+            this.UserAccount.Name = "UserAccount";
+            this.UserAccount.ReadOnly = true;
+            this.UserAccount.Width = 60;
+            // 
+            // ODPNo
+            // 
+            this.ODPNo.DataPropertyName = "ODPNo";
+            this.ODPNo.HeaderText = "ODP";
+            this.ODPNo.Name = "ODPNo";
+            this.ODPNo.ReadOnly = true;
+            this.ODPNo.Width = 63;
+            // 
+            // ProjectName
+            // 
+            this.ProjectName.DataPropertyName = "ProjectName";
+            this.ProjectName.HeaderText = "项目名称";
+            this.ProjectName.Name = "ProjectName";
+            this.ProjectName.ReadOnly = true;
+            this.ProjectName.Width = 86;
+            // 
+            // Item
+            // 
+            this.Item.DataPropertyName = "Item";
+            this.Item.HeaderText = "Item";
+            this.Item.Name = "Item";
+            this.Item.ReadOnly = true;
+            this.Item.Width = 62;
+            // 
+            // DrReleaseTarget
+            // 
+            this.DrReleaseTarget.DataPropertyName = "DrReleaseTarget";
+            this.DrReleaseTarget.HeaderText = "发图日期";
+            this.DrReleaseTarget.Name = "DrReleaseTarget";
+            this.DrReleaseTarget.ReadOnly = true;
+            this.DrReleaseTarget.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DrReleaseTarget.Width = 86;
+            // 
+            // ProgressValue
+            // 
+            this.ProgressValue.DataPropertyName = "ProgressValue";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.NullValue = "System.Drawing.Bitmap";
+            this.ProgressValue.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ProgressValue.HeaderText = "进度条";
+            this.ProgressValue.Name = "ProgressValue";
+            this.ProgressValue.ReadOnly = true;
+            this.ProgressValue.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProgressValue.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProgressValue.ToolTipText = "(今日-添加日)/(计划日-添加日)";
+            this.ProgressValue.Width = 73;
+            // 
+            // RemainingDays
+            // 
+            this.RemainingDays.DataPropertyName = "RemainingDays";
+            this.RemainingDays.HeaderText = "剩余/天";
+            this.RemainingDays.Name = "RemainingDays";
+            this.RemainingDays.ReadOnly = true;
+            this.RemainingDays.ToolTipText = "今日-添加日";
+            this.RemainingDays.Width = 79;
+            // 
+            // DrReleaseActual
+            // 
+            this.DrReleaseActual.DataPropertyName = "DrReleaseActual";
+            this.DrReleaseActual.HeaderText = "实际发图";
+            this.DrReleaseActual.Name = "DrReleaseActual";
+            this.DrReleaseActual.ReadOnly = true;
+            this.DrReleaseActual.Width = 86;
+            // 
+            // Model
+            // 
+            this.Model.DataPropertyName = "Model";
+            this.Model.HeaderText = "烟罩型号";
+            this.Model.Name = "Model";
+            this.Model.ReadOnly = true;
+            this.Model.Width = 86;
+            // 
+            // ModuleNo
+            // 
+            this.ModuleNo.DataPropertyName = "ModuleNo";
+            this.ModuleNo.HeaderText = "分段数";
+            this.ModuleNo.Name = "ModuleNo";
+            this.ModuleNo.ReadOnly = true;
+            this.ModuleNo.ToolTipText = "一组烟罩分段数量";
+            this.ModuleNo.Width = 73;
+            // 
+            // SubTotalWorkload
+            // 
+            this.SubTotalWorkload.DataPropertyName = "SubTotalWorkload";
+            this.SubTotalWorkload.HeaderText = "工作量";
+            this.SubTotalWorkload.Name = "SubTotalWorkload";
+            this.SubTotalWorkload.ReadOnly = true;
+            this.SubTotalWorkload.ToolTipText = "分段数量x机型单位工作量";
+            this.SubTotalWorkload.Width = 73;
+            // 
+            // DrawingPlanId
+            // 
+            this.DrawingPlanId.DataPropertyName = "DrawingPlanId";
+            this.DrawingPlanId.HeaderText = "ID";
+            this.DrawingPlanId.Name = "DrawingPlanId";
+            this.DrawingPlanId.ReadOnly = true;
+            this.DrawingPlanId.Width = 48;
+            // 
+            // HoodType
+            // 
+            this.HoodType.DataPropertyName = "HoodType";
+            this.HoodType.HeaderText = "烟罩类型";
+            this.HoodType.Name = "HoodType";
+            this.HoodType.ReadOnly = true;
+            this.HoodType.Width = 86;
+            // 
             // FrmDrawingPlan
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1079,6 +1089,7 @@
         private System.Windows.Forms.Button btnToPage;
         private System.Windows.Forms.Button btnQueryByYear;
         private System.Windows.Forms.Button btnDrawingPlanQuery;
+        private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ODPNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectName;
@@ -1091,6 +1102,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ModuleNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalWorkload;
         private System.Windows.Forms.DataGridViewTextBoxColumn DrawingPlanId;
-        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HoodType;
     }
 }

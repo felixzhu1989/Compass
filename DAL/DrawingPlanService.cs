@@ -15,6 +15,33 @@ namespace DAL
     /// </summary>
     public class DrawingPlanService
     {
+        public List<ChartData> GetHoodModuleNoByYear(string year)
+        {
+            List<ChartData> list = new List<ChartData>();
+            string sql = "select Model,sum(ModuleNo) as TotalModuleNo from DrawingPlan";
+            sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
+            if (year == "ALL")
+            {
+                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+            }
+            sql += " and HoodType='Hood' group by Model order by TotalModuleNo desc";
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                list.Add(new ChartData()
+                {
+                    Text = objReader["Model"].ToString(),
+                    Value = Convert.ToDouble(objReader["TotalModuleNo"].ToString())
+                });
+            }
+            objReader.Close();
+            return list;
+        }
+
         public DataSet GetScopeByDataSet(string projectId)
         {
             string sql = "select Model as '机型',sum(ModuleNo) as '总台数' from DrawingPlan";
@@ -72,7 +99,7 @@ namespace DAL
                     UserAccount = objReader["UserAccount"].ToString(),
                     ProjectId = Convert.ToInt32(objReader["ProjectId"]),
                     ODPNo = objReader["ODPNo"].ToString(),
-                    ProjectName=objReader["ProjectName"].ToString(),
+                    ProjectName = objReader["ProjectName"].ToString(),
                     Item = objReader["Item"].ToString(),
                     Model = objReader["Model"].ToString(),
                     ModuleNo = Convert.ToInt32(objReader["ModuleNo"]),
@@ -80,9 +107,9 @@ namespace DAL
                     DrReleaseActual = objReader["DrReleaseActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["DrReleaseActual"]),
                     SubTotalWorkload = Convert.ToDecimal(objReader["SubTotalWorkload"]),
                     AddedDate = Convert.ToDateTime(objReader["AddedDate"]),
-                    RemainingDays= (Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(DateTime.Now).Days)<0?
-                        0: (int)Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(DateTime.Today).Days,
-                    ProgressValue = Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(Convert.ToDateTime(objReader["AddedDate"])).Days<=0 ? 100:
+                    RemainingDays = (Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(DateTime.Now).Days) < 0 ?
+                        0 : (int)Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(DateTime.Today).Days,
+                    ProgressValue = Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(Convert.ToDateTime(objReader["AddedDate"])).Days <= 0 ? 100 :
                         (int)(100 * (Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(Convert.ToDateTime(objReader["AddedDate"])).Days
                         - Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(DateTime.Today).Days)
                         / (Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(Convert.ToDateTime(objReader["AddedDate"])).Days))
@@ -114,7 +141,7 @@ namespace DAL
                     UserAccount = objReader["UserAccount"].ToString(),
                     ProjectId = Convert.ToInt32(objReader["ProjectId"]),
                     ODPNo = objReader["ODPNo"].ToString(),
-                    ProjectName=objReader["ProjectName"].ToString(),
+                    ProjectName = objReader["ProjectName"].ToString(),
                     Item = objReader["Item"].ToString(),
                     Model = objReader["Model"].ToString(),
                     ModuleNo = Convert.ToInt32(objReader["ModuleNo"]),
@@ -135,7 +162,7 @@ namespace DAL
         {
             string sql = "insert into DrawingPlan (ProjectId,Item,Model,ModuleNo,DrReleasetarget,SubTotalWorkload)";
             sql += " values({0},'{1}','{2}','{3}','{4}','{5}');select @@identity";
-            sql = string.Format(sql,  objDrawingPlan.ProjectId, objDrawingPlan.Item,
+            sql = string.Format(sql, objDrawingPlan.ProjectId, objDrawingPlan.Item,
                 objDrawingPlan.Model, objDrawingPlan.ModuleNo, objDrawingPlan.DrReleaseTarget, objDrawingPlan.SubTotalWorkload);
             try
             {
@@ -160,7 +187,7 @@ namespace DAL
             string sql = "update DrawingPlan set ProjectId={0},Item='{1}',Model='{2}',ModuleNo='{3}',";
             sql += "DrReleasetarget='{4}',SubTotalWorkload='{5}',AddedDate='{6}' where DrawingPlanId={7}";
             sql = string.Format(sql, objDrawingPlan.ProjectId, objDrawingPlan.Item, objDrawingPlan.Model, objDrawingPlan.ModuleNo,
-                  objDrawingPlan.DrReleaseTarget, objDrawingPlan.SubTotalWorkload, objDrawingPlan.AddedDate,objDrawingPlan.DrawingPlanId);
+                  objDrawingPlan.DrReleaseTarget, objDrawingPlan.SubTotalWorkload, objDrawingPlan.AddedDate, objDrawingPlan.DrawingPlanId);
             try
             {
                 return SQLHelper.Update(sql);

@@ -266,7 +266,7 @@ namespace Compass
                         //提示添加成功
                         MessageBox.Show("项目信息添加成功", "提示信息");
                         //刷新显示
-                        btnQueryAllProjects_Click(null, null);
+                        btnQueryByYear_Click(null,null);
                         //清空内容
                         cobCustomerId.SelectedIndex = -1;
                         cobHoodType.SelectedIndex = -1;
@@ -307,7 +307,7 @@ namespace Compass
                     if (objProjectService.EditProject(objProject) == 1)
                     {
                         MessageBox.Show("修改项目信息成功！", "提示信息");
-                        btnQueryAllProjects_Click(null, null);//同步刷新显示数据
+                        btnQueryByYear_Click(null, null); //同步刷新显示数据
                         btnProject.Text = "添加项目信息";
                         cobCustomerId.SelectedIndex = -1;
                         cobHoodType.SelectedIndex = -1;

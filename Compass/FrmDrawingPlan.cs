@@ -58,7 +58,7 @@ namespace Compass
                 TableName = "DrawingPlan",
                 InnerJoin1 = innerJoin1.ToString(),
                 InnerJoin2 = "inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId",
-                FiledName = "DrawingPlanId,UserAccount,ODPNo,Item,Model,ModuleNo,DrawingPlan.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,ProjectName," +
+                FiledName = "DrawingPlanId,UserAccount,ODPNo,Item,Model,ModuleNo,DrawingPlan.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,ProjectName,HoodType," +
                             "IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<0,0,DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)) as RemainingDays," +
                             "IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<0,100,100*DATEDIFF(DAY,GETDATE(),DrawingPlan.AddedDate)/DATEDIFF(DAY,DrawingPlan.DrReleaseTarget,DrawingPlan.AddedDate)) as ProgressValue",
                 CurrentPage = 1,
@@ -307,7 +307,7 @@ namespace Compass
                     //提示添加成功
                     MessageBox.Show("制图计划添加成功", "提示信息");
                     //刷新显示
-                    btnQueryByProjectId_Click(null, null);
+                    btnQueryByYear_Click(null, null);
                     //清空内容
                     //cobUserId.SelectedIndex = -1;//不清空制图人员
                     //cobModel.SelectedIndex = -1;//不清空型号
@@ -481,7 +481,7 @@ namespace Compass
                 {
                     MessageBox.Show("修改计划成功！", "提示信息");
                     grbEditDrawingPlan.Visible = false;
-                    btnQueryAllPlan_Click(null, null);//同步刷新显示数据
+                    btnQueryByYear_Click(null, null);//同步刷新显示数据
                 }
             }
             catch (Exception ex)

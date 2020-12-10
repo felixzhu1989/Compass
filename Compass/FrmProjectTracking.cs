@@ -427,7 +427,7 @@ namespace Compass
                 {
                     MessageBox.Show("修改计划成功！", "提示信息");
                     grbEditProjectTracking.Visible = false;
-                    btnQueryAllProjectTracking_Click(null, null);
+                    btnQueryByYear_Click(null, null);
                 }
             }
             catch (Exception ex)
