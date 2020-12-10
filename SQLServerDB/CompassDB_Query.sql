@@ -156,8 +156,11 @@ where DrReleaseTarget>='2020/01/01' and DrReleaseTarget<='2020/12/31'
  and UserAccount='hujian'
 
  
-
-
+select sum(ModuleNo) from DrawingPlan 
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+inner join Users on Projects.UserId=Users.UserId
+where DrReleaseTarget>='2020/01/01' and DrReleaseTarget<='2020/12/31'
+and HoodType='Hood'
 
  select DrawingPlan.DrReleaseTarget,DrReleaseActual,DrawingPlan.AddedDate,ProjectName,
  IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<0,0,DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget))as RemainingDays,
@@ -176,3 +179,35 @@ where DrReleaseTarget>='2020/01/01' and DrReleaseTarget<='2020/12/31'
 --(int)(100 * (Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(Convert.ToDateTime(objReader["AddedDate"])).Days
 --- Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(DateTime.Today).Days)
 --/ (Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(Convert.ToDateTime(objReader["AddedDate"])).Days))
+
+
+select Top 10000 UserAccount,ODPNo,Model,ModuleNo,DrawingPlan.DrReleaseTarget,
+DrReleaseActual,SubTotalWorkload,HoodType from DrawingPlan 
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId 
+inner join Users on Users.UserId=Projects.UserId 
+left join ProjectTracking on DrawingPlan.ProjectId=ProjectTracking.ProjectId 
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
+and DrawingPlanId not in 
+(select Top 0 DrawingPlanId from DrawingPlan 
+where DrawingPlan.DrReleasetarget>='2020/01/01' 
+and DrawingPlan.DrReleasetarget<='2020/12/31' 
+order by DrawingPlan.DrReleasetarget desc) 
+order by DrawingPlan.DrReleasetarget desc;
+select count(*) from DrawingPlan inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId 
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31'
+
+
+--统计年度机型数量
+select distinct Model from DrawingPlan 
+
+select Model,sum(SubTotalWorkload) from DrawingPlan
+
+select Model,sum(ModuleNo) as TotalModuleNo from DrawingPlan
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
+and HoodType='Hood'
+group by Model
+order by TotalModuleNo desc
+
+--按月份统计数量
+

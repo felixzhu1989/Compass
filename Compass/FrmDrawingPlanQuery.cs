@@ -18,6 +18,7 @@ namespace Compass
     {
         private DrawingPlanService objDrawingPlanService=new DrawingPlanService();
         private SuperChart superChart = null;
+        private SuperChart superChartMonth = null;
         private List<ChartData> dataList = new List<ChartData>();//用来保存数据的集合
         private SqlDataPager objSqlDataPager = null;
         public FrmDrawingPlanQuery()
@@ -27,6 +28,7 @@ namespace Compass
             dgvDrawingPlan.AutoGenerateColumns = false;
             //初始化自定义图表对象
             superChart = new SuperChart(this.chartPlan);
+            superChartMonth=new SuperChart(this.chartMonth);
             //查询年度初始化
             int currentYear = DateTime.Now.Year;
             cobQueryYear.Items.Add("ALL");//添加所有
@@ -102,11 +104,50 @@ namespace Compass
         {
             dataList = objDrawingPlanService.GetHoodModuleNoByYear(cobQueryYear.Text);
             this.superChart.ShowChart(SeriesChartType.Column, dataList);
-            chartPlan.Series[0].LegendText = cobQueryYear.Text+"年烟罩数量统计";
-
+            chartPlan.Series[0].LegendText = cobQueryYear.Text+"年烟罩数量统计/总数量："+ objDrawingPlanService.GetTotalHoodModuleNoByYear(cobQueryYear.Text);
+            //初始化型号选择框
+            this.cobModel.SelectedIndexChanged -= new System.EventHandler(this.cobModel_SelectedIndexChanged);
+            lblModel.Text = "型号：";
+            cobModel.DataSource = dataList;
+            cobModel.DisplayMember = "Text";
+            cobModel.ValueMember = "Value";
+            cobModel.SelectedIndex = -1;
+            this.cobModel.SelectedIndexChanged += new System.EventHandler(this.cobModel_SelectedIndexChanged);
+            cobModel.SelectedIndex = 0;
             //this.superChart.ShowChart(SeriesChartType.Pie, dataList);
             //this.superChart.ShowChart(SeriesChartType.Bar, dataList);
             //this.superChart.ShowChart(SeriesChartType.Doughnut, dataList);
+        }
+
+        private void cobModel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataList = objDrawingPlanService.GetHoodModuleNoByMonth(cobQueryYear.Text,cobModel.Text);
+            //this.superChartMonth.ShowChart(SeriesChartType.Column, dataList);
+            chartMonth.Series.Clear();
+            Series series1=new Series();
+            series1.ChartType = SeriesChartType.Column;
+            chartMonth.Series.Add(series1);
+
+            series1.LegendText = cobQueryYear.Text + "年"+ cobModel.Text+ "按月数量统计/全年总数量："+ cobModel.SelectedValue;
+            
+            for (int i = 0; i <= 12; i++)
+            {
+                double value = 0;
+                foreach (var item in dataList)
+                {
+                    if (Convert.ToInt32(item.Text)==i) value = item.Value;
+                }
+                series1.Points.AddXY(i, value);
+                series1.Points[i].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
+                series1.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
+
+                if(value!=0d) series1.Points[i].Label = "#VAL";
+            }
+            chartMonth.ChartAreas[0].AxisX.Title = "月份";
+            chartMonth.ChartAreas[0].AxisX.Minimum = 1;
+            chartMonth.ChartAreas[0].AxisX.Maximum = 12.5;
+            chartMonth.ChartAreas[0].AxisY.Interval = 20;//也可以设置成20
+            chartMonth.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
         }
 
 

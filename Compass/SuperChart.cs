@@ -54,6 +54,7 @@ namespace Compass
                     series1["PieLabelStyle"] = "Outside";//在外侧显示label，参考官方文档设置
                     //series1["PieLabelStyle"] = "Inside";//在内侧显示label，默认
                     series1["PieLinerColor"] = "Black";//绘制连线，label在外面时，连接到饼形图上
+                    
                 }
                 else if (chartType == SeriesChartType.Doughnut)
                 {
@@ -64,8 +65,7 @@ namespace Compass
                 else if (chartType == SeriesChartType.Column)
                 {
                     //柱状图
-                    series1.Points[i].Label = "#VAL";
-                    
+                    series1.Points[i].Label = "#VAL(#PERCENT)";
                 }
                 else
                 {
@@ -75,7 +75,7 @@ namespace Compass
                 //3.5 X轴设置
                 if (chartType != SeriesChartType.Pie)
                 {
-                    series1.Points[i].AxisLabel = string.Format("{0} {1}", text, value);
+                    series1.Points[i].AxisLabel = string.Format("{0}", text);
                 }
             }
             //【4】设置图表绘图区域的X和Y坐标值（Y：表示具体需要显示的数值之间的间隔）
