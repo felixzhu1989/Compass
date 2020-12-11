@@ -15,8 +15,127 @@ namespace DAL
     /// </summary>
     public class DrawingPlanService
     {
+        #region 查询年度各制图人员工作量
 
-        public List<ChartData> GetHoodModuleNoByMonth(string year,string modelType)
+
+
+        #endregion
+
+        #region 查询年度全部烟罩工作量
+
+
+
+        #endregion
+
+
+
+        #region 查询年度天花烟罩工作量
+
+        /// <summary>
+        /// 按月份统计单个机型烟罩数量
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="modelType"></param>
+        /// <returns></returns>
+        public List<ChartData> GetCeilingWorkloadByMonth(string year, string modelType)
+        {
+            List<ChartData> list = new List<ChartData>();
+            string sql = "select month(DrawingPlan.DrReleasetarget) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
+            sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
+            if (year == "ALL")
+            {
+                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+            }
+            sql += string.Format(" and HoodType='Ceiling' and Model='{0}'", modelType);
+            sql += " group by month(DrawingPlan.DrReleasetarget) order by Mon asc";
+
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                list.Add(new ChartData()
+                {
+                    Text = objReader["Mon"].ToString(),
+                    Value = Convert.ToDouble(objReader["TotalWorkload"].ToString())
+                });
+            }
+            objReader.Close();
+            return list;
+        }
+
+        /// <summary>
+        /// 查询全年天花烟罩工作量总和
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public double GetTotalCeilingWorkloadByYear(string year)
+        {
+            double Value = 0;
+            string sql = "select sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
+            sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
+            if (year == "ALL")
+            {
+                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+            }
+            sql += " and HoodType='Ceiling'";
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                Value = Convert.ToDouble(objReader["TotalWorkload"].ToString());
+            }
+            objReader.Close();
+            return Value;
+        }
+
+        /// <summary>
+        /// 查询年度天花烟罩工作量
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public List<ChartData> GetCeilingWorkloadByYear(string year)
+        {
+            List<ChartData> list = new List<ChartData>();
+            string sql = "select Model,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
+            sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
+            if (year == "ALL")
+            {
+                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+            }
+            sql += " and HoodType='Ceiling' group by Model order by TotalWorkload desc";
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                list.Add(new ChartData()
+                {
+                    Text = objReader["Model"].ToString(),
+                    Value = Convert.ToDouble(objReader["TotalWorkload"].ToString())
+                });
+            }
+            objReader.Close();
+            return list;
+        }
+        #endregion
+
+
+        #region 查询年度普通烟罩数量
+        /// <summary>
+        /// 按月份统计单个机型烟罩数量
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="modelType"></param>
+        /// <returns></returns>
+        public List<ChartData> GetHoodModuleNoByMonth(string year, string modelType)
         {
             List<ChartData> list = new List<ChartData>();
             string sql = "select month(DrawingPlan.DrReleasetarget) as Mon,sum(ModuleNo) as TotalModuleNo from DrawingPlan";
@@ -29,7 +148,7 @@ namespace DAL
             {
                 sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
             }
-            sql += string.Format(" and HoodType='Hood' and Model='{0}'",modelType);
+            sql += string.Format(" and HoodType='Hood' and Model='{0}'", modelType);
             sql += " group by month(DrawingPlan.DrReleasetarget) order by Mon asc";
 
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -73,9 +192,9 @@ namespace DAL
             objReader.Close();
             return Value;
         }
-        
+
         /// <summary>
-        /// 查询机型数量
+        /// 查询年度各个机型数量
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
@@ -106,6 +225,13 @@ namespace DAL
             return list;
         }
 
+        #endregion
+
+        /// <summary>
+        /// 查询单项目中烟罩数量
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public DataSet GetScopeByDataSet(string projectId)
         {
             string sql = "select Model as '机型',sum(ModuleNo) as '总台数' from DrawingPlan";

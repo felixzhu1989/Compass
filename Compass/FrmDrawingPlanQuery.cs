@@ -20,6 +20,7 @@ namespace Compass
         private SuperChart superChart = null;
         private SuperChart superChartMonth = null;
         private List<ChartData> dataList = new List<ChartData>();//用来保存数据的集合
+        private List<ChartData> dataListMonth = new List<ChartData>();//用来保存数据的集合
         private SqlDataPager objSqlDataPager = null;
         public FrmDrawingPlanQuery()
         {
@@ -96,44 +97,53 @@ namespace Compass
             btnHoodModuleNo_Click(null, null);
         }
         /// <summary>
-        /// 普通烟罩数量
+        /// 年度普通烟罩数量统计
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnHoodModuleNo_Click(object sender, EventArgs e)
         {
+            lblModel.Visible = true;
+            cobModel.Visible = true;
             dataList = objDrawingPlanService.GetHoodModuleNoByYear(cobQueryYear.Text);
             this.superChart.ShowChart(SeriesChartType.Column, dataList);
-            chartPlan.Series[0].LegendText = cobQueryYear.Text+"年烟罩数量统计/总数量："+ objDrawingPlanService.GetTotalHoodModuleNoByYear(cobQueryYear.Text);
+            chartPlan.Series[0].LegendText = cobQueryYear.Text+"年烟罩数量统计 | 总数量："+ objDrawingPlanService.GetTotalHoodModuleNoByYear(cobQueryYear.Text);
+            //chartPlan.Series[0].LegendText+=" | "+ cobQueryYear.Text + " | Annual statistics | Total for the year:" + objDrawingPlanService.GetTotalHoodModuleNoByYear(cobQueryYear.Text);
             //初始化型号选择框
+            List<ChartData> cobModelDataList = dataList;
             this.cobModel.SelectedIndexChanged -= new System.EventHandler(this.cobModel_SelectedIndexChanged);
             lblModel.Text = "型号：";
-            cobModel.DataSource = dataList;
+            cobModel.DataSource = cobModelDataList;
             cobModel.DisplayMember = "Text";
             cobModel.ValueMember = "Value";
             cobModel.SelectedIndex = -1;
             this.cobModel.SelectedIndexChanged += new System.EventHandler(this.cobModel_SelectedIndexChanged);
             cobModel.SelectedIndex = 0;
+            chartPlan.ChartAreas[0].AxisX.Title = "普通烟罩型号 | Hood Model";
+            chartPlan.ChartAreas[0].AxisY.Title = "烟罩数量 | Number of Hoods";
             //this.superChart.ShowChart(SeriesChartType.Pie, dataList);
             //this.superChart.ShowChart(SeriesChartType.Bar, dataList);
             //this.superChart.ShowChart(SeriesChartType.Doughnut, dataList);
         }
-
+        /// <summary>
+        /// 选择模型统计月度机型数量
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cobModel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dataList = objDrawingPlanService.GetHoodModuleNoByMonth(cobQueryYear.Text,cobModel.Text);
-            //this.superChartMonth.ShowChart(SeriesChartType.Column, dataList);
+            dataListMonth = objDrawingPlanService.GetHoodModuleNoByMonth(cobQueryYear.Text,cobModel.Text);
             chartMonth.Series.Clear();
             Series series1=new Series();
             series1.ChartType = SeriesChartType.Column;
             chartMonth.Series.Add(series1);
 
-            series1.LegendText = cobQueryYear.Text + "年"+ cobModel.Text+ "按月数量统计/全年总数量："+ cobModel.SelectedValue;
-            
+            series1.LegendText = cobQueryYear.Text + "年"+ cobModel.Text+ "按月数量统计 | 全年总数量："+ cobModel.SelectedValue;
+            //series1.LegendText += " | " + cobQueryYear.Text + " | " + cobModel.Text + " | Monthly statistics | Total for the year:" + cobModel.SelectedValue;
             for (int i = 0; i <= 12; i++)
             {
                 double value = 0;
-                foreach (var item in dataList)
+                foreach (var item in dataListMonth)
                 {
                     if (Convert.ToInt32(item.Text)==i) value = item.Value;
                 }
@@ -143,11 +153,67 @@ namespace Compass
 
                 if(value!=0d) series1.Points[i].Label = "#VAL";
             }
-            chartMonth.ChartAreas[0].AxisX.Title = "月份";
-            chartMonth.ChartAreas[0].AxisX.Minimum = 1;
+            chartMonth.ChartAreas[0].AxisX.Title = "月份 | Month";
+            chartMonth.ChartAreas[0].AxisY.Title = "烟罩数量 | Number of Hoods";
+            chartMonth.ChartAreas[0].AxisX.Minimum = 0;
             chartMonth.ChartAreas[0].AxisX.Maximum = 12.5;
             chartMonth.ChartAreas[0].AxisY.Interval = 20;//也可以设置成20
             chartMonth.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
+        }
+        /// <summary>
+        /// 年度天花烟罩工作量统计
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCeilingWorkload_Click(object sender, EventArgs e)
+        {
+            lblModel.Visible = false;
+            cobModel.Visible = false;
+            dataList.Clear();
+            dataList = objDrawingPlanService.GetCeilingWorkloadByYear(cobQueryYear.Text);
+            this.superChart.ShowChart(SeriesChartType.Column, dataList);
+            chartPlan.Series[0].LegendText = cobQueryYear.Text + "年天花烟罩工作量统计 | 总工作量：" + objDrawingPlanService.GetTotalCeilingWorkloadByYear(cobQueryYear.Text);
+            chartPlan.ChartAreas[0].AxisX.Title = "天花烟罩型号 | Ceiling Model";
+            chartPlan.ChartAreas[0].AxisY.Title = "天花烟罩工作量 | Workload of Ceiling";
+            //月度统计
+            chartMonth.Series.Clear();
+            //循环所有模型
+            foreach (var model in dataList)
+            {
+                dataListMonth = objDrawingPlanService.GetCeilingWorkloadByMonth(cobQueryYear.Text, model.Text);
+                Series series1 = new Series();
+                series1.ChartType = SeriesChartType.Column;
+                chartMonth.Series.Add(series1);
+                series1.LegendText = model.Text+"(" +model.Value + ")";
+
+                for (int i = 0; i <= 12; i++)
+                {
+                    double value = 0;
+                    foreach (var item in dataListMonth)
+                    {
+                        if (Convert.ToInt32(item.Text) == i) value = item.Value;
+                    }
+                    series1.Points.AddXY(i, value);
+                    series1.Points[i].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
+                    series1.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
+                    if (value != 0d) series1.Points[i].Label = "#VAL";
+                }
+            }
+            chartMonth.ChartAreas[0].AxisX.Title = "月份 | Month";
+            chartMonth.ChartAreas[0].AxisY.Title = "天花烟罩工作量 | Workload of Ceiling";
+            chartMonth.ChartAreas[0].AxisX.Minimum = 0;
+            chartMonth.ChartAreas[0].AxisX.Maximum = 12.5;
+            chartMonth.ChartAreas[0].AxisY.Interval = 10;//也可以设置成20
+            chartMonth.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
+        }
+        /// <summary>
+        /// 年度所有烟罩工作量统计
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAllWorkload_Click(object sender, EventArgs e)
+        {
+
         }
 
 

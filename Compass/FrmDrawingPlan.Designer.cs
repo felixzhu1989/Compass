@@ -896,7 +896,7 @@
             // DrReleaseTarget
             // 
             this.DrReleaseTarget.DataPropertyName = "DrReleaseTarget";
-            this.DrReleaseTarget.HeaderText = "发图日期";
+            this.DrReleaseTarget.HeaderText = "计划发图";
             this.DrReleaseTarget.Name = "DrReleaseTarget";
             this.DrReleaseTarget.ReadOnly = true;
             this.DrReleaseTarget.Resizable = System.Windows.Forms.DataGridViewTriState.True;

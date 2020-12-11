@@ -197,6 +197,26 @@ select count(*) from DrawingPlan inner join Projects on DrawingPlan.ProjectId=Pr
 where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31'
 
 
+
+
+select * from DrawingPlan
+order by DrawingPlan.DrReleasetarget desc
+
+select Top 30 DrawingPlanId,UserAccount,ODPNo,Item,Model,ModuleNo,
+DrawingPlan.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,ProjectName,HoodType,
+IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<0,0,DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)) 
+as RemainingDays,
+IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<=0,100,100*DATEDIFF(DAY,GETDATE(),DrawingPlan.AddedDate)/DATEDIFF(DAY,DrawingPlan.DrReleaseTarget,DrawingPlan.AddedDate)) as ProgressValue 
+from DrawingPlan inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId 
+inner join Users on Users.UserId=Projects.UserId 
+left join ProjectTracking on DrawingPlan.ProjectId=ProjectTracking.ProjectId 
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' and DrawingPlanId 
+not in (select Top 0 DrawingPlanId from DrawingPlan where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
+order by DrawingPlan.DrReleasetarget desc) order by DrawingPlan.DrReleasetarget desc;
+select count(*) from DrawingPlan inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId 
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31'
+
+
 --统计年度机型数量
 select distinct Model from DrawingPlan 
 
@@ -215,4 +235,35 @@ inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
 where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
 and HoodType='Hood' and Model='UVF'
 group by month(DrawingPlan.DrReleasetarget)
+order by Mon asc
+
+
+
+--统计年度天花机型工作量
+select distinct Model from DrawingPlan 
+
+select Model,sum(SubTotalWorkload) from DrawingPlan
+
+select Model,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
+and HoodType='Ceiling'
+group by Model
+order by TotalWorkload desc
+
+--按月份统计单个机型天花工作量
+select month(DrawingPlan.DrReleasetarget) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
+and HoodType='Ceiling' and Model='UCJ'
+group by month(DrawingPlan.DrReleasetarget)
+order by Mon asc
+
+
+select month(DrawingPlan.DrReleasetarget) as Mon,
+sum(ModuleNo) as TotalModuleNo from DrawingPlan 
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId 
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
+and HoodType='Hood' and Model='UCW' 
+group by month(DrawingPlan.DrReleasetarget) 
 order by Mon asc
