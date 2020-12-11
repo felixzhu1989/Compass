@@ -17,8 +17,8 @@ using UpdateProgram;
 
 namespace Compass
 {
-    
-    
+
+
     //显示项目信息委托
     public delegate void ShowProjectInfoDelegate(string odpNo);
     //显示项目列表委托
@@ -42,7 +42,7 @@ namespace Compass
                 switch (xmlReader.Name)
                 {
                     case "Version":
-                        this.lblVersion.Text = "当前版本："+ xmlReader.GetAttribute("Num");
+                        this.lblVersion.Text = "当前版本：" + xmlReader.GetAttribute("Num");
                         break;
                     case "UpdateTime":
                         this.lblUpdateTime.Text = "更新日期：" + xmlReader.GetAttribute("Date");
@@ -54,25 +54,43 @@ namespace Compass
             xmlReader.Close();
             myFile.Close();
             this.lblCurrentUser.Text = "当前用户：" + Program.ObjCurrentUser.UserAccount;
-            SetTsmiVisible();
             tsmiProjectList_Click(null, null);
-        }
 
-        private void SetTsmiVisible()
+            SetPermissions();
+        }
+        /// <summary>
+        /// 设置权限
+        /// </summary>
+        private void SetPermissions()
         {
-            switch (Program.ObjCurrentUser.UserGroupId)
+            //管理员和技术部才能显示的菜单
+            if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
             {
-                case 1:
-                    break;
-                default:
+                tsmiCeilingAccessories.Visible = true;
+                tsmiDXFCutList.Visible = true;
+                // 管理员才能显示的菜单
+                if (Program.ObjCurrentUser.UserGroupId == 1)
+                {
+                    tsmiCategories.Visible = true;
+                    tsmiWorkLoad.Visible = true;
+                    tsmiStatusTypes.Visible = true;
+                }
+                else
+                {
                     tsmiCategories.Visible = false;
                     tsmiWorkLoad.Visible = false;
                     tsmiStatusTypes.Visible = false;
-                    break;
+                }
             }
-            
+            else
+            {
+                tsmiCeilingAccessories.Visible = false;
+                tsmiDXFCutList.Visible = false;
+                tsmiCategories.Visible = false;
+                tsmiWorkLoad.Visible = false;
+                tsmiStatusTypes.Visible = false;
+            }
         }
-
 
         #region 关闭当前已经嵌入的窗体，嵌入新的窗体
         /// <summary>
@@ -153,7 +171,7 @@ namespace Compass
             FrmDrawingPlan objFrmDrawingPlan = new FrmDrawingPlan();
             OpenForm(objFrmDrawingPlan, splitContainer.Panel2);
         }
-        
+
         /// <summary>
         /// 项目跟踪
         /// </summary>
@@ -188,7 +206,7 @@ namespace Compass
             OpenForm(objFrmProjectInfo, splitContainer.Panel2);
         }
 
-        
+
 
 
 
@@ -322,7 +340,7 @@ namespace Compass
             }
             if (objUpdateManager.IsUpdate)
             {
-                FrmTips objFrmTips=new FrmTips();
+                FrmTips objFrmTips = new FrmTips();
                 objFrmTips.Show();
             }
             this.timerUpdate.Enabled = false;//停止定时器，防止频繁弹出
@@ -334,7 +352,7 @@ namespace Compass
         /// <param name="e"></param>
         private void tsmiDrawingPlanQuery_Click(object sender, EventArgs e)
         {
-            FrmDrawingPlanQuery objFrmDrawingPlanQuery=new FrmDrawingPlanQuery();
+            FrmDrawingPlanQuery objFrmDrawingPlanQuery = new FrmDrawingPlanQuery();
             objFrmDrawingPlanQuery.Show();
         }
     }

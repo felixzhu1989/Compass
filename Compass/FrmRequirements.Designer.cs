@@ -153,19 +153,19 @@
             this.tsmiEditSpecialRequirement,
             this.tsmiDeleteSpecialRequirement});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(179, 48);
+            this.contextMenuStrip.Size = new System.Drawing.Size(173, 48);
             // 
             // tsmiEditSpecialRequirement
             // 
             this.tsmiEditSpecialRequirement.Name = "tsmiEditSpecialRequirement";
-            this.tsmiEditSpecialRequirement.Size = new System.Drawing.Size(178, 22);
+            this.tsmiEditSpecialRequirement.Size = new System.Drawing.Size(172, 22);
             this.tsmiEditSpecialRequirement.Text = "修改特殊技术要求";
             this.tsmiEditSpecialRequirement.Click += new System.EventHandler(this.tsmiEditSpecialRequirement_Click);
             // 
             // tsmiDeleteSpecialRequirement
             // 
             this.tsmiDeleteSpecialRequirement.Name = "tsmiDeleteSpecialRequirement";
-            this.tsmiDeleteSpecialRequirement.Size = new System.Drawing.Size(178, 22);
+            this.tsmiDeleteSpecialRequirement.Size = new System.Drawing.Size(172, 22);
             this.tsmiDeleteSpecialRequirement.Text = "删除特殊技术要求";
             this.tsmiDeleteSpecialRequirement.Click += new System.EventHandler(this.tsmiDeleteSpecialRequirement_Click);
             // 

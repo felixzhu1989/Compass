@@ -48,6 +48,7 @@ namespace Compass
             cobANSULSystem.Items.Add("No");
             cobANSULSystem.Items.Add("R102");
             cobANSULSystem.Items.Add("Piranha");
+            SetPermissions();
         }
         public FrmRequirements(Project objProject) :this()
         {
@@ -74,7 +75,29 @@ namespace Compass
             dgvSpecialRequirements.AutoGenerateColumns = false;
             dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(objProject.ODPNo);
         }
-        
+        /// <summary>
+        /// 设置权限
+        /// </summary>
+        private void SetPermissions()
+        {
+            //管理员和技术部才能添加、编辑、删除模型
+            if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
+            {
+                btnGeneralRequirement.Visible = true;
+                tsmiEditSpecialRequirement.Visible = true;
+                tsmiDeleteSpecialRequirement.Visible = true;
+                this.dgvSpecialRequirements.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpecialRequirements_CellDoubleClick);
+                this.dgvSpecialRequirements.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvSpecialRequirements_KeyDown);
+            }
+            else
+            {
+                btnGeneralRequirement.Visible = false;
+                tsmiEditSpecialRequirement.Visible = false;
+                tsmiDeleteSpecialRequirement.Visible = false;
+                this.dgvSpecialRequirements.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpecialRequirements_CellDoubleClick);
+                this.dgvSpecialRequirements.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvSpecialRequirements_KeyDown);
+            }
+        }
         /// <summary>
         /// 通用技术要求添加/修改
         /// </summary>

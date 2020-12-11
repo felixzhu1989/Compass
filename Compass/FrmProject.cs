@@ -32,7 +32,7 @@ namespace Compass
             this.dgvProjects.SelectionChanged -= new System.EventHandler(this.dgvProjects_SelectionChanged);
             IniCustomerId(cobCustomerId);
             IniUserId(cobUserId);
-            
+
             cobHoodType.Items.Add("Hood");
             cobHoodType.Items.Add("Ceiling");
             cobHoodType.SelectedIndex = -1;
@@ -41,10 +41,10 @@ namespace Compass
 
             //查询年度初始化
             int currentYear = DateTime.Now.Year;
-            cobQueryYear.Items.Add(currentYear+1);//先添加下一年
-            for (int i = 0; i <= currentYear-2020; i++)
+            cobQueryYear.Items.Add(currentYear + 1);//先添加下一年
+            for (int i = 0; i <= currentYear - 2020; i++)
             {
-                cobQueryYear.Items.Add(currentYear-i);
+                cobQueryYear.Items.Add(currentYear - i);
             }
             cobQueryYear.SelectedIndex = 1;//默认定位当前年份
             //设置默认的显示条数
@@ -74,7 +74,7 @@ namespace Compass
             btnQueryByYear_Click(null, null);
 
             this.dgvProjects.SelectionChanged += new System.EventHandler(this.dgvProjects_SelectionChanged);
-            
+
             SetPermissions();
         }
         /// <summary>
@@ -90,6 +90,26 @@ namespace Compass
             else
             {
                 cobUserId.SelectedIndex = -1; //默认选中
+            }
+
+            //管理员和技术部才能添加、编辑、删除项目
+            if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
+            {
+                btnProject.Visible = true;
+                tsmiAddCustomer.Visible = true;
+                tsmiEditProject.Visible = true;
+                tsmiDeleteProject.Visible = true;
+                this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
+                this.dgvProjects.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjects_KeyDown);
+            }
+            else
+            {
+                btnProject.Visible = false;
+                tsmiAddCustomer.Visible = false;
+                tsmiEditProject.Visible = false;
+                tsmiDeleteProject.Visible = false;
+                this.dgvProjects.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
+                this.dgvProjects.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvProjects_KeyDown);
             }
         }
         /// <summary>
@@ -266,7 +286,7 @@ namespace Compass
                         //提示添加成功
                         MessageBox.Show("项目信息添加成功", "提示信息");
                         //刷新显示
-                        btnQueryByYear_Click(null,null);
+                        btnQueryByYear_Click(null, null);
                         //清空内容
                         cobCustomerId.SelectedIndex = -1;
                         cobHoodType.SelectedIndex = -1;
@@ -469,7 +489,7 @@ namespace Compass
         {
             if (txtODPNo.Text.Trim().Length == 0) return;
             objSqlDataPager.Condition = string.Format("ODPNo = '{0}'", txtODPNo.Text.Trim());
-            objSqlDataPager.PageSize =Convert.ToInt32(cobRecordList.Text);
+            objSqlDataPager.PageSize = Convert.ToInt32(cobRecordList.Text);
             Query();
         }
         private void txtODPNo_KeyDown(object sender, KeyEventArgs e)

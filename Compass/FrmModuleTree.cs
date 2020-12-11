@@ -36,13 +36,38 @@ namespace Compass
         {
             InitializeComponent();
             pbLabelImage.Visible = false;
+            SetPermissions();
         }
         public FrmModuleTree(string odpNo) : this()
         {
             objProject = objProjectService.GetProjectByODPNo(odpNo);
             RefreshTree();
             this.tvModule.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvModule_AfterSelect);
+            
         }
+        /// <summary>
+        /// 设置权限
+        /// </summary>
+        private void SetPermissions()
+        {
+            //管理员和技术部才能添加、编辑、删除模型
+            if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
+            {
+                tsmiAddModule.Visible = true;
+                tsmiEditModule.Visible = true;
+                tsmiDeleteModule.Visible = true;
+                tsmiEditPic.Visible = true;
+            }
+            else
+            {
+                tsmiAddModule.Visible = false;
+                tsmiEditModule.Visible = false;
+                tsmiDeleteModule.Visible = false;
+                tsmiEditPic.Visible = false;
+            }
+        }
+
+
         private void RefreshTree()
         {
             if (objProject == null) return;

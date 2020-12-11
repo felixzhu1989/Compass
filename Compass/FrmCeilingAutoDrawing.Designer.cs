@@ -137,7 +137,7 @@
             this.CeilingPackingListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ClassNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsCeilingPackingList = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmic = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDeleteCeilingPackingList = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditCeilingPackingList = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAddCeilingPackingList = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiChangeLocation = new System.Windows.Forms.ToolStripMenuItem();
@@ -211,7 +211,7 @@
             this.dgvExecList.Name = "dgvExecList";
             this.dgvExecList.ReadOnly = true;
             this.dgvExecList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvExecList.Size = new System.Drawing.Size(540, 504);
+            this.dgvExecList.Size = new System.Drawing.Size(540, 492);
             this.dgvExecList.TabIndex = 58;
             this.dgvExecList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvExecList_RowPostPaint);
             // 
@@ -284,7 +284,7 @@
             this.dgvWaitingList.Name = "dgvWaitingList";
             this.dgvWaitingList.ReadOnly = true;
             this.dgvWaitingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvWaitingList.Size = new System.Drawing.Size(540, 504);
+            this.dgvWaitingList.Size = new System.Drawing.Size(540, 492);
             this.dgvWaitingList.TabIndex = 59;
             this.dgvWaitingList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvWaitingList_RowPostPaint);
             // 
@@ -401,7 +401,7 @@
             this.btnExec.FlatAppearance.BorderSize = 0;
             this.btnExec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExec.ForeColor = System.Drawing.Color.White;
-            this.btnExec.Location = new System.Drawing.Point(549, 444);
+            this.btnExec.Location = new System.Drawing.Point(549, 432);
             this.btnExec.Name = "btnExec";
             this.btnExec.Size = new System.Drawing.Size(52, 85);
             this.btnExec.TabIndex = 56;
@@ -518,7 +518,7 @@
             this.btnJobCard.FlatAppearance.BorderSize = 0;
             this.btnJobCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJobCard.ForeColor = System.Drawing.Color.White;
-            this.btnJobCard.Location = new System.Drawing.Point(549, 353);
+            this.btnJobCard.Location = new System.Drawing.Point(549, 341);
             this.btnJobCard.Name = "btnJobCard";
             this.btnJobCard.Size = new System.Drawing.Size(52, 85);
             this.btnJobCard.TabIndex = 63;
@@ -561,7 +561,7 @@
             this.tvSubAssyTree.Location = new System.Drawing.Point(936, 41);
             this.tvSubAssyTree.Name = "tvSubAssyTree";
             this.tvSubAssyTree.SelectedImageIndex = 0;
-            this.tvSubAssyTree.Size = new System.Drawing.Size(210, 488);
+            this.tvSubAssyTree.Size = new System.Drawing.Size(210, 476);
             this.tvSubAssyTree.TabIndex = 45;
             this.tvSubAssyTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvSubAssyTree_AfterSelect);
             this.tvSubAssyTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.tvSubAssy_DragDrop);
@@ -815,7 +815,7 @@
             this.dgvCutList.ReadOnly = true;
             this.dgvCutList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvCutList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCutList.Size = new System.Drawing.Size(924, 246);
+            this.dgvCutList.Size = new System.Drawing.Size(924, 234);
             this.dgvCutList.TabIndex = 47;
             this.dgvCutList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvCutList_RowPostPaint);
             this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
@@ -1140,7 +1140,7 @@
             this.dgvCeilingPackingList.Name = "dgvCeilingPackingList";
             this.dgvCeilingPackingList.ReadOnly = true;
             this.dgvCeilingPackingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCeilingPackingList.Size = new System.Drawing.Size(1140, 439);
+            this.dgvCeilingPackingList.Size = new System.Drawing.Size(1140, 433);
             this.dgvCeilingPackingList.TabIndex = 64;
             this.dgvCeilingPackingList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.CeilingPackingList_RowPostPaint);
             this.dgvCeilingPackingList.DoubleClick += new System.EventHandler(this.dgvCeilingPackingList_DoubleClick);
@@ -1272,19 +1272,19 @@
             // cmsCeilingPackingList
             // 
             this.cmsCeilingPackingList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmic,
+            this.tsmiDeleteCeilingPackingList,
             this.tsmiEditCeilingPackingList,
             this.tsmiAddCeilingPackingList,
             this.tsmiChangeLocation});
             this.cmsCeilingPackingList.Name = "cmsCeilingPackingList";
             this.cmsCeilingPackingList.Size = new System.Drawing.Size(125, 92);
             // 
-            // tsmic
+            // tsmiDeleteCeilingPackingList
             // 
-            this.tsmic.Name = "tsmic";
-            this.tsmic.Size = new System.Drawing.Size(124, 22);
-            this.tsmic.Text = "删除多行";
-            this.tsmic.Click += new System.EventHandler(this.tsmiDeleteCeilingPackingList_Click);
+            this.tsmiDeleteCeilingPackingList.Name = "tsmiDeleteCeilingPackingList";
+            this.tsmiDeleteCeilingPackingList.Size = new System.Drawing.Size(124, 22);
+            this.tsmiDeleteCeilingPackingList.Text = "删除多行";
+            this.tsmiDeleteCeilingPackingList.Click += new System.EventHandler(this.tsmiDeleteCeilingPackingList_Click);
             // 
             // tsmiEditCeilingPackingList
             // 
@@ -1502,7 +1502,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtTypeName;
         private System.Windows.Forms.ContextMenuStrip cmsCeilingPackingList;
-        private System.Windows.Forms.ToolStripMenuItem tsmic;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDeleteCeilingPackingList;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditCeilingPackingList;
         private System.Windows.Forms.ToolStripMenuItem tsmiAddCeilingPackingList;
         private System.Windows.Forms.Button btnPrintCeilingPackingList;

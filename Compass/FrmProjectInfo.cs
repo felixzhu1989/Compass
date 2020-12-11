@@ -32,6 +32,7 @@ namespace Compass
             cobODPNo.SelectedIndex = -1;//默认不要选中
             //初始化后关联事件委托
             this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.cobODPNo_SelectedIndexChanged);
+            SetPermissions();
         }
 
         public FrmProjectInfo(string odpNo) : this()
@@ -41,6 +42,21 @@ namespace Compass
             btnRefreshData_Click(null,null);
             //ShowModuleTree();
             this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.cobODPNo_SelectedIndexChanged);
+        }
+        /// <summary>
+        /// 设置权限
+        /// </summary>
+        private void SetPermissions()
+        {
+            //管理员和技术部才能添加、编辑、删除模型
+            if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
+            {
+                tsmiDeleteGeneralRequirement.Visible = true;
+            }
+            else
+            {
+                tsmiDeleteGeneralRequirement.Visible = false;
+            }
         }
         /// <summary>
         /// 刷新数据

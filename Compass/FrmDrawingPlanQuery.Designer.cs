@@ -57,6 +57,7 @@
             this.ModuleNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SubTotalWorkload = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.chartPlan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingPlan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartMonth)).BeginInit();
@@ -117,7 +118,8 @@
             this.Model,
             this.ModuleNo,
             this.SubTotalWorkload,
-            this.HoodType});
+            this.HoodType,
+            this.ProjectName});
             this.dgvDrawingPlan.EnableHeadersVisualStyles = false;
             this.dgvDrawingPlan.Location = new System.Drawing.Point(23, 63);
             this.dgvDrawingPlan.Name = "dgvDrawingPlan";
@@ -313,6 +315,14 @@
             this.HoodType.ReadOnly = true;
             this.HoodType.Width = 86;
             // 
+            // ProjectName
+            // 
+            this.ProjectName.DataPropertyName = "ProjectName";
+            this.ProjectName.HeaderText = "项目名称";
+            this.ProjectName.Name = "ProjectName";
+            this.ProjectName.ReadOnly = true;
+            this.ProjectName.Width = 86;
+            // 
             // FrmDrawingPlanQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -360,5 +370,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ModuleNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalWorkload;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoodType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProjectName;
     }
 }

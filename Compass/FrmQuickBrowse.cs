@@ -25,6 +25,7 @@ namespace Compass
             InitializeComponent();
             dgvCutList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;//自动调整列宽
             dgvQuickBrowse.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            SetPermissions();
         }
 
         public FrmQuickBrowse(Drawing drawing, ModuleTree tree) : this()
@@ -43,8 +44,26 @@ namespace Compass
                 dgvQuickBrowse.Height = this.Height - 40;
                 dgvQuickBrowse.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom;
             }
+            
         }
-
+        /// <summary>
+        /// 设置权限
+        /// </summary>
+        private void SetPermissions()
+        {
+            //管理员和技术部才能添加、编辑、删除模型
+            if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
+            {
+                tsmiDeleteCutList.Visible = true;
+                this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
+            }
+            else
+            {
+                tsmiDeleteCutList.Visible = false;
+                this.dgvCutList.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
+            }
+        }
+        
         private void RefreshCutlist(Drawing drawing, ModuleTree tree)
         {
             lblModule.Text = drawing.Item + " (" + tree.Module + ")";//标题

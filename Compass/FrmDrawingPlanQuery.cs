@@ -50,7 +50,7 @@ namespace Compass
                 TableName = "DrawingPlan",
                 InnerJoin1 = innerJoin1.ToString(),
                 InnerJoin2 = "inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId",
-                FiledName = "UserAccount,ODPNo,Model,ModuleNo,DrawingPlan.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,HoodType",
+                FiledName = "UserAccount,ODPNo,Model,ModuleNo,DrawingPlan.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,HoodType,ProjectName",
                 CurrentPage = 1,
                 Sort = "DrawingPlan.DrReleasetarget desc",
             };

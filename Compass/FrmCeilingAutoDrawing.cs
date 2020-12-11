@@ -56,20 +56,60 @@ namespace Compass
             this.tvSubAssyTree.AllowDrop = true;//允许文件拖拽
             this.txtMainAssyPath.AllowDrop = true;
             btnEditCeilingAccessory.Enabled = false;
-            //按钮权限
-            btnPrintLabel.Enabled = false;
-            if (Program.ObjCurrentUser.UserId == 8) btnPrintLabel.Enabled = true;//只有生产fsprod才能打印标签
-            btnCeilingPackingList.Enabled = false;
-            if (Program.ObjCurrentUser.UserGroupId < 3)
-            {
-                btnCeilingPackingList.Enabled = true;//只有技术部能够导出发货清单
-            }
+            
             dgvCeilingPackingList.AutoGenerateColumns = false;
+            SetPermissions();
         }
+
         public FrmCeilingAutoDrawing(string odpNo) : this()
         {
             if (odpNo.Length == 0) return;
             cobODPNo.Text = odpNo;
+        }
+        /// <summary>
+        /// 设置权限
+        /// </summary>
+        private void SetPermissions()
+        {
+            //管理员和技术部才能添加、编辑、删除模型
+            if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
+            {
+                tsmiAddCeilingPackingList.Visible = true;
+                tsmiChangeLocation.Visible = true;
+                tsmiDeleteCutList.Visible = true;
+                tsmiDeleteSubAssy.Visible = true;
+                tsmiEditCeilingPackingList.Visible = true;
+                tsmiDeleteCeilingPackingList.Visible = true;
+                btnEditCeilingAccessory.Visible = true;
+                btnCeilingPackingList.Enabled = true;//只有技术部能够导出发货清单
+                this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
+                this.tvSubAssyTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tvSubAssyTree_KeyDown);
+                this.dgvCeilingPackingList.DoubleClick += new System.EventHandler(this.dgvCeilingPackingList_DoubleClick);
+                this.dgvCeilingPackingList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCeilingPackingList_KeyDown);
+            }
+            else
+            {
+                tsmiAddCeilingPackingList.Visible = false;
+                tsmiChangeLocation.Visible = false;
+                tsmiDeleteCutList.Visible = false;
+                tsmiDeleteSubAssy.Visible = false;
+                tsmiEditCeilingPackingList.Visible = false;
+                tsmiDeleteCeilingPackingList.Visible = false;
+                btnCeilingPackingList.Enabled = false;
+                btnEditCeilingAccessory.Visible = false;
+
+                this.dgvCutList.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
+                this.tvSubAssyTree.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.tvSubAssyTree_KeyDown);
+                this.dgvCeilingPackingList.DoubleClick -= new System.EventHandler(this.dgvCeilingPackingList_DoubleClick);
+                this.dgvCeilingPackingList.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvCeilingPackingList_KeyDown);
+            }
+            
+
+            //按钮权限
+            btnPrintLabel.Enabled = false;
+            if (Program.ObjCurrentUser.UserId == 8) btnPrintLabel.Enabled = true;//只有生产fsprod才能打印标签
+            
+
         }
         /// <summary>
         /// 下拉选择项目后自动切换
