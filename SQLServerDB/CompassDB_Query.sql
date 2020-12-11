@@ -210,4 +210,9 @@ group by Model
 order by TotalModuleNo desc
 
 --按月份统计数量
-
+select month(DrawingPlan.DrReleasetarget) as Mon,sum(ModuleNo) as TotalModuleNo from DrawingPlan
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
+and HoodType='Hood' and Model='UVF'
+group by month(DrawingPlan.DrReleasetarget)
+order by Mon asc

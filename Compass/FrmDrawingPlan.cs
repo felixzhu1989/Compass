@@ -60,7 +60,7 @@ namespace Compass
                 InnerJoin2 = "inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId",
                 FiledName = "DrawingPlanId,UserAccount,ODPNo,Item,Model,ModuleNo,DrawingPlan.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,ProjectName,HoodType," +
                             "IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<0,0,DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)) as RemainingDays," +
-                            "IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<0,100,100*DATEDIFF(DAY,GETDATE(),DrawingPlan.AddedDate)/DATEDIFF(DAY,DrawingPlan.DrReleaseTarget,DrawingPlan.AddedDate)) as ProgressValue",
+                            "IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<=0,100,100*DATEDIFF(DAY,GETDATE(),DrawingPlan.AddedDate)/DATEDIFF(DAY,DrawingPlan.DrReleaseTarget,DrawingPlan.AddedDate)) as ProgressValue",
                 CurrentPage = 1,
                 Sort = "DrawingPlan.DrReleasetarget desc",
             };
@@ -214,7 +214,9 @@ namespace Compass
             {
                 int remainingDays = (int)this.dgvDrawingPlan.Rows[e.RowIndex].Cells["RemainingDays"].Value;
                 if (remainingDays != 0) return;
-                DateTime drReleaseActual = (DateTime)this.dgvDrawingPlan.Rows[e.RowIndex].Cells["DrReleaseActual"].Value;
+                DateTime drReleaseActual = new DateTime(01 / 01 / 0001);//初始化赋值
+                if (this.dgvDrawingPlan.Rows[e.RowIndex].Cells["DrReleaseActual"].Value.ToString().Length!=0)
+                drReleaseActual = (DateTime)this.dgvDrawingPlan.Rows[e.RowIndex].Cells["DrReleaseActual"].Value;//单元格不为空则赋值
                 DateTime drReleaseTarget = (DateTime)this.dgvDrawingPlan.Rows[e.RowIndex].Cells["DrReleaseTarget"].Value;
                 if (drReleaseActual.ToString("MM/dd/yyyy") == "01/01/0001")
                     dgvDrawingPlan.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 182, 193);
