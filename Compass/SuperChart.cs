@@ -50,17 +50,38 @@ namespace Compass
                     //饼形图
                     //series1.Points[i].Label = "#AXISLABEL(#VAL)";//设置标签显示的内容=X轴内容+value
                     //series1.Points[i].Label = "#AXISLABEL(#PERCENT)";//设置标签显示的内容=X轴内容+百分比
-                    series1.Points[i].Label = "#AXISLABEL (#VAL) (#PERCENT)";//设置标签显示的内容=X轴内容+value+百分比
-                    series1["PieLabelStyle"] = "Outside";//在外侧显示label，参考官方文档设置
+                    //series1.Points[i].Label = "#AXISLABEL (#VAL) (#PERCENT)";//设置标签显示的内容=X轴内容+value+百分比
+                    //series1.Points[i].Label = "#AXISLABEL";//设置标签显示的内容=X轴内容+value+百分比
+                    series1.Points[i].Label = "#VAL (#PERCENT)";//设置标签显示的内容=X轴内容+value+百分比
+                    //series1["PieLabelStyle"] = "Outside";//在外侧显示label，参考官方文档设置
                     //series1["PieLabelStyle"] = "Inside";//在内侧显示label，默认
-                    series1["PieLinerColor"] = "Black";//绘制连线，label在外面时，连接到饼形图上
-                    
+                    //series1["PieLinerColor"] = "Black";//绘制连线，label在外面时，连接到饼形图上
+                    series1.LegendText = "#AXISLABEL";
+                    //Keyword Replaced By Supports Multiple Y Values Supports Formatting String
+                    //#VALX 	X value of the data point. 	No 	Yes
+                    //#VALY 	Y value of the data point 	Yes 	Yes
+                    //#SERIESNAME 	Series name 	No 	No
+                    //#LABEL 	Data point label 	No 	No
+                    //#AXISLABEL 	Data point axis label 	No 	No
+                    //#INDEX 	Data point index in the series 	No 	Yes
+                    //#PERCENT 	Percent of the data point Y value 	Yes 	Yes
+                    //#LEGENDTEXT 	Series or data point legend text 	No 	No
+                    //#CUSTOMPROPERTY(XXX) 	Series or data point XXX custom property value, where XXX is the name of the custom property. 	No 	No
+                    //#TOTAL 	Total of all Y values in the series 	Yes 	Yes
+                    //#AVG 	Average of all Y values in the series 	Yes 	Yes
+                    //#MIN 	Minimum of all Y values in the series 	Yes 	Yes
+                    //#MAX 	Maximum of all Y values in the series 	Yes 	Yes
+                    //#FIRST 	Y value of the first point in the series 	Yes 	Yes
+                    //#LAST 	Y value of the last point in the series 	Yes 	Yes
+
                 }
                 else if (chartType == SeriesChartType.Doughnut)
                 {
                     //圆环图
-                    series1.Points[i].Label = "#AXISLABEL (#PERCENT)";
-                    series1["PieLabelStyle"] = "Inside";
+                    //series1.Points[i].Label = "#AXISLABEL (#PERCENT)";
+                    series1.Points[i].Label = "#VAL (#PERCENT)";
+                    //series1["PieLabelStyle"] = "Inside";
+                    series1.LegendText = "#AXISLABEL";
                 }
                 else if (chartType == SeriesChartType.Column)
                 {
@@ -73,7 +94,7 @@ namespace Compass
                     series1.Points[i].Label = "#AXISLABEL (#PERCENT)";
                 }
                 //3.5 X轴设置
-                if (chartType != SeriesChartType.Pie)
+                if (chartType != SeriesChartType.Pie || chartType != SeriesChartType.Doughnut)
                 {
                     series1.Points[i].AxisLabel = string.Format("{0}", text);
                 }

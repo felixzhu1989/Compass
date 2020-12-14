@@ -259,7 +259,7 @@ and HoodType='Ceiling' and Model='UCJ'
 group by month(DrawingPlan.DrReleasetarget)
 order by Mon asc
 
-
+--统计年度天花机型工作量
 select month(DrawingPlan.DrReleasetarget) as Mon,
 sum(ModuleNo) as TotalModuleNo from DrawingPlan 
 inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId 
@@ -267,3 +267,33 @@ where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<
 and HoodType='Hood' and Model='UCW' 
 group by month(DrawingPlan.DrReleasetarget) 
 order by Mon asc
+
+
+
+--统计年度人员工作量
+select UserAccount,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+inner join Users on Users.UserId=Projects.UserId
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
+group by UserAccount
+order by TotalWorkload desc
+
+--按月份统计所有工作量
+select month(DrawingPlan.DrReleasetarget) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
+group by month(DrawingPlan.DrReleasetarget)
+order by Mon asc
+
+--按月份统人员工作量
+select month(DrawingPlan.DrReleasetarget) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+inner join Users on Users.UserId=Projects.UserId
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
+and UserAccount='eric'
+group by month(DrawingPlan.DrReleasetarget)
+order by Mon asc
+
+
+
+

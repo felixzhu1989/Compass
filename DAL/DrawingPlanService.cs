@@ -17,14 +17,165 @@ namespace DAL
     {
         #region 查询年度各制图人员工作量
 
+        /// <summary>
+        /// 按月份统计人员工作量
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="userAcc"></param>
+        /// <returns></returns>
+        public List<ChartData> GetUserWorkloadByMonth(string year, string userAcc)
+        {
+            List<ChartData> list = new List<ChartData>();
+            string sql = "select month(DrawingPlan.DrReleasetarget) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
+            sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
+            sql += " inner join Users on Users.UserId=Projects.UserId";
+            if (year == "ALL")
+            {
+                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+            }
+            sql += string.Format(" and UserAccount='{0}'", userAcc);
+            sql += " group by month(DrawingPlan.DrReleasetarget) order by Mon asc";
 
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                list.Add(new ChartData()
+                {
+                    Text = objReader["Mon"].ToString(),
+                    Value = Convert.ToDouble(objReader["TotalWorkload"].ToString())
+                });
+            }
+            objReader.Close();
+            return list;
+        }
+        /// <summary>
+        /// 按人员统计所有烟罩工作量
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public List<ChartData> GetAllWorkloadByUser(string year)
+        {
+            List<ChartData> list = new List<ChartData>();
+            string sql = "select UserAccount,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
+            sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
+            sql += " inner join Users on Users.UserId=Projects.UserId";
+            if (year == "ALL")
+            {
+                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+            }
+            sql += " group by UserAccount order by TotalWorkload desc";
+
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                list.Add(new ChartData()
+                {
+                    Text = objReader["UserAccount"].ToString(),
+                    Value = Convert.ToDouble(objReader["TotalWorkload"].ToString())
+                });
+            }
+            objReader.Close();
+            return list;
+        }
 
         #endregion
 
         #region 查询年度全部烟罩工作量
 
+        /// <summary>
+        /// 按月份统计所有烟罩工作量
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public List<ChartData> GetAllWorkloadByMonth(string year)
+        {
+            List<ChartData> list = new List<ChartData>();
+            string sql = "select month(DrawingPlan.DrReleasetarget) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
+            sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
+            if (year == "ALL")
+            {
+                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+            }
+            sql += " group by month(DrawingPlan.DrReleasetarget) order by Mon asc";
 
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                list.Add(new ChartData()
+                {
+                    Text = objReader["Mon"].ToString(),
+                    Value = Convert.ToDouble(objReader["TotalWorkload"].ToString())
+                });
+            }
+            objReader.Close();
+            return list;
+        }
 
+        /// <summary>
+        /// 查询全年所有烟罩工作量总和
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public double GetTotalWorkloadByYear(string year)
+        {
+            double Value = 0;
+            string sql = "select sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
+            sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
+            if (year == "ALL")
+            {
+                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+            }
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                Value = Convert.ToDouble(objReader["TotalWorkload"].ToString());
+            }
+            objReader.Close();
+            return Value;
+        }
+        /// <summary>
+        /// 查询全年标准烟罩工作量总和
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public double GetTotalHoodWorkloadByYear(string year)
+        {
+            double Value = 0;
+            string sql = "select sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
+            sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
+            if (year == "ALL")
+            {
+                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+            }
+            sql += " and HoodType='Hood'";
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                Value = Convert.ToDouble(objReader["TotalWorkload"].ToString());
+            }
+            objReader.Close();
+            return Value;
+        }
         #endregion
 
 
@@ -32,7 +183,7 @@ namespace DAL
         #region 查询年度天花烟罩工作量
 
         /// <summary>
-        /// 按月份统计单个机型烟罩数量
+        /// 按月份统计单个机型天花烟罩工作量
         /// </summary>
         /// <param name="year"></param>
         /// <param name="modelType"></param>

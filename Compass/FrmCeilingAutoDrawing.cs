@@ -81,7 +81,7 @@ namespace Compass
                 tsmiEditCeilingPackingList.Visible = true;
                 tsmiDeleteCeilingPackingList.Visible = true;
                 btnEditCeilingAccessory.Visible = true;
-                btnCeilingPackingList.Enabled = true;//只有技术部能够导出发货清单
+                btnCeilingPackingList.Enabled = true;//只有技术部能够生成发货清单
                 this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
                 this.tvSubAssyTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tvSubAssyTree_KeyDown);
                 this.dgvCeilingPackingList.DoubleClick += new System.EventHandler(this.dgvCeilingPackingList_DoubleClick);

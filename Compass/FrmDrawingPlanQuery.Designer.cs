@@ -37,6 +37,12 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartPlan = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dgvDrawingPlan = new System.Windows.Forms.DataGridView();
             this.cobQueryYear = new System.Windows.Forms.ComboBox();
@@ -49,18 +55,22 @@
             this.lblModel = new System.Windows.Forms.Label();
             this.btnCeilingWorkload = new System.Windows.Forms.Button();
             this.btnAllWorkload = new System.Windows.Forms.Button();
+            this.chartPercent = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartUserPercent = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotalWorkload = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModuleNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DrReleaseTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DrReleaseActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModuleNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotalWorkload = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.chartPlan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingPlan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartMonth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPercent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartUserPercent)).BeginInit();
             this.SuspendLayout();
             // 
             // chartPlan
@@ -80,13 +90,13 @@
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend1.Name = "Legend1";
             this.chartPlan.Legends.Add(legend1);
-            this.chartPlan.Location = new System.Drawing.Point(683, 63);
+            this.chartPlan.Location = new System.Drawing.Point(565, 59);
             this.chartPlan.Name = "chartPlan";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartPlan.Series.Add(series1);
-            this.chartPlan.Size = new System.Drawing.Size(497, 296);
+            this.chartPlan.Size = new System.Drawing.Size(635, 328);
             this.chartPlan.TabIndex = 8;
             this.chartPlan.Text = "chart1";
             // 
@@ -113,19 +123,19 @@
             this.dgvDrawingPlan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UserAccount,
             this.ODPNo,
+            this.Model,
+            this.SubTotalWorkload,
+            this.ModuleNo,
             this.DrReleaseTarget,
             this.DrReleaseActual,
-            this.Model,
-            this.ModuleNo,
-            this.SubTotalWorkload,
             this.HoodType,
             this.ProjectName});
             this.dgvDrawingPlan.EnableHeadersVisualStyles = false;
-            this.dgvDrawingPlan.Location = new System.Drawing.Point(23, 63);
+            this.dgvDrawingPlan.Location = new System.Drawing.Point(1, 59);
             this.dgvDrawingPlan.Name = "dgvDrawingPlan";
             this.dgvDrawingPlan.ReadOnly = true;
             this.dgvDrawingPlan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDrawingPlan.Size = new System.Drawing.Size(654, 592);
+            this.dgvDrawingPlan.Size = new System.Drawing.Size(576, 194);
             this.dgvDrawingPlan.TabIndex = 10;
             // 
             // cobQueryYear
@@ -189,13 +199,13 @@
             legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend2.Name = "Legend1";
             this.chartMonth.Legends.Add(legend2);
-            this.chartMonth.Location = new System.Drawing.Point(680, 356);
+            this.chartMonth.Location = new System.Drawing.Point(567, 374);
             this.chartMonth.Name = "chartMonth";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chartMonth.Series.Add(series2);
-            this.chartMonth.Size = new System.Drawing.Size(497, 296);
+            this.chartMonth.Size = new System.Drawing.Size(633, 296);
             this.chartMonth.TabIndex = 8;
             this.chartMonth.Text = "chart1";
             // 
@@ -203,9 +213,9 @@
             // 
             this.cobModel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cobModel.FormattingEnabled = true;
-            this.cobModel.Location = new System.Drawing.Point(738, 366);
+            this.cobModel.Location = new System.Drawing.Point(630, 391);
             this.cobModel.Name = "cobModel";
-            this.cobModel.Size = new System.Drawing.Size(143, 27);
+            this.cobModel.Size = new System.Drawing.Size(163, 27);
             this.cobModel.TabIndex = 36;
             this.cobModel.Visible = false;
             // 
@@ -213,7 +223,7 @@
             // 
             this.lblModel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblModel.AutoSize = true;
-            this.lblModel.Location = new System.Drawing.Point(686, 370);
+            this.lblModel.Location = new System.Drawing.Point(578, 395);
             this.lblModel.Name = "lblModel";
             this.lblModel.Size = new System.Drawing.Size(48, 19);
             this.lblModel.TabIndex = 38;
@@ -248,6 +258,42 @@
             this.btnAllWorkload.UseVisualStyleBackColor = false;
             this.btnAllWorkload.Click += new System.EventHandler(this.btnAllWorkload_Click);
             // 
+            // chartPercent
+            // 
+            this.chartPercent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            chartArea3.Name = "ChartArea1";
+            this.chartPercent.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartPercent.Legends.Add(legend3);
+            this.chartPercent.Location = new System.Drawing.Point(1, 244);
+            this.chartPercent.Name = "chartPercent";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartPercent.Series.Add(series3);
+            this.chartPercent.Size = new System.Drawing.Size(576, 191);
+            this.chartPercent.TabIndex = 39;
+            this.chartPercent.Text = "chart1";
+            // 
+            // chartUserPercent
+            // 
+            this.chartUserPercent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            chartArea4.Name = "ChartArea1";
+            this.chartUserPercent.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartUserPercent.Legends.Add(legend4);
+            this.chartUserPercent.Location = new System.Drawing.Point(1, 425);
+            this.chartUserPercent.Name = "chartUserPercent";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartUserPercent.Series.Add(series4);
+            this.chartUserPercent.Size = new System.Drawing.Size(576, 245);
+            this.chartUserPercent.TabIndex = 39;
+            this.chartUserPercent.Text = "chart1";
+            // 
             // UserAccount
             // 
             this.UserAccount.DataPropertyName = "UserAccount";
@@ -263,6 +309,32 @@
             this.ODPNo.Name = "ODPNo";
             this.ODPNo.ReadOnly = true;
             this.ODPNo.Width = 63;
+            // 
+            // Model
+            // 
+            this.Model.DataPropertyName = "Model";
+            this.Model.HeaderText = "烟罩型号";
+            this.Model.Name = "Model";
+            this.Model.ReadOnly = true;
+            this.Model.Width = 86;
+            // 
+            // SubTotalWorkload
+            // 
+            this.SubTotalWorkload.DataPropertyName = "SubTotalWorkload";
+            this.SubTotalWorkload.HeaderText = "工作量";
+            this.SubTotalWorkload.Name = "SubTotalWorkload";
+            this.SubTotalWorkload.ReadOnly = true;
+            this.SubTotalWorkload.ToolTipText = "分段数量x机型单位工作量";
+            this.SubTotalWorkload.Width = 73;
+            // 
+            // ModuleNo
+            // 
+            this.ModuleNo.DataPropertyName = "ModuleNo";
+            this.ModuleNo.HeaderText = "分段数";
+            this.ModuleNo.Name = "ModuleNo";
+            this.ModuleNo.ReadOnly = true;
+            this.ModuleNo.ToolTipText = "一组烟罩分段数量";
+            this.ModuleNo.Width = 73;
             // 
             // DrReleaseTarget
             // 
@@ -280,32 +352,6 @@
             this.DrReleaseActual.Name = "DrReleaseActual";
             this.DrReleaseActual.ReadOnly = true;
             this.DrReleaseActual.Width = 86;
-            // 
-            // Model
-            // 
-            this.Model.DataPropertyName = "Model";
-            this.Model.HeaderText = "烟罩型号";
-            this.Model.Name = "Model";
-            this.Model.ReadOnly = true;
-            this.Model.Width = 86;
-            // 
-            // ModuleNo
-            // 
-            this.ModuleNo.DataPropertyName = "ModuleNo";
-            this.ModuleNo.HeaderText = "分段数";
-            this.ModuleNo.Name = "ModuleNo";
-            this.ModuleNo.ReadOnly = true;
-            this.ModuleNo.ToolTipText = "一组烟罩分段数量";
-            this.ModuleNo.Width = 73;
-            // 
-            // SubTotalWorkload
-            // 
-            this.SubTotalWorkload.DataPropertyName = "SubTotalWorkload";
-            this.SubTotalWorkload.HeaderText = "工作量";
-            this.SubTotalWorkload.Name = "SubTotalWorkload";
-            this.SubTotalWorkload.ReadOnly = true;
-            this.SubTotalWorkload.ToolTipText = "分段数量x机型单位工作量";
-            this.SubTotalWorkload.Width = 73;
             // 
             // HoodType
             // 
@@ -327,6 +373,9 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.dgvDrawingPlan);
+            this.Controls.Add(this.chartUserPercent);
+            this.Controls.Add(this.chartPercent);
             this.Controls.Add(this.cobModel);
             this.Controls.Add(this.cobQueryYear);
             this.Controls.Add(this.lblModel);
@@ -335,7 +384,6 @@
             this.Controls.Add(this.btnCeilingWorkload);
             this.Controls.Add(this.btnHoodModuleNo);
             this.Controls.Add(this.btnQueryByYear);
-            this.Controls.Add(this.dgvDrawingPlan);
             this.Controls.Add(this.chartMonth);
             this.Controls.Add(this.chartPlan);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -344,6 +392,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.chartPlan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingPlan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartMonth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPercent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartUserPercent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,13 +412,15 @@
         private System.Windows.Forms.Label lblModel;
         private System.Windows.Forms.Button btnCeilingWorkload;
         private System.Windows.Forms.Button btnAllWorkload;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartPercent;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartUserPercent;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ODPNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Model;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalWorkload;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ModuleNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn DrReleaseTarget;
         private System.Windows.Forms.DataGridViewTextBoxColumn DrReleaseActual;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Model;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ModuleNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubTotalWorkload;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoodType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectName;
     }
