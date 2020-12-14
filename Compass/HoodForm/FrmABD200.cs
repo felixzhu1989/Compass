@@ -21,6 +21,9 @@ namespace Compass
         public FrmABD200()
         {
             InitializeComponent();
+            //管理员和技术部才能更新数据
+            if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
+            else btnEditData.Visible = false;
         }
         public FrmABD200(Drawing drawing, ModuleTree tree) : this()
         {
