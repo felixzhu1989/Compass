@@ -129,7 +129,7 @@
     <Compile Include="HoodAutoDrawing\KCHF555AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\KVIR555AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\KCHI555AutoDrawing.cs" />
-    <Compile Include="MCPDXFAutoDrawing.cs" />
+    <Compile Include="HoodAutoDrawing\MCPDXFAutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\MU1BOXDXFAutoDrawing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HoodAutoDrawing\KVF555AutoDrawing.cs" />

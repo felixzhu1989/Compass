@@ -115,7 +115,7 @@ namespace Compass
             this.superChartUserPercent.ShowChart(SeriesChartType.Pie, chartUserPercentChartDatas);
             chartUserPercent.Series[0]["PieLabelStyle"] = "Outside";//在外侧显示label，参考官方文档设置
             //chartUserPercent.Series[0].IsValueShownAsLabel = true;
-            chartUserPercent.Series[0]["PieLinerColor"] = "Black";//绘制连线，label在外面时，连接到饼形图上
+            chartUserPercent.Series[0]["PieLineColor"] = "Black";//绘制连线，label在外面时，连接到饼形图上
         }
         /// <summary>
         /// 年度普通烟罩数量统计

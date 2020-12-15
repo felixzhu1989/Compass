@@ -17,6 +17,37 @@ namespace DAL
     {
         #region 查询年度各制图人员工作量
 
+        public List<ChartData> GetUserDelayByMonth(string year, string userAcc)
+        {
+            List<ChartData> list = new List<ChartData>();
+            string sql = "select month(Drtarget) as Mon,sum(DATEDIFF(DAY, Drtarget, DrActual))  as TotalDelay from view_DelayQuery";
+            sql += " inner join Projects on view_DelayQuery.ProjectId=Projects.ProjectId";
+            sql += " inner join Users on Users.UserId=Projects.UserId";
+            if (year == "ALL")
+            {
+                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+            }
+            sql += string.Format(" and UserAccount='{0}'", userAcc);
+            sql += " and DATEDIFF(DAY,Drtarget,DrActual)>0 group by month(Drtarget) order by Mon asc";
+
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                list.Add(new ChartData()
+                {
+                    Text = objReader["Mon"].ToString(),
+                    Value = Convert.ToDouble(objReader["TotalDelay"].ToString())
+                });
+            }
+            objReader.Close();
+            return list;
+        }
+
+
         /// <summary>
         /// 按月份统计人员工作量
         /// </summary>

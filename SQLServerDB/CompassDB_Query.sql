@@ -294,6 +294,110 @@ and UserAccount='eric'
 group by month(DrawingPlan.DrReleasetarget)
 order by Mon asc
 
+select * from ProjectTracking
+--IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<0,0,DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)) as RemainingDays
+--按月份统人员delay/工作量
+--/sum(SubTotalWorkload)
+use CompassDB
+go
+select * from view_DelayQuery
+
+select month(Drtarget) as Mon,
+sum(DATEDIFF(DAY,Drtarget,DrActual)) as TotalDelay from view_DelayQuery
+inner join Projects on view_DelayQuery.ProjectId=Projects.ProjectId
+inner join Users on Users.UserId=Projects.UserId
+where Drtarget>='2020/01/01' and Drtarget<='2020/12/31' 
+and UserAccount='eric'
+and DATEDIFF(DAY,Drtarget,DrActual)>0
+group by month(Drtarget)
+order by Mon asc
+
+
+--按全年查询
+select sum(DATEDIFF(DAY,Drtarget,DrActual)) as TotalDelay from view_DelayQuery
+inner join Projects on view_DelayQuery.ProjectId=Projects.ProjectId
+inner join Users on Users.UserId=Projects.UserId
+where Drtarget>='2020/01/01' and Drtarget<='2020/12/31' 
+and UserAccount='eric'
+and DATEDIFF(DAY,Drtarget,DrActual)>0
+
+
+
+
+
+--left join (select ProjectId,max(DrReleaseTarget)as DrReleaseTarget from DrawingPlan group by ProjectId) as PlanList on PlanList.ProjectId=Projects.ProjectId
+
+select ODPNo,max(DrawingPlan.DrReleasetarget) as Drtarget,sum(DATEDIFF(DAY,DrawingPlan.DrReleaseTarget,DrReleaseActual)) as DelayDays
+from DrawingPlan
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+inner join Users on Users.UserId=Projects.UserId
+left join (select ProjectId,max(DrReleaseActual)as DrReleaseActual from ProjectTracking group by ProjectId) as PlanList on DrawingPlan.ProjectId=PlanList.ProjectId
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
+and UserAccount='eric'
+and DATEDIFF(DAY,DrawingPlan.DrReleaseTarget,DrReleaseActual)>0
+group by ODPNo
+order by Drtarget desc
+
+select ODPNo,max(DrReleasetarget) as Drtarget,max(DrReleaseActual) as DrActual from DrawingPlan
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+inner join Users on Users.UserId=Projects.UserId
+left join ProjectTracking on DrawingPlan.ProjectId=ProjectTracking.ProjectId
+where DrawingPlan.DrReleasetarget>='2020/01/01' and DrawingPlan.DrReleasetarget<='2020/12/31' 
+ and UserAccount='eric'
+ and DATEDIFF(DAY,DrReleaseTarget,DrReleaseActual)>0
+group by ODPNo
+
+
+
+
+
+
+--将查询delay定义为视图
+use CompassDB
+go
+if exists(select * from sysobjects where name='view_DelayQuery')
+drop procedure view_DelayQuery
+go
+
+create view view_DelayQuery
+as
+	select DrawingPlan.ProjectId,max(DrReleasetarget) as Drtarget,max(DrReleaseActual) as DrActual from DrawingPlan
+	inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+	left join ProjectTracking on DrawingPlan.ProjectId=ProjectTracking.ProjectId
+	group by DrawingPlan.ProjectId
+go
+
+--查询视图
+select * from view_DelayQuery
+
+--将查询delay定义为存储过程
+use CompassDB
+go
+if exists(select * from sysobjects where name='usp_DelayQuery')
+drop procedure usp_DelayQuery
+go
+
+create procedure usp_DelayQuery
+ 
+@userAcc varchar(10), 
+@StartDate datetime, 
+@EndDate datetime
+
+as
+	select ODPNo,max(DrReleasetarget) as Drtarget,max(DrReleaseActual) as DrActual from DrawingPlan
+	inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId
+	inner join Users on Users.UserId=Projects.UserId
+	left join ProjectTracking on DrawingPlan.ProjectId=ProjectTracking.ProjectId
+	where DrawingPlan.DrReleasetarget>=@StartDate and DrawingPlan.DrReleasetarget<=@EndDate 
+	 and UserAccount=@userAcc
+	 and DATEDIFF(DAY,DrReleaseTarget,DrReleaseActual)>0
+	group by ODPNo
+go
+
+--调用存储过程
+exec usp_DelayQuery 'eric','2020/01/01','2020/12/31'
+
+
 
 
 

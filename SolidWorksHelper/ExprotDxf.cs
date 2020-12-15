@@ -15,8 +15,8 @@ namespace SolidWorksHelper
 {
     public class ExprotDxf
     {
-        HoodCutListService objHoodCutListService=new HoodCutListService();
-        CeilingCutListService objCeilingCutListService=new CeilingCutListService();
+        HoodCutListService objHoodCutListService = new HoodCutListService();
+        CeilingCutListService objCeilingCutListService = new CeilingCutListService();
         int warnings = 0;
         int errors = 0;
         Dictionary<string, int> sheetMetaDic = new Dictionary<string, int>();
@@ -30,9 +30,9 @@ namespace SolidWorksHelper
         public void CeilingAssyToDxf(SldWorks swApp, SubAssy subAssy, string dxfPath, int userId)
         {
             swApp.CommandInProgress = true;
-            List<CeilingCutList> celingCutLists=new List<CeilingCutList>();
+            List<CeilingCutList> celingCutLists = new List<CeilingCutList>();
             string assyPath = subAssy.SubAssyPath;
-            if(assyPath.Length==0)return;
+            if (assyPath.Length == 0) return;
             try
             {
                 //打开模型
@@ -167,7 +167,7 @@ namespace SolidWorksHelper
         /// <param name="swApp"></param>
         /// <param name="tree"></param>
         /// <param name="dxfPath"></param>
-        public void HoodAssyToDxf(SldWorks swApp, ModuleTree tree, string dxfPath,int userId)
+        public void HoodAssyToDxf(SldWorks swApp, ModuleTree tree, string dxfPath, int userId)
         {
             swApp.CommandInProgress = true;
             List<HoodCutList> hoodCutLists = new List<HoodCutList>();
@@ -314,7 +314,13 @@ namespace SolidWorksHelper
             PartDoc swPart = (PartDoc)swModel;
             if (swPart == null) return;
             string swModelName = swModel.GetPathName();
-            string swDxfName = modulePath +@"\"+ swModel.GetTitle().Substring(0, swModel.GetTitle().Length - 6) + "dxf";
+            string swModelTitle = swModel.GetTitle();
+            //带后缀的情况
+            string swDxfName = modulePath + @"\" + swModelTitle.Substring(0, swModelTitle.Length - 6) + "dxf";
+            //判断不带后缀的情况
+            if (swModelTitle.Substring(swModelTitle.Length - 7).ToUpper() != ".SLDPRT")
+                swDxfName = modulePath + @"\" + swModelTitle + ".dxf";
+
             double[] dataAlignment = new double[12];
             dataAlignment[0] = 0.0;
             dataAlignment[1] = 0.0;
