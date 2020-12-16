@@ -399,5 +399,18 @@ exec usp_DelayQuery 'eric','2020/01/01','2020/12/31'
 
 
 
+select month(Drtarget) as Mon,sum(DATEDIFF(DAY, Drtarget, DrActual))  as TotalDelay 
+from view_DelayQuery 
+inner join Projects on view_DelayQuery.ProjectId=Projects.ProjectId 
+inner join Users on Users.UserId=Projects.UserId 
+where Drtarget>='2020/01/01' and Drtarget<='2020/12/31' 
+and UserAccount='eric' and DATEDIFF(DAY,Drtarget,DrActual)>0 
+group by month(Drtarget) order by Mon asc
 
 
+select sum(DATEDIFF(DAY, Drtarget, DrActual)) as TotalDelay from view_DelayQuery
+where DATEDIFF(DAY,Drtarget,DrActual)>0
+
+
+select sum(DATEDIFF(DAY, Drtarget, DrActual)) as TotalDelay from view_DelayQuery 
+where Drtarget>='2021/01/01' and Drtarget<='2021/12/31' and DATEDIFF(DAY,Drtarget,DrActual)>0

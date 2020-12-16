@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Ceiling\BCJ330.cs" />
     <Compile Include="Ceiling\CJ330.cs" />
+    <Compile Include="Ceiling\LFUMC150SUSDXF.cs" />
     <Compile Include="ChartData.cs" />
     <Compile Include="Hood\HOODBCJ.cs" />
     <Compile Include="Hood\CMODF555400.cs" />
@@ -131,6 +132,8 @@
     <Compile Include="Hood\KVIMR555.cs" />
     <Compile Include="Hood\KCHF555.cs" />
     <Compile Include="Hood\KCHI555.cs" />
+    <Compile Include="Ceiling\LFUMC200SUSDXF.cs" />
+    <Compile Include="Ceiling\LFUMC250SUSDXF.cs" />
     <Compile Include="ModuleTree.cs" />
     <Compile Include="Ceiling\NOCJ300.cs" />
     <Compile Include="Ceiling\NOCJ340.cs" />

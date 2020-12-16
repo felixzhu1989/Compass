@@ -478,14 +478,14 @@ namespace Compass
                 //Mesh油网，KSA侧板折弯后长度填入折弯栏
                 if (dgv.Rows[i].Cells["PartNo"].Value.ToString().Length > 8)
                 {
-                    partNo = dgv.Rows[i].Cells["PartNo"].Value.ToString().Substring(0, 8);
-                    if (partNo == "fnhe0003" || partNo == "fnhe0004" || partNo == "fnhe0026" || partNo == "fnhe0027")
+                    partNo = dgv.Rows[i].Cells["PartNo"].Value.ToString().Substring(0, 8).ToUpper();
+                    if (partNo == "FNHE0003" || partNo == "FNHE0004" || partNo == "FNHE0026" || partNo == "FNHE0027")
                         workSheet.Cells[i + 11, 9] = Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) == 310.67m ?
                             Convert.ToDecimal(dgv.Rows[i].Cells["Width"].Value) - 50.13m : Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) - 50.13m;
-                    else if (partNo == "fnhe0005" || partNo == "fnhe0028")
+                    else if (partNo == "FNHE0005" || partNo == "FNHE0028")
                         workSheet.Cells[i + 11, 9] = Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) == 300m ?
                             Convert.ToDecimal(dgv.Rows[i].Cells["Width"].Value) - 29.08m : Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) - 29.08m;
-                    else if (partNo == "fnhe0012" || partNo == "fnhe0013" || partNo == "fnhe0029" || partNo == "fnhe0030" || partNo == "fnhe0038" || partNo == "fnhe0039")
+                    else if (partNo == "FNHE0012" || partNo == "FNHE0013" || partNo == "FNHE0029" || partNo == "FNHE0030" || partNo == "FNHE0038" || partNo == "FNHE0039")
                         workSheet.Cells[i + 11, 9] = Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) == 308m ?
                             Convert.ToDecimal(dgv.Rows[i].Cells["Width"].Value) - 46.08m : Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) - 46.08m;
                 }

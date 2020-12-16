@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblDesc = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -46,27 +46,6 @@
             this.txtWidth = new System.Windows.Forms.TextBox();
             this.txtPartDescription = new System.Windows.Forms.TextBox();
             this.dgvDXFCutList = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSaveToDB = new System.Windows.Forms.Button();
-            this.btnImportFromExcel = new System.Windows.Forms.Button();
-            this.txtThickness = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtQuantity = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dgvDXFCutListFromExcel = new System.Windows.Forms.DataGridView();
-            this.txtMaterials = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.CategoryId2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartDescription2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Length2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Width2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Thickness2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Materials2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartNo2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiEditDXFCutList = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDeleteDXFCutList = new System.Windows.Forms.ToolStripMenuItem();
             this.CutListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CategoryId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,9 +55,30 @@
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Materials = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiEditDXFCutList = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDeleteDXFCutList = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSaveToDB = new System.Windows.Forms.Button();
+            this.btnImportFromExcel = new System.Windows.Forms.Button();
+            this.txtThickness = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dgvDXFCutListFromExcel = new System.Windows.Forms.DataGridView();
+            this.CategoryId2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartDescription2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Length2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Width2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Thickness2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Materials2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartNo2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtMaterials = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDXFCutList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDXFCutListFromExcel)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDXFCutListFromExcel)).BeginInit();
             this.SuspendLayout();
             // 
             // lblDesc
@@ -160,6 +160,7 @@
             this.cobCategoryId.Name = "cobCategoryId";
             this.cobCategoryId.Size = new System.Drawing.Size(68, 27);
             this.cobCategoryId.TabIndex = 23;
+            this.cobCategoryId.SelectedIndexChanged += new System.EventHandler(this.cobCategoryId_SelectedIndexChanged);
             // 
             // txtLength
             // 
@@ -193,22 +194,22 @@
             // 
             this.dgvDXFCutList.AllowUserToAddRows = false;
             this.dgvDXFCutList.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
-            this.dgvDXFCutList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Azure;
+            this.dgvDXFCutList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvDXFCutList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDXFCutList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDXFCutList.BackgroundColor = System.Drawing.Color.White;
             this.dgvDXFCutList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDXFCutList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDXFCutList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvDXFCutList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDXFCutList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CutListId,
@@ -231,6 +232,101 @@
             this.dgvDXFCutList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDXFCutList_CellDoubleClick);
             this.dgvDXFCutList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvDXFCutList_RowPostPaint);
             this.dgvDXFCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvDXFCutList_KeyDown);
+            // 
+            // CutListId
+            // 
+            this.CutListId.DataPropertyName = "CutListId";
+            this.CutListId.HeaderText = "Id";
+            this.CutListId.Name = "CutListId";
+            this.CutListId.ReadOnly = true;
+            this.CutListId.Width = 46;
+            // 
+            // CategoryId
+            // 
+            this.CategoryId.DataPropertyName = "CategoryId";
+            this.CategoryId.HeaderText = "分类编号";
+            this.CategoryId.Name = "CategoryId";
+            this.CategoryId.ReadOnly = true;
+            this.CategoryId.Width = 86;
+            // 
+            // PartDescription
+            // 
+            this.PartDescription.DataPropertyName = "PartDescription";
+            this.PartDescription.HeaderText = "部件描述";
+            this.PartDescription.Name = "PartDescription";
+            this.PartDescription.ReadOnly = true;
+            this.PartDescription.Width = 86;
+            // 
+            // Length
+            // 
+            this.Length.DataPropertyName = "Length";
+            this.Length.HeaderText = "长";
+            this.Length.Name = "Length";
+            this.Length.ReadOnly = true;
+            this.Length.Width = 47;
+            // 
+            // Width
+            // 
+            this.Width.DataPropertyName = "Width";
+            this.Width.HeaderText = "宽";
+            this.Width.Name = "Width";
+            this.Width.ReadOnly = true;
+            this.Width.Width = 47;
+            // 
+            // Thickness
+            // 
+            this.Thickness.DataPropertyName = "Thickness";
+            this.Thickness.HeaderText = "厚度";
+            this.Thickness.Name = "Thickness";
+            this.Thickness.ReadOnly = true;
+            this.Thickness.Width = 60;
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "数量";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            this.Quantity.Width = 60;
+            // 
+            // Materials
+            // 
+            this.Materials.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Materials.DataPropertyName = "Materials";
+            this.Materials.HeaderText = "材料";
+            this.Materials.Name = "Materials";
+            this.Materials.ReadOnly = true;
+            this.Materials.Width = 60;
+            // 
+            // PartNo
+            // 
+            this.PartNo.DataPropertyName = "PartNo";
+            this.PartNo.HeaderText = "零件号";
+            this.PartNo.Name = "PartNo";
+            this.PartNo.ReadOnly = true;
+            this.PartNo.Width = 73;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiEditDXFCutList,
+            this.tsmiDeleteDXFCutList});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 48);
+            // 
+            // tsmiEditDXFCutList
+            // 
+            this.tsmiEditDXFCutList.Name = "tsmiEditDXFCutList";
+            this.tsmiEditDXFCutList.Size = new System.Drawing.Size(112, 22);
+            this.tsmiEditDXFCutList.Text = "修改行";
+            this.tsmiEditDXFCutList.Click += new System.EventHandler(this.tsmiEditDXFCutList_Click);
+            // 
+            // tsmiDeleteDXFCutList
+            // 
+            this.tsmiDeleteDXFCutList.Name = "tsmiDeleteDXFCutList";
+            this.tsmiDeleteDXFCutList.Size = new System.Drawing.Size(112, 22);
+            this.tsmiDeleteDXFCutList.Text = "删除行";
+            this.tsmiDeleteDXFCutList.Click += new System.EventHandler(this.tsmiDeleteDXFCutList_Click);
             // 
             // label1
             // 
@@ -309,22 +405,21 @@
             // 
             this.dgvDXFCutListFromExcel.AllowUserToAddRows = false;
             this.dgvDXFCutListFromExcel.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Azure;
-            this.dgvDXFCutListFromExcel.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvDXFCutListFromExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
+            this.dgvDXFCutListFromExcel.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDXFCutListFromExcel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDXFCutListFromExcel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDXFCutListFromExcel.BackgroundColor = System.Drawing.Color.White;
             this.dgvDXFCutListFromExcel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDXFCutListFromExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDXFCutListFromExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDXFCutListFromExcel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDXFCutListFromExcel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CategoryId2,
@@ -343,22 +438,6 @@
             this.dgvDXFCutListFromExcel.Size = new System.Drawing.Size(926, 207);
             this.dgvDXFCutListFromExcel.TabIndex = 30;
             this.dgvDXFCutListFromExcel.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvDXFCutListFromExcel_RowPostPaint);
-            // 
-            // txtMaterials
-            // 
-            this.txtMaterials.Location = new System.Drawing.Point(623, 50);
-            this.txtMaterials.Name = "txtMaterials";
-            this.txtMaterials.Size = new System.Drawing.Size(92, 25);
-            this.txtMaterials.TabIndex = 28;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(584, 53);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 19);
-            this.label8.TabIndex = 32;
-            this.label8.Text = "材料";
             // 
             // CategoryId2
             // 
@@ -425,100 +504,21 @@
             this.PartNo2.ReadOnly = true;
             this.PartNo2.Width = 73;
             // 
-            // contextMenuStrip1
+            // txtMaterials
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiEditDXFCutList,
-            this.tsmiDeleteDXFCutList});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 48);
+            this.txtMaterials.Location = new System.Drawing.Point(623, 50);
+            this.txtMaterials.Name = "txtMaterials";
+            this.txtMaterials.Size = new System.Drawing.Size(92, 25);
+            this.txtMaterials.TabIndex = 28;
             // 
-            // tsmiEditDXFCutList
+            // label8
             // 
-            this.tsmiEditDXFCutList.Name = "tsmiEditDXFCutList";
-            this.tsmiEditDXFCutList.Size = new System.Drawing.Size(112, 22);
-            this.tsmiEditDXFCutList.Text = "修改行";
-            this.tsmiEditDXFCutList.Click += new System.EventHandler(this.tsmiEditDXFCutList_Click);
-            // 
-            // tsmiDeleteDXFCutList
-            // 
-            this.tsmiDeleteDXFCutList.Name = "tsmiDeleteDXFCutList";
-            this.tsmiDeleteDXFCutList.Size = new System.Drawing.Size(112, 22);
-            this.tsmiDeleteDXFCutList.Text = "删除行";
-            this.tsmiDeleteDXFCutList.Click += new System.EventHandler(this.tsmiDeleteDXFCutList_Click);
-            // 
-            // CutListId
-            // 
-            this.CutListId.DataPropertyName = "CutListId";
-            this.CutListId.HeaderText = "Id";
-            this.CutListId.Name = "CutListId";
-            this.CutListId.ReadOnly = true;
-            this.CutListId.Width = 46;
-            // 
-            // CategoryId
-            // 
-            this.CategoryId.DataPropertyName = "CategoryId";
-            this.CategoryId.HeaderText = "分类编号";
-            this.CategoryId.Name = "CategoryId";
-            this.CategoryId.ReadOnly = true;
-            this.CategoryId.Width = 86;
-            // 
-            // PartDescription
-            // 
-            this.PartDescription.DataPropertyName = "PartDescription";
-            this.PartDescription.HeaderText = "部件描述";
-            this.PartDescription.Name = "PartDescription";
-            this.PartDescription.ReadOnly = true;
-            this.PartDescription.Width = 86;
-            // 
-            // Length
-            // 
-            this.Length.DataPropertyName = "Length";
-            this.Length.HeaderText = "长";
-            this.Length.Name = "Length";
-            this.Length.ReadOnly = true;
-            this.Length.Width = 47;
-            // 
-            // Width
-            // 
-            this.Width.DataPropertyName = "Width";
-            this.Width.HeaderText = "宽";
-            this.Width.Name = "Width";
-            this.Width.ReadOnly = true;
-            this.Width.Width = 47;
-            // 
-            // Thickness
-            // 
-            this.Thickness.DataPropertyName = "Thickness";
-            this.Thickness.HeaderText = "厚度";
-            this.Thickness.Name = "Thickness";
-            this.Thickness.ReadOnly = true;
-            this.Thickness.Width = 60;
-            // 
-            // Quantity
-            // 
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "数量";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            this.Quantity.Width = 60;
-            // 
-            // Materials
-            // 
-            this.Materials.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Materials.DataPropertyName = "Materials";
-            this.Materials.HeaderText = "材料";
-            this.Materials.Name = "Materials";
-            this.Materials.ReadOnly = true;
-            this.Materials.Width = 60;
-            // 
-            // PartNo
-            // 
-            this.PartNo.DataPropertyName = "PartNo";
-            this.PartNo.HeaderText = "零件号";
-            this.PartNo.Name = "PartNo";
-            this.PartNo.ReadOnly = true;
-            this.PartNo.Width = 73;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(584, 53);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 19);
+            this.label8.TabIndex = 32;
+            this.label8.Text = "材料";
             // 
             // FrmDXFCutList
             // 
@@ -553,8 +553,8 @@
             this.Name = "FrmDXFCutList";
             this.Text = "FrmDXFCutList";
             ((System.ComponentModel.ISupportInitialize)(this.dgvDXFCutList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDXFCutListFromExcel)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDXFCutListFromExcel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

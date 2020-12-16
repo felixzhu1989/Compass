@@ -100,7 +100,7 @@ namespace Compass
                 }
             }
             //【4】设置图表绘图区域的X和Y坐标值（Y：表示具体需要显示的数值之间的间隔）
-            this.chart.ChartAreas[0].AxisY.Interval = 10;//也可以设置成20
+            this.chart.ChartAreas[0].AxisY.Interval = 50;//也可以设置成20
             this.chart.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
         }
     }

@@ -45,6 +45,15 @@
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartPlan = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dgvDrawingPlan = new System.Windows.Forms.DataGridView();
+            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubTotalWorkload = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModuleNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DrReleaseTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DrReleaseActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cobQueryYear = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnQueryByYear = new System.Windows.Forms.Button();
@@ -57,15 +66,8 @@
             this.btnAllWorkload = new System.Windows.Forms.Button();
             this.chartPercent = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chartUserPercent = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubTotalWorkload = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModuleNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DrReleaseTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DrReleaseActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chartPlan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingPlan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartMonth)).BeginInit();
@@ -81,8 +83,13 @@
             chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
             chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.LightGray;
             chartArea1.AxisX.MinorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea1.AxisX2.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea1.AxisX2.MinorGrid.LineColor = System.Drawing.Color.LightGray;
             chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;
             chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea1.AxisY2.MajorGrid.Enabled = false;
+            chartArea1.AxisY2.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea1.AxisY2.MinorGrid.LineColor = System.Drawing.Color.LightGray;
             chartArea1.BorderColor = System.Drawing.Color.DarkGray;
             chartArea1.Name = "ChartArea1";
             this.chartPlan.ChartAreas.Add(chartArea1);
@@ -90,13 +97,13 @@
             legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend1.Name = "Legend1";
             this.chartPlan.Legends.Add(legend1);
-            this.chartPlan.Location = new System.Drawing.Point(565, 59);
+            this.chartPlan.Location = new System.Drawing.Point(565, 26);
             this.chartPlan.Name = "chartPlan";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartPlan.Series.Add(series1);
-            this.chartPlan.Size = new System.Drawing.Size(635, 328);
+            this.chartPlan.Size = new System.Drawing.Size(635, 228);
             this.chartPlan.TabIndex = 8;
             this.chartPlan.Text = "chart1";
             // 
@@ -137,162 +144,6 @@
             this.dgvDrawingPlan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDrawingPlan.Size = new System.Drawing.Size(576, 194);
             this.dgvDrawingPlan.TabIndex = 10;
-            // 
-            // cobQueryYear
-            // 
-            this.cobQueryYear.FormattingEnabled = true;
-            this.cobQueryYear.Location = new System.Drawing.Point(221, 26);
-            this.cobQueryYear.Name = "cobQueryYear";
-            this.cobQueryYear.Size = new System.Drawing.Size(68, 27);
-            this.cobQueryYear.TabIndex = 36;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(183, 30);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 19);
-            this.label6.TabIndex = 38;
-            this.label6.Text = "年度：";
-            // 
-            // btnQueryByYear
-            // 
-            this.btnQueryByYear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnQueryByYear.FlatAppearance.BorderSize = 0;
-            this.btnQueryByYear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQueryByYear.ForeColor = System.Drawing.Color.White;
-            this.btnQueryByYear.Location = new System.Drawing.Point(292, 25);
-            this.btnQueryByYear.Name = "btnQueryByYear";
-            this.btnQueryByYear.Size = new System.Drawing.Size(46, 28);
-            this.btnQueryByYear.TabIndex = 37;
-            this.btnQueryByYear.Text = "查询";
-            this.btnQueryByYear.UseVisualStyleBackColor = false;
-            this.btnQueryByYear.Click += new System.EventHandler(this.btnQueryByYear_Click);
-            // 
-            // btnHoodModuleNo
-            // 
-            this.btnHoodModuleNo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnHoodModuleNo.FlatAppearance.BorderSize = 0;
-            this.btnHoodModuleNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHoodModuleNo.ForeColor = System.Drawing.Color.White;
-            this.btnHoodModuleNo.Location = new System.Drawing.Point(342, 25);
-            this.btnHoodModuleNo.Name = "btnHoodModuleNo";
-            this.btnHoodModuleNo.Size = new System.Drawing.Size(104, 28);
-            this.btnHoodModuleNo.TabIndex = 37;
-            this.btnHoodModuleNo.Text = "普通烟罩数量";
-            this.btnHoodModuleNo.UseVisualStyleBackColor = false;
-            this.btnHoodModuleNo.Click += new System.EventHandler(this.btnHoodModuleNo_Click);
-            // 
-            // chartMonth
-            // 
-            this.chartMonth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea2.AxisX.MinorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.LightGray;
-            chartArea2.BorderColor = System.Drawing.Color.DarkGray;
-            chartArea2.Name = "ChartArea1";
-            this.chartMonth.ChartAreas.Add(chartArea2);
-            legend2.Alignment = System.Drawing.StringAlignment.Far;
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend2.Name = "Legend1";
-            this.chartMonth.Legends.Add(legend2);
-            this.chartMonth.Location = new System.Drawing.Point(567, 374);
-            this.chartMonth.Name = "chartMonth";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartMonth.Series.Add(series2);
-            this.chartMonth.Size = new System.Drawing.Size(633, 296);
-            this.chartMonth.TabIndex = 8;
-            this.chartMonth.Text = "chart1";
-            // 
-            // cobModel
-            // 
-            this.cobModel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cobModel.FormattingEnabled = true;
-            this.cobModel.Location = new System.Drawing.Point(630, 391);
-            this.cobModel.Name = "cobModel";
-            this.cobModel.Size = new System.Drawing.Size(163, 27);
-            this.cobModel.TabIndex = 36;
-            this.cobModel.Visible = false;
-            // 
-            // lblModel
-            // 
-            this.lblModel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblModel.AutoSize = true;
-            this.lblModel.Location = new System.Drawing.Point(578, 395);
-            this.lblModel.Name = "lblModel";
-            this.lblModel.Size = new System.Drawing.Size(48, 19);
-            this.lblModel.TabIndex = 38;
-            this.lblModel.Text = "型号：";
-            this.lblModel.Visible = false;
-            // 
-            // btnCeilingWorkload
-            // 
-            this.btnCeilingWorkload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnCeilingWorkload.FlatAppearance.BorderSize = 0;
-            this.btnCeilingWorkload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCeilingWorkload.ForeColor = System.Drawing.Color.White;
-            this.btnCeilingWorkload.Location = new System.Drawing.Point(450, 25);
-            this.btnCeilingWorkload.Name = "btnCeilingWorkload";
-            this.btnCeilingWorkload.Size = new System.Drawing.Size(111, 28);
-            this.btnCeilingWorkload.TabIndex = 37;
-            this.btnCeilingWorkload.Text = "天花烟罩工作量";
-            this.btnCeilingWorkload.UseVisualStyleBackColor = false;
-            this.btnCeilingWorkload.Click += new System.EventHandler(this.btnCeilingWorkload_Click);
-            // 
-            // btnAllWorkload
-            // 
-            this.btnAllWorkload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnAllWorkload.FlatAppearance.BorderSize = 0;
-            this.btnAllWorkload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAllWorkload.ForeColor = System.Drawing.Color.White;
-            this.btnAllWorkload.Location = new System.Drawing.Point(565, 25);
-            this.btnAllWorkload.Name = "btnAllWorkload";
-            this.btnAllWorkload.Size = new System.Drawing.Size(111, 28);
-            this.btnAllWorkload.TabIndex = 37;
-            this.btnAllWorkload.Text = "所有烟罩工作量";
-            this.btnAllWorkload.UseVisualStyleBackColor = false;
-            this.btnAllWorkload.Click += new System.EventHandler(this.btnAllWorkload_Click);
-            // 
-            // chartPercent
-            // 
-            this.chartPercent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            chartArea3.Name = "ChartArea1";
-            this.chartPercent.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartPercent.Legends.Add(legend3);
-            this.chartPercent.Location = new System.Drawing.Point(1, 244);
-            this.chartPercent.Name = "chartPercent";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chartPercent.Series.Add(series3);
-            this.chartPercent.Size = new System.Drawing.Size(576, 191);
-            this.chartPercent.TabIndex = 39;
-            this.chartPercent.Text = "chart1";
-            // 
-            // chartUserPercent
-            // 
-            this.chartUserPercent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            chartArea4.Name = "ChartArea1";
-            this.chartUserPercent.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chartUserPercent.Legends.Add(legend4);
-            this.chartUserPercent.Location = new System.Drawing.Point(1, 425);
-            this.chartUserPercent.Name = "chartUserPercent";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chartUserPercent.Series.Add(series4);
-            this.chartUserPercent.Size = new System.Drawing.Size(576, 245);
-            this.chartUserPercent.TabIndex = 39;
-            this.chartUserPercent.Text = "chart1";
             // 
             // UserAccount
             // 
@@ -369,23 +220,204 @@
             this.ProjectName.ReadOnly = true;
             this.ProjectName.Width = 86;
             // 
+            // cobQueryYear
+            // 
+            this.cobQueryYear.FormattingEnabled = true;
+            this.cobQueryYear.Location = new System.Drawing.Point(221, 22);
+            this.cobQueryYear.Name = "cobQueryYear";
+            this.cobQueryYear.Size = new System.Drawing.Size(68, 27);
+            this.cobQueryYear.TabIndex = 36;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(183, 26);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 19);
+            this.label6.TabIndex = 38;
+            this.label6.Text = "年度：";
+            // 
+            // btnQueryByYear
+            // 
+            this.btnQueryByYear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnQueryByYear.FlatAppearance.BorderSize = 0;
+            this.btnQueryByYear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQueryByYear.ForeColor = System.Drawing.Color.White;
+            this.btnQueryByYear.Location = new System.Drawing.Point(292, 21);
+            this.btnQueryByYear.Name = "btnQueryByYear";
+            this.btnQueryByYear.Size = new System.Drawing.Size(46, 28);
+            this.btnQueryByYear.TabIndex = 37;
+            this.btnQueryByYear.Text = "查询";
+            this.btnQueryByYear.UseVisualStyleBackColor = false;
+            this.btnQueryByYear.Click += new System.EventHandler(this.btnQueryByYear_Click);
+            // 
+            // btnHoodModuleNo
+            // 
+            this.btnHoodModuleNo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnHoodModuleNo.FlatAppearance.BorderSize = 0;
+            this.btnHoodModuleNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHoodModuleNo.ForeColor = System.Drawing.Color.White;
+            this.btnHoodModuleNo.Location = new System.Drawing.Point(342, 21);
+            this.btnHoodModuleNo.Name = "btnHoodModuleNo";
+            this.btnHoodModuleNo.Size = new System.Drawing.Size(104, 28);
+            this.btnHoodModuleNo.TabIndex = 37;
+            this.btnHoodModuleNo.Text = "普通烟罩数量";
+            this.btnHoodModuleNo.UseVisualStyleBackColor = false;
+            this.btnHoodModuleNo.Click += new System.EventHandler(this.btnHoodModuleNo_Click);
+            // 
+            // chartMonth
+            // 
+            this.chartMonth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea2.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea2.AxisX.MinorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea2.AxisY.MinorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea2.AxisY2.MajorGrid.Enabled = false;
+            chartArea2.AxisY2.MajorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea2.AxisY2.MinorGrid.LineColor = System.Drawing.Color.LightGray;
+            chartArea2.BorderColor = System.Drawing.Color.DarkGray;
+            chartArea2.Name = "ChartArea1";
+            this.chartMonth.ChartAreas.Add(chartArea2);
+            legend2.Alignment = System.Drawing.StringAlignment.Far;
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend2.Name = "Legend1";
+            this.chartMonth.Legends.Add(legend2);
+            this.chartMonth.Location = new System.Drawing.Point(567, 244);
+            this.chartMonth.Name = "chartMonth";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chartMonth.Series.Add(series2);
+            this.chartMonth.Size = new System.Drawing.Size(633, 426);
+            this.chartMonth.TabIndex = 8;
+            this.chartMonth.Text = "chart1";
+            // 
+            // cobModel
+            // 
+            this.cobModel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cobModel.FormattingEnabled = true;
+            this.cobModel.Location = new System.Drawing.Point(630, 258);
+            this.cobModel.Name = "cobModel";
+            this.cobModel.Size = new System.Drawing.Size(163, 27);
+            this.cobModel.TabIndex = 36;
+            this.cobModel.Visible = false;
+            // 
+            // lblModel
+            // 
+            this.lblModel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblModel.AutoSize = true;
+            this.lblModel.Location = new System.Drawing.Point(578, 262);
+            this.lblModel.Name = "lblModel";
+            this.lblModel.Size = new System.Drawing.Size(48, 19);
+            this.lblModel.TabIndex = 38;
+            this.lblModel.Text = "型号：";
+            this.lblModel.Visible = false;
+            // 
+            // btnCeilingWorkload
+            // 
+            this.btnCeilingWorkload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnCeilingWorkload.FlatAppearance.BorderSize = 0;
+            this.btnCeilingWorkload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCeilingWorkload.ForeColor = System.Drawing.Color.White;
+            this.btnCeilingWorkload.Location = new System.Drawing.Point(450, 21);
+            this.btnCeilingWorkload.Name = "btnCeilingWorkload";
+            this.btnCeilingWorkload.Size = new System.Drawing.Size(111, 28);
+            this.btnCeilingWorkload.TabIndex = 37;
+            this.btnCeilingWorkload.Text = "天花烟罩工作量";
+            this.btnCeilingWorkload.UseVisualStyleBackColor = false;
+            this.btnCeilingWorkload.Click += new System.EventHandler(this.btnCeilingWorkload_Click);
+            // 
+            // btnAllWorkload
+            // 
+            this.btnAllWorkload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAllWorkload.FlatAppearance.BorderSize = 0;
+            this.btnAllWorkload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAllWorkload.ForeColor = System.Drawing.Color.White;
+            this.btnAllWorkload.Location = new System.Drawing.Point(565, 21);
+            this.btnAllWorkload.Name = "btnAllWorkload";
+            this.btnAllWorkload.Size = new System.Drawing.Size(111, 28);
+            this.btnAllWorkload.TabIndex = 37;
+            this.btnAllWorkload.Text = "所有烟罩工作量";
+            this.btnAllWorkload.UseVisualStyleBackColor = false;
+            this.btnAllWorkload.Click += new System.EventHandler(this.btnAllWorkload_Click);
+            // 
+            // chartPercent
+            // 
+            this.chartPercent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            chartArea3.Name = "ChartArea1";
+            this.chartPercent.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartPercent.Legends.Add(legend3);
+            this.chartPercent.Location = new System.Drawing.Point(1, 244);
+            this.chartPercent.Name = "chartPercent";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartPercent.Series.Add(series3);
+            this.chartPercent.Size = new System.Drawing.Size(576, 191);
+            this.chartPercent.TabIndex = 39;
+            this.chartPercent.Text = "chart1";
+            // 
+            // chartUserPercent
+            // 
+            this.chartUserPercent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            chartArea4.Name = "ChartArea1";
+            this.chartUserPercent.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartUserPercent.Legends.Add(legend4);
+            this.chartUserPercent.Location = new System.Drawing.Point(1, 425);
+            this.chartUserPercent.Name = "chartUserPercent";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chartUserPercent.Series.Add(series4);
+            this.chartUserPercent.Size = new System.Drawing.Size(576, 245);
+            this.chartUserPercent.TabIndex = 39;
+            this.chartUserPercent.Text = "chart1";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 416);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(165, 19);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "年度烟罩与天花工作量比例";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(23, 636);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(139, 19);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "年度各人员工作量比例";
+            // 
             // FrmDrawingPlanQuery
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnAllWorkload);
             this.Controls.Add(this.dgvDrawingPlan);
+            this.Controls.Add(this.chartPlan);
             this.Controls.Add(this.chartUserPercent);
             this.Controls.Add(this.chartPercent);
             this.Controls.Add(this.cobModel);
             this.Controls.Add(this.cobQueryYear);
             this.Controls.Add(this.lblModel);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.btnAllWorkload);
             this.Controls.Add(this.btnCeilingWorkload);
             this.Controls.Add(this.btnHoodModuleNo);
             this.Controls.Add(this.btnQueryByYear);
             this.Controls.Add(this.chartMonth);
-            this.Controls.Add(this.chartPlan);
+            this.Controls.Add(this.label6);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FrmDrawingPlanQuery";
             this.Text = "制图计划统计";
@@ -423,5 +455,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DrReleaseActual;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoodType;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

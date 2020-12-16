@@ -1882,6 +1882,43 @@ GO
 alter table LFUMC250DXF add constraint fk_ModuleTreeId_LFUMC250DXF foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
 GO
 
+--LFUMC150SUSDXF
+if exists (select * from sysobjects where name='pk_LFUMC150SUSDXFId')
+    alter table LFUMC150SUSDXF drop constraint pk_LFUMC150SUSDXFId
+GO
+alter table LFUMC150SUSDXF add constraint pk_LFUMC150SUSDXFId primary key (LFUMC150SUSDXFId)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_LFUMC150SUSDXF')
+    alter table LFUMC150SUSDXF drop constraint fk_ModuleTreeId_LFUMC150SUSDXF
+GO
+alter table LFUMC150SUSDXF add constraint fk_ModuleTreeId_LFUMC150SUSDXF foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+
+--LFUMC200SUSDXF
+if exists (select * from sysobjects where name='pk_LFUMC200SUSDXFId')
+    alter table LFUMC200SUSDXF drop constraint pk_LFUMC200SUSDXFId
+GO
+alter table LFUMC200SUSDXF add constraint pk_LFUMC200SUSDXFId primary key (LFUMC200SUSDXFId)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_LFUMC200SUSDXF')
+    alter table LFUMC200SUSDXF drop constraint fk_ModuleTreeId_LFUMC200SUSDXF
+GO
+alter table LFUMC200SUSDXF add constraint fk_ModuleTreeId_LFUMC200SUSDXF foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+
+--LFUMC250SUSDXF
+if exists (select * from sysobjects where name='pk_LFUMC250SUSDXFId')
+    alter table LFUMC250SUSDXF drop constraint pk_LFUMC250SUSDXFId
+GO
+alter table LFUMC250SUSDXF add constraint pk_LFUMC250SUSDXFId primary key (LFUMC250SUSDXFId)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_LFUMC250SUSDXF')
+    alter table LFUMC250SUSDXF drop constraint fk_ModuleTreeId_LFUMC250SUSDXF
+GO
+alter table LFUMC250SUSDXF add constraint fk_ModuleTreeId_LFUMC250SUSDXF foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+
+
 --UCWUVR4SDXF
 if exists (select * from sysobjects where name='pk_UCWUVR4SDXFId')
     alter table UCWUVR4SDXF drop constraint pk_UCWUVR4SDXFId

@@ -17,6 +17,12 @@ namespace DAL
     {
         #region 查询年度各制图人员工作量
 
+        /// <summary>
+        /// 查询delay数据
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="userAcc"></param>
+        /// <returns></returns>
         public List<ChartData> GetUserDelayByMonth(string year, string userAcc)
         {
             List<ChartData> list = new List<ChartData>();
@@ -25,11 +31,11 @@ namespace DAL
             sql += " inner join Users on Users.UserId=Projects.UserId";
             if (year == "ALL")
             {
-                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+                sql += " where Drtarget>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+                sql += string.Format(" where Drtarget>='{0}/01/01' and Drtarget<='{0}/12/31'", year);
             }
             sql += string.Format(" and UserAccount='{0}'", userAcc);
             sql += " and DATEDIFF(DAY,Drtarget,DrActual)>0 group by month(Drtarget) order by Mon asc";
@@ -121,12 +127,48 @@ namespace DAL
 
         #region 查询年度全部烟罩工作量
 
+
+        /// <summary>
+        /// 查询delay数据
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="userAcc"></param>
+        /// <returns></returns>
+        public List<ChartData> GetTotalDelayByMonth(string year)
+        {
+            List<ChartData> list = new List<ChartData>();
+            string sql = "select month(Drtarget) as Mon,sum(DATEDIFF(DAY, Drtarget, DrActual))  as TotalDelay from view_DelayQuery";
+            sql += " inner join Projects on view_DelayQuery.ProjectId=Projects.ProjectId";
+            sql += " inner join Users on Users.UserId=Projects.UserId";
+            if (year == "ALL")
+            {
+                sql += " where Drtarget>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where Drtarget>='{0}/01/01' and Drtarget<='{0}/12/31'", year);
+            }
+            sql += " and DATEDIFF(DAY,Drtarget,DrActual)>0 group by month(Drtarget) order by Mon asc";
+
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                list.Add(new ChartData()
+                {
+                    Text = objReader["Mon"].ToString(),
+                    Value = Convert.ToDouble(objReader["TotalDelay"].ToString())
+                });
+            }
+            objReader.Close();
+            return list;
+        }
+
         /// <summary>
         /// 按月份统计所有烟罩工作量
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        public List<ChartData> GetAllWorkloadByMonth(string year)
+        public List<ChartData> GetTotalWorkloadByMonth(string year)
         {
             List<ChartData> list = new List<ChartData>();
             string sql = "select month(DrawingPlan.DrReleasetarget) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
@@ -153,7 +195,34 @@ namespace DAL
             objReader.Close();
             return list;
         }
-
+        /// <summary>
+        /// 查询全年所有烟罩Delay总和
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public double GetTotalDelayByYear(string year)
+        {
+            double Value = 0d;
+            string sql = "select sum(DATEDIFF(DAY, Drtarget, DrActual)) as TotalDelay from view_DelayQuery";
+            if (year == "ALL")
+            {
+                sql += " where Drtarget>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where Drtarget>='{0}/01/01' and Drtarget<='{0}/12/31'", year);
+            }
+            sql += " and DATEDIFF(DAY,Drtarget,DrActual)>0";
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                //当年有数据时才赋值，否则保持为0
+                if (objReader["TotalDelay"].ToString().Length!=0)
+                    Value = Convert.ToDouble(objReader["TotalDelay"].ToString());
+            }
+            objReader.Close();
+            return Value;
+        }
         /// <summary>
         /// 查询全年所有烟罩工作量总和
         /// </summary>

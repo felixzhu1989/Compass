@@ -117,6 +117,24 @@
     <Compile Include="CeilingForm\FrmCJ330.Designer.cs">
       <DependentUpon>FrmCJ330.cs</DependentUpon>
     </Compile>
+    <Compile Include="CeilingForm\FrmLFUMC150SUSDXF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CeilingForm\FrmLFUMC150SUSDXF.Designer.cs">
+      <DependentUpon>FrmLFUMC150SUSDXF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CeilingForm\FrmLFUMC200SUSDXF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CeilingForm\FrmLFUMC200SUSDXF.Designer.cs">
+      <DependentUpon>FrmLFUMC200SUSDXF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CeilingForm\FrmLFUMC250SUSDXF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CeilingForm\FrmLFUMC250SUSDXF.Designer.cs">
+      <DependentUpon>FrmLFUMC250SUSDXF.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmHOODBCJ.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -756,8 +774,17 @@
     <EmbeddedResource Include="CeilingForm\FrmLFUMC150DXF.resx">
       <DependentUpon>FrmLFUMC150DXF.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CeilingForm\FrmLFUMC150SUSDXF.resx">
+      <DependentUpon>FrmLFUMC150SUSDXF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CeilingForm\FrmLFUMC200SUSDXF.resx">
+      <DependentUpon>FrmLFUMC200SUSDXF.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CeilingForm\FrmLFUMC250DXF.resx">
       <DependentUpon>FrmLFUMC250DXF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CeilingForm\FrmLFUMC250SUSDXF.resx">
+      <DependentUpon>FrmLFUMC250SUSDXF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CeilingForm\FrmLFUP.resx">
       <DependentUpon>FrmLFUP.cs</DependentUpon>

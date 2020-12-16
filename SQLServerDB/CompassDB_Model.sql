@@ -2009,6 +2009,43 @@ create table LFUMC250DXF
 	Quantity int    
 )
 
+--LFUMC150SUSDXF
+if exists (select * from sysobjects where name='LFUMC150SUSDXF')
+drop table LFUMC150SUSDXF
+go
+create table LFUMC150SUSDXF
+(
+    LFUMC150SUSDXFId int identity(1,1),
+    ModuleTreeId int,
+	Quantity int    
+)
+
+
+--LFUMC200SUSDXF
+if exists (select * from sysobjects where name='LFUMC200SUSDXF')
+drop table LFUMC200SUSDXF
+go
+create table LFUMC200SUSDXF
+(
+    LFUMC200SUSDXFId int identity(1,1),
+    ModuleTreeId int,
+	Quantity int    
+)
+
+--LFUMC250SUSDXF
+if exists (select * from sysobjects where name='LFUMC250SUSDXF')
+drop table LFUMC250SUSDXF
+go
+create table LFUMC250SUSDXF
+(
+    LFUMC250SUSDXFId int identity(1,1),
+    ModuleTreeId int,
+	Quantity int    
+)
+
+
+
+
 --UCWUVR4SDXF
 if exists (select * from sysobjects where name='UCWUVR4SDXF')
 drop table UCWUVR4SDXF
