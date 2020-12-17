@@ -63,7 +63,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 19);
             this.label2.TabIndex = 0;
-            this.label2.Text = "登陆账户";
+            this.label2.Text = "登陆密码";
             // 
             // txtUserPwd
             // 
