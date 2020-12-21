@@ -175,7 +175,6 @@
             this.dgvDrawingPlan.TabIndex = 9;
             this.dgvDrawingPlan.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDrawingPlan_CellDoubleClick);
             this.dgvDrawingPlan.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvDrawingPlan_RowPostPaint);
-            this.dgvDrawingPlan.SelectionChanged += new System.EventHandler(this.dgvDrawingPlan_SelectionChanged);
             this.dgvDrawingPlan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvDrawingPlan_KeyDown);
             // 
             // contextMenuStrip

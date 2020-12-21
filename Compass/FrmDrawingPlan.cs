@@ -576,17 +576,7 @@ namespace Compass
                 btnAddDrawingPlan_Click(null, null);
             }
         }
-        /// <summary>
-        /// 选中行时获取订单编号
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void dgvDrawingPlan_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvDrawingPlan.RowCount == 0) return;
-            if (dgvDrawingPlan.CurrentRow == null) return;
-            cobODPNo.Text = this.dgvDrawingPlan.CurrentRow.Cells["ODPNo"].Value.ToString();
-        }
+        
         /// <summary>
         /// 查询整个订单弹出菜单
         /// </summary>
