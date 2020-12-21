@@ -359,7 +359,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0013-1"));
                     swPart = swComp.GetModelDoc2(); //打开零件
                     swPart.Parameter("D1@Sketch1").SystemValue = (item.ExLength / 2m + 10m) / 1000m;
-                    swPart.Parameter("D2@Sketch1").SystemValue = (item.ExWidth + 40m) / 1000m;
+                    swPart.Parameter("D2@Sketch1").SystemValue = (item.ExWidth + 20m) / 1000m;
                     //排风腔
                     //重命名装配体内部
                     compReName = "FNCE0115[KCJDB800-" + tree.Module + "]{" + (int)item.Length + "}";

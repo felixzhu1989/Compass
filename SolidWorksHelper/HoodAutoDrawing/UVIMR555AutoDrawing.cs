@@ -460,7 +460,7 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(2);//2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();
                     swPart.Parameter("D1@Sketch1").SystemValue = (item.ExLength / 2 + 10m) / 1000m;
-                    swPart.Parameter("D2@Sketch1").SystemValue = (item.ExWidth + 40m) / 1000m;
+                    swPart.Parameter("D2@Sketch1").SystemValue = (item.ExWidth + 20m) / 1000m;
                 }
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0018-2"));
                 if (item.MARVEL == "YES") swComp.SetSuppression2(0); //2解压缩，0压缩
