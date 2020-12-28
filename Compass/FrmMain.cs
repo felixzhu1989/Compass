@@ -255,7 +255,7 @@ namespace Compass
         /// <param name="e"></param>
         private void llblHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", "http://10.9.18.31:8080/");
+            System.Diagnostics.Process.Start("explorer.exe", "http://10.9.18.31:8080/space/index");
         }
         private void llblHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
