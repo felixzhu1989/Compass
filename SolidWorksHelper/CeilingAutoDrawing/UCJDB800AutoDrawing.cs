@@ -377,7 +377,7 @@ namespace SolidWorksHelper
                         }
                         break;
                     default:
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0108[BP-]{}-3"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0108[BP-]{}-2"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0136[BP-]{}-3"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
