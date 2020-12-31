@@ -652,6 +652,22 @@ if exists (select * from sysobjects where name='df_Height_UVIMR555')
 GO
 alter table UVIMR555 add constraint df_Height_UVIMR555 default ('555') for Height
 GO
+--UVIMT555
+if exists (select * from sysobjects where name='pk_UVIMT555Id')
+    alter table UVIMT555 drop constraint pk_UVIMT555Id
+GO
+alter table UVIMT555 add constraint pk_UVIMT555Id primary key (UVIMT555Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_UVIMT555')
+    alter table UVIMT555 drop constraint fk_ModuleTreeId_UVIMT555
+GO
+alter table UVIMT555 add constraint fk_ModuleTreeId_UVIMT555 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_UVIMT555')
+    alter table UVIMT555 drop constraint df_Height_UVIMT555
+GO
+alter table UVIMT555 add constraint df_Height_UVIMT555 default ('555') for Height
+GO
 --UVIR555
 if exists (select * from sysobjects where name='pk_UVIR555Id')
     alter table UVIR555 drop constraint pk_UVIR555Id

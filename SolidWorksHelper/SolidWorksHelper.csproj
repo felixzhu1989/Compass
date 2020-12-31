@@ -159,6 +159,7 @@
     <Compile Include="HoodAutoDrawing\TCSBOXDXFAutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\UVIMR555AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\UVIR555AutoDrawing.cs" />
+    <Compile Include="HoodAutoDrawing\UVIMT555AutoDrawing.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

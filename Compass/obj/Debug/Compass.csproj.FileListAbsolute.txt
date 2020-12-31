@@ -133,3 +133,4 @@ E:\Compass\Compass\obj\Debug\Compass.pdb
 E:\Compass\Compass\obj\Debug\Compass.FrmLFUMC150SUSDXF.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmLFUMC200SUSDXF.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmLFUMC250SUSDXF.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmUVIMT555.resources

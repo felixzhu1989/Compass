@@ -798,7 +798,10 @@ namespace SolidWorksHelper
                 swPart.Parameter("D2@草图1").SystemValue = ((item.Deepth - 800m - 260m) / 2m - 3m + 226m) / 1000m;
                 swPart.Parameter("D1@草图6").SystemValue = ((item.Deepth - 800m - 260m) / 2m - 3m + 1m) / 1000m;
                 swPart.Parameter("D3@草图25").SystemValue = midRoofTopHoleDis - 100m / 1000m;
-                swPart.Parameter("D2@草图26").SystemValue = ((item.Deepth - 800m - 260m) / 2m + 55m) / 3000;
+                if ((item.Deepth - 800m - 720m) / 2m < 150m)
+                    swPart.Parameter("D2@草图26").SystemValue = ((item.Deepth - 800m - 720m) / 2m + 55m) / 3000m - 30m / 1000m;
+                else
+                    swPart.Parameter("D2@草图26").SystemValue = ((item.Deepth - 800m - 720m) / 2m + 55m) / 3000m;
                 swPart.Parameter("D1@Sketch3").SystemValue = midRoofSecondHoleDis - 2m / 1000m;
                 swFeat = swComp.FeatureByName("NAMEPLATE");
                 swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
@@ -994,7 +997,10 @@ namespace SolidWorksHelper
                 swPart.Parameter("D2@草图1").SystemValue = ((item.Deepth - 800m - 260m) / 2m - 3m + 226m) / 1000m;
                 swPart.Parameter("D1@草图6").SystemValue = ((item.Deepth - 800m - 260m) / 2m - 3m + 1m) / 1000m;
                 swPart.Parameter("D3@草图25").SystemValue = midRoofTopHoleDis - 100m / 1000m;
-                swPart.Parameter("D2@草图26").SystemValue = ((item.Deepth - 800m - 260m) / 2m + 55m) / 3000;
+                if ((item.Deepth - 800m - 720m) / 2m < 150m)
+                    swPart.Parameter("D2@草图26").SystemValue = ((item.Deepth - 800m - 720m) / 2m + 55m) / 3000m - 30m / 1000m;
+                else
+                    swPart.Parameter("D2@草图26").SystemValue = ((item.Deepth - 800m - 720m) / 2m + 55m) / 3000m;
                 swPart.Parameter("D1@Sketch3").SystemValue = midRoofSecondHoleDis - 2m / 1000m;
                 swFeat = swComp.FeatureByName("NAMEPLATE");
                 swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
