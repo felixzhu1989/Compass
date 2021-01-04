@@ -173,6 +173,7 @@
     <Compile Include="Hood\UVIMR555.cs" />
     <Compile Include="Hood\UVIR555.cs" />
     <Compile Include="Hood\UVIMT555.cs" />
+    <Compile Include="Hood\UVF555400.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

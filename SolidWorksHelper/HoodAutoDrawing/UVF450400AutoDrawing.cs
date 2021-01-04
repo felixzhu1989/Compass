@@ -1343,6 +1343,34 @@ namespace SolidWorksHelper
                     swFeat = swComp.FeatureByName("MA3");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 }
+                //----------IR支架----------
+                if (item.MARVEL == "YES")
+                {
+                    if (item.IRNo > 0)
+                    {
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHO0118-1"));
+                        swComp.SetSuppression2(2); //2解压缩，0压缩
+                    }
+                    if (item.IRNo > 1)
+                    {
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHO0118-2"));
+                        swComp.SetSuppression2(2); //2解压缩，0压缩
+                    }
+                    if (item.IRNo > 2)
+                    {
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHO0118-3"));
+                        swComp.SetSuppression2(2); //2解压缩，0压缩
+                    }
+                }
+                else
+                {
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHO0118-1"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHO0118-2"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHO0118-3"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩
+                }
                 //----------新风滑门导轨----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0010-4"));
                 swPart = swComp.GetModelDoc2();
