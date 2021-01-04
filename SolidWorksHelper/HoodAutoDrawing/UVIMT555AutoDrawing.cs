@@ -1211,9 +1211,9 @@ public class UVIMT555AutoDrawing : IAutoDrawing
                     swPart = swComp.GetModelDoc2();
                     swPart.Parameter("D1@草图1").SystemValue = (item.Deepth - 79m) / 1000m;
                     swFeat = swComp.FeatureByName("T555");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
-                    swFeat = swComp.FeatureByName("R555");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat = swComp.FeatureByName("R555");
+                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
                     //RIGHT
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0007-2"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
@@ -1222,9 +1222,9 @@ public class UVIMT555AutoDrawing : IAutoDrawing
                     swPart = swComp.GetModelDoc2();
                     swPart.Parameter("D1@草图1").SystemValue = (item.Deepth - 79m) / 1000m;
                     swFeat = swComp.FeatureByName("T555");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
-                    swFeat = swComp.FeatureByName("R555");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat = swComp.FeatureByName("R555");
+                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
                     if (item.WaterCollection == "YES")
                     {
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0010-1"));
@@ -1260,9 +1260,9 @@ public class UVIMT555AutoDrawing : IAutoDrawing
                     swPart = swComp.GetModelDoc2();
                     swPart.Parameter("D1@草图1").SystemValue = (item.Deepth - 79m) / 1000m;
                     swFeat = swComp.FeatureByName("T555");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
-                    swFeat = swComp.FeatureByName("R555");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat = swComp.FeatureByName("R555");
+                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
                     if (item.WaterCollection == "YES")
                     {
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0010-2"));
@@ -1298,9 +1298,9 @@ public class UVIMT555AutoDrawing : IAutoDrawing
                     swPart = swComp.GetModelDoc2();
                     swPart.Parameter("D1@草图1").SystemValue = (item.Deepth - 79m) / 1000m;
                     swFeat = swComp.FeatureByName("T555");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("R555");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                     if (item.WaterCollection == "YES")
                     {
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0010-1"));

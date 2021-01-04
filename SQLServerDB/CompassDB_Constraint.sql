@@ -777,7 +777,22 @@ if exists (select * from sysobjects where name='df_Height_UVF555')
 GO
 alter table UVF555 add constraint df_Height_UVF555 default ('555') for Height
 GO
-
+--UVF555400
+if exists (select * from sysobjects where name='pk_UVF555400Id')
+    alter table UVF555400 drop constraint pk_UVF555400Id
+GO
+alter table UVF555400 add constraint pk_UVF555400Id primary key (UVF555400Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_UVF555400')
+    alter table UVF555400 drop constraint fk_ModuleTreeId_UVF555400
+GO
+alter table UVF555400 add constraint fk_ModuleTreeId_UVF555400 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_UVF555400')
+    alter table UVF555400 drop constraint df_Height_UVF555400
+GO
+alter table UVF555400 add constraint df_Height_UVF555400 default ('555') for Height
+GO
 --UVF450400
 if exists (select * from sysobjects where name='pk_UVF450400Id')
     alter table UVF450400 drop constraint pk_UVF450400Id
@@ -815,7 +830,22 @@ if exists (select * from sysobjects where name='df_Height_KVF555')
 GO
 alter table KVF555 add constraint df_Height_KVF555 default ('555') for Height
 GO
-
+--KVF555400
+if exists (select * from sysobjects where name='pk_KVF555400Id')
+    alter table KVF555400 drop constraint pk_KVF555400Id
+GO
+alter table KVF555400 add constraint pk_KVF555400Id primary key (KVF555400Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_KVF555400')
+    alter table KVF555400 drop constraint fk_ModuleTreeId_KVF555400
+GO
+alter table KVF555400 add constraint fk_ModuleTreeId_KVF555400 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_KVF555400')
+    alter table KVF555400 drop constraint df_Height_KVF555400
+GO
+alter table KVF555400 add constraint df_Height_KVF555400 default ('555') for Height
+GO
 --KCHF555
 if exists (select * from sysobjects where name='pk_KCHF555Id')
     alter table KCHF555 drop constraint pk_KCHF555Id
