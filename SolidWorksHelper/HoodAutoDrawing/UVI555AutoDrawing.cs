@@ -995,11 +995,15 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2();
                         swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 275m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;
                         swPart.Parameter("D5@Sketch7").SystemValue = 13.68m / 1000m;//水洗烟罩19.87m / 1000m
+                        swPart.Parameter("D5@Sketch10").SystemValue = 27.3m / 1000m;
+                        //UV555400，22m,标准烟罩27.3
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0006-1"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                         swPart = swComp.GetModelDoc2();
                         swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 275m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;
                         swPart.Parameter("D5@Sketch7").SystemValue = 13.68m / 1000m ;//水洗烟罩19.87m / 1000m
+                        swPart.Parameter("D5@Sketch8").SystemValue = 27.3m / 1000m;
+                        //UV555400，22m,标准烟罩27.3
                     }
                     else
                     {
@@ -1034,6 +1038,8 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2();
                         swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 275m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;
                         swPart.Parameter("D5@Sketch7").SystemValue = 13.68m / 1000m;//水洗烟罩19.87m / 1000m
+                        swPart.Parameter("D5@Sketch10").SystemValue = 27.3m / 1000m;
+                        //UV555400，22m,标准烟罩27.3
                     }
                     else
                     {
@@ -1068,6 +1074,8 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2();
                         swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 275m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;
                         swPart.Parameter("D5@Sketch7").SystemValue = 13.68m / 1000m;//水洗烟罩19.87m / 1000m
+                        swPart.Parameter("D5@Sketch8").SystemValue = 27.3m / 1000m;
+                        //UV555400，22m,标准烟罩27.3
                     }
                     else
                     {

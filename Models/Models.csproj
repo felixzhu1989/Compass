@@ -134,6 +134,7 @@
     <Compile Include="Hood\KCHI555.cs" />
     <Compile Include="Ceiling\LFUMC200SUSDXF.cs" />
     <Compile Include="Ceiling\LFUMC250SUSDXF.cs" />
+    <Compile Include="Hood\KVF555400.cs" />
     <Compile Include="ModuleTree.cs" />
     <Compile Include="Ceiling\NOCJ300.cs" />
     <Compile Include="Ceiling\NOCJ340.cs" />
