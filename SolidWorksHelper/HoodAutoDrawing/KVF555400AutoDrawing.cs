@@ -708,9 +708,10 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
                 //开方孔，UV或待MARVEL时解压
                 swFeat = swComp.FeatureByName("CUT-BACK-LEFT");
-                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                if(item.MARVEL=="YES")swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
                 swFeat = swComp.FeatureByName("CUT-BACK-RIGHT");
-                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
                 
                     swFeat = swComp.FeatureByName("CUT-FRONT-LEFT");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 

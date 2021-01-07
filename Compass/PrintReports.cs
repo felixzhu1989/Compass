@@ -119,7 +119,8 @@ namespace Compass
                 //长度
                 if (objJobCard.Model == "KVI" || objJobCard.Model == "KVF" || objJobCard.Model == "UVI" || objJobCard.Model == "UVF"
                     || objJobCard.Model == "KWI" || objJobCard.Model == "KWF" || objJobCard.Model == "UWI" || objJobCard.Model == "UWF"
-                    || objJobCard.Model == "CMOD" || objJobCard.Model == "KVIM" || objJobCard.Model == "UVIM")
+                    || objJobCard.Model == "KVIM" || objJobCard.Model == "KVFM" || objJobCard.Model == "UVIM"  || objJobCard.Model == "UVFM"
+                    || objJobCard.Model == "KCH" || objJobCard.Model == "CMOD" )
                 {
                     if (objJobCard.Length != 0 && objJobCard.SidePanel == "BOTH")
                         workSheet.Cells[65, 5] = objJobCard.Length + 100;
