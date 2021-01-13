@@ -147,10 +147,10 @@
     <Compile Include="HoodForm\FrmUVF555400.Designer.cs">
       <DependentUpon>FrmUVF555400.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUVIMT555.cs">
+    <Compile Include="HoodForm\FrmUVIMT555.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmUVIMT555.Designer.cs">
+    <Compile Include="HoodForm\FrmUVIMT555.Designer.cs">
       <DependentUpon>FrmUVIMT555.cs</DependentUpon>
     </Compile>
     <Compile Include="HoodForm\FrmHOODBCJ.cs">
@@ -918,7 +918,7 @@
     <EmbeddedResource Include="FrmKVF555400.resx">
       <DependentUpon>FrmKVF555400.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUVIMT555.resx">
+    <EmbeddedResource Include="HoodForm\FrmUVIMT555.resx">
       <DependentUpon>FrmUVIMT555.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmHOODBCJ.resx">

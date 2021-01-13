@@ -169,6 +169,7 @@ namespace Compass
                     txtCeilingAccessoryId.ReadOnly = false;
                 }
             }
+            dgvCeilingAccessories.ClearSelection();
             dgvCeilingAccessories.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
             dgvCeilingAccessories.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
@@ -226,6 +227,7 @@ namespace Compass
             {
                 MessageBox.Show(ex.Message);
             }
+            dgvCeilingAccessories.ClearSelection();
             dgvCeilingAccessories.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
             dgvCeilingAccessories.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }

@@ -882,6 +882,7 @@ namespace Compass
             {
                 MessageBox.Show(ex.Message);
             }
+            dgvCeilingPackingList.ClearSelection();
             dgvCeilingPackingList.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
             dgvCeilingPackingList.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
@@ -968,6 +969,7 @@ namespace Compass
                 MessageBox.Show(ex.Message);
             }
             btnEditCeilingAccessory.Enabled = false;
+            dgvCeilingPackingList.ClearSelection();
             dgvCeilingPackingList.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
             dgvCeilingPackingList.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
@@ -1060,6 +1062,7 @@ namespace Compass
             {
                 MessageBox.Show(ex.Message);
             }
+            dgvCeilingPackingList.ClearSelection();
             dgvCeilingPackingList.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
             dgvCeilingPackingList.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }

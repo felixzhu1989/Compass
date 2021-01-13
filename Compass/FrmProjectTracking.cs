@@ -434,6 +434,7 @@ namespace Compass
             {
                 MessageBox.Show(ex.Message);
             }
+            dgvProjectTracking.ClearSelection();
             dgvProjectTracking.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
             dgvProjectTracking.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
@@ -472,6 +473,7 @@ namespace Compass
                 MessageBox.Show(ex.Message);
             }
             grbEditProjectTracking.Visible = false;
+            dgvProjectTracking.ClearSelection();
             dgvProjectTracking.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
             dgvProjectTracking.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }

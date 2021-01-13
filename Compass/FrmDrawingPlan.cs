@@ -490,6 +490,7 @@ namespace Compass
             {
                 MessageBox.Show(ex.Message);
             }
+            dgvDrawingPlan.ClearSelection();
             dgvDrawingPlan.Rows[firstRowIndex].Selected = true;
             dgvDrawingPlan.FirstDisplayedScrollingRowIndex = firstRowIndex;
         }
@@ -529,6 +530,7 @@ namespace Compass
                 MessageBox.Show(ex.Message);
             }
             grbEditDrawingPlan.Visible = false;
+            dgvDrawingPlan.ClearSelection();
             dgvDrawingPlan.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
             dgvDrawingPlan.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
