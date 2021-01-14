@@ -109,7 +109,7 @@ namespace SolidWorksHelper
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
                         swPart = swComp.GetModelDoc2(); //打开零件
                         swPart.Parameter("D2@Skizze1").SystemValue = (item.Length -10m) / 1000m;
-                        swPart.Parameter("D1@Skizze1").SystemValue = 499.5m / 1000m;
+                        swPart.Parameter("D1@Skizze1").SystemValue = 500m / 1000m;
                         swFeat = swComp.FeatureByName("LED");
                         if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                         else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
@@ -172,7 +172,7 @@ namespace SolidWorksHelper
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
                         swPart = swComp.GetModelDoc2(); //打开零件
                         swPart.Parameter("D2@Skizze1").SystemValue = (item.Length -10m) / 1000m;
-                        swPart.Parameter("D1@Skizze1").SystemValue = 499.5m / 1000m;
+                        swPart.Parameter("D1@Skizze1").SystemValue = 500m / 1000m;
                         swFeat = swComp.FeatureByName("LED");
                         if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                         else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
@@ -215,7 +215,7 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swPart = swComp.GetModelDoc2(); //打开零件
                     swPart.Parameter("D2@Skizze1").SystemValue = (item.Length -10m) / 1000m;
-                    swPart.Parameter("D1@Skizze1").SystemValue = 499.5m / 1000m;
+                    swPart.Parameter("D1@Skizze1").SystemValue = 500m / 1000m;
                     swFeat = swComp.FeatureByName("LED");
                     if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
@@ -245,7 +245,7 @@ namespace SolidWorksHelper
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
                         swPart = swComp.GetModelDoc2(); //打开零件
                         swPart.Parameter("D2@Skizze1").SystemValue = (item.Length -10m) / 1000m;
-                        swPart.Parameter("D1@Skizze1").SystemValue = 499.5m / 1000m;
+                        swPart.Parameter("D1@Skizze1").SystemValue = 500m / 1000m;
                         swFeat = swComp.FeatureByName("LED");
                         if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                         else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩

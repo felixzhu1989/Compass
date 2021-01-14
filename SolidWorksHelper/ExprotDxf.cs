@@ -19,7 +19,7 @@ namespace SolidWorksHelper
         CeilingCutListService objCeilingCutListService = new CeilingCutListService();
         int warnings = 0;
         int errors = 0;
-        Dictionary<string, int> sheetMetaDic = new Dictionary<string, int>();
+        Dictionary<string, int> sheetMetalDic = new Dictionary<string, int>();
         /// <summary>
         /// 天花子装配导出DXF图纸
         /// </summary>
@@ -79,8 +79,8 @@ namespace SolidWorksHelper
                                 //如果是钣金则将零件地址添加到列表中
                                 if (swBody.IsSheetMetal())
                                 {
-                                    if (sheetMetaDic.ContainsKey(swComp.GetPathName())) sheetMetaDic[swComp.GetPathName()] += 1;
-                                    else sheetMetaDic.Add(swComp.GetPathName(), 1);
+                                    if (sheetMetalDic.ContainsKey(swComp.GetPathName())) sheetMetalDic[swComp.GetPathName()] += 1;
+                                    else sheetMetalDic.Add(swComp.GetPathName(), 1);
                                 }
                             }
                         }
@@ -89,16 +89,16 @@ namespace SolidWorksHelper
                 //关闭装配体零件
                 swApp.CloseDoc(assyPath);
                 //遍历钣金零件
-                foreach (var sheetMeta in sheetMetaDic)
+                foreach (var sheetMetal in sheetMetalDic)
                 {
                     //打开模型
-                    ModelDoc2 swPart = swApp.OpenDoc6(sheetMeta.Key, (int)swDocumentTypes_e.swDocPART,
+                    ModelDoc2 swPart = swApp.OpenDoc6(sheetMetal.Key, (int)swDocumentTypes_e.swDocPART,
                         (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
                     Feature swFeat = (Feature)swPart.FirstFeature();
                     CeilingCutList cutRecord = new CeilingCutList()
                     {
                         SubAssyId = subAssy.SubAssyId,
-                        Quantity = sheetMeta.Value,
+                        Quantity = sheetMetal.Value,
                         UserId = userId
                     };
                     while (swFeat != null)
@@ -137,7 +137,7 @@ namespace SolidWorksHelper
                     }
                     PartToDxf(swApp, swPart, modulePath);
                     //关闭零件
-                    swApp.CloseDoc(sheetMeta.Key);
+                    swApp.CloseDoc(sheetMetal.Key);
                 }
             }
             catch (Exception ex)
@@ -146,7 +146,7 @@ namespace SolidWorksHelper
             }
             finally
             {
-                sheetMetaDic.Clear();
+                sheetMetalDic.Clear();
                 swApp.CloseDoc(assyPath);//关闭，很快
                 swApp.CommandInProgress = false; //及时关闭外部命令调用，否则影响SolidWorks的使用
             }
@@ -220,8 +220,8 @@ namespace SolidWorksHelper
                                 //如果是钣金则将零件地址添加到列表中
                                 if (swBody.IsSheetMetal())
                                 {
-                                    if (sheetMetaDic.ContainsKey(swComp.GetPathName())) sheetMetaDic[swComp.GetPathName()] += 1;
-                                    else sheetMetaDic.Add(swComp.GetPathName(), 1);
+                                    if (sheetMetalDic.ContainsKey(swComp.GetPathName())) sheetMetalDic[swComp.GetPathName()] += 1;
+                                    else sheetMetalDic.Add(swComp.GetPathName(), 1);
                                 }
                             }
                         }
@@ -230,16 +230,16 @@ namespace SolidWorksHelper
                 //关闭装配体零件
                 swApp.CloseDoc(assyPath);
                 //遍历钣金零件
-                foreach (var sheetMeta in sheetMetaDic)
+                foreach (var sheetMetal in sheetMetalDic)
                 {
                     //打开模型
-                    ModelDoc2 swPart = swApp.OpenDoc6(sheetMeta.Key, (int)swDocumentTypes_e.swDocPART,
+                    ModelDoc2 swPart = swApp.OpenDoc6(sheetMetal.Key, (int)swDocumentTypes_e.swDocPART,
                         (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
                     Feature swFeat = (Feature)swPart.FirstFeature();
                     HoodCutList cutRecord = new HoodCutList()
                     {
                         ModuleTreeId = tree.ModuleTreeId,
-                        Quantity = sheetMeta.Value,
+                        Quantity = sheetMetal.Value,
                         UserId = userId
                     };
                     while (swFeat != null)
@@ -280,7 +280,7 @@ namespace SolidWorksHelper
                     }
                     PartToDxf(swApp, swPart, modulePath);
                     //关闭零件
-                    swApp.CloseDoc(sheetMeta.Key);
+                    swApp.CloseDoc(sheetMetal.Key);
                 }
             }
             catch (Exception ex)
@@ -289,7 +289,7 @@ namespace SolidWorksHelper
             }
             finally
             {
-                sheetMetaDic.Clear();
+                sheetMetalDic.Clear();
                 swApp.CloseDoc(assyPath);//关闭，很快
                 swApp.CommandInProgress = false; //及时关闭外部命令调用，否则影响SolidWorks的使用
             }
@@ -354,28 +354,28 @@ namespace SolidWorksHelper
                 SketchPoint p0 = swSketchPoints[0];//最先画的点
                 SketchPoint p1 = swSketchPoints[1];//作为坐标原点
                 SketchPoint p2 = swSketchPoints[2];//最后画的点
-                dataAlignment[0] = p1.X * 1000;
-                dataAlignment[1] = p1.Y * 1000;
-                dataAlignment[2] = p1.X * 1000;
+                dataAlignment[0] = p1.X;
+                dataAlignment[1] = p1.Y;
+                dataAlignment[2] = p1.X;
                 double l1 = Math.Sqrt(Math.Pow(p0.X - p1.X, 2) + Math.Pow(p0.Y - p1.Y, 2) + Math.Pow(p0.Z - p1.Z, 2));
                 double l2 = Math.Sqrt(Math.Pow(p2.X - p1.X, 2) + Math.Pow(p2.Y - p1.Y, 2) + Math.Pow(p2.Z - p1.Z, 2));
                 if (l1 > l2)
                 {
-                    dataAlignment[3] = p0.X * 1000 - p1.X * 1000;
-                    dataAlignment[4] = p0.Y * 1000 - p1.Y * 1000;
-                    dataAlignment[5] = p0.Z * 1000 - p1.Z * 1000;
-                    dataAlignment[6] = p2.X * 1000 - p1.X * 1000;
-                    dataAlignment[7] = p2.Y * 1000 - p1.Y * 1000;
-                    dataAlignment[8] = p2.Z * 1000 - p1.Z * 1000;
+                    dataAlignment[3] = p0.X - p1.X;
+                    dataAlignment[4] = p0.Y - p1.Y;
+                    dataAlignment[5] = p0.Z - p1.Z;
+                    dataAlignment[6] = p2.X - p1.X;
+                    dataAlignment[7] = p2.Y - p1.Y;
+                    dataAlignment[8] = p2.Z - p1.Z;
                 }
                 else
                 {
-                    dataAlignment[3] = p2.X * 1000 - p1.X * 1000;
-                    dataAlignment[4] = p2.Y * 1000 - p1.Y * 1000;
-                    dataAlignment[5] = p2.Z * 1000 - p1.Z * 1000;
-                    dataAlignment[6] = p0.X * 1000 - p1.X * 1000;
-                    dataAlignment[7] = p0.Y * 1000 - p1.Y * 1000;
-                    dataAlignment[8] = p0.Z * 1000 - p1.Z * 1000;
+                    dataAlignment[3] = p2.X - p1.X;
+                    dataAlignment[4] = p2.Y - p1.Y;
+                    dataAlignment[5] = p2.Z - p1.Z;
+                    dataAlignment[6] = p0.X - p1.X;
+                    dataAlignment[7] = p0.Y - p1.Y;
+                    dataAlignment[8] = p0.Z - p1.Z;
                 }
             }
             object varAlignment = dataAlignment;
