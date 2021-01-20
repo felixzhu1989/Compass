@@ -440,7 +440,7 @@ namespace SolidWorksHelper
                     {
                         swFeat = swComp.FeatureByName("KCJSB265-LEFT");
                         swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        swPart.Parameter("D23@Sketch28").SystemValue = (leftSBDis + 1m) / 1000m;
+                        swPart.Parameter("D19@Sketch38").SystemValue = (leftSBDis + 1m) / 1000m;
                         if (item.LKSide == "LEFT" || item.LKSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("LKS270-LEFT");
@@ -644,7 +644,7 @@ namespace SolidWorksHelper
                     {
                         swFeat = swComp.FeatureByName("KCJSB265-RIGHT");
                         swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        swPart.Parameter("D1@Sketch55").SystemValue = (rightSBDis + 1m) / 1000m;
+                        swPart.Parameter("D18@Sketch40").SystemValue = (rightSBDis + 1m) / 1000m;
                         if (item.LKSide == "RIGHT" || item.LKSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("LKS270-RIGHT");
