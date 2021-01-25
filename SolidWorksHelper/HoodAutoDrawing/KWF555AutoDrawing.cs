@@ -359,8 +359,8 @@ namespace SolidWorksHelper
                 if (item.MARVEL == "YES")
                 {
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                    if (item.ExNo == 1) swPart.Parameter("D1@Sketch21").SystemValue = (item.ExRightDis + item.ExLength / 2 + 50m) / 1000m;
-                    else swPart.Parameter("D1@Sketch21").SystemValue = (item.ExRightDis + item.ExDis / 2 + item.ExLength + 50m) / 1000m;
+                    if (item.ExNo == 1) swPart.Parameter("D1@Sketch20").SystemValue = (item.ExRightDis + item.ExLength / 2 + 50m) / 1000m;
+                    else swPart.Parameter("D1@Sketch20").SystemValue = (item.ExRightDis + item.ExDis / 2 + item.ExLength + 50m) / 1000m;
                 }
                 else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
 
