@@ -500,7 +500,7 @@ namespace SolidWorksHelper
                     else swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength * 3 + item.ExDis + 100m) / 1000m;
                 }
                 //----------排风脖颈----------
-                if (item.ExHeight == 100m || item.MARVEL == "YES")
+                if (item.ANSUL!="YES"&&(item.ExHeight == 100m || item.MARVEL == "YES"))
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0006-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
@@ -531,11 +531,17 @@ namespace SolidWorksHelper
                     swPart = swComp.GetModelDoc2();
                     swPart.Parameter("D2@基体-法兰1").SystemValue = item.ExWidth / 1000m;
                     swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000m;
+                    swFeat = swComp.FeatureByName("ANDTEC");
+                    if (item.ANSUL == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0009-1"));
                     swComp.SetSuppression2(2);//2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();
                     swPart.Parameter("D2@基体-法兰1").SystemValue = item.ExWidth / 1000m;
                     swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000m;
+                    swFeat = swComp.FeatureByName("ANDTEC");
+                    if (item.ANSUL == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 }
                 //----------UV灯，UV灯门----------
                 if (item.UVType == "LONG")
@@ -902,6 +908,8 @@ namespace SolidWorksHelper
                         swPart.Parameter("D1@Sketch15").SystemValue = item.ANDropDis5 / 1000m;
                     }
                     //探测器
+                    swFeat = swComp.FeatureByName("ANDTECACROSS");
+                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     if (item.ANDetectorNo > 0)
                     {
                         swFeat = swComp.FeatureByName("ANDTEC1");
@@ -966,7 +974,9 @@ namespace SolidWorksHelper
                     swFeat = swComp.FeatureByName("ANDTEC4");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("ANDTEC5");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat = swComp.FeatureByName("ANDTECACROSS");
+                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 }
 
                 //开方孔，UV或待MARVEL时解压

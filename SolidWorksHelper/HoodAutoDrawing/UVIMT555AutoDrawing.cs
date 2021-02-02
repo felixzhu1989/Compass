@@ -476,7 +476,7 @@ public class UVIMT555AutoDrawing : IAutoDrawing
                 }
 
                 //----------排风脖颈----------
-                if (item.ExHeight == 100m || item.MARVEL == "YES")
+                if (item.ANSUL != "YES" && (item.ExHeight == 100m || item.MARVEL == "YES"))
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0006-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩

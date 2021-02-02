@@ -413,7 +413,7 @@ namespace SolidWorksHelper
                     else swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength * 3 + item.ExDis + 100m) / 1000m;
                 }
                 //----------排风脖颈----------
-                if (item.ExHeight == 100m || item.MARVEL == "YES")
+                if (item.ANSUL != "YES" && (item.ExHeight == 100m || item.MARVEL == "YES"))
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0019-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩

@@ -432,7 +432,7 @@ namespace SolidWorksHelper
                     else swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength * 3 + item.ExDis + 100m) / 1000m;
                 }
                 //----------排风脖颈----------
-                if (item.ExHeight == 100m || item.MARVEL == "YES")
+                if (item.ANSUL != "YES" && (item.ExHeight == 100m || item.MARVEL == "YES"))
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0006-2"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
@@ -696,6 +696,8 @@ namespace SolidWorksHelper
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
                 }
                 //UW/KW HOOD 水洗烟罩探测器在midRoof上，非水洗烟罩压缩
+                swFeat = swComp.FeatureByName("ANDTECACROSS");
+                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("ANDTEC1");
                 swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
                 swFeat = swComp.FeatureByName("ANDTEC2");
