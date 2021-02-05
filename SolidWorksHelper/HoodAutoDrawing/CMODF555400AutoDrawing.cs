@@ -720,6 +720,8 @@ namespace SolidWorksHelper
                 //MARVEL
                 if (item.MARVEL == "YES")
                 {
+                    swFeat = swComp.FeatureByName("IR3FAN");
+                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                     if (item.IRNo > 0)
                     {
                         swFeat = swComp.FeatureByName("MA1");
@@ -727,8 +729,7 @@ namespace SolidWorksHelper
                         swPart.Parameter("D2@Sketch14").SystemValue = item.IRDis1 / 1000m;
                         swFeat = swComp.FeatureByName("MACABLE1");
                         swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        if (item.SuNo == 1) swPart.Parameter("D3@Sketch17").SystemValue = (item.Length + 400) / 2000m;
-                        else swPart.Parameter("D3@Sketch17").SystemValue = item.Length / 2000m;
+                        swPart.Parameter("D3@Sketch17").SystemValue = 150m / 1000m;
                     }
                     if (item.IRNo > 1)
                     {
@@ -737,8 +738,8 @@ namespace SolidWorksHelper
                         swPart.Parameter("D2@Sketch15").SystemValue = item.IRDis2 / 1000m;
                         swFeat = swComp.FeatureByName("MACABLE2");
                         swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        swPart.Parameter("D3@Sketch17").SystemValue = (item.Length / 2 - 25m) / 1000m;
-                        swPart.Parameter("D2@Sketch18").SystemValue = 50m / 1000m;
+                        swPart.Parameter("D3@Sketch17").SystemValue = 150m / 1000m;
+                        swPart.Parameter("D2@Sketch18").SystemValue = (item.Length - 300m) / 1000m;
                     }
                     if (item.IRNo > 2)
                     {
@@ -747,9 +748,11 @@ namespace SolidWorksHelper
                         swPart.Parameter("D2@Sketch16").SystemValue = item.IRDis3 / 1000m;
                         swFeat = swComp.FeatureByName("MACABLE3");
                         swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        swPart.Parameter("D3@Sketch17").SystemValue = 220m / 1000m;//第一出现孔
-                        swPart.Parameter("D2@Sketch18").SystemValue = (item.Length - 440m) / 2000m;//第二出线孔
-                        swPart.Parameter("D3@Sketch19").SystemValue = (item.Length - 440m) / 2000m;//第三出线孔
+                        swPart.Parameter("D3@Sketch17").SystemValue = 150m / 1000m;//第一出现孔
+                        swPart.Parameter("D2@Sketch18").SystemValue = (item.Length - 300m) / 1000m;//第二出线孔
+                        swPart.Parameter("D3@Sketch19").SystemValue = 50m / 1000m;//第三出线孔
+                        swFeat = swComp.FeatureByName("IR3FAN");
+                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     }
                 }
                 else
@@ -765,6 +768,8 @@ namespace SolidWorksHelper
                     swFeat = swComp.FeatureByName("MACABLE2");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("MACABLE3");
+                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat = swComp.FeatureByName("IR3FAN");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 }
                 //UV HOOD
@@ -797,6 +802,8 @@ namespace SolidWorksHelper
                 //MARVEL
                 //if (item.MARVEL == "YES")
                 //{
+                //    swFeat = swComp.FeatureByName("IR3FAN");
+                //    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 //    if (item.IRNo > 0)
                 //    {
                 //        swFeat = swComp.FeatureByName("MA1");
@@ -814,6 +821,8 @@ namespace SolidWorksHelper
                 //        swFeat = swComp.FeatureByName("MA3");
                 //        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 //        swPart.Parameter("D1@Sketch4").SystemValue = item.IRDis3 / 1000m;
+                //        swFeat = swComp.FeatureByName("IR3FAN");
+                //        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 //    }
                 //}
                 //else
@@ -823,6 +832,8 @@ namespace SolidWorksHelper
                 //    swFeat = swComp.FeatureByName("MA2");
                 //    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 //    swFeat = swComp.FeatureByName("MA3");
+                //    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                //    swFeat = swComp.FeatureByName("IR3FAN");
                 //    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 //}
                 //----------新风滑门导轨----------

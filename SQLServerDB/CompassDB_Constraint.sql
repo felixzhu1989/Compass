@@ -879,6 +879,26 @@ if exists (select * from sysobjects where name='df_Height_UWF555')
 GO
 alter table UWF555 add constraint df_Height_UWF555 default ('555') for Height
 GO
+--UWF555400
+if exists (select * from sysobjects where name='pk_UWF555400Id')
+    alter table UWF555400 drop constraint pk_UWF555400Id
+GO
+alter table UWF555400 add constraint pk_UWF555400Id primary key (UWF555400Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_UWF555400')
+    alter table UWF555400 drop constraint fk_ModuleTreeId_UWF555400
+GO
+alter table UWF555400 add constraint fk_ModuleTreeId_UWF555400 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_UWF555400')
+    alter table UWF555400 drop constraint df_Height_UWF555400
+GO
+alter table UWF555400 add constraint df_Height_UWF555400 default ('555') for Height
+GO
+
+
+
+
 --UWI555
 if exists (select * from sysobjects where name='pk_UWI555Id')
     alter table UWI555 drop constraint pk_UWI555Id

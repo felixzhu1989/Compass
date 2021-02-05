@@ -141,6 +141,12 @@
     <Compile Include="FrmKVF555400.Designer.cs">
       <DependentUpon>FrmKVF555400.cs</DependentUpon>
     </Compile>
+    <Compile Include="HoodForm\FrmUWF555400.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoodForm\FrmUWF555400.Designer.cs">
+      <DependentUpon>FrmUWF555400.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmUVF555400.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1088,6 +1094,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmStatusTypes.resx">
       <DependentUpon>FrmStatusTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoodForm\FrmUWF555400.resx">
+      <DependentUpon>FrmUWF555400.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmUWI555.resx">
       <DependentUpon>FrmUWI555.cs</DependentUpon>
