@@ -75,9 +75,7 @@ public class UVIMT555AutoDrawing : IAutoDrawing
             //Midroof灯板螺丝孔数量及第二个孔距离边缘距离,灯板顶面吊装槽钢螺丝孔位距离
             int midRoofHoleNo = (int)((item.Length - 300m) / 400m);
             decimal midRoofSecondHoleDis = Convert.ToDecimal((item.Length - (midRoofHoleNo - 1) * 400m) / 2) / 1000m;
-            decimal midRoofTopHoleDis =
-                Convert.ToDecimal(item.Deepth - 535m - 360m - 90m -
-                                  (int)((item.Deepth - 535m - 360m - 90m - 100m) / 50m) * 50m) / 1000m;
+            decimal midRoofTopHoleDis =Convert.ToDecimal(item.Deepth/2m - 400m - 360m - 75m -(int)((item.Deepth/2 - 400m - 360m - 75m - 50m) / 50m) * 50m) / 1000m;
             //KSA数量，KSA侧板长度(以全长计算)
             int ksaNo = (int)((item.Length + 1) / 498m);
             decimal ksaSideLength = Convert.ToDecimal((item.Length - ksaNo * 498m) / 2) / 1000m;
@@ -266,7 +264,7 @@ public class UVIMT555AutoDrawing : IAutoDrawing
                 if (item.MARVEL == "YES")
                 {
                     swFeat = swComp.FeatureByName("MA-TAB");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("MA-NTC");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     if (item.ExNo == 1) swPart.Parameter("D1@Sketch17").SystemValue = (item.ExRightDis + item.ExLength / 2 + 50m) / 1000m;
@@ -797,7 +795,7 @@ public class UVIMT555AutoDrawing : IAutoDrawing
                 swPart.Parameter("D1@草图1").SystemValue = (item.Length - 4m) / 1000m;
                 swPart.Parameter("D2@草图1").SystemValue = ((item.Deepth - 800m - 720m) / 2m - 3m + 226m) / 1000m;
                 swPart.Parameter("D1@草图6").SystemValue = ((item.Deepth - 800m - 720m) / 2m - 3m + 1m) / 1000m;
-                swPart.Parameter("D3@草图25").SystemValue = midRoofTopHoleDis - 100m / 1000m;
+                swPart.Parameter("D3@草图25").SystemValue = midRoofTopHoleDis;
                 if((item.Deepth - 800m - 720m) / 2m<150m)
                     swPart.Parameter("D2@草图26").SystemValue = ((item.Deepth - 800m - 720m) / 2m + 55m) / 3000m-30m/1000m;
                 else
@@ -996,7 +994,7 @@ public class UVIMT555AutoDrawing : IAutoDrawing
                 swPart.Parameter("D1@草图1").SystemValue = (item.Length - 4m) / 1000m;
                 swPart.Parameter("D2@草图1").SystemValue = ((item.Deepth - 800m - 720m) / 2m - 3m + 226m) / 1000m;
                 swPart.Parameter("D1@草图6").SystemValue = ((item.Deepth - 800m - 720m) / 2m - 3m + 1m) / 1000m;
-                swPart.Parameter("D3@草图25").SystemValue = midRoofTopHoleDis - 100m / 1000m;
+                swPart.Parameter("D3@草图25").SystemValue = midRoofTopHoleDis;
                 if ((item.Deepth - 800m - 720m) / 2m < 150m)
                     swPart.Parameter("D2@草图26").SystemValue = ((item.Deepth - 800m - 720m) / 2m + 55m) / 3000m - 30m / 1000m;
                 else

@@ -109,6 +109,8 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0006-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
                 swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Length +50m) / 1000m;
+                swFeat = swComp.FeatureByName("ANSUL");
+                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("ABD");
                 swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 if (item.Length == 400m || item.Length == 500m)
@@ -144,7 +146,12 @@ namespace SolidWorksHelper
                     swFeat = swComp.FeatureByName("ABD-300");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 }
-
+                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0008-1"));
+                swFeat = swComp.FeatureByName("ANSUL");
+                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0009-1"));
+                swFeat = swComp.FeatureByName("ANSUL");
+                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
                 swModel.Save();//保存，很耗时间
