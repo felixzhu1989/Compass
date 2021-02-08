@@ -1073,7 +1073,7 @@ namespace SolidWorksHelper
                     swPart.Parameter("D1@草图1").SystemValue = item.Deepth / 1000m;
                     swPart.Parameter("D4@草图1").SystemValue = 150m / 1000m;
                     swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
-                    swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo;
+                    swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo-1;//与排风腔干涉，减少一个孔
 
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0013-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
@@ -1088,7 +1088,7 @@ namespace SolidWorksHelper
                     swPart.Parameter("D1@草图1").SystemValue = item.Deepth / 1000m;
                     swPart.Parameter("D4@草图1").SystemValue = 150m / 1000m;
                     swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
-                    swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo;
+                    swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo-1;//与排风腔干涉，减少一个孔
 
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0015-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
