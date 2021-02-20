@@ -573,9 +573,9 @@ namespace SolidWorksHelper
                     swPart.Parameter("D1@Aufsatz-Linear austragen1").SystemValue = item.Length / 1000m;
                     swPart.Parameter("D1@LPattern1").SystemValue = bfSupportNo;
                     swPart.Parameter("D3@LPattern1").SystemValue = bfSupportDis;
-                    swFeat = swComp.FeatureByName("Cut-Extrude5");
-                    if (item.LightType == "HCL") swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                    else swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    //swFeat = swComp.FeatureByName("Cut-Extrude5");
+                    //if (item.LightType == "HCL") swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    //else swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("FC RAIL");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("LIGHT T8");
