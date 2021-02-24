@@ -352,6 +352,7 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("UVCABLE");
                 swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+
                 //----------排风腔前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0144-1"));
                 swPart = swComp.GetModelDoc2();

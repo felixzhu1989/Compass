@@ -138,3 +138,4 @@ E:\Compass\Compass\obj\Debug\Compass.FrmUVF555400.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmKVF555400.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmUWF555400.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmKVF400.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmKVI400.resources

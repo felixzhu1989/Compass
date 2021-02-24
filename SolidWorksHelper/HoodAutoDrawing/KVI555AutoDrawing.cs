@@ -13,7 +13,7 @@ using SolidWorks.Interop.swconst;
 
 namespace SolidWorksHelper
 {
-    class KVI555AutoDrawing : IAutoDrawing
+    public class KVI555AutoDrawing : IAutoDrawing
     {
         KVI555Service objKvi555Service = new KVI555Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
