@@ -98,5 +98,16 @@ select * from SubAssy
 
 select distinct ProjectTracking.ProjectId,ProjectTrackingId,ODPNo,ProjectTracking.ProjectStatusId,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName,KickOffStatus,UserAccount from ProjectTracking inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId inner join Users on Projects.UserId=Users.UserId left join (select ProjectId,max(DrReleaseTarget)as DrReleaseTarget from DrawingPlan group by ProjectId) as PlanList on PlanList.ProjectId=Projects.ProjectId order by ShippingTime desc
 
+--更改天花烟罩cutlist零件数量
+select * from CeilingCutList where SubAssyId=308
 
+update CeilingCutList set Quantity=2 where CutListId=11719
+update CeilingCutList set Quantity=4 where CutListId=11724
+update CeilingCutList set Quantity=2 where CutListId=11734
+update CeilingCutList set Quantity=6 where CutListId=11730
 
+--更改天花烟罩PackingList零件材质 Z铝灯板(Type Z Passive panel)
+select * from CeilingPackingList where ProjectId=166
+update CeilingPackingList set PartDescription='W灯板(Type W Passive panel)' where ProjectId=166 and PartDescription='W铝灯板(Type W Passive panel)'
+update CeilingPackingList set PartDescription='Z灯板(Type Z Passive panel)' where ProjectId=166 and PartDescription='Z铝灯板(Type Z Passive panel)'
+update CeilingPackingList set Material='SUS304' where ProjectId=166 and Material='AL'
