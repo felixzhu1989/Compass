@@ -147,10 +147,10 @@ namespace SolidWorksHelper
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 }
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0008-1"));
-                swFeat = swComp.FeatureByName("ANSUL");
+                swFeat = swComp.FeatureByName("ANDTEC");
                 swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0009-1"));
-                swFeat = swComp.FeatureByName("ANSUL");
+                swFeat = swComp.FeatureByName("ANDTEC");
                 swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
