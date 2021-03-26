@@ -34,10 +34,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cobZPanelNo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtWidth = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.txtWidth = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +92,6 @@
             this.cobZPanelNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cobZPanelNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cobZPanelNo.BackColor = System.Drawing.Color.Azure;
-            this.cobZPanelNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobZPanelNo.FormattingEnabled = true;
             this.cobZPanelNo.Location = new System.Drawing.Point(76, 56);
             this.cobZPanelNo.Name = "cobZPanelNo";
@@ -107,6 +106,23 @@
             this.label4.Size = new System.Drawing.Size(56, 19);
             this.label4.TabIndex = 2;
             this.label4.Text = "Z板数量";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(191, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 19);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "W板宽度";
+            // 
+            // txtWidth
+            // 
+            this.txtWidth.BackColor = System.Drawing.Color.Azure;
+            this.txtWidth.Location = new System.Drawing.Point(263, 25);
+            this.txtWidth.Name = "txtWidth";
+            this.txtWidth.Size = new System.Drawing.Size(100, 25);
+            this.txtWidth.TabIndex = 1;
             // 
             // label1
             // 
@@ -124,23 +140,6 @@
             this.txtLength.Name = "txtLength";
             this.txtLength.Size = new System.Drawing.Size(100, 25);
             this.txtLength.TabIndex = 0;
-            // 
-            // txtWidth
-            // 
-            this.txtWidth.BackColor = System.Drawing.Color.Azure;
-            this.txtWidth.Location = new System.Drawing.Point(263, 25);
-            this.txtWidth.Name = "txtWidth";
-            this.txtWidth.Size = new System.Drawing.Size(100, 25);
-            this.txtWidth.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(191, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 19);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "W板宽度";
             // 
             // FrmLPZ
             // 

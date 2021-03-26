@@ -44,6 +44,7 @@ namespace Compass
             cobSidePanel.Items.Add("RIGHT");
             cobSidePanel.Items.Add("BOTH");
             cobSidePanel.Items.Add("MIDDLE");
+            cobSidePanel.SelectedIndex = 2;
             //水洗烟罩
             cobWBeam.Items.Add("YES");
             cobWBeam.Items.Add("NO");
