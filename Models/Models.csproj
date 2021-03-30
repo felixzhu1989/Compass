@@ -137,6 +137,8 @@
     <Compile Include="Hood\KVF555400.cs" />
     <Compile Include="Hood\KVF400.cs" />
     <Compile Include="Hood\KVI400.cs" />
+    <Compile Include="Hood\KVF450400.cs" />
+    <Compile Include="Hood\KVI450300.cs" />
     <Compile Include="ModuleTree.cs" />
     <Compile Include="Ceiling\NOCJ300.cs" />
     <Compile Include="Ceiling\NOCJ340.cs" />
@@ -178,6 +180,7 @@
     <Compile Include="Hood\UVIMT555.cs" />
     <Compile Include="Hood\UVF555400.cs" />
     <Compile Include="Hood\UWF555400.cs" />
+    <Compile Include="Hood\UVI450300.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

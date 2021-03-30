@@ -51,6 +51,7 @@ namespace SolidWorksHelper
             Component2 swComp;
             Feature swFeat = default(Feature);
             object configNames = null;
+            EditPart swEdit = new EditPart();
 
             //打开Pack后的模型
             swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
@@ -1062,25 +1063,21 @@ namespace SolidWorksHelper
                     //LEFT
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0055-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D1@草图1").SystemValue = item.Deepth / 1000m;
-                    swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
-                    swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo;
+                    swEdit.FNHS0055(swComp, item.Deepth, 450m, 400m, sidePanelSideCjNo, sidePanelDownCjNo);
+
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0056-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D1@Sketch1").SystemValue = item.Deepth / 1000m;
+                    swEdit.FNHS0056(swComp, item.Deepth, 450m, 400m);
+
                     //RIGHT
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0057-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D1@草图1").SystemValue = item.Deepth / 1000m;
-                    swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
-                    swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo;
+                    swEdit.FNHS0057(swComp, item.Deepth, 450m, 400m, sidePanelSideCjNo, sidePanelDownCjNo);
+
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0058-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D1@Sketch1").SystemValue = item.Deepth / 1000m;
+                    swEdit.FNHS0058(swComp, item.Deepth, 450m, 400m);
+
                     if (item.WaterCollection == "YES")
                     {
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0005-1"));
@@ -1115,14 +1112,12 @@ namespace SolidWorksHelper
                     //LEFT
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0055-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D1@草图1").SystemValue = item.Deepth / 1000m;
-                    swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
-                    swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo;
+                    swEdit.FNHS0055(swComp, item.Deepth, 450m, 400m, sidePanelSideCjNo, sidePanelDownCjNo);
+
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0056-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D1@Sketch1").SystemValue = item.Deepth / 1000m;
+                    swEdit.FNHS0056(swComp, item.Deepth, 450m, 400m);
+
                     if (item.WaterCollection == "YES")
                     {
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0006-1"));
@@ -1150,14 +1145,12 @@ namespace SolidWorksHelper
                                                //RIGHT
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0057-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D1@草图1").SystemValue = item.Deepth / 1000m;
-                    swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
-                    swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo;
+                    swEdit.FNHS0057(swComp, item.Deepth, 450m, 400m, sidePanelSideCjNo, sidePanelDownCjNo);
+
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0058-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D1@Sketch1").SystemValue = item.Deepth / 1000m;
+                    swEdit.FNHS0058(swComp, item.Deepth, 450m, 400m);
+
                     if (item.WaterCollection == "YES")
                     {
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0005-1"));

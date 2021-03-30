@@ -107,7 +107,11 @@ update CeilingCutList set Quantity=2 where CutListId=11734
 update CeilingCutList set Quantity=6 where CutListId=11730
 
 --¸ü¸ÄÌì»¨ÑÌÕÖPackingListÁã¼þ²ÄÖÊ ZÂÁµÆ°å(Type Z Passive panel)
-select * from CeilingPackingList where ProjectId=166
-update CeilingPackingList set PartDescription='WµÆ°å(Type W Passive panel)' where ProjectId=166 and PartDescription='WÂÁµÆ°å(Type W Passive panel)'
-update CeilingPackingList set PartDescription='ZµÆ°å(Type Z Passive panel)' where ProjectId=166 and PartDescription='ZÂÁµÆ°å(Type Z Passive panel)'
-update CeilingPackingList set Material='SUS304' where ProjectId=166 and Material='AL'
+select * from CeilingPackingList where ProjectId=167
+update CeilingPackingList set PartDescription='WµÆ°å(Type W Passive panel)' where ProjectId=167 and PartDescription='WÂÁµÆ°å(Type W Passive panel)'
+update CeilingPackingList set PartDescription='ZµÆ°å(Type Z Passive panel)' where ProjectId=167 and PartDescription='ZÂÁµÆ°å(Type Z Passive panel)'
+update CeilingPackingList set Material='SUS304' where ProjectId=167 and Material='AL'
+
+
+select * from UVI450300
+SELECT * from kvi450300

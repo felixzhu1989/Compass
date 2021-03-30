@@ -134,6 +134,8 @@
     <Compile Include="HoodService\KVF555400Service.cs" />
     <Compile Include="HoodService\KVF400Service.cs" />
     <Compile Include="HoodService\KVI400Service.cs" />
+    <Compile Include="HoodService\KVF450400Service.cs" />
+    <Compile Include="HoodService\KVI450300Service.cs" />
     <Compile Include="ModuleTreeService.cs" />
     <Compile Include="CeilingService\NOCJ300Service.cs" />
     <Compile Include="CeilingService\NOCJ340Service.cs" />
@@ -175,6 +177,7 @@
     <Compile Include="HoodService\UVIMT555Service.cs" />
     <Compile Include="HoodService\UVF555400Service.cs" />
     <Compile Include="HoodService\UWF555400Service.cs" />
+    <Compile Include="HoodService\UVI450300Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
