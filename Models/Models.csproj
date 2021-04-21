@@ -139,6 +139,7 @@
     <Compile Include="Hood\KVI400.cs" />
     <Compile Include="Hood\KVF450400.cs" />
     <Compile Include="Hood\KVI450300.cs" />
+    <Compile Include="Hood\KVV555.cs" />
     <Compile Include="ModuleTree.cs" />
     <Compile Include="Ceiling\NOCJ300.cs" />
     <Compile Include="Ceiling\NOCJ340.cs" />

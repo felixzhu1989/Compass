@@ -135,10 +135,16 @@
     <Compile Include="CeilingForm\FrmLFUMC250SUSDXF.Designer.cs">
       <DependentUpon>FrmLFUMC250SUSDXF.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmKVI450300.cs">
+    <Compile Include="HoodForm\FrmKVV555.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmKVI450300.Designer.cs">
+    <Compile Include="HoodForm\FrmKVV555.Designer.cs">
+      <DependentUpon>FrmKVV555.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HoodForm\FrmKVI450300.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoodForm\FrmKVI450300.Designer.cs">
       <DependentUpon>FrmKVI450300.cs</DependentUpon>
     </Compile>
     <Compile Include="HoodForm\FrmUVI450300.cs">
@@ -951,8 +957,11 @@
     <EmbeddedResource Include="CeilingForm\FrmNOCJ330.resx">
       <DependentUpon>FrmNOCJ330.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmKVI450300.resx">
+    <EmbeddedResource Include="HoodForm\FrmKVI450300.resx">
       <DependentUpon>FrmKVI450300.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoodForm\FrmKVV555.resx">
+      <DependentUpon>FrmKVV555.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmUVI450300.resx">
       <DependentUpon>FrmUVI450300.cs</DependentUpon>

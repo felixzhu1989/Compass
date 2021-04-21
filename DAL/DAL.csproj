@@ -136,6 +136,7 @@
     <Compile Include="HoodService\KVI400Service.cs" />
     <Compile Include="HoodService\KVF450400Service.cs" />
     <Compile Include="HoodService\KVI450300Service.cs" />
+    <Compile Include="HoodService\KVV555Service.cs" />
     <Compile Include="ModuleTreeService.cs" />
     <Compile Include="CeilingService\NOCJ300Service.cs" />
     <Compile Include="CeilingService\NOCJ340Service.cs" />
