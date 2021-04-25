@@ -1013,7 +1013,22 @@ GO
 alter table UWF555400 add constraint df_Height_UWF555400 default ('555') for Height
 GO
 
-
+--HWUWF555400，华为1.2mm板材
+if exists (select * from sysobjects where name='pk_HWUWF555400Id')
+    alter table HWUWF555400 drop constraint pk_HWUWF555400Id
+GO
+alter table HWUWF555400 add constraint pk_HWUWF555400Id primary key (HWUWF555400Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_HWUWF555400')
+    alter table HWUWF555400 drop constraint fk_ModuleTreeId_HWUWF555400
+GO
+alter table HWUWF555400 add constraint fk_ModuleTreeId_HWUWF555400 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_HWUWF555400')
+    alter table HWUWF555400 drop constraint df_Height_HWUWF555400
+GO
+alter table HWUWF555400 add constraint df_Height_HWUWF555400 default ('555') for Height
+GO
 
 
 --UWI555

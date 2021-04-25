@@ -255,6 +255,22 @@ namespace SolidWorksHelper
                 swPart.Parameter("D1@Sketch1").SystemValue = condensatePanelAngle;
                 swPart.Parameter("D2@Sketch1").SystemValue = condensatePanelAngle;
                 swPart.Parameter("D3@Sketch1").SystemValue = condensatePanelHeight / 1000m;
+                //1.5m以下，两个把手HANDER2，其他HANDER4
+                if (item.Length > 1500m)
+                {
+                    swFeat = swComp.FeatureByName("HANDER2");
+                    swFeat.SetSuppression2(0, 2, configNames);//参数1：1解压，0压缩 
+                    swFeat = swComp.FeatureByName("HANDER4");
+                    swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
+                }
+                else
+                {
+                    swFeat = swComp.FeatureByName("HANDER2");
+                    swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩 
+                    swFeat = swComp.FeatureByName("HANDER4");
+                    swFeat.SetSuppression2(0, 2, configNames);//参数1：1解压，0压缩
+                }
+                
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0066-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
@@ -262,6 +278,21 @@ namespace SolidWorksHelper
                 swPart.Parameter("D1@Sketch1").SystemValue = condensatePanelAngle;
                 swPart.Parameter("D2@Sketch1").SystemValue = condensatePanelAngle;
                 swPart.Parameter("D3@Sketch1").SystemValue = condensatePanelHeight / 1000m;
+                //1.5m以下，两个把手HANDER2，其他HANDER4
+                if (item.Length > 1500m)
+                {
+                    swFeat = swComp.FeatureByName("HANDER2");
+                    swFeat.SetSuppression2(0, 2, configNames);//参数1：1解压，0压缩 
+                    swFeat = swComp.FeatureByName("HANDER4");
+                    swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
+                }
+                else
+                {
+                    swFeat = swComp.FeatureByName("HANDER2");
+                    swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩 
+                    swFeat = swComp.FeatureByName("HANDER4");
+                    swFeat.SetSuppression2(0, 2, configNames);//参数1：1解压，0压缩
+                }
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0067-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
