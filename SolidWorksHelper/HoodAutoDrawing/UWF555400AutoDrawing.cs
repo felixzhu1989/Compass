@@ -1439,7 +1439,5 @@ namespace SolidWorksHelper
                 swApp.CommandInProgress = false; //及时关闭外部命令调用，否则影响SolidWorks的使用
             }
         }
-
-
     }
 }

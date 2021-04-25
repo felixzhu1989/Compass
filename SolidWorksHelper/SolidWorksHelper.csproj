@@ -89,6 +89,7 @@
     <Compile Include="CommonFunc.cs" />
     <Compile Include="ExprotDxf.cs" />
     <Compile Include="HoodAutoDrawing\HOODBCJAutoDrawing.cs" />
+    <Compile Include="HoodAutoDrawing\HWUWF555400AutoDrawing.cs" />
     <Compile Include="IAutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\KVI555AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\KWI555AutoDrawing.cs" />

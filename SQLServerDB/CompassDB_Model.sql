@@ -960,7 +960,7 @@ create table HWUWF555400
     LEDSpotDis decimal(6,2),
     LightType varchar(7),
 	LightYDis decimal(6,2),
-    UVType varchar(5),
+    UVType varchar(6),
     ANSUL varchar(3),
     ANSide varchar(5),
     ANDetectorEnd varchar(5),

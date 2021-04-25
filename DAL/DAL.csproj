@@ -85,6 +85,7 @@
     <Compile Include="DrawingPlanService.cs" />
     <Compile Include="DrawingService.cs" />
     <Compile Include="HoodCutListService.cs" />
+    <Compile Include="HoodService\HWUWF555400Service.cs" />
     <Compile Include="IModelService.cs" />
     <Compile Include="CeilingService\INFService.cs" />
     <Compile Include="JobCardService.cs" />
