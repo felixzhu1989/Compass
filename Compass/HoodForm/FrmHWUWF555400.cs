@@ -631,8 +631,20 @@ namespace Compass
         private void txtLength_TextChanged(object sender, EventArgs e)
         {
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || txtLength.Text.Trim().Length == 0) return;
-            txtExRightDis.Text = (Convert.ToDecimal(txtLength.Text.Trim()) / 2).ToString();
+            txtExRightDis.Text = (Convert.ToDecimal(txtLength.Text.Trim()) / 2m).ToString();
         }
+
+        /// <summary>
+        /// 填写深度信息，同步更新灯具距离前端距离
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtDeepth_TextChanged(object sender, EventArgs e)
+        {
+            if (!DataValidate.IsDecimal(txtDeepth.Text.Trim()) || txtDeepth.Text.Trim().Length == 0) return;
+            txtLightYDis.Text = (360m+(Convert.ToDecimal(txtDeepth.Text.Trim())-534m-360m) / 2m).ToString();
+        }
+
         /// <summary>
         /// 动态选择下喷距离
         /// </summary>
@@ -898,5 +910,6 @@ namespace Compass
                 txtANDetectorDis5.Visible = true;
             }
         }
+        
     }
 }

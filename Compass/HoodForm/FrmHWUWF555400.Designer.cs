@@ -124,6 +124,7 @@
             this.lblIRDis2 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.txtLightYDis = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.grbLEDSpot.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -696,6 +697,7 @@
             this.txtDeepth.Name = "txtDeepth";
             this.txtDeepth.Size = new System.Drawing.Size(100, 25);
             this.txtDeepth.TabIndex = 1;
+            this.txtDeepth.TextChanged += new System.EventHandler(this.txtDeepth_TextChanged);
             // 
             // txtLength
             // 
@@ -1139,10 +1141,21 @@
             this.txtLightYDis.Size = new System.Drawing.Size(100, 25);
             this.txtLightYDis.TabIndex = 4;
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label21.Location = new System.Drawing.Point(972, 39);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(178, 19);
+            this.label21.TabIndex = 2;
+            this.label21.Text = "默认计算居中，不居中请填写";
+            // 
             // FrmHWUWF555400
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.txtLightYDis);
             this.Controls.Add(this.cobANSUL);
@@ -1282,5 +1295,6 @@
         private System.Windows.Forms.Label lblIRDis2;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtLightYDis;
+        private System.Windows.Forms.Label label21;
     }
 }
