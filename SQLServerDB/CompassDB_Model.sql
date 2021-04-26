@@ -2052,9 +2052,13 @@ create table LPZ
     LPZId int identity(1,1),
     ModuleTreeId int,
     Length decimal(6,2),
-	Width decimal(6,2),
-	ZPanelNo int
+	Width decimal(6,2),	
+	ZPanelNo int,
+	LightType varchar(6)
 )
+select * from LPZ
+
+
 --LKA258
 if exists (select * from sysobjects where name='LKA258')
 drop table LKA258

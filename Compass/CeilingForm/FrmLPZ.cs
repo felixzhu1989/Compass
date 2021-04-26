@@ -61,6 +61,10 @@ namespace Compass
             cobZPanelNo.Items.Add("18");
             cobZPanelNo.Items.Add("19");
             cobZPanelNo.Items.Add("20");
+            //灯具类型
+            cobLightType.Items.Add("LED60");
+            cobLightType.Items.Add("NO");
+            cobLightType.SelectedIndex = 1;
         }
         /// <summary>
         /// 填数据
@@ -73,6 +77,8 @@ namespace Compass
             
             txtLength.Text = objLPZ.Length.ToString();
             txtWidth.Text = objLPZ.Width.ToString();
+
+            cobLightType.Text = objLPZ.LightType;
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -98,7 +104,12 @@ namespace Compass
                 cobZPanelNo.Focus();
                 return;
             }
-            
+            if (cobLightType.SelectedIndex == -1)
+            {
+                MessageBox.Show("请选择是否带灯具", "提示信息");
+                cobLightType.Focus();
+                return;
+            }
             //封装对象
             LPZ objLPZ = new LPZ()
             {
@@ -106,7 +117,8 @@ namespace Compass
 
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),
                 Width = Convert.ToDecimal(txtWidth.Text.Trim()),
-                ZPanelNo = Convert.ToInt32(cobZPanelNo.Text.Trim())
+                ZPanelNo = Convert.ToInt32(cobZPanelNo.Text.Trim()),
+                LightType = cobLightType.Text
             };
             //提交修改
             try

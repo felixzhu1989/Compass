@@ -140,7 +140,7 @@ namespace Compass
             }
             if (cobLightType.SelectedIndex == -1)
             {
-                MessageBox.Show("请选择烟罩是否带UV", "提示信息");
+                MessageBox.Show("请选择是否带灯具", "提示信息");
                 cobLightType.Focus();
                 return;
             }

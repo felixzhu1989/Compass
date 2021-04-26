@@ -166,7 +166,6 @@
             this.cobMPanelNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cobMPanelNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cobMPanelNo.BackColor = System.Drawing.Color.Azure;
-            this.cobMPanelNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobMPanelNo.FormattingEnabled = true;
             this.cobMPanelNo.Location = new System.Drawing.Point(68, 56);
             this.cobMPanelNo.Name = "cobMPanelNo";

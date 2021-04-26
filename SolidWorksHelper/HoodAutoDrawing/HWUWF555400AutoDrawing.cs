@@ -201,10 +201,10 @@ public class HWUWF555400AutoDrawing : IAutoDrawing
                     swModel.Parameter("D1@LocalLPattern3").SystemValue = item.SuNo; //D1阵列数量,D3阵列距离
                     swModel.Parameter("D3@LocalLPattern3").SystemValue = item.SuDis / 1000m; //D1阵列数量,D3阵列距离
                 }
-                //----------?新风前面板中间加强筋----------
-                //swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0030-1"));
-                //if (item.Length > 1599m) swComp.SetSuppression2(2); //2解压缩，0压缩
-                //else swComp.SetSuppression2(0); //2解压缩，0压缩
+                //----------新风前面板中间加强筋----------
+                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0105-1"));
+                if (item.Length > 1599m) swComp.SetSuppression2(2); //2解压缩，0压缩
+                else swComp.SetSuppression2(0); //2解压缩，0压缩
 
 
 

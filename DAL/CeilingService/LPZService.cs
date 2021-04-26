@@ -16,14 +16,15 @@ namespace DAL
             LPZ objModel = (LPZ)model;
             //编写带参数的SQL语句
             StringBuilder sqlBuilder = new StringBuilder();
-            sqlBuilder.Append("Update LPZ set Length=@Length,Width=@Width,ZPanelNo=@ZPanelNo where LPZId=@LPZId");
+            sqlBuilder.Append("Update LPZ set Length=@Length,Width=@Width,ZPanelNo=@ZPanelNo,LightType=@LightType where LPZId=@LPZId");
             //定义参数数组
             SqlParameter[] param = new SqlParameter[]
             {
                 new SqlParameter("@Length",objModel.Length),
                 new SqlParameter("@Width",objModel.Width),
                 new SqlParameter("@ZPanelNo",objModel.ZPanelNo),
-                new SqlParameter("@LPZId",objModel.LPZId)
+                new SqlParameter("@LPZId",objModel.LPZId),
+                new SqlParameter("@LightType",objModel.LightType)
             };
             try
             {
@@ -41,7 +42,7 @@ namespace DAL
 
         public DataSet GetModelByDataSet(string projectId)
         {
-            string sql = "select LPZId,LPZ.ModuleTreeId,Item,Module,Length,Width,ZPanelNo from LPZ";
+            string sql = "select LPZId,LPZ.ModuleTreeId,Item,Module,Length,Width,ZPanelNo,LightType from LPZ";
             sql += " inner join ModuleTree on LPZ.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
             sql += string.Format(" where ProjectId={0}", projectId);
@@ -62,7 +63,7 @@ namespace DAL
         public IModel GetModelByWhereSql(string whereSql)
         {
             string sql =
-                "select LPZId,ModuleTreeId,Length,Width,ZPanelNo from LPZ";
+                "select LPZId,ModuleTreeId,Length,Width,ZPanelNo,LightType from LPZ";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             LPZ objModel = null;
@@ -75,7 +76,8 @@ namespace DAL
                     //最好不要用=null去判断，提示类型转换错误
                     Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Length"]),
                     Width = objReader["Width"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Width"]),
-                    ZPanelNo = objReader["ZPanelNo"].ToString().Length == 0 ? 0 : Convert.ToInt32(objReader["ZPanelNo"])
+                    ZPanelNo = objReader["ZPanelNo"].ToString().Length == 0 ? 0 : Convert.ToInt32(objReader["ZPanelNo"]),
+                    LightType = objReader["LightType"].ToString().Length == 0 ? "" : objReader["LightType"].ToString()
 
                 };
             }

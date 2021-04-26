@@ -15,5 +15,6 @@ namespace Models
         public decimal Length { get; set; }
         public decimal Width { get; set; }
         public int ZPanelNo { get; set; }
+        public string LightType { get; set; }//LED60
     }
 }
