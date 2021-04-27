@@ -647,6 +647,7 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0037-1"));
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 5m) / 1000m;
+
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0041-1"));
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D1@Sketch1").SystemValue = (item.Length - 5m) / 1000m;
@@ -671,6 +672,7 @@ namespace SolidWorksHelper
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     swPart.Parameter("D10@Sketch4").SystemValue = (item.ExRightDis - 2.5m) / 1000m;
                 }
+
                 //----------灯具----------
                 //日光灯
                 if (item.LightType == "FSLONG")
