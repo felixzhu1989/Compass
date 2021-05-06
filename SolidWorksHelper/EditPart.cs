@@ -46,12 +46,25 @@ namespace SolidWorksHelper
             {
                 swFeat = swComp.FeatureByName("F555");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("F450");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("F400");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            else if (height == 450m)
+            {
+                swFeat = swComp.FeatureByName("F555");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("F450");
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("F400");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
             }
             else if (height == 400m)
             {
                 swFeat = swComp.FeatureByName("F555");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("F450");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("F400");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
@@ -59,6 +72,8 @@ namespace SolidWorksHelper
             else
             {
                 swFeat = swComp.FeatureByName("F555");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("F450");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("F400");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
@@ -96,12 +111,25 @@ namespace SolidWorksHelper
             {
                 swFeat = swComp.FeatureByName("F555");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("F450");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("F400");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            }
+            else if (height == 450m)
+            {
+                swFeat = swComp.FeatureByName("F555");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("F450");
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("F400");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
             }
             else if (height == 400m)
             {
                 swFeat = swComp.FeatureByName("F555");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("F450");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("F400");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
@@ -109,6 +137,8 @@ namespace SolidWorksHelper
             else
             {
                 swFeat = swComp.FeatureByName("F555");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("F450");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("F400");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩

@@ -853,6 +853,25 @@ if exists (select * from sysobjects where name='df_Height_UVF555')
 GO
 alter table UVF555 add constraint df_Height_UVF555 default ('555') for Height
 GO
+
+--UVF450
+if exists (select * from sysobjects where name='pk_UVF450Id')
+    alter table UVF450 drop constraint pk_UVF450Id
+GO
+alter table UVF450 add constraint pk_UVF450Id primary key (UVF450Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_UVF450')
+    alter table UVF450 drop constraint fk_ModuleTreeId_UVF450
+GO
+alter table UVF450 add constraint fk_ModuleTreeId_UVF450 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_UVF450')
+    alter table UVF450 drop constraint df_Height_UVF450
+GO
+alter table UVF450 add constraint df_Height_UVF450 default ('450') for Height
+GO
+
+
 --UVF555400
 if exists (select * from sysobjects where name='pk_UVF555400Id')
     alter table UVF555400 drop constraint pk_UVF555400Id

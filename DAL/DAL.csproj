@@ -180,6 +180,7 @@
     <Compile Include="HoodService\UVF555400Service.cs" />
     <Compile Include="HoodService\UWF555400Service.cs" />
     <Compile Include="HoodService\UVI450300Service.cs" />
+    <Compile Include="HoodService\UVF450Service.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

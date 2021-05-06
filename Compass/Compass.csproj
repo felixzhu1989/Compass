@@ -64,12 +64,12 @@
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="SolidWorks.Interop.sldworks">
-      <HintPath>C:\Program Files\SOLIDWORKS Corp\SOLIDWORKS (2)\api\redist\SolidWorks.Interop.sldworks.dll</HintPath>
+    <Reference Include="SolidWorks.Interop.sldworks, Version=27.3.0.52, Culture=neutral, PublicKeyToken=7c4797c3e4eeac03, processorArchitecture=MSIL">
+      <HintPath>..\packages\SolidWorks.Interop.sldworks.27.3.0\lib\SolidWorks.Interop.sldworks.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="SolidWorks.Interop.swconst">
-      <HintPath>C:\Program Files\SOLIDWORKS Corp\SOLIDWORKS (2)\api\redist\SolidWorks.Interop.swconst.dll</HintPath>
+    <Reference Include="SolidWorks.Interop.swconst, Version=27.3.0.52, Culture=neutral, PublicKeyToken=19f43e188e4269d8, processorArchitecture=MSIL">
+      <HintPath>..\packages\SolidWorks.Interop.swconst.27.3.0\lib\SolidWorks.Interop.swconst.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
@@ -134,6 +134,12 @@
     </Compile>
     <Compile Include="CeilingForm\FrmLFUMC250SUSDXF.Designer.cs">
       <DependentUpon>FrmLFUMC250SUSDXF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HoodForm\FrmUVF450.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoodForm\FrmUVF450.Designer.cs">
+      <DependentUpon>FrmUVF450.cs</DependentUpon>
     </Compile>
     <Compile Include="HoodForm\FrmHWUWF555400.cs">
       <SubType>Form</SubType>
@@ -971,6 +977,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmKVV555.resx">
       <DependentUpon>FrmKVV555.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoodForm\FrmUVF450.resx">
+      <DependentUpon>FrmUVF450.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmUVI450300.resx">
       <DependentUpon>FrmUVI450300.cs</DependentUpon>
