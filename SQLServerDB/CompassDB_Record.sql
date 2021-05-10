@@ -115,3 +115,7 @@ update CeilingPackingList set Material='SUS304' where ProjectId=167 and Material
 
 select * from UVI450300
 SELECT * from kvi450300
+
+--更改天花烟罩发货清单区域
+select * from CeilingPackingList where ProjectId=215
+update CeilingPackingList set Location='Kitchen-A' where ProjectId=209

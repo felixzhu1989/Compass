@@ -123,7 +123,7 @@ namespace SolidWorksHelper
                     case "LEFT":
                         //重命名装配体内部
                         if (item.FCType == "KSA") compReName = "FNCE0108[BP-" + tree.Module + "]{" + (int)(item.FCSideLeft + fcNo * 2.5m) + "}";
-                        else compReName = "FNCE0108[BP-" + tree.Module + "]{" + (int)(item.FCSideLeft - 4m) + "}";
+                        else compReName = "FNCE0108[BP-" + tree.Module + "]{" + (int)(item.FCSideLeft - fcNo) + "}";
                         status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0108[BP-]{}-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
@@ -135,7 +135,7 @@ namespace SolidWorksHelper
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2(); //打开零件
                             if (item.FCType == "KSA") swPart.Parameter("D2@草图1").SystemValue = (item.FCSideLeft + fcNo * 2.5m) / 1000m;
-                            else swPart.Parameter("D2@草图1").SystemValue = (item.FCSideLeft - 4m) / 1000m;
+                            else swPart.Parameter("D2@草图1").SystemValue = (item.FCSideLeft - fcNo) / 1000m;
                         }
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0109[BP-]{}-1"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
@@ -145,7 +145,7 @@ namespace SolidWorksHelper
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         //重命名装配体内部
                         if (item.FCType == "KSA") compReName = "FNCE0109[BP-" + tree.Module + "]{" + (int)(item.FCSideRight + fcNo * 2.5m) + "}";
-                        else compReName = "FNCE0109[BP-" + tree.Module + "]{" + (int)(item.FCSideRight - 4m) + "}";
+                        else compReName = "FNCE0109[BP-" + tree.Module + "]{" + (int)(item.FCSideRight - fcNo) + "}";
                         status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0109[BP-]{}-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
@@ -157,13 +157,13 @@ namespace SolidWorksHelper
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2(); //打开零件
                             if (item.FCType == "KSA") swPart.Parameter("D2@草图1").SystemValue = (item.FCSideRight + fcNo * 2.5m) / 1000m;
-                            else swPart.Parameter("D2@草图1").SystemValue = (item.FCSideRight - 4m) / 1000m;
+                            else swPart.Parameter("D2@草图1").SystemValue = (item.FCSideRight - fcNo) / 1000m;
                         }
                         break;
                     case "BOTH":
                         //重命名装配体内部
                         if (item.FCType == "KSA") compReName = "FNCE0108[BP-" + tree.Module + ".1]{" + (int)(item.FCSideLeft + fcNo * 1.25m) + "}";
-                        else compReName = "FNCE0108[BP-" + tree.Module + "]{" + (int)(item.FCSideLeft - 2m) + "}";
+                        else compReName = "FNCE0108[BP-" + tree.Module + "]{" + (int)(item.FCSideLeft - fcNo / 2m) + "}";
                         status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0108[BP-]{}-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
@@ -175,11 +175,11 @@ namespace SolidWorksHelper
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2(); //打开零件
                             if (item.FCType == "KSA") swPart.Parameter("D2@草图1").SystemValue = (item.FCSideLeft + fcNo * 1.25m) / 1000m;
-                            else swPart.Parameter("D2@草图1").SystemValue = (item.FCSideLeft - 2m) / 1000m;
+                            else swPart.Parameter("D2@草图1").SystemValue = (item.FCSideLeft - fcNo / 2m) / 1000m;
                         }
                         //重命名装配体内部
                         if (item.FCType == "KSA") compReName = "FNCE0109[BP-" + tree.Module + ".2]{" + (int)(item.FCSideRight + fcNo * 1.25m) + "}";
-                        else compReName = "FNCE0109[BP-" + tree.Module + "]{" + (int)(item.FCSideRight - 2m) + "}";
+                        else compReName = "FNCE0109[BP-" + tree.Module + "]{" + (int)(item.FCSideRight - fcNo / 2m) + "}";
                         status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0109[BP-]{}-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
@@ -191,7 +191,7 @@ namespace SolidWorksHelper
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2(); //打开零件
                             if (item.FCType == "KSA") swPart.Parameter("D2@草图1").SystemValue = (item.FCSideRight + fcNo * 1.25m) / 1000m;
-                            else swPart.Parameter("D2@草图1").SystemValue = (item.FCSideRight - 2m) / 1000m;
+                            else swPart.Parameter("D2@草图1").SystemValue = (item.FCSideRight - fcNo / 2m) / 1000m;
                         }
                         break;
                     default:

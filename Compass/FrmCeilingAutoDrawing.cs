@@ -85,7 +85,7 @@ namespace Compass
                 this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
                 this.tvSubAssyTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tvSubAssyTree_KeyDown);
                 this.dgvCeilingPackingList.DoubleClick += new System.EventHandler(this.dgvCeilingPackingList_DoubleClick);
-                this.dgvCeilingPackingList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCeilingPackingList_KeyDown);
+                
             }
             else
             {
@@ -101,7 +101,6 @@ namespace Compass
                 this.dgvCutList.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
                 this.tvSubAssyTree.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.tvSubAssyTree_KeyDown);
                 this.dgvCeilingPackingList.DoubleClick -= new System.EventHandler(this.dgvCeilingPackingList_DoubleClick);
-                this.dgvCeilingPackingList.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvCeilingPackingList_KeyDown);
             }
             
 
@@ -629,6 +628,9 @@ namespace Compass
                 MessageBox.Show(ex.Message);
             }
         }
+        //解决按键重复响应
+        
+
         /// <summary>
         /// 按下删除键删除多行数据
         /// </summary>
@@ -638,6 +640,10 @@ namespace Compass
         {
             if (e.KeyValue == 46) tsmiDeleteCutList_Click(null, null);
         }
+        
+
+
+
         #endregion
 
         #region dgv添加行号
@@ -917,10 +923,7 @@ namespace Compass
         {
             tsmiEditCeilingPackingList_Click(null, null);
         }
-        private void dgvCeilingPackingList_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue == 46) tsmiDeleteCeilingPackingList_Click(null, null);
-        }
+        //按键重复响应？
         /// <summary>
         /// 执行修改按钮
         /// </summary>
