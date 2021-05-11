@@ -37,7 +37,7 @@ namespace Compass
             }
             cobQueryYear.SelectedIndex = 1;//默认定位当前年份
             //设置默认的显示条数
-            this.cobRecordList.SelectedIndex = 1;
+            this.cobRecordList.SelectedIndex = 0;
             //初始无数据禁用相关按钮,考虑用户体验
             this.btnToPage.Enabled = false;
             this.btnFirst.Enabled = false;

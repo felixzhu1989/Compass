@@ -32,6 +32,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvProjectTracking = new System.Windows.Forms.DataGridView();
+            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KickOffStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DrReleaseTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShippingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProdFinishActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeliverActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectTrackingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiQueryAllProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,17 +92,6 @@
             this.btnToPage = new System.Windows.Forms.Button();
             this.btnQueryByYear = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KickOffStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DrReleaseTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShippingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProdFinishActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeliverActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectTrackingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTracking)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.grbEditProjectTracking.SuspendLayout();
@@ -142,6 +142,95 @@
             this.dgvProjectTracking.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjectTracking_CellDoubleClick);
             this.dgvProjectTracking.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjectTracking_RowPostPaint);
             this.dgvProjectTracking.SelectionChanged += new System.EventHandler(this.dgvProjectTracking_SelectionChanged);
+            // 
+            // ODPNo
+            // 
+            this.ODPNo.DataPropertyName = "ODPNo";
+            this.ODPNo.HeaderText = "ODP";
+            this.ODPNo.Name = "ODPNo";
+            this.ODPNo.ReadOnly = true;
+            this.ODPNo.Width = 63;
+            // 
+            // ProjectStatusName
+            // 
+            this.ProjectStatusName.DataPropertyName = "ProjectStatusName";
+            this.ProjectStatusName.HeaderText = "项目状态";
+            this.ProjectStatusName.Name = "ProjectStatusName";
+            this.ProjectStatusName.ReadOnly = true;
+            this.ProjectStatusName.Width = 86;
+            // 
+            // ProjectName
+            // 
+            this.ProjectName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ProjectName.DataPropertyName = "ProjectName";
+            this.ProjectName.HeaderText = "项目名称";
+            this.ProjectName.Name = "ProjectName";
+            this.ProjectName.ReadOnly = true;
+            this.ProjectName.Width = 86;
+            // 
+            // KickOffStatus
+            // 
+            this.KickOffStatus.DataPropertyName = "KickOffStatus";
+            this.KickOffStatus.HeaderText = "Kick-Off";
+            this.KickOffStatus.Name = "KickOffStatus";
+            this.KickOffStatus.ReadOnly = true;
+            this.KickOffStatus.Width = 86;
+            // 
+            // DrReleaseTarget
+            // 
+            this.DrReleaseTarget.DataPropertyName = "DrReleaseTarget";
+            this.DrReleaseTarget.HeaderText = "计划发图";
+            this.DrReleaseTarget.Name = "DrReleaseTarget";
+            this.DrReleaseTarget.ReadOnly = true;
+            this.DrReleaseTarget.Width = 86;
+            // 
+            // Item
+            // 
+            this.Item.DataPropertyName = "DrReleaseActual";
+            this.Item.HeaderText = "实际发图";
+            this.Item.Name = "Item";
+            this.Item.ReadOnly = true;
+            this.Item.Width = 86;
+            // 
+            // ShippingTime
+            // 
+            this.ShippingTime.DataPropertyName = "ShippingTime";
+            this.ShippingTime.HeaderText = "计划完工";
+            this.ShippingTime.Name = "ShippingTime";
+            this.ShippingTime.ReadOnly = true;
+            this.ShippingTime.Width = 86;
+            // 
+            // ProdFinishActual
+            // 
+            this.ProdFinishActual.DataPropertyName = "ProdFinishActual";
+            this.ProdFinishActual.HeaderText = "实际完工";
+            this.ProdFinishActual.Name = "ProdFinishActual";
+            this.ProdFinishActual.ReadOnly = true;
+            this.ProdFinishActual.Width = 86;
+            // 
+            // DeliverActual
+            // 
+            this.DeliverActual.DataPropertyName = "DeliverActual";
+            this.DeliverActual.HeaderText = "实际发货";
+            this.DeliverActual.Name = "DeliverActual";
+            this.DeliverActual.ReadOnly = true;
+            this.DeliverActual.Width = 86;
+            // 
+            // ProjectTrackingId
+            // 
+            this.ProjectTrackingId.DataPropertyName = "ProjectTrackingId";
+            this.ProjectTrackingId.HeaderText = "ID";
+            this.ProjectTrackingId.Name = "ProjectTrackingId";
+            this.ProjectTrackingId.ReadOnly = true;
+            this.ProjectTrackingId.Width = 48;
+            // 
+            // UserAccount
+            // 
+            this.UserAccount.DataPropertyName = "UserAccount";
+            this.UserAccount.HeaderText = "制图";
+            this.UserAccount.Name = "UserAccount";
+            this.UserAccount.ReadOnly = true;
+            this.UserAccount.Width = 60;
             // 
             // contextMenuStrip
             // 
@@ -520,8 +609,6 @@
             // 
             this.cobRecordList.FormattingEnabled = true;
             this.cobRecordList.Items.AddRange(new object[] {
-            "15",
-            "30",
             "50",
             "100",
             "500",
@@ -671,95 +758,6 @@
             this.btnQueryByYear.Text = "查询";
             this.btnQueryByYear.UseVisualStyleBackColor = false;
             this.btnQueryByYear.Click += new System.EventHandler(this.btnQueryByYear_Click);
-            // 
-            // ODPNo
-            // 
-            this.ODPNo.DataPropertyName = "ODPNo";
-            this.ODPNo.HeaderText = "ODP";
-            this.ODPNo.Name = "ODPNo";
-            this.ODPNo.ReadOnly = true;
-            this.ODPNo.Width = 63;
-            // 
-            // ProjectStatusName
-            // 
-            this.ProjectStatusName.DataPropertyName = "ProjectStatusName";
-            this.ProjectStatusName.HeaderText = "项目状态";
-            this.ProjectStatusName.Name = "ProjectStatusName";
-            this.ProjectStatusName.ReadOnly = true;
-            this.ProjectStatusName.Width = 86;
-            // 
-            // ProjectName
-            // 
-            this.ProjectName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.ProjectName.DataPropertyName = "ProjectName";
-            this.ProjectName.HeaderText = "项目名称";
-            this.ProjectName.Name = "ProjectName";
-            this.ProjectName.ReadOnly = true;
-            this.ProjectName.Width = 86;
-            // 
-            // KickOffStatus
-            // 
-            this.KickOffStatus.DataPropertyName = "KickOffStatus";
-            this.KickOffStatus.HeaderText = "Kick-Off";
-            this.KickOffStatus.Name = "KickOffStatus";
-            this.KickOffStatus.ReadOnly = true;
-            this.KickOffStatus.Width = 86;
-            // 
-            // DrReleaseTarget
-            // 
-            this.DrReleaseTarget.DataPropertyName = "DrReleaseTarget";
-            this.DrReleaseTarget.HeaderText = "计划发图";
-            this.DrReleaseTarget.Name = "DrReleaseTarget";
-            this.DrReleaseTarget.ReadOnly = true;
-            this.DrReleaseTarget.Width = 86;
-            // 
-            // Item
-            // 
-            this.Item.DataPropertyName = "DrReleaseActual";
-            this.Item.HeaderText = "实际发图";
-            this.Item.Name = "Item";
-            this.Item.ReadOnly = true;
-            this.Item.Width = 86;
-            // 
-            // ShippingTime
-            // 
-            this.ShippingTime.DataPropertyName = "ShippingTime";
-            this.ShippingTime.HeaderText = "计划完工";
-            this.ShippingTime.Name = "ShippingTime";
-            this.ShippingTime.ReadOnly = true;
-            this.ShippingTime.Width = 86;
-            // 
-            // ProdFinishActual
-            // 
-            this.ProdFinishActual.DataPropertyName = "ProdFinishActual";
-            this.ProdFinishActual.HeaderText = "实际完工";
-            this.ProdFinishActual.Name = "ProdFinishActual";
-            this.ProdFinishActual.ReadOnly = true;
-            this.ProdFinishActual.Width = 86;
-            // 
-            // DeliverActual
-            // 
-            this.DeliverActual.DataPropertyName = "DeliverActual";
-            this.DeliverActual.HeaderText = "实际发货";
-            this.DeliverActual.Name = "DeliverActual";
-            this.DeliverActual.ReadOnly = true;
-            this.DeliverActual.Width = 86;
-            // 
-            // ProjectTrackingId
-            // 
-            this.ProjectTrackingId.DataPropertyName = "ProjectTrackingId";
-            this.ProjectTrackingId.HeaderText = "ID";
-            this.ProjectTrackingId.Name = "ProjectTrackingId";
-            this.ProjectTrackingId.ReadOnly = true;
-            this.ProjectTrackingId.Width = 48;
-            // 
-            // UserAccount
-            // 
-            this.UserAccount.DataPropertyName = "UserAccount";
-            this.UserAccount.HeaderText = "制图";
-            this.UserAccount.Name = "UserAccount";
-            this.UserAccount.ReadOnly = true;
-            this.UserAccount.Width = 60;
             // 
             // FrmProjectTracking
             // 

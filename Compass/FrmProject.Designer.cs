@@ -622,8 +622,6 @@
             // 
             this.cobRecordList.FormattingEnabled = true;
             this.cobRecordList.Items.AddRange(new object[] {
-            "15",
-            "30",
             "50",
             "100",
             "500",
