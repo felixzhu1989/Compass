@@ -17,6 +17,8 @@ namespace Compass
     {
         public ProjectTypeService objProjectTypeService=new ProjectTypeService();
         public RequirementService objRequirementService=new RequirementService();
+        private string sbu = Program.ObjCurrentUser.SBU;
+
         public FrmRequirements()
         {
             InitializeComponent();
@@ -55,7 +57,7 @@ namespace Compass
             txtODPNo.Text = objProject.ODPNo;
             txtProjectId.Text = objProject.ProjectId.ToString();
             GeneralRequirement objGeneralRequirement =
-                objRequirementService.GetGeneralRequirementByODPNo(objProject.ODPNo);
+                objRequirementService.GetGeneralRequirementByODPNo(objProject.ODPNo,sbu);
             if (objGeneralRequirement == null)
             {
                 btnGeneralRequirement.Text = "添加通用技术要求";
@@ -73,7 +75,7 @@ namespace Compass
             }
             btnSpecialRequirement.Text = "添加特殊技术要求";
             dgvSpecialRequirements.AutoGenerateColumns = false;
-            dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(objProject.ODPNo);
+            dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(objProject.ODPNo,sbu);
         }
         /// <summary>
         /// 设置权限
@@ -162,7 +164,7 @@ namespace Compass
                 //提交添加
                 try
                 {
-                    int GeneralRequirementId =objRequirementService.AddGeneralRequirement(objGeneralRequirement);
+                    int GeneralRequirementId =objRequirementService.AddGeneralRequirement(objGeneralRequirement,sbu);
                     if (GeneralRequirementId > 1)
                     {
                         //提示添加成功
@@ -195,7 +197,7 @@ namespace Compass
                 //调用后台方法修改对象
                 try
                 {
-                    if (objRequirementService.EditGeneralRequirement(objGeneralRequirement) == 1)
+                    if (objRequirementService.EditGeneralRequirement(objGeneralRequirement,sbu) == 1)
                     {
                         MessageBox.Show("修改通用技术要求成功！", "提示信息");
                     }
@@ -233,7 +235,7 @@ namespace Compass
                 //提交添加
                 try
                 {
-                    int specialRequirementId = objRequirementService.AddSpecialRequirement(objSpecialRequirement);
+                    int specialRequirementId = objRequirementService.AddSpecialRequirement(objSpecialRequirement,sbu);
                     if (specialRequirementId > 1)
                     {
                         //提示添加成功
@@ -241,7 +243,7 @@ namespace Compass
                         //刷新显示
                         txtContant.Text = "";
                         txtSpecialRequirementId.Text = "";
-                        dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(txtODPNo.Text.Trim());
+                        dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(txtODPNo.Text.Trim(),sbu);
                     }
                 }
                 catch (Exception ex)
@@ -262,12 +264,12 @@ namespace Compass
                 //调用后台方法修改对象
                 try
                 {
-                    if (objRequirementService.EditSpecialRequirement(objSpecialRequirement) == 1)
+                    if (objRequirementService.EditSpecialRequirement(objSpecialRequirement,sbu) == 1)
                     {
                         MessageBox.Show("修改特殊技术要求成功！", "提示信息");
                         txtContant.Text = "";
                         txtSpecialRequirementId.Text = "";
-                        dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(txtODPNo.Text.Trim());
+                        dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(txtODPNo.Text.Trim(),sbu);
                         btnSpecialRequirement.Text = "添加特殊技术要求";
                     }
                 }
@@ -303,7 +305,7 @@ namespace Compass
                 return;
             }
             string specialRequirementId = dgvSpecialRequirements.CurrentRow.Cells["SpecialRequirementId"].Value.ToString();
-            SpecialRequirement objSpecialRequirement = objRequirementService.GetSpecialRequirementById(specialRequirementId);
+            SpecialRequirement objSpecialRequirement = objRequirementService.GetSpecialRequirementById(specialRequirementId,sbu);
             //初始化修改信息
             txtContant.Text = objSpecialRequirement.Content;
             txtSpecialRequirementId.Text = objSpecialRequirement.SpecialRequirementId.ToString();
@@ -332,9 +334,9 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objRequirementService.DeleteSpecialRequirement(specialRequirementId) == 1)
+                if (objRequirementService.DeleteSpecialRequirement(specialRequirementId,sbu) == 1)
                 {
-                    dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(txtODPNo.Text.Trim());
+                    dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(txtODPNo.Text.Trim(),sbu);
                 }
             }
             catch (Exception ex)

@@ -36,13 +36,15 @@
             this.ckbRememberMe = new System.Windows.Forms.CheckBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cobSBU = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(67, 76);
+            this.label1.Location = new System.Drawing.Point(67, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 19);
             this.label1.TabIndex = 0;
@@ -50,7 +52,7 @@
             // 
             // txtUserAccount
             // 
-            this.txtUserAccount.Location = new System.Drawing.Point(135, 74);
+            this.txtUserAccount.Location = new System.Drawing.Point(135, 67);
             this.txtUserAccount.Name = "txtUserAccount";
             this.txtUserAccount.Size = new System.Drawing.Size(178, 25);
             this.txtUserAccount.TabIndex = 1;
@@ -59,7 +61,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(67, 115);
+            this.label2.Location = new System.Drawing.Point(67, 97);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 19);
             this.label2.TabIndex = 0;
@@ -67,7 +69,7 @@
             // 
             // txtUserPwd
             // 
-            this.txtUserPwd.Location = new System.Drawing.Point(135, 113);
+            this.txtUserPwd.Location = new System.Drawing.Point(135, 95);
             this.txtUserPwd.Name = "txtUserPwd";
             this.txtUserPwd.PasswordChar = '*';
             this.txtUserPwd.Size = new System.Drawing.Size(178, 25);
@@ -80,11 +82,11 @@
             this.ckbRememberMe.BackColor = System.Drawing.Color.Transparent;
             this.ckbRememberMe.Checked = true;
             this.ckbRememberMe.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbRememberMe.Location = new System.Drawing.Point(135, 150);
+            this.ckbRememberMe.Location = new System.Drawing.Point(135, 154);
             this.ckbRememberMe.Name = "ckbRememberMe";
-            this.ckbRememberMe.Size = new System.Drawing.Size(80, 23);
+            this.ckbRememberMe.Size = new System.Drawing.Size(132, 23);
             this.ckbRememberMe.TabIndex = 3;
-            this.ckbRememberMe.Text = "记住密码";
+            this.ckbRememberMe.Text = "记住密码和事业部";
             this.ckbRememberMe.UseVisualStyleBackColor = false;
             // 
             // btnLogin
@@ -110,15 +112,34 @@
             this.lblStatus.TabIndex = 0;
             this.lblStatus.Text = "准备就绪";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(67, 127);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 19);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "事业部";
+            // 
+            // cobSBU
+            // 
+            this.cobSBU.FormattingEnabled = true;
+            this.cobSBU.Location = new System.Drawing.Point(135, 123);
+            this.cobSBU.Name = "cobSBU";
+            this.cobSBU.Size = new System.Drawing.Size(178, 27);
+            this.cobSBU.TabIndex = 4;
+            // 
             // FrmUserLogin
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(390, 280);
+            this.Controls.Add(this.cobSBU);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.ckbRememberMe);
             this.Controls.Add(this.txtUserPwd);
             this.Controls.Add(this.txtUserAccount);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.label1);
@@ -146,5 +167,7 @@
         private System.Windows.Forms.CheckBox ckbRememberMe;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cobSBU;
     }
 }

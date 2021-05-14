@@ -53,7 +53,9 @@ namespace Compass
             }
             xmlReader.Close();
             myFile.Close();
-            this.lblCurrentUser.Text = "当前用户：" + Program.ObjCurrentUser.UserAccount;
+            this.lblCurrentUser.Text = "登陆用户：" + Program.ObjCurrentUser.UserAccount;
+            string currentSBU = Program.ObjCurrentUser.SBU == "" ? "FoodService" : Program.ObjCurrentUser.SBU;
+            this.lblCurrentSBU.Text = "当前事业部：" + currentSBU;
             tsmiProjectList_Click(null, null);
 
             SetPermissions();

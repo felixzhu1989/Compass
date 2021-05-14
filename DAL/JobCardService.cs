@@ -13,12 +13,13 @@ namespace DAL
     {
         public JobCard GetJobCard(ModuleTree tree)
         {
-            string sql = "select ODPNo,BPONo,ProjectName,CustomerName,Item,Module,Categories.Model,ShippingTime,Length,Deepth,Height,SidePanel,LabelImage,HoodType from ModuleTree"
-                + " inner join DrawingPlan on DrawingPlan.DrawingPlanId=ModuleTree.DrawingPlanId"
-                + " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId"
-                + " inner join Customers on Projects.CustomerId=Customers.CustomerId"
-                + " inner join Categories on Categories.CategoryId=ModuleTree.CategoryId"
-                + " inner Join " + tree.CategoryName + " on " + tree.CategoryName + ".ModuleTreeId=ModuleTree.ModuleTreeId";
+            string sql =
+                $"select ODPNo,BPONo,ProjectName,CustomerName,Item,Module,Categories{tree.SBU}.Model,ShippingTime,Length,Deepth,Height,SidePanel,LabelImage,HoodType from ModuleTree{tree.SBU}";
+            sql += $" inner join DrawingPlan{tree.SBU} on DrawingPlan{tree.SBU}.DrawingPlanId=ModuleTree{tree.SBU}.DrawingPlanId";
+            sql += $" inner join Projects{tree.SBU} on DrawingPlan{tree.SBU}.ProjectId=Projects{tree.SBU}.ProjectId";
+            sql += $" inner join Customers on Projects{tree.SBU}.CustomerId=Customers.CustomerId";
+            sql += $" inner join Categories{tree.SBU} on Categories{tree.SBU}.CategoryId=ModuleTree{tree.SBU}.CategoryId";
+            sql += " inner Join " + tree.CategoryName + " on " + tree.CategoryName + $".ModuleTreeId=ModuleTree{tree.SBU}.ModuleTreeId";
             sql += string.Format(" where ModuleTree.ModuleTreeId={0}", tree.ModuleTreeId);
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             JobCard objJobCard = null;

@@ -16,28 +16,28 @@ namespace DAL
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public List<Drawing> GetDrawingsByProjectId(string projectId)
+        public List<Drawing> GetDrawingsByProjectId(string projectId, string sbu)
         {
-            return GetDrawingsByWhereSql(string.Format(" where DrawingPlan.ProjectId = {0}", projectId));
+            return GetDrawingsByWhereSql(string.Format(" where DrawingPlan{0}.ProjectId = {1}", sbu,projectId),sbu);
         }
         /// <summary>
         /// 根据项目号返回图纸集合
         /// </summary>
         /// <param name="odpNo"></param>
         /// <returns></returns>
-        public List<Drawing> GetDrawingsByODPNo(string odpNo)
+        public List<Drawing> GetDrawingsByODPNo(string odpNo, string sbu)
         {
-            return GetDrawingsByWhereSql(string.Format(" where ODPNo = '{0}'", odpNo));
+            return GetDrawingsByWhereSql(string.Format(" where ODPNo = '{0}'", odpNo),sbu);
         }
         /// <summary>
         /// 根据条件返回图纸集合
         /// </summary>
         /// <param name="whereSql"></param>
         /// <returns></returns>
-        public List<Drawing> GetDrawingsByWhereSql(string whereSql)
+        public List<Drawing> GetDrawingsByWhereSql(string whereSql,string sbu)
         {
-            string sql = "select DrawingPlanId,DrawingPlan.ProjectId,ODPNo,Item,LabelImage,ModuleNo,ProjectName,HoodType from DrawingPlan";
-            sql += " inner join Projects on Projects.ProjectId=DrawingPlan.ProjectId";
+            string sql = $"select DrawingPlanId,DrawingPlan{sbu}.ProjectId,ODPNo,Item,LabelImage,ModuleNo,ProjectName,HoodType from DrawingPlan{sbu}";
+            sql += $" inner join Projects{sbu} on Projects{sbu}.ProjectId=DrawingPlan{sbu}.ProjectId";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<Drawing> list = new List<Drawing>();
@@ -63,19 +63,19 @@ namespace DAL
         /// </summary>
         /// <param name="drawingPlanId"></param>
         /// <returns></returns>
-        public Drawing GetDrawingById(string drawingPlanId)
+        public Drawing GetDrawingById(string drawingPlanId, string sbu)
         {
-            return GetDrawingByWhereSql(string.Format(" where DrawingPlanId={0}", drawingPlanId));
+            return GetDrawingByWhereSql(string.Format(" where DrawingPlanId={0}", drawingPlanId),sbu);
         }
         /// <summary>
         /// 根据条件返回单张图纸
         /// </summary>
         /// <param name="whereSql"></param>
         /// <returns></returns>
-        public Drawing GetDrawingByWhereSql(string whereSql)
+        public Drawing GetDrawingByWhereSql(string whereSql, string sbu)
         {
-            string sql = "select DrawingPlanId,DrawingPlan.ProjectId,ODPNo,Item,LabelImage,ModuleNo,ProjectName,HoodType from DrawingPlan";
-            sql += " inner join Projects on Projects.ProjectId=DrawingPlan.ProjectId";
+            string sql = $"select DrawingPlanId,DrawingPlan{sbu}.ProjectId,ODPNo,Item,LabelImage,ModuleNo,ProjectName,HoodType from DrawingPlan{sbu}";
+            sql += $" inner join Projects{sbu} on Projects{sbu}.ProjectId=DrawingPlan{sbu}.ProjectId";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             Drawing objDrawing = null;
@@ -101,9 +101,10 @@ namespace DAL
         /// </summary>
         /// <param name="objDrawing"></param>
         /// <returns></returns>
-        public int EditDrawing(Drawing objDrawing)
+        public int EditDrawing(Drawing objDrawing, string sbu)
         {
-            string sql = "update DrawingPlan set Item='{0}',LabelImage='{1}' where DrawingPlanId={2}";
+            string sql = $"update DrawingPlan{sbu}";
+                         sql+=" set Item='{0}',LabelImage='{1}' where DrawingPlanId={2}";
             sql = string.Format(sql, objDrawing.Item, objDrawing.LabelImage, objDrawing.DrawingPlanId);
             try
             {

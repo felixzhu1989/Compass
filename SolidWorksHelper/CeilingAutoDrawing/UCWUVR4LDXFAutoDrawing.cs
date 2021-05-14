@@ -35,7 +35,7 @@ namespace SolidWorksHelper
             //查询标准DxfCutlist，根据item.categoryId查询dxfCutList对象列表
             List<DXFCutList> oldList = objDxfCutListService.GetDXFCutListsByCategoryId(tree.CategoryId.ToString());
 
-            Project objProject = objProjectService.GetProjectByProjectId(tree.ProjectId.ToString());
+            Project objProject = objProjectService.GetProjectByProjectId(tree.ProjectId.ToString(), tree.SBU);
 
             #region HoodCutList
             if (objProject.HoodType == "Hood")

@@ -19,6 +19,8 @@ namespace Compass
         private ProjectTrackingService objProjectTrackingService = new ProjectTrackingService();
         private ProjectStatusService objProjectStatusService = new ProjectStatusService();
         private ProjectService objProjectService = new ProjectService();
+        private string sbu = Program.ObjCurrentUser.SBU;
+
         public FrmProjectTracking()
         {
             InitializeComponent();
@@ -44,18 +46,18 @@ namespace Compass
             this.btnPre.Enabled = false;
             this.btnNext.Enabled = false;
             this.btnLast.Enabled = false;
-            StringBuilder innerJoin = new StringBuilder("inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId");
-            innerJoin.Append(" inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId");
-            innerJoin.Append(" inner join Users on Projects.UserId=Users.UserId");
-            innerJoin.Append(" left join (select ProjectId,max(DrReleaseTarget)as DrReleaseTarget from DrawingPlan group by ProjectId) as PlanList on PlanList.ProjectId=Projects.ProjectId");
+            StringBuilder innerJoin = new StringBuilder(string.Format("inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking{0}.ProjectStatusId",sbu));
+            innerJoin.Append(string.Format(" inner join Projects{0} on ProjectTracking{0}.ProjectId=Projects{0}.ProjectId", sbu));
+            innerJoin.Append(string.Format(" inner join Users on Projects{0}.UserId=Users.UserId", sbu));
+            innerJoin.Append(string.Format(" left join (select ProjectId,max(DrReleaseTarget)as DrReleaseTarget from DrawingPlan{0} group by ProjectId) as PlanList on PlanList.ProjectId=Projects{0}.ProjectId", sbu));
 
             //初始化分页对象
             objSqlDataPager = new SqlDataPager()
             {
                 PrimaryKey = "ProjectTrackingId",
-                TableName = "ProjectTracking",
+                TableName = string.Format("ProjectTracking{0}",sbu),
                 InnerJoin1 = innerJoin.ToString(),
-                InnerJoin2 = "inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId",
+                InnerJoin2 = string.Format("inner join Projects{0} on ProjectTracking{0}.ProjectId=Projects{0}.ProjectId", sbu),
                 FiledName = "ProjectTrackingId,ODPNo,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName,KickOffStatus,UserAccount",
                 CurrentPage = 1,
                 Sort = "ShippingTime desc",
@@ -162,7 +164,7 @@ namespace Compass
         private void IniODPNo(ComboBox cobItem)
         {
             //绑定ODPNo下拉框
-            cobItem.DataSource = objProjectService.GetProjectsByWhereSql("");
+            cobItem.DataSource = objProjectService.GetProjectsByWhereSql("",Program.ObjCurrentUser.SBU);
             cobItem.DisplayMember = "ODPNo";
             cobItem.ValueMember = "ProjectId";
             cobItem.SelectedIndex = -1;//默认不要选中
@@ -227,7 +229,7 @@ namespace Compass
             //提交添加
             try
             {
-                int projectTrackingId = objProjectTrackingService.AddProjectTracking(objProjectTracking);
+                int projectTrackingId = objProjectTrackingService.AddProjectTracking(objProjectTracking,sbu);
                 if (projectTrackingId > 1)
                 {
                     //提示添加成功
@@ -323,7 +325,7 @@ namespace Compass
                 return;
             }
             string projectTrackingId = dgvProjectTracking.CurrentRow.Cells["ProjectTrackingId"].Value.ToString();
-            ProjectTracking objProjectTracking = objProjectTrackingService.GetProjectTrackingById(projectTrackingId);
+            ProjectTracking objProjectTracking = objProjectTrackingService.GetProjectTrackingById(projectTrackingId,sbu);
             //初始化修改信息
             grbEditProjectTracking.Visible = true;//显示修改框
             grbEditProjectTracking.Location = new Point(10, 9);
@@ -423,7 +425,7 @@ namespace Compass
             //调用后台方法修改对象
             try
             {
-                if (objProjectTrackingService.EditProjectTracing(objProjectTracking) == 1)
+                if (objProjectTrackingService.EditProjectTracing(objProjectTracking,sbu) == 1)
                 {
                     MessageBox.Show("修改计划成功！", "提示信息");
                     grbEditProjectTracking.Visible = false;
@@ -463,7 +465,7 @@ namespace Compass
             int firstRowIndex = dgvProjectTracking.CurrentRow.Index;
             try
             {
-                if (objProjectTrackingService.DeleteProjectTracking(projectTrackingId) == 1)
+                if (objProjectTrackingService.DeleteProjectTracking(projectTrackingId,sbu) == 1)
                 {
                     btnQueryAllProjectTracking_Click(null, null);//同步刷新显示数据
                 }

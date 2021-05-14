@@ -17,6 +17,8 @@ namespace Compass
     public partial class FrmDrawing : MetroFramework.Forms.MetroForm
     {
         private DrawingService objDrawingService = new DrawingService();
+        private string sbu = Program.ObjCurrentUser.SBU;
+
         public FrmDrawing()
         {
             InitializeComponent();
@@ -61,7 +63,7 @@ namespace Compass
             #region 提交数据库修改
             try
             {
-                if (objDrawingService.EditDrawing(objDrawing) == 1)
+                if (objDrawingService.EditDrawing(objDrawing,sbu) == 1)
                 {
                     MessageBox.Show("图纸修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

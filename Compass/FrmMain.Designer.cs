@@ -38,6 +38,7 @@
             this.lblUpdateTime = new System.Windows.Forms.Label();
             this.llblHistory = new System.Windows.Forms.LinkLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCurrentSBU = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmiProjectList = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiProjectInfo = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,6 +48,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHoodAutoDrawing = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCeilingAutoDrawing = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMarineAutoDrawing = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQuery = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDrawingPlanQuery = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,11 +70,11 @@
             // 
             // llblHelp
             // 
-            this.llblHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.llblHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.llblHelp.AutoSize = true;
             this.llblHelp.BackColor = System.Drawing.Color.Transparent;
             this.llblHelp.LinkColor = System.Drawing.Color.Blue;
-            this.llblHelp.Location = new System.Drawing.Point(502, 4);
+            this.llblHelp.Location = new System.Drawing.Point(3, 4);
             this.llblHelp.Name = "llblHelp";
             this.llblHelp.Size = new System.Drawing.Size(61, 19);
             this.llblHelp.TabIndex = 2;
@@ -82,7 +84,7 @@
             // 
             // lblCurrentUser
             // 
-            this.lblCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCurrentUser.AutoSize = true;
             this.lblCurrentUser.BackColor = System.Drawing.Color.Transparent;
             this.lblCurrentUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
@@ -119,11 +121,11 @@
             // 
             // lblVersion
             // 
-            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblVersion.AutoSize = true;
             this.lblVersion.BackColor = System.Drawing.Color.Transparent;
             this.lblVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.lblVersion.Location = new System.Drawing.Point(652, 4);
+            this.lblVersion.Location = new System.Drawing.Point(153, 4);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(74, 19);
             this.lblVersion.TabIndex = 3;
@@ -137,11 +139,11 @@
             // 
             // lblUpdateTime
             // 
-            this.lblUpdateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUpdateTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblUpdateTime.AutoSize = true;
             this.lblUpdateTime.BackColor = System.Drawing.Color.Transparent;
             this.lblUpdateTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.lblUpdateTime.Location = new System.Drawing.Point(792, 4);
+            this.lblUpdateTime.Location = new System.Drawing.Point(293, 4);
             this.lblUpdateTime.Name = "lblUpdateTime";
             this.lblUpdateTime.Size = new System.Drawing.Size(74, 19);
             this.lblUpdateTime.TabIndex = 3;
@@ -149,11 +151,11 @@
             // 
             // llblHistory
             // 
-            this.llblHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.llblHistory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.llblHistory.AutoSize = true;
             this.llblHistory.BackColor = System.Drawing.Color.Transparent;
             this.llblHistory.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.llblHistory.Location = new System.Drawing.Point(574, 4);
+            this.llblHistory.Location = new System.Drawing.Point(75, 4);
             this.llblHistory.Name = "llblHistory";
             this.llblHistory.Size = new System.Drawing.Size(61, 19);
             this.llblHistory.TabIndex = 2;
@@ -168,12 +170,25 @@
             this.panel1.Controls.Add(this.llblHelp);
             this.panel1.Controls.Add(this.llblHistory);
             this.panel1.Controls.Add(this.lblVersion);
+            this.panel1.Controls.Add(this.lblCurrentSBU);
             this.panel1.Controls.Add(this.lblCurrentUser);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 650);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1200, 25);
             this.panel1.TabIndex = 6;
+            // 
+            // lblCurrentSBU
+            // 
+            this.lblCurrentSBU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCurrentSBU.AutoSize = true;
+            this.lblCurrentSBU.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentSBU.ForeColor = System.Drawing.Color.Red;
+            this.lblCurrentSBU.Location = new System.Drawing.Point(812, 4);
+            this.lblCurrentSBU.Name = "lblCurrentSBU";
+            this.lblCurrentSBU.Size = new System.Drawing.Size(87, 19);
+            this.lblCurrentSBU.TabIndex = 3;
+            this.lblCurrentSBU.Text = "当前事业部：";
             // 
             // menuStrip1
             // 
@@ -187,6 +202,7 @@
             this.toolStripMenuItem1,
             this.tsmiHoodAutoDrawing,
             this.tsmiCeilingAutoDrawing,
+            this.tsmiMarineAutoDrawing,
             this.toolStripMenuItem2,
             this.tsmiQuery,
             this.toolStripMenuItem3,
@@ -253,7 +269,7 @@
             this.tsmiHoodAutoDrawing.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiHoodAutoDrawing.Name = "tsmiHoodAutoDrawing";
             this.tsmiHoodAutoDrawing.Size = new System.Drawing.Size(84, 21);
-            this.tsmiHoodAutoDrawing.Text = "普通烟罩";
+            this.tsmiHoodAutoDrawing.Text = "烟罩作图";
             this.tsmiHoodAutoDrawing.Click += new System.EventHandler(this.tsmiHoodAutoDrawing_Click);
             // 
             // tsmiCeilingAutoDrawing
@@ -262,8 +278,15 @@
             this.tsmiCeilingAutoDrawing.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiCeilingAutoDrawing.Name = "tsmiCeilingAutoDrawing";
             this.tsmiCeilingAutoDrawing.Size = new System.Drawing.Size(84, 21);
-            this.tsmiCeilingAutoDrawing.Text = "天花烟罩";
+            this.tsmiCeilingAutoDrawing.Text = "天花作图";
             this.tsmiCeilingAutoDrawing.Click += new System.EventHandler(this.tsmiCeilingAutoDrawing_Click);
+            // 
+            // tsmiMarineAutoDrawing
+            // 
+            this.tsmiMarineAutoDrawing.Image = global::Compass.Properties.Resources.Setting1;
+            this.tsmiMarineAutoDrawing.Name = "tsmiMarineAutoDrawing";
+            this.tsmiMarineAutoDrawing.Size = new System.Drawing.Size(101, 21);
+            this.tsmiMarineAutoDrawing.Text = "Marine作图";
             // 
             // toolStripMenuItem2
             // 
@@ -279,7 +302,7 @@
             this.tsmiQuery.Image = global::Compass.Properties.Resources.Query;
             this.tsmiQuery.Name = "tsmiQuery";
             this.tsmiQuery.Size = new System.Drawing.Size(84, 21);
-            this.tsmiQuery.Text = "查询页面";
+            this.tsmiQuery.Text = "查询功能";
             // 
             // tsmiDrawingPlanQuery
             // 
@@ -306,17 +329,17 @@
             this.tsmiWorkLoad,
             this.tsmiStatusTypes,
             this.tsmiUpdate});
-            this.tsmiSetting.Image = global::Compass.Properties.Resources.Setting;
+            this.tsmiSetting.Image = global::Compass.Properties.Resources.ship_65_25px_1208491_easyicon_net;
             this.tsmiSetting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tsmiSetting.Name = "tsmiSetting";
             this.tsmiSetting.Size = new System.Drawing.Size(84, 21);
-            this.tsmiSetting.Text = "系统后台";
+            this.tsmiSetting.Text = "系统设置";
             // 
             // tsmiUsersManage
             // 
             this.tsmiUsersManage.Image = global::Compass.Properties.Resources.UsersManage;
             this.tsmiUsersManage.Name = "tsmiUsersManage";
-            this.tsmiUsersManage.Size = new System.Drawing.Size(153, 22);
+            this.tsmiUsersManage.Size = new System.Drawing.Size(180, 22);
             this.tsmiUsersManage.Text = "用户信息";
             this.tsmiUsersManage.Click += new System.EventHandler(this.tsmiUsersManage_Click);
             // 
@@ -324,7 +347,7 @@
             // 
             this.tsmiCategories.Image = global::Compass.Properties.Resources.Category;
             this.tsmiCategories.Name = "tsmiCategories";
-            this.tsmiCategories.Size = new System.Drawing.Size(153, 22);
+            this.tsmiCategories.Size = new System.Drawing.Size(180, 22);
             this.tsmiCategories.Text = "模型分类";
             this.tsmiCategories.Click += new System.EventHandler(this.tsmiCategories_Click);
             // 
@@ -332,7 +355,7 @@
             // 
             this.tsmiDXFCutList.Image = global::Compass.Properties.Resources.Cutlist;
             this.tsmiDXFCutList.Name = "tsmiDXFCutList";
-            this.tsmiDXFCutList.Size = new System.Drawing.Size(153, 22);
+            this.tsmiDXFCutList.Size = new System.Drawing.Size(180, 22);
             this.tsmiDXFCutList.Text = "Cutlist模版";
             this.tsmiDXFCutList.Click += new System.EventHandler(this.tsmiDXFCutList_Click);
             // 
@@ -340,7 +363,7 @@
             // 
             this.tsmiCeilingAccessories.Image = global::Compass.Properties.Resources.PackingList;
             this.tsmiCeilingAccessories.Name = "tsmiCeilingAccessories";
-            this.tsmiCeilingAccessories.Size = new System.Drawing.Size(153, 22);
+            this.tsmiCeilingAccessories.Size = new System.Drawing.Size(180, 22);
             this.tsmiCeilingAccessories.Text = "天花配件";
             this.tsmiCeilingAccessories.Click += new System.EventHandler(this.tsmiCeilingAccessories_Click);
             // 
@@ -348,7 +371,7 @@
             // 
             this.tsmiWorkLoad.Image = global::Compass.Properties.Resources.Workload;
             this.tsmiWorkLoad.Name = "tsmiWorkLoad";
-            this.tsmiWorkLoad.Size = new System.Drawing.Size(153, 22);
+            this.tsmiWorkLoad.Size = new System.Drawing.Size(180, 22);
             this.tsmiWorkLoad.Text = "设计工作量";
             this.tsmiWorkLoad.Click += new System.EventHandler(this.tsmiWorkLoad_Click);
             // 
@@ -356,7 +379,7 @@
             // 
             this.tsmiStatusTypes.Image = global::Compass.Properties.Resources.Status;
             this.tsmiStatusTypes.Name = "tsmiStatusTypes";
-            this.tsmiStatusTypes.Size = new System.Drawing.Size(153, 22);
+            this.tsmiStatusTypes.Size = new System.Drawing.Size(180, 22);
             this.tsmiStatusTypes.Text = "项目状态/类型";
             this.tsmiStatusTypes.Click += new System.EventHandler(this.tsmiStatusTypes_Click);
             // 
@@ -364,7 +387,7 @@
             // 
             this.tsmiUpdate.Image = global::Compass.Properties.Resources.UpdateIcon;
             this.tsmiUpdate.Name = "tsmiUpdate";
-            this.tsmiUpdate.Size = new System.Drawing.Size(153, 22);
+            this.tsmiUpdate.Size = new System.Drawing.Size(180, 22);
             this.tsmiUpdate.Text = "系统升级";
             this.tsmiUpdate.Click += new System.EventHandler(this.tsmiUpdate_Click);
             // 
@@ -448,6 +471,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiQuery;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem tsmiDrawingPlanQuery;
+        private System.Windows.Forms.Label lblCurrentSBU;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMarineAutoDrawing;
     }
 }
 

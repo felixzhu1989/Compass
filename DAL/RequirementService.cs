@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Models;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 
 namespace DAL
 {
@@ -17,29 +18,29 @@ namespace DAL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public GeneralRequirement GetGeneralRequirementById(string id)
+        public GeneralRequirement GetGeneralRequirementById(string id, string sbu)
         {
-            return GetGeneralRequirementByWhereSql(string.Format(" where GeneralRequirementId={0}", id));
+            return GetGeneralRequirementByWhereSql(string.Format(" where GeneralRequirementId={0}", id), sbu);
         }
         /// <summary>
         /// 根据ODPNo返回单个通用技术要求
         /// </summary>
         /// <param name="odpNo"></param>
         /// <returns></returns>
-        public GeneralRequirement GetGeneralRequirementByODPNo(string odpNo)
+        public GeneralRequirement GetGeneralRequirementByODPNo(string odpNo, string sbu)
         {
-            return GetGeneralRequirementByWhereSql(string.Format(" where ODPNo='{0}'", odpNo));
+            return GetGeneralRequirementByWhereSql(string.Format(" where ODPNo='{0}'", odpNo), sbu);
         }
         /// <summary>
         /// 根据条件返回单个通用技术要求
         /// </summary>
         /// <param name="whereSql"></param>
         /// <returns></returns>
-        public GeneralRequirement GetGeneralRequirementByWhereSql(string whereSql)
+        public GeneralRequirement GetGeneralRequirementByWhereSql(string whereSql, string sbu)
         {
-            string sql = "select GeneralRequirementId,GeneralRequirements.ProjectId,ODPNo,ProjectTypes.TypeId,TypeName,InputPower,MARVEL,ANSULPrePipe,ANSULSystem,RiskLevel,MainAssyPath from GeneralRequirements";
-            sql += " inner join Projects on Projects.ProjectId=GeneralRequirements.ProjectId";
-            sql += " inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements.TypeId";
+            string sql = string.Format("select GeneralRequirementId,GeneralRequirements{0}.ProjectId,ODPNo,ProjectTypes.TypeId,TypeName,InputPower,MARVEL,ANSULPrePipe,ANSULSystem,RiskLevel,MainAssyPath from GeneralRequirements{0}", sbu);
+            sql += string.Format(" inner join Projects{0} on Projects{0}.ProjectId=GeneralRequirements{0}.ProjectId", sbu);
+            sql += string.Format(" inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements{0}.TypeId", sbu);
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             GeneralRequirement objGeneralRequirement = null;
@@ -47,7 +48,7 @@ namespace DAL
             {
                 objGeneralRequirement = new GeneralRequirement()
                 {
-                    GeneralRequirementId=Convert.ToInt32(objReader["GeneralRequirementId"]),
+                    GeneralRequirementId = Convert.ToInt32(objReader["GeneralRequirementId"]),
                     ProjectId = Convert.ToInt32(objReader["ProjectId"]),
                     ODPNo = objReader["ODPNo"].ToString(),
                     TypeId = Convert.ToInt32(objReader["TypeId"]),
@@ -58,7 +59,7 @@ namespace DAL
                     ANSULSystem = objReader["ANSULSystem"].ToString(),
                     MainAssyPath = objReader["MainAssyPath"].ToString(),
                     RiskLevel = Convert.ToInt32(objReader["RiskLevel"])
-              
+
                 };
             }
             objReader.Close();
@@ -70,12 +71,12 @@ namespace DAL
         /// </summary>
         /// <param name="objGeneralRequirement"></param>
         /// <returns></returns>
-        public int AddGeneralRequirement(GeneralRequirement objGeneralRequirement)
+        public int AddGeneralRequirement(GeneralRequirement objGeneralRequirement, string sbu)
         {
-            string sql = "insert into GeneralRequirements (ProjectId,TypeId,InputPower,MARVEL,ANSULPrePipe,ANSULSystem,RiskLevel)";
+            string sql = string.Format("insert into GeneralRequirements{0} (ProjectId,TypeId,InputPower,MARVEL,ANSULPrePipe,ANSULSystem,RiskLevel)", sbu);
             sql += " values({0},{1},'{2}','{3}','{4}','{5}',{6});select @@identity";
             sql = string.Format(sql, objGeneralRequirement.ProjectId, objGeneralRequirement.TypeId, objGeneralRequirement.InputPower,
-                objGeneralRequirement.MARVEL,objGeneralRequirement.ANSULPrePipe, objGeneralRequirement.ANSULSystem,objGeneralRequirement.RiskLevel);
+                objGeneralRequirement.MARVEL, objGeneralRequirement.ANSULPrePipe, objGeneralRequirement.ANSULSystem, objGeneralRequirement.RiskLevel);
             try
             {
                 return Convert.ToInt32(SQLHelper.GetSingleResult(sql));
@@ -102,13 +103,14 @@ namespace DAL
         /// </summary>
         /// <param name="objGeneralRequirement"></param>
         /// <returns></returns>
-        public int EditGeneralRequirement(GeneralRequirement objGeneralRequirement)
+        public int EditGeneralRequirement(GeneralRequirement objGeneralRequirement, string sbu)
         {
-            string sql = "update GeneralRequirements set ProjectId={0},TypeId={1},InputPower='{2}',MARVEL='{3}',";
+            string sql = string.Format("update GeneralRequirements{0}", sbu);
+            sql += " set ProjectId={0},TypeId={1},InputPower='{2}',MARVEL='{3}',";
             sql += "ANSULPrePipe='{4}',ANSULSystem='{5}',RiskLevel={6} where GeneralRequirementId={7}";
             sql = string.Format(sql, objGeneralRequirement.ProjectId, objGeneralRequirement.TypeId, objGeneralRequirement.InputPower,
                 objGeneralRequirement.MARVEL, objGeneralRequirement.ANSULPrePipe, objGeneralRequirement.ANSULSystem,
-                objGeneralRequirement.RiskLevel,objGeneralRequirement.GeneralRequirementId);
+                objGeneralRequirement.RiskLevel, objGeneralRequirement.GeneralRequirementId);
             try
             {
                 return SQLHelper.Update(sql);
@@ -127,9 +129,10 @@ namespace DAL
         /// </summary>
         /// <param name="objGeneralRequirement"></param>
         /// <returns></returns>
-        public int UpdateMainAssyPath(GeneralRequirement objGeneralRequirement)
+        public int UpdateMainAssyPath(GeneralRequirement objGeneralRequirement, string sbu)
         {
-            string sql = "update GeneralRequirements set MainAssyPath='{0}' where GeneralRequirementId={1}";
+            string sql = string.Format("update GeneralRequirements{0}", sbu);
+            sql += " set MainAssyPath='{0}' where GeneralRequirementId={1}";
             sql = string.Format(sql, objGeneralRequirement.MainAssyPath, objGeneralRequirement.GeneralRequirementId);
             try
             {
@@ -151,9 +154,10 @@ namespace DAL
         /// </summary>
         /// <param name="generalRequirementId"></param>
         /// <returns></returns>
-        public int DeleteGeneralRequirement(string generalRequirementId)
+        public int DeleteGeneralRequirement(string generalRequirementId, string sbu)
         {
-            string sql = "delete from GeneralRequirements where GeneralRequirementId={0}";
+            string sql = string.Format("delete from GeneralRequirements{0}", sbu);
+            sql += " where GeneralRequirementId={0}";
             sql = string.Format(sql, generalRequirementId);
             try
             {
@@ -184,10 +188,10 @@ namespace DAL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public SpecialRequirement GetSpecialRequirementById(string id)
+        public SpecialRequirement GetSpecialRequirementById(string id, string sbu)
         {
-            string sql = "select SpecialRequirementId,Content from SpecialRequirements";
-            sql += string.Format(" where SpecialRequirementId={0}",id);
+            string sql = string.Format("select SpecialRequirementId,Content from SpecialRequirements{0}", sbu);
+            sql += string.Format(" where SpecialRequirementId={0}", id);
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             SpecialRequirement objSpecialRequirement = null;
             if (objReader.Read())
@@ -206,11 +210,11 @@ namespace DAL
         /// </summary>
         /// <param name="ODPNo"></param>
         /// <returns></returns>
-        public List<SpecialRequirement> GetSpecialRequirementsByODPNo(string ODPNo)
+        public List<SpecialRequirement> GetSpecialRequirementsByODPNo(string ODPNo, string sbu)
         {
-            string sql = "select SpecialRequirementId,Projects.ProjectId,ODPNo,Content from SpecialRequirements";
-            sql += " inner join Projects on SpecialRequirements.ProjectId=Projects.ProjectId";
-            sql += string.Format(" where ODPNo='{0}'",ODPNo);
+            string sql = string.Format("select SpecialRequirementId,Projects{0}.ProjectId,ODPNo,Content from SpecialRequirements{0}", sbu);
+            sql += string.Format(" inner join Projects{0} on SpecialRequirements{0}.ProjectId=Projects{0}.ProjectId", sbu);
+            sql += string.Format(" where ODPNo='{0}'", ODPNo);
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<SpecialRequirement> list = new List<SpecialRequirement>();
             while (objReader.Read())
@@ -231,10 +235,10 @@ namespace DAL
         /// </summary>
         /// <param name="ODPNo"></param>
         /// <returns></returns>
-        public List<string> GetSpecialRequirementList(string ODPNo)
+        public List<string> GetSpecialRequirementList(string ODPNo, string sbu)
         {
-            string sql = "select Content from SpecialRequirements";
-            sql += " inner join Projects on SpecialRequirements.ProjectId=Projects.ProjectId";
+            string sql = string.Format("select Content from SpecialRequirements{0}", sbu);
+            sql += string.Format(" inner join Projects{0} on SpecialRequirements{0}.ProjectId=Projects{0}.ProjectId", sbu);
             sql += string.Format(" where ODPNo='{0}'", ODPNo);
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<string> list = new List<string>();
@@ -250,9 +254,9 @@ namespace DAL
         /// </summary>
         /// <param name="objSpecialRequirement"></param>
         /// <returns></returns>
-        public int AddSpecialRequirement(SpecialRequirement objSpecialRequirement)
+        public int AddSpecialRequirement(SpecialRequirement objSpecialRequirement, string sbu)
         {
-            string sql = "insert into SpecialRequirements (ProjectId,Content)";
+            string sql = string.Format("insert into SpecialRequirements{0} (ProjectId,Content)", sbu);
             sql += " values({0},'{1}');select @@identity";
             sql = string.Format(sql, objSpecialRequirement.ProjectId, objSpecialRequirement.Content);
             try
@@ -261,9 +265,9 @@ namespace DAL
             }
             catch (SqlException ex)
             {
-                
-                 throw new Exception("添加特殊技术要求时数据库访问异常" + ex.Message);
-                
+
+                throw new Exception("添加特殊技术要求时数据库访问异常" + ex.Message);
+
             }
             catch (Exception ex)
             {
@@ -275,9 +279,10 @@ namespace DAL
         /// </summary>
         /// <param name="objSpecialRequirement"></param>
         /// <returns></returns>
-        public int EditSpecialRequirement(SpecialRequirement objSpecialRequirement)
+        public int EditSpecialRequirement(SpecialRequirement objSpecialRequirement, string sbu)
         {
-            string sql = "update SpecialRequirements set ProjectId={0},Content='{1}' where SpecialRequirementId={2}";
+            string sql = string.Format("update SpecialRequirements{0}", sbu);
+            sql += " set ProjectId={0},Content='{1}' where SpecialRequirementId={2}";
             sql = string.Format(sql, objSpecialRequirement.ProjectId, objSpecialRequirement.Content, objSpecialRequirement.SpecialRequirementId);
             try
             {
@@ -297,9 +302,10 @@ namespace DAL
         /// </summary>
         /// <param name="specialRequirementId"></param>
         /// <returns></returns>
-        public int DeleteSpecialRequirement(string specialRequirementId)
+        public int DeleteSpecialRequirement(string specialRequirementId, string sbu)
         {
-            string sql = "delete from SpecialRequirements where SpecialRequirementId={0}";
+            string sql = string.Format("delete from SpecialRequirements{0}", sbu);
+            sql += " where SpecialRequirementId={0}";
             sql = string.Format(sql, specialRequirementId);
             try
             {

@@ -20,6 +20,8 @@ namespace Compass
         private HoodCutListService objHoodCutListService = new HoodCutListService();
         ModuleTreeService objModuleTreeService = new ModuleTreeService();
         private Drawing objDrawing = null;
+        private string sbu = Program.ObjCurrentUser.SBU;
+
         public FrmQuickBrowse()
         {
             InitializeComponent();
@@ -94,7 +96,7 @@ namespace Compass
             if (dgvQuickBrowse.CurrentRow == null) return;
 
             string moduleTreeId = dgvQuickBrowse.CurrentRow.Cells["ModuleTreeId"].Value.ToString();
-            ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId);
+            ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId,sbu);
             DialogResult result = DialogResult.No;
             //利用反射，打开修改模型参数窗口，同时实现传递窗口参数
             object[] parameters = new object[2];
@@ -163,7 +165,7 @@ namespace Compass
             btnPrintCutList.Enabled = false;
             btnPrintCutList.Text = "打印中...";
             ModuleTree tree =
-                objModuleTreeService.GetModuleTreeById(dgvCutList.Rows[0].Cells["ModuleTreeId"].Value.ToString());
+                objModuleTreeService.GetModuleTreeById(dgvCutList.Rows[0].Cells["ModuleTreeId"].Value.ToString(),sbu);
             if (new PrintReports().ExecPrintHoodCutList(objDrawing, tree, dgvCutList)) MessageBox.Show("CutList打印完成", "打印完成");
             btnPrintCutList.Enabled = true;
             btnPrintCutList.Text = "打印CustList";

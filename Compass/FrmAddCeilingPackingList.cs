@@ -19,6 +19,8 @@ namespace Compass
         DrawingService objDrawingService = new DrawingService();
         private List<Drawing> objDrawings = null;
         CeilingAccessoryService objCeilingAccessoryService=new CeilingAccessoryService();
+        private string sbu = Program.ObjCurrentUser.SBU;
+
         public FrmAddCeilingPackingList()
         {
             InitializeComponent();
@@ -49,7 +51,7 @@ namespace Compass
                 rootNode.Nodes.Add(node);
             }
             this.tvCeilingAccessories.ExpandAll();
-            objDrawings = objDrawingService.GetDrawingsByProjectId(objProject.ProjectId.ToString());
+            objDrawings = objDrawingService.GetDrawingsByProjectId(objProject.ProjectId.ToString(),sbu);
         }
         /// <summary>
         /// 选中节点后复制给配件对象，并反填数据到txt中

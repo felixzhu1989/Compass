@@ -21,12 +21,13 @@ namespace Compass
         //创建委托变量
         public ShowProjectsDelegate ShowProjectsDeg = null;
         public ShowModelTreeDelegate ShowModelTreeDeg = null;
+        private string sbu = Program.ObjCurrentUser.SBU;
 
         public FrmProjectInfo()
         {
             InitializeComponent();
             //绑定ODPNo下拉框
-            cobODPNo.DataSource = objProjectService.GetProjectsByWhereSql("");
+            cobODPNo.DataSource = objProjectService.GetProjectsByWhereSql("",Program.ObjCurrentUser.SBU);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;//默认不要选中
@@ -74,7 +75,7 @@ namespace Compass
         /// </summary>
         private void RefreshProjectInfo()
         {
-            Project objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text);
+            Project objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text,Program.ObjCurrentUser.SBU);
             if (objProject == null)
             {
                 MessageBox.Show("项目不存在", "提示信息");
@@ -86,7 +87,7 @@ namespace Compass
             txtShippingTime.Text = objProject.ShippingTime.ToShortDateString();
             txtProjectName.Text = objProject.ProjectName;
             txtCustomerName.Text = objProject.CustomerName;
-            dgvScope.DataSource = objDrawingPlanService.GetScopeByDataSet(objProject.ProjectId.ToString()).Tables[0];
+            dgvScope.DataSource = objDrawingPlanService.GetScopeByDataSet(objProject.ProjectId.ToString(),sbu).Tables[0];
 
         }
         /// <summary>
@@ -95,7 +96,7 @@ namespace Compass
         private void RefreshGeneralRequirement()
         {
             GeneralRequirement objGeneralRequirement =
-                objRequirementService.GetGeneralRequirementByODPNo(cobODPNo.Text);
+                objRequirementService.GetGeneralRequirementByODPNo(cobODPNo.Text,sbu);
             if (objGeneralRequirement == null)
             {
                 txtTypeName.Text = "";
@@ -124,7 +125,7 @@ namespace Compass
         private void RefreshSpecialRequirement()
         {
             List<string> specialRequirementList =
-                  objRequirementService.GetSpecialRequirementList(cobODPNo.Text);
+                  objRequirementService.GetSpecialRequirementList(cobODPNo.Text,sbu);
             if (specialRequirementList.Count == 0)
             {
                 lbxSpecialRequirements.Items.Clear();
@@ -173,7 +174,7 @@ namespace Compass
         {
             string odpNo = cobODPNo.Text.Trim();
             if (odpNo.Length == 0) return;
-            Project objProject = objProjectService.GetProjectByODPNo(odpNo);
+            Project objProject = objProjectService.GetProjectByODPNo(odpNo,Program.ObjCurrentUser.SBU);
             if (objProject == null) return;
             FrmRequirements objFrmRequirements = new FrmRequirements(objProject);
             objFrmRequirements.ShowDialog();
@@ -197,7 +198,7 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objRequirementService.DeleteGeneralRequirement(generalRequirementId) == 1)
+                if (objRequirementService.DeleteGeneralRequirement(generalRequirementId,sbu) == 1)
                 {
                     btnRefreshData_Click(null, null);
                 }

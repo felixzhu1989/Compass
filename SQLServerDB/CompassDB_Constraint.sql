@@ -322,7 +322,7 @@ GO
 if exists (select * from sysobjects where name='df_HoodType')
     alter table Projects drop constraint df_HoodType
 GO
-alter table Projects add constraint df_HoodType default ('HoodType') for HoodType
+alter table Projects add constraint df_HoodType default ('Hood') for HoodType
 GO
 if exists (select * from sysobjects where name='df_AddedDate_CeilingCutList')
     alter table CeilingCutList drop constraint df_AddedDate_CeilingCutList
@@ -550,16 +550,19 @@ if exists (select * from sysobjects where name='fk_ProjectId_Drawings')
 GO
 alter table Drawings add constraint fk_ProjectId_Drawings foreign key(ProjectId) references Projects (ProjectId)
 GO
+
 if exists (select * from sysobjects where name='fk_DrawingPlanId_ModuleTree')
-    alter table DrawingPlan drop constraint fk_DrawingPlanId_ModuleTree
+    alter table ModuleTree drop constraint fk_DrawingPlanId_ModuleTree
 GO
-alter table DrawingPlan add constraint fk_DrawingPlanId_ModuleTree foreign key(DrawingPlanId) references DrawingPlan (DrawingPlanId)
+alter table ModuleTree add constraint fk_DrawingPlanId_ModuleTree foreign key(DrawingPlanId) references DrawingPlan (DrawingPlanId)
 GO
+
 if exists (select * from sysobjects where name='fk_CategoryId_ModuleTree')
     alter table ModuleTree drop constraint fk_CategoryId_ModuleTree
 GO
 alter table ModuleTree add constraint fk_CategoryId_ModuleTree foreign key(CategoryId) references Categories (CategoryId)
 GO
+
 if exists (select * from sysobjects where name='fk_ModuleTreeId_HoodCutList')
     alter table HoodCutList drop constraint fk_ModuleTreeId_HoodCutList
 GO

@@ -46,5 +46,17 @@ namespace Compass.Properties {
                 this["UserPwd"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SBU {
+            get {
+                return ((string)(this["SBU"]));
+            }
+            set {
+                this["SBU"] = value;
+            }
+        }
     }
 }

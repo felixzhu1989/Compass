@@ -23,7 +23,7 @@ namespace Compass
         /// 天花烟罩打印JobCard
         /// </summary>
         /// <param name="tree"></param>
-        public void ExecPrintCeilingJobCard(Project objProject, string itemNo, string model)
+        public void ExecPrintCeilingJobCard(Project objProject, string itemNo, string model,string sbu)
         {
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             string excelBookPath = Environment.CurrentDirectory + "\\JobCard_Ceiling.xlsx";
@@ -45,7 +45,7 @@ namespace Compass
             workSheet.Cells[20, 7] = "";
             workSheet.Cells[20, 8] = "";
             //特殊要求
-            List<string> srList = new RequirementService().GetSpecialRequirementList(objProject.ODPNo);
+            List<string> srList = new RequirementService().GetSpecialRequirementList(objProject.ODPNo,sbu);
             for (int i = 0; i < srList.Count; i++)
             {
                 if (i > 6) continue;
@@ -149,7 +149,7 @@ namespace Compass
 
             }
             //特殊要求
-            List<string> srList = new RequirementService().GetSpecialRequirementList(objJobCard.ODPNo);
+            List<string> srList = new RequirementService().GetSpecialRequirementList(objJobCard.ODPNo,tree.SBU);
             for (int i = 0; i < srList.Count; i++)
             {
                 if (i > 6) continue;

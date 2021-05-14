@@ -1277,6 +1277,7 @@
     <Content Include="images\ProjectTracking.png" />
     <None Include="images\Query.png" />
     <Content Include="images\Setting.png" />
+    <None Include="images\ship_65.25px_1208491_easyicon.net.png" />
     <Content Include="images\Status.png" />
     <Content Include="images\Update.png" />
     <Content Include="images\UpdateIcon.png" />
@@ -1286,6 +1287,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\Cutlist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MarineForm\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

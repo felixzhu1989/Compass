@@ -30,5 +30,6 @@ namespace Models
         public string SubType { get; set; }
         public string LastSave { get; set; }
         public string ModelPath { get; set; }
+        public string SBU { get; set; }
     }
 }

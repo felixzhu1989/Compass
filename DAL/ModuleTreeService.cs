@@ -11,26 +11,27 @@ namespace DAL
     public class ModuleTreeService
     {
         private CategoryService objCategoryService = new CategoryService();
+
         /// <summary>
         /// 根据项目Id返回烟罩分段合集
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public List<ModuleTree> GetModuleTreesByProjectId(string projectId)
+        public List<ModuleTree> GetModuleTreesByProjectId(string projectId, string sbu)
         {
-            return GetModuleTreesByWhereSql(string.Format(" where DrawingPlan.ProjectId={0}", projectId));
+            return GetModuleTreesByWhereSql($" where DrawingPlan{sbu}.ProjectId={projectId}", sbu);
         }
         /// <summary>
         /// 根据单个条件返回烟罩分段合集
         /// </summary>
         /// <param name="whereSql"></param>
         /// <returns></returns>
-        public List<ModuleTree> GetModuleTreesByWhereSql(string whereSql)
+        public List<ModuleTree> GetModuleTreesByWhereSql(string whereSql, string sbu)
         {
-            StringBuilder sql = new StringBuilder("select ModuleTreeId,ModuleTree.DrawingPlanId,ModuleTree.CategoryId,Module,DrawingPlan.ProjectId,ODPNo,CategoryName,Item,ModelPath from ModuleTree");
-            sql.Append(" inner join DrawingPlan on DrawingPlan.DrawingPlanId=ModuleTree.DrawingPlanId");
-            sql.Append(" inner join Categories on Categories.CategoryId=ModuleTree.CategoryId");
-            sql.Append(" inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId");
+            StringBuilder sql = new StringBuilder($"select ModuleTreeId,ModuleTree{sbu}.DrawingPlanId,ModuleTree{sbu}.CategoryId,Module,DrawingPlan{sbu}.ProjectId,ODPNo,CategoryName,Item,ModelPath from ModuleTree{sbu}");
+            sql.Append($" inner join DrawingPlan{sbu} on DrawingPlan{sbu}.DrawingPlanId=ModuleTree{sbu}.DrawingPlanId");
+            sql.Append($" inner join Categories{sbu} on Categories{sbu}.CategoryId=ModuleTree{sbu}.CategoryId");
+            sql.Append($" inner join Projects{sbu} on DrawingPlan{sbu}.ProjectId=Projects{sbu}.ProjectId");
             sql.Append(whereSql);
             sql.Append(" order by Item asc,Module asc");
             SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
@@ -58,10 +59,10 @@ namespace DAL
         /// </summary>
         /// <param name="moduleTreeId"></param>
         /// <returns></returns>
-        public ModuleTree GetModuleTreeById(string moduleTreeId)
+        public ModuleTree GetModuleTreeById(string moduleTreeId, string sbu)
         {
-            string sql = "select ModuleTreeId,Module,ModuleTree.CategoryId,CategoryName,Model from ModuleTree";
-            sql += " inner join Categories on Categories.CategoryId=ModuleTree.CategoryId";
+            string sql = $"select ModuleTreeId,Module,ModuleTree{sbu}.CategoryId,CategoryName,Model from ModuleTree{sbu}";
+            sql += $" inner join Categories{sbu} on Categories{sbu}.CategoryId=ModuleTree{sbu}.CategoryId";
             sql += string.Format(" where ModuleTreeId={0}", moduleTreeId);
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             ModuleTree objModuleTree = null;
@@ -84,9 +85,9 @@ namespace DAL
         /// </summary>
         /// <param name="objModuleTree"></param>
         /// <returns></returns>
-        public int AddModuleTree(ModuleTree objModuleTree)
+        public int AddModuleTree(ModuleTree objModuleTree, string sbu)
         {
-            string sql = "insert into ModuleTree(DrawingPlanId,CategoryId,Module)";
+            string sql = $"insert into ModuleTree{sbu} (DrawingPlanId,CategoryId,Module)";
             sql += " values({0},{1},'{2}'); select @@identity";
             sql = string.Format(sql, objModuleTree.DrawingPlanId, objModuleTree.CategoryId, objModuleTree.Module);
             try
@@ -114,9 +115,10 @@ namespace DAL
         /// </summary>
         /// <param name="objModuleTree"></param>
         /// <returns></returns>
-        public int EditModuleTree(ModuleTree objModuleTree)
+        public int EditModuleTree(ModuleTree objModuleTree, string sbu)
         {
-            string sql = "update ModuleTree set Module='{0}' where ModuleTreeId={1}";
+            string sql = $"update ModuleTree{sbu}";
+            sql += " set Module='{0}' where ModuleTreeId={1}";
             sql = string.Format(sql, objModuleTree.Module, objModuleTree.ModuleTreeId);
             try
             {
@@ -136,9 +138,9 @@ namespace DAL
         /// </summary>
         /// <param name="moduleTreeId"></param>
         /// <returns></returns>
-        public int DeleteModuleTree(string moduleTreeId)
+        public int DeleteModuleTree(string moduleTreeId, string sbu)
         {
-            string sql = "delete from ModuleTree where ModuleTreeId={0}";
+            string sql = $"delete from ModuleTree{sbu} where ModuleTreeId={0}";
             sql = string.Format(sql, moduleTreeId);
             try
             {
@@ -165,15 +167,15 @@ namespace DAL
         /// </summary>
         /// <param name="objModuleTree"></param>
         /// <returns></returns>
-        public bool AddModuleAndData(ModuleTree objModuleTree)
+        public bool AddModuleAndData(ModuleTree objModuleTree, string sbu)
         {
             //编写SQL语句
-            string sql = "insert into ModuleTree(DrawingPlanId,CategoryId,Module)";
+            string sql = $"insert into ModuleTree{sbu}(DrawingPlanId,CategoryId,Module)";
             sql += " values({0},{1},'{2}'); select @@identity";
             sql = string.Format(sql, objModuleTree.DrawingPlanId, objModuleTree.CategoryId, objModuleTree.Module);
             List<string> sqlList = new List<string>();
             sqlList.Add(sql);
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(objModuleTree.CategoryId.ToString());
+            Category objCategory = objCategoryService.GetCategoryByCategoryId(objModuleTree.CategoryId.ToString(), sbu);
             string sqldata = "insert into " + objCategory.CategoryName + " (ModuleTreeId) values(@@IDENTITY)";
             sqlList.Add(sqldata);
             //将sql语句提交到数据库
@@ -184,14 +186,14 @@ namespace DAL
         /// </summary>
         /// <param name="objModuleTree"></param>
         /// <returns></returns>
-        public bool DeleteModuleAndData(ModuleTree objModuleTree)
+        public bool DeleteModuleAndData(ModuleTree objModuleTree, string sbu)
         {
             //编写SQL语句
             List<string> sqlList = new List<string>();
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(objModuleTree.CategoryId.ToString());
+            Category objCategory = objCategoryService.GetCategoryByCategoryId(objModuleTree.CategoryId.ToString(), sbu);
             string sqldata = string.Format("delete from " + objCategory.CategoryName + " where ModuleTreeId={0}", objModuleTree.ModuleTreeId);
             sqlList.Add(sqldata);
-            string sql = string.Format("delete from ModuleTree where ModuleTreeId={0}", objModuleTree.ModuleTreeId);
+            string sql = string.Format("delete from ModuleTree{0} where ModuleTreeId={1}",sbu, objModuleTree.ModuleTreeId);
             sqlList.Add(sql);
             return SQLHelper.UpdateByTransaction(sqlList);
         }

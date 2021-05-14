@@ -20,5 +20,6 @@ namespace Models
         public string Contact { get; set; }
         //简单扩展内容
         public string GroupName { get; set; }
+        public string SBU { get; set; }//事业部
     }
 }

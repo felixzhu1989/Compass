@@ -24,6 +24,7 @@ namespace Compass
         //创建委托变量
         public ShowProjectInfoDelegate ShowProjectInfoDeg = null;
         public ShowModelTreeDelegate ShowModelTreeDeg = null;
+        private string sbu = Program.ObjCurrentUser.SBU;//当前事业部
 
         public FrmProject()
         {
@@ -55,19 +56,21 @@ namespace Compass
             this.btnPre.Enabled = false;
             this.btnNext.Enabled = false;
             this.btnLast.Enabled = false;
-            StringBuilder innerJoin = new StringBuilder("inner join Users on Projects.UserId=Users.UserId");
-            innerJoin.Append(" inner join Customers on Projects.CustomerId=Customers.CustomerId");
-            innerJoin.Append(" inner join ProjectTracking on Projects.ProjectId=ProjectTracking.ProjectId");
-            innerJoin.Append(" inner join ProjectStatus on ProjectTracking.ProjectStatusId=ProjectStatus.ProjectStatusId");
-            innerJoin.Append(" left join GeneralRequirements on Projects.ProjectId=GeneralRequirements.ProjectId");
+
+            StringBuilder innerJoin = new StringBuilder(string.Format("inner join Users on Projects{0}.UserId=Users.UserId",sbu));
+            innerJoin.Append(string.Format(" inner join Customers on Projects{0}.CustomerId=Customers.CustomerId", sbu));
+            innerJoin.Append(string.Format(" inner join ProjectTracking{0} on Projects{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu));
+            innerJoin.Append(string.Format(" inner join ProjectStatus on ProjectTracking{0}.ProjectStatusId=ProjectStatus.ProjectStatusId", sbu));
+            innerJoin.Append(string.Format(" left join GeneralRequirements{0} on Projects{0}.ProjectId=GeneralRequirements{0}.ProjectId", sbu));
 
             //初始化分页对象
             objSqlDataPager = new SqlDataPager()
             {
-                PrimaryKey = "Projects.ProjectId",
-                TableName = "Projects",
+                PrimaryKey = string.Format("Projects{0}.ProjectId",
+                sbu),
+                TableName = "Projects"+ sbu,
                 InnerJoin1 = innerJoin.ToString(),
-                FiledName = "Projects.ProjectId,ODPNo,BPONo,ProjectName,CustomerName,ShippingTime,UserAccount,RiskLevel,ProjectStatusName,HoodType",
+                FiledName = string.Format("Projects{0}.ProjectId,ODPNo,BPONo,ProjectName,CustomerName,ShippingTime,UserAccount,RiskLevel,ProjectStatusName,HoodType",sbu),
                 CurrentPage = 1,
                 Sort = "ShippingTime desc",
             };
@@ -280,7 +283,7 @@ namespace Compass
                     //int projectId = objProjectService.AddProject(objProject);
                     //if (projectId > 1)
 
-                    bool result = objProjectService.AddProjectAndTracking(objProject);//基于事务添加技术要求和跟踪
+                    bool result = objProjectService.AddProjectAndTracking(objProject, sbu);//基于事务添加技术要求和跟踪
                     if (result)
                     {
                         //提示添加成功
@@ -324,7 +327,7 @@ namespace Compass
                 //调用后台方法修改对象
                 try
                 {
-                    if (objProjectService.EditProject(objProject) == 1)
+                    if (objProjectService.EditProject(objProject,sbu) == 1)
                     {
                         MessageBox.Show("修改项目信息成功！", "提示信息");
                         btnQueryByYear_Click(null, null); //同步刷新显示数据
@@ -360,7 +363,7 @@ namespace Compass
             if (dgvProjects.RowCount == 0) return;
             if (dgvProjects.CurrentRow == null) return;
             projectId = dgvProjects.CurrentRow.Cells["Id"].Value.ToString();
-            Project objProject = objProjectService.GetProjectByProjectId(projectId);
+            Project objProject = objProjectService.GetProjectByProjectId(projectId,sbu);
             //初始化修改信息
             txtProjectId.Text = objProject.ProjectId.ToString();
             cobUserId.Text = objProject.UserAccount;
@@ -408,7 +411,7 @@ namespace Compass
             try
             {
                 //if (objProjectService.DeleteProject(projectId) == 1)
-                if (objProjectService.DeleteProjectAndTracking(projectId)) btnQueryAllProjects_Click(null, null);//同步刷新显示数据
+                if (objProjectService.DeleteProjectAndTracking(projectId,sbu)) btnQueryAllProjects_Click(null, null);//同步刷新显示数据
                 else MessageBox.Show("删除项目出错，项目是否被其他数据关联，请联系管理员查看后台数据。");
             }
             catch (Exception ex)
@@ -672,7 +675,7 @@ namespace Compass
         {
             string odpNo = txtODPNo.Text;
             if (odpNo.Length == 0) return;
-            Project objProject = objProjectService.GetProjectByODPNo(odpNo);
+            Project objProject = objProjectService.GetProjectByODPNo(odpNo,sbu);
             if (objProject == null) return;
             FrmRequirements objFrmRequirements = new FrmRequirements(objProject);
             objFrmRequirements.ShowDialog();

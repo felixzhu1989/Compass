@@ -14,6 +14,8 @@ namespace Compass
     public partial class FrmJobCardCeiling : MetroFramework.Forms.MetroForm
     {
         private Project item = null;
+        private string sbu = Program.ObjCurrentUser.SBU;
+
         public FrmJobCardCeiling()
         {
             InitializeComponent();
@@ -55,7 +57,7 @@ namespace Compass
             {
                 try
                 {
-                    new PrintReports().ExecPrintCeilingJobCard(item, itemNo, model);
+                    new PrintReports().ExecPrintCeilingJobCard(item, itemNo, model,sbu);
                 }
                 catch (Exception ex)
                 {

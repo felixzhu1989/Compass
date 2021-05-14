@@ -15,9 +15,9 @@ namespace DAL
         /// 获取所有产品分类
         /// </summary>
         /// <returns></returns>
-        public List<Category> GetAllCategories()
+        public List<Category> GetAllCategories(string sbu)
         {
-            string sql = "select CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelPath from Categories";
+            string sql = $"select CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelPath from Categories{sbu}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<Category> list = new List<Category>();
             while (objReader.Read())
@@ -31,7 +31,7 @@ namespace DAL
                     CategoryDesc = objReader["CategoryDesc"].ToString(),
                     Model = objReader["Model"].ToString(),
                     SubType = objReader["SubType"].ToString(),
-                    ModelPath=objReader["ModelPath"].ToString()
+                    ModelPath = objReader["ModelPath"].ToString()
                 });
             }
             objReader.Close();
@@ -41,11 +41,11 @@ namespace DAL
         /// 获取所有一级目录编号和描述
         /// </summary>
         /// <returns></returns>
-        public List<Category> GetCategoryId()
+        public List<Category> GetCategoryId(string sbu)
         {
-            string sql = "select CategoryId,CategoryDesc from Categories";
+            string sql = $"select CategoryId,CategoryDesc from Categories{sbu}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
-            List<Category> list=new List<Category>();
+            List<Category> list = new List<Category>();
             while (objReader.Read())
             {
                 string str = objReader["CategoryId"].ToString();
@@ -66,14 +66,14 @@ namespace DAL
         /// </summary>
         /// <param name="objCategory"></param>
         /// <returns></returns>
-        public string AddCategory(Category objCategory)
+        public string AddCategory(Category objCategory, string sbu)
         {
-            string sql = "insert into Categories";
+            string sql = $"insert into Categories{sbu}";
             sql += " (CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelImage,KMLink,ModelPath)";
             sql += " values({0},{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}')";
-            sql=string.Format(sql,objCategory.CategoryId, objCategory.ParentId, objCategory.CategoryName, 
-                objCategory.CategoryDesc,objCategory.Model, objCategory.SubType, objCategory.ModelImage,
-                objCategory.KMLink,objCategory.ModelPath);
+            sql = string.Format(sql, objCategory.CategoryId, objCategory.ParentId, objCategory.CategoryName,
+                objCategory.CategoryDesc, objCategory.Model, objCategory.SubType, objCategory.ModelImage,
+                objCategory.KMLink, objCategory.ModelPath);
             try
             {
                 SQLHelper.GetSingleResult(sql);
@@ -93,12 +93,12 @@ namespace DAL
         /// </summary>
         /// <param name="parentId"></param>
         /// <returns></returns>
-        public List<Category> GetCategoriesByParentId(string parentId)
+        public List<Category> GetCategoriesByParentId(string parentId, string sbu)
         {
-            string sql = "select CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelPath from Categories";
+            string sql = $"select CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelPath from Categories{sbu}";
             sql += string.Format(" where ParentId={0}", parentId);
             SqlDataReader objReader = SQLHelper.GetReader(sql);
-            List<Category> list=new List<Category>();
+            List<Category> list = new List<Category>();
             while (objReader.Read())
             {
                 list.Add(new Category()
@@ -120,18 +120,18 @@ namespace DAL
         /// </summary>
         /// <param name="categoryId"></param>
         /// <returns></returns>
-        public Category GetCategoryByCategoryId(string categoryId)
+        public Category GetCategoryByCategoryId(string categoryId, string sbu)
         {
             string sql =
-                "select CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelImage,KMLink,ModelPath from Categories";
+                $"select CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelImage,KMLink,ModelPath from Categories{sbu}";
             sql += string.Format(" where CategoryId={0}", categoryId);
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             Category objCategory = null;
             if (objReader.Read())
             {
-                objCategory=new Category()
+                objCategory = new Category()
                 {
-                    CategoryId =Convert.ToInt32(objReader["CategoryId"]),
+                    CategoryId = Convert.ToInt32(objReader["CategoryId"]),
                     ParentId = Convert.ToInt32(objReader["ParentId"]),
                     CategoryName = objReader["CategoryName"].ToString(),
                     CategoryDesc = objReader["CategoryDesc"].ToString(),
@@ -151,13 +151,14 @@ namespace DAL
         /// </summary>
         /// <param name="objUser"></param>
         /// <returns></returns>
-        public int EditCategory(Category objCategory)
+        public int EditCategory(Category objCategory, string sbu)
         {
-            string sql = "update Categories set ParentId={0},CategoryName='{1}',CategoryDesc='{2}',Model='{3}',SubType='{4}'";
+            string sql =$"update Categories{sbu}";
+            sql += " set ParentId={0},CategoryName='{1}',CategoryDesc='{2}',Model='{3}',SubType='{4}'";
             sql += ",ModelImage='{5}',KMLink='{6}',ModelPath='{7}' where CategoryId={8}";
-            sql = string.Format(sql, objCategory.ParentId, objCategory.CategoryName, objCategory.CategoryDesc, 
-                objCategory.Model, objCategory.SubType, objCategory.ModelImage, objCategory.KMLink, 
-                objCategory.ModelPath,objCategory.CategoryId);
+            sql = string.Format(sql, objCategory.ParentId, objCategory.CategoryName, objCategory.CategoryDesc,
+                objCategory.Model, objCategory.SubType, objCategory.ModelImage, objCategory.KMLink,
+                objCategory.ModelPath, objCategory.CategoryId);
             try
             {
                 return SQLHelper.Update(sql);
@@ -176,9 +177,10 @@ namespace DAL
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public int DeleteCategory(string categoryId)
+        public int DeleteCategory(string categoryId, string sbu)
         {
-            string sql = "delete from Categories where CategoryId={0}";
+            string sql = $"delete from Categories{sbu}";
+            sql += "where CategoryId ={0}";
             sql = string.Format(sql, categoryId);
             try
             {

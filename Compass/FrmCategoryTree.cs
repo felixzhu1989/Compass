@@ -17,6 +17,7 @@ namespace Compass
     {
         //创建委托变量
         public RefreshTreeDelegate RefreshTreeDeg = null;
+        private string sbu = Program.ObjCurrentUser.SBU;
 
         ModuleTreeService objModuleTreeService = new ModuleTreeService();
         private Drawing objDrawing = null;
@@ -44,7 +45,7 @@ namespace Compass
         private CategoryService objCategoryService = new CategoryService();
         private void LoadTvCategory()
         {
-            this.categoryList = objCategoryService.GetAllCategories();//加载产品目录树的所有节点信息
+            this.categoryList = objCategoryService.GetAllCategories(sbu);//加载产品目录树的所有节点信息
             //创建第一个节点
             this.tvCategory.Nodes.Clear();//清空所有节点
             TreeNode rootNode = new TreeNode();
@@ -127,7 +128,7 @@ namespace Compass
                 //提交修改
                 try
                 {
-                    if (objModuleTreeService.EditModuleTree(objModuleTree) == 1)
+                    if (objModuleTreeService.EditModuleTree(objModuleTree,sbu) == 1)
                     {
                         MessageBox.Show("修改分段名称成功！", "提示信息");
                         this.Close();
@@ -162,7 +163,7 @@ namespace Compass
                     //    this.Close();
                     //    this.DialogResult = DialogResult.OK;
                     //}
-                    bool result = objModuleTreeService.AddModuleAndData(objModuleTree);
+                    bool result = objModuleTreeService.AddModuleAndData(objModuleTree,sbu);
                     if (result)
                     {
                         MessageBox.Show("烟罩分段添加成功");

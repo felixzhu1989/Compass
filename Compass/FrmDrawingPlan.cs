@@ -20,6 +20,7 @@ namespace Compass
         private UserService objUserService = new UserService();
         private DesignWorkloadService objDesignWorkloadService = new DesignWorkloadService();
         private ProjectService objProjectService = new ProjectService();
+        private string sbu = Program.ObjCurrentUser.SBU;
 
         public FrmDrawingPlan()
         {
@@ -47,22 +48,20 @@ namespace Compass
             this.btnPre.Enabled = false;
             this.btnNext.Enabled = false;
             this.btnLast.Enabled = false;
-            StringBuilder innerJoin1 = new StringBuilder("inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId");
-            innerJoin1.Append(" inner join Users on Users.UserId=Projects.UserId");
-            innerJoin1.Append(" left join ProjectTracking on DrawingPlan.ProjectId=ProjectTracking.ProjectId");
+            StringBuilder innerJoin1 = new StringBuilder(string.Format("inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId",sbu));
+            innerJoin1.Append(string.Format(" inner join Users on Users.UserId=Projects{0}.UserId", sbu));
+            innerJoin1.Append(string.Format(" left join ProjectTracking{0} on DrawingPlan{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu));
 
             //初始化分页对象
             objSqlDataPager = new SqlDataPager()
             {
                 PrimaryKey = "DrawingPlanId",
-                TableName = "DrawingPlan",
+                TableName = string.Format("DrawingPlan{0}",sbu),
                 InnerJoin1 = innerJoin1.ToString(),
-                InnerJoin2 = "inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId",
-                FiledName = "DrawingPlanId,UserAccount,ODPNo,Item,Model,ModuleNo,DrawingPlan.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,ProjectName,HoodType," +
-                            "IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<0,0,DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)) as RemainingDays," +
-                            "IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan.DrReleaseTarget)<=0,100,100*DATEDIFF(DAY,GETDATE(),DrawingPlan.AddedDate)/DATEDIFF(DAY,DrawingPlan.DrReleaseTarget,DrawingPlan.AddedDate)) as ProgressValue",
+                InnerJoin2 = string.Format("inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId", sbu),
+                FiledName = string.Format("DrawingPlanId,UserAccount,ODPNo,Item,Model,ModuleNo,DrawingPlan{0}.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,ProjectName,HoodType,IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan{0}.DrReleaseTarget)<0,0,DATEDIFF(DAY,GETDATE(),DrawingPlan{0}.DrReleaseTarget)) as RemainingDays,IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan{0}.DrReleaseTarget)<=0,100,100*DATEDIFF(DAY,GETDATE(),DrawingPlan{0}.AddedDate)/DATEDIFF(DAY,DrawingPlan{0}.DrReleaseTarget,DrawingPlan{0}.AddedDate)) as ProgressValue", sbu),
                 CurrentPage = 1,
-                Sort = "DrawingPlan.DrReleasetarget desc",
+                Sort = string.Format("DrawingPlan{0}.DrReleasetarget desc",sbu),
             };
 
             btnQueryByYear_Click(null, null);
@@ -148,13 +147,13 @@ namespace Compass
         }
         private void QueryByYear()
         {
-            objSqlDataPager.Condition = string.Format("DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", this.cobQueryYear.Text);
+            objSqlDataPager.Condition = string.Format("DrawingPlan{0}.DrReleasetarget>='{1}/01/01' and DrawingPlan{0}.DrReleasetarget<='{1}/12/31'",sbu, this.cobQueryYear.Text);
             objSqlDataPager.PageSize = Convert.ToInt32(this.cobRecordList.Text.Trim());
             Query();
         }
         private void QureyAll()
         {
-            objSqlDataPager.Condition = "DrawingPlan.DrReleasetarget>='2020/01/01'";
+            objSqlDataPager.Condition = string.Format("DrawingPlan{0}.DrReleasetarget>='2020/01/01'",sbu);
             objSqlDataPager.PageSize = 10000;
             Query();
         }
@@ -185,7 +184,7 @@ namespace Compass
         /// <param name="cobItem"></param>
         private void IniModel(ComboBox cobItem)
         {
-            cobItem.DataSource = objDesignWorkloadService.GetAllDesignWorkload();
+            cobItem.DataSource = objDesignWorkloadService.GetAllDesignWorkload(sbu);
             cobItem.DisplayMember = "Model";
             cobItem.ValueMember = "WorkloadValue";
             cobItem.SelectedIndex = -1;//默认不要选中
@@ -197,7 +196,7 @@ namespace Compass
         private void IniODPNo(ComboBox cobItem)
         {
             //绑定ODPNo下拉框
-            cobItem.DataSource = objProjectService.GetProjectsByWhereSql("");
+            cobItem.DataSource = objProjectService.GetProjectsByWhereSql("",sbu);
             cobItem.DisplayMember = "ODPNo";
             cobItem.ValueMember = "ProjectId";
             cobItem.SelectedIndex = -1;//默认不要选中
@@ -303,7 +302,7 @@ namespace Compass
             //提交添加
             try
             {
-                int drawingPlanId = objDrawingPlanService.AddDraingPlan(objDrawingPlan);
+                int drawingPlanId = objDrawingPlanService.AddDraingPlan(objDrawingPlan,sbu);
                 if (drawingPlanId > 1)
                 {
                     //提示添加成功
@@ -342,7 +341,7 @@ namespace Compass
         private void btnQueryByProjectId_Click(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("DrawingPlan.ProjectId={0}", cobODPNo.SelectedValue.ToString());
+            objSqlDataPager.Condition = string.Format("DrawingPlan{0}.ProjectId={1}", sbu,cobODPNo.SelectedValue.ToString());
             objSqlDataPager.PageSize = 10000;
             Query();
         }
@@ -364,7 +363,7 @@ namespace Compass
                 return;
             }
             string drawingPlanId = dgvDrawingPlan.CurrentRow.Cells["DrawingPlanId"].Value.ToString();
-            DrawingPlan objDrawingPlan = objDrawingPlanService.GetDrawingPlanById(drawingPlanId);
+            DrawingPlan objDrawingPlan = objDrawingPlanService.GetDrawingPlanById(drawingPlanId,sbu);
             //初始化修改信息
             grbEditDrawingPlan.Visible = true;//显示修改框
             grbEditDrawingPlan.Location = new Point(10, 9);
@@ -479,7 +478,7 @@ namespace Compass
             //调用后台方法修改对象
             try
             {
-                if (objDrawingPlanService.EditDrawingPlan(objDrawingPlan) == 1)
+                if (objDrawingPlanService.EditDrawingPlan(objDrawingPlan,sbu) == 1)
                 {
                     MessageBox.Show("修改计划成功！", "提示信息");
                     grbEditDrawingPlan.Visible = false;
@@ -520,7 +519,7 @@ namespace Compass
             int firstRowIndex = dgvDrawingPlan.CurrentRow.Index;
             try
             {
-                if (objDrawingPlanService.DeleteDrawingPlan(drawingPlanId) == 1)
+                if (objDrawingPlanService.DeleteDrawingPlan(drawingPlanId,sbu) == 1)
                 {
                     btnQueryAllPlan_Click(null, null);//同步刷新显示数据
                 }
@@ -531,8 +530,11 @@ namespace Compass
             }
             grbEditDrawingPlan.Visible = false;
             dgvDrawingPlan.ClearSelection();
-            dgvDrawingPlan.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
-            dgvDrawingPlan.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
+            if (firstRowIndex < dgvDrawingPlan.RowCount)
+            {
+                dgvDrawingPlan.Rows[firstRowIndex].Selected = true; //将刚修改的行选中
+                dgvDrawingPlan.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
+            }
         }
         /// <summary>
         /// 按下删除键执行删除
@@ -607,7 +609,7 @@ namespace Compass
         {
             string odpNo = cobODPNo.Text.Trim();
             if (odpNo.Length == 0) return;
-            Project objProject = objProjectService.GetProjectByODPNo(odpNo);
+            Project objProject = objProjectService.GetProjectByODPNo(odpNo,Program.ObjCurrentUser.SBU);
             if (objProject == null) return;
             FrmRequirements objFrmRequirements = new FrmRequirements(objProject);
             objFrmRequirements.ShowDialog();
@@ -621,7 +623,7 @@ namespace Compass
         private void btnQueryByUserId_Click(object sender, EventArgs e)
         {
             if (cobUserId.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("Projects.UserId={0}", cobUserId.SelectedValue.ToString());
+            objSqlDataPager.Condition = string.Format("Projects{0}.UserId={1}", sbu,cobUserId.SelectedValue.ToString());
             objSqlDataPager.PageSize = 10000;
             Query();
         }

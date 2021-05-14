@@ -213,6 +213,26 @@ namespace Compass.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Setting1 {
+            get {
+                object obj = ResourceManager.GetObject("Setting1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap ship_65_25px_1208491_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("ship_65.25px_1208491_easyicon.net", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Status {
             get {
                 object obj = ResourceManager.GetObject("Status", resourceCulture);

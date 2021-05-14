@@ -478,58 +478,74 @@ namespace DAL
 
         #endregion
 
+
+
+
         /// <summary>
         /// 查询单项目中烟罩数量
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public DataSet GetScopeByDataSet(string projectId)
+        public DataSet GetScopeByDataSet(string projectId,string sbu)
         {
-            string sql = "select Model as '机型',sum(ModuleNo) as '总台数' from DrawingPlan";
+            string sql = string.Format("select Model as '机型',sum(ModuleNo) as '总台数' from DrawingPlan{0}",sbu);
             sql += string.Format(" where ProjectId={0}", projectId);
             sql += " group by Model";
             return SQLHelper.GetDataSet(sql);
         }
+
+
+
         /// <summary>
         /// 根据项目号UserId返回制图计划集合
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public List<DrawingPlan> GetDrawingPlanByUserId(string userId)
+        public List<DrawingPlan> GetDrawingPlanByUserId(string userId,string sbu)
         {
-            return GetDrawingPlanByWhereSql(string.Format(" where Projects.UserId={0}", userId));
+            return GetDrawingPlanByWhereSql(string.Format(" where Projects{0}.UserId={1}", sbu,userId),sbu);
         }
+
+
+
         /// <summary>
         /// 根据项目号ODPNo返回制图计划集合
         /// </summary>
         /// <param name="odpNo"></param>
         /// <returns></returns>
-        public List<DrawingPlan> GetDrawingPlanByODPNo(string odpNo)
+        public List<DrawingPlan> GetDrawingPlanByODPNo(string odpNo,string sbu)
         {
-            return GetDrawingPlanByWhereSql(string.Format(" where ODPNo='{0}'", odpNo));
+            return GetDrawingPlanByWhereSql(string.Format(" where ODPNo='{0}'", odpNo),sbu);
         }
+
+
+
         /// <summary>
         /// 根据项目Id返回制图计划集合
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public List<DrawingPlan> GetDrawingPlanByProjectId(string projectId)
+        public List<DrawingPlan> GetDrawingPlanByProjectId(string projectId,string sbu)
         {
-            return GetDrawingPlanByWhereSql(string.Format(" where DrawingPlan.ProjectId={0}", projectId));
+            return GetDrawingPlanByWhereSql(string.Format(" where DrawingPlan{0}.ProjectId={1}",sbu, projectId),sbu);
         }
+
+
+
+
         /// <summary>
         /// 根据单个条件返回制图计划集合
         /// </summary>
         /// <param name="whereSql"></param>
         /// <returns></returns>
-        public List<DrawingPlan> GetDrawingPlanByWhereSql(string whereSql)
+        public List<DrawingPlan> GetDrawingPlanByWhereSql(string whereSql,string sbu)
         {
-            string sql = "select DrawingPlanId,UserAccount,DrawingPlan.ProjectId,ODPNo,Item,Model,ModuleNo,DrawingPlan.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,DrawingPlan.AddedDate,ProjectName from DrawingPlan";
-            sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
-            sql += " inner join Users on Users.UserId=Projects.UserId";
-            sql += " left join ProjectTracking on DrawingPlan.ProjectId=ProjectTracking.ProjectId";
+            string sql = string.Format("select DrawingPlanId,UserAccount,DrawingPlan{0}.ProjectId,ODPNo,Item,Model,ModuleNo,DrawingPlan{0}.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,DrawingPlan{0}.AddedDate,ProjectName from DrawingPlan{0}", sbu);
+            sql += string.Format(" inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId",sbu);
+            sql += string.Format(" inner join Users on Users.UserId=Projects{0}.UserId",sbu);
+            sql += string.Format(" left join ProjectTracking{0} on DrawingPlan{0}.ProjectId=ProjectTracking{0}.ProjectId",sbu);
             sql += whereSql;
-            sql += " order by DrawingPlan.DrReleasetarget desc";//按照计划发图日期，倒序排列
+            sql += string.Format(" order by DrawingPlan{0}.DrReleasetarget desc",sbu);//按照计划发图日期，倒序排列
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<DrawingPlan> list = new List<DrawingPlan>();
             while (objReader.Read())
@@ -566,11 +582,11 @@ namespace DAL
         /// </summary>
         /// <param name="drawingPlanId"></param>
         /// <returns></returns>
-        public DrawingPlan GetDrawingPlanById(string drawingPlanId)
+        public DrawingPlan GetDrawingPlanById(string drawingPlanId,string sbu)
         {
-            string sql = "select DrawingPlanId,UserAccount,DrawingPlan.ProjectId,ODPNo,Item,Model,ModuleNo,DrReleaseTarget,SubTotalWorkload,DrawingPlan.AddedDate,ProjectName from DrawingPlan";
-            sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
-            sql += " inner join Users on Users.UserId=Projects.UserId";
+            string sql = string.Format("select DrawingPlanId,UserAccount,DrawingPlan{0}.ProjectId,ODPNo,Item,Model,ModuleNo,DrReleaseTarget,SubTotalWorkload,DrawingPlan{0}.AddedDate,ProjectName from DrawingPlan{0}", sbu);
+            sql += string.Format(" inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId", sbu);
+            sql += string.Format(" inner join Users on Users.UserId=Projects{0}.UserId", sbu);
             sql += string.Format(" where DrawingPlanId = {0}", drawingPlanId);
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             DrawingPlan objDrawingPlan = null;
@@ -599,9 +615,9 @@ namespace DAL
         /// </summary>
         /// <param name="objDrawingPlan"></param>
         /// <returns></returns>
-        public int AddDraingPlan(DrawingPlan objDrawingPlan)
+        public int AddDraingPlan(DrawingPlan objDrawingPlan,string sbu)
         {
-            string sql = "insert into DrawingPlan (ProjectId,Item,Model,ModuleNo,DrReleasetarget,SubTotalWorkload)";
+            string sql =string.Format("insert into DrawingPlan{0} (ProjectId,Item,Model,ModuleNo,DrReleasetarget,SubTotalWorkload)", sbu);
             sql += " values({0},'{1}','{2}','{3}','{4}','{5}');select @@identity";
             sql = string.Format(sql, objDrawingPlan.ProjectId, objDrawingPlan.Item,
                 objDrawingPlan.Model, objDrawingPlan.ModuleNo, objDrawingPlan.DrReleaseTarget, objDrawingPlan.SubTotalWorkload);
@@ -623,9 +639,10 @@ namespace DAL
         /// </summary>
         /// <param name="objDrawingPlan"></param>
         /// <returns></returns>
-        public int EditDrawingPlan(DrawingPlan objDrawingPlan)
+        public int EditDrawingPlan(DrawingPlan objDrawingPlan,string sbu)
         {
-            string sql = "update DrawingPlan set ProjectId={0},Item='{1}',Model='{2}',ModuleNo='{3}',";
+            string sql = string.Format("update DrawingPlan{0}",sbu);
+            sql += " set ProjectId={0},Item='{1}',Model='{2}',ModuleNo='{3}',";
             sql += "DrReleasetarget='{4}',SubTotalWorkload='{5}',AddedDate='{6}' where DrawingPlanId={7}";
             sql = string.Format(sql, objDrawingPlan.ProjectId, objDrawingPlan.Item, objDrawingPlan.Model, objDrawingPlan.ModuleNo,
                   objDrawingPlan.DrReleaseTarget, objDrawingPlan.SubTotalWorkload, objDrawingPlan.AddedDate, objDrawingPlan.DrawingPlanId);
@@ -647,9 +664,10 @@ namespace DAL
         /// </summary>
         /// <param name="drawingPlanId"></param>
         /// <returns></returns>
-        public int DeleteDrawingPlan(string drawingPlanId)
+        public int DeleteDrawingPlan(string drawingPlanId,string sbu)
         {
-            string sql = "delete from DrawingPlan where DrawingPlanId={0}";
+            string sql = string.Format("delete from DrawingPlan{0}",sbu);
+            sql += " where DrawingPlanId={0}";
             sql = string.Format(sql, drawingPlanId);
             try
             {

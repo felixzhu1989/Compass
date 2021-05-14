@@ -26,12 +26,12 @@ create table Categories
     CategoryId int not null,--不能自增，这个后面要手动定义分类号
     ParentId int not null,--类型的父类，引用CategoryId，约束后面再添加
     CategoryName varchar(20) not null,
-    CategoryDesc varchar(30),
-    KMLink varchar(500),
+    CategoryDesc varchar(30),    
     Model varchar(30),
     SubType varchar(20),
     ModelImage text,
     LastSaved text,
+	KMLink varchar(500),
     ModelPath varchar(500)
 )
 if exists (select * from sysobjects where name='DesignWorkload')
@@ -43,12 +43,12 @@ create table DesignWorkload
     WorkloadValue decimal(4,2),
 	ModelDesc varchar(100)
 )
+
 if exists (select * from sysobjects where name='DrawingPlan')
     drop table DrawingPlan
 create table DrawingPlan
 (
-    DrawingPlanId int identity(1,1),
-    UserId int,
+    DrawingPlanId int identity(1,1),    
     ProjectId int not null,
     Item varchar(30),
     Model varchar(30) not null,
@@ -74,12 +74,9 @@ create table ProjectTracking
 (
     ProjectTrackingId int identity(1,1),
     ProjectId int not null,
-    ProjectStatusId int not null,
-    DrReleaseTarget date,
-    DrReleaseActual date,
-    ProdFinishTarget date,
-    ProdFinishActual date,
-    DeliverTarget date,
+    ProjectStatusId int not null,    
+    DrReleaseActual date,    
+    ProdFinishActual date,    
     DeliverActual date,
     AddedDate datetime,
 	KickOffStatus varchar(3)
@@ -111,6 +108,7 @@ create table Projects
     UserId int,
 	HoodType varchar(10)
 )
+
 if exists (select * from sysobjects where name='ProjectTypes')
 drop table ProjectTypes
 go
@@ -120,6 +118,9 @@ create table ProjectTypes
     TypeName varchar(20),
     KMLink varchar(500)
 )
+select * from ProjectTypes
+
+
 if exists (select * from sysobjects where name='GeneralRequirements')
 drop table GeneralRequirements
 go
@@ -135,6 +136,7 @@ create table GeneralRequirements
 	RiskLevel int,
 	MainAssyPath varchar(500)
 )
+
 if exists (select * from sysobjects where name='SpecialRequirements')
 drop table SpecialRequirements
 go
@@ -144,6 +146,7 @@ create table SpecialRequirements
     ProjectId int not null,
     Content varchar(500)
 )
+
 if exists (select * from sysobjects where name='CheckComments')
 drop table CheckComments
 go

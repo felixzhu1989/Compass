@@ -15,16 +15,16 @@ namespace DAL
         /// 获取所有设计工作量集合
         /// </summary>
         /// <returns></returns>
-        public List<DesignWorkload> GetAllDesignWorkload()
+        public List<DesignWorkload> GetAllDesignWorkload(string sbu)
         {
-            string sql = "select WorkloadId,Model,WorkloadValue,ModelDesc from DesignWorkload";
+            string sql = $"select WorkloadId,Model,WorkloadValue,ModelDesc from DesignWorkload{sbu}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<DesignWorkload> list = new List<DesignWorkload>();
             while (objReader.Read())
             {
                 list.Add(new DesignWorkload()
                 {
-                    WorkloadId =Convert.ToInt32(objReader["WorkloadId"]),
+                    WorkloadId = Convert.ToInt32(objReader["WorkloadId"]),
                     Model = objReader["Model"].ToString(),
                     WorkloadValue = Convert.ToDecimal(objReader["WorkloadValue"]),
                     ModelDesc = objReader["ModelDesc"].ToString()
@@ -38,9 +38,9 @@ namespace DAL
         /// </summary>
         /// <param name="objDesignWorkload"></param>
         /// <returns></returns>
-        public int AddDesignWorkload(DesignWorkload objDesignWorkload)
+        public int AddDesignWorkload(DesignWorkload objDesignWorkload, string sbu)
         {
-            string sql = "insert into DesignWorkload (Model,WorkloadValue,ModelDesc)";
+            string sql = $"insert into DesignWorkload{sbu} (Model,WorkloadValue,ModelDesc)";
             sql += " values('{0}',{1},'{2}');select @@identity";
             sql = string.Format(sql, objDesignWorkload.Model, objDesignWorkload.WorkloadValue, objDesignWorkload.ModelDesc);
             try
@@ -61,9 +61,10 @@ namespace DAL
         /// </summary>
         /// <param name="workloadId"></param>
         /// <returns></returns>
-        public DesignWorkload GetDesignWorkloadById(string workloadId)
+        public DesignWorkload GetDesignWorkloadById(string workloadId, string sbu)
         {
-            string sql = "select WorkloadId,Model,WorkloadValue,ModelDesc from DesignWorkload where  WorkloadId={0}";
+            string sql = $"select WorkloadId,Model,WorkloadValue,ModelDesc from DesignWorkload{sbu}";
+            sql += " where  WorkloadId={0}";
             sql = string.Format(sql, workloadId);
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             DesignWorkload objDesignWorkload = null;
@@ -71,7 +72,7 @@ namespace DAL
             {
                 objDesignWorkload = new DesignWorkload()
                 {
-                    WorkloadId=Convert.ToInt32(objReader["WorkloadId"]),
+                    WorkloadId = Convert.ToInt32(objReader["WorkloadId"]),
                     Model = objReader["Model"].ToString(),
                     WorkloadValue = Convert.ToDecimal(objReader["WorkloadValue"]),
                     ModelDesc = objReader["ModelDesc"].ToString()
@@ -85,11 +86,12 @@ namespace DAL
         /// </summary>
         /// <param name="objDesignWorkload"></param>
         /// <returns></returns>
-        public int EditDesignWorkload(DesignWorkload objDesignWorkload)
+        public int EditDesignWorkload(DesignWorkload objDesignWorkload, string sbu)
         {
-            string sql = "update DesignWorkload set Model='{0}',WorkloadValue={1},ModelDesc='{2}'";
+            string sql = $"update DesignWorkload{sbu}";
+            sql += " set Model='{0}',WorkloadValue={1},ModelDesc='{2}'";
             sql += " where WorkloadId={3}";
-            sql = string.Format(sql, objDesignWorkload.Model, objDesignWorkload.WorkloadValue, 
+            sql = string.Format(sql, objDesignWorkload.Model, objDesignWorkload.WorkloadValue,
                 objDesignWorkload.ModelDesc, objDesignWorkload.WorkloadId);
             try
             {
@@ -109,9 +111,10 @@ namespace DAL
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public int DeleteDesignWorkload(string workloadId)
+        public int DeleteDesignWorkload(string workloadId, string sbu)
         {
-            string sql = "delete from DesignWorkload where WorkloadId={0}";
+            string sql = $"delete from DesignWorkload{sbu}";
+            sql += " where WorkloadId={0}";
             sql = string.Format(sql, workloadId);
             try
             {

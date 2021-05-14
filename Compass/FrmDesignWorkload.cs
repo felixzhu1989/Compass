@@ -17,6 +17,8 @@ namespace Compass
     {
         private DesignWorkloadService objDesignWorkloadService=new DesignWorkloadService();
         private List<DesignWorkload> designWorkloadList=new List<DesignWorkload>();
+        private string sbu = Program.ObjCurrentUser.SBU;
+
         public FrmDesignWorkload()
         {
             InitializeComponent();
@@ -26,7 +28,7 @@ namespace Compass
         }
         private void RefreshData()
         {
-            designWorkloadList = objDesignWorkloadService.GetAllDesignWorkload();
+            designWorkloadList = objDesignWorkloadService.GetAllDesignWorkload(sbu);
             dgvDesignWorkload.DataSource = designWorkloadList;
         }
         /// <summary>
@@ -69,7 +71,7 @@ namespace Compass
             //提交添加
             try
             {
-                int userId = objDesignWorkloadService.AddDesignWorkload(objDesignWorkload);
+                int userId = objDesignWorkloadService.AddDesignWorkload(objDesignWorkload,sbu);
                 if (userId > 1)
                 {
                     //提示添加成功
@@ -121,7 +123,7 @@ namespace Compass
                 return;
             }
             string workloadId = dgvDesignWorkload.CurrentRow.Cells["WorkloadId"].Value.ToString();
-            DesignWorkload objDesignWorkload = objDesignWorkloadService.GetDesignWorkloadById(workloadId);
+            DesignWorkload objDesignWorkload = objDesignWorkloadService.GetDesignWorkloadById(workloadId,sbu);
             //初始化修改信息
             grbEditWorkload.Visible = true;//显示
             txtEditWorkloadId.Text = objDesignWorkload.WorkloadId.ToString();
@@ -172,7 +174,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objDesignWorkloadService.EditDesignWorkload(objDesignWorkload) == 1)
+                if (objDesignWorkloadService.EditDesignWorkload(objDesignWorkload,sbu) == 1)
                 {
                     MessageBox.Show("修改工作量成功！", "提示信息");
                     grbEditWorkload.Visible = false;
@@ -220,7 +222,7 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objDesignWorkloadService.DeleteDesignWorkload(workloadId) == 1)
+                if (objDesignWorkloadService.DeleteDesignWorkload(workloadId,sbu) == 1)
                 {
                     RefreshData();//同步刷新显示数据
                 }

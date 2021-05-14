@@ -19,6 +19,7 @@ namespace Compass
         private ImportDataFormExcel objImportDataFormExcel = new ImportDataFormExcel();
         private DXFCutListService objDxfCutListService = new DXFCutListService();
         private CategoryService objCategoryService = new CategoryService();
+        private string sbu = Program.ObjCurrentUser.SBU;
 
         public FrmDXFCutList()
         {
@@ -36,7 +37,7 @@ namespace Compass
         {
             //断开事件委托
             this.cobCategoryId.SelectedIndexChanged -= new System.EventHandler(this.cobCategoryId_SelectedIndexChanged);
-            cobItem.DataSource = objCategoryService.GetAllCategories();
+            cobItem.DataSource = objCategoryService.GetAllCategories(sbu);
             cobItem.DisplayMember = "CategoryId";
             cobItem.ValueMember = "CategoryDesc";
             cobItem.SelectedIndex = -1;

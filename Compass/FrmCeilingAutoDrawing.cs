@@ -35,6 +35,7 @@ namespace Compass
         BindingList<ModuleTree> execList = new BindingList<ModuleTree>();//执行list，手动添加的
         BindingList<SubAssy> subAssyWaitingList = null;////待执行list，从项目中查询出来的,拖拽进dgv中的文件列表
         BindingList<SubAssy> subAssyExecList = new BindingList<SubAssy>();//执行list，手动添加的
+        private string sbu = Program.ObjCurrentUser.SBU;
 
         //solidWorks程序
         private SldWorks swApp;
@@ -48,7 +49,7 @@ namespace Compass
             //dgvCutList.AutoGenerateColumns = false;
 
             //项目编号下拉框
-            cobODPNo.DataSource = objProjectService.GetProjectsByHoodType("Ceiling");
+            cobODPNo.DataSource = objProjectService.GetProjectsByHoodType("Ceiling",sbu);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;
@@ -118,8 +119,8 @@ namespace Compass
         private void cobODPNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
-            objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text);
-            objGeneralRequirement = objRequirementService.GetGeneralRequirementByODPNo(cobODPNo.Text);
+            objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text,sbu);
+            objGeneralRequirement = objRequirementService.GetGeneralRequirementByODPNo(cobODPNo.Text,sbu);
             txtBPONo.Text = objProject.BPONo;
             txtProjectName.Text = objProject.ProjectName;
             RefreshTree();
@@ -180,7 +181,7 @@ namespace Compass
         {
             if (objProject == null) return;
             execList.Clear();
-            waitingList = new BindingList<ModuleTree>(objModuleTreeService.GetModuleTreesByProjectId(cobODPNo.SelectedValue.ToString()));
+            waitingList = new BindingList<ModuleTree>(objModuleTreeService.GetModuleTreesByProjectId(cobODPNo.SelectedValue.ToString(),sbu));
             subAssyExecList.Clear();
             subAssyWaitingList = new BindingList<SubAssy>(objSubAssyService.GetSubAssysByProjectId(cobODPNo.SelectedValue.ToString()));
             dgvWaitingList.DataSource = waitingList;
@@ -324,6 +325,7 @@ namespace Compass
                 try
                 {
                     IAutoDrawing objAutoDrawing = AutoDrawingFactory.ChooseDrawingType(item);
+                    item.SBU = sbu;
                     objAutoDrawing.AutoDrawing(swApp, item, projectPath);
                 }
                 catch (Exception ex)
@@ -693,7 +695,7 @@ namespace Compass
                     objGeneralRequirement.MainAssyPath = content[0];
                     try
                     {
-                        if (objRequirementService.UpdateMainAssyPath(objGeneralRequirement) > 0)
+                        if (objRequirementService.UpdateMainAssyPath(objGeneralRequirement,sbu) > 0)
                             btnCeilingPackingList.Enabled = true;
                     }
                     catch (Exception ex)
@@ -749,7 +751,7 @@ namespace Compass
                 {
                     item.ProjectId = objProject.ProjectId;
                     item.UserId = Program.ObjCurrentUser.UserId;
-                    item.Location = objDrawingPlanService.GetDrawingPlanByProjectId(objProject.ProjectId.ToString())[0].Item;
+                    item.Location = objDrawingPlanService.GetDrawingPlanByProjectId(objProject.ProjectId.ToString(),sbu)[0].Item;
                 }
                 //将查询到的标准配件统一提交到SQL服务器
                 objCeilingAccessoryService.ImportCeilingPackingListByTran(ceilingAccessoriesList);
@@ -790,7 +792,7 @@ namespace Compass
             {
                 try
                 {
-                    new ExportCeilingPackingList().CeilingAssyToPackingList(swApp, mainAssyPath, objProject, Program.ObjCurrentUser.UserId);
+                    new ExportCeilingPackingList().CeilingAssyToPackingList(swApp, mainAssyPath, objProject, Program.ObjCurrentUser.UserId,sbu);
                 }
                 catch (Exception ex)
                 {

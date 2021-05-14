@@ -31,7 +31,7 @@ namespace Compass
             objKCJDB800 = (KCJDB800)objKCJDB800Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objKCJDB800 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString());
+            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
             pbModelImage.Image = objCategory.ModelImage.Length == 0
                 ? Image.FromFile("NoPic.png")
                 : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);

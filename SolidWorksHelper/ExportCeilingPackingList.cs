@@ -21,8 +21,8 @@ namespace SolidWorksHelper
         List<CeilingAccessory> ceilingAccessories=new List<CeilingAccessory>();
         CeilingAccessoryService objCeilingAccessoryService=new CeilingAccessoryService();
         DrawingPlanService objDrawingPlanService=new DrawingPlanService();
-
-        public void CeilingAssyToPackingList(SldWorks swApp, string assyPath,Project objProject,int userId)
+        
+        public void CeilingAssyToPackingList(SldWorks swApp, string assyPath,Project objProject,int userId,string sbu)
         {
             swApp.CommandInProgress = true;
             List<CeilingAccessory> celingAccessories = new List<CeilingAccessory>();
@@ -104,7 +104,7 @@ namespace SolidWorksHelper
                     objCeilingAccessory.Quantity = item.Value;
                     objCeilingAccessory.ProjectId = objProject.ProjectId;
                     objCeilingAccessory.UserId = userId;
-                    objCeilingAccessory.Location = objDrawingPlanService.GetDrawingPlanByProjectId(objProject.ProjectId.ToString())[0].Item;
+                    objCeilingAccessory.Location = objDrawingPlanService.GetDrawingPlanByProjectId(objProject.ProjectId.ToString(),sbu)[0].Item;
 
                     if (item.Key.Contains(")"))
                     {

@@ -23,14 +23,16 @@ namespace Compass
         BindingList<ModuleTree> execList = new BindingList<ModuleTree>();//执行list，手动添加的
         //solidWorks程序
         private SldWorks swApp;
-        
+
+        private string sbu = Program.ObjCurrentUser.SBU;
+
         public FrmHoodAutoDrawing()
         {
             InitializeComponent();
             dgvWaitingList.AutoGenerateColumns = false;
             dgvExecList.AutoGenerateColumns = false;
             //项目编号下拉框
-            cobODPNo.DataSource = objProjectService.GetProjectsByHoodType("Hood");
+            cobODPNo.DataSource = objProjectService.GetProjectsByHoodType("Hood",Program.ObjCurrentUser.SBU);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;
@@ -50,11 +52,11 @@ namespace Compass
         private void cobODPNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
-            objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text);
+            objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text,Program.ObjCurrentUser.SBU);
             txtBPONo.Text = objProject.BPONo;
             txtProjectName.Text = objProject.ProjectName;
             execList.Clear();
-            waitingList = new BindingList<ModuleTree>(objModuleTreeService.GetModuleTreesByProjectId(cobODPNo.SelectedValue.ToString()));
+            waitingList = new BindingList<ModuleTree>(objModuleTreeService.GetModuleTreesByProjectId(cobODPNo.SelectedValue.ToString(),sbu));
             RefreshDgv();
         }
         /// <summary>
@@ -214,6 +216,7 @@ namespace Compass
                 try
                 {
                     IAutoDrawing objAutoDrawing = AutoDrawingFactory.ChooseDrawingType(item);
+                    item.SBU = Program.ObjCurrentUser.SBU;
                     objAutoDrawing.AutoDrawing(swApp, item, projectPath);
                 }
                 catch (Exception ex)

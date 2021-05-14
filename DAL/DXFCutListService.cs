@@ -8,6 +8,10 @@ using Models;
 
 namespace DAL
 {
+    /// <summary>
+    /// 直接拷贝的DXF模版
+    ///
+    /// </summary>
     public class DXFCutListService
     {
         /// <summary>

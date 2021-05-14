@@ -25,6 +25,7 @@ namespace Compass
         ProjectService objProjectService = new ProjectService();
         DrawingService objDrawingService = new DrawingService();
         ModuleTreeService objModuleTreeService = new ModuleTreeService();
+        private string sbu = Program.ObjCurrentUser.SBU;
 
         //【3】创建委托变量
         public QuickBrowseDelegate QuickBrowseDeg = null;
@@ -40,7 +41,7 @@ namespace Compass
         }
         public FrmModuleTree(string odpNo) : this()
         {
-            objProject = objProjectService.GetProjectByODPNo(odpNo);
+            objProject = objProjectService.GetProjectByODPNo(odpNo,sbu);
             RefreshTree();
             this.tvModule.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvModule_AfterSelect);
             
@@ -90,7 +91,7 @@ namespace Compass
         /// </summary>
         private void GetAllNodes()
         {
-            List<Drawing> drawingList = objDrawingService.GetDrawingsByProjectId(objProject.ProjectId.ToString());
+            List<Drawing> drawingList = objDrawingService.GetDrawingsByProjectId(objProject.ProjectId.ToString(),sbu);
             foreach (var item in drawingList)
             {
                 moduleTreesList.Add(new ModuleTree()
@@ -101,7 +102,7 @@ namespace Compass
                 });
             }
             List<ModuleTree> moduleList =
-                objModuleTreeService.GetModuleTreesByProjectId(objProject.ProjectId.ToString());
+                objModuleTreeService.GetModuleTreesByProjectId(objProject.ProjectId.ToString(),sbu);
             foreach (var item in moduleList)
             {
                 moduleTreesList.Add(new ModuleTree()
@@ -150,8 +151,8 @@ namespace Compass
                 string moduleTreeId = tvModule.SelectedNode.Tag.ToString();
                 if(drawingPlanId.Length<4)return;
                 drawingPlanId = drawingPlanId.Substring(4);//除去item
-                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId);
-                ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId);
+                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId,sbu);
+                ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId,sbu);
                 //利用反射，打开修改模型参数窗口，同时实现传递窗口参数
                 object[] parameters = new object[2];
                 parameters[0] = objDrawing;
@@ -172,7 +173,7 @@ namespace Compass
             {
                 string drawingPlanId = tvModule.SelectedNode.Tag.ToString();
                 drawingPlanId = drawingPlanId.Substring(4);//除去item
-                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId);
+                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId,sbu);
                 FrmCategoryTree objFrmCategoryTree = new FrmCategoryTree(objDrawing);
                 //关联委托方法和委托变量
                 objFrmCategoryTree.RefreshTreeDeg = RefreshTree;
@@ -200,9 +201,9 @@ namespace Compass
             {
                 string drawingPlanId = tvModule.SelectedNode.Parent.Tag.ToString();
                 drawingPlanId = drawingPlanId.Substring(4);//除去item
-                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId);
+                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId,sbu);
                 string moduleTreeId = tvModule.SelectedNode.Tag.ToString();
-                ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId);
+                ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId,sbu);
                 FrmCategoryTree objFrmCategoryTree = new FrmCategoryTree(objDrawing, objModuleTree);
                 DialogResult result = objFrmCategoryTree.ShowDialog();
                 if (result == DialogResult.OK)
@@ -224,16 +225,16 @@ namespace Compass
             {
                 string drawingPlanId = tvModule.SelectedNode.Parent.Tag.ToString();
                 drawingPlanId = drawingPlanId.Substring(4);//除去item
-                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId);
+                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId,sbu);
                 string moduleTreeId = tvModule.SelectedNode.Tag.ToString();
-                ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId);
+                ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId,sbu);
                 DialogResult result = MessageBox.Show("确定要删除 Item为 " + objDrawing.Item + " 中的 " + objModuleTree.Module + " 分段吗？", "删除询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.No) return;
                 //执行删除
                 try
                 {
                     //if(objModuleTreeService.DeleteModuleTree(moduleTreeId)==1) RefreshTree();
-                    if (objModuleTreeService.DeleteModuleAndData(objModuleTree)) RefreshTree();
+                    if (objModuleTreeService.DeleteModuleAndData(objModuleTree,sbu)) RefreshTree();
                     else MessageBox.Show("删除分段出错，请联系管理员查看后台数据。");
                 }
                 catch (Exception ex)
@@ -254,7 +255,7 @@ namespace Compass
             {
                 string drawingPlanId = e.Node.Tag.ToString();
                 drawingPlanId = drawingPlanId.Substring(4);//除去item
-                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId);
+                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId,sbu);
                 if (objDrawing == null) return;
                 pbLabelImage.Visible = true;
                 pbLabelImage.Image = objDrawing.LabelImage.Length == 0
@@ -266,9 +267,9 @@ namespace Compass
                 pbLabelImage.Visible = false;
                 string drawingPlanId = tvModule.SelectedNode.Parent.Tag.ToString();
                 drawingPlanId = drawingPlanId.Substring(4);//除去item
-                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId);
+                Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId,sbu);
                 string moduleTreeId = tvModule.SelectedNode.Tag.ToString();
-                ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId);
+                ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId,sbu);
                 //【5】调用委托
                 QuickBrowseDeg(objDrawing, objModuleTree);
             }
@@ -281,7 +282,7 @@ namespace Compass
         private void btnAutoDrawing_Click(object sender, EventArgs e)
         {
             //利用反射，打开自动作图窗口，Hood和Ceiling，同时实现传递窗口参数
-            Project objProject = objProjectService.GetProjectByODPNo(tvModule.Nodes[0].Text.Trim());
+            Project objProject = objProjectService.GetProjectByODPNo(tvModule.Nodes[0].Text.Trim(),sbu);
             object[] parameters = new object[1];
             parameters[0] = objProject.ODPNo;
             MetroForm objFrmAutoDrawing= (MetroForm)Assembly.Load("Compass").CreateInstance("Compass.Frm" + objProject.HoodType+"AutoDrawing", true, BindingFlags.Default, null, parameters, null, null);
@@ -318,7 +319,7 @@ namespace Compass
             }
             string drawingPlanId = node.Tag.ToString();
             drawingPlanId = drawingPlanId.Substring(4);//除去item
-            Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId);
+            Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId,sbu);
             if (objDrawing == null) return;
             FrmDrawing objFrmDrawing = new FrmDrawing(objDrawing);
             DialogResult result = objFrmDrawing.ShowDialog();

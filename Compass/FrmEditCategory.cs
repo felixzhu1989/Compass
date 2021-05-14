@@ -16,11 +16,13 @@ namespace Compass
     public partial class FrmEditCategory : MetroFramework.Forms.MetroForm
     {
         private CategoryService objCategoryService = new CategoryService();
+        private string sbu = Program.ObjCurrentUser.SBU;
+
         public FrmEditCategory()
         {
             InitializeComponent();
             //初始化下拉框
-            cobParentId.DataSource = objCategoryService.GetCategoryId();
+            cobParentId.DataSource = objCategoryService.GetCategoryId(sbu);
             cobParentId.DisplayMember = "CategoryId";
             cobParentId.ValueMember = "CategoryDesc";
             cobParentId.SelectedIndex = -1;
@@ -126,7 +128,7 @@ namespace Compass
 
             try
             {
-                if (objCategoryService.EditCategory(objCategory) == 1)
+                if (objCategoryService.EditCategory(objCategory,sbu) == 1)
                 {
                     MessageBox.Show("分类信息修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

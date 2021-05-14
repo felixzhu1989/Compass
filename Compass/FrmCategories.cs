@@ -17,6 +17,7 @@ namespace Compass
     {
         private CategoryService objCategoryService = new CategoryService();
         private List<Category> categoryList = new List<Category>();
+        private string sbu = Program.ObjCurrentUser.SBU;
 
         public FrmCategories()
         {
@@ -31,7 +32,7 @@ namespace Compass
         {
             //断开事件委托
             cobItem.SelectedIndexChanged -= new System.EventHandler(this.cobParentId_SelectedIndexChanged);
-            cobItem.DataSource = objCategoryService.GetCategoryId();
+            cobItem.DataSource = objCategoryService.GetCategoryId(sbu);
             cobItem.DisplayMember = "CategoryId";
             cobItem.ValueMember = "CategoryDesc";
             cobItem.SelectedIndex = -1;
@@ -43,7 +44,7 @@ namespace Compass
         /// </summary>
         private void RefreshData(string parentId)
         {
-            categoryList = objCategoryService.GetCategoriesByParentId(parentId);
+            categoryList = objCategoryService.GetCategoriesByParentId(parentId,sbu);
             dgvCategory.DataSource = categoryList;
         }
         /// <summary>
@@ -145,7 +146,7 @@ namespace Compass
 
             try
             {
-                string result = objCategoryService.AddCategory(objCategory);
+                string result = objCategoryService.AddCategory(objCategory,sbu);
                 if (result == "success")
                 {
                     //提示添加成功
@@ -190,7 +191,7 @@ namespace Compass
                 return;
             }
             string categoryId = dgvCategory.CurrentRow.Cells["CategoryId"].Value.ToString();
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(categoryId);
+            Category objCategory = objCategoryService.GetCategoryByCategoryId(categoryId,sbu);
             FrmEditCategory objFrmEditCategory = new FrmEditCategory(objCategory);
             DialogResult result = objFrmEditCategory.ShowDialog();
             if (result == DialogResult.OK)
@@ -232,7 +233,7 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objCategoryService.DeleteCategory(categoryId) == 1)
+                if (objCategoryService.DeleteCategory(categoryId,sbu) == 1)
                 {
                     RefreshData(cobParentId.Text);//同步刷新显示数据
                 }

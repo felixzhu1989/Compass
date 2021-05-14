@@ -1,6 +1,7 @@
 E:\Compass\UpdateProgram\bin\Debug\UpdateProgram.exe.config
 E:\Compass\UpdateProgram\bin\Debug\UpdateProgram.exe
 E:\Compass\UpdateProgram\bin\Debug\UpdateProgram.pdb
+E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csprojAssemblyReference.cache
 E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.FrmTips.resources
 E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.FrmUpdate.resources
 E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.FrmUpdateStart.resources

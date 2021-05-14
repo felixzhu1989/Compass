@@ -19,9 +19,12 @@ namespace Compass
         public FrmUserLogin()
         {
             InitializeComponent();
+            cobSBU.Items.Add("FoodService");
+            cobSBU.Items.Add("Marine");
             //从属性中获取保存的用户名和密码
             txtUserAccount.Text = Properties.Settings.Default.UserAccount;
             txtUserPwd.Text = Properties.Settings.Default.UserPwd;
+            cobSBU.Text = Properties.Settings.Default.SBU;
         }
 
 
@@ -44,7 +47,8 @@ namespace Compass
             User objUser=new User()
             {
                 UserAccount = this.txtUserAccount.Text.Trim(),
-                UserPwd = this.txtUserPwd.Text.Trim()
+                UserPwd = this.txtUserPwd.Text.Trim(),
+                SBU = this.cobSBU.Text.Trim()== "FoodService" ? "": this.cobSBU.Text.Trim()
             };
             //和后台交互判断信息是否正确
             try
@@ -59,12 +63,14 @@ namespace Compass
                     {
                         Properties.Settings.Default.UserAccount = objUser.UserAccount;
                         Properties.Settings.Default.UserPwd = objUser.UserPwd;
+                        Properties.Settings.Default.SBU = objUser.SBU==""? "FoodService": objUser.SBU;
                         Properties.Settings.Default.Save();
                     }
                     else
                     {
                         Properties.Settings.Default.UserAccount = "";
                         Properties.Settings.Default.UserPwd = "";
+                        Properties.Settings.Default.SBU = "";
                         Properties.Settings.Default.Save();
                     }
                     //以后再封装权限信息
