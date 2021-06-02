@@ -323,6 +323,7 @@ GO
 alter table DesignWorkloadMarine add constraint uq_Model_DesignWorkloadMarine unique (Model)
 GO
 
+select * from DXFCutList
 
 
 

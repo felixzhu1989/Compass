@@ -854,12 +854,17 @@ namespace Compass
                     objCeilingAccessoryService.GetCeilingPackingItemById(row.Cells["CeilingPackingListId"].Value
                         .ToString());
 
+                //编号为4的打印多个，其余编号打印一个标签
                 if (objCeilingAccessory.ClassNo == 4)
                 {
                     for (int i = 1; i <= objCeilingAccessory.Quantity; i++)//根据数量添加多个标签
                     {
                         ceilingAccessories.Add(objCeilingAccessory);
                     }
+                }
+                else
+                {
+                    ceilingAccessories.Add(objCeilingAccessory);
                 }
             }
             //调用打印程序
@@ -908,8 +913,9 @@ namespace Compass
             CeilingAccessory objCeilingPackingItem = objCeilingAccessoryService.GetCeilingPackingItemById(packingId);
             //初始化修改信息
             txtPartDescription.Text = objCeilingPackingItem.PartDescription;
-            if (objCeilingPackingItem.CeilingAccessoryId == "7001") txtPartDescription.ReadOnly = false;
-            else txtPartDescription.ReadOnly = true;
+            txtPartDescription.ReadOnly = false;
+            //if (objCeilingPackingItem.CeilingAccessoryId == "7001") txtPartDescription.ReadOnly = false;
+            //else txtPartDescription.ReadOnly = true;
             txtPartNo.Text = objCeilingPackingItem.PartNo;
             txtRemark.Text = objCeilingPackingItem.Remark;
             txtQuantity.Text = objCeilingPackingItem.Quantity.ToString();

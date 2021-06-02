@@ -532,6 +532,12 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0158-2"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0171-1"));
+                    swComp.SetSuppression2(2); //2解压缩，0压缩
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0172-1"));
+                    swComp.SetSuppression2(2); //2解压缩，0压缩
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0172-2"));
+                    swComp.SetSuppression2(2); //2解压缩，0压缩
                 }
                 else
                 {
@@ -544,6 +550,12 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0158-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0158-2"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0171-1"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0172-1"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0172-2"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
                 //----------MESH油网侧板----------

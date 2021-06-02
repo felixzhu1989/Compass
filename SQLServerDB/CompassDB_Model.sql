@@ -189,6 +189,28 @@ create table KVV555
 )
 
 
+--CH610
+if exists (select * from sysobjects where name='CH610')
+drop table CH610
+go
+create table CH610
+(
+    CH610Id int identity(1,1),
+    ModuleTreeId int,
+    Length decimal(6,2),
+    Deepth decimal(6,2),
+	Height varchar(10),
+    ExRightDis decimal(6,2),
+    ExNo int,
+    ExDis decimal(6,2),
+    ExLength decimal(6,2),
+    ExWidth decimal(6,2),
+    ExHeight decimal(6,2),
+	SidePanel varchar(6),   
+    LightType varchar(7)    
+)
+
+
 if exists (select * from sysobjects where name='KVI555')
 drop table KVI555
 go

@@ -145,3 +145,4 @@ E:\Compass\Compass\bin\Debug\UpdateProgram.exe.config
 E:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
 E:\Compass\Compass\obj\Debug\Compass.exe
 E:\Compass\Compass\obj\Debug\Compass.pdb
+E:\Compass\Compass\obj\Debug\Compass.FrmCH610.resources

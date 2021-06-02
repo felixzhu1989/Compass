@@ -64,6 +64,7 @@
     <Compile Include="Ceiling\BCJ330.cs" />
     <Compile Include="Ceiling\CJ330.cs" />
     <Compile Include="Ceiling\LFUMC150SUSDXF.cs" />
+    <Compile Include="Hood\CH610.cs" />
     <Compile Include="ChartData.cs" />
     <Compile Include="Hood\HOODBCJ.cs" />
     <Compile Include="Hood\CMODF555400.cs" />

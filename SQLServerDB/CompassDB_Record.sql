@@ -178,3 +178,21 @@ SELECT * from kvi450300
 --更改天花烟罩发货清单区域
 select * from CeilingPackingList where ProjectId=215
 update CeilingPackingList set Location='Kitchen-A' where ProjectId=209
+
+--更改天花烟罩PackingList零件材质描述
+
+update CeilingPackingList set PartDescription=replace(PartDescription,'228','230') 
+	where ProjectId=209 and Remark in ('2200600015','2200600032')
+select * from CeilingPackingList where ProjectId=215
+
+--更新
+select * from CeilingAccessories order by CeilingAccessoryId asc
+update CeilingAccessories set CeilingAccessoryId='9069'
+	where CeilingAccessoryId='9'
+update CeilingAccessories set PartDescription='M6普通垫片(M6 Washer)'
+	where CeilingAccessoryId='5007'
+
+update CeilingAccessories set CeilingAccessoryId='0005' where PartDescription like '温控%'
+
+
+

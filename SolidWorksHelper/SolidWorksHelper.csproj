@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="CeilingAutoDrawing\BCJ330AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\CJ330AutoDrawing.cs" />
+    <Compile Include="HoodAutoDrawing\CH610AutoDrawing.cs" />
     <Compile Include="EditPart.cs" />
     <Compile Include="HoodAutoDrawing\CMODF555400AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\CMODF555AutoDrawing.cs" />

@@ -58,7 +58,13 @@ namespace Compass
             }
             if (txtCeilingAccessoryId.Text.Trim().Length == 0)
             {
-                MessageBox.Show("请输入ID,ID开头数字规则:0电/1灯/2风机/3型材/4油网/5螺丝/6控制/7水洗ANSUL/8折弯件/9焊接件", "验证信息");
+                MessageBox.Show("请输入ID（长度4位）,ID开头数字规则:0电/1灯/2风机/3型材/4油网/5螺丝/6控制/7水洗ANSUL/8折弯件/9焊接件", "验证信息");
+                txtCeilingAccessoryId.Focus();
+                return;
+            }
+            if (txtCeilingAccessoryId.Text.Trim().Length != 4)
+            {
+                MessageBox.Show("ID长度4位", "验证信息");
                 txtCeilingAccessoryId.Focus();
                 return;
             }
@@ -188,7 +194,7 @@ namespace Compass
             btnCeilingAccessory.Text = "修改配件";
             btnCeilingAccessory.Tag = 1;
             txtCeilingAccessoryId.Text = objCeilingAccessory.CeilingAccessoryId;
-            txtCeilingAccessoryId.ReadOnly = true;
+            txtCeilingAccessoryId.ReadOnly = false;
 
             txtPartDescription.Text = objCeilingAccessory.PartDescription;
             txtPartNo.Text = objCeilingAccessory.PartNo;

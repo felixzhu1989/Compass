@@ -70,162 +70,80 @@ namespace SolidWorksHelper
             */
             //-----------计算中间值，----------
 
-            //新风面板卡扣数量及间距
-            int frontPanelKaKouNo = (int)((item.Length - 300m) / 450m) + 2;
-            decimal frontPanelKaKouDis = Convert.ToDecimal((item.Length - 300m) / (frontPanelKaKouNo - 1)) / 1000m;
-            //新风面板螺丝孔数量及间距
-            int frontPanelHoleNo = (int)((item.Length - 300m) / 900m) + 2;
-            decimal frontPanelHoleDis = Convert.ToDecimal((item.Length - 300) / (frontPanelHoleNo - 1)) / 1000m;
-            //新风CJ孔数量和新风CJ孔第一个CJ距离边缘距离
-            int frontCjNo = (int)((item.Length - 30m) / 32m) + 1;
-            decimal frontCjFirstDis = Convert.ToDecimal((item.Length - (frontCjNo - 1) * 32m) / 2) / 1000m;
-            //Midroof灯板螺丝孔数量及第二个孔距离边缘距离,灯板顶面吊装槽钢螺丝孔位距离
-            int midRoofHoleNo = (int)((item.Length - 300m) / 400m);
-            decimal midRoofSecondHoleDis = Convert.ToDecimal((item.Length - (midRoofHoleNo - 1) * 400m) / 2) / 1000m;
-            decimal midRoofTopHoleDis =
-                Convert.ToDecimal(item.Deepth - 535m - 360m - 90m -
-                                  (int)((item.Deepth - 535m - 360m - 90m - 100m) / 50m) * 50m) / 1000m;
-            //KSA数量，KSA侧板长度(以全长计算)
-            int ksaNo = (int)((item.Length + 1) / 498m);
-            decimal ksaSideLength = Convert.ToDecimal((item.Length - ksaNo * 498m) / 2) / 1000m;
-            //MESH侧板长度(除去排风三角板3mm计算)
-            //decimal meshSideLength = Convert.ToDecimal((item.Length - 3m - (int)((item.Length - 2m) / 498m) * 498m) / 2) / 1000m;
-            //侧板CJ孔整列到烟罩底部
-            int sidePanelDownCjNo = (int)((item.Deepth - 95m) / 32m);
-            //非水洗烟罩KV/UV
-            int sidePanelSideCjNo = (int)((item.Deepth - 305m) / 32m);
-            //水洗烟罩KW/UW
-            //int sidePanelSideCjNo = (int)((item.Deepth - 380) / 32);
-
             //内部灯板宽度
-            decimal insidePanelWidth = default(decimal);
+            decimal insidePanelWidth = 155.2m;
+            if(item.Deepth%100m>45m) insidePanelWidth = 255.2m;
+            //当烟罩宽度为100的整数倍时（如1000,1500），middleroof 取值155.2，冷凝板参考上表
+            //当烟罩宽度为100的整数倍时+50（如1150,1550），middleroof 取值255.2，冷凝板参考整数档（如1550参考1500档）
+
             //冷凝板参数
             decimal condensatePanelAngle = default(decimal);
             decimal condensatePanelHeight = default(decimal);
+            
 
             switch (item.Deepth)
             {
                 case 600m:
-                    insidePanelWidth = 155.2m;
-                    condensatePanelAngle = (160.2m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 357.1m;
-                    break;
                 case 650m:
-                    insidePanelWidth = 255.2m;
                     condensatePanelAngle = (160.2m * 3.1415926m) / 180m;
                     condensatePanelHeight = 357.1m;
                     break;
                 case 700m:
-                    insidePanelWidth = 155.2m;
-                    condensatePanelAngle = (160.2m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 357.1m;
-                    break;
                 case 750m:
-                    insidePanelWidth = 255.2m;
                     condensatePanelAngle = (160.2m * 3.1415926m) / 180m;
                     condensatePanelHeight = 357.1m;
                     break;
                 case 800m:
-                    insidePanelWidth = 155.2m;
-                    condensatePanelAngle = (146.7m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 402.3m;
-                    break;
                 case 850m:
-                    insidePanelWidth = 255.2m;
                     condensatePanelAngle = (146.7m * 3.1415926m) / 180m;
                     condensatePanelHeight = 402.3m;
                     break;
                 case 900m:
-                    insidePanelWidth = 155.2m;
-                    condensatePanelAngle = (146.7m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 402.3m;
-                    break;
                 case 950m:
-                    insidePanelWidth = 255.2m;
                     condensatePanelAngle = (146.7m * 3.1415926m) / 180m;
                     condensatePanelHeight = 402.3m;
                     break;
                 case 1000m:
-                    insidePanelWidth = 155.2m;
-                    condensatePanelAngle = (136.3m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 465m;
-                    break;
                 case 1050m:
-                    insidePanelWidth = 255.2m;
                     condensatePanelAngle = (136.3m * 3.1415926m) / 180m;
                     condensatePanelHeight = 465m;
                     break;
+                    
                 case 1100m://OK
-                    insidePanelWidth = 155.2m;
-                    condensatePanelAngle = (132m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 496m;
-                    break;
                 case 1150m:
-                    insidePanelWidth = 255.2m;
-                    condensatePanelAngle = (136.3m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 496m;
+                    condensatePanelAngle = (136.3m * 3.1415926m) / 180m;//132m
+                    condensatePanelHeight = 465m;//495m
                     break;
                 case 1200m://OK
-                    insidePanelWidth = 155.2m;
-                    condensatePanelAngle = (129m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 534m;
-                    break;
                 case 1250m://OK
-                    insidePanelWidth = 255.2m;
-                    condensatePanelAngle = (127m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 555m;
+                    condensatePanelAngle = (128.6m * 3.1415926m) / 180m;//129m
+                    condensatePanelHeight = 538.6m;//534m
                     break;
                 case 1300m://OK
-                    insidePanelWidth = 155.2m;
-                    condensatePanelAngle = (126m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 574m;
-                    break;
                 case 1350m://OK
-                    insidePanelWidth = 255.2m;
-                    condensatePanelAngle = (124m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 595m;
+                    condensatePanelAngle = (128.6m * 3.1415926m) / 180m;//126
+                    condensatePanelHeight = 538.6m;//574
                     break;
                 case 1400m://OK
-                    insidePanelWidth = 155.2m;
-                    condensatePanelAngle = (123m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 616m;
-                    break;
                 case 1450m://OK
-                    insidePanelWidth = 255.2m;
-                    condensatePanelAngle = (122m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 637m;
+                    condensatePanelAngle = (122.8m * 3.1415926m) / 180m;//123
+                    condensatePanelHeight = 538.6m;//616
                     break;
                 case 1500m://OK
-                    insidePanelWidth = 155.2m;
-                    condensatePanelAngle = (120m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 658m;
-                    break;
                 case 1550m:
-                    insidePanelWidth = 255.2m;
-                    condensatePanelAngle = (119m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 638.6m;
+                    condensatePanelAngle = (122.8m * 3.1415926m) / 180m;//120
+                    condensatePanelHeight = 538.6m;//658
                     break;
                 case 1600m:
-                    insidePanelWidth = 155.2m;
-                    condensatePanelAngle = (118m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 706m;
-                    break;
                 case 1650m:
-                    insidePanelWidth = 255.2m;
-                    condensatePanelAngle = (118m * 3.1415926m) / 180m;
+                    condensatePanelAngle = (118.4m * 3.1415926m) / 180m;
                     condensatePanelHeight = 706.6m;
                     break;
                 case 1700m:
-                    insidePanelWidth = 155.2m;
-                    condensatePanelAngle = (118m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 706m;
-                    break;
                 case 1750m:
-                    insidePanelWidth = 255.2m;
-                    condensatePanelAngle = (118m * 3.1415926m) / 180m;
+                    condensatePanelAngle = (118.4m * 3.1415926m) / 180m;
                     condensatePanelHeight = 706.6m;
                     break;
-
                 default:
                     break;
             }
@@ -233,10 +151,6 @@ namespace SolidWorksHelper
 
             try
             {
-
-
-
-
                 //----------Top Level----------
                 //烟罩深度
                 //swModel.Parameter("D1@Distance32").SystemValue = item.Deepth / 1000m;
@@ -350,7 +264,7 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0008-3"));
                 swPart = swComp.GetModelDoc2();//打开零件3
                 swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 6m) / 1000m;
-                swPart.Parameter("D2@Sketch1").SystemValue = insidePanelWidth / 1000m;
+                swPart.Parameter("D1@Sketch1").SystemValue = insidePanelWidth / 1000m;
                 swPart.Parameter("D3@Sketch39").SystemValue = (insidePanelWidth - 55.2m) / 1000m;
                 swFeat = swComp.FeatureByName("PHILIPS LAMP");
                 if (item.LightType == "PHILIPS") swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩

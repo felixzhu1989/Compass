@@ -135,6 +135,12 @@
     <Compile Include="CeilingForm\FrmLFUMC250SUSDXF.Designer.cs">
       <DependentUpon>FrmLFUMC250SUSDXF.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCH610.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCH610.Designer.cs">
+      <DependentUpon>FrmCH610.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmUVF450.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -950,6 +956,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CeilingForm\FrmDPCJ330.resx">
       <DependentUpon>FrmDPCJ330.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCH610.resx">
+      <DependentUpon>FrmCH610.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDXFCutList.resx">
       <DependentUpon>FrmDXFCutList.cs</DependentUpon>

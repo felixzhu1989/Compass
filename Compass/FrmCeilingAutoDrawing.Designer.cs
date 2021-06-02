@@ -211,7 +211,7 @@
             this.dgvExecList.Name = "dgvExecList";
             this.dgvExecList.ReadOnly = true;
             this.dgvExecList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvExecList.Size = new System.Drawing.Size(540, 474);
+            this.dgvExecList.Size = new System.Drawing.Size(540, 462);
             this.dgvExecList.TabIndex = 58;
             this.dgvExecList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvExecList_RowPostPaint);
             // 
@@ -284,7 +284,7 @@
             this.dgvWaitingList.Name = "dgvWaitingList";
             this.dgvWaitingList.ReadOnly = true;
             this.dgvWaitingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvWaitingList.Size = new System.Drawing.Size(540, 474);
+            this.dgvWaitingList.Size = new System.Drawing.Size(540, 462);
             this.dgvWaitingList.TabIndex = 59;
             this.dgvWaitingList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvWaitingList_RowPostPaint);
             // 
@@ -401,7 +401,7 @@
             this.btnExec.FlatAppearance.BorderSize = 0;
             this.btnExec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExec.ForeColor = System.Drawing.Color.White;
-            this.btnExec.Location = new System.Drawing.Point(549, 414);
+            this.btnExec.Location = new System.Drawing.Point(549, 402);
             this.btnExec.Name = "btnExec";
             this.btnExec.Size = new System.Drawing.Size(52, 85);
             this.btnExec.TabIndex = 56;
@@ -518,7 +518,7 @@
             this.btnJobCard.FlatAppearance.BorderSize = 0;
             this.btnJobCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJobCard.ForeColor = System.Drawing.Color.White;
-            this.btnJobCard.Location = new System.Drawing.Point(549, 323);
+            this.btnJobCard.Location = new System.Drawing.Point(549, 311);
             this.btnJobCard.Name = "btnJobCard";
             this.btnJobCard.Size = new System.Drawing.Size(52, 85);
             this.btnJobCard.TabIndex = 63;
@@ -1024,7 +1024,6 @@
             // 
             this.txtPartDescription.Location = new System.Drawing.Point(74, 59);
             this.txtPartDescription.Name = "txtPartDescription";
-            this.txtPartDescription.ReadOnly = true;
             this.txtPartDescription.Size = new System.Drawing.Size(150, 25);
             this.txtPartDescription.TabIndex = 65;
             // 
@@ -1140,11 +1139,10 @@
             this.dgvCeilingPackingList.Name = "dgvCeilingPackingList";
             this.dgvCeilingPackingList.ReadOnly = true;
             this.dgvCeilingPackingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCeilingPackingList.Size = new System.Drawing.Size(1140, 415);
+            this.dgvCeilingPackingList.Size = new System.Drawing.Size(1140, 403);
             this.dgvCeilingPackingList.TabIndex = 64;
             this.dgvCeilingPackingList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.CeilingPackingList_RowPostPaint);
             this.dgvCeilingPackingList.DoubleClick += new System.EventHandler(this.dgvCeilingPackingList_DoubleClick);
-            
             // 
             // PartDescription
             // 

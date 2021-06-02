@@ -716,6 +716,30 @@ alter table KVV555 add constraint df_SidePanel_KVV555 default ('BOTH') for SideP
 GO
 
 
+--CH610
+if exists (select * from sysobjects where name='pk_CH610Id')
+    alter table CH610 drop constraint pk_CH610Id
+GO
+alter table CH610 add constraint pk_CH610Id primary key (CH610Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_CH610')
+    alter table CH610 drop constraint fk_ModuleTreeId_CH610
+GO
+alter table CH610 add constraint fk_ModuleTreeId_CH610 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_CH610')
+    alter table CH610 drop constraint df_Height_CH610
+GO
+alter table CH610 add constraint df_Height_CH610 default ('610') for Height
+GO
+if exists (select * from sysobjects where name='df_SidePanel_CH610')
+    alter table CH610 drop constraint df_SidePanel_CH610
+GO
+alter table CH610 add constraint df_SidePanel_CH610 default ('BOTH') for SidePanel
+GO
+
+select * from ch610
+
 select * from KVI555
 --KVI555
 if exists (select * from sysobjects where name='pk_KVI555Id')
