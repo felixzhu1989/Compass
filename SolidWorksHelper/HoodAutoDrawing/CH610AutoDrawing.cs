@@ -81,70 +81,61 @@ namespace SolidWorksHelper
             decimal condensatePanelHeight = default(decimal);
 
 
-            switch (item.Deepth)
+            switch ((int)(item.Deepth / 100m))//取百位以上整数
             {
-                case 600m:
-                case 650m:
+                case 6:
                     condensatePanelAngle = (160.2m * 3.1415926m) / 180m;
                     condensatePanelHeight = 357.1m;
                     break;
-                case 700m:
-                case 750m:
+                case 7:
                     condensatePanelAngle = (160.2m * 3.1415926m) / 180m;
                     condensatePanelHeight = 357.1m;
                     break;
-                case 800m:
-                case 850m:
+                case 8:
                     condensatePanelAngle = (146.7m * 3.1415926m) / 180m;
                     condensatePanelHeight = 402.3m;
                     break;
-                case 900m:
-                case 950m:
+                case 9:
                     condensatePanelAngle = (146.7m * 3.1415926m) / 180m;
                     condensatePanelHeight = 402.3m;
-                    break;
-                case 1000m:
-                case 1050m:
-                    condensatePanelAngle = (136.3m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 465m;
                     break;
 
-                case 1100m://OK
-                case 1150m:
-                    condensatePanelAngle = (136.3m * 3.1415926m) / 180m;//132m
-                    condensatePanelHeight = 465m;//495m
+                case 10://OK
+                    condensatePanelAngle = (136m * 3.1415926m) / 180m;
+                    condensatePanelHeight = 465m;
                     break;
-                case 1200m://OK
-                case 1250m://OK
-                    condensatePanelAngle = (128.6m * 3.1415926m) / 180m;//129m
-                    condensatePanelHeight = 538.6m;//534m
+                case 11://OK
+                    condensatePanelAngle = (132m * 3.1415926m) / 180m;//132m
+                    condensatePanelHeight = 495m;//495m
                     break;
-                case 1300m://OK
-                case 1350m://OK
-                    condensatePanelAngle = (128.6m * 3.1415926m) / 180m;//126
-                    condensatePanelHeight = 538.6m;//574
+                case 12://OK
+                    condensatePanelAngle = (129m * 3.1415926m) / 180m;//129m
+                    condensatePanelHeight = 535m;//535m
                     break;
-                case 1400m://OK
-                case 1450m://OK
-                    condensatePanelAngle = (122.8m * 3.1415926m) / 180m;//123
-                    condensatePanelHeight = 538.6m;//616
+                case 13://OK
+                    condensatePanelAngle = (125m * 3.1415926m) / 180m;//125
+                    condensatePanelHeight = 575m;//575
                     break;
-                case 1500m://OK
-                case 1550m:
-                    condensatePanelAngle = (122.8m * 3.1415926m) / 180m;//120
-                    condensatePanelHeight = 538.6m;//658
+                case 14://OK
+                    condensatePanelAngle = (123m * 3.1415926m) / 180m;//123
+                    condensatePanelHeight = 616m;//616
                     break;
-                case 1600m:
-                case 1650m:
+                case 15://OK
+                    condensatePanelAngle = (120m * 3.1415926m) / 180m;//120
+                    condensatePanelHeight = 658m;//658
+                    break;
+
+                case 16:
                     condensatePanelAngle = (118.4m * 3.1415926m) / 180m;
                     condensatePanelHeight = 706.6m;
                     break;
-                case 1700m:
-                case 1750m:
+                case 17:
                     condensatePanelAngle = (118.4m * 3.1415926m) / 180m;
                     condensatePanelHeight = 706.6m;
                     break;
-                default:
+                default://默认是标准模版中的值，放置模型报错
+                    condensatePanelAngle = (126m * 3.1415926m) / 180m;//126
+                    condensatePanelHeight = 574m;//574
                     break;
             }
 
@@ -226,11 +217,11 @@ namespace SolidWorksHelper
 
                 if (item.Deepth > 1400m)
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0007-2"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0033-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0017-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0034-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0017-2"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0034-2"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();//打开零件3
                     swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 6m) / 1000m;
@@ -244,11 +235,11 @@ namespace SolidWorksHelper
                 }
                 else
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0017-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0034-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0017-2"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0034-2"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0007-2"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0033-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();//打开零件3
                     swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 6m) / 1000m;
@@ -261,7 +252,7 @@ namespace SolidWorksHelper
                     else swFeat.SetSuppression2(0, 2, configNames);
                 }
 
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0008-3"));
+                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0035-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
                 swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 6m) / 1000m;
                 swPart.Parameter("D1@Sketch1").SystemValue = insidePanelWidth / 1000m;

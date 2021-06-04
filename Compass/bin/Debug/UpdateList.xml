@@ -5,35 +5,35 @@
   <!--升级文件信息-->
   <UpdateInfo>
     <!--升级文件的更新日期-->
-    <UpdateTime Date="2021-06-02 15:50"/>
+    <UpdateTime Date="2021-06-04 10:50"/>
     <!--升级文件的版本号-->
-    <Version Num="1.0.1.41"/>
+    <Version Num="1.0.1.43"/>
   </UpdateInfo>
   <!--升级文件列表-->
   <UpdateFileList>   
 	<!--DLL文件-->
-    <UpdateFile Ver="1.0.1.41" FileName="Common.dll" ContentLength="10KB"/>
-    <UpdateFile Ver="1.0.1.41" FileName="DAL.dll" ContentLength="227KB"/>
-    <UpdateFile Ver="1.0.1.41" FileName="MetroFramework.Design.dll" ContentLength="11KB"/>
-    <UpdateFile Ver="1.0.1.41" FileName="MetroFramework.dll" ContentLength="11KB"/>	
-	<UpdateFile Ver="1.0.1.41" FileName="MetroFramework.Fonts.dll" ContentLength="11KB"/>	
-	<UpdateFile Ver="1.0.1.41" FileName="Models.dll" ContentLength="114KB"/>	
-	<UpdateFile Ver="1.0.1.41" FileName="MyUIControls.dll" ContentLength="6KB"/>
-	<UpdateFile Ver="1.0.1.41" FileName="SolidWorksHelper.dll" ContentLength="61.0.1.410KB"/>	
+    <UpdateFile Ver="1.0.1.43" FileName="Common.dll" ContentLength="10KB"/>
+    <UpdateFile Ver="1.0.1.43" FileName="DAL.dll" ContentLength="227KB"/>
+    <UpdateFile Ver="1.0.1.43" FileName="MetroFramework.Design.dll" ContentLength="11KB"/>
+    <UpdateFile Ver="1.0.1.43" FileName="MetroFramework.dll" ContentLength="11KB"/>	
+	<UpdateFile Ver="1.0.1.43" FileName="MetroFramework.Fonts.dll" ContentLength="11KB"/>	
+	<UpdateFile Ver="1.0.1.43" FileName="Models.dll" ContentLength="114KB"/>	
+	<UpdateFile Ver="1.0.1.43" FileName="MyUIControls.dll" ContentLength="6KB"/>
+	<UpdateFile Ver="1.0.1.43" FileName="SolidWorksHelper.dll" ContentLength="61.0.1.430KB"/>	
 	<!--主程序文件-->
-    <UpdateFile Ver="1.0.1.41" FileName="Compass.exe" ContentLength="1815KB"/>	
+    <UpdateFile Ver="1.0.1.43" FileName="Compass.exe" ContentLength="1815KB"/>	
 	<!--图标文件-->
-	<UpdateFile Ver="1.0.1.41" FileName="compass_64px.ico" ContentLength="1815KB"/>
+	<UpdateFile Ver="1.0.1.43" FileName="compass_64px.ico" ContentLength="1815KB"/>
 	<!--缺省图文件-->
-	<UpdateFile Ver="1.0.1.41" FileName="NoPic.png" ContentLength="1815KB"/>
+	<UpdateFile Ver="1.0.1.43" FileName="NoPic.png" ContentLength="1815KB"/>
     <!--excel文件-->
-	<UpdateFile Ver="1.0.1.41" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
-	<UpdateFile Ver="1.0.1.41" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>
-	<UpdateFile Ver="1.0.1.41" FileName="CeilingLabel.xlsx" ContentLength="5KB"/>	
-	<UpdateFile Ver="1.0.1.41" FileName="JobCard.xlsx" ContentLength="1.0.1.419KB"/>
-	<UpdateFile Ver="1.0.1.41" FileName="JobCard_Ceiling.xlsx" ContentLength="1.0.1.416KB"/>	
-	<UpdateFile Ver="1.0.1.41" FileName="CutList.xlsx" ContentLength="11KB"/>	
+	<UpdateFile Ver="1.0.1.43" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
+	<UpdateFile Ver="1.0.1.43" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>
+	<UpdateFile Ver="1.0.1.43" FileName="CeilingLabel.xlsx" ContentLength="5KB"/>	
+	<UpdateFile Ver="1.0.1.43" FileName="JobCard.xlsx" ContentLength="1.0.1.439KB"/>
+	<UpdateFile Ver="1.0.1.43" FileName="JobCard_Ceiling.xlsx" ContentLength="1.0.1.436KB"/>	
+	<UpdateFile Ver="1.0.1.43" FileName="CutList.xlsx" ContentLength="11KB"/>	
 	<!--xml文件-->
-	<UpdateFile Ver="1.0.1.41" FileName="UpdateList.xml" ContentLength="2KB"/>
+	<UpdateFile Ver="1.0.1.43" FileName="UpdateList.xml" ContentLength="2KB"/>
   </UpdateFileList>
 </autoUpdater>

@@ -127,8 +127,10 @@ namespace SolidWorksHelper
                                 cutRecord.Thickness = Convert.ToDecimal(valout);
                                 SubFeat.CustomPropertyManager.Get4("Material", false, out val, out valout);
                                 cutRecord.Materials = valout;
-                                swPart.GetActiveConfiguration().CustomPropertyManager.Get6("Description", false, out valout, out val, out wasResolved, out linkToProp);
-                                cutRecord.PartDescription = valout;
+                                //swPart.GetActiveConfiguration().CustomPropertyManager.Get6("Description", false, out valout, out val, out wasResolved, out linkToProp);
+                                //cutRecord.PartDescription = valout;
+                                cutRecord.PartDescription = swPart.CustomInfo["Part Name"];//不用Description了
+
                                 cutRecord.PartNo = swPart.GetTitle().Substring(0, swPart.GetTitle().Length - 7);
                                 celingCutLists.Add(cutRecord);//将信息添加到集合中
                             }
@@ -270,7 +272,7 @@ namespace SolidWorksHelper
                                 cutRecord.Materials = valout;
                                 //swPart.GetActiveConfiguration().CustomPropertyManager.Get6("Description", false, out valout, out val, out wasResolved, out linkToProp);
                                 //cutRecord.PartDescription = valout;
-                                cutRecord.PartDescription = swPart.CustomInfo["Description"];
+                                cutRecord.PartDescription = swPart.CustomInfo["Part Name"];//不用Description了
 
                                 cutRecord.PartNo = swPart.GetTitle().Substring(0, swPart.GetTitle().Length - 7);
                                 hoodCutLists.Add(cutRecord);//将信息添加到集合中

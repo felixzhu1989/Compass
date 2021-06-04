@@ -142,6 +142,12 @@ namespace SolidWorksHelper
                 if (item.SuNo == 3)swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
 
+                //中间测风压孔，三个脖颈时解压,两块网孔板,
+                //2021.06.04，散流器中间开缺口放置装配干涉，因为框子是先焊接后喷塑，最后装配的
+                swFeat = swComp.FeatureByName("Cut-Extrude12");
+                if (item.SuNo == 3) swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNLC0003-3"));
                 swPart = swComp.GetModelDoc2();//打开零件3
                 swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 4m) / 1000m;
