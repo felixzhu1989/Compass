@@ -385,7 +385,8 @@ namespace SolidWorksHelper
                 //----------水洗挡板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0036-2"));
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 105m) / 1000m;
+                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 105m - 1.5m) / 1000m;
+                //2021.06.08 july更改模型，磁铁拉铆钉避让1.5mm
                 swFeat = swComp.FeatureByName("UWHOOD");
                 swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 //----------KSA侧边----------
