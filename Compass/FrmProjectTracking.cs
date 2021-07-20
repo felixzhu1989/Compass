@@ -46,7 +46,7 @@ namespace Compass
             this.btnPre.Enabled = false;
             this.btnNext.Enabled = false;
             this.btnLast.Enabled = false;
-            StringBuilder innerJoin = new StringBuilder(string.Format("inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking{0}.ProjectStatusId",sbu));
+            StringBuilder innerJoin = new StringBuilder(string.Format("inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking{0}.ProjectStatusId", sbu));
             innerJoin.Append(string.Format(" inner join Projects{0} on ProjectTracking{0}.ProjectId=Projects{0}.ProjectId", sbu));
             innerJoin.Append(string.Format(" inner join Users on Projects{0}.UserId=Users.UserId", sbu));
             innerJoin.Append(string.Format(" left join (select ProjectId,max(DrReleaseTarget)as DrReleaseTarget from DrawingPlan{0} group by ProjectId) as PlanList on PlanList.ProjectId=Projects{0}.ProjectId", sbu));
@@ -55,10 +55,10 @@ namespace Compass
             objSqlDataPager = new SqlDataPager()
             {
                 PrimaryKey = "ProjectTrackingId",
-                TableName = string.Format("ProjectTracking{0}",sbu),
+                TableName = string.Format("ProjectTracking{0}", sbu),
                 InnerJoin1 = innerJoin.ToString(),
                 InnerJoin2 = string.Format("inner join Projects{0} on ProjectTracking{0}.ProjectId=Projects{0}.ProjectId", sbu),
-                FiledName = "ProjectTrackingId,ODPNo,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName,KickOffStatus,UserAccount",
+                FiledName = "ProjectTrackingId,ODPNo,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName,KickOffStatus,ODPReceiveDate,KickOffDate,UserAccount",
                 CurrentPage = 1,
                 Sort = "ShippingTime desc",
             };
@@ -164,7 +164,7 @@ namespace Compass
         private void IniODPNo(ComboBox cobItem)
         {
             //绑定ODPNo下拉框
-            cobItem.DataSource = objProjectService.GetProjectsByWhereSql("",Program.ObjCurrentUser.SBU);
+            cobItem.DataSource = objProjectService.GetProjectsByWhereSql("", Program.ObjCurrentUser.SBU);
             cobItem.DisplayMember = "ODPNo";
             cobItem.ValueMember = "ProjectId";
             cobItem.SelectedIndex = -1;//默认不要选中
@@ -224,12 +224,14 @@ namespace Compass
                 //(默认)因为dtp最小日期限制
                 DrReleaseActual = DateTime.MinValue,
                 ProdFinishActual = DateTime.MinValue,
-                DeliverActual = DateTime.MinValue
+                DeliverActual = DateTime.MinValue,
+                ODPReceiveDate = DateTime.MinValue,
+                KickOffDate = DateTime.MinValue
             };
             //提交添加
             try
             {
-                int projectTrackingId = objProjectTrackingService.AddProjectTracking(objProjectTracking,sbu);
+                int projectTrackingId = objProjectTrackingService.AddProjectTracking(objProjectTracking, sbu);
                 if (projectTrackingId > 1)
                 {
                     //提示添加成功
@@ -325,7 +327,7 @@ namespace Compass
                 return;
             }
             string projectTrackingId = dgvProjectTracking.CurrentRow.Cells["ProjectTrackingId"].Value.ToString();
-            ProjectTracking objProjectTracking = objProjectTrackingService.GetProjectTrackingById(projectTrackingId,sbu);
+            ProjectTracking objProjectTracking = objProjectTrackingService.GetProjectTrackingById(projectTrackingId, sbu);
             //初始化修改信息
             grbEditProjectTracking.Visible = true;//显示修改框
             grbEditProjectTracking.Location = new Point(10, 9);
@@ -345,20 +347,19 @@ namespace Compass
             this.dtpEditProdFinishActual.ValueChanged -= new System.EventHandler(this.dtpEditProdFinishActual_ValueChanged);
             this.dtpEditDeliverActual.ValueChanged -= new System.EventHandler(this.dtpEditDeliverActual_ValueChanged);
 
-            dtpEditDrReleaseActual.Text = objProjectTracking.DrReleaseActual == DateTime.MinValue ?
-                Convert.ToDateTime("1/1/2020").ToShortDateString() :
-                objProjectTracking.DrReleaseActual.ToShortDateString();
-            dtpEditProdFinishActual.Text = objProjectTracking.ProdFinishActual == DateTime.MinValue ?
-                Convert.ToDateTime("1/1/2020").ToShortDateString() :
-                objProjectTracking.ProdFinishActual.ToShortDateString();
-            dtpEditDeliverActual.Text = objProjectTracking.DeliverActual == DateTime.MinValue ?
-                Convert.ToDateTime("1/1/2020").ToShortDateString() :
-                objProjectTracking.DeliverActual.ToShortDateString();
+            dtpEditDrReleaseActual.Text = objProjectTracking.DrReleaseActual == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.DrReleaseActual.ToShortDateString();
+            dtpEditProdFinishActual.Text = objProjectTracking.ProdFinishActual == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.ProdFinishActual.ToShortDateString();
+            dtpEditDeliverActual.Text = objProjectTracking.DeliverActual == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.DeliverActual.ToShortDateString();
 
             //重新建立事件委托
             this.dtpEditDrReleaseActual.ValueChanged += new System.EventHandler(this.dtpEditDrReleaseActual_ValueChanged);
             this.dtpEditProdFinishActual.ValueChanged += new System.EventHandler(this.dtpEditProdFinishActual_ValueChanged);
             this.dtpEditDeliverActual.ValueChanged += new System.EventHandler(this.dtpEditDeliverActual_ValueChanged);
+
+            dtpEditODPReceiveDate.Text = objProjectTracking.ODPReceiveDate == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.ODPReceiveDate.ToShortDateString();
+            dtpEditKickOffDate.Text = objProjectTracking.KickOffDate == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.KickOffDate.ToShortDateString();
+
+
         }
         /// <summary>
         /// 双击单元格修改记录
@@ -415,17 +416,17 @@ namespace Compass
                 ProjectId = Convert.ToInt32(cobEditODPNo.SelectedValue),
                 ProjectStatusId = Convert.ToInt32(cobEditProjectStatus.SelectedValue),
                 KickOffStatus = cobEditKickOffStatus.Text,
-                DrReleaseActual = Convert.ToDateTime(dtpEditDrReleaseActual.Text) == Convert.ToDateTime("1/1/2020") ?
-                    DateTime.MinValue : Convert.ToDateTime(dtpEditDrReleaseActual.Text),
-                ProdFinishActual = Convert.ToDateTime(dtpEditProdFinishActual.Text) == Convert.ToDateTime("1/1/2020") ?
-                    DateTime.MinValue : Convert.ToDateTime(dtpEditProdFinishActual.Text),
-                DeliverActual = Convert.ToDateTime(dtpEditDeliverActual.Text) == Convert.ToDateTime("1/1/2020") ?
-                    DateTime.MinValue : Convert.ToDateTime(dtpEditDeliverActual.Text)
+                DrReleaseActual = Convert.ToDateTime(dtpEditDrReleaseActual.Text) == Convert.ToDateTime("1/1/2020") ? DateTime.MinValue : Convert.ToDateTime(dtpEditDrReleaseActual.Text),
+                ProdFinishActual = Convert.ToDateTime(dtpEditProdFinishActual.Text) == Convert.ToDateTime("1/1/2020") ? DateTime.MinValue : Convert.ToDateTime(dtpEditProdFinishActual.Text),
+                DeliverActual = Convert.ToDateTime(dtpEditDeliverActual.Text) == Convert.ToDateTime("1/1/2020") ? DateTime.MinValue : Convert.ToDateTime(dtpEditDeliverActual.Text),
+                ODPReceiveDate = Convert.ToDateTime(dtpEditODPReceiveDate.Text) == Convert.ToDateTime("1/1/2020") ? DateTime.MinValue : Convert.ToDateTime(dtpEditODPReceiveDate.Text),
+                KickOffDate = Convert.ToDateTime(dtpEditKickOffDate.Text) == Convert.ToDateTime("1/1/2020") ? DateTime.MinValue : Convert.ToDateTime(dtpEditKickOffDate.Text)
+
             };
             //调用后台方法修改对象
             try
             {
-                if (objProjectTrackingService.EditProjectTracing(objProjectTracking,sbu) == 1)
+                if (objProjectTrackingService.EditProjectTracing(objProjectTracking, sbu) == 1)
                 {
                     MessageBox.Show("修改计划成功！", "提示信息");
                     grbEditProjectTracking.Visible = false;
@@ -465,7 +466,7 @@ namespace Compass
             int firstRowIndex = dgvProjectTracking.CurrentRow.Index;
             try
             {
-                if (objProjectTrackingService.DeleteProjectTracking(projectTrackingId,sbu) == 1)
+                if (objProjectTrackingService.DeleteProjectTracking(projectTrackingId, sbu) == 1)
                 {
                     btnQueryAllProjectTracking_Click(null, null);//同步刷新显示数据
                 }

@@ -23,6 +23,8 @@ namespace Models
         public DateTime ProdFinishActual { get; set; }
         public DateTime DeliverActual { get; set; }
         public string KickOffStatus { get; set; }
+        public DateTime ODPReceiveDate { get; set; }
+        public DateTime KickOffDate { get; set; }
 
         //简单扩展
         public string ODPNo { get; set; }

@@ -312,7 +312,7 @@ GO
 if exists (select * from sysobjects where name='df_RiskLevel')
     alter table GeneralRequirements drop constraint df_RiskLevel
 GO
-alter table GeneralRequirements add constraint df_RiskLevel default (4) for RiskLevel
+alter table GeneralRequirements add constraint df_RiskLevel default (3) for RiskLevel
 GO
 if exists (select * from sysobjects where name='df_AddedDate_HoodCutList')
     alter table HoodCutList drop constraint df_AddedDate_HoodCutList
@@ -439,11 +439,7 @@ if exists (select * from sysobjects where name='df_Location_CeilingPackingList')
 GO
 alter table CeilingPackingList add constraint df_Location_CeilingPackingList default ('AREA1') for Location
 GO
-if exists (select * from sysobjects where name='df_KickOffStatus_ProjectTracking')
-    alter table ProjectTracking drop constraint df_KickOffStatus_ProjectTracking
-GO
-alter table ProjectTracking add constraint df_KickOffStatus_ProjectTracking default ('No') for KickOffStatus
-GO
+
 
 
 

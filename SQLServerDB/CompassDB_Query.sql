@@ -414,3 +414,6 @@ where DATEDIFF(DAY,Drtarget,DrActual)>0
 
 select sum(DATEDIFF(DAY, Drtarget, DrActual)) as TotalDelay from view_DelayQuery 
 where Drtarget>='2021/01/01' and Drtarget<='2021/12/31' and DATEDIFF(DAY,Drtarget,DrActual)>0
+
+
+select * from ProjectTracking

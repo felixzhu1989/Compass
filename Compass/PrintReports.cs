@@ -13,6 +13,7 @@ using Microsoft.Office.Interop.Excel;
 using Models;
 using Models.Model;
 using Drawing = Models.Drawing;
+using Spire.Xls;
 
 namespace Compass
 {
@@ -234,7 +235,7 @@ namespace Compass
         {
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             string excelBookPath = Environment.CurrentDirectory + "\\CeilingPackingList.xlsx";
-            Workbook workBook = excelApp.Workbooks.Add(excelBookPath);
+            Microsoft.Office.Interop.Excel.Workbook workBook = excelApp.Workbooks.Add(excelBookPath);
             Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
 
             //将区域添加到字典中并计数
@@ -286,7 +287,7 @@ namespace Compass
         /// </summary>
         /// <param name="workSheet"></param>
         /// <param name="dgv"></param>
-        private void FillCeilingPackingListDate(Worksheet workSheet, DataGridView dgv, int startRow, int endRow)
+        private void FillCeilingPackingListDate(Microsoft.Office.Interop.Excel.Worksheet workSheet, DataGridView dgv, int startRow, int endRow)
         {
             int j = 0;
             for (int i = startRow; i < endRow; i++)
@@ -351,7 +352,7 @@ namespace Compass
         {
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             string excelBookPath = Environment.CurrentDirectory + "\\HoodPackingList.xlsm";
-            Workbook workBook = excelApp.Workbooks.Add(excelBookPath);
+            Microsoft.Office.Interop.Excel.Workbook workBook = excelApp.Workbooks.Add(excelBookPath);
             Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets["OrigData"];
             //预览
             //excelApp.Visible = true;
@@ -439,6 +440,7 @@ namespace Compass
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             string excelBookPath = Environment.CurrentDirectory + "\\CutList.xlsx";
             excelApp.Workbooks.Add(excelBookPath);
+
             Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
             workSheet.Cells[1, 2] = drawing.ProjectName;
             workSheet.Cells[2, 2] = drawing.ODPNo;
@@ -454,6 +456,15 @@ namespace Compass
             //excelApp.Sheets.PrintPreview(true);
             //打印
             workSheet.PrintOutEx();
+
+            ////先保存为xlsx
+            //workSheet.SaveAs(Environment.CurrentDirectory + "\\CutListTemp.xlsx");
+            ////保存为PDF,有水印，修改去水印后使用
+            //Spire.Xls.Workbook workbook = new Spire.Xls.Workbook();
+            //workbook.LoadFromFile(Environment.CurrentDirectory + "\\CutListTemp.xlsx");
+            //Spire.Xls.Worksheet workSheet2 = workbook.Worksheets[0];
+            //workSheet2.SaveToPdf(Environment.CurrentDirectory + "\\CutListTemp.pdf", Spire.Xls.FileFormat.PDF);
+
             KillProcess(excelApp);
             excelApp = null;//对象置空
             GC.Collect(); //垃圾回收机制

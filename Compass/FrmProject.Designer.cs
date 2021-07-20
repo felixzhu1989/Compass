@@ -59,17 +59,6 @@
             this.txtProjectId = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.dgvProjects = new System.Windows.Forms.DataGridView();
-            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BPONo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Shippingtime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectAbnormal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RiskLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.cobHoodType = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -95,6 +84,17 @@
             this.btnToPage = new System.Windows.Forms.Button();
             this.btnQueryByYear = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BPONo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Shippingtime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RiskLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsProject.SuspendLayout();
             this.cmsCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
@@ -389,7 +389,7 @@
             this.ProjectName,
             this.Shippingtime,
             this.ProjectStatusName,
-            this.ProjectAbnormal,
+            this.TypeName,
             this.RiskLevel,
             this.HoodType,
             this.CustomerName,
@@ -405,94 +405,6 @@
             this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
             this.dgvProjects.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjects_RowPostPaint);
             this.dgvProjects.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjects_KeyDown);
-            // 
-            // UserAccount
-            // 
-            this.UserAccount.DataPropertyName = "UserAccount";
-            this.UserAccount.HeaderText = "制图";
-            this.UserAccount.Name = "UserAccount";
-            this.UserAccount.ReadOnly = true;
-            this.UserAccount.Width = 60;
-            // 
-            // ODPNo
-            // 
-            this.ODPNo.DataPropertyName = "ODPNo";
-            this.ODPNo.HeaderText = "ODP";
-            this.ODPNo.Name = "ODPNo";
-            this.ODPNo.ReadOnly = true;
-            this.ODPNo.Width = 63;
-            // 
-            // BPONo
-            // 
-            this.BPONo.DataPropertyName = "BPONo";
-            this.BPONo.HeaderText = "大工单号";
-            this.BPONo.Name = "BPONo";
-            this.BPONo.ReadOnly = true;
-            this.BPONo.Width = 86;
-            // 
-            // ProjectName
-            // 
-            this.ProjectName.DataPropertyName = "ProjectName";
-            this.ProjectName.HeaderText = "项目名称";
-            this.ProjectName.Name = "ProjectName";
-            this.ProjectName.ReadOnly = true;
-            this.ProjectName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProjectName.Width = 86;
-            // 
-            // Shippingtime
-            // 
-            this.Shippingtime.DataPropertyName = "Shippingtime";
-            this.Shippingtime.HeaderText = "完工日期";
-            this.Shippingtime.Name = "Shippingtime";
-            this.Shippingtime.ReadOnly = true;
-            this.Shippingtime.Width = 86;
-            // 
-            // ProjectStatusName
-            // 
-            this.ProjectStatusName.DataPropertyName = "ProjectStatusName";
-            this.ProjectStatusName.HeaderText = "项目状态";
-            this.ProjectStatusName.Name = "ProjectStatusName";
-            this.ProjectStatusName.ReadOnly = true;
-            this.ProjectStatusName.Width = 86;
-            // 
-            // ProjectAbnormal
-            // 
-            this.ProjectAbnormal.HeaderText = "异常状态";
-            this.ProjectAbnormal.Name = "ProjectAbnormal";
-            this.ProjectAbnormal.ReadOnly = true;
-            this.ProjectAbnormal.Width = 86;
-            // 
-            // RiskLevel
-            // 
-            this.RiskLevel.DataPropertyName = "RiskLevel";
-            this.RiskLevel.HeaderText = "等级";
-            this.RiskLevel.Name = "RiskLevel";
-            this.RiskLevel.ReadOnly = true;
-            this.RiskLevel.Width = 60;
-            // 
-            // HoodType
-            // 
-            this.HoodType.DataPropertyName = "HoodType";
-            this.HoodType.HeaderText = "烟罩类型";
-            this.HoodType.Name = "HoodType";
-            this.HoodType.ReadOnly = true;
-            this.HoodType.Width = 86;
-            // 
-            // CustomerName
-            // 
-            this.CustomerName.DataPropertyName = "CustomerName";
-            this.CustomerName.HeaderText = "客户名称";
-            this.CustomerName.Name = "CustomerName";
-            this.CustomerName.ReadOnly = true;
-            this.CustomerName.Width = 86;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "ProjectId";
-            this.Id.HeaderText = "ID";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Width = 48;
             // 
             // label10
             // 
@@ -773,6 +685,95 @@
             this.btnQueryByYear.UseVisualStyleBackColor = false;
             this.btnQueryByYear.Click += new System.EventHandler(this.btnQueryByYear_Click);
             // 
+            // UserAccount
+            // 
+            this.UserAccount.DataPropertyName = "UserAccount";
+            this.UserAccount.HeaderText = "制图";
+            this.UserAccount.Name = "UserAccount";
+            this.UserAccount.ReadOnly = true;
+            this.UserAccount.Width = 60;
+            // 
+            // ODPNo
+            // 
+            this.ODPNo.DataPropertyName = "ODPNo";
+            this.ODPNo.HeaderText = "ODP";
+            this.ODPNo.Name = "ODPNo";
+            this.ODPNo.ReadOnly = true;
+            this.ODPNo.Width = 63;
+            // 
+            // BPONo
+            // 
+            this.BPONo.DataPropertyName = "BPONo";
+            this.BPONo.HeaderText = "大工单号";
+            this.BPONo.Name = "BPONo";
+            this.BPONo.ReadOnly = true;
+            this.BPONo.Width = 86;
+            // 
+            // ProjectName
+            // 
+            this.ProjectName.DataPropertyName = "ProjectName";
+            this.ProjectName.HeaderText = "项目名称";
+            this.ProjectName.Name = "ProjectName";
+            this.ProjectName.ReadOnly = true;
+            this.ProjectName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProjectName.Width = 86;
+            // 
+            // Shippingtime
+            // 
+            this.Shippingtime.DataPropertyName = "Shippingtime";
+            this.Shippingtime.HeaderText = "完工日期";
+            this.Shippingtime.Name = "Shippingtime";
+            this.Shippingtime.ReadOnly = true;
+            this.Shippingtime.Width = 86;
+            // 
+            // ProjectStatusName
+            // 
+            this.ProjectStatusName.DataPropertyName = "ProjectStatusName";
+            this.ProjectStatusName.HeaderText = "项目状态";
+            this.ProjectStatusName.Name = "ProjectStatusName";
+            this.ProjectStatusName.ReadOnly = true;
+            this.ProjectStatusName.Width = 86;
+            // 
+            // TypeName
+            // 
+            this.TypeName.DataPropertyName = "TypeName";
+            this.TypeName.HeaderText = "项目分类";
+            this.TypeName.Name = "TypeName";
+            this.TypeName.ReadOnly = true;
+            this.TypeName.Width = 86;
+            // 
+            // RiskLevel
+            // 
+            this.RiskLevel.DataPropertyName = "RiskLevel";
+            this.RiskLevel.HeaderText = "等级";
+            this.RiskLevel.Name = "RiskLevel";
+            this.RiskLevel.ReadOnly = true;
+            this.RiskLevel.Width = 60;
+            // 
+            // HoodType
+            // 
+            this.HoodType.DataPropertyName = "HoodType";
+            this.HoodType.HeaderText = "烟罩类型";
+            this.HoodType.Name = "HoodType";
+            this.HoodType.ReadOnly = true;
+            this.HoodType.Width = 86;
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.DataPropertyName = "CustomerName";
+            this.CustomerName.HeaderText = "客户名称";
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
+            this.CustomerName.Width = 86;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "ProjectId";
+            this.Id.HeaderText = "ID";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 48;
+            // 
             // FrmProject
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -850,17 +851,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cobHoodType;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ODPNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BPONo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProjectName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Shippingtime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProjectStatusName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProjectAbnormal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RiskLevel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoodType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -884,5 +874,16 @@
         private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.ToolStripMenuItem tsmiRequirements;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ODPNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BPONo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProjectName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Shippingtime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProjectStatusName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RiskLevel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HoodType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }
 }

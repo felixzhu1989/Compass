@@ -5,4 +5,3 @@ E:\Compass\MyUIControls\obj\Debug\MyUIControls.csproj.GenerateResource.cache
 E:\Compass\MyUIControls\obj\Debug\MyUIControls.csproj.CoreCompileInputs.cache
 E:\Compass\MyUIControls\obj\Debug\MyUIControls.dll
 E:\Compass\MyUIControls\obj\Debug\MyUIControls.pdb
-E:\Compass\MyUIControls\obj\Debug\MyUIControls.csprojAssemblyReference.cache

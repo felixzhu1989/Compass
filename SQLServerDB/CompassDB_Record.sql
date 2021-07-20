@@ -194,5 +194,18 @@ update CeilingAccessories set PartDescription='M6ÆÕÍ¨µæÆ¬(M6 Washer)'
 
 update CeilingAccessories set CeilingAccessoryId='0005' where PartDescription like 'ÎÂ¿Ø%'
 
+select * from GeneralRequirements
+update GeneralRequirements set RiskLevel=3
+	where RiskLevel=4
+select * from GeneralRequirementsMarine
+update GeneralRequirementsMarine set RiskLevel=3
+	where RiskLevel=4
 
 
+select * from ProjectTracking 
+where ProjectTrackingId=229
+
+select * from ProjectTrackingMarine
+
+select * from GeneralRequirements
+select * from ProjectTypes

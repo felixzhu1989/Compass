@@ -79,8 +79,21 @@ create table ProjectTracking
     ProdFinishActual date,    
     DeliverActual date,
     AddedDate datetime,
-	KickOffStatus varchar(3)
+	ODPReceiveDate date,
+	KickOffDate date
 )
+
+--FinancialData
+if exists (select * from sysobjects where name='FinancialData')
+drop table FinancialData
+go
+create table FinancialData
+(
+    FinancialDataId int identity(1,1),
+    ProjectId int not null,
+    SalesValue decimal(8,2)
+)
+
 
 
 
@@ -118,6 +131,7 @@ create table ProjectTypes
     TypeName varchar(20),
     KMLink varchar(500)
 )
+
 select * from ProjectTypes
 
 

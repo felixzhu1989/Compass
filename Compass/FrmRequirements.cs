@@ -32,7 +32,7 @@ namespace Compass
             cobRiskLevel.Items.Add("3");
             cobRiskLevel.Items.Add("2");
             cobRiskLevel.Items.Add("1");
-            cobRiskLevel.SelectedIndex = 0;
+            cobRiskLevel.SelectedIndex = 1;
             //项目电制
             cobInputPower.Items.Add("230/50Hz");
             cobInputPower.Items.Add("230/60Hz");

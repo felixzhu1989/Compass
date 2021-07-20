@@ -56,7 +56,8 @@ create table ProjectTrackingMarine
     ProdFinishActual date,    
     DeliverActual date,
     AddedDate datetime,
-	KickOffStatus varchar(3)
+	ODPReceiveDate date,
+	KickOffDate date
 )
 select * from ProjectTrackingMarine
 
@@ -74,11 +75,6 @@ if exists (select * from sysobjects where name='df_AddedDate_ProjectTrackingMari
     alter table ProjectTrackingMarine drop constraint df_AddedDate_ProjectTrackingMarine
 GO
 alter table ProjectTrackingMarine add constraint df_AddedDate_ProjectTrackingMarine default (getdate()) for AddedDate
-GO
-if exists (select * from sysobjects where name='df_KickOffStatus_ProjectTrackingMarine')
-    alter table ProjectTrackingMarine drop constraint df_KickOffStatus_ProjectTrackingMarine
-GO
-alter table ProjectTrackingMarine add constraint df_KickOffStatus_ProjectTrackingMarine default ('No') for KickOffStatus
 GO
 if exists (select * from sysobjects where name='fk_ProjectStatusIdMarine')
     alter table ProjectTrackingMarine drop constraint fk_ProjectStatusIdMarine
@@ -142,6 +138,11 @@ if exists (select * from sysobjects where name='df_ANSULSystem_GRMarine')
     alter table GeneralRequirementsMarine drop constraint df_ANSULSystem_GRMarine
 GO
 alter table GeneralRequirementsMarine add constraint df_ANSULSystem_GRMarine default ('NO') for ANSULSystem
+GO
+if exists (select * from sysobjects where name='df_RiskLevel_GRMarine')
+    alter table GeneralRequirementsMarine drop constraint df_RiskLevel_GRMarine
+GO
+alter table GeneralRequirementsMarine add constraint df_RiskLevel_GRMarine default (3) for RiskLevel
 GO
 if exists (select * from sysobjects where name='fk_TypeIdMarine')
     alter table GeneralRequirementsMarine drop constraint fk_TypeIdMarine
@@ -326,7 +327,30 @@ GO
 select * from DXFCutList
 
 
+if exists (select * from sysobjects where name='ProjectTypesMarine')
+drop table ProjectTypesMarine
+go
+create table ProjectTypesMarine
+(
+    TypeId int identity(1,1),
+    TypeName varchar(20),
+    KMLink varchar(500)
+)
 
-
-
-
+if exists (select * from sysobjects where name='pk_TypeIdMarine')
+    alter table ProjectTypesMarine drop constraint pk_TypeIdMarine
+GO
+alter table ProjectTypesMarine add constraint pk_TypeIdMarine primary key (TypeId)
+GO
+if exists (select * from sysobjects where name='uq_TypeNameMarine')
+    alter table ProjectTypesMarine drop constraint uq_TypeNameMarine
+GO
+alter table ProjectTypesMarine add constraint uq_TypeNameMarine unique (TypeName)
+GO
+if exists (select * from sysobjects where name='fk_TypeIdMarine')
+    alter table GeneralRequirementsMarine drop constraint fk_TypeIdMarine
+GO
+alter table GeneralRequirementsMarine add constraint fk_TypeIdMarine foreign key(TypeId) references ProjectTypesMarine (TypeId)
+GO
+select * from ProjectTypesMarine
+select * from GeneralRequirementsMarine
