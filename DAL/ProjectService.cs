@@ -108,7 +108,7 @@ namespace DAL
                     RiskLevel = objReader["RiskLevel"].ToString().Length == 0 ? 3 : Convert.ToInt32(objReader["RiskLevel"]),
                     ProjectStatusName = objReader["ProjectStatusName"].ToString(),
                     HoodType = objReader["HoodType"].ToString(),
-                    SalesValue = objReader["SalesValue"].ToString().Length == 0 ? 0: Convert.ToDecimal(objReader["SalesValue"])
+                    SalesValue = objReader["SalesValue"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["SalesValue"])
                 });
             }
             objReader.Close();

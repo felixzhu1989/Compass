@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnQueryAllProjects = new System.Windows.Forms.Button();
             this.btnProject = new System.Windows.Forms.Button();
             this.dtpShippingTime = new System.Windows.Forms.DateTimePicker();
@@ -764,6 +765,10 @@
             // SalesValue
             // 
             this.SalesValue.DataPropertyName = "SalesValue";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "C0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.SalesValue.DefaultCellStyle = dataGridViewCellStyle3;
             this.SalesValue.HeaderText = "销售额(元)";
             this.SalesValue.Name = "SalesValue";
             this.SalesValue.ReadOnly = true;

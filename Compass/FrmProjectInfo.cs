@@ -17,7 +17,8 @@ namespace Compass
     {
         private ProjectService objProjectService = new ProjectService();
         private RequirementService objRequirementService = new RequirementService();
-        private DrawingPlanService objDrawingPlanService=new DrawingPlanService();
+        private DrawingPlanService objDrawingPlanService = new DrawingPlanService();
+        private FinancialDataService objFinancialDataService = new FinancialDataService();
         //创建委托变量
         public ShowProjectsDelegate ShowProjectsDeg = null;
         public ShowModelTreeDelegate ShowModelTreeDeg = null;
@@ -27,55 +28,57 @@ namespace Compass
         {
             InitializeComponent();
             //绑定ODPNo下拉框
-            cobODPNo.DataSource = objProjectService.GetProjectsByWhereSql("",Program.ObjCurrentUser.SBU);
+            cobODPNo.DataSource = objProjectService.GetProjectsByWhereSql("", Program.ObjCurrentUser.SBU);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;//默认不要选中
             //初始化后关联事件委托
             this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.cobODPNo_SelectedIndexChanged);
             SetPermissions();
+
         }
 
         public FrmProjectInfo(string odpNo) : this()
         {
             this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.cobODPNo_SelectedIndexChanged);
             cobODPNo.Text = odpNo;
-            btnRefreshData_Click(null,null);
+            RefreshData();
             //ShowModuleTree();
             this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.cobODPNo_SelectedIndexChanged);
+            
         }
         /// <summary>
         /// 设置权限
         /// </summary>
         private void SetPermissions()
         {
-            //管理员和技术部才能添加、编辑、删除模型
+            //管理员和技术部才能添加、编辑、删除模型，查看财务数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
             {
                 tsmiDeleteGeneralRequirement.Visible = true;
+                grbFinancialData.Visible = true;
             }
             else
             {
                 tsmiDeleteGeneralRequirement.Visible = false;
+                grbFinancialData.Visible = false;
             }
         }
-        /// <summary>
-        /// 刷新数据
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnRefreshData_Click(object sender, EventArgs e)
+
+        private void RefreshData()
         {
             RefreshProjectInfo();
             RefreshGeneralRequirement();
             RefreshSpecialRequirement();
+            iniFinancialData();
         }
+
         /// <summary>
         /// 刷新基本信息
         /// </summary>
         private void RefreshProjectInfo()
         {
-            Project objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text,Program.ObjCurrentUser.SBU);
+            Project objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text, Program.ObjCurrentUser.SBU);
             if (objProject == null)
             {
                 MessageBox.Show("项目不存在", "提示信息");
@@ -87,7 +90,7 @@ namespace Compass
             txtShippingTime.Text = objProject.ShippingTime.ToShortDateString();
             txtProjectName.Text = objProject.ProjectName;
             txtCustomerName.Text = objProject.CustomerName;
-            dgvScope.DataSource = objDrawingPlanService.GetScopeByDataSet(objProject.ProjectId.ToString(),sbu).Tables[0];
+            dgvScope.DataSource = objDrawingPlanService.GetScopeByDataSet(objProject.ProjectId.ToString(), sbu).Tables[0];
 
         }
         /// <summary>
@@ -96,7 +99,7 @@ namespace Compass
         private void RefreshGeneralRequirement()
         {
             GeneralRequirement objGeneralRequirement =
-                objRequirementService.GetGeneralRequirementByODPNo(cobODPNo.Text,sbu);
+                objRequirementService.GetGeneralRequirementByODPNo(cobODPNo.Text, sbu);
             if (objGeneralRequirement == null)
             {
                 txtTypeName.Text = "";
@@ -125,7 +128,7 @@ namespace Compass
         private void RefreshSpecialRequirement()
         {
             List<string> specialRequirementList =
-                  objRequirementService.GetSpecialRequirementList(cobODPNo.Text,sbu);
+                  objRequirementService.GetSpecialRequirementList(cobODPNo.Text, sbu);
             if (specialRequirementList.Count == 0)
             {
                 lbxSpecialRequirements.Items.Clear();
@@ -145,7 +148,7 @@ namespace Compass
         /// <param name="e"></param>
         private void cobODPNo_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13) btnRefreshData_Click(null, null);
+            if (e.KeyValue == 13) RefreshData();
         }
         /// <summary>
         /// ODP选择变更自动刷新信息
@@ -154,7 +157,7 @@ namespace Compass
         /// <param name="e"></param>
         private void cobODPNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnRefreshData_Click(null, null);
+            RefreshData();
             ShowModuleTree();
         }
         /// <summary>
@@ -162,7 +165,7 @@ namespace Compass
         /// </summary>
         private void ShowModuleTree()
         {
-            if (cobODPNo.SelectedIndex==-1)return;
+            if (cobODPNo.SelectedIndex == -1) return;
             ShowModelTreeDeg(cobODPNo.Text);
         }
         /// <summary>
@@ -174,11 +177,11 @@ namespace Compass
         {
             string odpNo = cobODPNo.Text.Trim();
             if (odpNo.Length == 0) return;
-            Project objProject = objProjectService.GetProjectByODPNo(odpNo,Program.ObjCurrentUser.SBU);
+            Project objProject = objProjectService.GetProjectByODPNo(odpNo, Program.ObjCurrentUser.SBU);
             if (objProject == null) return;
             FrmRequirements objFrmRequirements = new FrmRequirements(objProject);
             objFrmRequirements.ShowDialog();
-            btnRefreshData_Click(null, null);
+            RefreshData();
         }
         /// <summary>
         /// 删除通用技术要求菜单
@@ -198,9 +201,9 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objRequirementService.DeleteGeneralRequirement(generalRequirementId,sbu) == 1)
+                if (objRequirementService.DeleteGeneralRequirement(generalRequirementId, sbu) == 1)
                 {
-                    btnRefreshData_Click(null, null);
+                    RefreshData();
                 }
             }
             catch (Exception ex)
@@ -215,7 +218,7 @@ namespace Compass
         /// <param name="e"></param>
         private void tsmiEditProject_Click(object sender, EventArgs e)
         {
-            if(cobODPNo.SelectedIndex==-1)return;
+            if (cobODPNo.SelectedIndex == -1) return;
             string id = this.cobODPNo.SelectedValue.ToString();
             //调用委托
             ShowProjectsDeg(id);
@@ -238,13 +241,66 @@ namespace Compass
         private void txtSalesValue_TextChanged(object sender, EventArgs e)
         {
             decimal salseValue = 0m;
-            if (!decimal.TryParse(txtSalesValue.Text, out salseValue))
+            if (!decimal.TryParse(txtSalesValue.Text.Trim(), out salseValue))
             {
                 txtSalesValue.Clear();
                 return;
             }
             txtSalesValue.Text = salseValue.ToString("N0");
             txtSalesValue.SelectionStart = txtSalesValue.Text.Length;
+        }
+        /// <summary>
+        /// 初始化财务数据
+        /// </summary>
+        private void iniFinancialData()
+        {
+            FinancialData objFinancialData = objFinancialDataService.GetFinancialDataByProjectId(cobODPNo.SelectedValue.ToString(), sbu);
+            if (objFinancialData == null)
+            {
+                txtSalesValue.Text = "";
+                btnFinancialData.Text = "添加财务数据";
+                btnFinancialData.Tag = 0;
+            }
+            else
+            {
+                txtSalesValue.Text = objFinancialData.SalesValue.ToString("N0");
+                btnFinancialData.Text = "更新财务数据";
+                btnFinancialData.Tag = objFinancialData.ProjectId;
+            }
+
+        }
+        /// <summary>
+        /// 财务数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnFinancialData_Click(object sender, EventArgs e)
+        {
+            if (cobODPNo.SelectedIndex == -1 || txtSalesValue.Text.Length == 0) return;
+            FinancialData objFinancialData = new FinancialData()
+            {
+                ProjectId = Convert.ToInt32(cobODPNo.SelectedValue),
+                SalesValue = Convert.ToDecimal(txtSalesValue.Text)
+            };
+
+            try
+            {
+                if (Convert.ToInt32(btnFinancialData.Tag) == 0)
+                {
+                    if (objFinancialDataService.AddFinancialData(objFinancialData, sbu) > 0) MessageBox.Show("财务数据添加成功", "提示信息");
+                }
+                else
+                {
+                    if (objFinancialDataService.EditFinancialData(objFinancialData, sbu) == 1) MessageBox.Show("修改通用技术要求成功！", "提示信息");
+                }
+                RefreshData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
         }
     }
 }
