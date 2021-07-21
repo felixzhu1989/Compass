@@ -92,6 +92,19 @@ namespace Compass
                 tsmiWorkLoad.Visible = false;
                 tsmiStatusTypes.Visible = false;
             }
+            //sbu
+            string sbu = Program.ObjCurrentUser.SBU;
+            if (sbu != "")
+            {
+                tsmiCeilingAccessories.Visible = false;
+                tsmiHoodAutoDrawing.Visible = false;
+                tsmiCeilingAutoDrawing.Visible = false;
+            }
+            else
+            {
+                tsmiMarineAutoDrawing.Visible = false;
+            }
+
         }
 
         #region 关闭当前已经嵌入的窗体，嵌入新的窗体

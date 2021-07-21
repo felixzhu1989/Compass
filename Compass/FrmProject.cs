@@ -56,25 +56,9 @@ namespace Compass
             this.btnPre.Enabled = false;
             this.btnNext.Enabled = false;
             this.btnLast.Enabled = false;
+            //分页sql语句
+            objSqlDataPager = objProjectService.GetSqlDataPager(sbu);
 
-            StringBuilder innerJoin = new StringBuilder(string.Format("inner join Users on Projects{0}.UserId=Users.UserId",sbu));
-            innerJoin.Append(string.Format(" inner join Customers on Projects{0}.CustomerId=Customers.CustomerId", sbu));
-            innerJoin.Append(string.Format(" inner join ProjectTracking{0} on Projects{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu));
-            innerJoin.Append(string.Format(" inner join ProjectStatus on ProjectTracking{0}.ProjectStatusId=ProjectStatus.ProjectStatusId", sbu));
-            innerJoin.Append(string.Format(" left join GeneralRequirements{0} on Projects{0}.ProjectId=GeneralRequirements{0}.ProjectId", sbu));
-            innerJoin.Append(string.Format(" left join ProjectTypes{0} on ProjectTypes{0}.TypeId=GeneralRequirements{0}.TypeId", sbu));
-
-            //初始化分页对象
-            objSqlDataPager = new SqlDataPager()
-            {
-                PrimaryKey = string.Format("Projects{0}.ProjectId",
-                sbu),
-                TableName = "Projects"+ sbu,
-                InnerJoin1 = innerJoin.ToString(),
-                FiledName = string.Format("Projects{0}.ProjectId,ODPNo,BPONo,ProjectName,CustomerName,ShippingTime,UserAccount,TypeName,RiskLevel,ProjectStatusName,HoodType", sbu),
-                CurrentPage = 1,
-                Sort = "ShippingTime desc",
-            };
             btnQueryByYear_Click(null, null);
 
             this.dgvProjects.SelectionChanged += new System.EventHandler(this.dgvProjects_SelectionChanged);
@@ -96,7 +80,7 @@ namespace Compass
                 cobUserId.SelectedIndex = -1; //默认选中
             }
 
-            //管理员和技术部才能添加、编辑、删除项目
+            //管理员和技术部才能添加、编辑、删除项目、显示金额
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
             {
                 btnProject.Visible = true;
@@ -105,6 +89,7 @@ namespace Compass
                 tsmiDeleteProject.Visible = true;
                 this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
                 this.dgvProjects.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjects_KeyDown);
+                this.dgvProjects.Columns["SalesValue"].Visible = true;
             }
             else
             {
@@ -114,6 +99,7 @@ namespace Compass
                 tsmiDeleteProject.Visible = false;
                 this.dgvProjects.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
                 this.dgvProjects.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvProjects_KeyDown);
+                this.dgvProjects.Columns["SalesValue"].Visible = false;
             }
         }
         /// <summary>
@@ -328,7 +314,7 @@ namespace Compass
                 //调用后台方法修改对象
                 try
                 {
-                    if (objProjectService.EditProject(objProject,sbu) == 1)
+                    if (objProjectService.EditProject(objProject,sbu)==1)
                     {
                         MessageBox.Show("修改项目信息成功！", "提示信息");
                         btnQueryByYear_Click(null, null); //同步刷新显示数据
@@ -465,6 +451,9 @@ namespace Compass
                     case "ProjectCompleted":
                         dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(95, 158, 160);
                         break;
+                    case "Pending":
+                        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 0, 0);
+                        break;
                     default:
                         break;
                 }
@@ -510,7 +499,7 @@ namespace Compass
         private void btnQueryByUserId_Click(object sender, EventArgs e)
         {
             if (cobUserId.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("Projects.UserId = {0} and ShippingTime>='{1}/01/01' and ShippingTime<='{1}/12/31'", cobUserId.SelectedValue.ToString(), this.cobQueryYear.Text);
+            objSqlDataPager.Condition = string.Format("Projects{0}.UserId = {1} and ShippingTime>='{2}/01/01' and ShippingTime<='{2}/12/31'", sbu,cobUserId.SelectedValue.ToString(), this.cobQueryYear.Text);
             objSqlDataPager.PageSize = 10000;
             Query();
         }

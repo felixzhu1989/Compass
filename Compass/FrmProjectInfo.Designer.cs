@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnRefreshData = new System.Windows.Forms.Button();
@@ -71,12 +71,17 @@
             this.tsmiDeleteGeneralRequirement = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvScope = new System.Windows.Forms.DataGridView();
+            this.txtSalesValue = new System.Windows.Forms.TextBox();
+            this.lblSalesValue = new System.Windows.Forms.Label();
+            this.grbFinancialData = new System.Windows.Forms.GroupBox();
+            this.btnFinancialData = new System.Windows.Forms.Button();
             this.grbProject.SuspendLayout();
             this.grbGeneralRequirements.SuspendLayout();
             this.grbSpecialRequirements.SuspendLayout();
             this.cmsRequirement.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScope)).BeginInit();
+            this.grbFinancialData.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -112,6 +117,7 @@
             this.btnRefreshData.TabIndex = 35;
             this.btnRefreshData.Text = "刷新显示信息";
             this.btnRefreshData.UseVisualStyleBackColor = false;
+            this.btnRefreshData.Visible = false;
             this.btnRefreshData.Click += new System.EventHandler(this.btnRefreshData_Click);
             // 
             // grbProject
@@ -130,7 +136,7 @@
             this.grbProject.Controls.Add(this.txtUserAccount);
             this.grbProject.Location = new System.Drawing.Point(10, 35);
             this.grbProject.Name = "grbProject";
-            this.grbProject.Size = new System.Drawing.Size(572, 111);
+            this.grbProject.Size = new System.Drawing.Size(569, 111);
             this.grbProject.TabIndex = 36;
             this.grbProject.TabStop = false;
             this.grbProject.Text = "项目基本信息";
@@ -464,19 +470,19 @@
             // 
             this.dgvScope.AllowUserToAddRows = false;
             this.dgvScope.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
-            this.dgvScope.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Azure;
+            this.dgvScope.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvScope.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvScope.BackgroundColor = System.Drawing.Color.White;
             this.dgvScope.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvScope.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvScope.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvScope.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvScope.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvScope.EnableHeadersVisualStyles = false;
@@ -487,6 +493,52 @@
             this.dgvScope.Size = new System.Drawing.Size(344, 297);
             this.dgvScope.TabIndex = 65;
             this.dgvScope.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvScope_RowPostPaint);
+            // 
+            // txtSalesValue
+            // 
+            this.txtSalesValue.Location = new System.Drawing.Point(54, 20);
+            this.txtSalesValue.MaxLength = 10;
+            this.txtSalesValue.Name = "txtSalesValue";
+            this.txtSalesValue.Size = new System.Drawing.Size(113, 25);
+            this.txtSalesValue.TabIndex = 39;
+            this.txtSalesValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtSalesValue.TextChanged += new System.EventHandler(this.txtSalesValue_TextChanged);
+            // 
+            // lblSalesValue
+            // 
+            this.lblSalesValue.AutoSize = true;
+            this.lblSalesValue.Location = new System.Drawing.Point(6, 23);
+            this.lblSalesValue.Name = "lblSalesValue";
+            this.lblSalesValue.Size = new System.Drawing.Size(214, 19);
+            this.lblSalesValue.TabIndex = 40;
+            this.lblSalesValue.Text = "销售额                               RMB元";
+            // 
+            // grbFinancialData
+            // 
+            this.grbFinancialData.Controls.Add(this.txtSalesValue);
+            this.grbFinancialData.Controls.Add(this.btnFinancialData);
+            this.grbFinancialData.Controls.Add(this.lblSalesValue);
+            this.grbFinancialData.Location = new System.Drawing.Point(591, 35);
+            this.grbFinancialData.Name = "grbFinancialData";
+            this.grbFinancialData.Size = new System.Drawing.Size(347, 111);
+            this.grbFinancialData.TabIndex = 41;
+            this.grbFinancialData.TabStop = false;
+            this.grbFinancialData.Text = "财务数据";
+            // 
+            // btnFinancialData
+            // 
+            this.btnFinancialData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFinancialData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.btnFinancialData.FlatAppearance.BorderSize = 0;
+            this.btnFinancialData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinancialData.ForeColor = System.Drawing.Color.White;
+            this.btnFinancialData.Location = new System.Drawing.Point(233, 72);
+            this.btnFinancialData.Name = "btnFinancialData";
+            this.btnFinancialData.Size = new System.Drawing.Size(108, 28);
+            this.btnFinancialData.TabIndex = 35;
+            this.btnFinancialData.Text = "更新财务数据";
+            this.btnFinancialData.UseVisualStyleBackColor = false;
+            this.btnFinancialData.Click += new System.EventHandler(this.btnRefreshData_Click);
             // 
             // FrmProjectInfo
             // 
@@ -504,6 +556,7 @@
             this.Controls.Add(this.txtBPONo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.grbFinancialData);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmProjectInfo";
@@ -516,6 +569,8 @@
             this.cmsRequirement.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvScope)).EndInit();
+            this.grbFinancialData.ResumeLayout(false);
+            this.grbFinancialData.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -563,5 +618,9 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvScope;
+        private System.Windows.Forms.TextBox txtSalesValue;
+        private System.Windows.Forms.Label lblSalesValue;
+        private System.Windows.Forms.GroupBox grbFinancialData;
+        private System.Windows.Forms.Button btnFinancialData;
     }
 }

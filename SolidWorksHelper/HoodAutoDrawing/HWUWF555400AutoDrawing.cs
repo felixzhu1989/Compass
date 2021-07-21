@@ -702,7 +702,7 @@ namespace SolidWorksHelper
                 {
                     swFeat = swComp.FeatureByName("UVDOOR-LONG");
                     swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@Sketch10").SystemValue = (item.ExRightDis - 2.5m) / 1000m;
+                    swPart.Parameter("D1@Sketch12").SystemValue = (item.ExRightDis - 2.5m) / 1000m;
                     swFeat = swComp.FeatureByName("UVDOOR-DOUBLE");
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("UVDOOR-SHORT");
@@ -712,7 +712,7 @@ namespace SolidWorksHelper
                 {
                     swFeat = swComp.FeatureByName("UVDOOR-SHORT");
                     swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@Sketch10").SystemValue = (item.ExRightDis - 2.5m) / 1000m;
+                    swPart.Parameter("D1@Sketch11").SystemValue = (item.ExRightDis - 2.5m) / 1000m;
                     swFeat = swComp.FeatureByName("UVDOOR-DOUBLE");
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("UVDOOR-LONG");

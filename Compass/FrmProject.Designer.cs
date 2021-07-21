@@ -93,6 +93,7 @@
             this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RiskLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalesValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsProject.SuspendLayout();
@@ -108,7 +109,7 @@
             this.btnQueryAllProjects.FlatAppearance.BorderSize = 0;
             this.btnQueryAllProjects.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQueryAllProjects.ForeColor = System.Drawing.Color.White;
-            this.btnQueryAllProjects.Location = new System.Drawing.Point(830, 73);
+            this.btnQueryAllProjects.Location = new System.Drawing.Point(716, 41);
             this.btnQueryAllProjects.Name = "btnQueryAllProjects";
             this.btnQueryAllProjects.Size = new System.Drawing.Size(108, 28);
             this.btnQueryAllProjects.TabIndex = 34;
@@ -135,7 +136,8 @@
             // 
             this.dtpShippingTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dtpShippingTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpShippingTime.Location = new System.Drawing.Point(723, 43);
+            this.dtpShippingTime.Location = new System.Drawing.Point(833, 77);
+            this.dtpShippingTime.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dtpShippingTime.Name = "dtpShippingTime";
             this.dtpShippingTime.Size = new System.Drawing.Size(105, 25);
             this.dtpShippingTime.TabIndex = 31;
@@ -145,7 +147,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(719, 21);
+            this.label7.Location = new System.Drawing.Point(737, 80);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(87, 19);
             this.label7.TabIndex = 32;
@@ -345,17 +347,17 @@
             // txtProjectId
             // 
             this.txtProjectId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtProjectId.Location = new System.Drawing.Point(753, 76);
+            this.txtProjectId.Location = new System.Drawing.Point(669, 9);
             this.txtProjectId.Name = "txtProjectId";
             this.txtProjectId.ReadOnly = true;
-            this.txtProjectId.Size = new System.Drawing.Size(75, 25);
+            this.txtProjectId.Size = new System.Drawing.Size(44, 25);
             this.txtProjectId.TabIndex = 26;
             // 
             // label9
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(724, 79);
+            this.label9.Location = new System.Drawing.Point(640, 12);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(23, 19);
             this.label9.TabIndex = 30;
@@ -392,6 +394,7 @@
             this.TypeName,
             this.RiskLevel,
             this.HoodType,
+            this.SalesValue,
             this.CustomerName,
             this.Id});
             this.dgvProjects.ContextMenuStrip = this.cmsProject;
@@ -410,7 +413,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.label10.Location = new System.Drawing.Point(109, 19);
+            this.label10.Location = new System.Drawing.Point(112, 20);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(126, 19);
             this.label10.TabIndex = 36;
@@ -440,7 +443,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.label12.Location = new System.Drawing.Point(472, 19);
+            this.label12.Location = new System.Drawing.Point(472, 20);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(152, 19);
             this.label12.TabIndex = 36;
@@ -534,8 +537,8 @@
             // 
             this.cobRecordList.FormattingEnabled = true;
             this.cobRecordList.Items.AddRange(new object[] {
-            "50",
             "100",
+            "200",
             "500",
             "1000"});
             this.cobRecordList.Location = new System.Drawing.Point(240, 24);
@@ -758,6 +761,14 @@
             this.HoodType.ReadOnly = true;
             this.HoodType.Width = 86;
             // 
+            // SalesValue
+            // 
+            this.SalesValue.DataPropertyName = "SalesValue";
+            this.SalesValue.HeaderText = "销售额(元)";
+            this.SalesValue.Name = "SalesValue";
+            this.SalesValue.ReadOnly = true;
+            this.SalesValue.Width = 94;
+            // 
             // CustomerName
             // 
             this.CustomerName.DataPropertyName = "CustomerName";
@@ -883,6 +894,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn RiskLevel;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoodType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SalesValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }

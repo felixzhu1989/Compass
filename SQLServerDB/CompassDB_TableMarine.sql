@@ -354,3 +354,36 @@ alter table GeneralRequirementsMarine add constraint fk_TypeIdMarine foreign key
 GO
 select * from ProjectTypesMarine
 select * from GeneralRequirementsMarine
+
+
+--FinancialData
+if exists (select * from sysobjects where name='FinancialDataMarine')
+drop table FinancialDataMarine
+go
+create table FinancialDataMarine
+(
+    FinancialDataId int identity(1,1),
+    ProjectId int not null,
+    SalesValue decimal(8,0)
+)
+if exists (select * from sysobjects where name='pk_FinancialDataId_Marine')
+    alter table FinancialDataMarine drop constraint pk_FinancialDataId_Marine
+GO
+alter table FinancialDataMarine add constraint pk_FinancialDataId_Marine primary key (FinancialDataId)
+
+if exists (select * from sysobjects where name='df_SalesValueMarine')
+    alter table FinancialDataMarine drop constraint df_SalesValueMarine
+GO
+alter table FinancialDataMarine add constraint df_SalesValueMarine default (0) for SalesValue
+GO
+
+if exists (select * from sysobjects where name='uq_ProjectId_FinancialDataMarine')
+    alter table FinancialDataMarine drop constraint uq_ProjectId_FinancialDataMarine
+GO
+alter table FinancialDataMarine add constraint uq_ProjectId_FinancialDataMarine unique (ProjectId)
+GO
+
+if exists (select * from sysobjects where name='fk_ProjectId_FinancialData_Marine')
+    alter table FinancialDataMarine drop constraint fk_ProjectId_FinancialData_Marine
+GO
+alter table FinancialDataMarine add constraint fk_ProjectId_FinancialData_Marine foreign key(ProjectId) references ProjectsMarine (ProjectId)

@@ -229,5 +229,22 @@ namespace Compass
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvScope, e);
         }
+
+        /// <summary>
+        /// 输入金额千位分隔符显示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtSalesValue_TextChanged(object sender, EventArgs e)
+        {
+            decimal salseValue = 0m;
+            if (!decimal.TryParse(txtSalesValue.Text, out salseValue))
+            {
+                txtSalesValue.Clear();
+                return;
+            }
+            txtSalesValue.Text = salseValue.ToString("N0");
+            txtSalesValue.SelectionStart = txtSalesValue.Text.Length;
+        }
     }
 }

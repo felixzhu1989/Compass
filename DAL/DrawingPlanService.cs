@@ -15,6 +15,34 @@ namespace DAL
     /// </summary>
     public class DrawingPlanService
     {
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="sbu"></param>
+        /// <returns></returns>
+        public SqlDataPager GetSqlDataPager(string sbu)
+        {
+            StringBuilder innerJoin1 = new StringBuilder(string.Format("inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId", sbu));
+            innerJoin1.Append(string.Format(" inner join Users on Users.UserId=Projects{0}.UserId", sbu));
+            innerJoin1.Append(string.Format(" left join ProjectTracking{0} on DrawingPlan{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu));
+
+            //初始化分页对象
+            SqlDataPager objSqlDataPager = new SqlDataPager()
+            {
+                PrimaryKey = "DrawingPlanId",
+                TableName = string.Format("DrawingPlan{0}", sbu),
+                InnerJoin1 = innerJoin1.ToString(),
+                InnerJoin2 = string.Format("inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId", sbu),
+                FiledName = string.Format("DrawingPlanId,UserAccount,ODPNo,Item,Model,ModuleNo,DrawingPlan{0}.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,ProjectName,HoodType,IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan{0}.DrReleaseTarget)<0,0,DATEDIFF(DAY,GETDATE(),DrawingPlan{0}.DrReleaseTarget)) as RemainingDays,IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan{0}.DrReleaseTarget)<=0,100,100*DATEDIFF(DAY,GETDATE(),DrawingPlan{0}.AddedDate)/DATEDIFF(DAY,DrawingPlan{0}.DrReleaseTarget,DrawingPlan{0}.AddedDate)) as ProgressValue", sbu),
+                CurrentPage = 1,
+                Sort = string.Format("DrawingPlan{0}.DrReleasetarget desc", sbu),
+            };
+            return objSqlDataPager;
+        }
+
+
+
+
         #region 查询年度各制图人员工作量
 
         /// <summary>

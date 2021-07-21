@@ -46,22 +46,10 @@ namespace Compass
             this.btnPre.Enabled = false;
             this.btnNext.Enabled = false;
             this.btnLast.Enabled = false;
-            StringBuilder innerJoin = new StringBuilder(string.Format("inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking{0}.ProjectStatusId", sbu));
-            innerJoin.Append(string.Format(" inner join Projects{0} on ProjectTracking{0}.ProjectId=Projects{0}.ProjectId", sbu));
-            innerJoin.Append(string.Format(" inner join Users on Projects{0}.UserId=Users.UserId", sbu));
-            innerJoin.Append(string.Format(" left join (select ProjectId,max(DrReleaseTarget)as DrReleaseTarget from DrawingPlan{0} group by ProjectId) as PlanList on PlanList.ProjectId=Projects{0}.ProjectId", sbu));
+            
+            //分页查询
+            objSqlDataPager= objProjectTrackingService.GetSqlDataPager(sbu);
 
-            //初始化分页对象
-            objSqlDataPager = new SqlDataPager()
-            {
-                PrimaryKey = "ProjectTrackingId",
-                TableName = string.Format("ProjectTracking{0}", sbu),
-                InnerJoin1 = innerJoin.ToString(),
-                InnerJoin2 = string.Format("inner join Projects{0} on ProjectTracking{0}.ProjectId=Projects{0}.ProjectId", sbu),
-                FiledName = "ProjectTrackingId,ODPNo,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName,KickOffStatus,ODPReceiveDate,KickOffDate,UserAccount",
-                CurrentPage = 1,
-                Sort = "ShippingTime desc",
-            };
             btnQueryByYear_Click(null, null);
 
             //初始化下拉框后关联事件委托
@@ -194,6 +182,9 @@ namespace Compass
                     case "ProjectCompleted":
                         dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(95, 158, 160);
                         break;
+                    case "Pending":
+                        dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 0, 0);
+                        break;
                     default:
                         break;
                 }
@@ -255,7 +246,7 @@ namespace Compass
         private void btnQueryByProjectStatus_Click(object sender, EventArgs e)
         {
             if (cobProjectStatus.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("ProjectTracking.ProjectStatusId = {0}", cobProjectStatus.SelectedValue.ToString());
+            objSqlDataPager.Condition = string.Format("ProjectTracking{0}.ProjectStatusId = {1}", sbu,cobProjectStatus.SelectedValue.ToString());
             objSqlDataPager.PageSize = 10000;
             Query();
         }
@@ -276,7 +267,7 @@ namespace Compass
         private void btnQueryByProjectId_Click(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("ProjectTracking.ProjectId = {0}", cobODPNo.SelectedValue.ToString());
+            objSqlDataPager.Condition = string.Format("ProjectTracking{0}.ProjectId = {1}",sbu, cobODPNo.SelectedValue.ToString());
             objSqlDataPager.PageSize = 10000;
             Query();
         }
@@ -438,6 +429,7 @@ namespace Compass
                 MessageBox.Show(ex.Message);
             }
             dgvProjectTracking.ClearSelection();
+
             dgvProjectTracking.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
             dgvProjectTracking.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }

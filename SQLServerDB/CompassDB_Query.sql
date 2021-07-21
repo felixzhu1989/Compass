@@ -417,3 +417,6 @@ where Drtarget>='2021/01/01' and Drtarget<='2021/12/31' and DATEDIFF(DAY,Drtarge
 
 
 select * from ProjectTracking
+
+select Top 10000 ProjectsMarine.ProjectId,ODPNo,BPONo,ProjectName,CustomerName,ShippingTime,UserAccount,TypeName,RiskLevel,ProjectStatusName,HoodType from ProjectsMarine inner join Users on ProjectsMarine.UserId=Users.UserId inner join Customers on ProjectsMarine.CustomerId=Customers.CustomerId inner join ProjectTrackingMarine on ProjectsMarine.ProjectId=ProjectTrackingMarine.ProjectId inner join ProjectStatus on ProjectTrackingMarine.ProjectStatusId=ProjectStatus.ProjectStatusId left join GeneralRequirementsMarine on ProjectsMarine.ProjectId=GeneralRequirementsMarine.ProjectId left join ProjectTypesMarine on ProjectTypesMarine.TypeId=GeneralRequirementsMarine.TypeId where Projects.UserId = 2 and ShippingTime>='2021/01/01' and ShippingTime<='2021/12/31' and ProjectsMarine.ProjectId not in (select Top 0 ProjectsMarine.ProjectId from ProjectsMarine where Projects.UserId = 2 and ShippingTime>='2021/01/01' and ShippingTime<='2021/12/31' order by ShippingTime desc) order by ShippingTime desc;select count(*) from ProjectsMarine  where Projects.UserId = 2 and ShippingTime>='2021/01/01' and ShippingTime<='2021/12/31'
+select * from ProjectsMarine

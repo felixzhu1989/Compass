@@ -26,5 +26,6 @@ namespace Models
         public string CustomerName { get; set; }
         public int RiskLevel { get; set; }
         public string ProjectStatusName { get; set; }
+        public decimal SalesValue { get; set; }
     }
 }

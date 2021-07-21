@@ -11,6 +11,31 @@ namespace DAL
 {
     public class ProjectTrackingService
     {
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <param name="sbu"></param>
+        /// <returns></returns>
+        public SqlDataPager GetSqlDataPager(string sbu)
+        {
+            StringBuilder innerJoin = new StringBuilder(string.Format("inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking{0}.ProjectStatusId", sbu));
+            innerJoin.Append(string.Format(" inner join Projects{0} on ProjectTracking{0}.ProjectId=Projects{0}.ProjectId", sbu));
+            innerJoin.Append(string.Format(" inner join Users on Projects{0}.UserId=Users.UserId", sbu));
+            innerJoin.Append(string.Format(" left join (select ProjectId,max(DrReleaseTarget)as DrReleaseTarget from DrawingPlan{0} group by ProjectId) as PlanList on PlanList.ProjectId=Projects{0}.ProjectId", sbu));
+
+            //初始化分页对象
+            SqlDataPager objSqlDataPager = new SqlDataPager()
+            {
+                PrimaryKey = "ProjectTrackingId",
+                TableName = string.Format("ProjectTracking{0}", sbu),
+                InnerJoin1 = innerJoin.ToString(),
+                InnerJoin2 = string.Format("inner join Projects{0} on ProjectTracking{0}.ProjectId=Projects{0}.ProjectId", sbu),
+                FiledName = "ProjectTrackingId,ODPNo,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName,KickOffStatus,ODPReceiveDate,KickOffDate,UserAccount",
+                CurrentPage = 1,
+                Sort = "ShippingTime desc",
+            };
+            return objSqlDataPager;
+        }
 
         /// <summary>
         /// 根据项目状态返回项目跟踪合集

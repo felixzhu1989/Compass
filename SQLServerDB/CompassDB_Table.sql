@@ -83,20 +83,6 @@ create table ProjectTracking
 	KickOffDate date
 )
 
---FinancialData
-if exists (select * from sysobjects where name='FinancialData')
-drop table FinancialData
-go
-create table FinancialData
-(
-    FinancialDataId int identity(1,1),
-    ProjectId int not null,
-    SalesValue decimal(8,2)
-)
-
-
-
-
 if exists (select * from sysobjects where name='Customers')
 drop table Customers
 go
@@ -324,3 +310,49 @@ create table CeilingPackingList
 	UserId int not null, --fk
 	Location varchar(50) --df
 ) 
+
+
+
+--FinancialData
+if exists (select * from sysobjects where name='FinancialData')
+drop table FinancialData
+go
+create table FinancialData
+(
+    FinancialDataId int identity(1,1),
+    ProjectId int not null,
+    SalesValue decimal(8,0)
+)
+if exists (select * from sysobjects where name='pk_FinancialDataId')
+    alter table FinancialData drop constraint pk_FinancialDataId
+GO
+alter table FinancialData add constraint pk_FinancialDataId primary key (FinancialDataId)
+
+if exists (select * from sysobjects where name='df_SalesValue')
+    alter table FinancialData drop constraint df_SalesValue
+GO
+alter table FinancialData add constraint df_SalesValue default (0) for SalesValue
+GO
+
+if exists (select * from sysobjects where name='uq_ProjectId_FinancialData')
+    alter table FinancialData drop constraint uq_ProjectId_FinancialData
+GO
+alter table FinancialData add constraint uq_ProjectId_FinancialData unique (ProjectId)
+GO
+
+if exists (select * from sysobjects where name='fk_ProjectId_FinancialData')
+    alter table FinancialData drop constraint fk_ProjectId_FinancialData
+GO
+alter table FinancialData add constraint fk_ProjectId_FinancialData foreign key(ProjectId) references Projects (ProjectId)
+
+
+
+select * from FinancialData
+
+
+
+
+
+
+
+

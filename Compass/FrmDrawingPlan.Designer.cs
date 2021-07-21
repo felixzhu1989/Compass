@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvDrawingPlan = new System.Windows.Forms.DataGridView();
             this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -134,22 +134,22 @@
             // 
             this.dgvDrawingPlan.AllowUserToAddRows = false;
             this.dgvDrawingPlan.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
-            this.dgvDrawingPlan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Azure;
+            this.dgvDrawingPlan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvDrawingPlan.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDrawingPlan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDrawingPlan.BackgroundColor = System.Drawing.Color.White;
             this.dgvDrawingPlan.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDrawingPlan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDrawingPlan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvDrawingPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDrawingPlan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UserAccount,
@@ -221,10 +221,10 @@
             // ProgressValue
             // 
             this.ProgressValue.DataPropertyName = "ProgressValue";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.NullValue = "System.Drawing.Bitmap";
-            this.ProgressValue.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.NullValue = "System.Drawing.Bitmap";
+            this.ProgressValue.DefaultCellStyle = dataGridViewCellStyle6;
             this.ProgressValue.HeaderText = "进度条";
             this.ProgressValue.Name = "ProgressValue";
             this.ProgressValue.ReadOnly = true;
@@ -453,6 +453,7 @@
             // 
             this.dtpDrReleaseTarget.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDrReleaseTarget.Location = new System.Drawing.Point(817, 37);
+            this.dtpDrReleaseTarget.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dtpDrReleaseTarget.Name = "dtpDrReleaseTarget";
             this.dtpDrReleaseTarget.Size = new System.Drawing.Size(117, 25);
             this.dtpDrReleaseTarget.TabIndex = 2;
@@ -537,6 +538,7 @@
             // 
             this.dtpEditAddedDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpEditAddedDate.Location = new System.Drawing.Point(573, 59);
+            this.dtpEditAddedDate.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dtpEditAddedDate.Name = "dtpEditAddedDate";
             this.dtpEditAddedDate.Size = new System.Drawing.Size(117, 25);
             this.dtpEditAddedDate.TabIndex = 2;
@@ -545,6 +547,7 @@
             // 
             this.dtpEditDrReleaseTarget.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpEditDrReleaseTarget.Location = new System.Drawing.Point(573, 24);
+            this.dtpEditDrReleaseTarget.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dtpEditDrReleaseTarget.Name = "dtpEditDrReleaseTarget";
             this.dtpEditDrReleaseTarget.Size = new System.Drawing.Size(117, 25);
             this.dtpEditDrReleaseTarget.TabIndex = 2;
@@ -809,8 +812,8 @@
             // 
             this.cobRecordList.FormattingEnabled = true;
             this.cobRecordList.Items.AddRange(new object[] {
-            "50",
             "100",
+            "200",
             "500",
             "1000"});
             this.cobRecordList.Location = new System.Drawing.Point(240, 24);
