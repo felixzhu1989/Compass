@@ -350,7 +350,7 @@ alter table FinancialData add constraint fk_ProjectId_FinancialData foreign key(
 select * from FinancialData
 
 
-
+select FinancialDataId,ProjectId,SalesValue from FinancialData where ProjectId=61
 
 
 

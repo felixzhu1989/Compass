@@ -153,3 +153,4 @@ E:\Compass\Compass\bin\Debug\Microsoft.mshtml.dll
 E:\Compass\Compass\bin\Debug\Spire.License.xml
 E:\Compass\Compass\bin\Debug\Spire.Pdf.xml
 E:\Compass\Compass\bin\Debug\Spire.XLS.xml
+E:\Compass\Compass\obj\Debug\Compass.FrmHWUWF555.resources

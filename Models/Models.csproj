@@ -94,6 +94,7 @@
     <Compile Include="HoodCutList.cs" />
     <Compile Include="Ceiling\INF.cs" />
     <Compile Include="Hood\HWUWF555400.cs" />
+    <Compile Include="Hood\HWUWF555.cs" />
     <Compile Include="JobCard.cs" />
     <Compile Include="Hood\KVI555.cs" />
     <Compile Include="IModel.cs" />

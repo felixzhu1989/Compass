@@ -3,4 +3,3 @@ E:\Compass\Common\bin\Debug\Common.pdb
 E:\Compass\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 E:\Compass\Common\obj\Debug\Common.dll
 E:\Compass\Common\obj\Debug\Common.pdb
-E:\Compass\Common\obj\Debug\Common.csprojAssemblyReference.cache
