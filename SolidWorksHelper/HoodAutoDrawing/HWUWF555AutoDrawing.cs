@@ -436,7 +436,16 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
 
                 //----------KSA侧边----------
-                if (ksaSideLength < 12m / 1000m && ksaSideLength > 3.3m / 1000m)//华为板材厚，改成3.3无法折弯
+                if (ksaSideLength <= 3.3m / 1000m)
+                {
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0160-1"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0161-1"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0170-1"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩
+                }
+                else if (ksaSideLength < 12m / 1000m && ksaSideLength > 3.3m / 1000m)//华为板材厚，改成3.3无法折弯
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0160-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
