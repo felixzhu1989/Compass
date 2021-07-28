@@ -25,6 +25,7 @@ SQLServerDB文件夹中有aql脚本文件，用于新建数据库：
  
 # 学习视频
  https://www.bilibili.com/video/BV1954y1J7iE
+ 
  https://www.bilibili.com/video/BV1LE411K7ro
  
  
