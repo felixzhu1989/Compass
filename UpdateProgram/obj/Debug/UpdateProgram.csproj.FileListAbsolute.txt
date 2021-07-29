@@ -10,3 +10,15 @@ E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csproj.CoreCompileInputs.cache
 E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.exe
 E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.pdb
 E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csprojAssemblyReference.cache
+D:\Compass\UpdateProgram\bin\Debug\UpdateProgram.exe.config
+D:\Compass\UpdateProgram\bin\Debug\UpdateProgram.exe
+D:\Compass\UpdateProgram\bin\Debug\UpdateProgram.pdb
+D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csprojAssemblyReference.cache
+D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.FrmTips.resources
+D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.FrmUpdate.resources
+D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.FrmUpdateStart.resources
+D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.Properties.Resources.resources
+D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csproj.GenerateResource.cache
+D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csproj.CoreCompileInputs.cache
+D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.exe
+D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.pdb

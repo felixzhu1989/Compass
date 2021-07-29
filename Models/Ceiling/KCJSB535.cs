@@ -35,5 +35,10 @@ namespace Models
         public string ANSide { get; set; }
         public string ANDetector { get; set; }
         public string MARVEL { get; set; }
+        //HCL 灯板
+        public string LightPanelSide { get; set; }
+        public decimal LightPanelLeft { get; set; }
+        public decimal LightPanelRight { get; set; }
+
     }
 }

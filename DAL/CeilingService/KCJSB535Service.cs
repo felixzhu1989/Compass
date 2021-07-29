@@ -19,7 +19,7 @@ namespace DAL
             sqlBuilder.Append("Update KCJSB535 set Length=@Length,ExRightDis=@ExRightDis,ExLength=@ExLength,ExWidth=@ExWidth,ExHeight=@ExHeight,");
             sqlBuilder.Append("FCType=@FCType,FCSide=@FCSide,FCSideLeft=@FCSideLeft,FCSideRight=@FCSideRight,FCBlindNo=@FCBlindNo,");
             sqlBuilder.Append("LightType=@LightType,LightCable=@LightCable,SSPType=@SSPType,Gutter=@Gutter,GutterWidth=@GutterWidth,ANSUL=@ANSUL,ANSide=@ANSide,ANDetector=@ANDetector,");
-            sqlBuilder.Append("MARVEL=@MARVEL,Japan=@Japan where KCJSB535Id=@KCJSB535Id");
+            sqlBuilder.Append("MARVEL=@MARVEL,LightPanelSide=@LightPanelSide,LightPanelLeft=@LightPanelLeft,LightPanelRight=@LightPanelRight,Japan=@Japan where KCJSB535Id=@KCJSB535Id");
             //定义参数数组
             SqlParameter[] param = new SqlParameter[]
             {
@@ -43,6 +43,9 @@ namespace DAL
                 new SqlParameter("@ANDetector",objModel.ANDetector),
                 new SqlParameter("@MARVEL",objModel.MARVEL),
                 new SqlParameter("@Japan",objModel.Japan),
+                new SqlParameter("@LightPanelSide",objModel.LightPanelSide),
+                new SqlParameter("@LightPanelLeft",objModel.LightPanelLeft),
+                new SqlParameter("@LightPanelRight",objModel.LightPanelRight),
 
                 new SqlParameter("@KCJSB535Id",objModel.KCJSB535Id)
             };
@@ -64,7 +67,7 @@ namespace DAL
         {
             string sql = "select KCJSB535Id,KCJSB535.ModuleTreeId,Item,Module,Length,ExRightDis,ExLength,ExWidth,ExHeight," +
                          "FCType,FCSide,FCSideLeft,FCSideRight,FCBlindNo,LightType,LightCable,SSPType,Gutter,GutterWidth," +
-                         "ANSUL,ANSide,ANDetector,MARVEL,Japan from KCJSB535";
+                         "ANSUL,ANSide,ANDetector,MARVEL,LightPanelSide,LightPanelLeft,LightPanelRight,Japan from KCJSB535";
             sql += " inner join ModuleTree on KCJSB535.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
             sql += string.Format(" where ProjectId={0}", projectId);
@@ -87,7 +90,7 @@ namespace DAL
             string sql =
                 "select KCJSB535Id,ModuleTreeId,Length,ExRightDis,ExLength,ExWidth,ExHeight," +
                 "FCType,FCSide,FCSideLeft,FCSideRight,FCBlindNo,LightType,LightCable,SSPType,Gutter,GutterWidth," +
-                "ANSUL,ANSide,ANDetector,MARVEL,Japan from KCJSB535";
+                "ANSUL,ANSide,ANDetector,MARVEL,LightPanelSide,LightPanelLeft,LightPanelRight,Japan from KCJSB535";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             KCJSB535 objModel = null;
@@ -120,6 +123,10 @@ namespace DAL
                     ANSide = objReader["ANSide"].ToString().Length == 0 ? "" : objReader["ANSide"].ToString(),
                     ANDetector = objReader["ANDetector"].ToString().Length == 0 ? "" : objReader["ANDetector"].ToString(),
                     MARVEL = objReader["MARVEL"].ToString().Length == 0 ? "" : objReader["MARVEL"].ToString(),
+                    LightPanelSide = objReader["LightPanelSide"].ToString().Length == 0 ? "" : objReader["LightPanelSide"].ToString(),
+                    LightPanelLeft = objReader["LightPanelLeft"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["LightPanelLeft"]),
+                    LightPanelRight = objReader["LightPanelRight"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["LightPanelRight"]),
+                  
                     Japan = objReader["Japan"].ToString().Length == 0 ? "" : objReader["Japan"].ToString(),
                 };
             }

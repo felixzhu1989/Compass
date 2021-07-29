@@ -67,6 +67,11 @@ namespace Compass
             cobLightType.Items.Add("LED");
             cobLightType.Items.Add("T8");
             cobLightType.Items.Add("HCL");
+            //HCL灯板
+            cobLightPanelSide.Items.Add("LEFT");
+            cobLightPanelSide.Items.Add("RIGHT");
+            cobLightPanelSide.Items.Add("BOTH");
+            cobLightPanelSide.Items.Add("NO");
             //灯腔出线孔位置
             cobLightCable.Items.Add("LEFT");
             cobLightCable.Items.Add("RIGHT");
@@ -119,7 +124,9 @@ namespace Compass
             cobFCBlindNo.Text = objKCJSB535.FCBlindNo.ToString();
             cobLightType.Text = objKCJSB535.LightType;
             cobLightCable.Text = objKCJSB535.LightCable;
+            cobLightPanelSide.Text = objKCJSB535.LightPanelSide;
 
+            
             txtLength.Text = objKCJSB535.Length.ToString();
             txtExRightDis.Text = objKCJSB535.ExRightDis.ToString();
             txtExLength.Text = objKCJSB535.ExLength.ToString();
@@ -128,6 +135,9 @@ namespace Compass
             txtGutterWidth.Text = objKCJSB535.GutterWidth.ToString();
             txtFCSideLeft.Text = objKCJSB535.FCSideLeft.ToString();
             txtFCSideRight.Text = objKCJSB535.FCSideRight.ToString();
+            txtLightPanelLeft.Text = objKCJSB535.LightPanelLeft.ToString();
+            txtLightPanelRight.Text = objKCJSB535.LightPanelRight.ToString();
+
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -277,15 +287,18 @@ namespace Compass
                 FCBlindNo = Convert.ToInt32(cobFCBlindNo.Text.Trim()),
                 LightType = cobLightType.Text,
                 LightCable = cobLightCable.Text,
+                LightPanelSide=cobLightPanelSide.Text,
 
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
-                ExRightDis = Convert.ToDecimal(txtExRightDis.Text.Trim()),
-                ExLength = Convert.ToDecimal(txtExLength.Text.Trim()),
-                ExWidth = Convert.ToDecimal(txtExWidth.Text.Trim()),
-                ExHeight = Convert.ToDecimal(txtExHeight.Text.Trim()),
-                GutterWidth = Convert.ToDecimal(txtGutterWidth.Text.Trim()),
-                FCSideLeft = Convert.ToDecimal(txtFCSideLeft.Text.Trim()),
-                FCSideRight = Convert.ToDecimal(txtFCSideRight.Text.Trim())
+                Length = txtLength.Text.Trim().Length == 0 ? 0 : Convert.ToDecimal(txtLength.Text.Trim()),
+                ExRightDis = txtExRightDis.Text.Trim().Length == 0 ? 0 : Convert.ToDecimal(txtExRightDis.Text.Trim()),
+                ExLength = txtExLength.Text.Trim().Length == 0 ? 0 : Convert.ToDecimal(txtExLength.Text.Trim()),
+                ExWidth = txtExWidth.Text.Trim().Length == 0 ? 0 : Convert.ToDecimal(txtExWidth.Text.Trim()),
+                ExHeight = txtExHeight.Text.Trim().Length == 0 ? 0 : Convert.ToDecimal(txtExHeight.Text.Trim()),
+                GutterWidth = txtGutterWidth.Text.Trim().Length == 0 ? 0 : Convert.ToDecimal(txtGutterWidth.Text.Trim()),
+                FCSideLeft = txtFCSideLeft.Text.Trim().Length == 0 ? 0 : Convert.ToDecimal(txtFCSideLeft.Text.Trim()),
+                FCSideRight = txtFCSideRight.Text.Trim().Length == 0 ? 0 : Convert.ToDecimal(txtFCSideRight.Text.Trim()),
+                LightPanelLeft= txtLightPanelLeft.Text.Trim().Length == 0 ? 0 : Convert.ToDecimal(txtLightPanelLeft.Text.Trim()),
+                LightPanelRight = txtLightPanelRight.Text.Trim().Length == 0 ? 0 : Convert.ToDecimal(txtLightPanelRight.Text.Trim())
             };
             //提交修改
             try
@@ -363,6 +376,57 @@ namespace Compass
                 cobANSide.Visible = false;
                 cobANDetector.Visible = false;
             }
+        }
+
+        private void cobLightType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cobLightType.Text == "HCL")
+            {
+                cobLightPanelSide.Visible = true;
+                lblLightPanelSide.Visible = true;
+            
+            }
+            else
+            {
+                cobLightPanelSide.Visible = false;
+                lblLightPanelSide.Visible = false;
+                lblLightPanelLeft.Visible = false;
+                lblLightPanelRight.Visible = false;
+                txtLightPanelLeft.Visible = false;
+                txtLightPanelRight.Visible = false;
+            }
+        }
+
+        private void cobLightPanelSide_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cobLightPanelSide.Text.Trim())
+            {
+                case "LEFT":
+                    lblLightPanelLeft.Visible = true;
+                    lblLightPanelRight.Visible = false;
+                    txtLightPanelLeft.Visible = true;
+                    txtLightPanelRight.Visible = false;
+                    break;
+                case "RIGHT":
+                    lblLightPanelLeft.Visible = false;
+                    lblLightPanelRight.Visible = true;
+                    txtLightPanelLeft.Visible = false;
+                    txtLightPanelRight.Visible = true;
+                    break;
+                case "BOTH":
+                    lblLightPanelLeft.Visible = true;
+                    lblLightPanelRight.Visible = true;
+                    txtLightPanelLeft.Visible = true;
+                    txtLightPanelRight.Visible = true;
+                    break;
+                default:
+                    lblLightPanelLeft.Visible = false;
+                    lblLightPanelRight.Visible = false;
+                    txtLightPanelLeft.Visible = false;
+                    txtLightPanelRight.Visible = false;
+                    break;
+            }
+
         }
     }
 }

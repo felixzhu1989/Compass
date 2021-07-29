@@ -77,6 +77,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtLength = new System.Windows.Forms.TextBox();
             this.pbModelImage = new System.Windows.Forms.PictureBox();
+            this.lblLightPanelSide = new System.Windows.Forms.Label();
+            this.cobLightPanelSide = new System.Windows.Forms.ComboBox();
+            this.txtLightPanelLeft = new System.Windows.Forms.TextBox();
+            this.lblLightPanelLeft = new System.Windows.Forms.Label();
+            this.lblLightPanelRight = new System.Windows.Forms.Label();
+            this.txtLightPanelRight = new System.Windows.Forms.TextBox();
             this.grbMARVEL.SuspendLayout();
             this.grbANSUL.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -90,16 +96,22 @@
             // 
             this.grbMARVEL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.grbMARVEL.Controls.Add(this.cobLightType);
+            this.grbMARVEL.Controls.Add(this.txtLightPanelRight);
             this.grbMARVEL.Controls.Add(this.cobSSPType);
             this.grbMARVEL.Controls.Add(this.label3);
+            this.grbMARVEL.Controls.Add(this.lblLightPanelSide);
+            this.grbMARVEL.Controls.Add(this.lblLightPanelRight);
             this.grbMARVEL.Controls.Add(this.label2);
+            this.grbMARVEL.Controls.Add(this.cobLightPanelSide);
+            this.grbMARVEL.Controls.Add(this.lblLightPanelLeft);
             this.grbMARVEL.Controls.Add(this.label30);
+            this.grbMARVEL.Controls.Add(this.txtLightPanelLeft);
             this.grbMARVEL.Controls.Add(this.cobLightCable);
             this.grbMARVEL.Controls.Add(this.label22);
             this.grbMARVEL.Controls.Add(this.cobJapan);
-            this.grbMARVEL.Location = new System.Drawing.Point(779, 372);
+            this.grbMARVEL.Location = new System.Drawing.Point(779, 338);
             this.grbMARVEL.Name = "grbMARVEL";
-            this.grbMARVEL.Size = new System.Drawing.Size(398, 136);
+            this.grbMARVEL.Size = new System.Drawing.Size(398, 170);
             this.grbMARVEL.TabIndex = 4;
             this.grbMARVEL.TabStop = false;
             this.grbMARVEL.Text = "其他配置";
@@ -115,6 +127,7 @@
             this.cobLightType.Name = "cobLightType";
             this.cobLightType.Size = new System.Drawing.Size(100, 27);
             this.cobLightType.TabIndex = 2;
+            this.cobLightType.SelectedIndexChanged += new System.EventHandler(this.cobLightType_SelectedIndexChanged);
             // 
             // cobSSPType
             // 
@@ -201,7 +214,7 @@
             this.grbANSUL.Controls.Add(this.cobANSide);
             this.grbANSUL.Location = new System.Drawing.Point(779, 63);
             this.grbANSUL.Name = "grbANSUL";
-            this.grbANSUL.Size = new System.Drawing.Size(398, 303);
+            this.grbANSUL.Size = new System.Drawing.Size(398, 269);
             this.grbANSUL.TabIndex = 3;
             this.grbANSUL.TabStop = false;
             this.grbANSUL.Text = "ANSUL/MARVEL";
@@ -371,7 +384,7 @@
             this.cobFCSide.BackColor = System.Drawing.Color.Azure;
             this.cobFCSide.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobFCSide.FormattingEnabled = true;
-            this.cobFCSide.Location = new System.Drawing.Point(94, 24);
+            this.cobFCSide.Location = new System.Drawing.Point(94, 27);
             this.cobFCSide.Name = "cobFCSide";
             this.cobFCSide.Size = new System.Drawing.Size(100, 27);
             this.cobFCSide.TabIndex = 0;
@@ -614,6 +627,63 @@
             this.pbModelImage.TabIndex = 41;
             this.pbModelImage.TabStop = false;
             // 
+            // lblLightPanelSide
+            // 
+            this.lblLightPanelSide.AutoSize = true;
+            this.lblLightPanelSide.Location = new System.Drawing.Point(204, 60);
+            this.lblLightPanelSide.Name = "lblLightPanelSide";
+            this.lblLightPanelSide.Size = new System.Drawing.Size(61, 19);
+            this.lblLightPanelSide.TabIndex = 2;
+            this.lblLightPanelSide.Text = "HCL灯板";
+            // 
+            // cobLightPanelSide
+            // 
+            this.cobLightPanelSide.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobLightPanelSide.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobLightPanelSide.BackColor = System.Drawing.Color.Azure;
+            this.cobLightPanelSide.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobLightPanelSide.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cobLightPanelSide.FormattingEnabled = true;
+            this.cobLightPanelSide.Location = new System.Drawing.Point(279, 60);
+            this.cobLightPanelSide.Name = "cobLightPanelSide";
+            this.cobLightPanelSide.Size = new System.Drawing.Size(100, 27);
+            this.cobLightPanelSide.TabIndex = 0;
+            this.cobLightPanelSide.SelectedIndexChanged += new System.EventHandler(this.cobLightPanelSide_SelectedIndexChanged);
+            // 
+            // txtLightPanelLeft
+            // 
+            this.txtLightPanelLeft.BackColor = System.Drawing.Color.Azure;
+            this.txtLightPanelLeft.Location = new System.Drawing.Point(279, 98);
+            this.txtLightPanelLeft.Name = "txtLightPanelLeft";
+            this.txtLightPanelLeft.Size = new System.Drawing.Size(100, 25);
+            this.txtLightPanelLeft.TabIndex = 1;
+            // 
+            // lblLightPanelLeft
+            // 
+            this.lblLightPanelLeft.AutoSize = true;
+            this.lblLightPanelLeft.Location = new System.Drawing.Point(200, 101);
+            this.lblLightPanelLeft.Name = "lblLightPanelLeft";
+            this.lblLightPanelLeft.Size = new System.Drawing.Size(74, 19);
+            this.lblLightPanelLeft.TabIndex = 2;
+            this.lblLightPanelLeft.Text = "左灯板长度";
+            // 
+            // lblLightPanelRight
+            // 
+            this.lblLightPanelRight.AutoSize = true;
+            this.lblLightPanelRight.Location = new System.Drawing.Point(200, 135);
+            this.lblLightPanelRight.Name = "lblLightPanelRight";
+            this.lblLightPanelRight.Size = new System.Drawing.Size(74, 19);
+            this.lblLightPanelRight.TabIndex = 2;
+            this.lblLightPanelRight.Text = "右灯板长度";
+            // 
+            // txtLightPanelRight
+            // 
+            this.txtLightPanelRight.BackColor = System.Drawing.Color.Azure;
+            this.txtLightPanelRight.Location = new System.Drawing.Point(279, 133);
+            this.txtLightPanelRight.Name = "txtLightPanelRight";
+            this.txtLightPanelRight.Size = new System.Drawing.Size(100, 25);
+            this.txtLightPanelRight.TabIndex = 2;
+            // 
             // FrmKCJSB535
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -698,5 +768,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cobLightCable;
+        private System.Windows.Forms.Label lblLightPanelSide;
+        private System.Windows.Forms.TextBox txtLightPanelRight;
+        private System.Windows.Forms.Label lblLightPanelRight;
+        private System.Windows.Forms.ComboBox cobLightPanelSide;
+        private System.Windows.Forms.Label lblLightPanelLeft;
+        private System.Windows.Forms.TextBox txtLightPanelLeft;
     }
 }

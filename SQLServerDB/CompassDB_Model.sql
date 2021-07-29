@@ -1602,7 +1602,10 @@ create table KCJSB535
     ANSide varchar(5),
     ANDetector varchar(5),
     MARVEL varchar(3),
-    Japan varchar(3)
+    Japan varchar(3),
+	LightPanelSide varchar(6), 
+	LightPanelLeft decimal(6,2),
+	LightPanelRight decimal(6,2)
 )
 if exists (select * from sysobjects where name='KCJDB800')
 drop table KCJDB800
