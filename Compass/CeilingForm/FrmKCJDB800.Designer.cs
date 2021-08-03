@@ -89,6 +89,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtLength = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cobLightPanelSide = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtLightPanelLeft = new System.Windows.Forms.TextBox();
+            this.txtLightPanelRight = new System.Windows.Forms.TextBox();
             this.grbMARVEL.SuspendLayout();
             this.grbANSUL.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -101,17 +107,23 @@
             // grbMARVEL
             // 
             this.grbMARVEL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbMARVEL.Controls.Add(this.cobLightPanelSide);
             this.grbMARVEL.Controls.Add(this.cobLightType);
+            this.grbMARVEL.Controls.Add(this.label5);
+            this.grbMARVEL.Controls.Add(this.txtLightPanelRight);
             this.grbMARVEL.Controls.Add(this.cobSSPType);
+            this.grbMARVEL.Controls.Add(this.txtLightPanelLeft);
             this.grbMARVEL.Controls.Add(this.label3);
             this.grbMARVEL.Controls.Add(this.label2);
             this.grbMARVEL.Controls.Add(this.label30);
             this.grbMARVEL.Controls.Add(this.cobLightCable);
+            this.grbMARVEL.Controls.Add(this.label11);
+            this.grbMARVEL.Controls.Add(this.label9);
             this.grbMARVEL.Controls.Add(this.label22);
             this.grbMARVEL.Controls.Add(this.cobJapan);
-            this.grbMARVEL.Location = new System.Drawing.Point(779, 372);
+            this.grbMARVEL.Location = new System.Drawing.Point(779, 329);
             this.grbMARVEL.Name = "grbMARVEL";
-            this.grbMARVEL.Size = new System.Drawing.Size(398, 136);
+            this.grbMARVEL.Size = new System.Drawing.Size(398, 179);
             this.grbMARVEL.TabIndex = 4;
             this.grbMARVEL.TabStop = false;
             this.grbMARVEL.Text = "其他配置";
@@ -225,7 +237,7 @@
             this.grbANSUL.Controls.Add(this.cobANSide);
             this.grbANSUL.Location = new System.Drawing.Point(779, 63);
             this.grbANSUL.Name = "grbANSUL";
-            this.grbANSUL.Size = new System.Drawing.Size(398, 303);
+            this.grbANSUL.Size = new System.Drawing.Size(398, 260);
             this.grbANSUL.TabIndex = 3;
             this.grbANSUL.TabStop = false;
             this.grbANSUL.Text = "ANSUL/MARVEL";
@@ -233,7 +245,7 @@
             // txtANDetectorDis5
             // 
             this.txtANDetectorDis5.BackColor = System.Drawing.Color.Azure;
-            this.txtANDetectorDis5.Location = new System.Drawing.Point(92, 272);
+            this.txtANDetectorDis5.Location = new System.Drawing.Point(284, 182);
             this.txtANDetectorDis5.Name = "txtANDetectorDis5";
             this.txtANDetectorDis5.Size = new System.Drawing.Size(100, 25);
             this.txtANDetectorDis5.TabIndex = 8;
@@ -241,7 +253,7 @@
             // txtANDetectorDis4
             // 
             this.txtANDetectorDis4.BackColor = System.Drawing.Color.Azure;
-            this.txtANDetectorDis4.Location = new System.Drawing.Point(92, 242);
+            this.txtANDetectorDis4.Location = new System.Drawing.Point(284, 152);
             this.txtANDetectorDis4.Name = "txtANDetectorDis4";
             this.txtANDetectorDis4.Size = new System.Drawing.Size(100, 25);
             this.txtANDetectorDis4.TabIndex = 7;
@@ -273,7 +285,7 @@
             // lblANDetectorDis5
             // 
             this.lblANDetectorDis5.AutoSize = true;
-            this.lblANDetectorDis5.Location = new System.Drawing.Point(4, 268);
+            this.lblANDetectorDis5.Location = new System.Drawing.Point(196, 178);
             this.lblANDetectorDis5.Name = "lblANDetectorDis5";
             this.lblANDetectorDis5.Size = new System.Drawing.Size(82, 19);
             this.lblANDetectorDis5.TabIndex = 43;
@@ -282,7 +294,7 @@
             // lblANDetectorDis4
             // 
             this.lblANDetectorDis4.AutoSize = true;
-            this.lblANDetectorDis4.Location = new System.Drawing.Point(4, 238);
+            this.lblANDetectorDis4.Location = new System.Drawing.Point(196, 148);
             this.lblANDetectorDis4.Name = "lblANDetectorDis4";
             this.lblANDetectorDis4.Size = new System.Drawing.Size(82, 19);
             this.lblANDetectorDis4.TabIndex = 44;
@@ -745,6 +757,61 @@
             this.txtLength.TabIndex = 0;
             this.txtLength.TextChanged += new System.EventHandler(this.txtLength_TextChanged);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(202, 61);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 19);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "HCL灯板";
+            // 
+            // cobLightPanelSide
+            // 
+            this.cobLightPanelSide.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobLightPanelSide.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobLightPanelSide.BackColor = System.Drawing.Color.Azure;
+            this.cobLightPanelSide.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobLightPanelSide.FormattingEnabled = true;
+            this.cobLightPanelSide.Location = new System.Drawing.Point(279, 57);
+            this.cobLightPanelSide.Name = "cobLightPanelSide";
+            this.cobLightPanelSide.Size = new System.Drawing.Size(100, 27);
+            this.cobLightPanelSide.TabIndex = 2;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(202, 98);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(74, 19);
+            this.label9.TabIndex = 47;
+            this.label9.Text = "左灯板长度";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(202, 127);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(74, 19);
+            this.label11.TabIndex = 46;
+            this.label11.Text = "右灯板长度";
+            // 
+            // txtLightPanelLeft
+            // 
+            this.txtLightPanelLeft.BackColor = System.Drawing.Color.Azure;
+            this.txtLightPanelLeft.Location = new System.Drawing.Point(280, 96);
+            this.txtLightPanelLeft.Name = "txtLightPanelLeft";
+            this.txtLightPanelLeft.Size = new System.Drawing.Size(100, 25);
+            this.txtLightPanelLeft.TabIndex = 4;
+            // 
+            // txtLightPanelRight
+            // 
+            this.txtLightPanelRight.BackColor = System.Drawing.Color.Azure;
+            this.txtLightPanelRight.Location = new System.Drawing.Point(280, 126);
+            this.txtLightPanelRight.Name = "txtLightPanelRight";
+            this.txtLightPanelRight.Size = new System.Drawing.Size(100, 25);
+            this.txtLightPanelRight.TabIndex = 5;
+            // 
             // FrmKCJDB800
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -841,5 +908,12 @@
         private System.Windows.Forms.Label lblANDetectorDis1;
         private System.Windows.Forms.Label lblANDetectorNo;
         private System.Windows.Forms.ComboBox cobANDetectorNo;
+        private System.Windows.Forms.ComboBox cobLightPanelSide;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtLightPanelRight;
+        private System.Windows.Forms.TextBox txtLightPanelLeft;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label9;
+
     }
 }
