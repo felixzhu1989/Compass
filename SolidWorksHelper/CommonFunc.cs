@@ -63,6 +63,7 @@ namespace SolidWorksHelper
             swPackAndGo.IncludeDrawings = false;
             swPackAndGo.IncludeSimulationResults = false;
             swPackAndGo.IncludeToolboxComponents = false;
+            swPackAndGo.IncludeSuppressed = true;
 
             // Set folder where to save the files,目标存放地址
             swPackAndGo.SetSaveToName(true, itemPath);
