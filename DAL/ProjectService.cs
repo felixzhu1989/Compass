@@ -275,9 +275,6 @@ namespace DAL
             sqlList.Add(sql);
             string sqlTracking = string.Format("insert into ProjectTracking{0} (ProjectId,ProjectStatusId) values(@@IDENTITY,1)", sbu);
             sqlList.Add(sqlTracking);
-            string sqlFinancialData = string.Format("insert into FinancialData{0} (ProjectId) values(@@IDENTITY)", sbu);
-            sqlList.Add(sqlFinancialData);
-
             return SQLHelper.UpdateByTransaction(sqlList);
         }
         /// <summary>
