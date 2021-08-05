@@ -118,7 +118,12 @@ create table ProjectTypes
     KMLink varchar(500)
 )
 
-select * from ProjectTypes
+
+
+
+
+
+select * from ProjectTypesMarine
 
 
 if exists (select * from sysobjects where name='GeneralRequirements')

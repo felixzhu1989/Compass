@@ -147,7 +147,7 @@ GO
 if exists (select * from sysobjects where name='fk_TypeIdMarine')
     alter table GeneralRequirementsMarine drop constraint fk_TypeIdMarine
 GO
-alter table GeneralRequirementsMarine add constraint fk_TypeIdMarine foreign key(TypeId) references ProjectTypes (TypeId)
+alter table GeneralRequirementsMarine add constraint fk_TypeIdMarine foreign key(TypeId) references ProjectTypesMarine (TypeId)
 GO
 
 if exists (select * from sysobjects where name='fk_ProjectId_GRMarine')
@@ -155,6 +155,9 @@ if exists (select * from sysobjects where name='fk_ProjectId_GRMarine')
 GO
 alter table GeneralRequirementsMarine add constraint fk_ProjectId_GRMarine foreign key(ProjectId) references ProjectsMarine (ProjectId)
 GO
+
+select * from GeneralRequirementsMarine
+
 
 if exists (select * from sysobjects where name='SpecialRequirementsMarine')
 drop table SpecialRequirementsMarine

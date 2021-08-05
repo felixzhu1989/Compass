@@ -23,7 +23,7 @@ namespace Compass
         {
             InitializeComponent();
             //绑定项目类型下拉框
-            cobTypeName.DataSource = objProjectTypeService.GetAllProjectTypes();
+            cobTypeName.DataSource = objProjectTypeService.GetAllProjectTypes(sbu);
             cobTypeName.DisplayMember = "TypeName";
             cobTypeName.ValueMember = "TypeId";
             cobTypeName.SelectedIndex = -1;//默认不要选中

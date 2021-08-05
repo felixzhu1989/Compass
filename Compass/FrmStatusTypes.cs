@@ -17,6 +17,8 @@ namespace Compass
     {
         private ProjectStatusService objProjectStatusService =new ProjectStatusService();
         private ProjectTypeService objProjectTypeService=new ProjectTypeService();
+        private string sbu = Program.ObjCurrentUser.SBU;//当前事业部
+
         public FrmStatusTypes()
         {
             InitializeComponent();
@@ -27,7 +29,7 @@ namespace Compass
             btnAddProjectStatus.Visible = true;
 
             dgvProjectTypes.AutoGenerateColumns = false;
-            dgvProjectTypes.DataSource = objProjectTypeService.GetAllProjectTypes();
+            dgvProjectTypes.DataSource = objProjectTypeService.GetAllProjectTypes(sbu);
             btnEditProjectType.Visible = false;
             btnAddProjectType.Visible = true;
         }
@@ -148,13 +150,13 @@ namespace Compass
             //提交添加
             try
             {
-                int typeId = objProjectTypeService.AddProjectType(objProjectType);
+                int typeId = objProjectTypeService.AddProjectType(objProjectType,sbu);
                 if (typeId > 1)
                 {
                     //提示添加成功
                     MessageBox.Show("项目类型添加成功", "提示信息");
                     //刷新显示
-                    dgvProjectTypes.DataSource = objProjectTypeService.GetAllProjectTypes();
+                    dgvProjectTypes.DataSource = objProjectTypeService.GetAllProjectTypes(sbu);
                     //清空内容
                     txtTypeName.Text = "";
                     txtKMLink.Text = "";
@@ -263,7 +265,7 @@ namespace Compass
                 return;
             }
             string typeId = dgvProjectTypes.CurrentRow.Cells["TypeId"].Value.ToString();
-            ProjectType objProjectType = objProjectTypeService.GetProjectTypeById(typeId);
+            ProjectType objProjectType = objProjectTypeService.GetProjectTypeById(typeId,sbu);
             //初始化修改信息
             txtTypeId.Text = objProjectType.TypeId.ToString();
             txtTypeName.Text = objProjectType.TypeName;
@@ -298,11 +300,11 @@ namespace Compass
             //调用后台方法修改对象
             try
             {
-                if (objProjectTypeService.EditProjectType(objProjectType) == 1)
+                if (objProjectTypeService.EditProjectType(objProjectType,sbu) == 1)
                 {
                     MessageBox.Show("修改项目类型名称成功！", "提示信息");
                     //刷新内容
-                    dgvProjectTypes.DataSource = objProjectTypeService.GetAllProjectTypes();
+                    dgvProjectTypes.DataSource = objProjectTypeService.GetAllProjectTypes(sbu);
                     //清空内容
                     txtTypeId.Text = "";
                     txtTypeName.Text = "";
@@ -377,9 +379,9 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objProjectTypeService.DeleteProjectType(typeId) == 1)
+                if (objProjectTypeService.DeleteProjectType(typeId,sbu) == 1)
                 {
-                    dgvProjectTypes.DataSource = objProjectTypeService.GetAllProjectTypes();//同步刷新显示数据
+                    dgvProjectTypes.DataSource = objProjectTypeService.GetAllProjectTypes(sbu);//同步刷新显示数据
                 }
             }
             catch (Exception ex)

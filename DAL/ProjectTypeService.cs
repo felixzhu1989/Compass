@@ -15,9 +15,9 @@ namespace DAL
         /// 获取所有项目类型
         /// </summary>
         /// <returns></returns>
-        public List<ProjectType> GetAllProjectTypes()
+        public List<ProjectType> GetAllProjectTypes(string sbu)
         {
-            string sql = "select TypeId,TypeName,KMLink from ProjectTypes";
+            string sql = "select TypeId,TypeName,KMLink from ProjectTypes"+sbu;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<ProjectType> list = new List<ProjectType>();
             while (objReader.Read())
@@ -37,9 +37,9 @@ namespace DAL
         /// </summary>
         /// <param name="typeId"></param>
         /// <returns></returns>
-        public ProjectType GetProjectTypeById(string typeId)
+        public ProjectType GetProjectTypeById(string typeId,string sbu)
         {
-            string sql = "select TypeId,TypeName,KMLink from ProjectTypes";
+            string sql = "select TypeId,TypeName,KMLink from ProjectTypes"+sbu;
             sql += string.Format(" where TypeId={0}", typeId);
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             ProjectType objProjectType = null;
@@ -60,10 +60,10 @@ namespace DAL
         /// </summary>
         /// <param name="objProjectType"></param>
         /// <returns></returns>
-        public int AddProjectType(ProjectType objProjectType)
+        public int AddProjectType(ProjectType objProjectType, string sbu)
         {
-            string sql = "insert into ProjectTypes (TypeName,KMLink) values('{0}','{1}');select @@identity";
-            sql = string.Format(sql, objProjectType.TypeName,objProjectType.KMLink);
+            string sql = "insert into ProjectTypes{0} (TypeName,KMLink) values('{1}','{2}');select @@identity";
+            sql = string.Format(sql, sbu,objProjectType.TypeName,objProjectType.KMLink);
             try
             {
                 return Convert.ToInt32(SQLHelper.GetSingleResult(sql));
@@ -89,10 +89,10 @@ namespace DAL
         /// </summary>
         /// <param name="objProjectType"></param>
         /// <returns></returns>
-        public int EditProjectType(ProjectType objProjectType)
+        public int EditProjectType(ProjectType objProjectType, string sbu)
         {
-            string sql = "update ProjectTypes set TypeName='{0}',KMLink='{1}' where TypeId={2}";
-            sql = string.Format(sql, objProjectType.TypeName,objProjectType.KMLink,objProjectType.TypeId);
+            string sql = "update ProjectTypes{0} set TypeName='{1}',KMLink='{2}' where TypeId={3}";
+            sql = string.Format(sql, sbu,objProjectType.TypeName,objProjectType.KMLink,objProjectType.TypeId);
             try
             {
                 return SQLHelper.Update(sql);
@@ -107,10 +107,10 @@ namespace DAL
             }
         }
 
-        public int DeleteProjectType(string typeId)
+        public int DeleteProjectType(string typeId, string sbu)
         {
-            string sql = "delete from ProjectTypes where TypeId={0}";
-            sql = string.Format(sql, typeId);
+            string sql = "delete from ProjectTypes{0} where TypeId={1}";
+            sql = string.Format(sql, sbu,typeId);
             try
             {
                 return SQLHelper.Update(sql);
