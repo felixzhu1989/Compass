@@ -263,7 +263,7 @@ namespace Compass
                 }
                 else
                 {
-                    if (objFinancialDataService.EditFinancialData(objFinancialData, sbu) == 1) MessageBox.Show("修改通用技术要求成功！", "提示信息");
+                    if (objFinancialDataService.EditFinancialData(objFinancialData, sbu) == 1) MessageBox.Show("财务数据更新成功！", "提示信息");
                 }
                 InitData();
             }

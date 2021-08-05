@@ -29,12 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
             this.grbProject = new System.Windows.Forms.GroupBox();
+            this.txtProjectInfo = new System.Windows.Forms.TextBox();
             this.grbGeneralRequirements = new System.Windows.Forms.GroupBox();
+            this.txtGeneralRequirements = new System.Windows.Forms.TextBox();
             this.grbSpecialRequirements = new System.Windows.Forms.GroupBox();
+            this.txtSpecialRequirements = new System.Windows.Forms.TextBox();
             this.cobODPNo = new System.Windows.Forms.ComboBox();
             this.cmsRequirement = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiRequirement = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,9 +47,6 @@
             this.lblSalesValue = new System.Windows.Forms.Label();
             this.grbFinancialData = new System.Windows.Forms.GroupBox();
             this.btnFinancialData = new System.Windows.Forms.Button();
-            this.txtSpecialRequirements = new System.Windows.Forms.TextBox();
-            this.txtGeneralRequirements = new System.Windows.Forms.TextBox();
-            this.txtProjectInfo = new System.Windows.Forms.TextBox();
             this.grbProject.SuspendLayout();
             this.grbGeneralRequirements.SuspendLayout();
             this.grbSpecialRequirements.SuspendLayout();
@@ -76,10 +76,18 @@
             this.grbProject.TabStop = false;
             this.grbProject.Text = "项目基本信息";
             // 
+            // txtProjectInfo
+            // 
+            this.txtProjectInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtProjectInfo.Location = new System.Drawing.Point(3, 21);
+            this.txtProjectInfo.Multiline = true;
+            this.txtProjectInfo.Name = "txtProjectInfo";
+            this.txtProjectInfo.ReadOnly = true;
+            this.txtProjectInfo.Size = new System.Drawing.Size(538, 152);
+            this.txtProjectInfo.TabIndex = 0;
+            // 
             // grbGeneralRequirements
             // 
-            this.grbGeneralRequirements.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grbGeneralRequirements.Controls.Add(this.txtGeneralRequirements);
             this.grbGeneralRequirements.Location = new System.Drawing.Point(10, 236);
             this.grbGeneralRequirements.Name = "grbGeneralRequirements";
@@ -87,6 +95,16 @@
             this.grbGeneralRequirements.TabIndex = 3;
             this.grbGeneralRequirements.TabStop = false;
             this.grbGeneralRequirements.Text = "通用技术要求";
+            // 
+            // txtGeneralRequirements
+            // 
+            this.txtGeneralRequirements.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtGeneralRequirements.Location = new System.Drawing.Point(3, 21);
+            this.txtGeneralRequirements.Multiline = true;
+            this.txtGeneralRequirements.Name = "txtGeneralRequirements";
+            this.txtGeneralRequirements.ReadOnly = true;
+            this.txtGeneralRequirements.Size = new System.Drawing.Size(538, 126);
+            this.txtGeneralRequirements.TabIndex = 0;
             // 
             // grbSpecialRequirements
             // 
@@ -99,6 +117,16 @@
             this.grbSpecialRequirements.TabIndex = 4;
             this.grbSpecialRequirements.TabStop = false;
             this.grbSpecialRequirements.Text = "特殊技术要求";
+            // 
+            // txtSpecialRequirements
+            // 
+            this.txtSpecialRequirements.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSpecialRequirements.Location = new System.Drawing.Point(3, 21);
+            this.txtSpecialRequirements.Multiline = true;
+            this.txtSpecialRequirements.Name = "txtSpecialRequirements";
+            this.txtSpecialRequirements.ReadOnly = true;
+            this.txtSpecialRequirements.Size = new System.Drawing.Size(538, 272);
+            this.txtSpecialRequirements.TabIndex = 0;
             // 
             // cobODPNo
             // 
@@ -117,14 +145,14 @@
             this.cmsRequirement.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiRequirement});
             this.cmsRequirement.Name = "cmsRequirement";
-            this.cmsRequirement.Size = new System.Drawing.Size(208, 26);
+            this.cmsRequirement.Size = new System.Drawing.Size(210, 26);
             // 
             // tsmiRequirement
             // 
             this.tsmiRequirement.Name = "tsmiRequirement";
-            this.tsmiRequirement.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.tsmiRequirement.Size = new System.Drawing.Size(207, 22);
-            this.tsmiRequirement.Text = "编辑技术要求(&E)";
+            this.tsmiRequirement.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.tsmiRequirement.Size = new System.Drawing.Size(209, 22);
+            this.tsmiRequirement.Text = "编辑技术要求(&R)";
             this.tsmiRequirement.Click += new System.EventHandler(this.tsmiRequirement_Click);
             // 
             // groupBox1
@@ -144,19 +172,19 @@
             // 
             this.dgvScope.AllowUserToAddRows = false;
             this.dgvScope.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
-            this.dgvScope.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Azure;
+            this.dgvScope.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvScope.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvScope.BackgroundColor = System.Drawing.Color.White;
             this.dgvScope.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvScope.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvScope.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvScope.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvScope.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvScope.EnableHeadersVisualStyles = false;
@@ -215,36 +243,6 @@
             this.btnFinancialData.Text = "添加财务数据";
             this.btnFinancialData.UseVisualStyleBackColor = false;
             this.btnFinancialData.Click += new System.EventHandler(this.btnFinancialData_Click);
-            // 
-            // txtSpecialRequirements
-            // 
-            this.txtSpecialRequirements.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtSpecialRequirements.Location = new System.Drawing.Point(3, 21);
-            this.txtSpecialRequirements.Multiline = true;
-            this.txtSpecialRequirements.Name = "txtSpecialRequirements";
-            this.txtSpecialRequirements.ReadOnly = true;
-            this.txtSpecialRequirements.Size = new System.Drawing.Size(538, 272);
-            this.txtSpecialRequirements.TabIndex = 0;
-            // 
-            // txtGeneralRequirements
-            // 
-            this.txtGeneralRequirements.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtGeneralRequirements.Location = new System.Drawing.Point(3, 21);
-            this.txtGeneralRequirements.Multiline = true;
-            this.txtGeneralRequirements.Name = "txtGeneralRequirements";
-            this.txtGeneralRequirements.ReadOnly = true;
-            this.txtGeneralRequirements.Size = new System.Drawing.Size(538, 126);
-            this.txtGeneralRequirements.TabIndex = 0;
-            // 
-            // txtProjectInfo
-            // 
-            this.txtProjectInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtProjectInfo.Location = new System.Drawing.Point(3, 21);
-            this.txtProjectInfo.Multiline = true;
-            this.txtProjectInfo.Name = "txtProjectInfo";
-            this.txtProjectInfo.ReadOnly = true;
-            this.txtProjectInfo.Size = new System.Drawing.Size(538, 152);
-            this.txtProjectInfo.TabIndex = 0;
             // 
             // FrmProjectInfo
             // 
