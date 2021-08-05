@@ -60,6 +60,18 @@
             this.txtProjectId = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.dgvProjects = new System.Windows.Forms.DataGridView();
+            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BPONo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Shippingtime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RiskLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalesValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.cobHoodType = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -85,18 +97,6 @@
             this.btnToPage = new System.Windows.Forms.Button();
             this.btnQueryByYear = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BPONo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Shippingtime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RiskLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SalesValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmsProject.SuspendLayout();
             this.cmsCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
@@ -238,41 +238,47 @@
             this.tsmiDeleteProject,
             this.tsmiShowModuleTree});
             this.cmsProject.Name = "cmsProject";
-            this.cmsProject.Size = new System.Drawing.Size(149, 114);
+            this.cmsProject.Size = new System.Drawing.Size(240, 114);
             // 
             // tsmiRequirements
             // 
             this.tsmiRequirements.Name = "tsmiRequirements";
-            this.tsmiRequirements.Size = new System.Drawing.Size(148, 22);
-            this.tsmiRequirements.Text = "添加特殊要求";
+            this.tsmiRequirements.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.tsmiRequirements.Size = new System.Drawing.Size(239, 22);
+            this.tsmiRequirements.Text = "添加特殊要求(R)";
             this.tsmiRequirements.Click += new System.EventHandler(this.tsmiRequirements_Click);
             // 
             // tsmiShowProjectInfo
             // 
             this.tsmiShowProjectInfo.Name = "tsmiShowProjectInfo";
-            this.tsmiShowProjectInfo.Size = new System.Drawing.Size(148, 22);
-            this.tsmiShowProjectInfo.Text = "显示详细信息";
+            this.tsmiShowProjectInfo.ShortcutKeyDisplayString = "";
+            this.tsmiShowProjectInfo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
+            this.tsmiShowProjectInfo.Size = new System.Drawing.Size(239, 22);
+            this.tsmiShowProjectInfo.Text = "显示详细信息(&I)";
             this.tsmiShowProjectInfo.Click += new System.EventHandler(this.tsmiShowProjectInfo_Click);
             // 
             // tsmiEditProject
             // 
             this.tsmiEditProject.Name = "tsmiEditProject";
-            this.tsmiEditProject.Size = new System.Drawing.Size(148, 22);
-            this.tsmiEditProject.Text = "修改项目信息";
+            this.tsmiEditProject.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.tsmiEditProject.Size = new System.Drawing.Size(239, 22);
+            this.tsmiEditProject.Text = "修改项目信息(&U)";
             this.tsmiEditProject.Click += new System.EventHandler(this.tsmiEditProject_Click);
             // 
             // tsmiDeleteProject
             // 
             this.tsmiDeleteProject.Name = "tsmiDeleteProject";
-            this.tsmiDeleteProject.Size = new System.Drawing.Size(148, 22);
-            this.tsmiDeleteProject.Text = "删除项目信息";
+            this.tsmiDeleteProject.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
+            this.tsmiDeleteProject.Size = new System.Drawing.Size(239, 22);
+            this.tsmiDeleteProject.Text = "删除项目信息(&D)";
             this.tsmiDeleteProject.Click += new System.EventHandler(this.tsmiDeleteProject_Click);
             // 
             // tsmiShowModuleTree
             // 
             this.tsmiShowModuleTree.Name = "tsmiShowModuleTree";
-            this.tsmiShowModuleTree.Size = new System.Drawing.Size(148, 22);
-            this.tsmiShowModuleTree.Text = "显示模型树";
+            this.tsmiShowModuleTree.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.tsmiShowModuleTree.Size = new System.Drawing.Size(239, 22);
+            this.tsmiShowModuleTree.Text = "显示模型树(&M)";
             this.tsmiShowModuleTree.Click += new System.EventHandler(this.tsmiShowModuleTree_Click);
             // 
             // cobCustomerId
@@ -409,6 +415,107 @@
             this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
             this.dgvProjects.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjects_RowPostPaint);
             this.dgvProjects.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjects_KeyDown);
+            // 
+            // UserAccount
+            // 
+            this.UserAccount.DataPropertyName = "UserAccount";
+            this.UserAccount.HeaderText = "制图";
+            this.UserAccount.Name = "UserAccount";
+            this.UserAccount.ReadOnly = true;
+            this.UserAccount.Width = 60;
+            // 
+            // ODPNo
+            // 
+            this.ODPNo.DataPropertyName = "ODPNo";
+            this.ODPNo.HeaderText = "ODP";
+            this.ODPNo.Name = "ODPNo";
+            this.ODPNo.ReadOnly = true;
+            this.ODPNo.Width = 63;
+            // 
+            // BPONo
+            // 
+            this.BPONo.DataPropertyName = "BPONo";
+            this.BPONo.HeaderText = "大工单号";
+            this.BPONo.Name = "BPONo";
+            this.BPONo.ReadOnly = true;
+            this.BPONo.Width = 86;
+            // 
+            // ProjectName
+            // 
+            this.ProjectName.DataPropertyName = "ProjectName";
+            this.ProjectName.HeaderText = "项目名称";
+            this.ProjectName.Name = "ProjectName";
+            this.ProjectName.ReadOnly = true;
+            this.ProjectName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProjectName.Width = 86;
+            // 
+            // Shippingtime
+            // 
+            this.Shippingtime.DataPropertyName = "Shippingtime";
+            this.Shippingtime.HeaderText = "完工日期";
+            this.Shippingtime.Name = "Shippingtime";
+            this.Shippingtime.ReadOnly = true;
+            this.Shippingtime.Width = 86;
+            // 
+            // ProjectStatusName
+            // 
+            this.ProjectStatusName.DataPropertyName = "ProjectStatusName";
+            this.ProjectStatusName.HeaderText = "项目状态";
+            this.ProjectStatusName.Name = "ProjectStatusName";
+            this.ProjectStatusName.ReadOnly = true;
+            this.ProjectStatusName.Width = 86;
+            // 
+            // TypeName
+            // 
+            this.TypeName.DataPropertyName = "TypeName";
+            this.TypeName.HeaderText = "项目分类";
+            this.TypeName.Name = "TypeName";
+            this.TypeName.ReadOnly = true;
+            this.TypeName.Width = 86;
+            // 
+            // RiskLevel
+            // 
+            this.RiskLevel.DataPropertyName = "RiskLevel";
+            this.RiskLevel.HeaderText = "等级";
+            this.RiskLevel.Name = "RiskLevel";
+            this.RiskLevel.ReadOnly = true;
+            this.RiskLevel.Width = 60;
+            // 
+            // HoodType
+            // 
+            this.HoodType.DataPropertyName = "HoodType";
+            this.HoodType.HeaderText = "烟罩类型";
+            this.HoodType.Name = "HoodType";
+            this.HoodType.ReadOnly = true;
+            this.HoodType.Width = 86;
+            // 
+            // SalesValue
+            // 
+            this.SalesValue.DataPropertyName = "SalesValue";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "C0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.SalesValue.DefaultCellStyle = dataGridViewCellStyle3;
+            this.SalesValue.HeaderText = "销售额(元)";
+            this.SalesValue.Name = "SalesValue";
+            this.SalesValue.ReadOnly = true;
+            this.SalesValue.Width = 94;
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.DataPropertyName = "CustomerName";
+            this.CustomerName.HeaderText = "客户名称";
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
+            this.CustomerName.Width = 86;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "ProjectId";
+            this.Id.HeaderText = "ID";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Width = 48;
             // 
             // label10
             // 
@@ -688,107 +795,6 @@
             this.btnQueryByYear.Text = "查询";
             this.btnQueryByYear.UseVisualStyleBackColor = false;
             this.btnQueryByYear.Click += new System.EventHandler(this.btnQueryByYear_Click);
-            // 
-            // UserAccount
-            // 
-            this.UserAccount.DataPropertyName = "UserAccount";
-            this.UserAccount.HeaderText = "制图";
-            this.UserAccount.Name = "UserAccount";
-            this.UserAccount.ReadOnly = true;
-            this.UserAccount.Width = 60;
-            // 
-            // ODPNo
-            // 
-            this.ODPNo.DataPropertyName = "ODPNo";
-            this.ODPNo.HeaderText = "ODP";
-            this.ODPNo.Name = "ODPNo";
-            this.ODPNo.ReadOnly = true;
-            this.ODPNo.Width = 63;
-            // 
-            // BPONo
-            // 
-            this.BPONo.DataPropertyName = "BPONo";
-            this.BPONo.HeaderText = "大工单号";
-            this.BPONo.Name = "BPONo";
-            this.BPONo.ReadOnly = true;
-            this.BPONo.Width = 86;
-            // 
-            // ProjectName
-            // 
-            this.ProjectName.DataPropertyName = "ProjectName";
-            this.ProjectName.HeaderText = "项目名称";
-            this.ProjectName.Name = "ProjectName";
-            this.ProjectName.ReadOnly = true;
-            this.ProjectName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProjectName.Width = 86;
-            // 
-            // Shippingtime
-            // 
-            this.Shippingtime.DataPropertyName = "Shippingtime";
-            this.Shippingtime.HeaderText = "完工日期";
-            this.Shippingtime.Name = "Shippingtime";
-            this.Shippingtime.ReadOnly = true;
-            this.Shippingtime.Width = 86;
-            // 
-            // ProjectStatusName
-            // 
-            this.ProjectStatusName.DataPropertyName = "ProjectStatusName";
-            this.ProjectStatusName.HeaderText = "项目状态";
-            this.ProjectStatusName.Name = "ProjectStatusName";
-            this.ProjectStatusName.ReadOnly = true;
-            this.ProjectStatusName.Width = 86;
-            // 
-            // TypeName
-            // 
-            this.TypeName.DataPropertyName = "TypeName";
-            this.TypeName.HeaderText = "项目分类";
-            this.TypeName.Name = "TypeName";
-            this.TypeName.ReadOnly = true;
-            this.TypeName.Width = 86;
-            // 
-            // RiskLevel
-            // 
-            this.RiskLevel.DataPropertyName = "RiskLevel";
-            this.RiskLevel.HeaderText = "等级";
-            this.RiskLevel.Name = "RiskLevel";
-            this.RiskLevel.ReadOnly = true;
-            this.RiskLevel.Width = 60;
-            // 
-            // HoodType
-            // 
-            this.HoodType.DataPropertyName = "HoodType";
-            this.HoodType.HeaderText = "烟罩类型";
-            this.HoodType.Name = "HoodType";
-            this.HoodType.ReadOnly = true;
-            this.HoodType.Width = 86;
-            // 
-            // SalesValue
-            // 
-            this.SalesValue.DataPropertyName = "SalesValue";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "C0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.SalesValue.DefaultCellStyle = dataGridViewCellStyle3;
-            this.SalesValue.HeaderText = "销售额(元)";
-            this.SalesValue.Name = "SalesValue";
-            this.SalesValue.ReadOnly = true;
-            this.SalesValue.Width = 94;
-            // 
-            // CustomerName
-            // 
-            this.CustomerName.DataPropertyName = "CustomerName";
-            this.CustomerName.HeaderText = "客户名称";
-            this.CustomerName.Name = "CustomerName";
-            this.CustomerName.ReadOnly = true;
-            this.CustomerName.Width = 86;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "ProjectId";
-            this.Id.HeaderText = "ID";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Width = 48;
             // 
             // FrmProject
             // 

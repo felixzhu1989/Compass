@@ -348,7 +348,11 @@ namespace Compass
             {
                 node = tvModule.SelectedNode.Parent.Parent;
             }
-            ShowProjectInfoDeg(node.Text);//使用委托显示项目信息
+            //ShowProjectInfoDeg(node.Text);//使用委托显示项目信息
+            FrmProjectInfo objFrmProjectInfo = new FrmProjectInfo(node.Text);
+            objFrmProjectInfo.Show();
+
+
         }
     }
 }

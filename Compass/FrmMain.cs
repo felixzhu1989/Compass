@@ -206,19 +206,22 @@ namespace Compass
             ClosePreForm(splitContainer.Panel2);
             //关联委托方法与委托变量
             FrmProject objFrmProject = new FrmProject();
-            objFrmProject.ShowProjectInfoDeg = this.ShowProjectInfo;
+            //objFrmProject.ShowProjectInfoDeg = this.ShowProjectInfo;
             objFrmProject.ShowModelTreeDeg = this.ShowModuleTree;
             OpenForm(objFrmProject, splitContainer.Panel2);
         }
 
         private void tsmiProjectInfo_Click(object sender, EventArgs e)
         {
-            ClosePreForm(splitContainer.Panel2);
-            //关联委托方法与委托变量
+            //ClosePreForm(splitContainer.Panel2);
+            ////关联委托方法与委托变量
+            //FrmProjectInfo objFrmProjectInfo = new FrmProjectInfo();
+            //objFrmProjectInfo.ShowProjectsDeg = this.ShowProjects;
+            //objFrmProjectInfo.ShowModelTreeDeg = this.ShowModuleTree;
+            //OpenForm(objFrmProjectInfo, splitContainer.Panel2);
+            //直接显示信息窗口，不嵌入
             FrmProjectInfo objFrmProjectInfo = new FrmProjectInfo();
-            objFrmProjectInfo.ShowProjectsDeg = this.ShowProjects;
-            objFrmProjectInfo.ShowModelTreeDeg = this.ShowModuleTree;
-            OpenForm(objFrmProjectInfo, splitContainer.Panel2);
+            objFrmProjectInfo.Show();
         }
 
 
@@ -226,28 +229,31 @@ namespace Compass
 
 
         //根据委托创建方法
-        private void ShowProjectInfo(string odpNo)
-        {
-            ClosePreForm(splitContainer.Panel2);
-            FrmProjectInfo objFrmProjectInfo = new FrmProjectInfo(odpNo);
-            objFrmProjectInfo.ShowProjectsDeg = this.ShowProjects;
-            objFrmProjectInfo.ShowModelTreeDeg = this.ShowModuleTree;
-            OpenForm(objFrmProjectInfo, splitContainer.Panel2);
-        }
+        //private void ShowProjectInfo(string odpNo)
+        //{
+        //    ClosePreForm(splitContainer.Panel2);
+        //    FrmProjectInfo objFrmProjectInfo = new FrmProjectInfo(odpNo);
+        //    objFrmProjectInfo.ShowProjectsDeg = this.ShowProjects;
+        //    objFrmProjectInfo.ShowModelTreeDeg = this.ShowModuleTree;
+        //    OpenForm(objFrmProjectInfo, splitContainer.Panel2);
+        //}
+
+
+
         private void ShowModuleTree(string odpNo)
         {
             ClosePreForm(splitContainer.Panel1);
             FrmModuleTree objFrmModuleTree = new FrmModuleTree(odpNo);
             //【4】关联委托变量
             objFrmModuleTree.QuickBrowseDeg = this.QuickBrowse;
-            objFrmModuleTree.ShowProjectInfoDeg = this.ShowProjectInfo;
+            //objFrmModuleTree.ShowProjectInfoDeg = this.ShowProjectInfo;
             OpenForm(objFrmModuleTree, splitContainer.Panel1);
         }
         private void ShowProjects(string id)
         {
             ClosePreForm(splitContainer.Panel2);
             FrmProject objFrmProject = new FrmProject();
-            objFrmProject.ShowProjectInfoDeg = this.ShowProjectInfo;
+            //objFrmProject.ShowProjectInfoDeg = this.ShowProjectInfo;
             objFrmProject.ShowModelTreeDeg = this.ShowModuleTree;
             OpenForm(objFrmProject, splitContainer.Panel2);
         }

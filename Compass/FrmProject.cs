@@ -473,7 +473,9 @@ namespace Compass
             }
             string odpNo = dgvProjects.CurrentRow.Cells["ODPNo"].Value.ToString();
             //调用委托方法
-            ShowProjectInfoDeg(odpNo);
+            //ShowProjectInfoDeg(odpNo);
+            FrmProjectInfo objFrmProjectInfo = new FrmProjectInfo(odpNo);
+            objFrmProjectInfo.Show();
         }
         /// <summary>
         /// 根据订单号查询订单

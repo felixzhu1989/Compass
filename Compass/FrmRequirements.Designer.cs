@@ -78,8 +78,8 @@
             this.grbSpecialRequirements.Controls.Add(this.dgvSpecialRequirements);
             this.grbSpecialRequirements.Controls.Add(this.btnSpecialRequirement);
             this.grbSpecialRequirements.Controls.Add(this.txtContant);
-            this.grbSpecialRequirements.Controls.Add(this.label9);
             this.grbSpecialRequirements.Controls.Add(this.txtSpecialRequirementId);
+            this.grbSpecialRequirements.Controls.Add(this.label9);
             this.grbSpecialRequirements.Location = new System.Drawing.Point(11, 166);
             this.grbSpecialRequirements.Name = "grbSpecialRequirements";
             this.grbSpecialRequirements.Size = new System.Drawing.Size(928, 393);
@@ -198,19 +198,19 @@
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(681, 23);
+            this.label9.Location = new System.Drawing.Point(679, 23);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(23, 19);
+            this.label9.Size = new System.Drawing.Size(39, 19);
             this.label9.TabIndex = 41;
-            this.label9.Text = "ID";
+            this.label9.Text = "SRID";
             // 
             // txtSpecialRequirementId
             // 
             this.txtSpecialRequirementId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSpecialRequirementId.Location = new System.Drawing.Point(710, 20);
+            this.txtSpecialRequirementId.Location = new System.Drawing.Point(718, 20);
             this.txtSpecialRequirementId.Name = "txtSpecialRequirementId";
             this.txtSpecialRequirementId.ReadOnly = true;
-            this.txtSpecialRequirementId.Size = new System.Drawing.Size(67, 25);
+            this.txtSpecialRequirementId.Size = new System.Drawing.Size(59, 25);
             this.txtSpecialRequirementId.TabIndex = 40;
             // 
             // grbGeneralRequirements
@@ -289,7 +289,7 @@
             this.cobRiskLevel.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cobRiskLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobRiskLevel.FormattingEnabled = true;
-            this.cobRiskLevel.Location = new System.Drawing.Point(330, 26);
+            this.cobRiskLevel.Location = new System.Drawing.Point(85, 28);
             this.cobRiskLevel.Name = "cobRiskLevel";
             this.cobRiskLevel.Size = new System.Drawing.Size(108, 27);
             this.cobRiskLevel.TabIndex = 43;
@@ -298,7 +298,7 @@
             // 
             this.cobTypeName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobTypeName.FormattingEnabled = true;
-            this.cobTypeName.Location = new System.Drawing.Point(85, 29);
+            this.cobTypeName.Location = new System.Drawing.Point(330, 27);
             this.cobTypeName.Name = "cobTypeName";
             this.cobTypeName.Size = new System.Drawing.Size(108, 27);
             this.cobTypeName.TabIndex = 43;
@@ -342,7 +342,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(246, 30);
+            this.label4.Location = new System.Drawing.Point(22, 32);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 19);
             this.label4.TabIndex = 42;
@@ -351,7 +351,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 33);
+            this.label2.Location = new System.Drawing.Point(263, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 19);
             this.label2.TabIndex = 42;
@@ -360,10 +360,10 @@
             // txtGeneralRequirementId
             // 
             this.txtGeneralRequirementId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGeneralRequirementId.Location = new System.Drawing.Point(849, 30);
+            this.txtGeneralRequirementId.Location = new System.Drawing.Point(825, 30);
             this.txtGeneralRequirementId.Name = "txtGeneralRequirementId";
             this.txtGeneralRequirementId.ReadOnly = true;
-            this.txtGeneralRequirementId.Size = new System.Drawing.Size(67, 25);
+            this.txtGeneralRequirementId.Size = new System.Drawing.Size(91, 25);
             this.txtGeneralRequirementId.TabIndex = 40;
             // 
             // btnGeneralRequirement
@@ -385,11 +385,11 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(820, 33);
+            this.label1.Location = new System.Drawing.Point(778, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 19);
+            this.label1.Size = new System.Drawing.Size(41, 19);
             this.label1.TabIndex = 41;
-            this.label1.Text = "ID";
+            this.label1.Text = "GRID";
             // 
             // txtODPNo
             // 
