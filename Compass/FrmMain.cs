@@ -1,33 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-using MetroFramework.Forms;
 using Models;
-using SolidWorks.Interop.swconst;
 using UpdateProgram;
 
 namespace Compass
 {
-
-
-    //显示项目信息委托
-    public delegate void ShowProjectInfoDelegate(string odpNo);
+    
     //显示项目列表委托
     public delegate void ShowProjectsDelegate(string id);
     //显示模型树委托
     public delegate void ShowModelTreeDelegate(string id);
     //【1】定义委托，快速浏览制图参数委托
     public delegate void QuickBrowseDelegate(Drawing drawing, ModuleTree tree);
-
 
     public partial class FrmMain : Form
     {
@@ -213,33 +199,10 @@ namespace Compass
 
         private void tsmiProjectInfo_Click(object sender, EventArgs e)
         {
-            //ClosePreForm(splitContainer.Panel2);
-            ////关联委托方法与委托变量
-            //FrmProjectInfo objFrmProjectInfo = new FrmProjectInfo();
-            //objFrmProjectInfo.ShowProjectsDeg = this.ShowProjects;
-            //objFrmProjectInfo.ShowModelTreeDeg = this.ShowModuleTree;
-            //OpenForm(objFrmProjectInfo, splitContainer.Panel2);
-            //直接显示信息窗口，不嵌入
             FrmProjectInfo objFrmProjectInfo = new FrmProjectInfo();
             objFrmProjectInfo.Show();
         }
-
-
-
-
-
-        //根据委托创建方法
-        //private void ShowProjectInfo(string odpNo)
-        //{
-        //    ClosePreForm(splitContainer.Panel2);
-        //    FrmProjectInfo objFrmProjectInfo = new FrmProjectInfo(odpNo);
-        //    objFrmProjectInfo.ShowProjectsDeg = this.ShowProjects;
-        //    objFrmProjectInfo.ShowModelTreeDeg = this.ShowModuleTree;
-        //    OpenForm(objFrmProjectInfo, splitContainer.Panel2);
-        //}
-
-
-
+        
         private void ShowModuleTree(string odpNo)
         {
             ClosePreForm(splitContainer.Panel1);
@@ -292,10 +255,6 @@ namespace Compass
             DialogResult result = MessageBox.Show("确认退出程序吗？", "退出询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result != DialogResult.OK) e.Cancel = true;
         }
-
-
-
-
 
 
 

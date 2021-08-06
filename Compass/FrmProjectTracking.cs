@@ -619,5 +619,14 @@ namespace Compass
                 }
             }
         }
+
+        private void tsmiShowProjectInfo_Click(object sender, EventArgs e)
+        {
+            if (dgvProjectTracking.RowCount == 0) return;
+            if (dgvProjectTracking.CurrentRow == null) return;
+            string odpNo = dgvProjectTracking.CurrentRow.Cells["ODPNo"].Value.ToString();
+            FrmProjectInfo objFrmProjectInfo = new FrmProjectInfo(odpNo);
+            objFrmProjectInfo.Show();
+        }
     }
 }

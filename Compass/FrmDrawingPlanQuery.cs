@@ -18,8 +18,7 @@ namespace Compass
     public partial class FrmDrawingPlanQuery : MetroFramework.Forms.MetroForm
     {
         private DrawingPlanService objDrawingPlanService = new DrawingPlanService();
-        private SuperChart superChart = null;
-        private SuperChart superChartMonth = null;
+        private SuperChart superChartPlan = null;
         private SuperChart superChartPercent = null;
         private SuperChart superChartUserPercent = null;
         private List<ChartData> dataList = new List<ChartData>();//用来保存数据的集合
@@ -31,8 +30,7 @@ namespace Compass
             toolTip.SetToolTip(cobQueryYear, "按照项目完工日期年度查询");
             dgvDrawingPlan.AutoGenerateColumns = false;
             //初始化自定义图表对象
-            superChart = new SuperChart(this.chartPlan);
-            superChartMonth = new SuperChart(this.chartMonth);
+            superChartPlan = new SuperChart(this.chartPlan);
             superChartPercent = new SuperChart(this.chartPercent);
             superChartUserPercent = new SuperChart(this.chartUserPercent);
             //查询年度初始化
@@ -64,7 +62,6 @@ namespace Compass
         }
         private void Query()
         {
-
             //【1】设置分页查询的条件
             //objSqlDataPager.Condition = string.Format("ShippingTime>='{0}/01/01' and ShippingTime<='{0}/12/31'", this.cobQueryYear.Text);
             //【2】设置每页显示的条数
@@ -133,7 +130,7 @@ namespace Compass
             chartPlan.ChartAreas[0].AxisY2.Maximum = double.NaN;
             //重新设置轴最大值
             chartPlan.ChartAreas[0].RecalculateAxesScale();
-            this.superChart.ShowChart(SeriesChartType.Column, dataList);
+            this.superChartPlan.ShowChart(SeriesChartType.Column, dataList);
 
             chartPlan.Series[0].LegendText = cobQueryYear.Text + "年烟罩数量统计 | 总数量：" + objDrawingPlanService.GetTotalHoodModuleNoByYear(cobQueryYear.Text);
             //chartPlan.Series[0].LegendText+=" | "+ cobQueryYear.Text + " | Annual statistics | Total for the year:" + objDrawingPlanService.GetTotalHoodModuleNoByYear(cobQueryYear.Text);
@@ -204,7 +201,7 @@ namespace Compass
             chartPlan.ChartAreas[0].AxisY2.Maximum = double.NaN;
             //重新设置轴最大值
             chartPlan.ChartAreas[0].RecalculateAxesScale();
-            this.superChart.ShowChart(SeriesChartType.Column, dataList);
+            this.superChartPlan.ShowChart(SeriesChartType.Column, dataList);
             chartPlan.Series[0].LegendText = cobQueryYear.Text + "年天花烟罩工作量统计 | 总工作量：" + objDrawingPlanService.GetTotalCeilingWorkloadByYear(cobQueryYear.Text);
             chartPlan.ChartAreas[0].AxisX.Title = "天花烟罩型号 | Ceiling Model";
             chartPlan.ChartAreas[0].AxisY.Title = "天花烟罩工作量 | Workload of Ceiling";
@@ -294,7 +291,6 @@ namespace Compass
             chartPlan.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
 
             //月度所有Delay
-            
 
             Series seriesTotalDelay = new Series();
             seriesTotalDelay.ChartType = SeriesChartType.BoxPlot;
@@ -321,13 +317,10 @@ namespace Compass
                 //seriesDelay.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
                 if (value != 0d) seriesTotalDelay.Points[i].Label = "#VAL %";
             }
-
             chartPlan.ChartAreas[0].AxisY2.Title = "Delay天数占工作量的百分比 | DelayDays / Workload %";
             //chartPlan.ChartAreas[0].AxisY2.Interval = 5;//也可以设置成20
             chartPlan.ChartAreas[0].AxisY2.Minimum = 0;
             chartPlan.ChartAreas[0].AxisY2.Maximum = 50;
-
-
 
             //月度按人统计
             chartMonth.Series.Clear();
@@ -405,7 +398,6 @@ namespace Compass
             chartMonth.ChartAreas[0].AxisY2.Maximum = 50;
         }
 
-
         //《C#中图表的使用》
         //需要的对象1，两个数据的封装
         //1.显示的文本/名称（地区，姓名，月份...）
@@ -413,8 +405,6 @@ namespace Compass
 
         //需要的对象2，具体图表控件的各种属性设置
         //主要是封装方法
-
-
 
     }
 }

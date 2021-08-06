@@ -429,3 +429,27 @@ insert into ProjectTracking (ProjectId,ProjectStatusId) values(@@IDENTITY,1)
 
 select * from FinancialData where ProjectId=282
 delete from Projects where ODPNo='FSO210343'
+
+
+
+select month(DrawingPlan.DrReleasetarget) as Mon,
+sum(SubTotalWorkload) as TotalWorkload from DrawingPlan 
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId 
+where DrawingPlan.DrReleasetarget>='2021/01/01' and DrawingPlan.DrReleasetarget<='2021/12/31' 
+group by month(DrawingPlan.DrReleasetarget) order by Mon asc
+
+select ODPNo,ProjectStatusName,
+ODPReceiveDate,KickOffDate,
+DrReleaseTarget,DrReleaseActual,
+ShippingTime,ProdFinishActual,
+DeliverActual
+from ProjectTracking 
+inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId 
+inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId 
+inner join Users on Projects.UserId=Users.UserId 
+left join (select ProjectId,max(DrReleaseTarget)as DrReleaseTarget 
+from DrawingPlan group by ProjectId) as PlanList on PlanList.ProjectId=Projects.ProjectId 
+where ODPNo='FSO210343' 
+
+select * from ProjectTracking
+

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvDrawingPlan = new System.Windows.Forms.DataGridView();
             this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,9 +49,6 @@
             this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiRequirements = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiQueryByODP = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiQueryAllPlan = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditDrawingPlan = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteDrawingPlan = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
@@ -134,22 +131,22 @@
             // 
             this.dgvDrawingPlan.AllowUserToAddRows = false;
             this.dgvDrawingPlan.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Azure;
-            this.dgvDrawingPlan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
+            this.dgvDrawingPlan.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDrawingPlan.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDrawingPlan.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDrawingPlan.BackgroundColor = System.Drawing.Color.White;
             this.dgvDrawingPlan.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDrawingPlan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDrawingPlan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDrawingPlan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDrawingPlan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UserAccount,
@@ -221,10 +218,10 @@
             // ProgressValue
             // 
             this.ProgressValue.DataPropertyName = "ProgressValue";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.NullValue = "System.Drawing.Bitmap";
-            this.ProgressValue.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.NullValue = "System.Drawing.Bitmap";
+            this.ProgressValue.DefaultCellStyle = dataGridViewCellStyle3;
             this.ProgressValue.HeaderText = "进度条";
             this.ProgressValue.Name = "ProgressValue";
             this.ProgressValue.ReadOnly = true;
@@ -295,54 +292,34 @@
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiRequirements,
-            this.tsmiProjectTracking,
-            this.tsmiQueryByODP,
-            this.tsmiQueryAllPlan,
             this.tsmiEditDrawingPlan,
+            this.tsmiRequirements,
             this.tsmiDeleteDrawingPlan});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(149, 136);
+            this.contextMenuStrip.Size = new System.Drawing.Size(240, 92);
             // 
             // tsmiRequirements
             // 
             this.tsmiRequirements.Name = "tsmiRequirements";
-            this.tsmiRequirements.Size = new System.Drawing.Size(148, 22);
-            this.tsmiRequirements.Text = "添加特殊要求";
+            this.tsmiRequirements.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.tsmiRequirements.Size = new System.Drawing.Size(239, 22);
+            this.tsmiRequirements.Text = "添加特殊要求(&R)";
             this.tsmiRequirements.Click += new System.EventHandler(this.tsmiRequirements_Click);
-            // 
-            // tsmiProjectTracking
-            // 
-            this.tsmiProjectTracking.Name = "tsmiProjectTracking";
-            this.tsmiProjectTracking.Size = new System.Drawing.Size(148, 22);
-            this.tsmiProjectTracking.Text = "项目跟踪信息";
-            // 
-            // tsmiQueryByODP
-            // 
-            this.tsmiQueryByODP.Name = "tsmiQueryByODP";
-            this.tsmiQueryByODP.Size = new System.Drawing.Size(148, 22);
-            this.tsmiQueryByODP.Text = "查询整个订单";
-            this.tsmiQueryByODP.Click += new System.EventHandler(this.tsmiQueryByODP_Click);
-            // 
-            // tsmiQueryAllPlan
-            // 
-            this.tsmiQueryAllPlan.Name = "tsmiQueryAllPlan";
-            this.tsmiQueryAllPlan.Size = new System.Drawing.Size(148, 22);
-            this.tsmiQueryAllPlan.Text = "显示全部计划";
-            this.tsmiQueryAllPlan.Click += new System.EventHandler(this.tsmiQueryAllPlan_Click);
             // 
             // tsmiEditDrawingPlan
             // 
             this.tsmiEditDrawingPlan.Name = "tsmiEditDrawingPlan";
-            this.tsmiEditDrawingPlan.Size = new System.Drawing.Size(148, 22);
-            this.tsmiEditDrawingPlan.Text = "修改计划";
+            this.tsmiEditDrawingPlan.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.tsmiEditDrawingPlan.Size = new System.Drawing.Size(239, 22);
+            this.tsmiEditDrawingPlan.Text = "修改项目计划(&U)";
             this.tsmiEditDrawingPlan.Click += new System.EventHandler(this.tsmiEditDrawingPlan_Click);
             // 
             // tsmiDeleteDrawingPlan
             // 
             this.tsmiDeleteDrawingPlan.Name = "tsmiDeleteDrawingPlan";
-            this.tsmiDeleteDrawingPlan.Size = new System.Drawing.Size(148, 22);
-            this.tsmiDeleteDrawingPlan.Text = "删除计划";
+            this.tsmiDeleteDrawingPlan.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
+            this.tsmiDeleteDrawingPlan.Size = new System.Drawing.Size(239, 22);
+            this.tsmiDeleteDrawingPlan.Text = "删除项目计划(&D)";
             this.tsmiDeleteDrawingPlan.Click += new System.EventHandler(this.tsmiDeleteDrawingPlan_Click);
             // 
             // label3
@@ -1056,15 +1033,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtEditModuleNo;
         private System.Windows.Forms.Button btnEditDrawingPlan;
-        private System.Windows.Forms.ToolStripMenuItem tsmiQueryByODP;
-        private System.Windows.Forms.ToolStripMenuItem tsmiQueryAllPlan;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DateTimePicker dtpEditAddedDate;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox cobODPNo;
         private System.Windows.Forms.ComboBox cobEditODPNo;
         private System.Windows.Forms.ToolStripMenuItem tsmiRequirements;
-        private System.Windows.Forms.ToolStripMenuItem tsmiProjectTracking;
         private System.Windows.Forms.Button btnQueryByUserId;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cobUserId;

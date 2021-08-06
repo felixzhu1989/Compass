@@ -22,7 +22,6 @@ namespace Compass
         private ProjectService objProjectService = new ProjectService();
         private string projectId = string.Empty;
         //创建委托变量
-        public ShowProjectInfoDelegate ShowProjectInfoDeg = null;
         public ShowModelTreeDelegate ShowModelTreeDeg = null;
         private string sbu = Program.ObjCurrentUser.SBU;//当前事业部
 
@@ -462,18 +461,9 @@ namespace Compass
 
         private void tsmiShowProjectInfo_Click(object sender, EventArgs e)
         {
-            if (dgvProjects.RowCount == 0)
-            {
-                return;
-            }
-            if (dgvProjects.CurrentRow == null)
-            {
-                MessageBox.Show("请选中需要显示的项目信息行", "验证信息");
-                return;
-            }
+            if (dgvProjects.RowCount == 0) return;
+            if (dgvProjects.CurrentRow == null) return;
             string odpNo = dgvProjects.CurrentRow.Cells["ODPNo"].Value.ToString();
-            //调用委托方法
-            //ShowProjectInfoDeg(odpNo);
             FrmProjectInfo objFrmProjectInfo = new FrmProjectInfo(odpNo);
             objFrmProjectInfo.Show();
         }

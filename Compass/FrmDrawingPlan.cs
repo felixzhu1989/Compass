@@ -74,7 +74,6 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1)
             {
                 btnAddDrawingPlan.Visible = true;
-                tsmiProjectTracking.Visible = false;//未做先隐藏
                 tsmiEditDrawingPlan.Visible = true;
                 tsmiDeleteDrawingPlan.Visible = true;
                 this.dgvDrawingPlan.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDrawingPlan_CellDoubleClick);
@@ -83,7 +82,6 @@ namespace Compass
             else
             {
                 btnAddDrawingPlan.Visible = false;
-                tsmiProjectTracking.Visible = false;
                 tsmiEditDrawingPlan.Visible = false;
                 tsmiDeleteDrawingPlan.Visible = false;
                 this.dgvDrawingPlan.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDrawingPlan_CellDoubleClick);
@@ -595,8 +593,9 @@ namespace Compass
         /// <param name="e"></param>
         private void tsmiRequirements_Click(object sender, EventArgs e)
         {
-            string odpNo = cobODPNo.Text.Trim();
-            if (odpNo.Length == 0) return;
+            if (dgvDrawingPlan.RowCount == 0) return;
+            if (dgvDrawingPlan.CurrentRow == null) return;
+            string odpNo = dgvDrawingPlan.CurrentRow.Cells["ODPNo"].Value.ToString();
             Project objProject = objProjectService.GetProjectByODPNo(odpNo,Program.ObjCurrentUser.SBU);
             if (objProject == null) return;
             FrmRequirements objFrmRequirements = new FrmRequirements(objProject);

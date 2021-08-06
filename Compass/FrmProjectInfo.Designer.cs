@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label3 = new System.Windows.Forms.Label();
             this.grbProject = new System.Windows.Forms.GroupBox();
             this.txtProjectInfo = new System.Windows.Forms.TextBox();
@@ -41,19 +44,23 @@
             this.cobODPNo = new System.Windows.Forms.ComboBox();
             this.cmsRequirement = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiRequirement = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grbModuleStatistics = new System.Windows.Forms.GroupBox();
             this.dgvScope = new System.Windows.Forms.DataGridView();
             this.txtSalesValue = new System.Windows.Forms.TextBox();
             this.lblSalesValue = new System.Windows.Forms.Label();
             this.grbFinancialData = new System.Windows.Forms.GroupBox();
             this.btnFinancialData = new System.Windows.Forms.Button();
+            this.chartTracking = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.grbTracking = new System.Windows.Forms.GroupBox();
             this.grbProject.SuspendLayout();
             this.grbGeneralRequirements.SuspendLayout();
             this.grbSpecialRequirements.SuspendLayout();
             this.cmsRequirement.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grbModuleStatistics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScope)).BeginInit();
             this.grbFinancialData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTracking)).BeginInit();
+            this.grbTracking.SuspendLayout();
             this.SuspendLayout();
             // 
             // label3
@@ -155,36 +162,36 @@
             this.tsmiRequirement.Text = "编辑技术要求(&R)";
             this.tsmiRequirement.Click += new System.EventHandler(this.tsmiRequirement_Click);
             // 
-            // groupBox1
+            // grbModuleStatistics
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.grbModuleStatistics.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.dgvScope);
-            this.groupBox1.Location = new System.Drawing.Point(560, 236);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(378, 452);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "范围";
+            this.grbModuleStatistics.Controls.Add(this.dgvScope);
+            this.grbModuleStatistics.Location = new System.Drawing.Point(560, 507);
+            this.grbModuleStatistics.Name = "grbModuleStatistics";
+            this.grbModuleStatistics.Size = new System.Drawing.Size(628, 181);
+            this.grbModuleStatistics.TabIndex = 5;
+            this.grbModuleStatistics.TabStop = false;
+            this.grbModuleStatistics.Text = "机型统计";
             // 
             // dgvScope
             // 
             this.dgvScope.AllowUserToAddRows = false;
             this.dgvScope.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Azure;
-            this.dgvScope.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
+            this.dgvScope.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvScope.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvScope.BackgroundColor = System.Drawing.Color.White;
             this.dgvScope.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvScope.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvScope.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvScope.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvScope.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvScope.EnableHeadersVisualStyles = false;
@@ -192,7 +199,7 @@
             this.dgvScope.Name = "dgvScope";
             this.dgvScope.ReadOnly = true;
             this.dgvScope.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvScope.Size = new System.Drawing.Size(372, 428);
+            this.dgvScope.Size = new System.Drawing.Size(622, 157);
             this.dgvScope.TabIndex = 0;
             this.dgvScope.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvScope_RowPostPaint);
             // 
@@ -222,9 +229,9 @@
             this.grbFinancialData.Controls.Add(this.txtSalesValue);
             this.grbFinancialData.Controls.Add(this.btnFinancialData);
             this.grbFinancialData.Controls.Add(this.lblSalesValue);
-            this.grbFinancialData.Location = new System.Drawing.Point(560, 54);
+            this.grbFinancialData.Location = new System.Drawing.Point(560, 392);
             this.grbFinancialData.Name = "grbFinancialData";
-            this.grbFinancialData.Size = new System.Drawing.Size(378, 176);
+            this.grbFinancialData.Size = new System.Drawing.Size(628, 109);
             this.grbFinancialData.TabIndex = 1;
             this.grbFinancialData.TabStop = false;
             this.grbFinancialData.Text = "财务数据";
@@ -236,7 +243,7 @@
             this.btnFinancialData.FlatAppearance.BorderSize = 0;
             this.btnFinancialData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinancialData.ForeColor = System.Drawing.Color.White;
-            this.btnFinancialData.Location = new System.Drawing.Point(264, 137);
+            this.btnFinancialData.Location = new System.Drawing.Point(514, 70);
             this.btnFinancialData.Name = "btnFinancialData";
             this.btnFinancialData.Size = new System.Drawing.Size(108, 28);
             this.btnFinancialData.TabIndex = 1;
@@ -244,18 +251,63 @@
             this.btnFinancialData.UseVisualStyleBackColor = false;
             this.btnFinancialData.Click += new System.EventHandler(this.btnFinancialData_Click);
             // 
+            // chartTracking
+            // 
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisY.LabelStyle.Enabled = false;
+            chartArea1.AxisY.MajorGrid.Enabled = false;
+            chartArea1.AxisY.MajorTickMark.Enabled = false;
+            chartArea1.Name = "ChartArea1";
+            this.chartTracking.ChartAreas.Add(chartArea1);
+            this.chartTracking.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend1.ForeColor = System.Drawing.Color.Red;
+            legend1.IsTextAutoFit = false;
+            legend1.MaximumAutoSize = 100F;
+            legend1.Name = "Legend1";
+            legend1.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chartTracking.Legends.Add(legend1);
+            this.chartTracking.Location = new System.Drawing.Point(3, 21);
+            this.chartTracking.Name = "chartTracking";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series1.IsValueShownAsLabel = true;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartTracking.Series.Add(series1);
+            this.chartTracking.Size = new System.Drawing.Size(622, 308);
+            this.chartTracking.TabIndex = 7;
+            this.chartTracking.Text = "chart1";
+            // 
+            // grbTracking
+            // 
+            this.grbTracking.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbTracking.Controls.Add(this.chartTracking);
+            this.grbTracking.Location = new System.Drawing.Point(560, 54);
+            this.grbTracking.Name = "grbTracking";
+            this.grbTracking.Size = new System.Drawing.Size(628, 332);
+            this.grbTracking.TabIndex = 8;
+            this.grbTracking.TabStop = false;
+            this.grbTracking.Text = "跟踪信息";
+            // 
             // FrmProjectInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(950, 700);
+            this.ClientSize = new System.Drawing.Size(1200, 700);
             this.ContextMenuStrip = this.cmsRequirement;
             this.Controls.Add(this.cobODPNo);
             this.Controls.Add(this.grbSpecialRequirements);
             this.Controls.Add(this.grbGeneralRequirements);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grbModuleStatistics);
             this.Controls.Add(this.grbProject);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.grbFinancialData);
+            this.Controls.Add(this.grbTracking);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FrmProjectInfo";
             this.Text = "项目信息";
@@ -266,10 +318,12 @@
             this.grbSpecialRequirements.ResumeLayout(false);
             this.grbSpecialRequirements.PerformLayout();
             this.cmsRequirement.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
+            this.grbModuleStatistics.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvScope)).EndInit();
             this.grbFinancialData.ResumeLayout(false);
             this.grbFinancialData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTracking)).EndInit();
+            this.grbTracking.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,7 +337,7 @@
         private System.Windows.Forms.ComboBox cobODPNo;
         private System.Windows.Forms.ContextMenuStrip cmsRequirement;
         private System.Windows.Forms.ToolStripMenuItem tsmiRequirement;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grbModuleStatistics;
         private System.Windows.Forms.DataGridView dgvScope;
         private System.Windows.Forms.TextBox txtSalesValue;
         private System.Windows.Forms.Label lblSalesValue;
@@ -292,5 +346,7 @@
         private System.Windows.Forms.TextBox txtSpecialRequirements;
         private System.Windows.Forms.TextBox txtGeneralRequirements;
         private System.Windows.Forms.TextBox txtProjectInfo;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTracking;
+        private System.Windows.Forms.GroupBox grbTracking;
     }
 }

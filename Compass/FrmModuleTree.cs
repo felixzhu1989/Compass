@@ -29,7 +29,6 @@ namespace Compass
 
         //【3】创建委托变量
         public QuickBrowseDelegate QuickBrowseDeg = null;
-        public ShowProjectInfoDelegate ShowProjectInfoDeg = null;
 
         private List<ModuleTree> moduleTreesList = new List<ModuleTree>();
         private Project objProject = null;

@@ -350,7 +350,7 @@
             this.chartPercent.ChartAreas.Add(chartArea3);
             legend3.Name = "Legend1";
             this.chartPercent.Legends.Add(legend3);
-            this.chartPercent.Location = new System.Drawing.Point(1, 244);
+            this.chartPercent.Location = new System.Drawing.Point(-4, 244);
             this.chartPercent.Name = "chartPercent";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;

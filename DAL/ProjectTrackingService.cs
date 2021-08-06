@@ -37,6 +37,11 @@ namespace DAL
             return objSqlDataPager;
         }
 
+
+
+
+
+
         /// <summary>
         /// 根据项目状态返回项目跟踪合集
         /// </summary>
@@ -91,7 +96,7 @@ namespace DAL
                     ProjectStatusName = objReader["ProjectStatusName"].ToString(),
                     DrReleaseTarget = objReader["DrReleaseTarget"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["DrReleaseTarget"]),
                     DrReleaseActual = objReader["DrReleaseActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["DrReleaseActual"]),
-                    ProdFinishTarget = objReader["ShippingTime"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ShippingTime"]),
+                    ShippingTime = objReader["ShippingTime"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ShippingTime"]),
                     ProdFinishActual = objReader["ProdFinishActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ProdFinishActual"]),
                     DeliverActual = objReader["DeliverActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["DeliverActual"]),
                     ODPReceiveDate = objReader["ODPReceiveDate"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ODPReceiveDate"]),
@@ -157,7 +162,7 @@ namespace DAL
                     ProjectStatusName = objReader["ProjectStatusName"].ToString(),
                     DrReleaseTarget = objReader["DrReleaseTarget"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["DrReleaseTarget"]),
                     DrReleaseActual = objReader["DrReleaseActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["DrReleaseActual"]),
-                    ProdFinishTarget = objReader["ShippingTime"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ShippingTime"]),
+                    ShippingTime = objReader["ShippingTime"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ShippingTime"]),
                     ProdFinishActual = objReader["ProdFinishActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ProdFinishActual"]),
                     DeliverActual = objReader["DeliverActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["DeliverActual"]),
                     ODPReceiveDate = objReader["ODPReceiveDate"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["ODPReceiveDate"]),
@@ -182,7 +187,7 @@ namespace DAL
             string sql = string.Format("insert into ProjectTracking{0} (ProjectId,ProjectStatusId,DrReleaseActual,ProdFinishActual,DeliverActual)", sbu);
             sql += " values({0},{1},'{2}','{3}','{4}');select @@identity";
             sql = string.Format(sql, objProjectTracking.ProjectId, objProjectTracking.ProjectStatusId,
-                objProjectTracking.DrReleaseActual, objProjectTracking.ProdFinishTarget,
+                objProjectTracking.DrReleaseActual, objProjectTracking.ShippingTime,
                  objProjectTracking.ProdFinishActual, objProjectTracking.DeliverActual);
             try
             {

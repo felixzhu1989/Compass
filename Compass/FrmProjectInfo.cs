@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
 using DAL;
+using System.Windows.Forms.DataVisualization.Charting;
 using Models;
 
 namespace Compass
@@ -18,6 +15,7 @@ namespace Compass
         private ProjectService objProjectService = new ProjectService();
         private RequirementService objRequirementService = new RequirementService();
         private DrawingPlanService objDrawingPlanService = new DrawingPlanService();
+        private ProjectTrackingService objProjectTrackingService = new ProjectTrackingService();
         private FinancialDataService objFinancialDataService = new FinancialDataService();
         private string sbu = Program.ObjCurrentUser.SBU;
 
@@ -66,6 +64,7 @@ namespace Compass
             InitGeneralRequirement();
             InitSpecialRequirement();
             InitFinancialData();
+            InitTracking();
         }
 
         /// <summary>
@@ -272,5 +271,56 @@ namespace Compass
                 MessageBox.Show(ex.Message);
             }
         }
+        /// <summary>
+        /// 初始化跟踪图表
+        /// </summary>
+        public void InitTracking()
+        {
+            chartTracking.Series.Clear();
+            //重新设置轴最大值
+            chartTracking.ChartAreas[0].RecalculateAxesScale();
+
+            Series seriesTracking = new Series();
+            seriesTracking.ChartType = SeriesChartType.Bar;
+            chartTracking.Series.Add(seriesTracking);
+            ProjectTracking projectTracking =
+                objProjectTrackingService.GetProjectTrackingByODPNo(cobODPNo.Text, Program.ObjCurrentUser.SBU);
+
+            DateTime dateDeliver = projectTracking.DeliverActual;
+            DateTime datePrdFish = projectTracking.ProdFinishActual;
+            DateTime dateShiping = projectTracking.ShippingTime;
+            DateTime dateDrwRels = projectTracking.DrReleaseActual;
+            DateTime dateDrwPlan = projectTracking.DrReleaseTarget;
+            DateTime dateKickOff = projectTracking.KickOffDate;
+            DateTime dateODPRecv = projectTracking.ODPReceiveDate;
+
+            int daysDeliver = dateDeliver.Subtract(dateODPRecv).Days < 0 ? 0 : dateDeliver.Subtract(dateODPRecv).Days;
+            int daysPrdFish = datePrdFish.Subtract(dateODPRecv).Days < 0 ? 0 : datePrdFish.Subtract(dateODPRecv).Days;
+            int daysShiping = dateShiping.Subtract(dateODPRecv).Days < 0 ? 0 : dateShiping.Subtract(dateODPRecv).Days;
+            int daysDrwRels = dateDrwRels.Subtract(dateODPRecv).Days < 0 ? 0 : dateDrwRels.Subtract(dateODPRecv).Days;
+            int daysDrwPlan = dateDrwPlan.Subtract(dateODPRecv).Days < 0 ? 0 : dateDrwPlan.Subtract(dateODPRecv).Days;
+            int daysKickOff = dateKickOff.Subtract(dateODPRecv).Days < 0 ? 0 : dateKickOff.Subtract(dateODPRecv).Days;
+
+            seriesTracking.Points.AddXY("Deliver: " + dateDeliver.ToShortDateString(), daysDeliver);
+            seriesTracking.Points.AddXY("PrdFish: " + datePrdFish.ToShortDateString(), daysPrdFish);
+            seriesTracking.Points.AddXY("Shiping: " + dateShiping.ToShortDateString(), daysShiping);
+            seriesTracking.Points.AddXY("DrwRels: " + dateDrwRels.ToShortDateString(), daysDrwRels);
+            seriesTracking.Points.AddXY("DrwPlan: " + dateDrwPlan.ToShortDateString(), daysDrwPlan);
+            seriesTracking.Points.AddXY("KickOff: " + dateKickOff.ToShortDateString(), daysKickOff);
+            seriesTracking.Points.AddXY("ODPRcv: " + dateODPRecv.ToShortDateString(), 0);
+
+            seriesTracking.Points[2].Color = Color.Silver;
+            seriesTracking.Points[4].Color = Color.Silver;
+            seriesTracking.IsValueShownAsLabel = true;
+            seriesTracking.IsVisibleInLegend = true;
+            seriesTracking.LegendText = "ProjectStatus: " + projectTracking.ProjectStatusName+" Unit:Days";
+            
+            int[] nums = { daysDeliver, daysPrdFish, daysShiping, daysDrwRels, daysDrwPlan, daysKickOff };
+            chartTracking.ChartAreas[0].AxisY.Maximum = nums.Max();
+            chartTracking.ChartAreas[0].AxisY.LineColor = Color.White;//Y轴线白色
+            chartTracking.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White;//刻度值颜色
+            chartTracking.ChartAreas[0].AxisY.MajorTickMark.Enabled = false;//隐藏刻度线 
+        }
+
     }
 }

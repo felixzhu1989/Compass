@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvProjectTracking = new System.Windows.Forms.DataGridView();
             this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,7 +46,6 @@
             this.ProjectTrackingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiQueryAllProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditProjectTracking = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -66,14 +65,15 @@
             this.dtpEditKickOffDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEditODPReceiveDate = new System.Windows.Forms.DateTimePicker();
             this.btnEditProjectTracking = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
             this.txtEditProjectTrackingId = new System.Windows.Forms.TextBox();
             this.cobEditKickOffStatus = new System.Windows.Forms.ComboBox();
             this.cobEditProjectStatus = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.cobODPNo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -96,7 +96,7 @@
             this.btnToPage = new System.Windows.Forms.Button();
             this.btnQueryByYear = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.label7 = new System.Windows.Forms.Label();
+            this.tsmiShowProjectInfo = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTracking)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.grbEditProjectTracking.SuspendLayout();
@@ -107,22 +107,22 @@
             // 
             this.dgvProjectTracking.AllowUserToAddRows = false;
             this.dgvProjectTracking.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Azure;
-            this.dgvProjectTracking.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
+            this.dgvProjectTracking.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProjectTracking.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProjectTracking.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvProjectTracking.BackgroundColor = System.Drawing.Color.White;
             this.dgvProjectTracking.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProjectTracking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProjectTracking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProjectTracking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProjectTracking.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ODPNo,
@@ -258,23 +258,17 @@
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiQueryAllProjectTracking,
-            this.tsmiEditProjectTracking});
+            this.tsmiEditProjectTracking,
+            this.tsmiShowProjectInfo});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(173, 48);
-            // 
-            // tsmiQueryAllProjectTracking
-            // 
-            this.tsmiQueryAllProjectTracking.Name = "tsmiQueryAllProjectTracking";
-            this.tsmiQueryAllProjectTracking.Size = new System.Drawing.Size(172, 22);
-            this.tsmiQueryAllProjectTracking.Text = "显示全部跟踪记录";
-            this.tsmiQueryAllProjectTracking.Click += new System.EventHandler(this.tsmiQueryAllProjectTracking_Click);
+            this.contextMenuStrip.Size = new System.Drawing.Size(212, 70);
             // 
             // tsmiEditProjectTracking
             // 
             this.tsmiEditProjectTracking.Name = "tsmiEditProjectTracking";
-            this.tsmiEditProjectTracking.Size = new System.Drawing.Size(172, 22);
-            this.tsmiEditProjectTracking.Text = "修改项目跟踪记录";
+            this.tsmiEditProjectTracking.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
+            this.tsmiEditProjectTracking.Size = new System.Drawing.Size(211, 22);
+            this.tsmiEditProjectTracking.Text = "修改跟踪记录(&U)";
             this.tsmiEditProjectTracking.Click += new System.EventHandler(this.tsmiEditProjectTracking_Click);
             // 
             // label1
@@ -483,15 +477,6 @@
             this.btnEditProjectTracking.UseVisualStyleBackColor = false;
             this.btnEditProjectTracking.Click += new System.EventHandler(this.btnEditProjectTracking_Click);
             // 
-            // label19
-            // 
-            this.label19.ForeColor = System.Drawing.Color.Red;
-            this.label19.Location = new System.Drawing.Point(404, 25);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(57, 47);
-            this.label19.TabIndex = 21;
-            this.label19.Text = "KickOff Date";
-            // 
             // txtEditProjectTrackingId
             // 
             this.txtEditProjectTrackingId.Location = new System.Drawing.Point(845, 26);
@@ -527,15 +512,6 @@
             this.label15.TabIndex = 18;
             this.label15.Text = "ID";
             // 
-            // label5
-            // 
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(585, 14);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(99, 40);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "KickOff Status 别填，后续删";
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -553,6 +529,33 @@
             this.label10.Size = new System.Drawing.Size(61, 19);
             this.label10.TabIndex = 19;
             this.label10.Text = "项目状态";
+            // 
+            // label7
+            // 
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(215, 26);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(71, 50);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "ODPRecv Date";
+            // 
+            // label19
+            // 
+            this.label19.ForeColor = System.Drawing.Color.Red;
+            this.label19.Location = new System.Drawing.Point(404, 25);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(57, 47);
+            this.label19.TabIndex = 21;
+            this.label19.Text = "KickOff Date";
+            // 
+            // label5
+            // 
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(585, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(99, 40);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "KickOff Status 别填，后续删";
             // 
             // button1
             // 
@@ -805,14 +808,13 @@
             this.btnQueryByYear.UseVisualStyleBackColor = false;
             this.btnQueryByYear.Click += new System.EventHandler(this.btnQueryByYear_Click);
             // 
-            // label7
+            // tsmiShowProjectInfo
             // 
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(215, 26);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 50);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "ODPRecv Date";
+            this.tsmiShowProjectInfo.Name = "tsmiShowProjectInfo";
+            this.tsmiShowProjectInfo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
+            this.tsmiShowProjectInfo.Size = new System.Drawing.Size(211, 22);
+            this.tsmiShowProjectInfo.Text = "显示详细信息(&I)";
+            this.tsmiShowProjectInfo.Click += new System.EventHandler(this.tsmiShowProjectInfo_Click);
             // 
             // FrmProjectTracking
             // 
@@ -868,7 +870,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem tsmiQueryAllProjectTracking;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditProjectTracking;
         private System.Windows.Forms.TextBox txtEditProjectTrackingId;
         private System.Windows.Forms.Label label15;
@@ -914,5 +915,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectTrackingId;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ToolStripMenuItem tsmiShowProjectInfo;
     }
 }

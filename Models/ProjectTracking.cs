@@ -19,7 +19,6 @@ namespace Models
         public int ProjectStatusId { get; set; }
         public DateTime DrReleaseTarget { get; set; }
         public DateTime DrReleaseActual { get; set; }
-        public DateTime ProdFinishTarget { get; set; }
         public DateTime ProdFinishActual { get; set; }
         public DateTime DeliverActual { get; set; }
         public string KickOffStatus { get; set; }
@@ -31,5 +30,6 @@ namespace Models
         public string ProjectStatusName { get; set; }
         public string ProjectName { get; set; }
         public string UserAccount { get; set; }
+        public DateTime ShippingTime { get; set; }
     }
 }
