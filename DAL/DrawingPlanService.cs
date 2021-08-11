@@ -41,6 +41,74 @@ namespace DAL
         }
 
 
+        #region MyRegion 查询月度销售额和全年销售额
+        /// <summary>
+        /// 按月份统计所有烟罩销售额
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public List<ChartData> GetTotalSalesValueByMonth(string year)
+        {
+            List<ChartData> list = new List<ChartData>();
+            string sql = "select month(ShippingTime) as Mon,sum(SalesValue) as TotalSalesValue from FinancialData";
+            sql += " inner join Projects on FinancialData.ProjectId=Projects.ProjectId";
+            if (year == "ALL")
+            {
+                sql += " where ShippingTime>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
+            }
+            sql += " group by month(ShippingTime) order by Mon asc";
+
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                list.Add(new ChartData()
+                {
+                    Text = objReader["Mon"].ToString(),
+                    Value = Convert.ToDouble(objReader["TotalSalesValue"].ToString())
+                });
+            }
+            objReader.Close();
+            return list;
+        }
+
+
+        /// <summary>
+        /// 查询全年所有烟罩销售额总和
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public double GetTotalSalesValueByYear(string year)
+        {
+            double Value = 0;
+            string sql = "select sum(SalesValue) as TotalSalesValue from FinancialData";
+            sql += " inner join Projects on FinancialData.ProjectId=Projects.ProjectId";
+            if (year == "ALL")
+            {
+                sql += " where ShippingTime>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
+            }
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                Value = Convert.ToDouble(objReader["TotalSalesValue"].ToString());
+            }
+            objReader.Close();
+            return Value;
+        }
+
+
+        #endregion 查询月度销售额和全年销售额
+
+
+
+
 
 
         #region 查询年度各制图人员工作量
@@ -59,11 +127,11 @@ namespace DAL
             sql += " inner join Users on Users.UserId=Projects.UserId";
             if (year == "ALL")
             {
-                sql += " where Drtarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where Drtarget>='{0}/01/01' and Drtarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
             sql += string.Format(" and UserAccount='{0}'", userAcc);
             sql += " and DATEDIFF(DAY,Drtarget,DrActual)>0 group by month(Drtarget) order by Mon asc";
@@ -91,19 +159,19 @@ namespace DAL
         public List<ChartData> GetUserWorkloadByMonth(string year, string userAcc)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select month(DrawingPlan.DrReleasetarget) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
+            string sql = "select month(ShippingTime) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
             sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
             sql += " inner join Users on Users.UserId=Projects.UserId";
             if (year == "ALL")
             {
-                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
             sql += string.Format(" and UserAccount='{0}'", userAcc);
-            sql += " group by month(DrawingPlan.DrReleasetarget) order by Mon asc";
+            sql += " group by month(ShippingTime) order by Mon asc";
 
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())
@@ -130,11 +198,11 @@ namespace DAL
             sql += " inner join Users on Users.UserId=Projects.UserId";
             if (year == "ALL")
             {
-                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
             sql += " group by UserAccount order by TotalWorkload desc";
 
@@ -151,10 +219,9 @@ namespace DAL
             return list;
         }
 
-        #endregion
+        #endregion 查询年度各制图人员工作量
 
         #region 查询年度全部烟罩工作量
-
 
         /// <summary>
         /// 查询delay数据
@@ -170,11 +237,11 @@ namespace DAL
             sql += " inner join Users on Users.UserId=Projects.UserId";
             if (year == "ALL")
             {
-                sql += " where Drtarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where Drtarget>='{0}/01/01' and Drtarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
             sql += " and DATEDIFF(DAY,Drtarget,DrActual)>0 group by month(Drtarget) order by Mon asc";
 
@@ -191,6 +258,37 @@ namespace DAL
             return list;
         }
 
+
+        /// <summary>
+        /// 查询全年所有烟罩Delay总和
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public double GetTotalDelayByYear(string year)
+        {
+            double Value = 0d;
+            string sql = "select sum(DATEDIFF(DAY, Drtarget, DrActual)) as TotalDelay from view_DelayQuery";
+            sql += " inner join Projects on view_DelayQuery.ProjectId=Projects.ProjectId";
+            if (year == "ALL")
+            {
+                sql += " where ShippingTime>='2020/01/01'";
+            }
+            else
+            {
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
+            }
+            sql += " and DATEDIFF(DAY,Drtarget,DrActual)>0";
+            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            while (objReader.Read())
+            {
+                //当年有数据时才赋值，否则保持为0
+                if (objReader["TotalDelay"].ToString().Length != 0)
+                    Value = Convert.ToDouble(objReader["TotalDelay"].ToString());
+            }
+            objReader.Close();
+            return Value;
+        }
+
         /// <summary>
         /// 按月份统计所有烟罩工作量
         /// </summary>
@@ -199,17 +297,17 @@ namespace DAL
         public List<ChartData> GetTotalWorkloadByMonth(string year)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select month(DrawingPlan.DrReleasetarget) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
+            string sql = "select month(ShippingTime) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
             sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
             if (year == "ALL")
             {
-                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
-            sql += " group by month(DrawingPlan.DrReleasetarget) order by Mon asc";
+            sql += " group by month(ShippingTime) order by Mon asc";
 
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())
@@ -223,34 +321,8 @@ namespace DAL
             objReader.Close();
             return list;
         }
-        /// <summary>
-        /// 查询全年所有烟罩Delay总和
-        /// </summary>
-        /// <param name="year"></param>
-        /// <returns></returns>
-        public double GetTotalDelayByYear(string year)
-        {
-            double Value = 0d;
-            string sql = "select sum(DATEDIFF(DAY, Drtarget, DrActual)) as TotalDelay from view_DelayQuery";
-            if (year == "ALL")
-            {
-                sql += " where Drtarget>='2020/01/01'";
-            }
-            else
-            {
-                sql += string.Format(" where Drtarget>='{0}/01/01' and Drtarget<='{0}/12/31'", year);
-            }
-            sql += " and DATEDIFF(DAY,Drtarget,DrActual)>0";
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
-            while (objReader.Read())
-            {
-                //当年有数据时才赋值，否则保持为0
-                if (objReader["TotalDelay"].ToString().Length!=0)
-                    Value = Convert.ToDouble(objReader["TotalDelay"].ToString());
-            }
-            objReader.Close();
-            return Value;
-        }
+
+
         /// <summary>
         /// 查询全年所有烟罩工作量总和
         /// </summary>
@@ -263,11 +335,11 @@ namespace DAL
             sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
             if (year == "ALL")
             {
-                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())
@@ -277,6 +349,7 @@ namespace DAL
             objReader.Close();
             return Value;
         }
+
         /// <summary>
         /// 查询全年标准烟罩工作量总和
         /// </summary>
@@ -289,22 +362,22 @@ namespace DAL
             sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
             if (year == "ALL")
             {
-                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
             sql += " and HoodType='Hood'";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())
             {
-                Value = Convert.ToDouble(objReader["TotalWorkload"].ToString());
+                Value = objReader["TotalWorkload"] == null ? 0 : Convert.ToDouble(objReader["TotalWorkload"].ToString());
             }
             objReader.Close();
             return Value;
         }
-        #endregion
+        #endregion 查询年度全部烟罩工作量
 
 
 
@@ -319,18 +392,18 @@ namespace DAL
         public List<ChartData> GetCeilingWorkloadByMonth(string year, string modelType)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select month(DrawingPlan.DrReleasetarget) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
+            string sql = "select month(ShippingTime) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan";
             sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
             if (year == "ALL")
             {
-                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
             sql += string.Format(" and HoodType='Ceiling' and Model='{0}'", modelType);
-            sql += " group by month(DrawingPlan.DrReleasetarget) order by Mon asc";
+            sql += " group by month(ShippingTime) order by Mon asc";
 
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())
@@ -357,11 +430,11 @@ namespace DAL
             sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
             if (year == "ALL")
             {
-                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
             sql += " and HoodType='Ceiling'";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -385,11 +458,11 @@ namespace DAL
             sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
             if (year == "ALL")
             {
-                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
             sql += " and HoodType='Ceiling' group by Model order by TotalWorkload desc";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -404,7 +477,7 @@ namespace DAL
             objReader.Close();
             return list;
         }
-        #endregion
+        #endregion 查询年度天花烟罩工作量
 
 
         #region 查询年度普通烟罩数量
@@ -417,18 +490,18 @@ namespace DAL
         public List<ChartData> GetHoodModuleNoByMonth(string year, string modelType)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select month(DrawingPlan.DrReleasetarget) as Mon,sum(ModuleNo) as TotalModuleNo from DrawingPlan";
+            string sql = "select month(ShippingTime) as Mon,sum(ModuleNo) as TotalModuleNo from DrawingPlan";
             sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
             if (year == "ALL")
             {
-                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
             sql += string.Format(" and HoodType='Hood' and Model='{0}'", modelType);
-            sql += " group by month(DrawingPlan.DrReleasetarget) order by Mon asc";
+            sql += " group by month(ShippingTime) order by Mon asc";
 
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())
@@ -456,11 +529,11 @@ namespace DAL
             sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
             if (year == "ALL")
             {
-                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
             sql += " and HoodType='Hood'";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -484,11 +557,11 @@ namespace DAL
             sql += " inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId";
             if (year == "ALL")
             {
-                sql += " where DrawingPlan.DrReleasetarget>='2020/01/01'";
+                sql += " where ShippingTime>='2020/01/01'";
             }
             else
             {
-                sql += string.Format(" where DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", year);
+                sql += string.Format(" where ShippingTime like '{0}%'", year);
             }
             sql += " and HoodType='Hood' group by Model order by TotalModuleNo desc";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -504,7 +577,7 @@ namespace DAL
             return list;
         }
 
-        #endregion
+        #endregion 查询年度普通烟罩数量
 
 
 
@@ -514,9 +587,9 @@ namespace DAL
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public DataSet GetScopeByDataSet(string projectId,string sbu)
+        public DataSet GetScopeByDataSet(string projectId, string sbu)
         {
-            string sql = string.Format("select Model as '机型',sum(ModuleNo) as '总台数' from DrawingPlan{0}",sbu);
+            string sql = string.Format("select Model as '机型',sum(ModuleNo) as '总台数' from DrawingPlan{0}", sbu);
             sql += string.Format(" where ProjectId={0}", projectId);
             sql += " group by Model";
             return SQLHelper.GetDataSet(sql);
@@ -529,9 +602,9 @@ namespace DAL
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public List<DrawingPlan> GetDrawingPlanByUserId(string userId,string sbu)
+        public List<DrawingPlan> GetDrawingPlanByUserId(string userId, string sbu)
         {
-            return GetDrawingPlanByWhereSql(string.Format(" where Projects{0}.UserId={1}", sbu,userId),sbu);
+            return GetDrawingPlanByWhereSql(string.Format(" where Projects{0}.UserId={1}", sbu, userId), sbu);
         }
 
 
@@ -541,9 +614,9 @@ namespace DAL
         /// </summary>
         /// <param name="odpNo"></param>
         /// <returns></returns>
-        public List<DrawingPlan> GetDrawingPlanByODPNo(string odpNo,string sbu)
+        public List<DrawingPlan> GetDrawingPlanByODPNo(string odpNo, string sbu)
         {
-            return GetDrawingPlanByWhereSql(string.Format(" where ODPNo='{0}'", odpNo),sbu);
+            return GetDrawingPlanByWhereSql(string.Format(" where ODPNo='{0}'", odpNo), sbu);
         }
 
 
@@ -553,9 +626,9 @@ namespace DAL
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public List<DrawingPlan> GetDrawingPlanByProjectId(string projectId,string sbu)
+        public List<DrawingPlan> GetDrawingPlanByProjectId(string projectId, string sbu)
         {
-            return GetDrawingPlanByWhereSql(string.Format(" where DrawingPlan{0}.ProjectId={1}",sbu, projectId),sbu);
+            return GetDrawingPlanByWhereSql(string.Format(" where DrawingPlan{0}.ProjectId={1}", sbu, projectId), sbu);
         }
 
 
@@ -566,14 +639,14 @@ namespace DAL
         /// </summary>
         /// <param name="whereSql"></param>
         /// <returns></returns>
-        public List<DrawingPlan> GetDrawingPlanByWhereSql(string whereSql,string sbu)
+        public List<DrawingPlan> GetDrawingPlanByWhereSql(string whereSql, string sbu)
         {
             string sql = string.Format("select DrawingPlanId,UserAccount,DrawingPlan{0}.ProjectId,ODPNo,Item,Model,ModuleNo,DrawingPlan{0}.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,DrawingPlan{0}.AddedDate,ProjectName from DrawingPlan{0}", sbu);
-            sql += string.Format(" inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId",sbu);
-            sql += string.Format(" inner join Users on Users.UserId=Projects{0}.UserId",sbu);
-            sql += string.Format(" left join ProjectTracking{0} on DrawingPlan{0}.ProjectId=ProjectTracking{0}.ProjectId",sbu);
+            sql += string.Format(" inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId", sbu);
+            sql += string.Format(" inner join Users on Users.UserId=Projects{0}.UserId", sbu);
+            sql += string.Format(" left join ProjectTracking{0} on DrawingPlan{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu);
             sql += whereSql;
-            sql += string.Format(" order by DrawingPlan{0}.DrReleasetarget desc",sbu);//按照计划发图日期，倒序排列
+            sql += string.Format(" order by DrawingPlan{0}.DrReleasetarget desc", sbu);//按照计划发图日期，倒序排列
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<DrawingPlan> list = new List<DrawingPlan>();
             while (objReader.Read())
@@ -610,7 +683,7 @@ namespace DAL
         /// </summary>
         /// <param name="drawingPlanId"></param>
         /// <returns></returns>
-        public DrawingPlan GetDrawingPlanById(string drawingPlanId,string sbu)
+        public DrawingPlan GetDrawingPlanById(string drawingPlanId, string sbu)
         {
             string sql = string.Format("select DrawingPlanId,UserAccount,DrawingPlan{0}.ProjectId,ODPNo,Item,Model,ModuleNo,DrReleaseTarget,SubTotalWorkload,DrawingPlan{0}.AddedDate,ProjectName from DrawingPlan{0}", sbu);
             sql += string.Format(" inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId", sbu);
@@ -643,9 +716,9 @@ namespace DAL
         /// </summary>
         /// <param name="objDrawingPlan"></param>
         /// <returns></returns>
-        public int AddDraingPlan(DrawingPlan objDrawingPlan,string sbu)
+        public int AddDraingPlan(DrawingPlan objDrawingPlan, string sbu)
         {
-            string sql =string.Format("insert into DrawingPlan{0} (ProjectId,Item,Model,ModuleNo,DrReleasetarget,SubTotalWorkload)", sbu);
+            string sql = string.Format("insert into DrawingPlan{0} (ProjectId,Item,Model,ModuleNo,DrReleasetarget,SubTotalWorkload)", sbu);
             sql += " values({0},'{1}','{2}','{3}','{4}','{5}');select @@identity";
             sql = string.Format(sql, objDrawingPlan.ProjectId, objDrawingPlan.Item,
                 objDrawingPlan.Model, objDrawingPlan.ModuleNo, objDrawingPlan.DrReleaseTarget, objDrawingPlan.SubTotalWorkload);
@@ -667,9 +740,9 @@ namespace DAL
         /// </summary>
         /// <param name="objDrawingPlan"></param>
         /// <returns></returns>
-        public int EditDrawingPlan(DrawingPlan objDrawingPlan,string sbu)
+        public int EditDrawingPlan(DrawingPlan objDrawingPlan, string sbu)
         {
-            string sql = string.Format("update DrawingPlan{0}",sbu);
+            string sql = string.Format("update DrawingPlan{0}", sbu);
             sql += " set ProjectId={0},Item='{1}',Model='{2}',ModuleNo='{3}',";
             sql += "DrReleasetarget='{4}',SubTotalWorkload='{5}',AddedDate='{6}' where DrawingPlanId={7}";
             sql = string.Format(sql, objDrawingPlan.ProjectId, objDrawingPlan.Item, objDrawingPlan.Model, objDrawingPlan.ModuleNo,
@@ -692,9 +765,9 @@ namespace DAL
         /// </summary>
         /// <param name="drawingPlanId"></param>
         /// <returns></returns>
-        public int DeleteDrawingPlan(string drawingPlanId,string sbu)
+        public int DeleteDrawingPlan(string drawingPlanId, string sbu)
         {
-            string sql = string.Format("delete from DrawingPlan{0}",sbu);
+            string sql = string.Format("delete from DrawingPlan{0}", sbu);
             sql += " where DrawingPlanId={0}";
             sql = string.Format(sql, drawingPlanId);
             try

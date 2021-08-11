@@ -453,3 +453,67 @@ where ODPNo='FSO210343'
 
 select * from ProjectTracking
 
+use compassdb
+go
+select * from ProjectStatus
+--查询项目数量（月度）
+select count(*) from Projects where ShippingTime like'2021%' and month(ShippingTime)='8'
+--查询项目数量（年度）
+select count(*) from Projects where ShippingTime like'2021%'
+--统计项目状态数量
+select ProjectStatusName,count(ProjectStatusName) from ProjectTracking
+	inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId
+	inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId
+	where ShippingTime like'2021%' and month(ShippingTime)='7'
+	group by ProjectStatusName
+
+select * from GeneralRequirements
+--统计风险等级数量（月度）
+select RiskLevel,count(RiskLevel) from GeneralRequirements	
+	inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId
+	where ShippingTime like'2021%' and month(ShippingTime)='8'
+	group by RiskLevel
+--统计风险等级数量（年度）
+select RiskLevel,count(RiskLevel) from GeneralRequirements	
+	inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId
+	where ShippingTime like'2021%'
+	group by RiskLevel
+
+--统计项目类型数量（月度）
+select TypeName,count(TypeName) from GeneralRequirements
+	inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements.TypeId
+	inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId
+	where ShippingTime like'2021%' and month(ShippingTime)='7'
+	group by TypeName
+--统计项目类型数量（年度）
+select TypeName,count(TypeName) from GeneralRequirements
+	inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements.TypeId
+	inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId
+	where ShippingTime like'2021%'
+	group by TypeName
+
+
+--统计销售额（月度）
+select sum(SalesValue) from FinancialData
+	inner join Projects on FinancialData.ProjectId=Projects.ProjectId
+	where ShippingTime like'2021%' and month(ShippingTime)='7'
+
+--统计销售额（年度）
+select sum(SalesValue) from FinancialData
+	inner join Projects on FinancialData.ProjectId=Projects.ProjectId
+	where ShippingTime like'2021%'
+
+
+select month(DrawingPlan.DrReleasetarget) as Mon,sum(SubTotalWorkload) as TotalWorkload from DrawingPlan 
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId 
+where ShippingTime like '2021%' 
+group by month(DrawingPlan.DrReleasetarget) 
+order by Mon asc
+
+select month(ShippingTime) as Mon,SubTotalWorkload from DrawingPlan 
+inner join Projects on DrawingPlan.ProjectId=Projects.ProjectId 
+where ShippingTime like '2021%' 
+
+select sum(SalesValue) as TotalSalesValue from FinancialData 
+inner join Projects on FinancialData.ProjectId=Projects.ProjectId 
+where ShippingTime like '2020%'

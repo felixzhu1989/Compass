@@ -69,6 +69,9 @@ namespace Compass
             //【3】执行查询
             this.dgvDrawingPlan.DataSource = objSqlDataPager.GetPagedData();
         }
+        /// <summary>
+        /// 查询制图计划到表格
+        /// </summary>
         private void QueryByYear()
         {
             if (this.cobQueryYear.Text == "ALL")
@@ -82,6 +85,7 @@ namespace Compass
             objSqlDataPager.PageSize = 10000;
             Query();
         }
+
         /// <summary>
         /// 根据年份查询
         /// </summary>
@@ -240,6 +244,7 @@ namespace Compass
             chartMonth.ChartAreas[0].AxisY.Interval = 25;//也可以设置成20
             chartMonth.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
         }
+
         /// <summary>
         /// 年度所有烟罩工作量统计
         /// </summary>
@@ -250,20 +255,25 @@ namespace Compass
             lblModel.Visible = false;
             cobModel.Visible = false;
 
+            //--------------------主图--------------------
             //月度所有统计
             chartPlan.Series.Clear();
             chartPlan.ChartAreas[0].AxisY.Maximum = double.NaN;
             //重新设置轴最大值
             chartPlan.ChartAreas[0].RecalculateAxesScale();
-            //循环所有模型
-            List<ChartData> totalDelayChartDatas =
-                objDrawingPlanService.GetTotalDelayByMonth(cobQueryYear.Text);
+
+            //循环所有模型，工作量-延误-销售额
             List<ChartData> totalWorkloadChartDatas =
                 objDrawingPlanService.GetTotalWorkloadByMonth(cobQueryYear.Text);
-            Series seriesPlan = new Series();
-            seriesPlan.ChartType = SeriesChartType.Column;
-            chartPlan.Series.Add(seriesPlan);
+            List<ChartData> totalSalesValueDatas = objDrawingPlanService.GetTotalSalesValueByMonth(cobQueryYear.Text);
+            List<ChartData> totalDelayChartDatas =
+                objDrawingPlanService.GetTotalDelayByMonth(cobQueryYear.Text);
             
+            //--------------------月度工作量(主图)--------------------
+            Series seriesWorkloadMonthly = new Series();
+            seriesWorkloadMonthly.ChartType = SeriesChartType.Column;
+            chartPlan.Series.Add(seriesWorkloadMonthly);
+            seriesWorkloadMonthly.YAxisType = AxisType.Primary;
             for (int i = 0; i <= 12; i++)
             {
                 double value = 0;
@@ -271,33 +281,45 @@ namespace Compass
                 {
                     if (Convert.ToInt32(item.Text) == i) value = item.Value;
                 }
-                seriesPlan.Points.AddXY(i, value);
-                seriesPlan.Points[i].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
-                seriesPlan.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
-                if (value != 0d) seriesPlan.Points[i].Label = "#VAL";
+                seriesWorkloadMonthly.Points.AddXY(i, value);
+                seriesWorkloadMonthly.Points[i].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
+                seriesWorkloadMonthly.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
+                if (value != 0d) seriesWorkloadMonthly.Points[i].Label = "#VAL";
             }
-            double yearWorkload = objDrawingPlanService.GetTotalWorkloadByYear(cobQueryYear.Text);
-            double yearDelay = objDrawingPlanService.GetTotalDelayByYear(cobQueryYear.Text);
-            if (yearWorkload > 0)
-                chartPlan.Series[0].LegendText = cobQueryYear.Text + "年总工作量:" + yearWorkload + " | Delay："
-                                                  + 100d * double.Parse((yearDelay / yearWorkload).ToString("0.000")) + "%";
-            else
-                chartPlan.Series[0].LegendText = cobQueryYear.Text + "年总工作量:" + yearWorkload;
             chartPlan.ChartAreas[0].AxisX.Title = "月份 | Month";
-            chartPlan.ChartAreas[0].AxisY.Title = "工作量 | Workload";
+            chartPlan.ChartAreas[0].AxisY.Title = "工作量 | Workload [销售额/万元RMB | SalesValue]";
             chartPlan.ChartAreas[0].AxisX.Minimum = 0;
             chartPlan.ChartAreas[0].AxisX.Maximum = 12.5;
             chartPlan.ChartAreas[0].AxisY.Interval = 50;//也可以设置成20
             chartPlan.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
 
-            //月度所有Delay
+            //--------------------月度销售额(主图)--------------------
+            Series seriesSalesValueMonthly = new Series();
+            seriesSalesValueMonthly.ChartType = SeriesChartType.Line;
+            chartPlan.Series.Add(seriesSalesValueMonthly);
+            seriesSalesValueMonthly.YAxisType = AxisType.Primary;
+            seriesSalesValueMonthly.LabelForeColor = Color.Red;
+            for (int i = 0; i <= 12; i++)
+            {
+                double value = 0;
+                foreach (var item in totalSalesValueDatas)
+                {
+                    if (Convert.ToInt32(item.Text) == i) value =Convert.ToDouble( (item.Value/10000d).ToString("N2"));
+                }
+                seriesSalesValueMonthly.Points.AddXY(i, value);
+                seriesSalesValueMonthly.Points[i].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
+                seriesSalesValueMonthly.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
+                if (value != 0d) seriesSalesValueMonthly.Points[i].Label = "#VAL";
+                seriesSalesValueMonthly.Points[i].Color=Color.Red;
+            }
 
-            Series seriesTotalDelay = new Series();
-            seriesTotalDelay.ChartType = SeriesChartType.BoxPlot;
-            chartPlan.Series.Add(seriesTotalDelay);
-            //seriesDelay.LegendText = userData.Text;
-            seriesTotalDelay.IsVisibleInLegend = false;
-            seriesTotalDelay.YAxisType = AxisType.Secondary;
+            //--------------------月度Delay(主图)--------------------
+
+            Series seriesDelayMonthly = new Series();
+            seriesDelayMonthly.ChartType = SeriesChartType.BoxPlot;
+            chartPlan.Series.Add(seriesDelayMonthly);
+            seriesDelayMonthly.YAxisType = AxisType.Secondary;
+
             for (int i = 0; i <= 12; i++)
             {
                 double value = 0;
@@ -311,36 +333,63 @@ namespace Compass
                         }
                     }
                 }
-                seriesTotalDelay.Points.AddXY(i, value);
-                seriesTotalDelay.Points[i].Color = Color.Black;
+                seriesDelayMonthly.Points.AddXY(i, value);
+                seriesDelayMonthly.Points[i].Color = Color.Black;
                 //seriesDelay.Points[i].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
                 //seriesDelay.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
-                if (value != 0d) seriesTotalDelay.Points[i].Label = "#VAL %";
+                if (value != 0d) seriesDelayMonthly.Points[i].Label = "#VAL %";
             }
             chartPlan.ChartAreas[0].AxisY2.Title = "Delay天数占工作量的百分比 | DelayDays / Workload %";
             //chartPlan.ChartAreas[0].AxisY2.Interval = 5;//也可以设置成20
             chartPlan.ChartAreas[0].AxisY2.Minimum = 0;
             chartPlan.ChartAreas[0].AxisY2.Maximum = 50;
 
+            //--------------------主图标签--------------------
+            double yearWorkload = objDrawingPlanService.GetTotalWorkloadByYear(cobQueryYear.Text);
+            double yearSalesValue = objDrawingPlanService.GetTotalSalesValueByYear(cobQueryYear.Text);
+            double yearDelay = objDrawingPlanService.GetTotalDelayByYear(cobQueryYear.Text);
+            
+            chartPlan.Series[0].IsVisibleInLegend = true;
+            chartPlan.Series[0].LegendText = cobQueryYear.Text + "年总工作量:" + yearWorkload;
+            chartPlan.Series[1].IsVisibleInLegend = true;
+            chartPlan.Series[1].LegendText ="总销售额:" + (yearSalesValue/10000d).ToString("N2")+"万元RMB";
+            chartPlan.Series[1].Color = Color.Red;
+            if (yearWorkload > 0)
+            {
+                chartPlan.Series[2].IsVisibleInLegend = true;
+                chartPlan.Series[2].Color= Color.Black;
+                chartPlan.Series[2].LegendText = "Delay："
+                                                 + 100d * double.Parse((yearDelay / yearWorkload).ToString("0.000")) +
+                                                 "%";
+            }
+            else
+            {
+                chartPlan.Series[2].IsVisibleInLegend = false;
+            }
+            //--------------------次图--------------------
             //月度按人统计
             chartMonth.Series.Clear();
             chartMonth.ChartAreas[0].AxisY.Maximum = double.NaN;
             //重新设置轴最大值
             chartMonth.ChartAreas[0].RecalculateAxesScale();
             dataListMonth.Clear();
+
+            List<ChartData> userWorkloadChartDatas = objDrawingPlanService.GetAllWorkloadByUser(cobQueryYear.Text);
+            //--------------------人员月度工作量（次图）-------------------
             //循环所有人员
-            foreach (var userData in objDrawingPlanService.GetAllWorkloadByUser(cobQueryYear.Text))
+            foreach (var userData in userWorkloadChartDatas)
             {
-                dataListMonth = objDrawingPlanService.GetUserWorkloadByMonth(cobQueryYear.Text, userData.Text);
+                List<ChartData> monthlyWorkloadChartDatas= objDrawingPlanService.GetUserWorkloadByMonth(cobQueryYear.Text, userData.Text);
                 Series seriesMonth = new Series();
                 seriesMonth.ChartType = SeriesChartType.Column;
                 chartMonth.Series.Add(seriesMonth);
-                seriesMonth.LegendText = userData.Text + "(" + userData.Value + ")";
+                seriesMonth.LegendText = userData.Text + "(" + userData.Value + ")";//标签
+                seriesMonth.YAxisType = AxisType.Primary;
 
                 for (int i = 0; i <= 12; i++)
                 {
                     double value = 0;
-                    foreach (var item in dataListMonth)
+                    foreach (var item in monthlyWorkloadChartDatas)
                     {
                         if (Convert.ToInt32(item.Text) == i) value = item.Value;
                     }
@@ -357,9 +406,9 @@ namespace Compass
             chartMonth.ChartAreas[0].AxisY.Interval = 25;//也可以设置成20
             chartMonth.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
 
-            //Delay数据
+            //--------------------人员月度Delay（次图）-------------------
             //循环所有人员
-            foreach (var userData in objDrawingPlanService.GetAllWorkloadByUser(cobQueryYear.Text))
+            foreach (var userData in userWorkloadChartDatas)
             {
                 List<ChartData> delayChartDatas =
                     objDrawingPlanService.GetUserDelayByMonth(cobQueryYear.Text, userData.Text);
@@ -396,6 +445,11 @@ namespace Compass
             //chartMonth.ChartAreas[0].AxisY2.Interval = 5;
             chartMonth.ChartAreas[0].AxisY2.Minimum = 0;
             chartMonth.ChartAreas[0].AxisY2.Maximum = 50;
+
+           
+
+
+
         }
 
         //《C#中图表的使用》

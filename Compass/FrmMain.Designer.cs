@@ -62,6 +62,7 @@
             this.tsmiStatusTypes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.tsmiMonthlyQuery = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -298,18 +299,20 @@
             // tsmiQuery
             // 
             this.tsmiQuery.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiMonthlyQuery,
             this.tsmiDrawingPlanQuery});
             this.tsmiQuery.Image = global::Compass.Properties.Resources.Query;
             this.tsmiQuery.Name = "tsmiQuery";
             this.tsmiQuery.Size = new System.Drawing.Size(84, 21);
-            this.tsmiQuery.Text = "查询功能";
+            this.tsmiQuery.Text = "查询统计";
             // 
             // tsmiDrawingPlanQuery
             // 
             this.tsmiDrawingPlanQuery.Image = global::Compass.Properties.Resources.DrawingPlanQuery;
             this.tsmiDrawingPlanQuery.Name = "tsmiDrawingPlanQuery";
-            this.tsmiDrawingPlanQuery.Size = new System.Drawing.Size(148, 22);
-            this.tsmiDrawingPlanQuery.Text = "制图计划统计";
+            this.tsmiDrawingPlanQuery.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.tsmiDrawingPlanQuery.Size = new System.Drawing.Size(193, 22);
+            this.tsmiDrawingPlanQuery.Text = "制图统计(&D)";
             this.tsmiDrawingPlanQuery.Click += new System.EventHandler(this.tsmiDrawingPlanQuery_Click);
             // 
             // toolStripMenuItem3
@@ -411,6 +414,14 @@
             this.imageList1.Images.SetKeyName(13, "UsersManage.png");
             this.imageList1.Images.SetKeyName(14, "Workload.png");
             // 
+            // tsmiMonthlyQuery
+            // 
+            this.tsmiMonthlyQuery.Image = global::Compass.Properties.Resources.DrawingPlanQuery;
+            this.tsmiMonthlyQuery.Name = "tsmiMonthlyQuery";
+            this.tsmiMonthlyQuery.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.tsmiMonthlyQuery.Size = new System.Drawing.Size(193, 22);
+            this.tsmiMonthlyQuery.Text = "月度统计(&M)";
+            // 
             // FrmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -474,6 +485,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiDrawingPlanQuery;
         private System.Windows.Forms.Label lblCurrentSBU;
         private System.Windows.Forms.ToolStripMenuItem tsmiMarineAutoDrawing;
+        private System.Windows.Forms.ToolStripMenuItem tsmiMonthlyQuery;
     }
 }
 
