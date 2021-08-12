@@ -51,6 +51,7 @@
             this.tsmiMarineAutoDrawing = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQuery = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiMonthlyQuery = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDrawingPlanQuery = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSetting = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,7 +63,6 @@
             this.tsmiStatusTypes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.tsmiMonthlyQuery = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -306,6 +306,14 @@
             this.tsmiQuery.Size = new System.Drawing.Size(84, 21);
             this.tsmiQuery.Text = "查询统计";
             // 
+            // tsmiMonthlyQuery
+            // 
+            this.tsmiMonthlyQuery.Image = global::Compass.Properties.Resources.DrawingPlanQuery;
+            this.tsmiMonthlyQuery.Name = "tsmiMonthlyQuery";
+            this.tsmiMonthlyQuery.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.tsmiMonthlyQuery.Size = new System.Drawing.Size(193, 22);
+            this.tsmiMonthlyQuery.Text = "月度统计(&M)";
+            // 
             // tsmiDrawingPlanQuery
             // 
             this.tsmiDrawingPlanQuery.Image = global::Compass.Properties.Resources.DrawingPlanQuery;
@@ -413,14 +421,6 @@
             this.imageList1.Images.SetKeyName(12, "UpdateIcon.png");
             this.imageList1.Images.SetKeyName(13, "UsersManage.png");
             this.imageList1.Images.SetKeyName(14, "Workload.png");
-            // 
-            // tsmiMonthlyQuery
-            // 
-            this.tsmiMonthlyQuery.Image = global::Compass.Properties.Resources.DrawingPlanQuery;
-            this.tsmiMonthlyQuery.Name = "tsmiMonthlyQuery";
-            this.tsmiMonthlyQuery.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.tsmiMonthlyQuery.Size = new System.Drawing.Size(193, 22);
-            this.tsmiMonthlyQuery.Text = "月度统计(&M)";
             // 
             // FrmMain
             // 

@@ -159,7 +159,6 @@ namespace Compass
         }
         #endregion
 
-
         #region 项目管理菜单
         /// <summary>
         /// 添加计划
@@ -230,8 +229,6 @@ namespace Compass
         }
         #endregion
 
-
-
         /// <summary>
         /// 帮助文档链接
         /// </summary>
@@ -256,8 +253,6 @@ namespace Compass
             if (result != DialogResult.OK) e.Cancel = true;
         }
 
-
-
         #region SolidWorks自动绘图
         private void tsmiHoodAutoDrawing_Click(object sender, EventArgs e)
         {
@@ -271,6 +266,7 @@ namespace Compass
             objFrmCeilingAutoDrawing.Show();
         }
         #endregion
+
         /// <summary>
         /// 升级程序入口
         /// </summary>

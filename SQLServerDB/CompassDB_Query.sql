@@ -460,11 +460,18 @@ select * from ProjectStatus
 select count(*) from Projects where ShippingTime like'2021%' and month(ShippingTime)='8'
 --查询项目数量（年度）
 select count(*) from Projects where ShippingTime like'2021%'
---统计项目状态数量
+
+--统计项目状态数量（月度）
 select ProjectStatusName,count(ProjectStatusName) from ProjectTracking
 	inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId
 	inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId
 	where ShippingTime like'2021%' and month(ShippingTime)='7'
+	group by ProjectStatusName
+--统计项目状态数量（年度）
+select ProjectStatusName,count(ProjectStatusName) from ProjectTracking
+	inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId
+	inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId
+	where ShippingTime like'2021%'
 	group by ProjectStatusName
 
 select * from GeneralRequirements
@@ -489,9 +496,10 @@ select TypeName,count(TypeName) from GeneralRequirements
 select TypeName,count(TypeName) from GeneralRequirements
 	inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements.TypeId
 	inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId
-	where ShippingTime like'2021%'
+	where ShippingTime like'2021%' 
 	group by TypeName
 
+select * from ProjectTypes
 
 --统计销售额（月度）
 select sum(SalesValue) from FinancialData
@@ -517,3 +525,12 @@ where ShippingTime like '2021%'
 select sum(SalesValue) as TotalSalesValue from FinancialData 
 inner join Projects on FinancialData.ProjectId=Projects.ProjectId 
 where ShippingTime like '2020%'
+
+select count(*) from Projects where ShippingTime like'2021%' and month(ShippingTime)='8'
+
+select * from ProjectTracking
+select * from ProjectStatus
+select ODPNo from Projects
+	inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId
+	where ProjectStatusId between 1 and 4
+	order by ShippingTime desc

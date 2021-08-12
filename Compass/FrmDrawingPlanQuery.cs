@@ -21,8 +21,8 @@ namespace Compass
         private SuperChart superChartPlan = null;
         private SuperChart superChartPercent = null;
         private SuperChart superChartUserPercent = null;
-        private List<ChartData> dataList = new List<ChartData>();//用来保存数据的集合
-        private List<ChartData> dataListMonth = new List<ChartData>();//用来保存数据的集合
+        private List<ChartData> dataList = new List<ChartData>();//用来保存数据的集合（主图）
+        private List<ChartData> dataListMonth = new List<ChartData>();//用来保存数据的集合（次图）
         private SqlDataPager objSqlDataPager = null;
         public FrmDrawingPlanQuery()
         {
