@@ -146,14 +146,14 @@ namespace Compass
 
         private void QueryByYear()
         {
-            objSqlDataPager.Condition = string.Format("ShippingTime>='{0}/01/01' and ShippingTime<='{0}/12/31'", this.cobQueryYear.Text);
+            objSqlDataPager.Condition = string.Format(" ShippingTime like '{0}%'", this.cobQueryYear.Text);
             objSqlDataPager.PageSize = Convert.ToInt32(this.cobRecordList.Text.Trim());
             Query();
         }
 
         private void QureyAll()
         {
-            objSqlDataPager.Condition = "ShippingTime>='2020/01/01'";
+            objSqlDataPager.Condition = " ShippingTime>='2020/01/01'";
             objSqlDataPager.PageSize = 10000;
             Query();
         }
@@ -444,7 +444,7 @@ namespace Compass
                     case "InProduction":
                         dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(94, 223, 255);
                         break;
-                    case "ProductionCompleted":
+                    case "ProductCompleted":
                         dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 206, 209);
                         break;
                     case "ProjectCompleted":
@@ -491,7 +491,7 @@ namespace Compass
         private void btnQueryByUserId_Click(object sender, EventArgs e)
         {
             if (cobUserId.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("Projects{0}.UserId = {1} and ShippingTime>='{2}/01/01' and ShippingTime<='{2}/12/31'", sbu,cobUserId.SelectedValue.ToString(), this.cobQueryYear.Text);
+            objSqlDataPager.Condition = string.Format("Projects{0}.UserId = {1} and ShippingTime like '{2}%'", sbu,cobUserId.SelectedValue.ToString(), this.cobQueryYear.Text);
             objSqlDataPager.PageSize = 10000;
             Query();
         }

@@ -534,3 +534,6 @@ select ODPNo from Projects
 	inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId
 	where ProjectStatusId between 1 and 4
 	order by ShippingTime desc
+
+select ODPNo from Projects
+	where ShippingTime like'2021%' and month(ShippingTime) between 8 and 9

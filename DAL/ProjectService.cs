@@ -25,8 +25,6 @@ namespace DAL
             innerJoin.Append(string.Format(" left join GeneralRequirements{0} on Projects{0}.ProjectId=GeneralRequirements{0}.ProjectId", sbu));
             innerJoin.Append(string.Format(" left join FinancialData{0} on Projects{0}.ProjectId=FinancialData{0}.ProjectId", sbu));
             innerJoin.Append(string.Format(" left join ProjectTypes{0} on ProjectTypes{0}.TypeId=GeneralRequirements{0}.TypeId", sbu));
-            
-            
 
             //初始化分页对象
             SqlDataPager objSqlDataPager = new SqlDataPager()
@@ -41,9 +39,7 @@ namespace DAL
             };
             return objSqlDataPager;
         }
-
-
-
+        
 
         /// <summary>
         /// 根据烟罩类型返回项目集合
@@ -80,13 +76,14 @@ namespace DAL
         /// <returns></returns>
         public List<Project> GetProjectsByWhereSql(string whereSql, string sbu)
         {
-            StringBuilder sql = new StringBuilder(string.Format("select Projects{0}.ProjectId,ODPNo,BPONo,ProjectName,Projects{0}.CustomerId,CustomerName,ShippingTime,Projects{0}.UserId,UserAccount,RiskLevel,ProjectStatusName,HoodType,SalesValue from Projects{0}", sbu));
+            StringBuilder sql = new StringBuilder(string.Format("select Projects{0}.ProjectId,ODPNo,BPONo,ProjectName,Projects{0}.CustomerId,CustomerName,ShippingTime,Projects{0}.UserId,UserAccount,TypeName,RiskLevel,ProjectStatusName,HoodType,SalesValue from Projects{0}", sbu));
             sql.Append(string.Format(" inner join Users on Projects{0}.UserId=Users.UserId", sbu));
             sql.Append(string.Format(" inner join Customers on Projects{0}.CustomerId=Customers.CustomerId", sbu));
             sql.Append(string.Format(" inner join ProjectTracking{0} on Projects{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu));
             sql.Append(string.Format(" inner join ProjectStatus on ProjectTracking{0}.ProjectStatusId=ProjectStatus.ProjectStatusId", sbu));
             sql.Append(string.Format(" left join GeneralRequirements{0} on Projects{0}.ProjectId=GeneralRequirements{0}.ProjectId", sbu));
             sql.Append(string.Format(" left join FinancialData{0} on Projects{0}.ProjectId=FinancialData{0}.ProjectId", sbu));
+            sql.Append(string.Format(" left join ProjectTypes{0} on ProjectTypes{0}.TypeId=GeneralRequirements{0}.TypeId", sbu));
             sql.Append(whereSql);
             sql.Append(" order by ShippingTime desc");//按照发货日期，倒序排列
 
