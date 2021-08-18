@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
             this.grbProject = new System.Windows.Forms.GroupBox();
             this.txtProjectInfo = new System.Windows.Forms.TextBox();
@@ -224,7 +224,7 @@
             this.grbModuleStatistics.Controls.Add(this.dgvScope);
             this.grbModuleStatistics.Location = new System.Drawing.Point(310, 460);
             this.grbModuleStatistics.Name = "grbModuleStatistics";
-            this.grbModuleStatistics.Size = new System.Drawing.Size(348, 143);
+            this.grbModuleStatistics.Size = new System.Drawing.Size(470, 143);
             this.grbModuleStatistics.TabIndex = 5;
             this.grbModuleStatistics.TabStop = false;
             this.grbModuleStatistics.Text = "机型统计";
@@ -233,19 +233,19 @@
             // 
             this.dgvScope.AllowUserToAddRows = false;
             this.dgvScope.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
-            this.dgvScope.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Azure;
+            this.dgvScope.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvScope.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvScope.BackgroundColor = System.Drawing.Color.White;
             this.dgvScope.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvScope.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvScope.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvScope.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvScope.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvScope.EnableHeadersVisualStyles = false;
@@ -253,7 +253,7 @@
             this.dgvScope.Name = "dgvScope";
             this.dgvScope.ReadOnly = true;
             this.dgvScope.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvScope.Size = new System.Drawing.Size(342, 119);
+            this.dgvScope.Size = new System.Drawing.Size(464, 119);
             this.dgvScope.TabIndex = 0;
             this.dgvScope.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvScope_RowPostPaint);
             // 
@@ -285,7 +285,7 @@
             this.grbFinancialData.Controls.Add(this.lblSalesValue);
             this.grbFinancialData.Location = new System.Drawing.Point(310, 392);
             this.grbFinancialData.Name = "grbFinancialData";
-            this.grbFinancialData.Size = new System.Drawing.Size(348, 62);
+            this.grbFinancialData.Size = new System.Drawing.Size(470, 62);
             this.grbFinancialData.TabIndex = 1;
             this.grbFinancialData.TabStop = false;
             this.grbFinancialData.Text = "财务数据";
@@ -297,7 +297,7 @@
             this.btnFinancialData.FlatAppearance.BorderSize = 0;
             this.btnFinancialData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinancialData.ForeColor = System.Drawing.Color.White;
-            this.btnFinancialData.Location = new System.Drawing.Point(234, 23);
+            this.btnFinancialData.Location = new System.Drawing.Point(356, 23);
             this.btnFinancialData.Name = "btnFinancialData";
             this.btnFinancialData.Size = new System.Drawing.Size(108, 28);
             this.btnFinancialData.TabIndex = 1;
@@ -307,33 +307,33 @@
             // 
             // chartTracking
             // 
-            chartArea1.AxisX.IsLabelAutoFit = false;
-            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea1.AxisX.MajorGrid.Enabled = false;
-            chartArea1.AxisY.LabelStyle.Enabled = false;
-            chartArea1.AxisY.MajorGrid.Enabled = false;
-            chartArea1.AxisY.MajorTickMark.Enabled = false;
-            chartArea1.Name = "ChartArea1";
-            this.chartTracking.ChartAreas.Add(chartArea1);
+            chartArea5.AxisX.IsLabelAutoFit = false;
+            chartArea5.AxisX.LabelStyle.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea5.AxisX.MajorGrid.Enabled = false;
+            chartArea5.AxisY.LabelStyle.Enabled = false;
+            chartArea5.AxisY.MajorGrid.Enabled = false;
+            chartArea5.AxisY.MajorTickMark.Enabled = false;
+            chartArea5.Name = "ChartArea1";
+            this.chartTracking.ChartAreas.Add(chartArea5);
             this.chartTracking.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend1.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            legend1.ForeColor = System.Drawing.Color.Red;
-            legend1.IsTextAutoFit = false;
-            legend1.MaximumAutoSize = 100F;
-            legend1.Name = "Legend1";
-            legend1.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chartTracking.Legends.Add(legend1);
+            legend5.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend5.Font = new System.Drawing.Font("微软雅黑", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            legend5.ForeColor = System.Drawing.Color.Red;
+            legend5.IsTextAutoFit = false;
+            legend5.MaximumAutoSize = 100F;
+            legend5.Name = "Legend1";
+            legend5.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chartTracking.Legends.Add(legend5);
             this.chartTracking.Location = new System.Drawing.Point(3, 21);
             this.chartTracking.Name = "chartTracking";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
-            series1.IsValueShownAsLabel = true;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartTracking.Series.Add(series1);
-            this.chartTracking.Size = new System.Drawing.Size(341, 359);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar;
+            series5.IsValueShownAsLabel = true;
+            series5.IsVisibleInLegend = false;
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chartTracking.Series.Add(series5);
+            this.chartTracking.Size = new System.Drawing.Size(463, 359);
             this.chartTracking.TabIndex = 7;
             this.chartTracking.Text = "chart1";
             // 
@@ -344,7 +344,7 @@
             this.grbTracking.Controls.Add(this.chartTracking);
             this.grbTracking.Location = new System.Drawing.Point(311, 6);
             this.grbTracking.Name = "grbTracking";
-            this.grbTracking.Size = new System.Drawing.Size(347, 383);
+            this.grbTracking.Size = new System.Drawing.Size(469, 383);
             this.grbTracking.TabIndex = 8;
             this.grbTracking.TabStop = false;
             this.grbTracking.Text = "跟踪信息";
@@ -353,40 +353,40 @@
             // 
             this.grbProjectStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.grbProjectStatus.Controls.Add(this.chartProjectStatus);
-            this.grbProjectStatus.Location = new System.Drawing.Point(676, 87);
+            this.grbProjectStatus.Location = new System.Drawing.Point(798, 86);
             this.grbProjectStatus.Name = "grbProjectStatus";
-            this.grbProjectStatus.Size = new System.Drawing.Size(511, 201);
+            this.grbProjectStatus.Size = new System.Drawing.Size(400, 200);
             this.grbProjectStatus.TabIndex = 8;
             this.grbProjectStatus.TabStop = false;
             this.grbProjectStatus.Text = "项目状态分布--月";
             // 
             // chartProjectStatus
             // 
-            chartArea2.AxisX.IsLabelAutoFit = false;
-            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea2.AxisX.MajorGrid.Enabled = false;
-            chartArea2.AxisY.LabelStyle.Enabled = false;
-            chartArea2.AxisY.MajorGrid.Enabled = false;
-            chartArea2.AxisY.MajorTickMark.Enabled = false;
-            chartArea2.Name = "ChartArea1";
-            this.chartProjectStatus.ChartAreas.Add(chartArea2);
+            chartArea6.AxisX.IsLabelAutoFit = false;
+            chartArea6.AxisX.LabelStyle.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea6.AxisX.MajorGrid.Enabled = false;
+            chartArea6.AxisY.LabelStyle.Enabled = false;
+            chartArea6.AxisY.MajorGrid.Enabled = false;
+            chartArea6.AxisY.MajorTickMark.Enabled = false;
+            chartArea6.Name = "ChartArea1";
+            this.chartProjectStatus.ChartAreas.Add(chartArea6);
             this.chartProjectStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            legend2.IsTextAutoFit = false;
-            legend2.MaximumAutoSize = 100F;
-            legend2.Name = "Legend1";
-            legend2.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chartProjectStatus.Legends.Add(legend2);
+            legend6.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            legend6.IsTextAutoFit = false;
+            legend6.MaximumAutoSize = 100F;
+            legend6.Name = "Legend1";
+            legend6.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chartProjectStatus.Legends.Add(legend6);
             this.chartProjectStatus.Location = new System.Drawing.Point(3, 21);
             this.chartProjectStatus.Name = "chartProjectStatus";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.IsValueShownAsLabel = true;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chartProjectStatus.Series.Add(series2);
-            this.chartProjectStatus.Size = new System.Drawing.Size(505, 177);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series6.IsValueShownAsLabel = true;
+            series6.IsVisibleInLegend = false;
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chartProjectStatus.Series.Add(series6);
+            this.chartProjectStatus.Size = new System.Drawing.Size(394, 176);
             this.chartProjectStatus.TabIndex = 7;
             this.chartProjectStatus.Text = "chart1";
             // 
@@ -426,40 +426,40 @@
             // 
             this.grbRiskLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.grbRiskLevel.Controls.Add(this.chartRiskLevel);
-            this.grbRiskLevel.Location = new System.Drawing.Point(675, 294);
+            this.grbRiskLevel.Location = new System.Drawing.Point(798, 292);
             this.grbRiskLevel.Name = "grbRiskLevel";
-            this.grbRiskLevel.Size = new System.Drawing.Size(511, 195);
+            this.grbRiskLevel.Size = new System.Drawing.Size(400, 200);
             this.grbRiskLevel.TabIndex = 8;
             this.grbRiskLevel.TabStop = false;
             this.grbRiskLevel.Text = "风险等级分布--月";
             // 
             // chartRiskLevel
             // 
-            chartArea3.AxisX.IsLabelAutoFit = false;
-            chartArea3.AxisX.LabelStyle.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea3.AxisX.MajorGrid.Enabled = false;
-            chartArea3.AxisY.LabelStyle.Enabled = false;
-            chartArea3.AxisY.MajorGrid.Enabled = false;
-            chartArea3.AxisY.MajorTickMark.Enabled = false;
-            chartArea3.Name = "ChartArea1";
-            this.chartRiskLevel.ChartAreas.Add(chartArea3);
+            chartArea7.AxisX.IsLabelAutoFit = false;
+            chartArea7.AxisX.LabelStyle.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea7.AxisX.MajorGrid.Enabled = false;
+            chartArea7.AxisY.LabelStyle.Enabled = false;
+            chartArea7.AxisY.MajorGrid.Enabled = false;
+            chartArea7.AxisY.MajorTickMark.Enabled = false;
+            chartArea7.Name = "ChartArea1";
+            this.chartRiskLevel.ChartAreas.Add(chartArea7);
             this.chartRiskLevel.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            legend3.IsTextAutoFit = false;
-            legend3.MaximumAutoSize = 100F;
-            legend3.Name = "Legend1";
-            legend3.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chartRiskLevel.Legends.Add(legend3);
+            legend7.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            legend7.IsTextAutoFit = false;
+            legend7.MaximumAutoSize = 100F;
+            legend7.Name = "Legend1";
+            legend7.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chartRiskLevel.Legends.Add(legend7);
             this.chartRiskLevel.Location = new System.Drawing.Point(3, 21);
             this.chartRiskLevel.Name = "chartRiskLevel";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series3.IsValueShownAsLabel = true;
-            series3.IsVisibleInLegend = false;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chartRiskLevel.Series.Add(series3);
-            this.chartRiskLevel.Size = new System.Drawing.Size(505, 171);
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series7.IsValueShownAsLabel = true;
+            series7.IsVisibleInLegend = false;
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.chartRiskLevel.Series.Add(series7);
+            this.chartRiskLevel.Size = new System.Drawing.Size(394, 176);
             this.chartRiskLevel.TabIndex = 7;
             this.chartRiskLevel.Text = "chart1";
             // 
@@ -467,40 +467,40 @@
             // 
             this.grbProjectType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.grbProjectType.Controls.Add(this.chartProjectType);
-            this.grbProjectType.Location = new System.Drawing.Point(675, 495);
+            this.grbProjectType.Location = new System.Drawing.Point(798, 498);
             this.grbProjectType.Name = "grbProjectType";
-            this.grbProjectType.Size = new System.Drawing.Size(511, 195);
+            this.grbProjectType.Size = new System.Drawing.Size(400, 200);
             this.grbProjectType.TabIndex = 8;
             this.grbProjectType.TabStop = false;
             this.grbProjectType.Text = "项目类型分布--月";
             // 
             // chartProjectType
             // 
-            chartArea4.AxisX.IsLabelAutoFit = false;
-            chartArea4.AxisX.LabelStyle.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea4.AxisX.MajorGrid.Enabled = false;
-            chartArea4.AxisY.LabelStyle.Enabled = false;
-            chartArea4.AxisY.MajorGrid.Enabled = false;
-            chartArea4.AxisY.MajorTickMark.Enabled = false;
-            chartArea4.Name = "ChartArea1";
-            this.chartProjectType.ChartAreas.Add(chartArea4);
+            chartArea8.AxisX.IsLabelAutoFit = false;
+            chartArea8.AxisX.LabelStyle.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea8.AxisX.MajorGrid.Enabled = false;
+            chartArea8.AxisY.LabelStyle.Enabled = false;
+            chartArea8.AxisY.MajorGrid.Enabled = false;
+            chartArea8.AxisY.MajorTickMark.Enabled = false;
+            chartArea8.Name = "ChartArea1";
+            this.chartProjectType.ChartAreas.Add(chartArea8);
             this.chartProjectType.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            legend4.IsTextAutoFit = false;
-            legend4.MaximumAutoSize = 100F;
-            legend4.Name = "Legend1";
-            legend4.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chartProjectType.Legends.Add(legend4);
+            legend8.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            legend8.IsTextAutoFit = false;
+            legend8.MaximumAutoSize = 100F;
+            legend8.Name = "Legend1";
+            legend8.TitleFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chartProjectType.Legends.Add(legend8);
             this.chartProjectType.Location = new System.Drawing.Point(3, 21);
             this.chartProjectType.Name = "chartProjectType";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series4.IsValueShownAsLabel = true;
-            series4.IsVisibleInLegend = false;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chartProjectType.Series.Add(series4);
-            this.chartProjectType.Size = new System.Drawing.Size(505, 171);
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series8.IsValueShownAsLabel = true;
+            series8.IsVisibleInLegend = false;
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.chartProjectType.Series.Add(series8);
+            this.chartProjectType.Size = new System.Drawing.Size(394, 176);
             this.chartProjectType.TabIndex = 7;
             this.chartProjectType.Text = "chart1";
             // 
@@ -550,7 +550,7 @@
             this.tabControl.Location = new System.Drawing.Point(1, 53);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(672, 644);
+            this.tabControl.Size = new System.Drawing.Size(794, 644);
             this.tabControl.TabIndex = 11;
             // 
             // tpgProjectInfo
@@ -564,7 +564,7 @@
             this.tpgProjectInfo.Location = new System.Drawing.Point(4, 28);
             this.tpgProjectInfo.Name = "tpgProjectInfo";
             this.tpgProjectInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgProjectInfo.Size = new System.Drawing.Size(664, 612);
+            this.tpgProjectInfo.Size = new System.Drawing.Size(786, 612);
             this.tpgProjectInfo.TabIndex = 0;
             this.tpgProjectInfo.Text = "详细信息";
             this.tpgProjectInfo.UseVisualStyleBackColor = true;
@@ -575,7 +575,7 @@
             this.tpgProjectList.Location = new System.Drawing.Point(4, 28);
             this.tpgProjectList.Name = "tpgProjectList";
             this.tpgProjectList.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgProjectList.Size = new System.Drawing.Size(664, 612);
+            this.tpgProjectList.Size = new System.Drawing.Size(786, 612);
             this.tpgProjectList.TabIndex = 1;
             this.tpgProjectList.Text = "项目列表";
             this.tpgProjectList.UseVisualStyleBackColor = true;
@@ -584,19 +584,19 @@
             // 
             this.dgvProjects.AllowUserToAddRows = false;
             this.dgvProjects.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Azure;
-            this.dgvProjects.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Azure;
+            this.dgvProjects.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvProjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvProjects.BackgroundColor = System.Drawing.Color.White;
             this.dgvProjects.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvProjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProjects.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.UserAccount,
@@ -616,7 +616,7 @@
             this.dgvProjects.Name = "dgvProjects";
             this.dgvProjects.ReadOnly = true;
             this.dgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProjects.Size = new System.Drawing.Size(658, 606);
+            this.dgvProjects.Size = new System.Drawing.Size(780, 606);
             this.dgvProjects.TabIndex = 36;
             this.dgvProjects.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjects_RowPostPaint);
             // 
@@ -716,10 +716,10 @@
             // SalesValue
             // 
             this.SalesValue.DataPropertyName = "SalesValue";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "C0";
-            dataGridViewCellStyle5.NullValue = null;
-            this.SalesValue.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "C0";
+            dataGridViewCellStyle10.NullValue = null;
+            this.SalesValue.DefaultCellStyle = dataGridViewCellStyle10;
             this.SalesValue.HeaderText = "销售额(元)";
             this.SalesValue.Name = "SalesValue";
             this.SalesValue.ReadOnly = true;
@@ -753,6 +753,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FrmProjectInfo";
             this.Text = "项目信息";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.grbProject.ResumeLayout(false);
             this.grbProject.PerformLayout();
             this.grbGeneralRequirements.ResumeLayout(false);
