@@ -204,9 +204,9 @@ namespace Compass
                 drReleaseActual = (DateTime)this.dgvDrawingPlan.Rows[e.RowIndex].Cells["DrReleaseActual"].Value;//单元格不为空则赋值
                 DateTime drReleaseTarget = (DateTime)this.dgvDrawingPlan.Rows[e.RowIndex].Cells["DrReleaseTarget"].Value;
                 if (drReleaseActual.ToString("MM/dd/yyyy") == "01/01/0001")
-                    dgvDrawingPlan.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 182, 193);
+                    dgvDrawingPlan.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
                 if (DateTime.Compare(drReleaseActual, drReleaseTarget) > 0)
-                    dgvDrawingPlan.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 0);
+                    dgvDrawingPlan.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
             }
         }
         /// <summary>

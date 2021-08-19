@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace Compass
         private ProjectStatusService objProjectStatusService = new ProjectStatusService();
         private ProjectService objProjectService = new ProjectService();
         private string sbu = Program.ObjCurrentUser.SBU;
-
+        private KeyValuePair pair = new KeyValuePair();
         public FrmProjectTracking()
         {
             InitializeComponent();
@@ -46,9 +47,9 @@ namespace Compass
             this.btnPre.Enabled = false;
             this.btnNext.Enabled = false;
             this.btnLast.Enabled = false;
-            
+
             //分页查询
-            objSqlDataPager= objProjectTrackingService.GetSqlDataPager(sbu);
+            objSqlDataPager = objProjectTrackingService.GetSqlDataPager(sbu);
 
             btnQueryByYear_Click(null, null);
 
@@ -168,26 +169,7 @@ namespace Compass
             if (e.RowIndex > -1)
             {
                 string projectStatus = this.dgvProjectTracking.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
-                switch (projectStatus)
-                {
-                    case "DrawingMaking":
-                        dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(178, 252, 255);
-                        break;
-                    case "InProduction":
-                        dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(94, 223, 255);
-                        break;
-                    case "ProductCompleted":
-                        dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 206, 209);
-                        break;
-                    case "ProjectCompleted":
-                        dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(95, 158, 160);
-                        break;
-                    case "Pending":
-                        dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 0, 0);
-                        break;
-                    default:
-                        break;
-                }
+                dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectStatusColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
             }
         }
         /// <summary>
@@ -246,7 +228,7 @@ namespace Compass
         private void btnQueryByProjectStatus_Click(object sender, EventArgs e)
         {
             if (cobProjectStatus.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("ProjectTracking{0}.ProjectStatusId = {1}", sbu,cobProjectStatus.SelectedValue.ToString());
+            objSqlDataPager.Condition = string.Format("ProjectTracking{0}.ProjectStatusId = {1}", sbu, cobProjectStatus.SelectedValue.ToString());
             objSqlDataPager.PageSize = 10000;
             Query();
         }
@@ -267,7 +249,7 @@ namespace Compass
         private void btnQueryByProjectId_Click(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("ProjectTracking{0}.ProjectId = {1}",sbu, cobODPNo.SelectedValue.ToString());
+            objSqlDataPager.Condition = string.Format("ProjectTracking{0}.ProjectId = {1}", sbu, cobODPNo.SelectedValue.ToString());
             objSqlDataPager.PageSize = 10000;
             Query();
         }
@@ -325,13 +307,9 @@ namespace Compass
             txtEditProjectTrackingId.Text = objProjectTracking.ProjectTrackingId.ToString();
             IniODPNo(cobEditODPNo);
             IniProjectStatus(cobEditProjectStatus);
-            cobEditKickOffStatus.Items.Clear();
-            cobEditKickOffStatus.Items.Add("Yes");
-            cobEditKickOffStatus.Items.Add("No");
-
+           
             cobEditODPNo.Text = objProjectTracking.ODPNo;
             cobEditProjectStatus.Text = objProjectTracking.ProjectStatusName;
-            cobEditKickOffStatus.Text = objProjectTracking.KickOffStatus;
 
             //断开事件委托
             this.dtpEditDrReleaseActual.ValueChanged -= new System.EventHandler(this.dtpEditDrReleaseActual_ValueChanged);
@@ -381,12 +359,7 @@ namespace Compass
                 cobEditODPNo.Focus();
                 return;
             }
-            if (cobEditKickOffStatus.SelectedIndex == -1)
-            {
-                MessageBox.Show("请选择Kick-Off状态", "验证信息");
-                cobEditKickOffStatus.Focus();
-                return;
-            }
+            
             //验证日期顺序的正确性
             if (dtpEditDrReleaseActual.Value.ToString("MM/dd/yyyy") != "01/01/2020" && dtpEditProdFinishActual.Value.ToString("MM/dd/yyyy") != "01/01/2020" && DateTime.Compare(dtpEditDrReleaseActual.Value, dtpEditProdFinishActual.Value) > 0)
             {
@@ -406,7 +379,6 @@ namespace Compass
                 ProjectTrackingId = Convert.ToInt32(txtEditProjectTrackingId.Text.Trim()),
                 ProjectId = Convert.ToInt32(cobEditODPNo.SelectedValue),
                 ProjectStatusId = Convert.ToInt32(cobEditProjectStatus.SelectedValue),
-                KickOffStatus = cobEditKickOffStatus.Text,
                 DrReleaseActual = Convert.ToDateTime(dtpEditDrReleaseActual.Text) == Convert.ToDateTime("1/1/2020") ? DateTime.MinValue : Convert.ToDateTime(dtpEditDrReleaseActual.Text),
                 ProdFinishActual = Convert.ToDateTime(dtpEditProdFinishActual.Text) == Convert.ToDateTime("1/1/2020") ? DateTime.MinValue : Convert.ToDateTime(dtpEditProdFinishActual.Text),
                 DeliverActual = Convert.ToDateTime(dtpEditDeliverActual.Text) == Convert.ToDateTime("1/1/2020") ? DateTime.MinValue : Convert.ToDateTime(dtpEditDeliverActual.Text),

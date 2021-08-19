@@ -48,11 +48,13 @@ namespace Compass
                 if (chartType == SeriesChartType.Pie)
                 {
                     //饼形图
+                    series1.XValueType = ChartValueType.String;
                     //series1.Points[i].Label = "#AXISLABEL(#VAL)";//设置标签显示的内容=X轴内容+value
                     //series1.Points[i].Label = "#AXISLABEL(#PERCENT)";//设置标签显示的内容=X轴内容+百分比
                     //series1.Points[i].Label = "#AXISLABEL (#VAL) (#PERCENT)";//设置标签显示的内容=X轴内容+value+百分比
                     //series1.Points[i].Label = "#AXISLABEL";//设置标签显示的内容=X轴内容+value+百分比
                     series1.Points[i].Label = "#VAL (#PERCENT)";//设置标签显示的内容=X轴内容+value+百分比
+
                     //series1["PieLabelStyle"] = "Outside";//在外侧显示label，参考官方文档设置
                     //series1["PieLabelStyle"] = "Inside";//在内侧显示label，默认
                     //series1["PieLineColor"] = "Black";//绘制连线，label在外面时，连接到饼形图上

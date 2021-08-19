@@ -18,7 +18,7 @@ namespace Compass
         private ProjectStatusService objProjectStatusService =new ProjectStatusService();
         private ProjectTypeService objProjectTypeService=new ProjectTypeService();
         private string sbu = Program.ObjCurrentUser.SBU;//当前事业部
-
+        private KeyValuePair pair=new KeyValuePair();
         public FrmStatusTypes()
         {
             InitializeComponent();
@@ -41,10 +41,20 @@ namespace Compass
         private void dgvProjectStatus_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvProjectStatus, e);
+            if (e.RowIndex > -1)
+            {
+                string projectStatus = this.dgvProjectStatus.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
+                dgvProjectStatus.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectStatusColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
+            }
         }
         private void dgvProjectTypes_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvProjectTypes, e);
+            if (e.RowIndex > -1)
+            {
+                string projectStatus = this.dgvProjectTypes.Rows[e.RowIndex].Cells["TypeName"].Value.ToString();
+                dgvProjectTypes.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectTypeColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
+            }
         }
 
         #region 文本框按回车键

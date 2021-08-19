@@ -21,6 +21,7 @@ namespace Compass
         private UserService objUserService = new UserService();
         private ProjectService objProjectService = new ProjectService();
         private string projectId = string.Empty;
+        KeyValuePair pair=new KeyValuePair();
         //创建委托变量
         public ShowModelTreeDelegate ShowModelTreeDeg = null;
         private string sbu = Program.ObjCurrentUser.SBU;//当前事业部
@@ -436,26 +437,7 @@ namespace Compass
             if (e.RowIndex > -1)
             {
                 string projectStatus = this.dgvProjects.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
-                switch (projectStatus)
-                {
-                    case "DrawingMaking":
-                        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(178, 252, 255);
-                        break;
-                    case "InProduction":
-                        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(94, 223, 255);
-                        break;
-                    case "ProductCompleted":
-                        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 206, 209);
-                        break;
-                    case "ProjectCompleted":
-                        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(95, 158, 160);
-                        break;
-                    case "Pending":
-                        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 0, 0);
-                        break;
-                    default:
-                        break;
-                }
+                dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor =pair.ProjectStatusColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
             }
         }
 

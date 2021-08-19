@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,6 +7,8 @@ using Common;
 using DAL;
 using System.Windows.Forms.DataVisualization.Charting;
 using Models;
+using System.Data;
+
 
 namespace Compass
 {
@@ -23,6 +24,7 @@ namespace Compass
         private List<string> odpNoList = new List<string>();
         private int scrollNum;
         private DateTime scrollStart;
+        private KeyValuePair pair=new KeyValuePair();
         public FrmProjectInfo()
         {
             InitializeComponent();
@@ -38,9 +40,9 @@ namespace Compass
             int currentMonth = DateTime.Now.Month;
             for (int i = 0; i < 12; i++)
             {
-                cobMonth.Items.Add(i+1);
+                cobMonth.Items.Add(i + 1);
             }
-            cobMonth.SelectedIndex = currentMonth-1;//默认定位当前月份
+            cobMonth.SelectedIndex = currentMonth - 1;//默认定位当前月份
             this.cobYear.SelectedIndexChanged += new System.EventHandler(this.cobYear_SelectedIndexChanged);
             this.cobMonth.SelectedIndexChanged += new System.EventHandler(this.cobMonth_SelectedIndexChanged);
             ReportMonthly();//初始化月度统计数据
@@ -55,16 +57,18 @@ namespace Compass
 
             //初始化项目列表
             dgvProjects.AutoGenerateColumns = false;
-            dgvProjects.DataSource = objMonthlyReportService.GetDisplayProjects(sbu);
+            DataTable dt = objMonthlyReportService.GetDisplayProjects(sbu);
+
+            dgvProjects.DataSource = AddChinese(dt);
             tabControl.SelectTab(1);//选中第二张tab选项卡
 
             //开启计时器
             timerScroll.Enabled = true;
             odpNoList = objMonthlyReportService.GetScrollODPNoList();//获取循环ODP列表
             scrollNum = odpNoList.Count;
-            scrollStart=DateTime.Now;
+            scrollStart = DateTime.Now;
             lblTime.Text = DateTime.Now.ToString("yyyy年MM月dd日 hh:mm:ss");
-            cobODPNo.Text = odpNoList[odpNoList.Count-1];
+            cobODPNo.Text = odpNoList[odpNoList.Count - 1];
             cobODPNo.SelectAll();
         }
 
@@ -75,7 +79,7 @@ namespace Compass
             InitData();//初始化项目数据
             this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.cobODPNo_SelectedIndexChanged);
             cobODPNo.Focus();
-            
+
         }
         /// <summary>
         /// 设置权限
@@ -86,12 +90,12 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
             {
                 grbFinancialData.Visible = true;
-                this.dgvProjects.Columns["SalesValue"].Visible = true;
+                //this.dgvProjects.Columns["SalesValue"].Visible = true;
             }
             else
             {
                 grbFinancialData.Visible = false;
-                this.dgvProjects.Columns["SalesValue"].Visible = false;
+                //this.dgvProjects.Columns["SalesValue"].Visible = false;
             }
         }
 
@@ -206,10 +210,10 @@ namespace Compass
         private void timerScroll_Tick(object sender, EventArgs e)
         {
             //DateTime scrollEnd = scrollStart.AddSeconds(odpNoList.Count*2);//调试
-            DateTime scrollEnd = scrollStart.AddMinutes(odpNoList.Count*2);
+            DateTime scrollEnd = scrollStart.AddMinutes(odpNoList.Count * 2);
             if (DateTime.Now < scrollEnd)
             {
-                if (DateTime.Now.Minute%2==0)
+                if (DateTime.Now.Minute % 2 == 0)
                 {
                     tabControl.SelectTab(0);
                     if (scrollNum == 0) scrollNum = odpNoList.Count;
@@ -237,7 +241,7 @@ namespace Compass
         /// <param name="e"></param>
         private void btnScroll_Click(object sender, EventArgs e)
         {
-            if (btnScroll.Text=="暂停循环")
+            if (btnScroll.Text == "暂停循环")
             {
                 timerScroll.Enabled = false;
                 btnScroll.Text = "开始循环";
@@ -255,7 +259,7 @@ namespace Compass
         /// <param name="e"></param>
         private void btnSwitch_Click(object sender, EventArgs e)
         {
-            if (btnSwitch.Text== "按月")
+            if (btnSwitch.Text == "按月")
             {
                 btnSwitch.Text = "按年";
                 ReportYearly();
@@ -272,6 +276,30 @@ namespace Compass
                 grbProjectType.Text = "项目类型分布--月";
             }
         }
+        /// <summary>
+        /// 项目状态，烟罩类型内容需要中英文
+        /// </summary>
+        /// <param name="dt"></param>
+        private DataTable AddChinese(DataTable table)
+        {
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                //获取原来每行ProjectStatusName数据
+                string oldStatus = table.Rows[i]["ProjectStatusName"].ToString();
+                string newStatus = pair.ProjectStatusNameKeyValue.Where(q => q.Key == oldStatus).First().Value;
+                //给当前行的地ProjectStatusName赋值
+                table.Rows[i]["ProjectStatusName"] = newStatus;
+                //获取原来每行ProjectStatusName数据
+                string oldHood = table.Rows[i]["HoodType"].ToString();
+                string newHood = pair.HoodTypeKeyValue.Where(q => q.Key == oldHood).First().Value;
+                //给当前行的地ProjectStatusName赋值
+                table.Rows[i]["HoodType"] = newHood;
+
+
+            }
+            return table;
+        }
+        
 
         #endregion 其他操作
 
@@ -442,23 +470,30 @@ namespace Compass
             //seriesTracking.Points.AddXY("Kick-Off: " + dateKickOff.ToShortDateString(), daysKickOff);
             //seriesTracking.Points.AddXY("ODPRcv: " + dateODPRecv.ToShortDateString(), 0);
 
-            seriesTracking.Points.AddXY("实际发货: " + dateDeliver.ToShortDateString(), daysDeliver);
-            seriesTracking.Points.AddXY("实际完工: " + datePrdFish.ToShortDateString(), daysPrdFish);
-            seriesTracking.Points.AddXY("计划完工: " + dateShiping.ToShortDateString(), daysShiping);
-            seriesTracking.Points.AddXY("实际发图: " + dateDrwRels.ToShortDateString(), daysDrwRels);
-            seriesTracking.Points.AddXY("计划发图: " + dateDrwPlan.ToShortDateString(), daysDrwPlan);
-            seriesTracking.Points.AddXY("开工会议: " + dateKickOff.ToShortDateString(), daysKickOff);
-            seriesTracking.Points.AddXY("接收项目: " + dateODPRecv.ToShortDateString(), 0);
+            seriesTracking.Points.AddXY("实际发货/Deliver: " + dateDeliver.ToShortDateString(), daysDeliver);
+            seriesTracking.Points.AddXY("实际完工/PrdFish: " + datePrdFish.ToShortDateString(), daysPrdFish);
+            seriesTracking.Points.AddXY("计划完工/PrdPlan: " + dateShiping.ToShortDateString(), daysShiping);
+            seriesTracking.Points.AddXY("实际发图/DrwRels: " + dateDrwRels.ToShortDateString(), daysDrwRels);
+            seriesTracking.Points.AddXY("计划发图/DrwPlan: " + dateDrwPlan.ToShortDateString(), daysDrwPlan);
+            seriesTracking.Points.AddXY("开工会议/Kick-Off: " + dateKickOff.ToShortDateString(), daysKickOff);
+            seriesTracking.Points.AddXY("收到ODP/ODPRcv: " + dateODPRecv.ToShortDateString(), 0);
 
+            seriesTracking.Points[0].Color = Color.LimeGreen;//项目完成
+            seriesTracking.Points[1].Color = Color.GreenYellow;//实际完工
             seriesTracking.Points[2].Color = Color.Silver;//计划完工
+            seriesTracking.Points[3].Color = Color.DeepSkyBlue;//实际发图
             seriesTracking.Points[4].Color = Color.Silver;//计划发图
+            seriesTracking.Points[5].Color = Color.LightSkyBlue;//开工会议
+
+
             if (daysPrdFish > daysShiping) seriesTracking.Points[1].Color = Color.Red;//实际完工
             if (daysDrwRels > daysDrwPlan) seriesTracking.Points[3].Color = Color.Red;//实际发图
 
             seriesTracking.IsValueShownAsLabel = true;//显示数字
             seriesTracking.IsVisibleInLegend = true;
             //seriesTracking.LegendText = "ProjectStatus: " + projectTracking.ProjectStatusName + " Unit:Days";
-            seriesTracking.LegendText = "项目状态: " + projectTracking.ProjectStatusName + " 单位:天";
+            seriesTracking.LegendText = "项目状态: " + pair.ProjectStatusNameKeyValue.Where(q => q.Key == projectTracking.ProjectStatusName).First().Value + " 单位:天";
+
 
             int[] nums = { daysDeliver, daysPrdFish, daysShiping, daysDrwRels, daysDrwPlan, daysKickOff };
             chartTracking.ChartAreas[0].AxisY.Maximum = nums.Max();
@@ -474,19 +509,35 @@ namespace Compass
         private void ReportMonthly()
         {
             //统计区间项目总数：
-            lblProjectNum.Text = "统计区间项目总数："+ objMonthlyReportService.GetProjectNum(cobYear.Text, cobMonth.Text);
+            lblProjectNum.Text = "统计区间项目总数：" + objMonthlyReportService.GetProjectNum(cobYear.Text, cobMonth.Text);
             //ProjectStatus
-            List<ChartData> chartProjectStatusDatas=objMonthlyReportService.GetProjectStatus(cobYear.Text,cobMonth.Text);
-            SuperChart superChartProjectStatus=new SuperChart(chartProjectStatus);
-            superChartProjectStatus.ShowChart(SeriesChartType.Pie,chartProjectStatusDatas);
+            List<ChartData> chartProjectStatusDatas = objMonthlyReportService.GetProjectStatus(cobYear.Text, cobMonth.Text);
+            SuperChart superChartProjectStatus = new SuperChart(chartProjectStatus);
+            superChartProjectStatus.ShowChart(SeriesChartType.Pie, chartProjectStatusDatas);
+            for (int i = 0; i < chartProjectStatus.Series[0].Points.Count; i++)
+            {
+                string text = chartProjectStatusDatas[i].Text;
+                chartProjectStatus.Series[0].Points[i].Color = pair.ProjectStatusColorKeyValue.Where(q => q.Key == text).First().Value;
+            }
             //RiskLevel
             List<ChartData> chartRiskLevelDatas = objMonthlyReportService.GetRiskLevel(cobYear.Text, cobMonth.Text);
             SuperChart superChartRiskLevel = new SuperChart(chartRiskLevel);
             superChartRiskLevel.ShowChart(SeriesChartType.Pie, chartRiskLevelDatas);
+            for (int i = 0; i < chartRiskLevel.Series[0].Points.Count; i++)
+            {
+                string text = chartRiskLevelDatas[i].Text;
+                chartRiskLevel.Series[0].Points[i].Color = pair.RislLevelColorKeyValue.Where(q => q.Key ==text).First().Value;
+            }
+
             //ProjectType
             List<ChartData> chartProjectTypeDatas = objMonthlyReportService.GetProjectType(cobYear.Text, cobMonth.Text);
             SuperChart superChartProjectType = new SuperChart(chartProjectType);
             superChartProjectType.ShowChart(SeriesChartType.Pie, chartProjectTypeDatas);
+            for (int i = 0; i < chartProjectType.Series[0].Points.Count; i++)
+            {
+                string text = chartProjectTypeDatas[i].Text;
+                chartProjectType.Series[0].Points[i].Color = pair.ProjectTypeColorKeyValue.Where(q => q.Key == text).First().Value;
+            }
         }
 
         private void ReportYearly()
@@ -501,17 +552,32 @@ namespace Compass
             List<ChartData> chartRiskLevelDatas = objMonthlyReportService.GetRiskLevel(cobYear.Text);
             SuperChart superChartRiskLevel = new SuperChart(chartRiskLevel);
             superChartRiskLevel.ShowChart(SeriesChartType.Pie, chartRiskLevelDatas);
+            for (int i = 0; i < chartRiskLevel.Series[0].Points.Count; i++)
+            {
+                string text = chartRiskLevelDatas[i].Text;
+                chartRiskLevel.Series[0].Points[i].Color = pair.RislLevelColorKeyValue.Where(q => q.Key == text).First().Value;
+            }
+
             //ProjectType
             List<ChartData> chartProjectTypeDatas = objMonthlyReportService.GetProjectType(cobYear.Text);
             SuperChart superChartProjectType = new SuperChart(chartProjectType);
             superChartProjectType.ShowChart(SeriesChartType.Pie, chartProjectTypeDatas);
+            for (int i = 0; i < chartProjectType.Series[0].Points.Count; i++)
+            {
+                string text = chartProjectTypeDatas[i].Text;
+                chartProjectType.Series[0].Points[i].Color = pair.ProjectTypeColorKeyValue.Where(q => q.Key == text).First().Value;
+            }
         }
+
+        
+        
+
 
 
         #endregion 月度和年度统计
 
         #region 项目列表
-        
+
 
         /// <summary>
         /// 显示行号
@@ -532,26 +598,7 @@ namespace Compass
             if (e.RowIndex > -1)
             {
                 string projectStatus = this.dgvProjects.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
-                switch (projectStatus)
-                {
-                    case "DrawingMaking":
-                        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(178, 252, 255);
-                        break;
-                    case "InProduction":
-                        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(94, 223, 255);
-                        break;
-                    case "ProductCompleted":
-                        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(0, 206, 209);
-                        break;
-                    case "ProjectCompleted":
-                        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(95, 158, 160);
-                        break;
-                    case "Pending":
-                        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(255, 0, 0);
-                        break;
-                    default:
-                        break;
-                }
+                dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectStatusChineseColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
             }
         }
 
