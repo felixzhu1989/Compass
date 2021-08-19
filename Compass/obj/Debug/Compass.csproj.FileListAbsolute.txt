@@ -146,13 +146,6 @@ E:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
 E:\Compass\Compass\obj\Debug\Compass.exe
 E:\Compass\Compass\obj\Debug\Compass.pdb
 E:\Compass\Compass\obj\Debug\Compass.FrmCH610.resources
-E:\Compass\Compass\bin\Debug\Spire.License.dll
-E:\Compass\Compass\bin\Debug\Spire.Pdf.dll
-E:\Compass\Compass\bin\Debug\Spire.XLS.dll
-E:\Compass\Compass\bin\Debug\Microsoft.mshtml.dll
-E:\Compass\Compass\bin\Debug\Spire.License.xml
-E:\Compass\Compass\bin\Debug\Spire.Pdf.xml
-E:\Compass\Compass\bin\Debug\Spire.XLS.xml
 E:\Compass\Compass\obj\Debug\Compass.FrmHWUWF555.resources
 D:\Compass\Compass\bin\Debug\Compass.exe.config
 D:\Compass\Compass\bin\Debug\Compass.exe
@@ -310,3 +303,5 @@ D:\Compass\Compass\obj\Debug\Compass.csproj.CoreCompileInputs.cache
 D:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
 D:\Compass\Compass\obj\Debug\Compass.exe
 D:\Compass\Compass\obj\Debug\Compass.pdb
+E:\Compass\Compass\bin\Debug\eDrawings.Interop.EModelViewControl.dll
+E:\Compass\Compass\obj\Debug\Compass.FrmModelView.resources

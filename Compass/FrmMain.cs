@@ -368,8 +368,12 @@ namespace Compass
             FrmCeilingAutoDrawing objFrmCeilingAutoDrawing = new FrmCeilingAutoDrawing();
             objFrmCeilingAutoDrawing.Show();
         }
+
         #endregion  SolidWorks自动绘图
-        
-        
+
+        private void tsmiMonthlyQuery_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

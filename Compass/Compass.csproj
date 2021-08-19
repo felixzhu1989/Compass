@@ -10,7 +10,7 @@
     <AssemblyName>Compass</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -53,7 +55,15 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>compass_64px.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="eDrawings.Interop.EModelViewControl, Version=29.0.0.5024, Culture=neutral, PublicKeyToken=4ef2927eea4906f6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>C:\Program Files\SOLIDWORKS2021 Corp\eDrawings\eDrawings.Interop.EModelViewControl.dll</HintPath>
+    </Reference>
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
     </Reference>
@@ -71,15 +81,6 @@
     <Reference Include="SolidWorks.Interop.swconst, Version=27.3.0.52, Culture=neutral, PublicKeyToken=19f43e188e4269d8, processorArchitecture=MSIL">
       <HintPath>..\packages\SolidWorks.Interop.swconst.27.3.0\lib\SolidWorks.Interop.swconst.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Spire.License, Version=1.3.15.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spire.XLS.11.6.1\lib\net40\Spire.License.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.Pdf, Version=7.6.0.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spire.XLS.11.6.1\lib\net40\Spire.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="Spire.XLS, Version=11.6.0.0, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spire.XLS.11.6.1\lib\net40\Spire.XLS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -144,11 +145,24 @@
     <Compile Include="CeilingForm\FrmLFUMC250SUSDXF.Designer.cs">
       <DependentUpon>FrmLFUMC250SUSDXF.cs</DependentUpon>
     </Compile>
+    <Compile Include="EDrawingsHost.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EDrawingsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EDrawingsUserControl.Designer.cs" />
     <Compile Include="FrmCH610.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmCH610.Designer.cs">
       <DependentUpon>FrmCH610.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmModelView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmModelView.Designer.cs">
+      <DependentUpon>FrmModelView.cs</DependentUpon>
     </Compile>
     <Compile Include="HoodForm\FrmHWUWF555.cs">
       <SubType>Form</SubType>
@@ -995,6 +1009,9 @@
     <EmbeddedResource Include="CeilingForm\FrmNOCJ330.resx">
       <DependentUpon>FrmNOCJ330.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmModelView.resx">
+      <DependentUpon>FrmModelView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmHWUWF555.resx">
       <DependentUpon>FrmHWUWF555.cs</DependentUpon>
     </EmbeddedResource>
@@ -1287,6 +1304,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="compass_64px.ico" />
     <Content Include="images\Categories.png" />
     <Content Include="images\Category.png" />
     <Content Include="images\CategoryItem.png" />
@@ -1319,6 +1337,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MarineForm\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

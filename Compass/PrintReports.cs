@@ -13,7 +13,6 @@ using Microsoft.Office.Interop.Excel;
 using Models;
 using Models.Model;
 using Drawing = Models.Drawing;
-using Spire.Xls;
 
 namespace Compass
 {
@@ -456,14 +455,6 @@ namespace Compass
             //excelApp.Sheets.PrintPreview(true);
             //打印
             workSheet.PrintOutEx();
-
-            ////先保存为xlsx
-            //workSheet.SaveAs(Environment.CurrentDirectory + "\\CutListTemp.xlsx");
-            ////保存为PDF,有水印，修改去水印后使用
-            //Spire.Xls.Workbook workbook = new Spire.Xls.Workbook();
-            //workbook.LoadFromFile(Environment.CurrentDirectory + "\\CutListTemp.xlsx");
-            //Spire.Xls.Worksheet workSheet2 = workbook.Worksheets[0];
-            //workSheet2.SaveToPdf(Environment.CurrentDirectory + "\\CutListTemp.pdf", Spire.Xls.FileFormat.PDF);
 
             KillProcess(excelApp);
             excelApp = null;//对象置空
