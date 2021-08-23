@@ -98,7 +98,7 @@
             this.cobMARVEL = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
             this.btnEditData = new System.Windows.Forms.Button();
-            this.modelView = new MyUIControls.ModelView();
+            this.modelView = new Compass.ModelView();
             this.groupBox1.SuspendLayout();
             this.grbMARVEL.SuspendLayout();
             this.grbANSUL.SuspendLayout();
@@ -961,6 +961,6 @@
         private System.Windows.Forms.ComboBox cobANDropNo;
         private System.Windows.Forms.Button btnEditData;
         private System.Windows.Forms.ComboBox cobLEDSpotNo;
-        private MyUIControls.ModelView modelView;
+        private Compass.ModelView modelView;
     }
 }

@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
 using DAL;
@@ -16,7 +8,6 @@ namespace Compass
 {
     public partial class FrmKVI555 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         KVI555Service objKvi555Service = new KVI555Service();
         private KVI555 objKvi555 = null;
         public FrmKVI555()
@@ -33,11 +24,9 @@ namespace Compass
             objKvi555 = (KVI555)objKvi555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objKvi555 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            Image showImage= objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
-            modelView.ShowImage(showImage);
+
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
 
             FillData();
         }

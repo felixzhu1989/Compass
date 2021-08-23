@@ -375,5 +375,12 @@ namespace Compass
         {
            
         }
+        
+
+        private void tsmieSolidWorksTools_Click(object sender, EventArgs e)
+        {
+            FrmSolidWorksTools frmTools=new FrmSolidWorksTools();
+            frmTools.Show();
+        }
     }
 }

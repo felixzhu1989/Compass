@@ -305,3 +305,5 @@ D:\Compass\Compass\obj\Debug\Compass.exe
 D:\Compass\Compass\obj\Debug\Compass.pdb
 E:\Compass\Compass\bin\Debug\eDrawings.Interop.EModelViewControl.dll
 E:\Compass\Compass\obj\Debug\Compass.FrmModelView.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmSolidWorksTools.resources
+E:\Compass\Compass\obj\Debug\Compass.ModelView.resources

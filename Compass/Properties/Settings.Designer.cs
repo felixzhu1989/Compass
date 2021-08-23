@@ -58,5 +58,17 @@ namespace Compass.Properties {
                 this["SBU"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string eDrawings {
+            get {
+                return ((string)(this["eDrawings"]));
+            }
+            set {
+                this["eDrawings"] = value;
+            }
+        }
     }
 }

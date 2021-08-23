@@ -13,8 +13,5 @@ D:\Compass\MyUIControls\obj\Debug\MyUIControls.csproj.CoreCompileInputs.cache
 D:\Compass\MyUIControls\obj\Debug\MyUIControls.dll
 D:\Compass\MyUIControls\obj\Debug\MyUIControls.pdb
 D:\Compass\MyUIControls\obj\Debug\MyUIControls.csprojAssemblyReference.cache
-E:\Compass\MyUIControls\obj\Debug\MyUIControls.ModelView.resources
 E:\Compass\MyUIControls\obj\Debug\MyUIControls.Properties.Resources.resources
-E:\Compass\MyUIControls\bin\Debug\eDrawings.Interop.EModelViewControl.dll
-E:\Compass\MyUIControls\obj\Debug\MyUIControls.csproj.CopyComplete
 E:\Compass\MyUIControls\obj\Debug\MyUIControls.csprojAssemblyReference.cache
