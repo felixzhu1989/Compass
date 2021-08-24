@@ -76,7 +76,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtExLength = new System.Windows.Forms.TextBox();
             this.txtExRightDis = new System.Windows.Forms.TextBox();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
@@ -84,13 +83,13 @@
             this.cobDPSide = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtLength = new System.Windows.Forms.TextBox();
+            this.modelView = new Compass.ModelView();
             this.grbUV.SuspendLayout();
             this.grbMARVEL.SuspendLayout();
             this.grbANSUL.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -608,19 +607,6 @@
             this.txtExRightDis.Size = new System.Drawing.Size(100, 25);
             this.txtExRightDis.TabIndex = 0;
             // 
-            // pbModelImage
-            // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 66;
-            this.pbModelImage.TabStop = false;
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -698,10 +684,24 @@
             this.txtLength.TabIndex = 0;
             this.txtLength.TextChanged += new System.EventHandler(this.txtLength_TextChanged);
             // 
+            // modelView
+            // 
+            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelView.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.modelView.Location = new System.Drawing.Point(25, 48);
+            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.modelView.Name = "modelView";
+            this.modelView.Size = new System.Drawing.Size(750, 460);
+            this.modelView.TabIndex = 77;
+            // 
             // FrmUCWDB800
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.modelView);
             this.Controls.Add(this.grbUV);
             this.Controls.Add(this.grbMARVEL);
             this.Controls.Add(this.grbANSUL);
@@ -709,7 +709,6 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnEditData);
             this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.pbModelImage);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -728,7 +727,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -784,7 +782,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtExLength;
         private System.Windows.Forms.TextBox txtExRightDis;
-        private System.Windows.Forms.PictureBox pbModelImage;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cobSidePanel;
@@ -792,5 +789,6 @@
         private System.Windows.Forms.ComboBox cobDPSide;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtLength;
+        private ModelView modelView;
     }
 }

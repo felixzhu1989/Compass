@@ -70,7 +70,6 @@
             this.lblIRDis3 = new System.Windows.Forms.Label();
             this.lblIRDis2 = new System.Windows.Forms.Label();
             this.cobANSUL = new System.Windows.Forms.ComboBox();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -118,9 +117,8 @@
             this.label29 = new System.Windows.Forms.Label();
             this.cobMARVEL = new System.Windows.Forms.ComboBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.label22 = new System.Windows.Forms.Label();
+            this.modelView = new Compass.ModelView();
             this.grbANSUL.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grbMARVEL.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -537,19 +535,6 @@
             this.cobANSUL.Size = new System.Drawing.Size(100, 27);
             this.cobANSUL.TabIndex = 5;
             this.cobANSUL.SelectedIndexChanged += new System.EventHandler(this.cobANSUL_SelectedIndexChanged);
-            // 
-            // pbModelImage
-            // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 45;
-            this.pbModelImage.TabStop = false;
             // 
             // groupBox1
             // 
@@ -1071,19 +1056,23 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "烟罩配置";
             // 
-            // label22
+            // modelView
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(202, 73);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(61, 19);
-            this.label22.TabIndex = 32;
-            this.label22.Text = "下喷数量";
+            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelView.Location = new System.Drawing.Point(25, 48);
+            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.modelView.Name = "modelView";
+            this.modelView.Size = new System.Drawing.Size(750, 460);
+            this.modelView.TabIndex = 49;
             // 
             // FrmKWF555
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.modelView);
             this.Controls.Add(this.cobANSUL);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label11);
@@ -1091,7 +1080,6 @@
             this.Controls.Add(this.label29);
             this.Controls.Add(this.cobMARVEL);
             this.Controls.Add(this.grbANSUL);
-            this.Controls.Add(this.pbModelImage);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grbMARVEL);
             this.Controls.Add(this.groupBox2);
@@ -1099,7 +1087,6 @@
             this.Controls.Add(this.grbLEDSpot);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.label22);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
@@ -1107,7 +1094,6 @@
             this.Text = "KWF555";
             this.grbANSUL.ResumeLayout(false);
             this.grbANSUL.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grbMARVEL.ResumeLayout(false);
@@ -1168,7 +1154,6 @@
         private System.Windows.Forms.Label lblIRDis3;
         private System.Windows.Forms.Label lblIRDis2;
         private System.Windows.Forms.ComboBox cobANSUL;
-        private System.Windows.Forms.PictureBox pbModelImage;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
@@ -1216,6 +1201,6 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ComboBox cobMARVEL;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Label label22;
+        private ModelView modelView;
     }
 }

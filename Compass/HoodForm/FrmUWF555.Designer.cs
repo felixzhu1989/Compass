@@ -82,7 +82,6 @@
             this.txtDeepth = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
             this.cobANSUL = new System.Windows.Forms.ComboBox();
@@ -126,11 +125,11 @@
             this.cobANDropNo = new System.Windows.Forms.ComboBox();
             this.cobANDetectorEnd = new System.Windows.Forms.ComboBox();
             this.cobANSide = new System.Windows.Forms.ComboBox();
+            this.modelView = new Compass.ModelView();
             this.grbLEDSpot.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grbMARVEL.SuspendLayout();
             this.grbANSUL.SuspendLayout();
@@ -701,19 +700,6 @@
             this.txtLength.TabIndex = 0;
             this.txtLength.TextChanged += new System.EventHandler(this.txtLength_TextChanged);
             // 
-            // pbModelImage
-            // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 26;
-            this.pbModelImage.TabStop = false;
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1160,10 +1146,23 @@
             this.cobANSide.Size = new System.Drawing.Size(100, 27);
             this.cobANSide.TabIndex = 0;
             // 
+            // modelView
+            // 
+            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelView.Location = new System.Drawing.Point(25, 48);
+            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.modelView.Name = "modelView";
+            this.modelView.Size = new System.Drawing.Size(750, 460);
+            this.modelView.TabIndex = 30;
+            // 
             // FrmUWF555
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.modelView);
             this.Controls.Add(this.cobANSUL);
             this.Controls.Add(this.cobLightType);
             this.Controls.Add(this.btnEditData);
@@ -1174,7 +1173,6 @@
             this.Controls.Add(this.label29);
             this.Controls.Add(this.cobMARVEL);
             this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.pbModelImage);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grbANSUL);
             this.Controls.Add(this.label19);
@@ -1193,7 +1191,6 @@
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grbMARVEL.ResumeLayout(false);
@@ -1259,7 +1256,6 @@
         private System.Windows.Forms.TextBox txtDeepth;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox txtLength;
-        private System.Windows.Forms.PictureBox pbModelImage;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.ComboBox cobANSUL;
@@ -1305,5 +1301,6 @@
         private System.Windows.Forms.ComboBox cobANDetectorEnd;
         private System.Windows.Forms.ComboBox cobANSide;
         private System.Windows.Forms.TextBox txtIRDis3;
+        private ModelView modelView;
     }
 }

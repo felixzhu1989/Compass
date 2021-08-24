@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmLLKSJ : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         LLKSJService objLLKSJService = new LLKSJService();
         private LLKSJ objLLKSJ = null;
         public FrmLLKSJ()
@@ -31,10 +30,8 @@ namespace Compass
             objLLKSJ = (LLKSJ)objLLKSJService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objLLKSJ == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         private void IniCob()
@@ -91,7 +88,7 @@ namespace Compass
         private void FillData()
         {
             if (objLLKSJ == null) return;
-            pbModelImage.Tag = objLLKSJ.LLKSJId;
+            modelView.Tag = objLLKSJ.LLKSJId;
             cobLongGlassNo.Text = objLLKSJ.LongGlassNo.ToString();
             cobShortGlassNo.Text = objLLKSJ.ShortGlassNo.ToString();
             txtLength.Text = objLLKSJ.Length.ToString();
@@ -101,7 +98,7 @@ namespace Compass
         private void btnEditData_Click(object sender, EventArgs e)
         {
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 100m)
             {
                 MessageBox.Show("请认真检查灯腔侧板总长", "提示信息");
@@ -138,7 +135,7 @@ namespace Compass
             //封装对象
             LLKSJ objLLKSJ = new LLKSJ()
             {
-                LLKSJId = Convert.ToInt32(pbModelImage.Tag),
+                LLKSJId = Convert.ToInt32(modelView.Tag),
 
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),
                 LongGlassNo = Convert.ToInt32(cobLongGlassNo.Text.Trim()),

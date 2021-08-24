@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLPZ));
             this.btnEditData = new System.Windows.Forms.Button();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cobZPanelNo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,7 +40,7 @@
             this.grbMARVEL = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cobLightType = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
+            this.modelView = new Compass.ModelView();
             this.groupBox1.SuspendLayout();
             this.grbMARVEL.SuspendLayout();
             this.SuspendLayout();
@@ -61,19 +60,6 @@
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
             this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
-            // 
-            // pbModelImage
-            // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 49;
-            this.pbModelImage.TabStop = false;
             // 
             // groupBox1
             // 
@@ -179,20 +165,31 @@
             this.cobLightType.Size = new System.Drawing.Size(100, 27);
             this.cobLightType.TabIndex = 0;
             // 
+            // modelView
+            // 
+            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelView.Location = new System.Drawing.Point(25, 48);
+            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.modelView.Name = "modelView";
+            this.modelView.Size = new System.Drawing.Size(750, 460);
+            this.modelView.TabIndex = 77;
+            // 
             // FrmLPZ
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.modelView);
             this.Controls.Add(this.grbMARVEL);
             this.Controls.Add(this.btnEditData);
-            this.Controls.Add(this.pbModelImage);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
             this.Name = "FrmLPZ";
             this.Text = "LPZ";
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grbMARVEL.ResumeLayout(false);
@@ -203,7 +200,6 @@
 
         #endregion
         private System.Windows.Forms.Button btnEditData;
-        private System.Windows.Forms.PictureBox pbModelImage;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cobZPanelNo;
         private System.Windows.Forms.Label label4;
@@ -214,5 +210,6 @@
         private System.Windows.Forms.GroupBox grbMARVEL;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cobLightType;
+        private ModelView modelView;
     }
 }

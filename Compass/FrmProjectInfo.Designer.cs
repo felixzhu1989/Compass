@@ -79,8 +79,6 @@
             this.tpgProjectInfo = new System.Windows.Forms.TabPage();
             this.tpgProjectList = new System.Windows.Forms.TabPage();
             this.dgvProjects = new System.Windows.Forms.DataGridView();
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            this.btnScroll = new System.Windows.Forms.Button();
             this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BPONo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -90,6 +88,8 @@
             this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RiskLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.btnScroll = new System.Windows.Forms.Button();
             this.grbProject.SuspendLayout();
             this.grbGeneralRequirements.SuspendLayout();
             this.grbSpecialRequirements.SuspendLayout();
@@ -170,7 +170,7 @@
             this.grbSpecialRequirements.Controls.Add(this.txtSpecialRequirements);
             this.grbSpecialRequirements.Location = new System.Drawing.Point(6, 392);
             this.grbSpecialRequirements.Name = "grbSpecialRequirements";
-            this.grbSpecialRequirements.Size = new System.Drawing.Size(302, 205);
+            this.grbSpecialRequirements.Size = new System.Drawing.Size(302, 199);
             this.grbSpecialRequirements.TabIndex = 4;
             this.grbSpecialRequirements.TabStop = false;
             this.grbSpecialRequirements.Text = "特殊技术要求";
@@ -183,7 +183,7 @@
             this.txtSpecialRequirements.Name = "txtSpecialRequirements";
             this.txtSpecialRequirements.ReadOnly = true;
             this.txtSpecialRequirements.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSpecialRequirements.Size = new System.Drawing.Size(296, 181);
+            this.txtSpecialRequirements.Size = new System.Drawing.Size(296, 175);
             this.txtSpecialRequirements.TabIndex = 0;
             // 
             // cobODPNo
@@ -221,7 +221,7 @@
             this.grbModuleStatistics.Controls.Add(this.dgvScope);
             this.grbModuleStatistics.Location = new System.Drawing.Point(310, 460);
             this.grbModuleStatistics.Name = "grbModuleStatistics";
-            this.grbModuleStatistics.Size = new System.Drawing.Size(470, 137);
+            this.grbModuleStatistics.Size = new System.Drawing.Size(470, 131);
             this.grbModuleStatistics.TabIndex = 5;
             this.grbModuleStatistics.TabStop = false;
             this.grbModuleStatistics.Text = "机型统计";
@@ -250,7 +250,7 @@
             this.dgvScope.Name = "dgvScope";
             this.dgvScope.ReadOnly = true;
             this.dgvScope.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvScope.Size = new System.Drawing.Size(464, 113);
+            this.dgvScope.Size = new System.Drawing.Size(464, 107);
             this.dgvScope.TabIndex = 0;
             this.dgvScope.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvScope_RowPostPaint);
             // 
@@ -610,30 +610,10 @@
             this.dgvProjects.Location = new System.Drawing.Point(3, 3);
             this.dgvProjects.Name = "dgvProjects";
             this.dgvProjects.ReadOnly = true;
-            this.dgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvProjects.Size = new System.Drawing.Size(780, 606);
             this.dgvProjects.TabIndex = 36;
             this.dgvProjects.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjects_RowPostPaint);
-            // 
-            // timer
-            // 
-            this.timer.Enabled = true;
-            this.timer.Interval = 1000;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
-            // btnScroll
-            // 
-            this.btnScroll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.btnScroll.FlatAppearance.BorderSize = 0;
-            this.btnScroll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnScroll.ForeColor = System.Drawing.Color.White;
-            this.btnScroll.Location = new System.Drawing.Point(310, 18);
-            this.btnScroll.Name = "btnScroll";
-            this.btnScroll.Size = new System.Drawing.Size(72, 28);
-            this.btnScroll.TabIndex = 1;
-            this.btnScroll.Text = "暂停循环";
-            this.btnScroll.UseVisualStyleBackColor = false;
-            this.btnScroll.Click += new System.EventHandler(this.btnScroll_Click);
             // 
             // UserAccount
             // 
@@ -707,6 +687,26 @@
             this.HoodType.Name = "HoodType";
             this.HoodType.ReadOnly = true;
             this.HoodType.Width = 86;
+            // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // btnScroll
+            // 
+            this.btnScroll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.btnScroll.FlatAppearance.BorderSize = 0;
+            this.btnScroll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnScroll.ForeColor = System.Drawing.Color.White;
+            this.btnScroll.Location = new System.Drawing.Point(310, 18);
+            this.btnScroll.Name = "btnScroll";
+            this.btnScroll.Size = new System.Drawing.Size(72, 28);
+            this.btnScroll.TabIndex = 1;
+            this.btnScroll.Text = "暂停循环";
+            this.btnScroll.UseVisualStyleBackColor = false;
+            this.btnScroll.Click += new System.EventHandler(this.btnScroll_Click);
             // 
             // FrmProjectInfo
             // 

@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmTCSBOXDXF : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         TCSBOXDXFService objTCSBOXDXFService = new TCSBOXDXFService();
         private TCSBOXDXF objTCSBOXDXF = null;
         public FrmTCSBOXDXF()
@@ -30,10 +29,8 @@ namespace Compass
             objTCSBOXDXF = (TCSBOXDXF)objTCSBOXDXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objTCSBOXDXF == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -42,7 +39,7 @@ namespace Compass
         private void FillData()
         {
             if (objTCSBOXDXF == null) return;
-            pbModelImage.Tag = objTCSBOXDXF.TCSBOXDXFId;
+            modelView.Tag = objTCSBOXDXF.TCSBOXDXFId;
 
             //默认txtQuantity为1
             txtQuantity.Text = objTCSBOXDXF.Quantity == 0 ? "1" : objTCSBOXDXF.Quantity.ToString();
@@ -57,7 +54,7 @@ namespace Compass
 
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsInteger(txtQuantity.Text.Trim()))
             {
                 MessageBox.Show("请认真检查数量是否填错", "提示信息");
@@ -71,7 +68,7 @@ namespace Compass
             //封装对象
             TCSBOXDXF objTCSBOXDXF = new TCSBOXDXF()
             {
-                TCSBOXDXFId = Convert.ToInt32(pbModelImage.Tag),
+                TCSBOXDXFId = Convert.ToInt32(modelView.Tag),
                 Quantity = Convert.ToInt32(txtQuantity.Text)
 
             };

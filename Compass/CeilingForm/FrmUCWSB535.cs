@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmUCWSB535 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         UCWSB535Service objUCWSB535Service = new UCWSB535Service();
         private UCWSB535 objUCWSB535 = null;
         public FrmUCWSB535()
@@ -31,10 +30,8 @@ namespace Compass
             objUCWSB535 = (UCWSB535)objUCWSB535Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objUCWSB535 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         private void IniCob()
@@ -113,7 +110,7 @@ namespace Compass
         private void FillData()
         {
             if (objUCWSB535 == null) return;
-            pbModelImage.Tag = objUCWSB535.UCWSB535Id;
+            modelView.Tag = objUCWSB535.UCWSB535Id;
 
             cobSidePanel.Text = objUCWSB535.SidePanel;
             cobGutter.Text = objUCWSB535.Gutter;
@@ -147,7 +144,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 100m)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -326,7 +323,7 @@ namespace Compass
             //封装对象
             UCWSB535 objUCWSB535 = new UCWSB535()
             {
-                UCWSB535Id = Convert.ToInt32(pbModelImage.Tag),
+                UCWSB535Id = Convert.ToInt32(modelView.Tag),
                 ANSUL = cobANSUL.Text,
                 ANSide = cobANSide.Text.Trim().Length == 0 ? "NO" : cobANSide.Text,
                 MARVEL = cobMARVEL.Text,

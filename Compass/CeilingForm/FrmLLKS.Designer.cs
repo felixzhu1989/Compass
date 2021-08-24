@@ -30,15 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLLKS));
             this.btnEditData = new System.Windows.Forms.Button();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cobShortGlassNo = new System.Windows.Forms.ComboBox();
             this.cobLongGlassNo = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cobShortGlassNo = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
+            this.modelView = new Compass.ModelView();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,19 +57,6 @@
             this.btnEditData.UseVisualStyleBackColor = false;
             this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
             // 
-            // pbModelImage
-            // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 49;
-            this.pbModelImage.TabStop = false;
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -87,6 +73,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "不锈钢灯腔侧板（普通玻璃）尺寸";
             // 
+            // cobShortGlassNo
+            // 
+            this.cobShortGlassNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobShortGlassNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobShortGlassNo.BackColor = System.Drawing.Color.Azure;
+            this.cobShortGlassNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobShortGlassNo.FormattingEnabled = true;
+            this.cobShortGlassNo.Location = new System.Drawing.Point(76, 91);
+            this.cobShortGlassNo.Name = "cobShortGlassNo";
+            this.cobShortGlassNo.Size = new System.Drawing.Size(100, 27);
+            this.cobShortGlassNo.TabIndex = 2;
+            // 
             // cobLongGlassNo
             // 
             this.cobLongGlassNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -98,6 +96,15 @@
             this.cobLongGlassNo.Name = "cobLongGlassNo";
             this.cobLongGlassNo.Size = new System.Drawing.Size(100, 27);
             this.cobLongGlassNo.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 95);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 19);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "短玻璃数量";
             // 
             // label4
             // 
@@ -125,40 +132,30 @@
             this.txtLength.Size = new System.Drawing.Size(100, 25);
             this.txtLength.TabIndex = 0;
             // 
-            // label2
+            // modelView
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 95);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 19);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "短玻璃数量";
-            // 
-            // cobShortGlassNo
-            // 
-            this.cobShortGlassNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobShortGlassNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobShortGlassNo.BackColor = System.Drawing.Color.Azure;
-            this.cobShortGlassNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobShortGlassNo.FormattingEnabled = true;
-            this.cobShortGlassNo.Location = new System.Drawing.Point(76, 91);
-            this.cobShortGlassNo.Name = "cobShortGlassNo";
-            this.cobShortGlassNo.Size = new System.Drawing.Size(100, 27);
-            this.cobShortGlassNo.TabIndex = 2;
+            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelView.Location = new System.Drawing.Point(25, 48);
+            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.modelView.Name = "modelView";
+            this.modelView.Size = new System.Drawing.Size(750, 460);
+            this.modelView.TabIndex = 77;
             // 
             // FrmLLKS
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.modelView);
             this.Controls.Add(this.btnEditData);
-            this.Controls.Add(this.pbModelImage);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
             this.Name = "FrmLLKS";
             this.Text = "LLKS";
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -167,7 +164,6 @@
 
         #endregion
         private System.Windows.Forms.Button btnEditData;
-        private System.Windows.Forms.PictureBox pbModelImage;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cobLongGlassNo;
         private System.Windows.Forms.Label label4;
@@ -175,5 +171,6 @@
         private System.Windows.Forms.TextBox txtLength;
         private System.Windows.Forms.ComboBox cobShortGlassNo;
         private System.Windows.Forms.Label label2;
+        private ModelView modelView;
     }
 }

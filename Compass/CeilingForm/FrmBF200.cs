@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmBF200 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         BF200Service objBF200Service = new BF200Service();
         private BF200 objBF200 = null;
         public FrmBF200()
@@ -32,10 +31,8 @@ namespace Compass
             objBF200 = (BF200)objBF200Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objBF200 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(),tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -66,7 +63,7 @@ namespace Compass
         private void FillData()
         {
             if (objBF200 == null) return;
-            pbModelImage.Tag = objBF200.BF200Id;
+            modelView.Tag = objBF200.BF200Id;
 
             txtLength.Text = objBF200.Length.ToString();
             txtLeftLength.Text = objBF200.LeftLength.ToString();
@@ -80,7 +77,7 @@ namespace Compass
         private void btnEditData_Click(object sender, EventArgs e)
         {
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 200m)
             {
                 MessageBox.Show("请认真检查总长", "提示信息");
@@ -131,7 +128,7 @@ namespace Compass
             //封装对象
             BF200 objBF200 = new BF200()
             {
-                BF200Id = Convert.ToInt32(pbModelImage.Tag),
+                BF200Id = Convert.ToInt32(modelView.Tag),
 
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),
                 LeftLength = Convert.ToDecimal(txtLeftLength.Text.Trim()),

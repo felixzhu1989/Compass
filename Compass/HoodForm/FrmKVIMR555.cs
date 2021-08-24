@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmKVIMR555 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         KVIMR555Service objKVIMR555Service = new KVIMR555Service();
         private KVIMR555 objKVIMR555 = null;
         public FrmKVIMR555()
@@ -32,10 +31,8 @@ namespace Compass
             objKVIMR555 = (KVIMR555)objKVIMR555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objKVIMR555 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -124,7 +121,7 @@ namespace Compass
         private void FillData()
         {
             if (objKVIMR555 == null) return;
-            pbModelImage.Tag = objKVIMR555.KVIMR555Id;
+            modelView.Tag = objKVIMR555.KVIMR555Id;
 
             cobSidePanel.Text = objKVIMR555.SidePanel;
             //默认ExNo为1
@@ -169,7 +166,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 500m)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -401,7 +398,7 @@ namespace Compass
             //封装对象
             KVIMR555 objKVIMR555 = new KVIMR555()
             {
-                KVIMR555Id = Convert.ToInt32(pbModelImage.Tag),
+                KVIMR555Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
                 ExNo = Convert.ToInt32(cobExNo.Text),
                 LightType = cobLightType.Text,

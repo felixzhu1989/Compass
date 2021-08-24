@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmKCWDB800 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         KCWDB800Service objKCWDB800Service = new KCWDB800Service();
         private KCWDB800 objKCWDB800 = null;
         public FrmKCWDB800()
@@ -31,10 +30,8 @@ namespace Compass
             objKCWDB800 = (KCWDB800)objKCWDB800Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objKCWDB800 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         private void IniCob()
@@ -97,7 +94,7 @@ namespace Compass
         private void FillData()
         {
             if (objKCWDB800 == null) return;
-            pbModelImage.Tag = objKCWDB800.KCWDB800Id;
+            modelView.Tag = objKCWDB800.KCWDB800Id;
 
             cobSidePanel.Text = objKCWDB800.SidePanel;
             cobGutter.Text = objKCWDB800.Gutter;
@@ -124,7 +121,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 100m)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -251,7 +248,7 @@ namespace Compass
             //封装对象
             KCWDB800 objKCWDB800 = new KCWDB800()
             {
-                KCWDB800Id = Convert.ToInt32(pbModelImage.Tag),
+                KCWDB800Id = Convert.ToInt32(modelView.Tag),
                 ANSUL = cobANSUL.Text,
                 ANSide = cobANSide.Text.Trim().Length == 0 ? "NO" : cobANSide.Text,
                 MARVEL = cobMARVEL.Text,

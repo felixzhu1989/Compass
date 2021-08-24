@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmDP340 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         DP340Service objDP340Service = new DP340Service();
         private DP340 objDP340 = null;
         public FrmDP340()
@@ -31,10 +30,8 @@ namespace Compass
             objDP340 = (DP340)objDP340Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objDP340 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
 
@@ -119,7 +116,7 @@ namespace Compass
         private void FillData()
         {
             if (objDP340 == null) return;
-            pbModelImage.Tag = objDP340.DP340Id;
+            modelView.Tag = objDP340.DP340Id;
 
             cobSidePanel.Text = objDP340.SidePanel;
             cobOutlet.Text = objDP340.Outlet;
@@ -142,7 +139,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 90m)
             {
                 MessageBox.Show("请认真检查DP腔长度", "提示信息");
@@ -213,7 +210,7 @@ namespace Compass
             //封装对象
             DP340 objDP340 = new DP340()
             {
-                DP340Id = Convert.ToInt32(pbModelImage.Tag),
+                DP340Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
                 Outlet = cobOutlet.Text,
                 BackCJSide = cobBackCJSide.Text,

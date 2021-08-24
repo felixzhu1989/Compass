@@ -9,7 +9,6 @@ namespace Compass
 {
     public partial class FrmUVF555 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         UVF555Service objUvf555Service = new UVF555Service();
         private UVF555 objUvf555 = null;
         public FrmUVF555()
@@ -26,10 +25,8 @@ namespace Compass
             objUvf555 =(UVF555) objUvf555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objUvf555 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -129,7 +126,7 @@ namespace Compass
         private void FillData()
         {
             if (objUvf555 == null) return;
-            pbModelImage.Tag = objUvf555.UVF555Id;
+            modelView.Tag = objUvf555.UVF555Id;
 
             cobSidePanel.Text = objUvf555.SidePanel;
             //默认ExNo为1
@@ -179,7 +176,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 500m)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -441,7 +438,7 @@ namespace Compass
             //封装对象
             UVF555 objUvf555 = new UVF555()
             {
-                UVF555Id = Convert.ToInt32(pbModelImage.Tag),
+                UVF555Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
                 ExNo = Convert.ToInt32(cobExNo.Text),
                 SuNo = Convert.ToInt32(cobSuNo.Text),

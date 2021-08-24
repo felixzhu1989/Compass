@@ -34,14 +34,13 @@
             this.lblSuDis = new System.Windows.Forms.Label();
             this.txtSuDis = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtHeight = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
-            this.txtHeight = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.modelView = new Compass.ModelView();
             this.groupBox6.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEditData
@@ -103,6 +102,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "HOODBCJ";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(4, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 19);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "CJ腔高度";
+            // 
+            // txtHeight
+            // 
+            this.txtHeight.BackColor = System.Drawing.Color.Azure;
+            this.txtHeight.Location = new System.Drawing.Point(85, 65);
+            this.txtHeight.Name = "txtHeight";
+            this.txtHeight.Size = new System.Drawing.Size(100, 25);
+            this.txtHeight.TabIndex = 1;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -120,43 +136,25 @@
             this.txtLength.Size = new System.Drawing.Size(100, 25);
             this.txtLength.TabIndex = 0;
             // 
-            // pbModelImage
+            // modelView
             // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 50;
-            this.pbModelImage.TabStop = false;
-            // 
-            // txtHeight
-            // 
-            this.txtHeight.BackColor = System.Drawing.Color.Azure;
-            this.txtHeight.Location = new System.Drawing.Point(85, 65);
-            this.txtHeight.Name = "txtHeight";
-            this.txtHeight.Size = new System.Drawing.Size(100, 25);
-            this.txtHeight.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 19);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "CJ腔高度";
+            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelView.Location = new System.Drawing.Point(25, 48);
+            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.modelView.Name = "modelView";
+            this.modelView.Size = new System.Drawing.Size(750, 460);
+            this.modelView.TabIndex = 11;
             // 
             // FrmHOODBCJ
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.modelView);
             this.Controls.Add(this.btnEditData);
             this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.pbModelImage);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -167,7 +165,6 @@
             this.groupBox6.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -178,11 +175,11 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label lblSuDis;
         private System.Windows.Forms.TextBox txtSuDis;
-        private System.Windows.Forms.PictureBox pbModelImage;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtLength;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtHeight;
+        private ModelView modelView;
     }
 }

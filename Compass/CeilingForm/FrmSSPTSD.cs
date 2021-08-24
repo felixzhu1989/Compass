@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
 using DAL;
@@ -15,8 +8,7 @@ namespace Compass
 {
     public partial class FrmSSPTSD : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
-        SSPTSDService objSSPTSDService = new SSPTSDService();
+       SSPTSDService objSSPTSDService = new SSPTSDService();
         private SSPTSD objSSPTSD = null;
         public FrmSSPTSD()
         {
@@ -31,10 +23,8 @@ namespace Compass
             objSSPTSD = (SSPTSD)objSSPTSDService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objSSPTSD == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -84,7 +74,7 @@ namespace Compass
         private void FillData()
         {
             if (objSSPTSD == null) return;
-            pbModelImage.Tag = objSSPTSD.SSPTSDId;
+            modelView.Tag = objSSPTSD.SSPTSDId;
             cobLeftType.Text = objSSPTSD.LeftType;
             cobRightType.Text = objSSPTSD.RightType;
 
@@ -98,7 +88,7 @@ namespace Compass
         private void btnEditData_Click(object sender, EventArgs e)
         {
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 200m)
             {
                 MessageBox.Show("请认真检查总长", "提示信息");
@@ -147,7 +137,7 @@ namespace Compass
             //封装对象
             SSPTSD objSSPTSD = new SSPTSD()
             {
-                SSPTSDId = Convert.ToInt32(pbModelImage.Tag),
+                SSPTSDId = Convert.ToInt32(modelView.Tag),
                 LeftType = cobLeftType.Text,
                 RightType = cobRightType.Text,
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),

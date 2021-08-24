@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmUVF450400 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         UVF450400Service objUVF450400Service = new UVF450400Service();
         private UVF450400 objUVF450400 = null;
         public FrmUVF450400()
@@ -32,10 +31,8 @@ namespace Compass
             objUVF450400 = (UVF450400)objUVF450400Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objUVF450400 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -135,7 +132,7 @@ namespace Compass
         private void FillData()
         {
             if (objUVF450400 == null) return;
-            pbModelImage.Tag = objUVF450400.UVF450400Id;
+            modelView.Tag = objUVF450400.UVF450400Id;
 
             cobSidePanel.Text = objUVF450400.SidePanel;
             //默认ExNo为1
@@ -185,7 +182,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 500m)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -447,7 +444,7 @@ namespace Compass
             //封装对象
             UVF450400 objUVF450400 = new UVF450400()
             {
-                UVF450400Id = Convert.ToInt32(pbModelImage.Tag),
+                UVF450400Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
                 ExNo = Convert.ToInt32(cobExNo.Text),
                 SuNo = Convert.ToInt32(cobSuNo.Text),

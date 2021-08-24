@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmKCJSB265 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         KCJSB265Service objKCJSB265Service = new KCJSB265Service();
         private KCJSB265 objKCJSB265 = null;
         public FrmKCJSB265()
@@ -31,10 +30,8 @@ namespace Compass
             objKCJSB265 = (KCJSB265)objKCJSB265Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objKCJSB265 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - "+tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         private void IniCob()
@@ -96,7 +93,7 @@ namespace Compass
         private void FillData()
         {
             if (objKCJSB265 == null) return;
-            pbModelImage.Tag = objKCJSB265.KCJSB265Id;
+            modelView.Tag = objKCJSB265.KCJSB265Id;
 
             cobGutter.Text = objKCJSB265.Gutter;
             cobANSUL.Text = objKCJSB265.ANSUL;
@@ -122,7 +119,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 100m)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -240,7 +237,7 @@ namespace Compass
             //封装对象
             KCJSB265 objKCJSB265 = new KCJSB265()
             {
-                KCJSB265Id = Convert.ToInt32(pbModelImage.Tag),
+                KCJSB265Id = Convert.ToInt32(modelView.Tag),
                 ANSUL = cobANSUL.Text,
                 ANSide = cobANSide.Text.Trim().Length == 0 ? "NO" : cobANSide.Text,
                 ANDetector = cobANDetector.Text.Trim().Length == 0 ? "NO" : cobANDetector.Text,

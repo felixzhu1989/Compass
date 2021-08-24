@@ -33,9 +33,8 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
+            this.modelView = new Compass.ModelView();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEditData
@@ -86,26 +85,25 @@
             this.label11.TabIndex = 11;
             this.label11.Text = "下料数量";
             // 
-            // pbModelImage
+            // modelView
             // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(24, 62);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 15;
-            this.pbModelImage.TabStop = false;
+            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelView.Location = new System.Drawing.Point(25, 48);
+            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.modelView.Name = "modelView";
+            this.modelView.Size = new System.Drawing.Size(750, 460);
+            this.modelView.TabIndex = 77;
             // 
             // FrmLFUMC150DXF
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.modelView);
             this.Controls.Add(this.btnEditData);
             this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.pbModelImage);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
@@ -113,7 +111,6 @@
             this.Text = "LFUMC150DXF";
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -123,7 +120,7 @@
         private System.Windows.Forms.Button btnEditData;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.PictureBox pbModelImage;
         private System.Windows.Forms.TextBox txtQuantity;
+        private ModelView modelView;
     }
 }

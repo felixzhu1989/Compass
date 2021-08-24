@@ -15,8 +15,7 @@ namespace Compass
 {
     public partial class FrmHWUWF555 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
-        HWUWF555Service objHWUWF555Service = new HWUWF555Service();
+       HWUWF555Service objHWUWF555Service = new HWUWF555Service();
         private HWUWF555 objHWUWF555 = null;
         public FrmHWUWF555()
         {
@@ -32,10 +31,8 @@ namespace Compass
             objHWUWF555 = (HWUWF555)objHWUWF555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objHWUWF555 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -143,7 +140,7 @@ namespace Compass
         private void FillData()
         {
             if (objHWUWF555 == null) return;
-            pbModelImage.Tag = objHWUWF555.HWUWF555Id;
+            modelView.Tag = objHWUWF555.HWUWF555Id;
 
             cobSidePanel.Text = objHWUWF555.SidePanel;
             //默认ExNo为1
@@ -201,7 +198,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 500m)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -532,7 +529,7 @@ namespace Compass
             //封装对象
             HWUWF555 objHWUWF555 = new HWUWF555()
             {
-                HWUWF555Id = Convert.ToInt32(pbModelImage.Tag),
+                HWUWF555Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
                 ExNo = Convert.ToInt32(cobExNo.Text),
                 SuNo = Convert.ToInt32(cobSuNo.Text),

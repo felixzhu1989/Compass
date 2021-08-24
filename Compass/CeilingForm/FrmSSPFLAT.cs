@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmSSPFLAT : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         SSPFLATService objSSPFLATService = new SSPFLATService();
         private SSPFLAT objSSPFLAT = null;
         public FrmSSPFLAT()
@@ -31,10 +30,8 @@ namespace Compass
             objSSPFLAT = (SSPFLAT)objSSPFLATService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objSSPFLAT == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -84,7 +81,7 @@ namespace Compass
         private void FillData()
         {
             if (objSSPFLAT == null) return;
-            pbModelImage.Tag = objSSPFLAT.SSPFLATId;
+            modelView.Tag = objSSPFLAT.SSPFLATId;
             cobLeftType.Text = objSSPFLAT.LeftType;
             cobRightType.Text = objSSPFLAT.RightType;
 
@@ -98,7 +95,7 @@ namespace Compass
         private void btnEditData_Click(object sender, EventArgs e)
         {
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 200m)
             {
                 MessageBox.Show("请认真检查总长", "提示信息");
@@ -147,7 +144,7 @@ namespace Compass
             //封装对象
             SSPFLAT objSSPFLAT = new SSPFLAT()
             {
-                SSPFLATId = Convert.ToInt32(pbModelImage.Tag),
+                SSPFLATId = Convert.ToInt32(modelView.Tag),
                 LeftType = cobLeftType.Text,
                 RightType = cobRightType.Text,
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),

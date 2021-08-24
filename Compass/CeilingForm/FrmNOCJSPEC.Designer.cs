@@ -53,28 +53,27 @@
             this.txtGutterWidth = new System.Windows.Forms.TextBox();
             this.cobLKSide = new System.Windows.Forms.ComboBox();
             this.btnEditData = new System.Windows.Forms.Button();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtBackBend = new System.Windows.Forms.TextBox();
+            this.txtHeight = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtTopBend = new System.Windows.Forms.TextBox();
             this.txtWidth = new System.Windows.Forms.TextBox();
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
             this.txtLength = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtHeight = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtTopBend = new System.Windows.Forms.TextBox();
-            this.txtBackBend = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.modelView = new Compass.ModelView();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -339,19 +338,6 @@
             this.btnEditData.UseVisualStyleBackColor = false;
             this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
             // 
-            // pbModelImage
-            // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 52;
-            this.pbModelImage.TabStop = false;
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -379,6 +365,33 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "NOCJ高度300";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(380, 68);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(61, 19);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "背部翻边";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(400, 29);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(35, 19);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "高度";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(203, 67);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(61, 19);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "顶部翻边";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -387,6 +400,39 @@
             this.label5.Size = new System.Drawing.Size(84, 19);
             this.label5.TabIndex = 2;
             this.label5.Text = "NOCJ腔宽度";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label19.Location = new System.Drawing.Point(203, 86);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(40, 19);
+            this.label19.TabIndex = 3;
+            this.label19.Text = "15/...";
+            this.label19.Visible = false;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label18.Location = new System.Drawing.Point(379, 89);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(70, 19);
+            this.label18.TabIndex = 3;
+            this.label18.Text = "40/110/...";
+            this.label18.Visible = false;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label17.Location = new System.Drawing.Point(390, 44);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(48, 19);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "310/...";
+            this.label17.Visible = false;
             // 
             // label13
             // 
@@ -408,6 +454,22 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "NOCJ腔侧板";
             // 
+            // txtBackBend
+            // 
+            this.txtBackBend.BackColor = System.Drawing.Color.Azure;
+            this.txtBackBend.Location = new System.Drawing.Point(441, 64);
+            this.txtBackBend.Name = "txtBackBend";
+            this.txtBackBend.Size = new System.Drawing.Size(100, 25);
+            this.txtBackBend.TabIndex = 5;
+            // 
+            // txtHeight
+            // 
+            this.txtHeight.BackColor = System.Drawing.Color.Azure;
+            this.txtHeight.Location = new System.Drawing.Point(441, 26);
+            this.txtHeight.Name = "txtHeight";
+            this.txtHeight.Size = new System.Drawing.Size(100, 25);
+            this.txtHeight.TabIndex = 2;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -416,6 +478,14 @@
             this.label1.Size = new System.Drawing.Size(84, 19);
             this.label1.TabIndex = 2;
             this.label1.Text = "NOCJ腔长度";
+            // 
+            // txtTopBend
+            // 
+            this.txtTopBend.BackColor = System.Drawing.Color.Azure;
+            this.txtTopBend.Location = new System.Drawing.Point(279, 64);
+            this.txtTopBend.Name = "txtTopBend";
+            this.txtTopBend.Size = new System.Drawing.Size(100, 25);
+            this.txtTopBend.TabIndex = 4;
             // 
             // txtWidth
             // 
@@ -457,98 +527,26 @@
             this.label7.Text = "注意背面有NOCJ的情况选择NOCJBL/R/B";
             this.label7.Visible = false;
             // 
-            // txtHeight
+            // modelView
             // 
-            this.txtHeight.BackColor = System.Drawing.Color.Azure;
-            this.txtHeight.Location = new System.Drawing.Point(441, 26);
-            this.txtHeight.Name = "txtHeight";
-            this.txtHeight.Size = new System.Drawing.Size(100, 25);
-            this.txtHeight.TabIndex = 2;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(400, 29);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(35, 19);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "高度";
-            // 
-            // txtTopBend
-            // 
-            this.txtTopBend.BackColor = System.Drawing.Color.Azure;
-            this.txtTopBend.Location = new System.Drawing.Point(279, 64);
-            this.txtTopBend.Name = "txtTopBend";
-            this.txtTopBend.Size = new System.Drawing.Size(100, 25);
-            this.txtTopBend.TabIndex = 4;
-            // 
-            // txtBackBend
-            // 
-            this.txtBackBend.BackColor = System.Drawing.Color.Azure;
-            this.txtBackBend.Location = new System.Drawing.Point(441, 64);
-            this.txtBackBend.Name = "txtBackBend";
-            this.txtBackBend.Size = new System.Drawing.Size(100, 25);
-            this.txtBackBend.TabIndex = 5;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(203, 67);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(61, 19);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "顶部翻边";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(380, 68);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(61, 19);
-            this.label16.TabIndex = 2;
-            this.label16.Text = "背部翻边";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label17.Location = new System.Drawing.Point(390, 44);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(48, 19);
-            this.label17.TabIndex = 3;
-            this.label17.Text = "310/...";
-            this.label17.Visible = false;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label18.Location = new System.Drawing.Point(379, 89);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(70, 19);
-            this.label18.TabIndex = 3;
-            this.label18.Text = "40/110/...";
-            this.label18.Visible = false;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label19.Location = new System.Drawing.Point(203, 86);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(40, 19);
-            this.label19.TabIndex = 3;
-            this.label19.Text = "15/...";
-            this.label19.Visible = false;
+            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelView.Location = new System.Drawing.Point(25, 48);
+            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.modelView.Name = "modelView";
+            this.modelView.Size = new System.Drawing.Size(750, 460);
+            this.modelView.TabIndex = 77;
             // 
             // FrmNOCJSPEC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.modelView);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.btnEditData);
-            this.Controls.Add(this.pbModelImage);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -559,7 +557,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -592,7 +589,6 @@
         private System.Windows.Forms.TextBox txtGutterWidth;
         private System.Windows.Forms.ComboBox cobLKSide;
         private System.Windows.Forms.Button btnEditData;
-        private System.Windows.Forms.PictureBox pbModelImage;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label13;
@@ -611,5 +607,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
+        private ModelView modelView;
     }
 }

@@ -96,16 +96,15 @@
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
             this.txtDeepth = new System.Windows.Forms.TextBox();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.label19 = new System.Windows.Forms.Label();
             this.cobANSUL = new System.Windows.Forms.ComboBox();
+            this.modelView = new Compass.ModelView();
             this.groupBox7.SuspendLayout();
             this.grbLEDSpot.SuspendLayout();
             this.grbANSUL.SuspendLayout();
             this.grbMARVEL.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.SuspendLayout();
             // 
             // label29
@@ -816,19 +815,6 @@
             this.txtLength.TabIndex = 0;
             this.txtLength.TextChanged += new System.EventHandler(this.txtLength_TextChanged);
             // 
-            // pbModelImage
-            // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 11;
-            this.pbModelImage.TabStop = false;
-            // 
             // label19
             // 
             this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -854,10 +840,23 @@
             this.cobANSUL.TabIndex = 4;
             this.cobANSUL.SelectedIndexChanged += new System.EventHandler(this.cobANSUL_SelectedIndexChanged);
             // 
+            // modelView
+            // 
+            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelView.Location = new System.Drawing.Point(25, 48);
+            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.modelView.Name = "modelView";
+            this.modelView.Size = new System.Drawing.Size(750, 460);
+            this.modelView.TabIndex = 17;
+            // 
             // FrmKVI400
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.modelView);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.btnEditData);
             this.Controls.Add(this.cobMARVEL);
@@ -869,7 +868,6 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.pbModelImage);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.cobANSUL);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -889,7 +887,6 @@
             this.groupBox6.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -964,8 +961,8 @@
         private System.Windows.Forms.ComboBox cobSidePanel;
         private System.Windows.Forms.TextBox txtDeepth;
         private System.Windows.Forms.TextBox txtLength;
-        private System.Windows.Forms.PictureBox pbModelImage;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.ComboBox cobANSUL;
+        private ModelView modelView;
     }
 }

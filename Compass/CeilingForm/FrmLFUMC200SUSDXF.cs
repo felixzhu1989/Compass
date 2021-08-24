@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmLFUMC200SUSDXF : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         LFUMC200SUSDXFService objLFUMC200SUSDXFService = new LFUMC200SUSDXFService();
         private LFUMC200SUSDXF objLFUMC200SUSDXF = null;
         public FrmLFUMC200SUSDXF()
@@ -30,10 +29,8 @@ namespace Compass
             objLFUMC200SUSDXF = (LFUMC200SUSDXF)objLFUMC200SUSDXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objLFUMC200SUSDXF == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -42,7 +39,7 @@ namespace Compass
         private void FillData()
         {
             if (objLFUMC200SUSDXF == null) return;
-            pbModelImage.Tag = objLFUMC200SUSDXF.LFUMC200SUSDXFId;
+            modelView.Tag = objLFUMC200SUSDXF.LFUMC200SUSDXFId;
 
             //默认txtQuantity为1
             txtQuantity.Text = objLFUMC200SUSDXF.Quantity == 0 ? "1" : objLFUMC200SUSDXF.Quantity.ToString();
@@ -57,7 +54,7 @@ namespace Compass
 
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsInteger(txtQuantity.Text.Trim()))
             {
                 MessageBox.Show("请认真检查数量是否填错", "提示信息");
@@ -71,7 +68,7 @@ namespace Compass
             //封装对象
             LFUMC200SUSDXF objLFUMC200SUSDXF = new LFUMC200SUSDXF()
             {
-                LFUMC200SUSDXFId = Convert.ToInt32(pbModelImage.Tag),
+                LFUMC200SUSDXFId = Convert.ToInt32(modelView.Tag),
                 Quantity = Convert.ToInt32(txtQuantity.Text)
 
             };

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
 using DAL;
@@ -15,8 +8,7 @@ namespace Compass
 {
     public partial class FrmUCJDB800 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
-        UCJDB800Service objUCJDB800Service = new UCJDB800Service();
+       UCJDB800Service objUCJDB800Service = new UCJDB800Service();
         private UCJDB800 objUCJDB800 = null;
         public FrmUCJDB800()
         {
@@ -31,10 +23,8 @@ namespace Compass
             objUCJDB800 = (UCJDB800)objUCJDB800Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objUCJDB800 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         private void IniCob()
@@ -111,7 +101,7 @@ namespace Compass
         private void FillData()
         {
             if (objUCJDB800 == null) return;
-            pbModelImage.Tag = objUCJDB800.UCJDB800Id;
+            modelView.Tag = objUCJDB800.UCJDB800Id;
 
             cobGutter.Text = objUCJDB800.Gutter;
             cobANSUL.Text = objUCJDB800.ANSUL;
@@ -145,7 +135,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 100m)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -332,7 +322,7 @@ namespace Compass
             //封装对象
             UCJDB800 objUCJDB800 = new UCJDB800()
             {
-                UCJDB800Id = Convert.ToInt32(pbModelImage.Tag),
+                UCJDB800Id = Convert.ToInt32(modelView.Tag),
                 ANSUL = cobANSUL.Text,
                 ANSide = cobANSide.Text.Trim().Length == 0 ? "NO" : cobANSide.Text,
                 ANDetectorEnd = cobANDetectorEnd.Text.Trim().Length == 0 ? "NO" : cobANDetectorEnd.Text,

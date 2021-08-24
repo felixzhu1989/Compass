@@ -55,8 +55,11 @@
             this.txtGutterWidth = new System.Windows.Forms.TextBox();
             this.cobLKSide = new System.Windows.Forms.ComboBox();
             this.btnEditData = new System.Windows.Forms.Button();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cobSuType = new System.Windows.Forms.ComboBox();
+            this.lblSuDis = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtSuDis = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cobOutlet = new System.Windows.Forms.ComboBox();
@@ -64,13 +67,9 @@
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
             this.txtLength = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.cobSuType = new System.Windows.Forms.ComboBox();
-            this.lblSuDis = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtSuDis = new System.Windows.Forms.TextBox();
+            this.modelView = new Compass.ModelView();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -358,19 +357,6 @@
             this.btnEditData.UseVisualStyleBackColor = false;
             this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
             // 
-            // pbModelImage
-            // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 62;
-            this.pbModelImage.TabStop = false;
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -391,6 +377,44 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DP高度330";
+            // 
+            // cobSuType
+            // 
+            this.cobSuType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobSuType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobSuType.BackColor = System.Drawing.Color.Azure;
+            this.cobSuType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobSuType.FormattingEnabled = true;
+            this.cobSuType.Location = new System.Drawing.Point(271, 24);
+            this.cobSuType.Name = "cobSuType";
+            this.cobSuType.Size = new System.Drawing.Size(100, 27);
+            this.cobSuType.TabIndex = 1;
+            // 
+            // lblSuDis
+            // 
+            this.lblSuDis.AutoSize = true;
+            this.lblSuDis.Location = new System.Drawing.Point(374, 28);
+            this.lblSuDis.Name = "lblSuDis";
+            this.lblSuDis.Size = new System.Drawing.Size(61, 19);
+            this.lblSuDis.TabIndex = 5;
+            this.lblSuDis.Text = "脖颈距右";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(194, 28);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(75, 19);
+            this.label13.TabIndex = 6;
+            this.label13.Text = "CJ脖颈方向";
+            // 
+            // txtSuDis
+            // 
+            this.txtSuDis.BackColor = System.Drawing.Color.Azure;
+            this.txtSuDis.Location = new System.Drawing.Point(439, 25);
+            this.txtSuDis.Name = "txtSuDis";
+            this.txtSuDis.Size = new System.Drawing.Size(100, 25);
+            this.txtSuDis.TabIndex = 2;
             // 
             // label5
             // 
@@ -464,52 +488,26 @@
             this.label7.Text = "注意背面有DP的情况选择DPBL/R/B";
             this.label7.Visible = false;
             // 
-            // cobSuType
+            // modelView
             // 
-            this.cobSuType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobSuType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobSuType.BackColor = System.Drawing.Color.Azure;
-            this.cobSuType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobSuType.FormattingEnabled = true;
-            this.cobSuType.Location = new System.Drawing.Point(271, 24);
-            this.cobSuType.Name = "cobSuType";
-            this.cobSuType.Size = new System.Drawing.Size(100, 27);
-            this.cobSuType.TabIndex = 1;
-            // 
-            // lblSuDis
-            // 
-            this.lblSuDis.AutoSize = true;
-            this.lblSuDis.Location = new System.Drawing.Point(374, 28);
-            this.lblSuDis.Name = "lblSuDis";
-            this.lblSuDis.Size = new System.Drawing.Size(61, 19);
-            this.lblSuDis.TabIndex = 5;
-            this.lblSuDis.Text = "脖颈距右";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(194, 28);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(75, 19);
-            this.label13.TabIndex = 6;
-            this.label13.Text = "CJ脖颈方向";
-            // 
-            // txtSuDis
-            // 
-            this.txtSuDis.BackColor = System.Drawing.Color.Azure;
-            this.txtSuDis.Location = new System.Drawing.Point(439, 25);
-            this.txtSuDis.Name = "txtSuDis";
-            this.txtSuDis.Size = new System.Drawing.Size(100, 25);
-            this.txtSuDis.TabIndex = 2;
+            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelView.Location = new System.Drawing.Point(25, 48);
+            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.modelView.Name = "modelView";
+            this.modelView.Size = new System.Drawing.Size(750, 460);
+            this.modelView.TabIndex = 77;
             // 
             // FrmDPCJ330
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.modelView);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.btnEditData);
-            this.Controls.Add(this.pbModelImage);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -520,7 +518,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -555,7 +552,6 @@
         private System.Windows.Forms.TextBox txtGutterWidth;
         private System.Windows.Forms.ComboBox cobLKSide;
         private System.Windows.Forms.Button btnEditData;
-        private System.Windows.Forms.PictureBox pbModelImage;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
@@ -568,5 +564,6 @@
         private System.Windows.Forms.Label lblSuDis;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtSuDis;
+        private ModelView modelView;
     }
 }

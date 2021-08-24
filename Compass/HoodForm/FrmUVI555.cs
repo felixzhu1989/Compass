@@ -16,7 +16,6 @@ namespace Compass
 {
     public partial class FrmUVI555 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         UVI555Service objUvi555Service = new UVI555Service();
         private UVI555 objUvi555 = null;
         public FrmUVI555()
@@ -33,10 +32,8 @@ namespace Compass
             objUvi555 = (UVI555)objUvi555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objUvi555 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -133,7 +130,7 @@ namespace Compass
         private void FillData()
         {
             if (objUvi555 == null) return;
-            pbModelImage.Tag = objUvi555.UVI555Id;
+            modelView.Tag = objUvi555.UVI555Id;
 
             cobSidePanel.Text = objUvi555.SidePanel;
             //默认ExNo为1
@@ -181,7 +178,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 500m)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -431,7 +428,7 @@ namespace Compass
             //封装对象
             UVI555 objUvi555 = new UVI555()
             {
-                UVI555Id = Convert.ToInt32(pbModelImage.Tag),
+                UVI555Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
                 ExNo = Convert.ToInt32(cobExNo.Text),
                 LightType = cobLightType.Text,

@@ -15,8 +15,7 @@ namespace Compass
 {
     public partial class FrmUCWUVR4SDXF : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
-        UCWUVR4SDXFService objUCWUVR4SDXFService = new UCWUVR4SDXFService();
+       UCWUVR4SDXFService objUCWUVR4SDXFService = new UCWUVR4SDXFService();
         private UCWUVR4SDXF objUCWUVR4SDXF = null;
         public FrmUCWUVR4SDXF()
         {
@@ -30,10 +29,8 @@ namespace Compass
             objUCWUVR4SDXF = (UCWUVR4SDXF)objUCWUVR4SDXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objUCWUVR4SDXF == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -42,7 +39,7 @@ namespace Compass
         private void FillData()
         {
             if (objUCWUVR4SDXF == null) return;
-            pbModelImage.Tag = objUCWUVR4SDXF.UCWUVR4SDXFId;
+            modelView.Tag = objUCWUVR4SDXF.UCWUVR4SDXFId;
 
             //默认txtQuantity为1
             txtQuantity.Text = objUCWUVR4SDXF.Quantity == 0 ? "1" : objUCWUVR4SDXF.Quantity.ToString();
@@ -57,7 +54,7 @@ namespace Compass
 
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsInteger(txtQuantity.Text.Trim()))
             {
                 MessageBox.Show("请认真检查数量是否填错", "提示信息");
@@ -71,7 +68,7 @@ namespace Compass
             //封装对象
             UCWUVR4SDXF objUCWUVR4SDXF = new UCWUVR4SDXF()
             {
-                UCWUVR4SDXFId = Convert.ToInt32(pbModelImage.Tag),
+                UCWUVR4SDXFId = Convert.ToInt32(modelView.Tag),
                 Quantity = Convert.ToInt32(txtQuantity.Text)
 
             };

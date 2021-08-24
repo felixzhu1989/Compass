@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmCJ300 : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         CJ300Service objCJ300Service = new CJ300Service();
         private CJ300 objCJ300 = null;
         public FrmCJ300()
@@ -31,10 +30,8 @@ namespace Compass
             objCJ300 = (CJ300)objCJ300Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objCJ300 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
 
@@ -109,7 +106,7 @@ namespace Compass
         private void FillData()
         {
             if (objCJ300 == null) return;
-            pbModelImage.Tag = objCJ300.CJ300Id;
+            modelView.Tag = objCJ300.CJ300Id;
 
             cobSidePanel.Text = objCJ300.SidePanel;
             cobSuType.Text = objCJ300.SuType;
@@ -132,7 +129,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 90m)
             {
                 MessageBox.Show("请认真检查CJ腔长度", "提示信息");
@@ -205,7 +202,7 @@ namespace Compass
             //封装对象
             CJ300 objCJ300 = new CJ300()
             {
-                CJ300Id = Convert.ToInt32(pbModelImage.Tag),
+                CJ300Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
                 SuType = cobSuType.Text,
                 BackCJSide = cobBackCJSide.Text,

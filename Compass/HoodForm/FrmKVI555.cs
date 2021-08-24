@@ -24,7 +24,8 @@ namespace Compass
             objKvi555 = (KVI555)objKvi555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objKvi555 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-
+            
+            //location25, 48;size750, 460
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
 

@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmAN :MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         ANService objANService = new ANService();
         private AN objAN = null;
         public FrmAN()
@@ -32,10 +31,8 @@ namespace Compass
             objAN = (AN)objANService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objAN == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -92,8 +89,7 @@ namespace Compass
         private void FillData()
         {
             if (objAN == null) return;
-            pbModelImage.Tag = objAN.ANId;
-
+            modelView.Tag = objAN.ANId;
             
             cobANSUL.Text = objAN.ANSUL;
             
@@ -129,7 +125,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 100m)
             {
                 MessageBox.Show("请认真检查ANSUL腔长度", "提示信息");
@@ -330,7 +326,7 @@ namespace Compass
             //封装对象
             AN objAN = new AN()
             {
-                ANId = Convert.ToInt32(pbModelImage.Tag),
+                ANId = Convert.ToInt32(modelView.Tag),
                 
                 ANSUL = cobANSUL.Text,
                 ANDetectorEnd = cobANDetectorEnd.Text.Trim().Length == 0 ? "NO" : cobANDetectorEnd.Text,

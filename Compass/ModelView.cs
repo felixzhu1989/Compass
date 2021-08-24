@@ -36,9 +36,19 @@ namespace Compass
                 : (Image)new SerializeObjectToString().DeserializeObject(drawing.LabelImage);
 
             string itemPath = drawing.ODPNo + @"\" + drawing.Item + "-" + tree.Module + "-" + tree.CategoryName;
+            if (drawing.HoodType == "Ceiling")//天花烟罩的后缀少一个item
+            {
+                itemPath = drawing.ODPNo + @"\" + tree.Module + "-" + tree.CategoryName;
+            }
             string suffix = drawing.Item + "-" + tree.Module + "-" +
                             drawing.ODPNo.Substring(drawing.ODPNo.Length - 6);
+            if (drawing.HoodType=="Ceiling")//天花烟罩的后缀少一个item
+            {
+                suffix = tree.Module + "-" +
+                         drawing.ODPNo.Substring(drawing.ODPNo.Length - 6);
+            }
             string packedAssyPath = itemPath + @"\" + tree.CategoryName.ToLower() + "_" + suffix + ".sldasm";
+
 
             string localPath = @"D:\MyProjects\" + packedAssyPath;
             string publicPath = @"Z:\1-Project operation\20" + drawing.ODPNo.Substring(3, 2) + @" project\" + packedAssyPath;
@@ -100,10 +110,13 @@ namespace Compass
                 btnOpenSolidWorks.Tag = "1";
 
             }
+            if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(filePath)))
+            {
+                btnOpenFolder.Enabled = true;
+            }
             //if (!string.IsNullOrEmpty(filePath))
             if (System.IO.File.Exists(filePath))
             {
-                btnOpenFolder.Enabled = true;
                 btnOpeneDrawing.Enabled = true;
                 btnOpenSolidWorks.Enabled = true;
 
@@ -116,8 +129,9 @@ namespace Compass
             }
             else
             {
-                MessageBox.Show("未找到该文档,或者路径不标准!");
+                MessageBox.Show("未找到该文档,或者路径不标准!\r\n\r\n请尝试打开文件夹...");
             }
+
         }
         private void btnOpenFolder_Click(object sender, EventArgs e)
         {
@@ -131,14 +145,22 @@ namespace Compass
             {
                 filePath = modelViewData.PublicPath;
             }
+
             
-            if (System.IO.File.Exists(filePath))
-            {
+                if (System.IO.File.Exists(filePath))
+                {
                 System.Diagnostics.Process.Start("Explorer.exe", "/select," + System.IO.Path.GetDirectoryName(filePath) + "\\" + System.IO.Path.GetFileName(filePath));
             }
             else
             {
-                MessageBox.Show("未找到该路径,或者路径不标准!");
+                if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(filePath)))
+                {
+                    System.Diagnostics.Process.Start("Explorer.exe", System.IO.Path.GetDirectoryName(filePath));
+                }
+                else
+                {
+                    MessageBox.Show("未找到该路径,或者路径不标准!");
+                }
             }
         }
         /// <summary>
@@ -174,7 +196,7 @@ namespace Compass
             }
             else
             {
-                MessageBox.Show("未找到该文档,或者路径不标准!");
+                MessageBox.Show("未找到该文档,或者路径不标准!\r\n\r\n请尝试打开文件夹...");
             }
         }
         private void btnOpenSolidWorks_Click(object sender, EventArgs e)
@@ -200,7 +222,7 @@ namespace Compass
             }
             else
             {
-                MessageBox.Show("未找到该文档,或者路径不标准!");
+                MessageBox.Show("未找到该文档,或者路径不标准!\r\n\r\n请尝试打开文件夹...");
             }
         }
 

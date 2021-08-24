@@ -15,8 +15,7 @@ namespace Compass
 {
     public partial class FrmLFUP : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
-        LFUPService objLFUPService = new LFUPService();
+       LFUPService objLFUPService = new LFUPService();
         private LFUP objLFUP = null;
         public FrmLFUP()
         {
@@ -30,10 +29,8 @@ namespace Compass
             objLFUP = (LFUP)objLFUPService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objLFUP == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -42,7 +39,7 @@ namespace Compass
         private void FillData()
         {
             if (objLFUP == null) return;
-            pbModelImage.Tag = objLFUP.LFUPId;
+            modelView.Tag = objLFUP.LFUPId;
 
             txtLength.Text = objLFUP.Length.ToString();
             txtWidth.Text = objLFUP.Width.ToString();
@@ -50,7 +47,7 @@ namespace Compass
         private void btnEditData_Click(object sender, EventArgs e)
         {
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 200m)
             {
                 MessageBox.Show("请认真检查散流器总长", "提示信息");
@@ -68,7 +65,7 @@ namespace Compass
             //封装对象
             LFUP objLFUP = new LFUP()
             {
-                LFUPId = Convert.ToInt32(pbModelImage.Tag),
+                LFUPId = Convert.ToInt32(modelView.Tag),
 
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),
                 Width = Convert.ToDecimal(txtWidth.Text.Trim()),

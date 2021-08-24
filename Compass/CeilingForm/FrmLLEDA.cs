@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmLLEDA : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         LLEDAService objLLEDAService = new LLEDAService();
         private LLEDA objLLEDA = null;
         public FrmLLEDA()
@@ -30,10 +29,8 @@ namespace Compass
             objLLEDA = (LLEDA)objLLEDAService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objLLEDA == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -42,14 +39,14 @@ namespace Compass
         private void FillData()
         {
             if (objLLEDA == null) return;
-            pbModelImage.Tag = objLLEDA.LLEDAId;
+            modelView.Tag = objLLEDA.LLEDAId;
 
             txtLength.Text = objLLEDA.Length.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 200m)
             {
                 MessageBox.Show("请认真检查灯腔侧板总长", "提示信息");
@@ -61,7 +58,7 @@ namespace Compass
             //封装对象
             LLEDA objLLEDA = new LLEDA()
             {
-                LLEDAId = Convert.ToInt32(pbModelImage.Tag),
+                LLEDAId = Convert.ToInt32(modelView.Tag),
 
                 Length = Convert.ToDecimal(txtLength.Text.Trim())
             };

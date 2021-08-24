@@ -845,10 +845,11 @@
             this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelView.Location = new System.Drawing.Point(24, 53);
+            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelView.Location = new System.Drawing.Point(25, 48);
             this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.modelView.Name = "modelView";
-            this.modelView.Size = new System.Drawing.Size(749, 455);
+            this.modelView.Size = new System.Drawing.Size(750, 460);
             this.modelView.TabIndex = 10;
             // 
             // FrmKVI555

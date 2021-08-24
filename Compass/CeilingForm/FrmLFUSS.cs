@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmLFUSS : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         LFUSSService objLFUSSService = new LFUSSService();
         private LFUSS objLFUSS = null;
         public FrmLFUSS()
@@ -31,10 +30,8 @@ namespace Compass
             objLFUSS = (LFUSS)objLFUSSService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objLFUSS == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
 
@@ -71,7 +68,7 @@ namespace Compass
         private void FillData()
         {
             if (objLFUSS == null) return;
-            pbModelImage.Tag = objLFUSS.LFUSSId;
+            modelView.Tag = objLFUSS.LFUSSId;
 
             cobSidePanel.Text = objLFUSS.SidePanel;
             cobSuNo.Text = objLFUSS.SuNo == 0 ? "" : objLFUSS.SuNo.ToString();
@@ -87,7 +84,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 200m)
             {
                 MessageBox.Show("请认真检查散流器长度", "提示信息");
@@ -137,7 +134,7 @@ namespace Compass
             //封装对象
             LFUSS objLFUSS = new LFUSS()
             {
-                LFUSSId = Convert.ToInt32(pbModelImage.Tag),
+                LFUSSId = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
 
                 SuNo = Convert.ToInt32(cobSuNo.Text),

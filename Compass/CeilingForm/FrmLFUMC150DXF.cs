@@ -15,7 +15,6 @@ namespace Compass
 {
     public partial class FrmLFUMC150DXF : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         LFUMC150DXFService objLFUMC150DXFService = new LFUMC150DXFService();
         private LFUMC150DXF objLFUMC150DXF = null;
         public FrmLFUMC150DXF()
@@ -30,10 +29,8 @@ namespace Compass
             objLFUMC150DXF = (LFUMC150DXF)objLFUMC150DXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objLFUMC150DXF == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -42,7 +39,7 @@ namespace Compass
         private void FillData()
         {
             if (objLFUMC150DXF == null) return;
-            pbModelImage.Tag = objLFUMC150DXF.LFUMC150DXFId;
+            modelView.Tag = objLFUMC150DXF.LFUMC150DXFId;
 
             //默认txtQuantity为1
             txtQuantity.Text = objLFUMC150DXF.Quantity == 0 ? "1" : objLFUMC150DXF.Quantity.ToString();
@@ -57,7 +54,7 @@ namespace Compass
 
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsInteger(txtQuantity.Text.Trim()))
             {
                 MessageBox.Show("请认真检查数量是否填错", "提示信息");
@@ -71,7 +68,7 @@ namespace Compass
             //封装对象
             LFUMC150DXF objLFUMC150DXF = new LFUMC150DXF()
             {
-                LFUMC150DXFId = Convert.ToInt32(pbModelImage.Tag),
+                LFUMC150DXFId = Convert.ToInt32(modelView.Tag),
                 Quantity = Convert.ToInt32(txtQuantity.Text)
 
             };

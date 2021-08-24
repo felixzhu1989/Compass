@@ -30,11 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUCWSB535));
             this.grbMARVEL = new System.Windows.Forms.GroupBox();
+            this.lblHCLSide = new System.Windows.Forms.Label();
+            this.txtHCLSideRight = new System.Windows.Forms.TextBox();
+            this.cobHCLSide = new System.Windows.Forms.ComboBox();
             this.lblLightType = new System.Windows.Forms.Label();
             this.cobLightType = new System.Windows.Forms.ComboBox();
+            this.lblHCLSideRight = new System.Windows.Forms.Label();
             this.cobSSPType = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
+            this.lblHCLSideLeft = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.txtHCLSideLeft = new System.Windows.Forms.TextBox();
             this.cobJapan = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cobDPSide = new System.Windows.Forms.ComboBox();
@@ -69,7 +75,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtExLength = new System.Windows.Forms.TextBox();
             this.txtExRightDis = new System.Windows.Forms.TextBox();
-            this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
@@ -84,18 +89,12 @@
             this.lblSensorDis2 = new System.Windows.Forms.Label();
             this.lblSensorDis1 = new System.Windows.Forms.Label();
             this.txtSensorDis1 = new System.Windows.Forms.TextBox();
-            this.cobHCLSide = new System.Windows.Forms.ComboBox();
-            this.lblHCLSide = new System.Windows.Forms.Label();
-            this.txtHCLSideLeft = new System.Windows.Forms.TextBox();
-            this.lblHCLSideLeft = new System.Windows.Forms.Label();
-            this.lblHCLSideRight = new System.Windows.Forms.Label();
-            this.txtHCLSideRight = new System.Windows.Forms.TextBox();
+            this.modelView = new Compass.ModelView();
             this.grbMARVEL.SuspendLayout();
             this.grbANSUL.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.grbUV.SuspendLayout();
             this.SuspendLayout();
@@ -122,6 +121,39 @@
             this.grbMARVEL.TabStop = false;
             this.grbMARVEL.Text = "其他配置";
             // 
+            // lblHCLSide
+            // 
+            this.lblHCLSide.AutoSize = true;
+            this.lblHCLSide.Location = new System.Drawing.Point(199, 62);
+            this.lblHCLSide.Name = "lblHCLSide";
+            this.lblHCLSide.Size = new System.Drawing.Size(61, 19);
+            this.lblHCLSide.TabIndex = 4;
+            this.lblHCLSide.Text = "HCL侧板";
+            this.lblHCLSide.Visible = false;
+            // 
+            // txtHCLSideRight
+            // 
+            this.txtHCLSideRight.BackColor = System.Drawing.Color.Azure;
+            this.txtHCLSideRight.Location = new System.Drawing.Point(281, 97);
+            this.txtHCLSideRight.Name = "txtHCLSideRight";
+            this.txtHCLSideRight.Size = new System.Drawing.Size(100, 25);
+            this.txtHCLSideRight.TabIndex = 5;
+            this.txtHCLSideRight.Visible = false;
+            // 
+            // cobHCLSide
+            // 
+            this.cobHCLSide.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobHCLSide.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobHCLSide.BackColor = System.Drawing.Color.Azure;
+            this.cobHCLSide.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobHCLSide.FormattingEnabled = true;
+            this.cobHCLSide.Location = new System.Drawing.Point(280, 58);
+            this.cobHCLSide.Name = "cobHCLSide";
+            this.cobHCLSide.Size = new System.Drawing.Size(100, 27);
+            this.cobHCLSide.TabIndex = 3;
+            this.cobHCLSide.Visible = false;
+            this.cobHCLSide.SelectedIndexChanged += new System.EventHandler(this.cobHCLSide_SelectedIndexChanged);
+            // 
             // lblLightType
             // 
             this.lblLightType.AutoSize = true;
@@ -144,6 +176,16 @@
             this.cobLightType.TabIndex = 2;
             this.cobLightType.SelectedIndexChanged += new System.EventHandler(this.cobLightType_SelectedIndexChanged);
             // 
+            // lblHCLSideRight
+            // 
+            this.lblHCLSideRight.AutoSize = true;
+            this.lblHCLSideRight.Location = new System.Drawing.Point(200, 99);
+            this.lblHCLSideRight.Name = "lblHCLSideRight";
+            this.lblHCLSideRight.Size = new System.Drawing.Size(74, 19);
+            this.lblHCLSideRight.TabIndex = 2;
+            this.lblHCLSideRight.Text = "HCL右侧板";
+            this.lblHCLSideRight.Visible = false;
+            // 
             // cobSSPType
             // 
             this.cobSSPType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -165,6 +207,16 @@
             this.label30.TabIndex = 2;
             this.label30.Text = "SSP灯板类型";
             // 
+            // lblHCLSideLeft
+            // 
+            this.lblHCLSideLeft.AutoSize = true;
+            this.lblHCLSideLeft.Location = new System.Drawing.Point(6, 99);
+            this.lblHCLSideLeft.Name = "lblHCLSideLeft";
+            this.lblHCLSideLeft.Size = new System.Drawing.Size(74, 19);
+            this.lblHCLSideLeft.TabIndex = 2;
+            this.lblHCLSideLeft.Text = "HCL左侧板";
+            this.lblHCLSideLeft.Visible = false;
+            // 
             // label22
             // 
             this.label22.AutoSize = true;
@@ -173,6 +225,15 @@
             this.label22.Size = new System.Drawing.Size(61, 19);
             this.label22.TabIndex = 2;
             this.label22.Text = "日本项目";
+            // 
+            // txtHCLSideLeft
+            // 
+            this.txtHCLSideLeft.BackColor = System.Drawing.Color.Azure;
+            this.txtHCLSideLeft.Location = new System.Drawing.Point(92, 96);
+            this.txtHCLSideLeft.Name = "txtHCLSideLeft";
+            this.txtHCLSideLeft.Size = new System.Drawing.Size(100, 25);
+            this.txtHCLSideLeft.TabIndex = 4;
+            this.txtHCLSideLeft.Visible = false;
             // 
             // cobJapan
             // 
@@ -544,19 +605,6 @@
             this.txtExRightDis.Size = new System.Drawing.Size(100, 25);
             this.txtExRightDis.TabIndex = 0;
             // 
-            // pbModelImage
-            // 
-            this.pbModelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbModelImage.Image = global::Compass.Properties.Resources.NoPic;
-            this.pbModelImage.Location = new System.Drawing.Point(23, 63);
-            this.pbModelImage.Name = "pbModelImage";
-            this.pbModelImage.Size = new System.Drawing.Size(750, 445);
-            this.pbModelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbModelImage.TabIndex = 57;
-            this.pbModelImage.TabStop = false;
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -711,72 +759,23 @@
             this.txtSensorDis1.TabIndex = 2;
             this.txtSensorDis1.Visible = false;
             // 
-            // cobHCLSide
+            // modelView
             // 
-            this.cobHCLSide.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobHCLSide.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobHCLSide.BackColor = System.Drawing.Color.Azure;
-            this.cobHCLSide.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobHCLSide.FormattingEnabled = true;
-            this.cobHCLSide.Location = new System.Drawing.Point(280, 58);
-            this.cobHCLSide.Name = "cobHCLSide";
-            this.cobHCLSide.Size = new System.Drawing.Size(100, 27);
-            this.cobHCLSide.TabIndex = 3;
-            this.cobHCLSide.Visible = false;
-            this.cobHCLSide.SelectedIndexChanged += new System.EventHandler(this.cobHCLSide_SelectedIndexChanged);
-            // 
-            // lblHCLSide
-            // 
-            this.lblHCLSide.AutoSize = true;
-            this.lblHCLSide.Location = new System.Drawing.Point(199, 62);
-            this.lblHCLSide.Name = "lblHCLSide";
-            this.lblHCLSide.Size = new System.Drawing.Size(61, 19);
-            this.lblHCLSide.TabIndex = 4;
-            this.lblHCLSide.Text = "HCL侧板";
-            this.lblHCLSide.Visible = false;
-            // 
-            // txtHCLSideLeft
-            // 
-            this.txtHCLSideLeft.BackColor = System.Drawing.Color.Azure;
-            this.txtHCLSideLeft.Location = new System.Drawing.Point(92, 96);
-            this.txtHCLSideLeft.Name = "txtHCLSideLeft";
-            this.txtHCLSideLeft.Size = new System.Drawing.Size(100, 25);
-            this.txtHCLSideLeft.TabIndex = 4;
-            this.txtHCLSideLeft.Visible = false;
-            // 
-            // lblHCLSideLeft
-            // 
-            this.lblHCLSideLeft.AutoSize = true;
-            this.lblHCLSideLeft.Location = new System.Drawing.Point(6, 99);
-            this.lblHCLSideLeft.Name = "lblHCLSideLeft";
-            this.lblHCLSideLeft.Size = new System.Drawing.Size(74, 19);
-            this.lblHCLSideLeft.TabIndex = 2;
-            this.lblHCLSideLeft.Text = "HCL左侧板";
-            this.lblHCLSideLeft.Visible = false;
-            // 
-            // lblHCLSideRight
-            // 
-            this.lblHCLSideRight.AutoSize = true;
-            this.lblHCLSideRight.Location = new System.Drawing.Point(200, 99);
-            this.lblHCLSideRight.Name = "lblHCLSideRight";
-            this.lblHCLSideRight.Size = new System.Drawing.Size(74, 19);
-            this.lblHCLSideRight.TabIndex = 2;
-            this.lblHCLSideRight.Text = "HCL右侧板";
-            this.lblHCLSideRight.Visible = false;
-            // 
-            // txtHCLSideRight
-            // 
-            this.txtHCLSideRight.BackColor = System.Drawing.Color.Azure;
-            this.txtHCLSideRight.Location = new System.Drawing.Point(281, 97);
-            this.txtHCLSideRight.Name = "txtHCLSideRight";
-            this.txtHCLSideRight.Size = new System.Drawing.Size(100, 25);
-            this.txtHCLSideRight.TabIndex = 5;
-            this.txtHCLSideRight.Visible = false;
+            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelView.Location = new System.Drawing.Point(25, 48);
+            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.modelView.Name = "modelView";
+            this.modelView.Size = new System.Drawing.Size(750, 460);
+            this.modelView.TabIndex = 77;
             // 
             // FrmUCWSB535
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.modelView);
             this.Controls.Add(this.grbUV);
             this.Controls.Add(this.grbMARVEL);
             this.Controls.Add(this.grbANSUL);
@@ -784,7 +783,6 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnEditData);
             this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.pbModelImage);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -801,7 +799,6 @@
             this.groupBox2.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.grbUV.ResumeLayout(false);
@@ -852,7 +849,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtExLength;
         private System.Windows.Forms.TextBox txtExRightDis;
-        private System.Windows.Forms.PictureBox pbModelImage;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cobSidePanel;
@@ -873,5 +869,6 @@
         private System.Windows.Forms.Label lblHCLSideRight;
         private System.Windows.Forms.Label lblHCLSideLeft;
         private System.Windows.Forms.TextBox txtHCLSideLeft;
+        private ModelView modelView;
     }
 }

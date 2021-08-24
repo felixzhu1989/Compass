@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
 using DAL;
@@ -15,7 +8,6 @@ namespace Compass
 {
     public partial class FrmUCJFCCOMBIDXF : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
         UCJFCCOMBIDXFService objUCJFCCOMBIDXFService = new UCJFCCOMBIDXFService();
         private UCJFCCOMBIDXF objUCJFCCOMBIDXF = null;
         public FrmUCJFCCOMBIDXF()
@@ -30,10 +22,8 @@ namespace Compass
             objUCJFCCOMBIDXF = (UCJFCCOMBIDXF)objUCJFCCOMBIDXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objUCJFCCOMBIDXF == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
-            pbModelImage.Image = objCategory.ModelImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -42,7 +32,7 @@ namespace Compass
         private void FillData()
         {
             if (objUCJFCCOMBIDXF == null) return;
-            pbModelImage.Tag = objUCJFCCOMBIDXF.UCJFCCOMBIDXFId;
+            modelView.Tag = objUCJFCCOMBIDXF.UCJFCCOMBIDXFId;
 
             //默认txtQuantity为1
             txtQuantity.Text = objUCJFCCOMBIDXF.Quantity == 0 ? "1" : objUCJFCCOMBIDXF.Quantity.ToString();
@@ -57,7 +47,7 @@ namespace Compass
 
             #region 数据验证
             //必填项目
-            if (pbModelImage.Tag.ToString().Length == 0) return;
+            if (modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsInteger(txtQuantity.Text.Trim()))
             {
                 MessageBox.Show("请认真检查数量是否填错", "提示信息");
@@ -71,7 +61,7 @@ namespace Compass
             //封装对象
             UCJFCCOMBIDXF objUCJFCCOMBIDXF = new UCJFCCOMBIDXF()
             {
-                UCJFCCOMBIDXFId = Convert.ToInt32(pbModelImage.Tag),
+                UCJFCCOMBIDXFId = Convert.ToInt32(modelView.Tag),
                 Quantity = Convert.ToInt32(txtQuantity.Text)
 
             };
