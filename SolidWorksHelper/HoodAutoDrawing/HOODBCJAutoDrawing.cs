@@ -49,9 +49,8 @@ namespace SolidWorksHelper
             ModelDoc2 swPart = default(ModelDoc2);
             AssemblyDoc swAssy = default(AssemblyDoc);
             Component2 swComp;
-            Feature swFeat = default(Feature);
-            object configNames = null;
-
+            
+           
             //打开Pack后的模型
             swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
                 (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;

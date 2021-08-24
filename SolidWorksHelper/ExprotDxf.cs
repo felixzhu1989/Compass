@@ -117,8 +117,8 @@ namespace SolidWorksHelper
                                 swSubBodyFolder.UpdateCutList();
                                 string val = string.Empty;
                                 string valout = string.Empty;
-                                bool wasResolved = false;
-                                bool linkToProp = false;
+                                //bool wasResolved = false;
+                                //bool linkToProp = false;
                                 SubFeat.CustomPropertyManager.Get4("Bounding Box Length", false, out val, out valout);
                                 cutRecord.Length = Convert.ToDecimal(valout);
                                 SubFeat.CustomPropertyManager.Get4("Bounding Box Width", false, out val, out valout);
@@ -260,8 +260,8 @@ namespace SolidWorksHelper
                                 swSubBodyFolder.UpdateCutList();
                                 string val = string.Empty;
                                 string valout = string.Empty;
-                                bool wasResolved = false;
-                                bool linkToProp = false;
+                                //bool wasResolved = false;
+                                //bool linkToProp = false;
                                 SubFeat.CustomPropertyManager.Get4("Bounding Box Length", false, out val, out valout);
                                 cutRecord.Length = Convert.ToDecimal(valout);
                                 SubFeat.CustomPropertyManager.Get4("Bounding Box Width", false, out val, out valout);

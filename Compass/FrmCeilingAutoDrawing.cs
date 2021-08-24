@@ -730,8 +730,7 @@ namespace Compass
             tspbStatus.Maximum = 2;
             btnCeilingPackingList.Enabled = false;
             List<CeilingAccessory> ceilingAccessoriesList = null;
-            List<CeilingAccessory> ceilingPackingList = null;
-            if (dgvCeilingPackingList.RowCount > 0)
+           if (dgvCeilingPackingList.RowCount > 0)
             {
                 DialogResult result = MessageBox.Show("发货清单有内容，标准配件将不会重复添加，如果需要添加标准件请手动添加或者删除本数据后再生成发货清单,继续请按YES，不生成发货清单请按NO?", "生成发货清单询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.No)

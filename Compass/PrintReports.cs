@@ -198,7 +198,6 @@ namespace Compass
             }
             int startRow = 0;
             int endRow = 0;
-            int countRow = 0;
             foreach (var item in locationList)
             {
                 endRow = startRow + item.Value;
@@ -246,7 +245,6 @@ namespace Compass
             }
             int startRow = 0;
             int endRow = 0;
-            int countRow = 0;
             foreach (var item in locationList)
             {
                 endRow = startRow + item.Value;

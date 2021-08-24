@@ -95,7 +95,7 @@ namespace Compass
         public void OnOpen(object sender, EventArgs e)
         {
             string filePath = "";
-            if (((Button)sender).Tag == "0")
+            if (((Button)sender).Tag.ToString() == "0")
             {
                 filePath = modelViewData.LocalPath;
                 btnOpenFolder.Tag = "0";
@@ -137,7 +137,7 @@ namespace Compass
         {
             btnOpenFolder.Enabled = false;
             string filePath = "";
-            if (((Button)sender).Tag == "0")
+            if (((Button)sender).Tag.ToString() == "0")
             {
                 filePath = modelViewData.LocalPath;
             }
@@ -172,7 +172,7 @@ namespace Compass
         {
             btnOpeneDrawing.Enabled = false;
             string filePath = "";
-            if (((Button)sender).Tag == "0")
+            if (((Button)sender).Tag.ToString() == "0")
             {
                 filePath = modelViewData.LocalPath;
             }
@@ -203,7 +203,7 @@ namespace Compass
         {
             btnOpenSolidWorks.Enabled = false;
             string filePath = "";
-            if (((Button)sender).Tag == "0")
+            if (((Button)sender).Tag.ToString() == "0")
             {
                 filePath = modelViewData.LocalPath;
             }

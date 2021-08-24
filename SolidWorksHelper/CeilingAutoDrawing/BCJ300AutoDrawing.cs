@@ -48,8 +48,8 @@ namespace SolidWorksHelper
             ModelDoc2 swPart = default(ModelDoc2);
             AssemblyDoc swAssy = default(AssemblyDoc);
             Component2 swComp;
-            Feature swFeat = default(Feature);
-            object configNames = null;
+            
+            
             ModelDocExtension swModelDocExt = default(ModelDocExtension);
             bool status = false;
             string compReName = string.Empty;

@@ -1513,12 +1513,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Unit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Length;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Width;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Height;
+        private new System.Windows.Forms.DataGridViewTextBoxColumn Width;
+        private new System.Windows.Forms.DataGridViewTextBoxColumn Height;
         private System.Windows.Forms.DataGridViewTextBoxColumn Material;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remark;
         private System.Windows.Forms.DataGridViewTextBoxColumn CountingRule;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Location;
+        private new System.Windows.Forms.DataGridViewTextBoxColumn Location;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
         private System.Windows.Forms.DataGridViewTextBoxColumn CeilingPackingListId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClassNo;

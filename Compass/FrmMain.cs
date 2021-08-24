@@ -123,9 +123,8 @@ namespace Compass
         {
             foreach (Control item in panel.Controls)
             {
-                if (item is Form)
+                if (item is Form objControl)
                 {
-                    Form objControl = (Form)item;
                     objControl.Close();
                 }
             }
@@ -302,9 +301,11 @@ namespace Compass
         {
             ClosePreForm(splitContainer.Panel2);
             //关联委托方法与委托变量
-            FrmProject objFrmProject = new FrmProject();
-            //objFrmProject.ShowProjectInfoDeg = this.ShowProjectInfo;
-            objFrmProject.ShowModelTreeDeg = this.ShowModuleTree;
+            FrmProject objFrmProject = new FrmProject
+            {
+                //objFrmProject.ShowProjectInfoDeg = this.ShowProjectInfo;
+                ShowModelTreeDeg = this.ShowModuleTree
+            };
             OpenForm(objFrmProject, splitContainer.Panel2);
         }
 
@@ -317,18 +318,22 @@ namespace Compass
         private void ShowModuleTree(string odpNo)
         {
             ClosePreForm(splitContainer.Panel1);
-            FrmModuleTree objFrmModuleTree = new FrmModuleTree(odpNo);
-            //【4】关联委托变量
-            objFrmModuleTree.QuickBrowseDeg = this.QuickBrowse;
+            FrmModuleTree objFrmModuleTree = new FrmModuleTree(odpNo)
+            {
+                //【4】关联委托变量
+                QuickBrowseDeg = this.QuickBrowse
+            };
             //objFrmModuleTree.ShowProjectInfoDeg = this.ShowProjectInfo;
             OpenForm(objFrmModuleTree, splitContainer.Panel1);
         }
         private void ShowProjects(string id)
         {
             ClosePreForm(splitContainer.Panel2);
-            FrmProject objFrmProject = new FrmProject();
-            //objFrmProject.ShowProjectInfoDeg = this.ShowProjectInfo;
-            objFrmProject.ShowModelTreeDeg = this.ShowModuleTree;
+            FrmProject objFrmProject = new FrmProject
+            {
+                //objFrmProject.ShowProjectInfoDeg = this.ShowProjectInfo;
+                ShowModelTreeDeg = this.ShowModuleTree
+            };
             OpenForm(objFrmProject, splitContainer.Panel2);
         }
 
