@@ -43,7 +43,7 @@ namespace Compass
             string currentSBU = Program.ObjCurrentUser.SBU == "" ? "FoodService" : Program.ObjCurrentUser.SBU;
             this.lblCurrentSBU.Text = "当前事业部：" + currentSBU;
             this.Text = "COMPASS." + currentSBU;
-            tsmiProjectList_Click(null, null);
+            TsmiProjectList_Click(null, null);
             SetPermissions();
         }
         /// <summary>
@@ -97,11 +97,11 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void llblHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LlblHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("explorer.exe", "http://10.9.18.31:8080/space/index");
         }
-        private void llblHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LlblHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("explorer.exe", "https://github.com/felixzhu1989/Compass/commits/main");
         }
@@ -145,7 +145,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiUsersManage_Click(object sender, EventArgs e)
+        private void TsmiUsersManage_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmUserManage(Program.ObjCurrentUser), splitContainer.Panel2);
@@ -155,7 +155,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiCategories_Click(object sender, EventArgs e)
+        private void TsmiCategories_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmCategories(), splitContainer.Panel2);
@@ -165,7 +165,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDXFCutList_Click(object sender, EventArgs e)
+        private void TsmiDXFCutList_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmDXFCutList(), splitContainer.Panel2);
@@ -175,7 +175,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiWorkLoad_Click(object sender, EventArgs e)
+        private void TsmiWorkLoad_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmDesignWorkload(), splitContainer.Panel2);
@@ -185,7 +185,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiStatusTypes_Click(object sender, EventArgs e)
+        private void TsmiStatusTypes_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmStatusTypes(), splitContainer.Panel2);
@@ -195,7 +195,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiCeilingAccessories_Click(object sender, EventArgs e)
+        private void TsmiCeilingAccessories_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmCeilingAccessories(), splitContainer.Panel2);
@@ -205,7 +205,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiUpdate_Click(object sender, EventArgs e)
+        private void TsmiUpdate_Click(object sender, EventArgs e)
         {
             UpdateManager objUpdateManager = null;
             try
@@ -234,7 +234,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timerUpdate_Tick(object sender, EventArgs e)
+        private void TimerUpdate_Tick(object sender, EventArgs e)
         {
             UpdateManager objUpdateManager = null;
             try
@@ -259,7 +259,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiSolidWorksSetting_Click(object sender, EventArgs e)
+        private void TsmiSolidWorksSetting_Click(object sender, EventArgs e)
         {
             SolidWorksSetting swSetting = new SolidWorksSetting();
             swSetting.SolidWorksHaltonSetting();
@@ -276,7 +276,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDarwingPlan_Click(object sender, EventArgs e)
+        private void TsmiDarwingPlan_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             FrmDrawingPlan objFrmDrawingPlan = new FrmDrawingPlan();
@@ -288,7 +288,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiProjectTracking_Click(object sender, EventArgs e)
+        private void TsmiProjectTracking_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             OpenForm(new FrmProjectTracking(), splitContainer.Panel2);
@@ -297,7 +297,7 @@ namespace Compass
         #endregion
 
         #region 项目信息菜单
-        private void tsmiProjectList_Click(object sender, EventArgs e)
+        private void TsmiProjectList_Click(object sender, EventArgs e)
         {
             ClosePreForm(splitContainer.Panel2);
             //关联委托方法与委托变量
@@ -309,7 +309,7 @@ namespace Compass
             OpenForm(objFrmProject, splitContainer.Panel2);
         }
 
-        private void tsmiProjectInfo_Click(object sender, EventArgs e)
+        private void TsmiProjectInfo_Click(object sender, EventArgs e)
         {
             FrmProjectInfo objFrmProjectInfo = new FrmProjectInfo();
             objFrmProjectInfo.Show();
@@ -351,7 +351,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDrawingPlanQuery_Click(object sender, EventArgs e)
+        private void TsmiDrawingPlanQuery_Click(object sender, EventArgs e)
         {
             FrmDrawingPlanQuery objFrmDrawingPlanQuery = new FrmDrawingPlanQuery();
             objFrmDrawingPlanQuery.Show();
@@ -362,13 +362,13 @@ namespace Compass
         #endregion 项目信息菜单
         
         #region SolidWorks自动绘图
-        private void tsmiHoodAutoDrawing_Click(object sender, EventArgs e)
+        private void TsmiHoodAutoDrawing_Click(object sender, EventArgs e)
         {
             FrmHoodAutoDrawing objFrmHoodAutoDrawing = new FrmHoodAutoDrawing();
             objFrmHoodAutoDrawing.Show();
         }
 
-        private void tsmiCeilingAutoDrawing_Click(object sender, EventArgs e)
+        private void TsmiCeilingAutoDrawing_Click(object sender, EventArgs e)
         {
             FrmCeilingAutoDrawing objFrmCeilingAutoDrawing = new FrmCeilingAutoDrawing();
             objFrmCeilingAutoDrawing.Show();
@@ -376,13 +376,16 @@ namespace Compass
 
         #endregion  SolidWorks自动绘图
 
-        private void tsmiMonthlyQuery_Click(object sender, EventArgs e)
+        private void TsmiMonthlyQuery_Click(object sender, EventArgs e)
         {
-           
+            //测试
+            //FrmModelView frm = new FrmModelView();
+            //frm.Show();
+
         }
         
 
-        private void tsmieSolidWorksTools_Click(object sender, EventArgs e)
+        private void TsmieSolidWorksTools_Click(object sender, EventArgs e)
         {
             FrmSolidWorksTools frmTools=new FrmSolidWorksTools();
             frmTools.Show();

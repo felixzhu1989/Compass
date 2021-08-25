@@ -307,3 +307,4 @@ E:\Compass\Compass\bin\Debug\eDrawings.Interop.EModelViewControl.dll
 E:\Compass\Compass\obj\Debug\Compass.FrmModelView.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmSolidWorksTools.resources
 E:\Compass\Compass\obj\Debug\Compass.ModelView.resources
+E:\Compass\Compass\bin\Debug\eDrawings.Interop.EModelMarkupControl.dll

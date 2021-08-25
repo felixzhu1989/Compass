@@ -5,16 +5,19 @@ using System.Windows.Forms;
 using Common;
 using DAL;
 using eDrawings.Interop.EModelViewControl;
+using eDrawings.Interop.EModelMarkupControl;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using Models;
 using SolidWorksHelper;
+
 
 namespace Compass
 {
     public partial class ModelView : UserControl
     {
         private EModelViewControl m_EDrawingsCtrl;
+        private EModelMarkupControl m_EDrawingsMarkupCtrl;
         private CategoryService objCategoryService = new CategoryService();
         private ModelViewData modelViewData = new ModelViewData();
         public ModelView()
@@ -58,26 +61,23 @@ namespace Compass
             modelViewData.LocalPath = localPath;
             modelViewData.PublicPath = publicPath;
             modelViewData.EDrawingPath = Properties.Settings.Default.eDrawings;
-
         }
-
         public void ShowImage()
         {
             this.pbModelImage.Image = modelViewData.ModelImage;
         }
-
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             ctrlEDrw.LoadEDrawings();
         }
-
         private void OnControlLoaded(EModelViewControl ctrl)
         {
             m_EDrawingsCtrl = ctrl;
 
             m_EDrawingsCtrl.OnFinishedLoadingDocument += OnFinishedLoadingDocument;
             m_EDrawingsCtrl.OnFailedLoadingDocument += OnFailedLoadingDocument;
+            m_EDrawingsMarkupCtrl = m_EDrawingsCtrl.CoCreateInstance("EModelViewMarkup.EModelMarkupControl") as EModelMarkupControl;
         }
         private void OnFailedLoadingDocument(string fileName, int errorCode, string errorString)
         {
@@ -86,6 +86,17 @@ namespace Compass
         private void OnFinishedLoadingDocument(string fileName)
         {
             Trace.WriteLine($"{fileName} loaded");
+            m_EDrawingsMarkupCtrl.ViewOperator = EMVMarkupOperators.eMVOperatorMeasure;
+        }
+        /// <summary>
+        /// 记录测量结果按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCaptureMeasurement(object sender, EventArgs e)
+        {
+            txtMeasurements.Text += (!string.IsNullOrEmpty(txtMeasurements.Text) ? System.Environment.NewLine : "")
+                                    + m_EDrawingsMarkupCtrl.MeasureResultString;
         }
         /// <summary>
         /// 在嵌入eDrawings中打开文件
@@ -131,9 +142,8 @@ namespace Compass
             {
                 MessageBox.Show("未找到该文档,或者路径不标准!\r\n\r\n请尝试打开文件夹...");
             }
-
         }
-        private void btnOpenFolder_Click(object sender, EventArgs e)
+        private void BtnOpenFolder_Click(object sender, EventArgs e)
         {
             btnOpenFolder.Enabled = false;
             string filePath = "";
@@ -168,7 +178,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnOpeneDrawing_Click(object sender, EventArgs e)
+        private void BtnOpeneDrawing_Click(object sender, EventArgs e)
         {
             btnOpeneDrawing.Enabled = false;
             string filePath = "";
@@ -199,7 +209,7 @@ namespace Compass
                 MessageBox.Show("未找到该文档,或者路径不标准!\r\n\r\n请尝试打开文件夹...");
             }
         }
-        private void btnOpenSolidWorks_Click(object sender, EventArgs e)
+        private void BtnOpenSolidWorks_Click(object sender, EventArgs e)
         {
             btnOpenSolidWorks.Enabled = false;
             string filePath = "";
@@ -225,17 +235,13 @@ namespace Compass
                 MessageBox.Show("未找到该文档,或者路径不标准!\r\n\r\n请尝试打开文件夹...");
             }
         }
-
-        private void btnModelImage_Click(object sender, EventArgs e)
+        private void BtnModelImage_Click(object sender, EventArgs e)
         {
             this.pbModelImage.Image = modelViewData.ModelImage;
         }
-
-        private void btnLabelImage_Click(object sender, EventArgs e)
+        private void BtnLabelImage_Click(object sender, EventArgs e)
         {
             this.pbModelImage.Image = modelViewData.LabelImage;
         }
-
-        
     }
 }

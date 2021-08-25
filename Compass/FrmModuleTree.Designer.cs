@@ -36,11 +36,12 @@
             this.tsmiEditModule = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteModule = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditPic = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiShowProjectInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAutoDrawing = new System.Windows.Forms.Button();
             this.pbLabelImage = new System.Windows.Forms.PictureBox();
-            this.tsmiShowProjectInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCeilingAssy = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLabelImage)).BeginInit();
@@ -61,48 +62,56 @@
             this.tvModule.SelectedImageIndex = 0;
             this.tvModule.Size = new System.Drawing.Size(210, 511);
             this.tvModule.TabIndex = 0;
-            this.tvModule.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.tvModule_AfterCollapse);
-            this.tvModule.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvModule_AfterExpand);
-            this.tvModule.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvModule_NodeMouseDoubleClick);
+            this.tvModule.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.TvModule_AfterCollapse);
+            this.tvModule.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.TvModule_AfterExpand);
+            this.tvModule.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TvModule_NodeMouseDoubleClick);
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiCeilingAssy,
             this.tsmiAddModule,
             this.tsmiEditModule,
             this.tsmiDeleteModule,
             this.tsmiEditPic,
             this.tsmiShowProjectInfo});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 158);
             // 
             // tsmiAddModule
             // 
             this.tsmiAddModule.Name = "tsmiAddModule";
             this.tsmiAddModule.Size = new System.Drawing.Size(180, 22);
             this.tsmiAddModule.Text = "添加分段";
-            this.tsmiAddModule.Click += new System.EventHandler(this.tsmiAddModule_Click);
+            this.tsmiAddModule.Click += new System.EventHandler(this.TsmiAddModule_Click);
             // 
             // tsmiEditModule
             // 
             this.tsmiEditModule.Name = "tsmiEditModule";
             this.tsmiEditModule.Size = new System.Drawing.Size(180, 22);
             this.tsmiEditModule.Text = "修改分段";
-            this.tsmiEditModule.Click += new System.EventHandler(this.tsmiEditModule_Click);
+            this.tsmiEditModule.Click += new System.EventHandler(this.TsmiEditModule_Click);
             // 
             // tsmiDeleteModule
             // 
             this.tsmiDeleteModule.Name = "tsmiDeleteModule";
             this.tsmiDeleteModule.Size = new System.Drawing.Size(180, 22);
             this.tsmiDeleteModule.Text = "删除分段";
-            this.tsmiDeleteModule.Click += new System.EventHandler(this.tsmiDeleteModule_Click);
+            this.tsmiDeleteModule.Click += new System.EventHandler(this.TsmiDeleteModule_Click);
             // 
             // tsmiEditPic
             // 
             this.tsmiEditPic.Name = "tsmiEditPic";
             this.tsmiEditPic.Size = new System.Drawing.Size(180, 22);
             this.tsmiEditPic.Text = "修改截图";
-            this.tsmiEditPic.Click += new System.EventHandler(this.tsmiEditPic_Click);
+            this.tsmiEditPic.Click += new System.EventHandler(this.TsmiEditPic_Click);
+            // 
+            // tsmiShowProjectInfo
+            // 
+            this.tsmiShowProjectInfo.Name = "tsmiShowProjectInfo";
+            this.tsmiShowProjectInfo.Size = new System.Drawing.Size(180, 22);
+            this.tsmiShowProjectInfo.Text = "项目信息";
+            this.tsmiShowProjectInfo.Click += new System.EventHandler(this.TsmiShowProjectInfo_Click);
             // 
             // imageList1
             // 
@@ -137,7 +146,7 @@
             this.btnAutoDrawing.TabIndex = 10;
             this.btnAutoDrawing.Text = "自动作图 / 导出DXF图纸 / JobCard / 装箱清单";
             this.btnAutoDrawing.UseVisualStyleBackColor = false;
-            this.btnAutoDrawing.Click += new System.EventHandler(this.btnAutoDrawing_Click);
+            this.btnAutoDrawing.Click += new System.EventHandler(this.BtnAutoDrawing_Click);
             // 
             // pbLabelImage
             // 
@@ -149,12 +158,12 @@
             this.pbLabelImage.TabIndex = 61;
             this.pbLabelImage.TabStop = false;
             // 
-            // tsmiShowProjectInfo
+            // tsmiCeilingAssy
             // 
-            this.tsmiShowProjectInfo.Name = "tsmiShowProjectInfo";
-            this.tsmiShowProjectInfo.Size = new System.Drawing.Size(180, 22);
-            this.tsmiShowProjectInfo.Text = "项目信息";
-            this.tsmiShowProjectInfo.Click += new System.EventHandler(this.tsmiShowProjectInfo_Click);
+            this.tsmiCeilingAssy.Name = "tsmiCeilingAssy";
+            this.tsmiCeilingAssy.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCeilingAssy.Text = "天花总装";
+            this.tsmiCeilingAssy.Click += new System.EventHandler(this.TsmiCeilingAssy_Click);
             // 
             // FrmModuleTree
             // 
@@ -188,5 +197,6 @@
         private System.Windows.Forms.PictureBox pbLabelImage;
         private System.Windows.Forms.ToolStripMenuItem tsmiEditPic;
         private System.Windows.Forms.ToolStripMenuItem tsmiShowProjectInfo;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCeilingAssy;
     }
 }

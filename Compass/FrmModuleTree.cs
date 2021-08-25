@@ -42,8 +42,15 @@ namespace Compass
         {
             objProject = objProjectService.GetProjectByODPNo(odpNo,sbu);
             RefreshTree();
-            this.tvModule.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvModule_AfterSelect);
-            
+            this.tvModule.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TvModule_AfterSelect);
+            if (objProject.HoodType=="Ceiling")
+            {
+                tsmiCeilingAssy.Visible = true;
+            }
+            else
+            {
+                tsmiCeilingAssy.Visible = false;
+            }
         }
         /// <summary>
         /// 设置权限
@@ -141,7 +148,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tvModule_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void TvModule_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (tvModule.SelectedNode == null) return;
             if (tvModule.SelectedNode.Level == 2)
@@ -157,7 +164,7 @@ namespace Compass
                 parameters[0] = objDrawing;
                 parameters[1] = objModuleTree;
                 MetroForm objFrmModel = (MetroForm)Assembly.Load("Compass").CreateInstance("Compass.Frm" + objModuleTree.CategoryName, true, BindingFlags.Default, null, parameters, null, null);
-                objFrmModel.ShowDialog();
+                objFrmModel.Show();
             }
         }
         /// <summary>
@@ -165,7 +172,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiAddModule_Click(object sender, EventArgs e)
+        private void TsmiAddModule_Click(object sender, EventArgs e)
         {
             if (tvModule.SelectedNode == null) return;
             if (tvModule.SelectedNode.Level == 1)
@@ -173,9 +180,11 @@ namespace Compass
                 string drawingPlanId = tvModule.SelectedNode.Tag.ToString();
                 drawingPlanId = drawingPlanId.Substring(4);//除去item
                 Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId,sbu);
-                FrmCategoryTree objFrmCategoryTree = new FrmCategoryTree(objDrawing);
-                //关联委托方法和委托变量
-                objFrmCategoryTree.RefreshTreeDeg = RefreshTree;
+                FrmCategoryTree objFrmCategoryTree = new FrmCategoryTree(objDrawing)
+                {
+                    //关联委托方法和委托变量
+                    RefreshTreeDeg = RefreshTree
+                };
                 objFrmCategoryTree.Show();
 
                 //模式窗口
@@ -193,7 +202,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiEditModule_Click(object sender, EventArgs e)
+        private void TsmiEditModule_Click(object sender, EventArgs e)
         {
             if(tvModule.SelectedNode==null)return;
             if (tvModule.SelectedNode.Level == 2)
@@ -217,7 +226,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDeleteModule_Click(object sender, EventArgs e)
+        private void TsmiDeleteModule_Click(object sender, EventArgs e)
         {
             if(tvModule.SelectedNode==null)return;
             if (tvModule.SelectedNode.Level == 2)
@@ -247,7 +256,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tvModule_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TvModule_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if(tvModule.SelectedNode==null)return;
             if (e.Node.Level == 1)
@@ -278,7 +287,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAutoDrawing_Click(object sender, EventArgs e)
+        private void BtnAutoDrawing_Click(object sender, EventArgs e)
         {
             //利用反射，打开自动作图窗口，Hood和Ceiling，同时实现传递窗口参数
             Project objProject = objProjectService.GetProjectByODPNo(tvModule.Nodes[0].Text.Trim(),sbu);
@@ -288,13 +297,13 @@ namespace Compass
             objFrmAutoDrawing.Show();
         }
 
-        private void tvModule_AfterExpand(object sender, TreeViewEventArgs e)
+        private void TvModule_AfterExpand(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Level == 0) return;
             e.Node.ImageIndex = 2;//打开的文件夹图标
         }
 
-        private void tvModule_AfterCollapse(object sender, TreeViewEventArgs e)
+        private void TvModule_AfterCollapse(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Level == 0) return;
             e.Node.ImageIndex = 1;//关闭的文件夹图标
@@ -304,7 +313,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiEditPic_Click(object sender, EventArgs e)
+        private void TsmiEditPic_Click(object sender, EventArgs e)
         {
             if (tvModule.SelectedNode == null) return;
             TreeNode node = new TreeNode();
@@ -329,7 +338,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiShowProjectInfo_Click(object sender, EventArgs e)
+        private void TsmiShowProjectInfo_Click(object sender, EventArgs e)
         {
             
             if (tvModule.SelectedNode == null) return;
@@ -352,6 +361,16 @@ namespace Compass
             objFrmProjectInfo.Show();
 
 
+        }
+        /// <summary>
+        /// 打开天花总装
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TsmiCeilingAssy_Click(object sender, EventArgs e)
+        {
+            FrmModelView frmModelView=new FrmModelView(objProject);
+            frmModelView.Show();
         }
     }
 }

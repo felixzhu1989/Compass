@@ -84,7 +84,7 @@
             this.llblHelp.TabIndex = 2;
             this.llblHelp.TabStop = true;
             this.llblHelp.Text = "帮助文档";
-            this.llblHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblHelp_LinkClicked);
+            this.llblHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlblHelp_LinkClicked);
             // 
             // lblCurrentUser
             // 
@@ -139,7 +139,7 @@
             // 
             this.timerUpdate.Enabled = true;
             this.timerUpdate.Interval = 3000;
-            this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
+            this.timerUpdate.Tick += new System.EventHandler(this.TimerUpdate_Tick);
             // 
             // lblUpdateTime
             // 
@@ -165,7 +165,7 @@
             this.llblHistory.TabIndex = 2;
             this.llblHistory.TabStop = true;
             this.llblHistory.Text = "更新历史";
-            this.llblHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblHistory_LinkClicked);
+            this.llblHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlblHistory_LinkClicked);
             // 
             // panel1
             // 
@@ -225,7 +225,7 @@
             this.tsmiProjectList.Name = "tsmiProjectList";
             this.tsmiProjectList.Size = new System.Drawing.Size(68, 21);
             this.tsmiProjectList.Text = "项目列表";
-            this.tsmiProjectList.Click += new System.EventHandler(this.tsmiProjectList_Click);
+            this.tsmiProjectList.Click += new System.EventHandler(this.TsmiProjectList_Click);
             // 
             // tsmiProjectInfo
             // 
@@ -233,7 +233,7 @@
             this.tsmiProjectInfo.Name = "tsmiProjectInfo";
             this.tsmiProjectInfo.Size = new System.Drawing.Size(68, 21);
             this.tsmiProjectInfo.Text = "详细信息";
-            this.tsmiProjectInfo.Click += new System.EventHandler(this.tsmiProjectInfo_Click);
+            this.tsmiProjectInfo.Click += new System.EventHandler(this.TsmiProjectInfo_Click);
             // 
             // 制图计划ToolStripMenuItem
             // 
@@ -248,7 +248,7 @@
             this.tsmiDarwingPlan.Name = "tsmiDarwingPlan";
             this.tsmiDarwingPlan.Size = new System.Drawing.Size(68, 21);
             this.tsmiDarwingPlan.Text = "制图计划";
-            this.tsmiDarwingPlan.Click += new System.EventHandler(this.tsmiDarwingPlan_Click);
+            this.tsmiDarwingPlan.Click += new System.EventHandler(this.TsmiDarwingPlan_Click);
             // 
             // tsmiProjectTracking
             // 
@@ -256,7 +256,7 @@
             this.tsmiProjectTracking.Name = "tsmiProjectTracking";
             this.tsmiProjectTracking.Size = new System.Drawing.Size(68, 21);
             this.tsmiProjectTracking.Text = "计划跟踪";
-            this.tsmiProjectTracking.Click += new System.EventHandler(this.tsmiProjectTracking_Click);
+            this.tsmiProjectTracking.Click += new System.EventHandler(this.TsmiProjectTracking_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -271,7 +271,7 @@
             this.tsmiHoodAutoDrawing.Name = "tsmiHoodAutoDrawing";
             this.tsmiHoodAutoDrawing.Size = new System.Drawing.Size(68, 21);
             this.tsmiHoodAutoDrawing.Text = "烟罩作图";
-            this.tsmiHoodAutoDrawing.Click += new System.EventHandler(this.tsmiHoodAutoDrawing_Click);
+            this.tsmiHoodAutoDrawing.Click += new System.EventHandler(this.TsmiHoodAutoDrawing_Click);
             // 
             // tsmiCeilingAutoDrawing
             // 
@@ -279,7 +279,7 @@
             this.tsmiCeilingAutoDrawing.Name = "tsmiCeilingAutoDrawing";
             this.tsmiCeilingAutoDrawing.Size = new System.Drawing.Size(68, 21);
             this.tsmiCeilingAutoDrawing.Text = "天花作图";
-            this.tsmiCeilingAutoDrawing.Click += new System.EventHandler(this.tsmiCeilingAutoDrawing_Click);
+            this.tsmiCeilingAutoDrawing.Click += new System.EventHandler(this.TsmiCeilingAutoDrawing_Click);
             // 
             // tsmiMarineAutoDrawing
             // 
@@ -321,7 +321,7 @@
             this.tsmiMonthlyQuery.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
             this.tsmiMonthlyQuery.Size = new System.Drawing.Size(193, 22);
             this.tsmiMonthlyQuery.Text = "月度统计(&M)";
-            this.tsmiMonthlyQuery.Click += new System.EventHandler(this.tsmiMonthlyQuery_Click);
+            this.tsmiMonthlyQuery.Click += new System.EventHandler(this.TsmiMonthlyQuery_Click);
             // 
             // tsmiDrawingPlanQuery
             // 
@@ -329,7 +329,7 @@
             this.tsmiDrawingPlanQuery.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.tsmiDrawingPlanQuery.Size = new System.Drawing.Size(193, 22);
             this.tsmiDrawingPlanQuery.Text = "制图统计(&D)";
-            this.tsmiDrawingPlanQuery.Click += new System.EventHandler(this.tsmiDrawingPlanQuery_Click);
+            this.tsmiDrawingPlanQuery.Click += new System.EventHandler(this.TsmiDrawingPlanQuery_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -360,63 +360,63 @@
             this.tsmiUsersManage.Name = "tsmiUsersManage";
             this.tsmiUsersManage.Size = new System.Drawing.Size(153, 22);
             this.tsmiUsersManage.Text = "用户信息";
-            this.tsmiUsersManage.Click += new System.EventHandler(this.tsmiUsersManage_Click);
+            this.tsmiUsersManage.Click += new System.EventHandler(this.TsmiUsersManage_Click);
             // 
             // tsmiCategories
             // 
             this.tsmiCategories.Name = "tsmiCategories";
             this.tsmiCategories.Size = new System.Drawing.Size(153, 22);
             this.tsmiCategories.Text = "模型分类";
-            this.tsmiCategories.Click += new System.EventHandler(this.tsmiCategories_Click);
+            this.tsmiCategories.Click += new System.EventHandler(this.TsmiCategories_Click);
             // 
             // tsmiDXFCutList
             // 
             this.tsmiDXFCutList.Name = "tsmiDXFCutList";
             this.tsmiDXFCutList.Size = new System.Drawing.Size(153, 22);
             this.tsmiDXFCutList.Text = "Cutlist模版";
-            this.tsmiDXFCutList.Click += new System.EventHandler(this.tsmiDXFCutList_Click);
+            this.tsmiDXFCutList.Click += new System.EventHandler(this.TsmiDXFCutList_Click);
             // 
             // tsmiCeilingAccessories
             // 
             this.tsmiCeilingAccessories.Name = "tsmiCeilingAccessories";
             this.tsmiCeilingAccessories.Size = new System.Drawing.Size(153, 22);
             this.tsmiCeilingAccessories.Text = "天花配件";
-            this.tsmiCeilingAccessories.Click += new System.EventHandler(this.tsmiCeilingAccessories_Click);
+            this.tsmiCeilingAccessories.Click += new System.EventHandler(this.TsmiCeilingAccessories_Click);
             // 
             // tsmiWorkLoad
             // 
             this.tsmiWorkLoad.Name = "tsmiWorkLoad";
             this.tsmiWorkLoad.Size = new System.Drawing.Size(153, 22);
             this.tsmiWorkLoad.Text = "设计工作量";
-            this.tsmiWorkLoad.Click += new System.EventHandler(this.tsmiWorkLoad_Click);
+            this.tsmiWorkLoad.Click += new System.EventHandler(this.TsmiWorkLoad_Click);
             // 
             // tsmiStatusTypes
             // 
             this.tsmiStatusTypes.Name = "tsmiStatusTypes";
             this.tsmiStatusTypes.Size = new System.Drawing.Size(153, 22);
             this.tsmiStatusTypes.Text = "项目状态/类型";
-            this.tsmiStatusTypes.Click += new System.EventHandler(this.tsmiStatusTypes_Click);
+            this.tsmiStatusTypes.Click += new System.EventHandler(this.TsmiStatusTypes_Click);
             // 
             // tsmiUpdate
             // 
             this.tsmiUpdate.Name = "tsmiUpdate";
             this.tsmiUpdate.Size = new System.Drawing.Size(153, 22);
             this.tsmiUpdate.Text = "系统升级";
-            this.tsmiUpdate.Click += new System.EventHandler(this.tsmiUpdate_Click);
+            this.tsmiUpdate.Click += new System.EventHandler(this.TsmiUpdate_Click);
             // 
             // tsmiSolidWorksSetting
             // 
             this.tsmiSolidWorksSetting.Name = "tsmiSolidWorksSetting";
             this.tsmiSolidWorksSetting.Size = new System.Drawing.Size(153, 22);
             this.tsmiSolidWorksSetting.Text = "SW一键设置";
-            this.tsmiSolidWorksSetting.Click += new System.EventHandler(this.tsmiSolidWorksSetting_Click);
+            this.tsmiSolidWorksSetting.Click += new System.EventHandler(this.TsmiSolidWorksSetting_Click);
             // 
             // tsmieSolidWorksTools
             // 
             this.tsmieSolidWorksTools.Name = "tsmieSolidWorksTools";
             this.tsmieSolidWorksTools.Size = new System.Drawing.Size(153, 22);
             this.tsmieSolidWorksTools.Text = "SW实用工具";
-            this.tsmieSolidWorksTools.Click += new System.EventHandler(this.tsmieSolidWorksTools_Click);
+            this.tsmieSolidWorksTools.Click += new System.EventHandler(this.TsmieSolidWorksTools_Click);
             // 
             // FrmMain
             // 

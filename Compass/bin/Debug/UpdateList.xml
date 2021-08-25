@@ -5,43 +5,44 @@
   <!--升级文件信息-->
   <UpdateInfo>
     <!--升级文件的更新日期-->
-    <UpdateTime Date="2021-08-24 14:00"/>
+    <UpdateTime Date="2021-08-25 16:30"/>
     <!--升级文件的版本号-->
-    <Version Num="1.0.2.21"/>
+    <Version Num="1.0.3.02"/>
   </UpdateInfo>
   <!--升级文件列表-->
   <UpdateFileList>   
 	<!--DLL文件-->
-	<UpdateFile Ver="1.0.2.21" FileName="Common.dll" ContentLength="10KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="DAL.dll" ContentLength="227KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="eDrawings.Interop.EModelViewControl.dll" ContentLength="66KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="MetroFramework.Design.dll" ContentLength="11KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="MetroFramework.dll" ContentLength="11KB"/>	
-	<UpdateFile Ver="1.0.2.21" FileName="MetroFramework.Fonts.dll" ContentLength="11KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="Models.dll" ContentLength="114KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="MyUIControls.dll" ContentLength="6KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="SolidWorksHelper.dll" ContentLength="1510KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="Common.dll" ContentLength="10KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="DAL.dll" ContentLength="227KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="eDrawings.Interop.EModelMarkupControl.dll" ContentLength="20KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="eDrawings.Interop.EModelViewControl.dll" ContentLength="66KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="MetroFramework.Design.dll" ContentLength="11KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="MetroFramework.dll" ContentLength="11KB"/>	
+	<UpdateFile Ver="1.0.3.02" FileName="MetroFramework.Fonts.dll" ContentLength="11KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="Models.dll" ContentLength="114KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="MyUIControls.dll" ContentLength="6KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="SolidWorksHelper.dll" ContentLength="1510KB"/>
 	
 	<!--主程序文件-->
-	<UpdateFile Ver="1.0.2.21" FileName="Compass.exe" ContentLength="1815KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="Compass.exe" ContentLength="1815KB"/>
 	
 	<!--图标文件-->
-	<UpdateFile Ver="1.0.2.21" FileName="compass_64px.ico" ContentLength="1815KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="compass_64px.ico" ContentLength="1815KB"/>
 	
 	<!--缺省图文件-->
-	<UpdateFile Ver="1.0.2.21" FileName="NoPic.png" ContentLength="1815KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="NoPic.png" ContentLength="1815KB"/>
 	
 	<!--excel文件-->
-	<UpdateFile Ver="1.0.2.21" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="CeilingLabel.xlsx" ContentLength="5KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="JobCard.xlsx" ContentLength="1.0.2.219KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="JobCard_Ceiling.xlsx" ContentLength="1.0.2.216KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="CutList.xlsx" ContentLength="11KB"/>
-	<UpdateFile Ver="1.0.2.21" FileName="Cutlist导入模板.xlsx" ContentLength="11KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="CeilingLabel.xlsx" ContentLength="5KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="JobCard.xlsx" ContentLength="1.0.3.029KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="JobCard_Ceiling.xlsx" ContentLength="1.0.3.026KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="CutList.xlsx" ContentLength="11KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="Cutlist导入模板.xlsx" ContentLength="11KB"/>
 	
 	<!--xml文件-->
-	<UpdateFile Ver="1.0.2.21" FileName="UpdateList.xml" ContentLength="2KB"/>
+	<UpdateFile Ver="1.0.3.02" FileName="UpdateList.xml" ContentLength="2KB"/>
 	
   </UpdateFileList>
 </autoUpdater>

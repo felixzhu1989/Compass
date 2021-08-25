@@ -34,6 +34,8 @@
             this.btnModelImage = new System.Windows.Forms.Button();
             this.pbModelImage = new System.Windows.Forms.PictureBox();
             this.tpgModel3D = new System.Windows.Forms.TabPage();
+            this.btnCaptureMeasurement = new System.Windows.Forms.Button();
+            this.txtMeasurements = new System.Windows.Forms.TextBox();
             this.btnOpenSolidWorks = new System.Windows.Forms.Button();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.btnOpeneDrawing = new System.Windows.Forms.Button();
@@ -84,7 +86,7 @@
             this.btnLabelImage.TabIndex = 37;
             this.btnLabelImage.Text = "项目截图";
             this.btnLabelImage.UseVisualStyleBackColor = false;
-            this.btnLabelImage.Click += new System.EventHandler(this.btnLabelImage_Click);
+            this.btnLabelImage.Click += new System.EventHandler(this.BtnLabelImage_Click);
             // 
             // btnModelImage
             // 
@@ -99,7 +101,7 @@
             this.btnModelImage.TabIndex = 38;
             this.btnModelImage.Text = "参数解释";
             this.btnModelImage.UseVisualStyleBackColor = false;
-            this.btnModelImage.Click += new System.EventHandler(this.btnModelImage_Click);
+            this.btnModelImage.Click += new System.EventHandler(this.BtnModelImage_Click);
             // 
             // pbModelImage
             // 
@@ -113,6 +115,8 @@
             // 
             // tpgModel3D
             // 
+            this.tpgModel3D.Controls.Add(this.btnCaptureMeasurement);
+            this.tpgModel3D.Controls.Add(this.txtMeasurements);
             this.tpgModel3D.Controls.Add(this.btnOpenSolidWorks);
             this.tpgModel3D.Controls.Add(this.btnOpenFolder);
             this.tpgModel3D.Controls.Add(this.btnOpeneDrawing);
@@ -127,6 +131,34 @@
             this.tpgModel3D.Text = "3D模型";
             this.tpgModel3D.UseVisualStyleBackColor = true;
             // 
+            // btnCaptureMeasurement
+            // 
+            this.btnCaptureMeasurement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCaptureMeasurement.BackColor = System.Drawing.Color.OliveDrab;
+            this.btnCaptureMeasurement.FlatAppearance.BorderSize = 0;
+            this.btnCaptureMeasurement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCaptureMeasurement.ForeColor = System.Drawing.Color.White;
+            this.btnCaptureMeasurement.Location = new System.Drawing.Point(3, 382);
+            this.btnCaptureMeasurement.Name = "btnCaptureMeasurement";
+            this.btnCaptureMeasurement.Size = new System.Drawing.Size(160, 28);
+            this.btnCaptureMeasurement.TabIndex = 38;
+            this.btnCaptureMeasurement.Tag = "1";
+            this.btnCaptureMeasurement.Text = "记录测量结果";
+            this.btnCaptureMeasurement.UseVisualStyleBackColor = false;
+            this.btnCaptureMeasurement.Click += new System.EventHandler(this.OnCaptureMeasurement);
+            // 
+            // txtMeasurements
+            // 
+            this.txtMeasurements.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtMeasurements.Location = new System.Drawing.Point(3, 3);
+            this.txtMeasurements.Multiline = true;
+            this.txtMeasurements.Name = "txtMeasurements";
+            this.txtMeasurements.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtMeasurements.Size = new System.Drawing.Size(160, 378);
+            this.txtMeasurements.TabIndex = 37;
+            this.txtMeasurements.Text = "选择线可直接显示结果，如果选择的是面则点击记录测量结果按钮。";
+            // 
             // btnOpenSolidWorks
             // 
             this.btnOpenSolidWorks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -135,7 +167,7 @@
             this.btnOpenSolidWorks.FlatAppearance.BorderSize = 0;
             this.btnOpenSolidWorks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenSolidWorks.ForeColor = System.Drawing.Color.White;
-            this.btnOpenSolidWorks.Location = new System.Drawing.Point(615, 377);
+            this.btnOpenSolidWorks.Location = new System.Drawing.Point(615, 171);
             this.btnOpenSolidWorks.Name = "btnOpenSolidWorks";
             this.btnOpenSolidWorks.Size = new System.Drawing.Size(119, 28);
             this.btnOpenSolidWorks.TabIndex = 35;
@@ -143,7 +175,7 @@
             this.btnOpenSolidWorks.Text = "打开SolidWorks";
             this.btnOpenSolidWorks.UseVisualStyleBackColor = false;
             this.btnOpenSolidWorks.Visible = false;
-            this.btnOpenSolidWorks.Click += new System.EventHandler(this.btnOpenSolidWorks_Click);
+            this.btnOpenSolidWorks.Click += new System.EventHandler(this.BtnOpenSolidWorks_Click);
             // 
             // btnOpenFolder
             // 
@@ -160,7 +192,7 @@
             this.btnOpenFolder.Tag = "1";
             this.btnOpenFolder.Text = "打开文件夹";
             this.btnOpenFolder.UseVisualStyleBackColor = false;
-            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
+            this.btnOpenFolder.Click += new System.EventHandler(this.BtnOpenFolder_Click);
             // 
             // btnOpeneDrawing
             // 
@@ -170,7 +202,7 @@
             this.btnOpeneDrawing.FlatAppearance.BorderSize = 0;
             this.btnOpeneDrawing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpeneDrawing.ForeColor = System.Drawing.Color.White;
-            this.btnOpeneDrawing.Location = new System.Drawing.Point(615, 343);
+            this.btnOpeneDrawing.Location = new System.Drawing.Point(615, 137);
             this.btnOpeneDrawing.Name = "btnOpeneDrawing";
             this.btnOpeneDrawing.Size = new System.Drawing.Size(119, 28);
             this.btnOpeneDrawing.TabIndex = 35;
@@ -178,7 +210,7 @@
             this.btnOpeneDrawing.Text = "打开eDrawings";
             this.btnOpeneDrawing.UseVisualStyleBackColor = false;
             this.btnOpeneDrawing.Visible = false;
-            this.btnOpeneDrawing.Click += new System.EventHandler(this.btnOpeneDrawing_Click);
+            this.btnOpeneDrawing.Click += new System.EventHandler(this.BtnOpeneDrawing_Click);
             // 
             // btnPublic
             // 
@@ -214,10 +246,12 @@
             // 
             // ctrlEDrw
             // 
-            this.ctrlEDrw.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlEDrw.Location = new System.Drawing.Point(3, 3);
+            this.ctrlEDrw.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlEDrw.Location = new System.Drawing.Point(169, 3);
             this.ctrlEDrw.Name = "ctrlEDrw";
-            this.ctrlEDrw.Size = new System.Drawing.Size(736, 407);
+            this.ctrlEDrw.Size = new System.Drawing.Size(570, 407);
             this.ctrlEDrw.TabIndex = 0;
             this.ctrlEDrw.EDrawingsControlLoaded += new System.Action<eDrawings.Interop.EModelViewControl.EModelViewControl>(this.OnControlLoaded);
             // 
@@ -232,6 +266,7 @@
             this.tpgModelImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).EndInit();
             this.tpgModel3D.ResumeLayout(false);
+            this.tpgModel3D.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -250,5 +285,7 @@
         private System.Windows.Forms.Button btnOpeneDrawing;
         private System.Windows.Forms.Button btnOpenSolidWorks;
         private System.Windows.Forms.Button btnOpenFolder;
+        private System.Windows.Forms.Button btnCaptureMeasurement;
+        private System.Windows.Forms.TextBox txtMeasurements;
     }
 }

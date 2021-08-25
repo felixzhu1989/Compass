@@ -7,7 +7,6 @@
 
 using eDrawings.Interop.EModelViewControl;
 using System;
-using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace Compass
@@ -35,8 +34,6 @@ namespace Compass
                 var ctrl = this.GetOcx() as EModelViewControl;
                 ControlLoaded?.Invoke(this.GetOcx() as EModelViewControl);
                 ctrl.EnableFeatures = (int)EMVEnableFeatures.eMVFullUI;
-                //ctrl.EnableFeature[EMVEnableFeatures.eMVFullUI] = true;
-                //ctrl.FullUI =(int) EMVEnableFeatures.eMVFullUI;
             }
         }
     }
