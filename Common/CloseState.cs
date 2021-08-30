@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Common
+﻿namespace Common
 {
     public class CloseState
     {
-        private int _Timeout;
+        private readonly int _Timeout;
         public int Timeout
         {
             get
@@ -16,7 +10,7 @@ namespace Common
                 return _Timeout;
             }
         }
-        private string _Caption;
+        private readonly string _Caption;
         /// <summary>
         /// Caption of dialog
         /// </summary>

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
@@ -20,7 +16,7 @@ namespace Common
 
     public class DataGridViewProgressCell : DataGridViewImageCell
     {
-        private static Image emptyImage;
+        private static readonly Image emptyImage;
 
         static DataGridViewProgressCell()
         {
