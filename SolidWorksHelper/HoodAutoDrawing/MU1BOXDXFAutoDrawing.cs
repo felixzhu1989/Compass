@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL;
 using Models;
 using SolidWorks.Interop.sldworks;
 
 namespace SolidWorksHelper
 {
-   public class MU1BOXDXFAutoDrawing : IAutoDrawing
+    public class MU1BOXDXFAutoDrawing : IAutoDrawing
     {
         MU1BOXDXFService objMU1BOXDXFService = new MU1BOXDXFService();
         ProjectService objProjectService = new ProjectService();

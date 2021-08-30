@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL;
 using Models;
 using SolidWorks.Interop.sldworks;
 
 namespace SolidWorksHelper
 {
-   public class UCJFCCOMBIDXFAutoDrawing : IAutoDrawing
+    public class UCJFCCOMBIDXFAutoDrawing : IAutoDrawing
     {
         UCJFCCOMBIDXFService objUCJFCCOMBIDXFService = new UCJFCCOMBIDXFService();
         ProjectService objProjectService = new ProjectService();

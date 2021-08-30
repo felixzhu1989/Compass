@@ -14,3 +14,4 @@ D:\Compass\MyUIControls\obj\Debug\MyUIControls.dll
 D:\Compass\MyUIControls\obj\Debug\MyUIControls.pdb
 D:\Compass\MyUIControls\obj\Debug\MyUIControls.csprojAssemblyReference.cache
 E:\Compass\MyUIControls\obj\Debug\MyUIControls.Properties.Resources.resources
+E:\Compass\MyUIControls\obj\Debug\MyUIControls.csprojAssemblyReference.cache

@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Models;
 using DAL;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Forms.VisualStyles;
 
 namespace Compass
 {
@@ -31,7 +26,7 @@ namespace Compass
             dgvDrawingPlan.AutoGenerateColumns = false;
             //初始化自定义图表对象
             superChartPlan = new SuperChart(this.chartPlan);
-            superChartPercent = new SuperChart(this.chartPercent);
+            superChartPercent = new SuperChart(this.chartHoodTypePercent);
             superChartUserPercent = new SuperChart(this.chartUserPercent);
             //查询年度初始化
             int currentYear = DateTime.Now.Year;
@@ -57,7 +52,7 @@ namespace Compass
                 CurrentPage = 1,
                 Sort = "DrawingPlan.DrReleasetarget desc",
             };
-            btnQueryByYear_Click(null, null);
+            BtnQueryByYear_Click(null, null);
 
         }
         private void Query()
@@ -91,7 +86,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnQueryByYear_Click(object sender, EventArgs e)
+        private void BtnQueryByYear_Click(object sender, EventArgs e)
         {
             if (this.cobQueryYear.SelectedIndex == -1)
             {
@@ -101,15 +96,17 @@ namespace Compass
             objSqlDataPager.CurrentPage = 1;//每次执行查询都必须设置为第一页
             QueryByYear();
             ShowYearWorkloadPie();
-            btnAllWorkload_Click(null, null);
+            BtnAllWorkload_Click(null, null);
         }
 
         private void ShowYearWorkloadPie()
         {
             //年度烟罩和天花工作量占比
-            List<ChartData> chartPercentChartDatas = new List<ChartData>();
-            chartPercentChartDatas.Add(new ChartData("Hood", objDrawingPlanService.GetTotalHoodWorkloadByYear(cobQueryYear.Text)));
-            chartPercentChartDatas.Add(new ChartData("Ceiling", objDrawingPlanService.GetTotalCeilingWorkloadByYear(cobQueryYear.Text)));
+            List<ChartData> chartPercentChartDatas = new List<ChartData>
+            {
+                new ChartData("Hood", objDrawingPlanService.GetTotalHoodWorkloadByYear(cobQueryYear.Text)),
+                new ChartData("Ceiling", objDrawingPlanService.GetTotalCeilingWorkloadByYear(cobQueryYear.Text))
+            };
             this.superChartPercent.ShowChart(SeriesChartType.Pie, chartPercentChartDatas);
             //年度各人员工作量占比
             //chartUserPercent
@@ -124,7 +121,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnHoodModuleNo_Click(object sender, EventArgs e)
+        private void BtnHoodModuleNo_Click(object sender, EventArgs e)
         {
             lblModel.Visible = true;
             cobModel.Visible = true;
@@ -140,13 +137,13 @@ namespace Compass
             //chartPlan.Series[0].LegendText+=" | "+ cobQueryYear.Text + " | Annual statistics | Total for the year:" + objDrawingPlanService.GetTotalHoodModuleNoByYear(cobQueryYear.Text);
             //初始化型号选择框
             List<ChartData> cobModelDataList = dataList;
-            this.cobModel.SelectedIndexChanged -= new System.EventHandler(this.cobModel_SelectedIndexChanged);
+            this.cobModel.SelectedIndexChanged -= new System.EventHandler(this.CobModel_SelectedIndexChanged);
             lblModel.Text = "型号：";
             cobModel.DataSource = cobModelDataList;
             cobModel.DisplayMember = "Text";
             cobModel.ValueMember = "Value";
             cobModel.SelectedIndex = -1;
-            this.cobModel.SelectedIndexChanged += new System.EventHandler(this.cobModel_SelectedIndexChanged);
+            this.cobModel.SelectedIndexChanged += new System.EventHandler(this.CobModel_SelectedIndexChanged);
             cobModel.SelectedIndex = 0;
             chartPlan.ChartAreas[0].AxisX.Title = "普通烟罩型号 | Hood Model";
             chartPlan.ChartAreas[0].AxisY.Title = "烟罩数量 | Number of Hoods";
@@ -156,15 +153,17 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobModel_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobModel_SelectedIndexChanged(object sender, EventArgs e)
         {
             dataListMonth = objDrawingPlanService.GetHoodModuleNoByMonth(cobQueryYear.Text, cobModel.Text);
             chartMonth.Series.Clear();
             chartMonth.ChartAreas[0].AxisY.Maximum = double.NaN;
             //重新设置轴最大值
             chartMonth.ChartAreas[0].RecalculateAxesScale();
-            Series series1 = new Series();
-            series1.ChartType = SeriesChartType.Column;
+            Series series1 = new Series
+            {
+                ChartType = SeriesChartType.Column
+            };
             chartMonth.Series.Add(series1);
 
             series1.LegendText = cobQueryYear.Text + "年" + cobModel.Text + "按月数量统计 | 全年总数量：" + cobModel.SelectedValue;
@@ -194,7 +193,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnCeilingWorkload_Click(object sender, EventArgs e)
+        private void BtnCeilingWorkload_Click(object sender, EventArgs e)
         {
             lblModel.Visible = false;
             cobModel.Visible = false;
@@ -219,8 +218,10 @@ namespace Compass
             foreach (var model in dataList)
             {
                 dataListMonth = objDrawingPlanService.GetCeilingWorkloadByMonth(cobQueryYear.Text, model.Text);
-                Series seriesMonth = new Series();
-                seriesMonth.ChartType = SeriesChartType.Column;
+                Series seriesMonth = new Series
+                {
+                    ChartType = SeriesChartType.Column
+                };
                 chartMonth.Series.Add(seriesMonth);
                 seriesMonth.LegendText = model.Text + "(" + model.Value + ")";
 
@@ -250,7 +251,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAllWorkload_Click(object sender, EventArgs e)
+        private void BtnAllWorkload_Click(object sender, EventArgs e)
         {
             lblModel.Visible = false;
             cobModel.Visible = false;
@@ -268,10 +269,12 @@ namespace Compass
             List<ChartData> totalSalesValueDatas = objDrawingPlanService.GetTotalSalesValueByMonth(cobQueryYear.Text);
             List<ChartData> totalDelayChartDatas =
                 objDrawingPlanService.GetTotalDelayByMonth(cobQueryYear.Text);
-            
+
             //--------------------月度工作量(主图)--------------------
-            Series seriesWorkloadMonthly = new Series();
-            seriesWorkloadMonthly.ChartType = SeriesChartType.Column;
+            Series seriesWorkloadMonthly = new Series
+            {
+                ChartType = SeriesChartType.Column
+            };
             chartPlan.Series.Add(seriesWorkloadMonthly);
             seriesWorkloadMonthly.YAxisType = AxisType.Primary;
             for (int i = 0; i <= 12; i++)
@@ -294,8 +297,10 @@ namespace Compass
             chartPlan.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
 
             //--------------------月度销售额(主图)--------------------
-            Series seriesSalesValueMonthly = new Series();
-            seriesSalesValueMonthly.ChartType = SeriesChartType.Line;
+            Series seriesSalesValueMonthly = new Series
+            {
+                ChartType = SeriesChartType.Line
+            };
             chartPlan.Series.Add(seriesSalesValueMonthly);
             seriesSalesValueMonthly.YAxisType = AxisType.Primary;
             seriesSalesValueMonthly.LabelForeColor = Color.Red;
@@ -304,19 +309,21 @@ namespace Compass
                 double value = 0;
                 foreach (var item in totalSalesValueDatas)
                 {
-                    if (Convert.ToInt32(item.Text) == i) value =Convert.ToDouble( (item.Value/10000d).ToString("N2"));
+                    if (Convert.ToInt32(item.Text) == i) value = Convert.ToDouble((item.Value / 10000d).ToString("N2"));
                 }
                 seriesSalesValueMonthly.Points.AddXY(i, value);
                 seriesSalesValueMonthly.Points[i].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
                 seriesSalesValueMonthly.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
                 if (value != 0d) seriesSalesValueMonthly.Points[i].Label = "#VAL";
-                seriesSalesValueMonthly.Points[i].Color=Color.Red;
+                seriesSalesValueMonthly.Points[i].Color = Color.Red;
             }
 
             //--------------------月度Delay(主图)--------------------
 
-            Series seriesDelayMonthly = new Series();
-            seriesDelayMonthly.ChartType = SeriesChartType.BoxPlot;
+            Series seriesDelayMonthly = new Series
+            {
+                ChartType = SeriesChartType.BoxPlot
+            };
             chartPlan.Series.Add(seriesDelayMonthly);
             seriesDelayMonthly.YAxisType = AxisType.Secondary;
 
@@ -348,16 +355,16 @@ namespace Compass
             double yearWorkload = objDrawingPlanService.GetTotalWorkloadByYear(cobQueryYear.Text);
             double yearSalesValue = objDrawingPlanService.GetTotalSalesValueByYear(cobQueryYear.Text);
             double yearDelay = objDrawingPlanService.GetTotalDelayByYear(cobQueryYear.Text);
-            
+
             chartPlan.Series[0].IsVisibleInLegend = true;
             chartPlan.Series[0].LegendText = cobQueryYear.Text + "年总工作量:" + yearWorkload;
             chartPlan.Series[1].IsVisibleInLegend = true;
-            chartPlan.Series[1].LegendText ="总销售额:" + (yearSalesValue/10000d).ToString("N2")+"万元RMB";
+            chartPlan.Series[1].LegendText = "总销售额:" + (yearSalesValue / 10000d).ToString("N2") + "万元RMB";
             chartPlan.Series[1].Color = Color.Red;
             if (yearWorkload > 0)
             {
                 chartPlan.Series[2].IsVisibleInLegend = true;
-                chartPlan.Series[2].Color= Color.Black;
+                chartPlan.Series[2].Color = Color.Black;
                 chartPlan.Series[2].LegendText = "Delay："
                                                  + 100d * double.Parse((yearDelay / yearWorkload).ToString("0.000")) +
                                                  "%";
@@ -379,9 +386,11 @@ namespace Compass
             //循环所有人员
             foreach (var userData in userWorkloadChartDatas)
             {
-                List<ChartData> monthlyWorkloadChartDatas= objDrawingPlanService.GetUserWorkloadByMonth(cobQueryYear.Text, userData.Text);
-                Series seriesMonth = new Series();
-                seriesMonth.ChartType = SeriesChartType.Column;
+                List<ChartData> monthlyWorkloadChartDatas = objDrawingPlanService.GetUserWorkloadByMonth(cobQueryYear.Text, userData.Text);
+                Series seriesMonth = new Series
+                {
+                    ChartType = SeriesChartType.Column
+                };
                 chartMonth.Series.Add(seriesMonth);
                 seriesMonth.LegendText = userData.Text + "(" + userData.Value + ")";//标签
                 seriesMonth.YAxisType = AxisType.Primary;
@@ -415,8 +424,10 @@ namespace Compass
                 List<ChartData> workloadChartDatas =
                     objDrawingPlanService.GetUserWorkloadByMonth(cobQueryYear.Text, userData.Text);
 
-                Series seriesDelay = new Series();
-                seriesDelay.ChartType = SeriesChartType.BoxPlot;
+                Series seriesDelay = new Series
+                {
+                    ChartType = SeriesChartType.BoxPlot
+                };
                 chartMonth.Series.Add(seriesDelay);
                 //seriesDelay.LegendText = userData.Text;
                 seriesDelay.IsVisibleInLegend = false;
@@ -445,10 +456,13 @@ namespace Compass
             //chartMonth.ChartAreas[0].AxisY2.Interval = 5;
             chartMonth.ChartAreas[0].AxisY2.Minimum = 0;
             chartMonth.ChartAreas[0].AxisY2.Maximum = 50;
+        }
 
-           
-
-
+        private void FrmDrawingPlanQuery_Resize(object sender, EventArgs e)
+        {
+            lblModel.Location = new Point(chartMonth.Location.X + 20, chartMonth.Location.Y + 50+8);
+            cobModel.Location = new Point(chartMonth.Location.X + 70, chartMonth.Location.Y + 50);
+            lblHoodType.Location = new Point(lblUser.Location.X, chartUserPercent.Location.Y+50);
 
         }
 

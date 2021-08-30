@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
 using DAL;
@@ -41,7 +34,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnCeilingAccessory_Click(object sender, EventArgs e)
+        private void BtnCeilingAccessory_Click(object sender, EventArgs e)
         {
             #region 数据验证
             if (txtPartDescription.Text.Trim().Length == 0)
@@ -184,7 +177,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiEditCeilingAccessory_Click(object sender, EventArgs e)
+        private void TsmiEditCeilingAccessory_Click(object sender, EventArgs e)
         {
             if(dgvCeilingAccessories.RowCount==0)return;
             if(dgvCeilingAccessories.CurrentRow==null)return;
@@ -212,7 +205,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDeleteCeilingAccessory_Click(object sender, EventArgs e)
+        private void TsmiDeleteCeilingAccessory_Click(object sender, EventArgs e)
         {
             if (dgvCeilingAccessories.RowCount == 0) return;
             if (dgvCeilingAccessories.CurrentRow == null) return;
@@ -242,27 +235,21 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvCeilingAccessories_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
-        {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvCeilingAccessories, e);
-        }
+        private void DgvCeilingAccessories_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e) => DataGridViewStyle.DgvRowPostPaint(this.dgvCeilingAccessories, e);
         /// <summary>
         /// 按键
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvCeilingAccessories_KeyDown(object sender, KeyEventArgs e)
+        private void DgvCeilingAccessories_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 46) tsmiDeleteCeilingAccessory_Click(null, null);
+            if (e.KeyValue == 46) TsmiDeleteCeilingAccessory_Click(null, null);
         }
         /// <summary>
         /// 双击
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvCeilingAccessories_DoubleClick(object sender, EventArgs e)
-        {
-            tsmiEditCeilingAccessory_Click(null, null);
-        }
+        private void DgvCeilingAccessories_DoubleClick(object sender, EventArgs e) => TsmiEditCeilingAccessory_Click(null, null);
     }
 }

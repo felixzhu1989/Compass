@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Models;
 
 namespace DAL
 {
-   public class CeilingCutListService
+    public class CeilingCutListService
     {
         /// <summary>
         /// 根据SubAssyId返回List合集

@@ -43,8 +43,8 @@ namespace Compass
                 cobMonth.Items.Add(i + 1);
             }
             cobMonth.SelectedIndex = currentMonth - 1;//默认定位当前月份
-            this.cobYear.SelectedIndexChanged += new System.EventHandler(this.cobYear_SelectedIndexChanged);
-            this.cobMonth.SelectedIndexChanged += new System.EventHandler(this.cobMonth_SelectedIndexChanged);
+            this.cobYear.SelectedIndexChanged += new System.EventHandler(this.CobYear_SelectedIndexChanged);
+            this.cobMonth.SelectedIndexChanged += new System.EventHandler(this.CobMonth_SelectedIndexChanged);
             ReportMonthly();//初始化月度统计数据
 
             //绑定ODPNo下拉框
@@ -52,7 +52,7 @@ namespace Compass
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             //初始化后关联事件委托
-            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.cobODPNo_SelectedIndexChanged);
+            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
             SetPermissions();
 
             //初始化项目列表
@@ -74,12 +74,14 @@ namespace Compass
 
         public FrmProjectInfo(string odpNo) : this()
         {
-            this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.cobODPNo_SelectedIndexChanged);
+            this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
             cobODPNo.Text = odpNo;
             InitData();//初始化项目数据
-            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.cobODPNo_SelectedIndexChanged);
+            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
             cobODPNo.Focus();
-
+            tabControl.SelectTab(0);//选中第一张tab选项卡
+            timerScroll.Enabled = false;//关闭循环
+            btnScroll.Text = "开始循环";
         }
         /// <summary>
         /// 设置权限
@@ -105,7 +107,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobODPNo_KeyDown(object sender, KeyEventArgs e)
+        private void CobODPNo_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 13) InitData();
         }
@@ -114,7 +116,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobODPNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobODPNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             InitData();
         }
@@ -123,7 +125,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiRequirement_Click(object sender, EventArgs e)
+        private void TsmiRequirement_Click(object sender, EventArgs e)
         {
             string odpNo = cobODPNo.Text.Trim();
             if (odpNo.Length == 0) return;
@@ -164,7 +166,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvScope_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvScope_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvScope, e);
         }
@@ -173,10 +175,9 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtSalesValue_TextChanged(object sender, EventArgs e)
+        private void TxtSalesValue_TextChanged(object sender, EventArgs e)
         {
-            decimal salseValue = 0m;
-            if (!decimal.TryParse(txtSalesValue.Text.Trim(), out salseValue))
+            if (!decimal.TryParse(txtSalesValue.Text.Trim(), out decimal salseValue))
             {
                 txtSalesValue.Clear();
                 return;
@@ -189,7 +190,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobYear_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobYear_SelectedIndexChanged(object sender, EventArgs e)
         {
             ReportYearly();
         }
@@ -198,7 +199,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobMonth_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
             ReportMonthly();
         }
@@ -207,7 +208,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timerScroll_Tick(object sender, EventArgs e)
+        private void TimerScroll_Tick(object sender, EventArgs e)
         {
             //DateTime scrollEnd = scrollStart.AddSeconds(odpNoList.Count*2);//调试
             DateTime scrollEnd = scrollStart.AddMinutes(odpNoList.Count * 2);
@@ -230,7 +231,7 @@ namespace Compass
                 scrollStart = DateTime.Now;
             }
         }
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToString("yyyy年MM月dd日 hh:mm:ss");
         }
@@ -239,7 +240,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnScroll_Click(object sender, EventArgs e)
+        private void BtnScroll_Click(object sender, EventArgs e)
         {
             if (btnScroll.Text == "暂停循环")
             {
@@ -257,7 +258,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSwitch_Click(object sender, EventArgs e)
+        private void BtnSwitch_Click(object sender, EventArgs e)
         {
             if (btnSwitch.Text == "按月")
             {
@@ -279,7 +280,7 @@ namespace Compass
         /// <summary>
         /// 项目状态，烟罩类型内容需要中英文
         /// </summary>
-        /// <param name="dt"></param>
+        /// <param name="table"></param>
         private DataTable AddChinese(DataTable table)
         {
             for (int i = 0; i < table.Rows.Count; i++)
@@ -406,7 +407,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnFinancialData_Click(object sender, EventArgs e)
+        private void BtnFinancialData_Click(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1 || txtSalesValue.Text.Length == 0) return;
             FinancialData objFinancialData = new FinancialData()
@@ -441,8 +442,10 @@ namespace Compass
             //重新设置轴最大值
             chartTracking.ChartAreas[0].RecalculateAxesScale();
 
-            Series seriesTracking = new Series();
-            seriesTracking.ChartType = SeriesChartType.Bar;
+            Series seriesTracking = new Series
+            {
+                ChartType = SeriesChartType.Bar
+            };
             chartTracking.Series.Add(seriesTracking);
             ProjectTracking projectTracking =
                 objProjectTrackingService.GetProjectTrackingByODPNo(cobODPNo.Text, Program.ObjCurrentUser.SBU);
@@ -584,7 +587,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvProjects, e);
             //if (e.RowIndex > -1)

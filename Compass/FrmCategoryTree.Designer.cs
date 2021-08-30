@@ -53,9 +53,9 @@
             this.tvCategory.SelectedImageIndex = 0;
             this.tvCategory.Size = new System.Drawing.Size(454, 503);
             this.tvCategory.TabIndex = 0;
-            this.tvCategory.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.tvCategory_AfterCollapse);
-            this.tvCategory.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvCategory_AfterExpand);
-            this.tvCategory.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvCategory_AfterSelect);
+            this.tvCategory.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.TvCategory_AfterCollapse);
+            this.tvCategory.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.TvCategory_AfterExpand);
+            this.tvCategory.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TvCategory_AfterSelect);
             // 
             // imageList1
             // 
@@ -81,7 +81,7 @@
             this.btnAddModule.TabIndex = 2;
             this.btnAddModule.Text = "添加：-";
             this.btnAddModule.UseVisualStyleBackColor = false;
-            this.btnAddModule.Click += new System.EventHandler(this.btnAddModule_Click);
+            this.btnAddModule.Click += new System.EventHandler(this.BtnAddModule_Click);
             // 
             // txtModule
             // 
@@ -91,7 +91,7 @@
             this.txtModule.Name = "txtModule";
             this.txtModule.Size = new System.Drawing.Size(100, 25);
             this.txtModule.TabIndex = 1;
-            this.txtModule.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtModule_KeyDown);
+            this.txtModule.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtModule_KeyDown);
             // 
             // label1
             // 

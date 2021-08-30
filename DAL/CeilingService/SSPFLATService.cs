@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Models;
 
 namespace DAL
 {
-   public class SSPFLATService : IModelService
+    public class SSPFLATService : IModelService
     {
         /// <summary>
         /// 根据项目Id查询SSPFLAT集合

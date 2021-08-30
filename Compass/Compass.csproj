@@ -157,6 +157,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="EDrawingsUserControl.Designer.cs" />
+    <Compile Include="FrmProjectMeasure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProjectMeasure.Designer.cs">
+      <DependentUpon>FrmProjectMeasure.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmCH610.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1010,6 +1016,9 @@
     <EmbeddedResource Include="CeilingForm\FrmDPCJ330.resx">
       <DependentUpon>FrmDPCJ330.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmProjectMeasure.resx">
+      <DependentUpon>FrmProjectMeasure.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmCH610.resx">
       <DependentUpon>FrmCH610.cs</DependentUpon>
     </EmbeddedResource>
@@ -1342,9 +1351,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MarineForm\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

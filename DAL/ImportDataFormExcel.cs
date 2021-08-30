@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Models;
 using System.Data;
 
@@ -11,7 +9,7 @@ namespace DAL
     /// <summary>
     /// 从Excel中导入数据
     /// </summary>
-   public class ImportDataFormExcel
+    public class ImportDataFormExcel
     {
         #region 导入客户名称CustomerName
         /// <summary>

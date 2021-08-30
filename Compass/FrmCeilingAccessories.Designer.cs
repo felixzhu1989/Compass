@@ -89,7 +89,7 @@
             this.btnCeilingAccessory.TabIndex = 11;
             this.btnCeilingAccessory.Text = "添加配件";
             this.btnCeilingAccessory.UseVisualStyleBackColor = false;
-            this.btnCeilingAccessory.Click += new System.EventHandler(this.btnCeilingAccessory_Click);
+            this.btnCeilingAccessory.Click += new System.EventHandler(this.BtnCeilingAccessory_Click);
             // 
             // label2
             // 
@@ -181,9 +181,9 @@
             this.dgvCeilingAccessories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCeilingAccessories.Size = new System.Drawing.Size(928, 454);
             this.dgvCeilingAccessories.TabIndex = 26;
-            this.dgvCeilingAccessories.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvCeilingAccessories_RowPostPaint);
-            this.dgvCeilingAccessories.DoubleClick += new System.EventHandler(this.dgvCeilingAccessories_DoubleClick);
-            this.dgvCeilingAccessories.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCeilingAccessories_KeyDown);
+            this.dgvCeilingAccessories.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvCeilingAccessories_RowPostPaint);
+            this.dgvCeilingAccessories.DoubleClick += new System.EventHandler(this.DgvCeilingAccessories_DoubleClick);
+            this.dgvCeilingAccessories.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvCeilingAccessories_KeyDown);
             // 
             // CeilingAccessoryId
             // 
@@ -294,14 +294,14 @@
             this.tsmiEditCeilingAccessory.Name = "tsmiEditCeilingAccessory";
             this.tsmiEditCeilingAccessory.Size = new System.Drawing.Size(148, 22);
             this.tsmiEditCeilingAccessory.Text = "修改配件信息";
-            this.tsmiEditCeilingAccessory.Click += new System.EventHandler(this.tsmiEditCeilingAccessory_Click);
+            this.tsmiEditCeilingAccessory.Click += new System.EventHandler(this.TsmiEditCeilingAccessory_Click);
             // 
             // tsmiDeleteCeilingAccessory
             // 
             this.tsmiDeleteCeilingAccessory.Name = "tsmiDeleteCeilingAccessory";
             this.tsmiDeleteCeilingAccessory.Size = new System.Drawing.Size(148, 22);
             this.tsmiDeleteCeilingAccessory.Text = "删除配件信息";
-            this.tsmiDeleteCeilingAccessory.Click += new System.EventHandler(this.tsmiDeleteCeilingAccessory_Click);
+            this.tsmiDeleteCeilingAccessory.Click += new System.EventHandler(this.TsmiDeleteCeilingAccessory_Click);
             // 
             // label1
             // 

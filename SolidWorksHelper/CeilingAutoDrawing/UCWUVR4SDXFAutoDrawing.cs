@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL;
 using Models;
 using SolidWorks.Interop.sldworks;
 
 namespace SolidWorksHelper
 {
-   public class UCWUVR4SDXFAutoDrawing : IAutoDrawing
+    public class UCWUVR4SDXFAutoDrawing : IAutoDrawing
     {
         UCWUVR4SDXFService objUCWUVR4SDXFService = new UCWUVR4SDXFService();
         ProjectService objProjectService = new ProjectService();

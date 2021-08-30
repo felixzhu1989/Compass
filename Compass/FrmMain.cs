@@ -375,20 +375,17 @@ namespace Compass
         }
 
         #endregion  SolidWorks自动绘图
-
-        private void TsmiMonthlyQuery_Click(object sender, EventArgs e)
-        {
-            //测试
-            //FrmModelView frm = new FrmModelView();
-            //frm.Show();
-
-        }
         
-
         private void TsmieSolidWorksTools_Click(object sender, EventArgs e)
         {
             FrmSolidWorksTools frmTools=new FrmSolidWorksTools();
             frmTools.Show();
+        }
+
+        private void TsmiProjectMeasure_Click(object sender, EventArgs e)
+        {
+            FrmProjectMeasure frmProjectMeasure=new FrmProjectMeasure();
+            frmProjectMeasure.Show();
         }
     }
 }

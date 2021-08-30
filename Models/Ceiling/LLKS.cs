@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Models
 {
-   public class LLKS : IModel
+    public class LLKS : IModel
    {
        public int LLKSId { get; set; }
        public int ModuleTreeId { get; set; }

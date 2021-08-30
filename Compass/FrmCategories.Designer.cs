@@ -118,9 +118,9 @@
             this.dgvCategory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCategory.Size = new System.Drawing.Size(926, 358);
             this.dgvCategory.TabIndex = 9;
-            this.dgvCategory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategory_CellDoubleClick);
-            this.dgvCategory.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvCategory_RowPostPaint);
-            this.dgvCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCategory_KeyDown);
+            this.dgvCategory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvCategory_CellDoubleClick);
+            this.dgvCategory.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvCategory_RowPostPaint);
+            this.dgvCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvCategory_KeyDown);
             // 
             // contextMenuStrip
             // 
@@ -135,14 +135,14 @@
             this.tsmiEditCategory.Name = "tsmiEditCategory";
             this.tsmiEditCategory.Size = new System.Drawing.Size(124, 22);
             this.tsmiEditCategory.Text = "修改分类";
-            this.tsmiEditCategory.Click += new System.EventHandler(this.tsmiEditCategory_Click);
+            this.tsmiEditCategory.Click += new System.EventHandler(this.TsmiEditCategory_Click);
             // 
             // tsmiDeleteCategory
             // 
             this.tsmiDeleteCategory.Name = "tsmiDeleteCategory";
             this.tsmiDeleteCategory.Size = new System.Drawing.Size(124, 22);
             this.tsmiDeleteCategory.Text = "删除分类";
-            this.tsmiDeleteCategory.Click += new System.EventHandler(this.tsmiDeleteCategory_Click);
+            this.tsmiDeleteCategory.Click += new System.EventHandler(this.TsmiDeleteCategory_Click);
             // 
             // label2
             // 
@@ -193,7 +193,7 @@
             this.btnAddCategory.TabIndex = 9;
             this.btnAddCategory.Text = "添加分类";
             this.btnAddCategory.UseVisualStyleBackColor = false;
-            this.btnAddCategory.Click += new System.EventHandler(this.btnAddCategory_Click);
+            this.btnAddCategory.Click += new System.EventHandler(this.BtnAddCategory_Click);
             // 
             // label4
             // 
@@ -298,7 +298,7 @@
             this.btnChooseImage.TabIndex = 8;
             this.btnChooseImage.Text = "浏览图片";
             this.btnChooseImage.UseVisualStyleBackColor = false;
-            this.btnChooseImage.Click += new System.EventHandler(this.btnChooseImage_Click);
+            this.btnChooseImage.Click += new System.EventHandler(this.BtnChooseImage_Click);
             // 
             // btnClearImage
             // 
@@ -313,7 +313,7 @@
             this.btnClearImage.TabIndex = 8;
             this.btnClearImage.Text = "清除图片";
             this.btnClearImage.UseVisualStyleBackColor = false;
-            this.btnClearImage.Click += new System.EventHandler(this.btnClearImage_Click);
+            this.btnClearImage.Click += new System.EventHandler(this.BtnClearImage_Click);
             // 
             // lblParentDesc
             // 
@@ -355,7 +355,7 @@
             this.btnCategoryTree.Text = "产品目录树";
             this.btnCategoryTree.UseVisualStyleBackColor = false;
             this.btnCategoryTree.Visible = false;
-            this.btnCategoryTree.Click += new System.EventHandler(this.btnCategoryTree_Click);
+            this.btnCategoryTree.Click += new System.EventHandler(this.BtnCategoryTree_Click);
             // 
             // CategoryId
             // 

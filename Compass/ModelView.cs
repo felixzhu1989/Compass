@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows.Forms;
 using Common;
 using DAL;
@@ -10,7 +11,6 @@ using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using Models;
 using SolidWorksHelper;
-
 
 namespace Compass
 {
@@ -128,15 +128,22 @@ namespace Compass
             //if (!string.IsNullOrEmpty(filePath))
             if (System.IO.File.Exists(filePath))
             {
-                btnOpeneDrawing.Enabled = true;
+                btnOpeneDrawing.Enabled = true; 
                 btnOpenSolidWorks.Enabled = true;
-
-                if (m_EDrawingsCtrl == null)
+                //开启独立线程，避免当前程序被占用
+                Thread objThread=new Thread(() =>
                 {
-                    throw new NullReferenceException("eDrawings control is not loaded");
-                }
-                m_EDrawingsCtrl.CloseActiveDoc("");
-                m_EDrawingsCtrl.OpenDoc(filePath, false, false, false, "");
+                    if (m_EDrawingsCtrl == null)
+                    {
+                        throw new NullReferenceException("eDrawings control is not loaded");
+                    }
+                    m_EDrawingsCtrl.CloseActiveDoc("");
+                    m_EDrawingsCtrl.OpenDoc(filePath, false, false, false, "");
+                })
+                {
+                    IsBackground = true
+                };
+                objThread.Start();
             }
             else
             {

@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Windows.Forms;
 using DAL;
 using Models;
@@ -29,9 +25,8 @@ namespace SolidWorksHelper
             try
             {
                 //打开模型
-                ModelDoc2 swModel = swApp.OpenDoc6(assyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
-                    (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
-                if (swModel == null)
+                if (!(swApp.OpenDoc6(assyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
+                    (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) is ModelDoc2 swModel))
                 {
                     MessageBox.Show("模型不存在，请认真检查", "模型不存在");
                     return;

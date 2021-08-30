@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
 using Models;
@@ -31,13 +26,13 @@ namespace Compass
         private void IniCategoryId(ComboBox cobItem)
         {
             //断开事件委托
-            cobItem.SelectedIndexChanged -= new System.EventHandler(this.cobParentId_SelectedIndexChanged);
+            cobItem.SelectedIndexChanged -= new System.EventHandler(this.CobParentId_SelectedIndexChanged);
             cobItem.DataSource = objCategoryService.GetCategoryId(sbu);
             cobItem.DisplayMember = "CategoryId";
             cobItem.ValueMember = "CategoryDesc";
             cobItem.SelectedIndex = -1;
             //重新关联委托
-            cobItem.SelectedIndexChanged += new System.EventHandler(this.cobParentId_SelectedIndexChanged);
+            cobItem.SelectedIndexChanged += new System.EventHandler(this.CobParentId_SelectedIndexChanged);
         }
         /// <summary>
         /// 刷新dgv显示数据，因为数据量比较小，这种就刷新可以了
@@ -52,7 +47,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobParentId_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobParentId_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblParentDesc.Text = cobParentId.SelectedValue.ToString();
             RefreshData(cobParentId.Text);
@@ -62,7 +57,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnChooseImage_Click(object sender, EventArgs e)
+        private void BtnChooseImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog objFileDialog = new OpenFileDialog();
             DialogResult result = objFileDialog.ShowDialog();
@@ -76,7 +71,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnClearImage_Click(object sender, EventArgs e)
+        private void BtnClearImage_Click(object sender, EventArgs e)
         {
             pbModelImage.Image = Image.FromFile("NoPic.png");
         }
@@ -85,7 +80,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvCategory_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvCategory_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(dgvCategory, e);
         }
@@ -94,7 +89,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAddCategory_Click(object sender, EventArgs e)
+        private void BtnAddCategory_Click(object sender, EventArgs e)
         {
             #region 数据验证
 
@@ -179,7 +174,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiEditCategory_Click(object sender, EventArgs e)
+        private void TsmiEditCategory_Click(object sender, EventArgs e)
         {
             if (dgvCategory.RowCount == 0)
             {
@@ -205,16 +200,16 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvCategory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvCategory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            tsmiEditCategory_Click(null, null);
+            TsmiEditCategory_Click(null, null);
         }
         /// <summary>
         /// 删除分类
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDeleteCategory_Click(object sender, EventArgs e)
+        private void TsmiDeleteCategory_Click(object sender, EventArgs e)
         {
             if (dgvCategory.RowCount == 0)
             {
@@ -248,12 +243,12 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvCategory_KeyDown(object sender, KeyEventArgs e)
+        private void DgvCategory_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 46)tsmiDeleteCategory_Click(null,null);
+            if (e.KeyValue == 46)TsmiDeleteCategory_Click(null,null);
         }
 
-        private void btnCategoryTree_Click(object sender, EventArgs e)
+        private void BtnCategoryTree_Click(object sender, EventArgs e)
         {
             FrmCategoryTree objCategoryTree=new FrmCategoryTree();
             objCategoryTree.ShowDialog();

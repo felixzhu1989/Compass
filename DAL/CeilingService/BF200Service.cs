@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Models;
 
 namespace DAL
 {
-   public class BF200Service:IModelService
+    public class BF200Service:IModelService
     {
         /// <summary>
         /// 根据项目Id查询BF200集合

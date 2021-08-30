@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
 using Models;
@@ -27,8 +20,7 @@ namespace Compass
             cobSBU.Text = Properties.Settings.Default.SBU;
         }
 
-
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void BtnLogin_Click(object sender, EventArgs e)
         {
             //验证信息
             if (txtUserAccount.Text.Trim().Length == 0)
@@ -74,8 +66,6 @@ namespace Compass
                         Properties.Settings.Default.Save();
                     }
                     //以后再封装权限信息
-
-                    
                     this.Close();
                 }
                 else
@@ -95,7 +85,7 @@ namespace Compass
         {
             txtUserPwd.Focus();//获取焦点，如果已经保存密码可以直接按回车登陆
         }
-        private void txtUserAccount_KeyDown(object sender, KeyEventArgs e)
+        private void TxtUserAccount_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 13 && this.txtUserAccount.Text.Trim().Length != 0)
             {
@@ -107,11 +97,11 @@ namespace Compass
                 lblStatus.Text = "输入账号...";
             }
         }
-        private void txtUserPwd_KeyDown(object sender, KeyEventArgs e)
+        private void TxtUserPwd_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 13 && this.txtUserPwd.Text.Trim().Length != 0)
             {
-                btnLogin_Click(null, null);
+                BtnLogin_Click(null, null);
             }
             else
             {

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
 using DAL;
@@ -13,7 +9,7 @@ using SolidWorks.Interop.swconst;
 
 namespace SolidWorksHelper
 {
-   public class LKA258AutoDrawing : IAutoDrawing
+    public class LKA258AutoDrawing : IAutoDrawing
     {
         LKA258Service objLKA258Service = new LKA258Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)

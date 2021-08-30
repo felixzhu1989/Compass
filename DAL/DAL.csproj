@@ -148,6 +148,7 @@
     <Compile Include="CeilingService\NOCJ330Service.cs" />
     <Compile Include="HoodService\MU1BOXDXFService.cs" />
     <Compile Include="MonthlyReportService.cs" />
+    <Compile Include="ProjectMeasureService.cs" />
     <Compile Include="RequirementService.cs" />
     <Compile Include="ImportDataFormExcel.cs" />
     <Compile Include="OleDbHelper.cs" />

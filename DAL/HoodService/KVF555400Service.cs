@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Models;
 
 namespace DAL
 {
-   public class KVF555400Service : IModelService
+    public class KVF555400Service : IModelService
     {
         /// <summary>
         /// 根据项目Id查询KVF555400集合

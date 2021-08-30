@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
 using Models;
@@ -58,7 +52,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tvCeilingAccessories_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TvCeilingAccessories_AfterSelect(object sender, TreeViewEventArgs e)
         {
             //先判断是二级节点才执行任务
             if (e.Node.Level == 1)
@@ -83,7 +77,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAddCeilingAccessory_Click(object sender, EventArgs e)
+        private void BtnAddCeilingAccessory_Click(object sender, EventArgs e)
         {
             //将配件对象添加项目编号，并提交SQL
             if(objCeilingAccessory==null)return;
@@ -98,8 +92,7 @@ namespace Compass
             objCeilingAccessory.ProjectId = objProject.ProjectId;
             objCeilingAccessory.UserId = Program.ObjCurrentUser.UserId;
             objCeilingAccessory.Location = objDrawings[0].Item;//填写区域
-            List<CeilingAccessory> ceilingAccessoriesList = new List<CeilingAccessory>();
-            ceilingAccessoriesList.Add(objCeilingAccessory);
+            List<CeilingAccessory> ceilingAccessoriesList = new List<CeilingAccessory>{objCeilingAccessory};
             objCeilingAccessoryService.ImportCeilingPackingListByTran(ceilingAccessoriesList);
             this.DialogResult = DialogResult.OK;
             this.Close();

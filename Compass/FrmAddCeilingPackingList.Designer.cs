@@ -65,7 +65,7 @@
             this.tvCeilingAccessories.SelectedImageIndex = 0;
             this.tvCeilingAccessories.Size = new System.Drawing.Size(634, 510);
             this.tvCeilingAccessories.TabIndex = 46;
-            this.tvCeilingAccessories.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvCeilingAccessories_AfterSelect);
+            this.tvCeilingAccessories.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TvCeilingAccessories_AfterSelect);
             // 
             // imageList1
             // 
@@ -89,7 +89,7 @@
             this.btnAddCeilingAccessory.TabIndex = 94;
             this.btnAddCeilingAccessory.Text = "添加配件";
             this.btnAddCeilingAccessory.UseVisualStyleBackColor = false;
-            this.btnAddCeilingAccessory.Click += new System.EventHandler(this.btnAddCeilingAccessory_Click);
+            this.btnAddCeilingAccessory.Click += new System.EventHandler(this.BtnAddCeilingAccessory_Click);
             // 
             // label9
             // 

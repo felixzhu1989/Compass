@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
 using Models;
@@ -60,7 +52,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvUser_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvUser_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvUser, e);
         }
@@ -80,7 +72,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAddUser_Click(object sender, EventArgs e)
+        private void BtnAddUser_Click(object sender, EventArgs e)
         {
             #region 数据验证
             if (txtUserAccount.Text.Trim().Length == 0)
@@ -146,7 +138,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAddUserGroup_Click(object sender, EventArgs e)
+        private void BtnAddUserGroup_Click(object sender, EventArgs e)
         {
             if (txtGroupName.Text.Trim().Length == 0)
             {
@@ -186,7 +178,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiAddUserGroup_Click(object sender, EventArgs e)
+        private void TsmiAddUserGroup_Click(object sender, EventArgs e)
         {
             if (grbAddUserGroup.Visible == false)
             {
@@ -202,7 +194,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiEditUser_Click(object sender, EventArgs e)
+        private void TsmiEditUser_Click(object sender, EventArgs e)
         {
             if (dgvUser.RowCount == 0)
             {
@@ -236,16 +228,16 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvUser_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvUser_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            tsmiEditUser_Click(null, null);
+            TsmiEditUser_Click(null, null);
         }
         /// <summary>
         /// 提交修改
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEditUser_Click(object sender, EventArgs e)
+        private void BtnEditUser_Click(object sender, EventArgs e)
         {
             #region 数据验证
             if (txtEditUserAccount.Text.Trim().Length == 0)
@@ -297,7 +289,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDeleteUser_Click(object sender, EventArgs e)
+        private void TsmiDeleteUser_Click(object sender, EventArgs e)
         {
             if (dgvUser.RowCount == 0)
             {
@@ -329,9 +321,9 @@ namespace Compass
             grbEditUser.Visible = false;
         }
 
-        private void dgvUser_KeyDown(object sender, KeyEventArgs e)
+        private void DgvUser_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 46) tsmiDeleteUser_Click(null, null);
+            if (e.KeyValue == 46) TsmiDeleteUser_Click(null, null);
         }
     }
 }

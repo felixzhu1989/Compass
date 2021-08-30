@@ -49,7 +49,7 @@ namespace Compass
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;
-            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.cobODPNo_SelectedIndexChanged);
+            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
             this.tvSubAssyTree.AllowDrop = true;//允许文件拖拽
             this.txtMainAssyPath.AllowDrop = true;
             btnEditCeilingAccessory.Enabled = false;
@@ -80,7 +80,7 @@ namespace Compass
                 btnEditCeilingAccessory.Visible = true;
                 btnCeilingPackingList.Enabled = true;//只有技术部能够生成发货清单
                 this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
-                this.tvSubAssyTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tvSubAssyTree_KeyDown);
+                this.tvSubAssyTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TvSubAssyTree_KeyDown);
                 this.dgvCeilingPackingList.DoubleClick += new System.EventHandler(this.dgvCeilingPackingList_DoubleClick);
                 
             }
@@ -96,7 +96,7 @@ namespace Compass
                 btnEditCeilingAccessory.Visible = false;
 
                 this.dgvCutList.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
-                this.tvSubAssyTree.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.tvSubAssyTree_KeyDown);
+                this.tvSubAssyTree.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.TvSubAssyTree_KeyDown);
                 this.dgvCeilingPackingList.DoubleClick -= new System.EventHandler(this.dgvCeilingPackingList_DoubleClick);
             }
             
@@ -112,7 +112,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobODPNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobODPNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
             objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text,sbu);
@@ -195,7 +195,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e)
         {
             if (dgvWaitingList.CurrentRow == null) return;
             int moduleTreeId = Convert.ToInt32(dgvWaitingList.CurrentRow.Cells["ModuleTreeId"].Value);
@@ -214,7 +214,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSub_Click(object sender, EventArgs e)
+        private void BtnSub_Click(object sender, EventArgs e)
         {
             if (dgvExecList.CurrentRow == null) return;
             int moduleTreeId = Convert.ToInt32(dgvExecList.CurrentRow.Cells["ModuleTreeId2"].Value);
@@ -234,7 +234,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAddAll_Click(object sender, EventArgs e)
+        private void BtnAddAll_Click(object sender, EventArgs e)
         {
             if (dgvWaitingList.CurrentRow == null) return;
             foreach (var item in waitingList)
@@ -249,7 +249,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSubAll_Click(object sender, EventArgs e)
+        private void BtnSubAll_Click(object sender, EventArgs e)
         {
             if (dgvExecList.CurrentRow == null) return;
             foreach (var item in execList)
@@ -263,7 +263,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void btnExec_Click(object sender, EventArgs e)
+        private async void BtnExec_Click(object sender, EventArgs e)
         {
             if (execList.Count == 0) return;
             btnExec.Enabled = false;
@@ -305,7 +305,7 @@ namespace Compass
             TimeSpan timeSpan = DateTime.Now - startTime;
             tsslStatus.Text = "作图完成,总共耗时：" + timeSpan.TotalSeconds + "秒";
             tspbStatus.Value = execList.Count;
-            btnSubAll_Click(null, null);//清除执行数据
+            BtnSubAll_Click(null, null);//清除执行数据
             btnExec.Enabled = true;
         }
         /// <summary>
@@ -336,7 +336,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnJobCard_Click(object sender, EventArgs e)
+        private void BtnJobCard_Click(object sender, EventArgs e)
         {
             if (objProject == null) return;//未选中项目则终止
             btnJobCard.Enabled = false;
@@ -373,7 +373,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tvSubAssy_DragDrop(object sender, DragEventArgs e)
+        private void TvSubAssy_DragDrop(object sender, DragEventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
             subAssyAddList.Clear();
@@ -418,7 +418,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tvSubAssy_DragEnter(object sender, DragEventArgs e)
+        private void TvSubAssy_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.Copy;//将拖放的图标变成加号
@@ -429,7 +429,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDeleteSubAssy_Click(object sender, EventArgs e)
+        private void TsmiDeleteSubAssy_Click(object sender, EventArgs e)
         {
             if (tvSubAssyTree.SelectedNode == null) return;
             if (tvSubAssyTree.SelectedNode.Level == 1)
@@ -452,16 +452,16 @@ namespace Compass
                 }
             }
         }
-        private void tvSubAssyTree_KeyDown(object sender, KeyEventArgs e)
+        private void TvSubAssyTree_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 46) tsmiDeleteSubAssy_Click(null, null);
+            if (e.KeyValue == 46) TsmiDeleteSubAssy_Click(null, null);
         }
         /// <summary>
         /// 将等待列表中的子装配对象添加到执行列表中
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAddPath_Click(object sender, EventArgs e)
+        private void BtnAddPath_Click(object sender, EventArgs e)
         {
             if (dgvSubAssyWaitingList.CurrentRow == null) return;
             int subAssyId = Convert.ToInt32(dgvSubAssyWaitingList.CurrentRow.Cells["SubAssyId"].Value);
@@ -481,7 +481,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSubPath_Click(object sender, EventArgs e)
+        private void BtnSubPath_Click(object sender, EventArgs e)
         {
             if (dgvSubAssyExecList.CurrentRow == null) return;
             int subAssyId = Convert.ToInt32(dgvSubAssyExecList.CurrentRow.Cells["SubAssyId2"].Value);
@@ -502,7 +502,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void btnExportDxf_Click(object sender, EventArgs e)
+        private async void BtnExportDxf_Click(object sender, EventArgs e)
         {
             if (subAssyExecList.Count == 0) return;
             btnExportDxf.Enabled = false;
@@ -524,7 +524,7 @@ namespace Compass
                 {
                     tsslStatus.Text = "子装配体(" + item.SubAssyName + ")正在导图...";
                     //以异步的方式执行，让窗口可操作并且进度条更新
-                    await exportCeilingDxfAsync(item, dxfPath, Program.ObjCurrentUser.UserId);
+                    await ExportCeilingDxfAsync(item, dxfPath, Program.ObjCurrentUser.UserId);
                     tspbStatus.Value += 1;
                 }
             }
@@ -553,7 +553,7 @@ namespace Compass
         /// <param name="item"></param>
         /// <param name="dxfPath"></param>
         /// <returns></returns>
-        private Task exportCeilingDxfAsync(SubAssy item, string dxfPath, int userId)
+        private Task ExportCeilingDxfAsync(SubAssy item, string dxfPath, int userId)
         {
             return Task.Run(() =>
             {
@@ -573,7 +573,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tvSubAssyTree_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TvSubAssyTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (tvSubAssyTree.SelectedNode == null) return;
             if (e.Node.Level == 1)
@@ -899,7 +899,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiEditCeilingPackingList_Click(object sender, EventArgs e)
+        private void TsmiEditCeilingPackingList_Click(object sender, EventArgs e)
         {
             btnEditCeilingAccessory.Enabled = true;
             if (dgvCeilingPackingList.RowCount == 0) return;
@@ -924,7 +924,7 @@ namespace Compass
         }
         private void dgvCeilingPackingList_DoubleClick(object sender, EventArgs e)
         {
-            tsmiEditCeilingPackingList_Click(null, null);
+            TsmiEditCeilingPackingList_Click(null, null);
         }
         //按键重复响应？
         /// <summary>

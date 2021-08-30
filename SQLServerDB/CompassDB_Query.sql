@@ -542,3 +542,17 @@ select ODPNo from Projects
 
 select * from ProjectTypes
 select * from users
+select * from ProjectTracking
+
+select day(ODPReceiveDate) as Day,sum(SubTotalWorkload) as Workload from DrawingPlan
+	inner join ProjectTracking on ProjectTracking.ProjectId=DrawingPlan.ProjectId
+	where ODPReceiveDate like '2021%' and month(ODPReceiveDate)='08'
+	group by day(ODPReceiveDate) order by Day asc
+select day(ProdFinishActual) as Day,sum(SubTotalWorkload) as Workload from DrawingPlan
+	inner join ProjectTracking on ProjectTracking.ProjectId=DrawingPlan.ProjectId
+	where ODPReceiveDate like '2021%' and month(ProdFinishActual)='08'
+	group by day(ProdFinishActual) order by Day asc
+select day(DeliverActual) as Day,sum(SubTotalWorkload) as Workload from DrawingPlan
+	inner join ProjectTracking on ProjectTracking.ProjectId=DrawingPlan.ProjectId
+	where ODPReceiveDate like '2021%' and month(DeliverActual)='08'
+	group by day(DeliverActual)	order by Day asc

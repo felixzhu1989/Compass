@@ -54,7 +54,7 @@
             this.btneDrawingsPath.TabIndex = 3;
             this.btneDrawingsPath.Text = "更新eDrawing路径";
             this.btneDrawingsPath.UseVisualStyleBackColor = false;
-            this.btneDrawingsPath.Click += new System.EventHandler(this.btneDrawingsPath_Click);
+            this.btneDrawingsPath.Click += new System.EventHandler(this.BtneDrawingsPath_Click);
             // 
             // btnSearch
             // 
@@ -69,7 +69,7 @@
             this.btnSearch.TabIndex = 3;
             this.btnSearch.Text = "...";
             this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // FrmSolidWorksTools
             // 

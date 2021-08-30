@@ -56,7 +56,7 @@
             this.txtUserAccount.Name = "txtUserAccount";
             this.txtUserAccount.Size = new System.Drawing.Size(178, 25);
             this.txtUserAccount.TabIndex = 1;
-            this.txtUserAccount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserAccount_KeyDown);
+            this.txtUserAccount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUserAccount_KeyDown);
             // 
             // label2
             // 
@@ -74,7 +74,7 @@
             this.txtUserPwd.PasswordChar = '*';
             this.txtUserPwd.Size = new System.Drawing.Size(178, 25);
             this.txtUserPwd.TabIndex = 2;
-            this.txtUserPwd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserPwd_KeyDown);
+            this.txtUserPwd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUserPwd_KeyDown);
             // 
             // ckbRememberMe
             // 
@@ -85,7 +85,7 @@
             this.ckbRememberMe.Location = new System.Drawing.Point(135, 154);
             this.ckbRememberMe.Name = "ckbRememberMe";
             this.ckbRememberMe.Size = new System.Drawing.Size(132, 23);
-            this.ckbRememberMe.TabIndex = 3;
+            this.ckbRememberMe.TabIndex = 4;
             this.ckbRememberMe.Text = "记住密码和事业部";
             this.ckbRememberMe.UseVisualStyleBackColor = false;
             // 
@@ -101,7 +101,7 @@
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "登    陆";
             this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
             // lblStatus
             // 
@@ -127,7 +127,7 @@
             this.cobSBU.Location = new System.Drawing.Point(135, 123);
             this.cobSBU.Name = "cobSBU";
             this.cobSBU.Size = new System.Drawing.Size(178, 27);
-            this.cobSBU.TabIndex = 4;
+            this.cobSBU.TabIndex = 3;
             // 
             // FrmUserLogin
             // 

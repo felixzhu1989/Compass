@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Models;
 
 namespace DAL
 {
-   public class CJ330Service : IModelService
+    public class CJ330Service : IModelService
     {
         public int EditModel(IModel model)
         {

@@ -350,7 +350,7 @@
             this.btnSubAll.TabIndex = 52;
             this.btnSubAll.Text = "<<";
             this.btnSubAll.UseVisualStyleBackColor = false;
-            this.btnSubAll.Click += new System.EventHandler(this.btnSubAll_Click);
+            this.btnSubAll.Click += new System.EventHandler(this.BtnSubAll_Click);
             // 
             // btnAddAll
             // 
@@ -364,7 +364,7 @@
             this.btnAddAll.TabIndex = 53;
             this.btnAddAll.Text = ">>";
             this.btnAddAll.UseVisualStyleBackColor = false;
-            this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
+            this.btnAddAll.Click += new System.EventHandler(this.BtnAddAll_Click);
             // 
             // btnSub
             // 
@@ -378,7 +378,7 @@
             this.btnSub.TabIndex = 54;
             this.btnSub.Text = "<";
             this.btnSub.UseVisualStyleBackColor = false;
-            this.btnSub.Click += new System.EventHandler(this.btnSub_Click);
+            this.btnSub.Click += new System.EventHandler(this.BtnSub_Click);
             // 
             // btnAdd
             // 
@@ -392,7 +392,7 @@
             this.btnAdd.TabIndex = 55;
             this.btnAdd.Text = ">";
             this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // btnExec
             // 
@@ -407,7 +407,7 @@
             this.btnExec.TabIndex = 56;
             this.btnExec.Text = "开始作图";
             this.btnExec.UseVisualStyleBackColor = false;
-            this.btnExec.Click += new System.EventHandler(this.btnExec_Click);
+            this.btnExec.Click += new System.EventHandler(this.BtnExec_Click);
             // 
             // label5
             // 
@@ -524,7 +524,7 @@
             this.btnJobCard.TabIndex = 63;
             this.btnJobCard.Text = "打印 Job Card";
             this.btnJobCard.UseVisualStyleBackColor = false;
-            this.btnJobCard.Click += new System.EventHandler(this.btnJobCard_Click);
+            this.btnJobCard.Click += new System.EventHandler(this.BtnJobCard_Click);
             // 
             // tbExportDxf
             // 
@@ -563,10 +563,10 @@
             this.tvSubAssyTree.SelectedImageIndex = 0;
             this.tvSubAssyTree.Size = new System.Drawing.Size(210, 470);
             this.tvSubAssyTree.TabIndex = 45;
-            this.tvSubAssyTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvSubAssyTree_AfterSelect);
-            this.tvSubAssyTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.tvSubAssy_DragDrop);
-            this.tvSubAssyTree.DragEnter += new System.Windows.Forms.DragEventHandler(this.tvSubAssy_DragEnter);
-            this.tvSubAssyTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tvSubAssyTree_KeyDown);
+            this.tvSubAssyTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TvSubAssyTree_AfterSelect);
+            this.tvSubAssyTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.TvSubAssy_DragDrop);
+            this.tvSubAssyTree.DragEnter += new System.Windows.Forms.DragEventHandler(this.TvSubAssy_DragEnter);
+            this.tvSubAssyTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TvSubAssyTree_KeyDown);
             // 
             // cmsSubAssyTree
             // 
@@ -580,7 +580,7 @@
             this.tsmiDeleteSubAssy.Name = "tsmiDeleteSubAssy";
             this.tsmiDeleteSubAssy.Size = new System.Drawing.Size(136, 22);
             this.tsmiDeleteSubAssy.Text = "删除子装配";
-            this.tsmiDeleteSubAssy.Click += new System.EventHandler(this.tsmiDeleteSubAssy_Click);
+            this.tsmiDeleteSubAssy.Click += new System.EventHandler(this.TsmiDeleteSubAssy_Click);
             // 
             // imageList1
             // 
@@ -605,7 +605,7 @@
             this.btnSubPath.TabIndex = 55;
             this.btnSubPath.Text = "<";
             this.btnSubPath.UseVisualStyleBackColor = false;
-            this.btnSubPath.Click += new System.EventHandler(this.btnSubPath_Click);
+            this.btnSubPath.Click += new System.EventHandler(this.BtnSubPath_Click);
             // 
             // btnAddPath
             // 
@@ -620,7 +620,7 @@
             this.btnAddPath.TabIndex = 51;
             this.btnAddPath.Text = ">";
             this.btnAddPath.UseVisualStyleBackColor = false;
-            this.btnAddPath.Click += new System.EventHandler(this.btnAddPath_Click);
+            this.btnAddPath.Click += new System.EventHandler(this.BtnAddPath_Click);
             // 
             // dgvSubAssyExecList
             // 
@@ -858,7 +858,7 @@
             this.btnExportDxf.TabIndex = 44;
             this.btnExportDxf.Text = "导出DXF图纸";
             this.btnExportDxf.UseVisualStyleBackColor = false;
-            this.btnExportDxf.Click += new System.EventHandler(this.btnExportDxf_Click);
+            this.btnExportDxf.Click += new System.EventHandler(this.BtnExportDxf_Click);
             // 
             // tabPage1
             // 
@@ -1289,7 +1289,7 @@
             this.tsmiEditCeilingPackingList.Name = "tsmiEditCeilingPackingList";
             this.tsmiEditCeilingPackingList.Size = new System.Drawing.Size(124, 22);
             this.tsmiEditCeilingPackingList.Text = "修改条目";
-            this.tsmiEditCeilingPackingList.Click += new System.EventHandler(this.tsmiEditCeilingPackingList_Click);
+            this.tsmiEditCeilingPackingList.Click += new System.EventHandler(this.TsmiEditCeilingPackingList_Click);
             // 
             // tsmiAddCeilingPackingList
             // 

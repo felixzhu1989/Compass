@@ -128,9 +128,9 @@
             this.dgvUser.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUser.Size = new System.Drawing.Size(926, 392);
             this.dgvUser.TabIndex = 8;
-            this.dgvUser.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUser_CellDoubleClick);
-            this.dgvUser.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvUser_RowPostPaint);
-            this.dgvUser.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvUser_KeyDown);
+            this.dgvUser.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvUser_CellDoubleClick);
+            this.dgvUser.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvUser_RowPostPaint);
+            this.dgvUser.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvUser_KeyDown);
             // 
             // contextMenuStrip
             // 
@@ -146,21 +146,21 @@
             this.tsmiEditUser.Name = "tsmiEditUser";
             this.tsmiEditUser.Size = new System.Drawing.Size(185, 22);
             this.tsmiEditUser.Text = "修改用户";
-            this.tsmiEditUser.Click += new System.EventHandler(this.tsmiEditUser_Click);
+            this.tsmiEditUser.Click += new System.EventHandler(this.TsmiEditUser_Click);
             // 
             // tsmiDeleteUser
             // 
             this.tsmiDeleteUser.Name = "tsmiDeleteUser";
             this.tsmiDeleteUser.Size = new System.Drawing.Size(185, 22);
             this.tsmiDeleteUser.Text = "删除用户";
-            this.tsmiDeleteUser.Click += new System.EventHandler(this.tsmiDeleteUser_Click);
+            this.tsmiDeleteUser.Click += new System.EventHandler(this.TsmiDeleteUser_Click);
             // 
             // tsmiAddUserGroup
             // 
             this.tsmiAddUserGroup.Name = "tsmiAddUserGroup";
             this.tsmiAddUserGroup.Size = new System.Drawing.Size(185, 22);
             this.tsmiAddUserGroup.Text = "添加分组(显示/隐藏)";
-            this.tsmiAddUserGroup.Click += new System.EventHandler(this.tsmiAddUserGroup_Click);
+            this.tsmiAddUserGroup.Click += new System.EventHandler(this.TsmiAddUserGroup_Click);
             // 
             // label2
             // 
@@ -274,7 +274,7 @@
             this.btnAddUser.TabIndex = 5;
             this.btnAddUser.Text = "添加用户";
             this.btnAddUser.UseVisualStyleBackColor = false;
-            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            this.btnAddUser.Click += new System.EventHandler(this.BtnAddUser_Click);
             // 
             // btnAddUserGroup
             // 
@@ -289,7 +289,7 @@
             this.btnAddUserGroup.TabIndex = 7;
             this.btnAddUserGroup.Text = "添加分组";
             this.btnAddUserGroup.UseVisualStyleBackColor = false;
-            this.btnAddUserGroup.Click += new System.EventHandler(this.btnAddUserGroup_Click);
+            this.btnAddUserGroup.Click += new System.EventHandler(this.BtnAddUserGroup_Click);
             // 
             // grbAddUserGroup
             // 
@@ -414,7 +414,7 @@
             this.btnEditUser.TabIndex = 5;
             this.btnEditUser.Text = "修改用户";
             this.btnEditUser.UseVisualStyleBackColor = false;
-            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
+            this.btnEditUser.Click += new System.EventHandler(this.BtnEditUser_Click);
             // 
             // txtEditUserAccount
             // 

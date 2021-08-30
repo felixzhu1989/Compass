@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
 using Models;
@@ -48,10 +44,12 @@ namespace Compass
             this.categoryList = objCategoryService.GetAllCategories(sbu);//加载产品目录树的所有节点信息
             //创建第一个节点
             this.tvCategory.Nodes.Clear();//清空所有节点
-            TreeNode rootNode = new TreeNode();
-            rootNode.Text = "Halton产品目录";
-            rootNode.Tag = "1000";//默认值,作为id使用
-            rootNode.ImageIndex = 4;//添加图标
+            TreeNode rootNode = new TreeNode
+            {
+                Text = "Halton产品目录",
+                Tag = "1000",//默认值,作为id使用
+                ImageIndex = 4//添加图标
+            };
             this.tvCategory.Nodes.Add(rootNode);//将根节点添加到treeView控件中
             //基于递归方式添加所有子节点
             CreateChildNode(rootNode, 1000);
@@ -70,9 +68,11 @@ namespace Compass
             foreach (var item in subCategoryList)
             {
                 //创建子节点并设置属性
-                TreeNode node = new TreeNode();
-                node.Text = item.CategoryName + "-" + item.CategoryDesc;//设置名称，加上描述
-                node.Tag = item.CategoryId;//设置Id
+                TreeNode node = new TreeNode
+                {
+                    Text = item.CategoryName + "-" + item.CategoryDesc,//设置名称，加上描述
+                    Tag = item.CategoryId//设置Id
+                };
                 //设置节点图标，父类和子类有区别
                 if (item.ParentId == 1000)
                 {
@@ -88,7 +88,7 @@ namespace Compass
             }
         }
         //点击节点后执行的事件，后期处理
-        private void tvCategory_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TvCategory_AfterSelect(object sender, TreeViewEventArgs e)
         {
             //先判断是二级节点才执行任务
             if (e.Node.Level == 2)
@@ -98,12 +98,12 @@ namespace Compass
                 btnAddModule.Tag = e.Node.Tag;
             }
         }
-        private void tvCategory_AfterExpand(object sender, TreeViewEventArgs e)
+        private void TvCategory_AfterExpand(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Level == 0) return;
             e.Node.ImageIndex = 2;//打开的文件夹图标
         }
-        private void tvCategory_AfterCollapse(object sender, TreeViewEventArgs e)
+        private void TvCategory_AfterCollapse(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Level == 0) return;
             e.Node.ImageIndex = 1;//关闭的文件夹图标
@@ -113,7 +113,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAddModule_Click(object sender, EventArgs e)
+        private void BtnAddModule_Click(object sender, EventArgs e)
         {
             if (tvCategory.Enabled == false)
             {
@@ -188,9 +188,9 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtModule_KeyDown(object sender, KeyEventArgs e)
+        private void TxtModule_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13) btnAddModule_Click(null, null);
+            if (e.KeyValue == 13) BtnAddModule_Click(null, null);
         }
     }
 }

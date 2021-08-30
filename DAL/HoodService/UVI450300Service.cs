@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Models;
 
 namespace DAL
 {
-   public  class UVI450300Service : IModelService
+    public  class UVI450300Service : IModelService
     {
         // <summary>
         /// 根据项目Id查询UVI450300集合

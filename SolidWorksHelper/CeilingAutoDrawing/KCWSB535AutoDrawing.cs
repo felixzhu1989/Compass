@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
 using DAL;
@@ -14,7 +9,7 @@ using SolidWorks.Interop.swconst;
 
 namespace SolidWorksHelper
 {
-   public class KCWSB535AutoDrawing : IAutoDrawing
+    public class KCWSB535AutoDrawing : IAutoDrawing
     {
         KCWSB535Service objKCWSB535Service = new KCWSB535Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)

@@ -196,7 +196,7 @@
             this.cobODPNo.Name = "cobODPNo";
             this.cobODPNo.Size = new System.Drawing.Size(108, 27);
             this.cobODPNo.TabIndex = 0;
-            this.cobODPNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cobODPNo_KeyDown);
+            this.cobODPNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CobODPNo_KeyDown);
             // 
             // cmsRequirement
             // 
@@ -211,7 +211,7 @@
             this.tsmiRequirement.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.tsmiRequirement.Size = new System.Drawing.Size(209, 22);
             this.tsmiRequirement.Text = "编辑技术要求(&R)";
-            this.tsmiRequirement.Click += new System.EventHandler(this.tsmiRequirement_Click);
+            this.tsmiRequirement.Click += new System.EventHandler(this.TsmiRequirement_Click);
             // 
             // grbModuleStatistics
             // 
@@ -252,7 +252,7 @@
             this.dgvScope.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvScope.Size = new System.Drawing.Size(464, 107);
             this.dgvScope.TabIndex = 0;
-            this.dgvScope.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvScope_RowPostPaint);
+            this.dgvScope.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvScope_RowPostPaint);
             // 
             // txtSalesValue
             // 
@@ -262,7 +262,7 @@
             this.txtSalesValue.Size = new System.Drawing.Size(113, 25);
             this.txtSalesValue.TabIndex = 0;
             this.txtSalesValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtSalesValue.TextChanged += new System.EventHandler(this.txtSalesValue_TextChanged);
+            this.txtSalesValue.TextChanged += new System.EventHandler(this.TxtSalesValue_TextChanged);
             // 
             // lblSalesValue
             // 
@@ -300,7 +300,7 @@
             this.btnFinancialData.TabIndex = 1;
             this.btnFinancialData.Text = "添加财务数据";
             this.btnFinancialData.UseVisualStyleBackColor = false;
-            this.btnFinancialData.Click += new System.EventHandler(this.btnFinancialData_Click);
+            this.btnFinancialData.Click += new System.EventHandler(this.BtnFinancialData_Click);
             // 
             // chartTracking
             // 
@@ -398,7 +398,7 @@
             this.cobYear.Name = "cobYear";
             this.cobYear.Size = new System.Drawing.Size(67, 27);
             this.cobYear.TabIndex = 1;
-            this.cobYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cobODPNo_KeyDown);
+            this.cobYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CobODPNo_KeyDown);
             // 
             // cobMonth
             // 
@@ -411,13 +411,13 @@
             this.cobMonth.Name = "cobMonth";
             this.cobMonth.Size = new System.Drawing.Size(52, 27);
             this.cobMonth.TabIndex = 3;
-            this.cobMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cobODPNo_KeyDown);
+            this.cobMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CobODPNo_KeyDown);
             // 
             // timerScroll
             // 
             this.timerScroll.Enabled = true;
             this.timerScroll.Interval = 60000;
-            this.timerScroll.Tick += new System.EventHandler(this.timerScroll_Tick);
+            this.timerScroll.Tick += new System.EventHandler(this.TimerScroll_Tick);
             // 
             // grbRiskLevel
             // 
@@ -514,7 +514,7 @@
             this.btnSwitch.TabIndex = 1;
             this.btnSwitch.Text = "按月";
             this.btnSwitch.UseVisualStyleBackColor = false;
-            this.btnSwitch.Click += new System.EventHandler(this.btnSwitch_Click);
+            this.btnSwitch.Click += new System.EventHandler(this.BtnSwitch_Click);
             // 
             // lblProjectNum
             // 
@@ -613,7 +613,7 @@
             this.dgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvProjects.Size = new System.Drawing.Size(780, 606);
             this.dgvProjects.TabIndex = 36;
-            this.dgvProjects.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjects_RowPostPaint);
+            this.dgvProjects.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvProjects_RowPostPaint);
             // 
             // UserAccount
             // 
@@ -692,7 +692,7 @@
             // 
             this.timer.Enabled = true;
             this.timer.Interval = 1000;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // btnScroll
             // 
@@ -706,7 +706,7 @@
             this.btnScroll.TabIndex = 1;
             this.btnScroll.Text = "暂停循环";
             this.btnScroll.UseVisualStyleBackColor = false;
-            this.btnScroll.Click += new System.EventHandler(this.btnScroll_Click);
+            this.btnScroll.Click += new System.EventHandler(this.BtnScroll_Click);
             // 
             // FrmProjectInfo
             // 

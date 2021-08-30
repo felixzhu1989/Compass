@@ -53,7 +53,7 @@
             this.tsmiSyncFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQuery = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiMonthlyQuery = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiProjectMeasure = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDrawingPlanQuery = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSetting = new System.Windows.Forms.ToolStripMenuItem();
@@ -309,19 +309,19 @@
             // tsmiQuery
             // 
             this.tsmiQuery.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiMonthlyQuery,
+            this.tsmiProjectMeasure,
             this.tsmiDrawingPlanQuery});
             this.tsmiQuery.Name = "tsmiQuery";
             this.tsmiQuery.Size = new System.Drawing.Size(68, 21);
             this.tsmiQuery.Text = "查询统计";
             // 
-            // tsmiMonthlyQuery
+            // tsmiProjectMeasure
             // 
-            this.tsmiMonthlyQuery.Name = "tsmiMonthlyQuery";
-            this.tsmiMonthlyQuery.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.tsmiMonthlyQuery.Size = new System.Drawing.Size(193, 22);
-            this.tsmiMonthlyQuery.Text = "月度统计(&M)";
-            this.tsmiMonthlyQuery.Click += new System.EventHandler(this.TsmiMonthlyQuery_Click);
+            this.tsmiProjectMeasure.Name = "tsmiProjectMeasure";
+            this.tsmiProjectMeasure.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.tsmiProjectMeasure.Size = new System.Drawing.Size(193, 22);
+            this.tsmiProjectMeasure.Text = "项目测量(&M)";
+            this.tsmiProjectMeasure.Click += new System.EventHandler(this.TsmiProjectMeasure_Click);
             // 
             // tsmiDrawingPlanQuery
             // 
@@ -480,7 +480,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiDrawingPlanQuery;
         private System.Windows.Forms.Label lblCurrentSBU;
         private System.Windows.Forms.ToolStripMenuItem tsmiMarineAutoDrawing;
-        private System.Windows.Forms.ToolStripMenuItem tsmiMonthlyQuery;
+        private System.Windows.Forms.ToolStripMenuItem tsmiProjectMeasure;
         private System.Windows.Forms.ToolStripMenuItem tsmiSolidWorksSetting;
         private System.Windows.Forms.ToolStripMenuItem tsmieSolidWorksTools;
         private System.Windows.Forms.ToolStripMenuItem tsmiSyncFiles;

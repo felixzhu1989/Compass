@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmModuleTree));
             this.tvModule = new System.Windows.Forms.TreeView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiCeilingAssy = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAddModule = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEditModule = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteModule = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +42,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnAutoDrawing = new System.Windows.Forms.Button();
             this.pbLabelImage = new System.Windows.Forms.PictureBox();
-            this.tsmiCeilingAssy = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLabelImage)).BeginInit();
@@ -69,14 +69,21 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiCeilingAssy,
             this.tsmiAddModule,
             this.tsmiEditModule,
             this.tsmiDeleteModule,
             this.tsmiEditPic,
-            this.tsmiShowProjectInfo});
+            this.tsmiShowProjectInfo,
+            this.tsmiCeilingAssy});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(181, 158);
+            // 
+            // tsmiCeilingAssy
+            // 
+            this.tsmiCeilingAssy.Name = "tsmiCeilingAssy";
+            this.tsmiCeilingAssy.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCeilingAssy.Text = "天花总装";
+            this.tsmiCeilingAssy.Click += new System.EventHandler(this.TsmiCeilingAssy_Click);
             // 
             // tsmiAddModule
             // 
@@ -157,13 +164,6 @@
             this.pbLabelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbLabelImage.TabIndex = 61;
             this.pbLabelImage.TabStop = false;
-            // 
-            // tsmiCeilingAssy
-            // 
-            this.tsmiCeilingAssy.Name = "tsmiCeilingAssy";
-            this.tsmiCeilingAssy.Size = new System.Drawing.Size(180, 22);
-            this.tsmiCeilingAssy.Text = "天花总装";
-            this.tsmiCeilingAssy.Click += new System.EventHandler(this.TsmiCeilingAssy_Click);
             // 
             // FrmModuleTree
             // 

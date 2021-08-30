@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL;
 using Models;
 using SolidWorks.Interop.sldworks;
 
 namespace SolidWorksHelper
 {
-   public class LFUMC200DXFAutoDrawing : IAutoDrawing
+    public class LFUMC200DXFAutoDrawing : IAutoDrawing
     {
         LFUMC200DXFService objLFUMC200DXFService = new LFUMC200DXFService();
         ProjectService objProjectService = new ProjectService();
