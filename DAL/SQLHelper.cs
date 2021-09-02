@@ -125,8 +125,7 @@ namespace DAL
         public static bool UpdateByTransaction(List<string> sqlList)
         {
             SqlConnection conn=new SqlConnection(ConnString);
-            SqlCommand cmd =new SqlCommand();
-            cmd.Connection = conn;
+            SqlCommand cmd = new SqlCommand{Connection = conn};
             try
             {
                 conn.Open();

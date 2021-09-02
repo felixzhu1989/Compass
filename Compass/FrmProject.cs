@@ -24,7 +24,7 @@ namespace Compass
         {
             InitializeComponent();
             toolTip.SetToolTip(cobQueryYear, "按照项目完工日期年度查询");
-            this.dgvProjects.SelectionChanged -= new System.EventHandler(this.dgvProjects_SelectionChanged);
+            this.dgvProjects.SelectionChanged -= new System.EventHandler(this.DgvProjects_SelectionChanged);
             IniCustomerId(cobCustomerId);
             IniUserId(cobUserId);
 
@@ -53,9 +53,9 @@ namespace Compass
             //分页sql语句
             objSqlDataPager = objProjectService.GetSqlDataPager(sbu);
 
-            btnQueryByYear_Click(null, null);
+            BtnQueryByYear_Click(null, null);
 
-            this.dgvProjects.SelectionChanged += new System.EventHandler(this.dgvProjects_SelectionChanged);
+            this.dgvProjects.SelectionChanged += new System.EventHandler(this.DgvProjects_SelectionChanged);
 
             SetPermissions();
         }
@@ -81,8 +81,8 @@ namespace Compass
                 tsmiAddCustomer.Visible = true;
                 tsmiEditProject.Visible = true;
                 tsmiDeleteProject.Visible = true;
-                this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
-                this.dgvProjects.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjects_KeyDown);
+                this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjects_CellDoubleClick);
+                this.dgvProjects.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvProjects_KeyDown);
                 this.dgvProjects.Columns["SalesValue"].Visible = true;
             }
             else
@@ -91,8 +91,8 @@ namespace Compass
                 tsmiAddCustomer.Visible = false;
                 tsmiEditProject.Visible = false;
                 tsmiDeleteProject.Visible = false;
-                this.dgvProjects.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
-                this.dgvProjects.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvProjects_KeyDown);
+                this.dgvProjects.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjects_CellDoubleClick);
+                this.dgvProjects.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.DgvProjects_KeyDown);
                 this.dgvProjects.Columns["SalesValue"].Visible = false;
             }
         }
@@ -182,7 +182,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiAddCustomer_Click(object sender, EventArgs e)
+        private void TsmiAddCustomer_Click(object sender, EventArgs e)
         {
             FrmCustomer objCustomer = new FrmCustomer();
             objCustomer.ShowDialog();
@@ -193,7 +193,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnQueryAllProjects_Click(object sender, EventArgs e)
+        private void BtnQueryAllProjects_Click(object sender, EventArgs e)
         {
             QureyAll();
         }
@@ -202,7 +202,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnProject_Click(object sender, EventArgs e)
+        private void BtnProject_Click(object sender, EventArgs e)
         {
             #region 数据验证
             if (cobUserId.SelectedIndex == -1)
@@ -270,7 +270,7 @@ namespace Compass
                         //提示添加成功
                         MessageBox.Show("项目信息添加成功", "提示信息");
                         //刷新显示
-                        btnQueryByYear_Click(null, null);
+                        BtnQueryByYear_Click(null, null);
                         //清空内容
                         cobCustomerId.SelectedIndex = -1;
                         cobHoodType.SelectedIndex = -1;
@@ -311,7 +311,7 @@ namespace Compass
                     if (objProjectService.EditProject(objProject,sbu)==1)
                     {
                         MessageBox.Show("修改项目信息成功！", "提示信息");
-                        btnQueryByYear_Click(null, null); //同步刷新显示数据
+                        BtnQueryByYear_Click(null, null); //同步刷新显示数据
                         btnProject.Text = "添加项目信息";
                         cobCustomerId.SelectedIndex = -1;
                         cobHoodType.SelectedIndex = -1;
@@ -339,7 +339,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiEditProject_Click(object sender, EventArgs e)
+        private void TsmiEditProject_Click(object sender, EventArgs e)
         {
             if (dgvProjects.RowCount == 0) return;
             if (dgvProjects.CurrentRow == null) return;
@@ -361,9 +361,9 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvProjects_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvProjects_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            tsmiEditProject_Click(null, null);
+            TsmiEditProject_Click(null, null);
         }
 
         /// <summary>
@@ -371,7 +371,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDeleteProject_Click(object sender, EventArgs e)
+        private void TsmiDeleteProject_Click(object sender, EventArgs e)
         {
             if (dgvProjects.RowCount == 0)
             {
@@ -392,7 +392,7 @@ namespace Compass
             try
             {
                 //if (objProjectService.DeleteProject(projectId) == 1)
-                if (objProjectService.DeleteProjectAndTracking(projectId,sbu)) btnQueryAllProjects_Click(null, null);//同步刷新显示数据
+                if (objProjectService.DeleteProjectAndTracking(projectId,sbu)) BtnQueryAllProjects_Click(null, null);//同步刷新显示数据
                 else MessageBox.Show("删除项目出错，项目是否被其他数据关联，请联系管理员查看后台数据。");
             }
             catch (Exception ex)
@@ -408,16 +408,16 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvProjects_KeyDown(object sender, KeyEventArgs e)
+        private void DgvProjects_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 46) tsmiDeleteProject_Click(null, null);
+            if (e.KeyValue == 46) TsmiDeleteProject_Click(null, null);
         }
         /// <summary>
         /// 显示行号
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvProjects, e);
             //if (e.RowIndex > -1)
@@ -435,7 +435,7 @@ namespace Compass
             }
         }
 
-        private void tsmiShowProjectInfo_Click(object sender, EventArgs e)
+        private void TsmiShowProjectInfo_Click(object sender, EventArgs e)
         {
             if (dgvProjects.RowCount == 0) return;
             if (dgvProjects.CurrentRow == null) return;
@@ -448,23 +448,23 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnQueryByODPNo_Click(object sender, EventArgs e)
+        private void BtnQueryByODPNo_Click(object sender, EventArgs e)
         {
             if (txtODPNo.Text.Trim().Length == 0) return;
             objSqlDataPager.Condition = string.Format("ODPNo = '{0}'", txtODPNo.Text.Trim());
             objSqlDataPager.PageSize = Convert.ToInt32(cobRecordList.Text);
             Query();
         }
-        private void txtODPNo_KeyDown(object sender, KeyEventArgs e)
+        private void TxtODPNo_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13) btnQueryByODPNo_Click(null, null);
+            if (e.KeyValue == 13) BtnQueryByODPNo_Click(null, null);
         }
         /// <summary>
         /// 根据制图人员查询项目
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnQueryByUserId_Click(object sender, EventArgs e)
+        private void BtnQueryByUserId_Click(object sender, EventArgs e)
         {
             if (cobUserId.SelectedIndex == -1) return;
             objSqlDataPager.Condition = string.Format("Projects{0}.UserId = {1} and ShippingTime like '{2}%'", sbu,cobUserId.SelectedValue.ToString(), this.cobQueryYear.Text);
@@ -477,16 +477,16 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvProjects_SelectionChanged(object sender, EventArgs e)
+        private void DgvProjects_SelectionChanged(object sender, EventArgs e)
         {
-            tsmiShowModuleTree_Click(null, null);
+            TsmiShowModuleTree_Click(null, null);
         }
         /// <summary>
         /// 显示模型树
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiShowModuleTree_Click(object sender, EventArgs e)
+        private void TsmiShowModuleTree_Click(object sender, EventArgs e)
         {
             if (dgvProjects.RowCount == 0)
             {
@@ -505,16 +505,16 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobUserId_KeyDown(object sender, KeyEventArgs e)
+        private void CobUserId_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13) btnQueryByUserId_Click(null, null);
+            if (e.KeyValue == 13) BtnQueryByUserId_Click(null, null);
         }
         /// <summary>
         /// 根据年份查询
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnQueryByYear_Click(object sender, EventArgs e)
+        private void BtnQueryByYear_Click(object sender, EventArgs e)
         {
             if (this.cobQueryYear.SelectedIndex == -1)
             {
@@ -533,7 +533,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnFirst_Click(object sender, EventArgs e)
+        private void BtnFirst_Click(object sender, EventArgs e)
         {
             objSqlDataPager.CurrentPage = 1;//每次执行查询都必须设置为第一页
             QueryByYear();
@@ -546,7 +546,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnPre_Click(object sender, EventArgs e)
+        private void BtnPre_Click(object sender, EventArgs e)
         {
             objSqlDataPager.CurrentPage -= 1;//在当前页码上减一
             QueryByYear();
@@ -562,7 +562,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnNext_Click(object sender, EventArgs e)
+        private void BtnNext_Click(object sender, EventArgs e)
         {
             objSqlDataPager.CurrentPage += 1;//在当前页码上加一
             QueryByYear();
@@ -578,7 +578,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnLast_Click(object sender, EventArgs e)
+        private void BtnLast_Click(object sender, EventArgs e)
         {
             objSqlDataPager.CurrentPage = objSqlDataPager.TotalPages;//在当前页码上加一
             QueryByYear();
@@ -591,7 +591,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnToPage_Click(object sender, EventArgs e)
+        private void BtnToPage_Click(object sender, EventArgs e)
         {
             int a = this.txtToPage.IsInteger("跳转的页码");
             if (a != 0)
@@ -599,11 +599,11 @@ namespace Compass
                 int toPage = Convert.ToInt32(this.txtToPage.Text.Trim());
                 if (toPage > objSqlDataPager.TotalPages)
                 {
-                    btnLast_Click(null, null);//直接为最后一页
+                    BtnLast_Click(null, null);//直接为最后一页
                 }
                 else if (toPage == 0)
                 {
-                    btnFirst_Click(null, null);//第一页
+                    BtnFirst_Click(null, null);//第一页
                 }
                 else
                 {
@@ -629,7 +629,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiRequirements_Click(object sender, EventArgs e)
+        private void TsmiRequirements_Click(object sender, EventArgs e)
         {
             string odpNo = txtODPNo.Text;
             if (odpNo.Length == 0) return;

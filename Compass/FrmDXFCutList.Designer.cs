@@ -140,7 +140,7 @@
             this.btnDXFCutlist.TabIndex = 29;
             this.btnDXFCutlist.Text = "添加行";
             this.btnDXFCutlist.UseVisualStyleBackColor = false;
-            this.btnDXFCutlist.Click += new System.EventHandler(this.btnDXFCutlist_Click);
+            this.btnDXFCutlist.Click += new System.EventHandler(this.BtnDXFCutlist_Click);
             // 
             // label4
             // 
@@ -160,7 +160,7 @@
             this.cobCategoryId.Name = "cobCategoryId";
             this.cobCategoryId.Size = new System.Drawing.Size(68, 27);
             this.cobCategoryId.TabIndex = 23;
-            this.cobCategoryId.SelectedIndexChanged += new System.EventHandler(this.cobCategoryId_SelectedIndexChanged);
+            this.cobCategoryId.SelectedIndexChanged += new System.EventHandler(this.CobCategoryId_SelectedIndexChanged);
             // 
             // txtLength
             // 
@@ -229,9 +229,9 @@
             this.dgvDXFCutList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDXFCutList.Size = new System.Drawing.Size(926, 227);
             this.dgvDXFCutList.TabIndex = 30;
-            this.dgvDXFCutList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDXFCutList_CellDoubleClick);
-            this.dgvDXFCutList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvDXFCutList_RowPostPaint);
-            this.dgvDXFCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvDXFCutList_KeyDown);
+            this.dgvDXFCutList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDXFCutList_CellDoubleClick);
+            this.dgvDXFCutList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvDXFCutList_RowPostPaint);
+            this.dgvDXFCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvDXFCutList_KeyDown);
             // 
             // CutListId
             // 
@@ -319,14 +319,14 @@
             this.tsmiEditDXFCutList.Name = "tsmiEditDXFCutList";
             this.tsmiEditDXFCutList.Size = new System.Drawing.Size(112, 22);
             this.tsmiEditDXFCutList.Text = "修改行";
-            this.tsmiEditDXFCutList.Click += new System.EventHandler(this.tsmiEditDXFCutList_Click);
+            this.tsmiEditDXFCutList.Click += new System.EventHandler(this.TsmiEditDXFCutList_Click);
             // 
             // tsmiDeleteDXFCutList
             // 
             this.tsmiDeleteDXFCutList.Name = "tsmiDeleteDXFCutList";
             this.tsmiDeleteDXFCutList.Size = new System.Drawing.Size(112, 22);
             this.tsmiDeleteDXFCutList.Text = "删除行";
-            this.tsmiDeleteDXFCutList.Click += new System.EventHandler(this.tsmiDeleteDXFCutList_Click);
+            this.tsmiDeleteDXFCutList.Click += new System.EventHandler(this.TsmiDeleteDXFCutList_Click);
             // 
             // label1
             // 
@@ -352,7 +352,7 @@
             this.btnSaveToDB.TabIndex = 40;
             this.btnSaveToDB.Text = "保存到数据库";
             this.btnSaveToDB.UseVisualStyleBackColor = false;
-            this.btnSaveToDB.Click += new System.EventHandler(this.btnSaveToDB_Click);
+            this.btnSaveToDB.Click += new System.EventHandler(this.BtnSaveToDB_Click);
             // 
             // btnImportFromExcel
             // 
@@ -367,7 +367,7 @@
             this.btnImportFromExcel.TabIndex = 41;
             this.btnImportFromExcel.Text = "从Excel导入";
             this.btnImportFromExcel.UseVisualStyleBackColor = false;
-            this.btnImportFromExcel.Click += new System.EventHandler(this.btnImportFromExcel_Click);
+            this.btnImportFromExcel.Click += new System.EventHandler(this.BtnImportFromExcel_Click);
             // 
             // txtThickness
             // 
@@ -437,7 +437,7 @@
             this.dgvDXFCutListFromExcel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDXFCutListFromExcel.Size = new System.Drawing.Size(926, 207);
             this.dgvDXFCutListFromExcel.TabIndex = 30;
-            this.dgvDXFCutListFromExcel.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvDXFCutListFromExcel_RowPostPaint);
+            this.dgvDXFCutListFromExcel.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvDXFCutListFromExcel_RowPostPaint);
             // 
             // CategoryId2
             // 

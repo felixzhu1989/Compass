@@ -171,8 +171,7 @@ namespace DAL
             string sql = $"insert into ModuleTree{sbu}(DrawingPlanId,CategoryId,Module)";
             sql += " values({0},{1},'{2}'); select @@identity";
             sql = string.Format(sql, objModuleTree.DrawingPlanId, objModuleTree.CategoryId, objModuleTree.Module);
-            List<string> sqlList = new List<string>();
-            sqlList.Add(sql);
+            List<string> sqlList = new List<string>{sql};
             Category objCategory = objCategoryService.GetCategoryByCategoryId(objModuleTree.CategoryId.ToString(), sbu);
             string sqldata = "insert into " + objCategory.CategoryName + " (ModuleTreeId) values(@@IDENTITY)";
             sqlList.Add(sqldata);

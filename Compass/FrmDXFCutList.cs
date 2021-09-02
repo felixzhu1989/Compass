@@ -30,13 +30,13 @@ namespace Compass
         private void IniCategoryId(ComboBox cobItem)
         {
             //断开事件委托
-            this.cobCategoryId.SelectedIndexChanged -= new System.EventHandler(this.cobCategoryId_SelectedIndexChanged);
+            this.cobCategoryId.SelectedIndexChanged -= new System.EventHandler(this.CobCategoryId_SelectedIndexChanged);
             cobItem.DataSource = objCategoryService.GetAllCategories(sbu);
             cobItem.DisplayMember = "CategoryId";
             cobItem.ValueMember = "CategoryDesc";
             cobItem.SelectedIndex = -1;
             //重新关联委托
-            this.cobCategoryId.SelectedIndexChanged += new System.EventHandler(this.cobCategoryId_SelectedIndexChanged);
+            this.cobCategoryId.SelectedIndexChanged += new System.EventHandler(this.CobCategoryId_SelectedIndexChanged);
             
         }
         
@@ -45,7 +45,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobCategoryId_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobCategoryId_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblDesc.Text = cobCategoryId.SelectedValue.ToString();
             dgvDXFCutList.DataSource = objDxfCutListService.GetDXFCutListsByCategoryId(cobCategoryId.Text);
@@ -56,7 +56,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnImportFromExcel_Click(object sender, EventArgs e)
+        private void BtnImportFromExcel_Click(object sender, EventArgs e)
         {
             //1.编写一个能够从Excel读取数据的通用数据访问类OleDbHelper
             //2.编写ImportDataFromExcel类，添加查询Excel数据表的方法，以对象集合的方式存储数据，能够封装数据
@@ -90,7 +90,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSaveToDB_Click(object sender, EventArgs e)
+        private void BtnSaveToDB_Click(object sender, EventArgs e)
         {
             //验证数据
             if (dxfCutList == null || dxfCutList.Count == 0)
@@ -130,7 +130,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnDXFCutlist_Click(object sender, EventArgs e)
+        private void BtnDXFCutlist_Click(object sender, EventArgs e)
         {
 
             #region 数据验证
@@ -268,7 +268,7 @@ namespace Compass
             }
         }
 
-        private void tsmiEditDXFCutList_Click(object sender, EventArgs e)
+        private void TsmiEditDXFCutList_Click(object sender, EventArgs e)
         {
             if (dgvDXFCutList.RowCount == 0) return;
             if (dgvDXFCutList.CurrentRow == null) return;
@@ -286,7 +286,7 @@ namespace Compass
             btnDXFCutlist.Tag = id;
         }
 
-        private void tsmiDeleteDXFCutList_Click(object sender, EventArgs e)
+        private void TsmiDeleteDXFCutList_Click(object sender, EventArgs e)
         {
             //删除
             if (dgvDXFCutList.RowCount == 0) return;
@@ -309,14 +309,14 @@ namespace Compass
             }
         }
 
-        private void dgvDXFCutList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvDXFCutList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            tsmiEditDXFCutList_Click(null, null);
+            TsmiEditDXFCutList_Click(null, null);
         }
 
-        private void dgvDXFCutList_KeyDown(object sender, KeyEventArgs e)
+        private void DgvDXFCutList_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 46) tsmiDeleteDXFCutList_Click(null, null);
+            if (e.KeyValue == 46) TsmiDeleteDXFCutList_Click(null, null);
         }
 
         /// <summary>
@@ -324,12 +324,12 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvDXFCutList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvDXFCutList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvDXFCutList, e);
         }
 
-        private void dgvDXFCutListFromExcel_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvDXFCutListFromExcel_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvDXFCutListFromExcel, e);
         }

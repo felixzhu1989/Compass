@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="CeilingService\BCJ330Service.cs" />
     <Compile Include="CeilingService\CJ330Service.cs" />
+    <Compile Include="DrawingNumMatrixService.cs" />
     <Compile Include="FinancialDataService.cs" />
     <Compile Include="HoodService\CH610Service.cs" />
     <Compile Include="HoodService\HOODBCJService.cs" />

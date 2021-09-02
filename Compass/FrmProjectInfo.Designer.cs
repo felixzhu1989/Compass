@@ -170,7 +170,7 @@
             this.grbSpecialRequirements.Controls.Add(this.txtSpecialRequirements);
             this.grbSpecialRequirements.Location = new System.Drawing.Point(6, 392);
             this.grbSpecialRequirements.Name = "grbSpecialRequirements";
-            this.grbSpecialRequirements.Size = new System.Drawing.Size(302, 199);
+            this.grbSpecialRequirements.Size = new System.Drawing.Size(302, 193);
             this.grbSpecialRequirements.TabIndex = 4;
             this.grbSpecialRequirements.TabStop = false;
             this.grbSpecialRequirements.Text = "特殊技术要求";
@@ -183,7 +183,7 @@
             this.txtSpecialRequirements.Name = "txtSpecialRequirements";
             this.txtSpecialRequirements.ReadOnly = true;
             this.txtSpecialRequirements.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSpecialRequirements.Size = new System.Drawing.Size(296, 175);
+            this.txtSpecialRequirements.Size = new System.Drawing.Size(296, 169);
             this.txtSpecialRequirements.TabIndex = 0;
             // 
             // cobODPNo
@@ -221,7 +221,7 @@
             this.grbModuleStatistics.Controls.Add(this.dgvScope);
             this.grbModuleStatistics.Location = new System.Drawing.Point(310, 460);
             this.grbModuleStatistics.Name = "grbModuleStatistics";
-            this.grbModuleStatistics.Size = new System.Drawing.Size(470, 131);
+            this.grbModuleStatistics.Size = new System.Drawing.Size(470, 125);
             this.grbModuleStatistics.TabIndex = 5;
             this.grbModuleStatistics.TabStop = false;
             this.grbModuleStatistics.Text = "机型统计";
@@ -250,7 +250,7 @@
             this.dgvScope.Name = "dgvScope";
             this.dgvScope.ReadOnly = true;
             this.dgvScope.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvScope.Size = new System.Drawing.Size(464, 107);
+            this.dgvScope.Size = new System.Drawing.Size(464, 101);
             this.dgvScope.TabIndex = 0;
             this.dgvScope.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvScope_RowPostPaint);
             // 

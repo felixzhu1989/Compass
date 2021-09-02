@@ -25,7 +25,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnCustomer_Click(object sender, EventArgs e)
+        private void BtnCustomer_Click(object sender, EventArgs e)
         {
             #region 数据验证
             if (txtCustomerName.Text.Trim().Length == 0)
@@ -95,7 +95,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiEditCustomer_Click(object sender, EventArgs e)
+        private void TsmiEditCustomer_Click(object sender, EventArgs e)
         {
             if (dgvCustomers.RowCount == 0)
             {
@@ -118,7 +118,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDeleteCustomer_Click(object sender, EventArgs e)
+        private void TsmiDeleteCustomer_Click(object sender, EventArgs e)
         {
             if (dgvCustomers.RowCount == 0)
             {
@@ -148,26 +148,26 @@ namespace Compass
             }
         }
 
-        private void txtCustomerName_KeyDown(object sender, KeyEventArgs e)
+        private void TxtCustomerName_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13) btnCustomer_Click(null,null);
+            if (e.KeyValue == 13) BtnCustomer_Click(null,null);
         }
 
-        private void dgvCustomers_KeyDown(object sender, KeyEventArgs e)
+        private void DgvCustomers_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 46)tsmiDeleteCustomer_Click(null,null);
+            if (e.KeyValue == 46)TsmiDeleteCustomer_Click(null,null);
         }
 
-        private void dgvCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            tsmiEditCustomer_Click(null,null);
+            TsmiEditCustomer_Click(null,null);
         }
         /// <summary>
         /// 添加行号
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvCustomers_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvCustomers_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvCustomers, e);
         }
@@ -176,7 +176,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btmImportFromExcel_Click(object sender, EventArgs e)
+        private void BtmImportFromExcel_Click(object sender, EventArgs e)
         {
             //1.编写一个能够从Excel读取数据的通用数据访问类OleDbHelper
             //2.编写ImportDataFromExcel类，添加查询Excel数据表的方法，以对象集合的方式存储数据，能够封装数据
@@ -201,7 +201,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSaveToDB_Click(object sender, EventArgs e)
+        private void BtnSaveToDB_Click(object sender, EventArgs e)
         {
             //验证数据
             if (customerList == null || customerList.Count == 0)

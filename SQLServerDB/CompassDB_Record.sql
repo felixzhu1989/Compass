@@ -209,3 +209,151 @@ select * from ProjectTrackingMarine
 
 select * from GeneralRequirements
 select * from ProjectTypes
+
+use CompassDB
+go
+select * from Categories
+
+select * from DrawingNumCodeRule order by ParentId,CodeId asc
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(00000,00000,'H','Halton')
+--SBU
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(10000,00000,'F','FoodService'),
+	(20000,00000,'M','Marine'),
+	(30000,00000,'S','SBA')
+
+--Product name : FoodService	
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(10100,10000,'S','Show Kitchens'),
+	(10200,10000,'P','Air Purification'),
+	(10300,10000,'L','Supply Air Unit'),
+	(10400,10000,'C','Ventilated Ceiling'),
+	(10500,10000,'H','Hood')
+
+--sub assembly : Show Kitchens	
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(10101,10100,'C','Casing'),
+	(10102,10100,'B','Bracket'),
+	(10103,10100,'D','Duct'),
+	(10104,10100,'O','Components')
+--sub assembly : Air Purification
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(10201,10200,'F','Frame'),
+	(10202,10200,'B','Bracket'),
+	(10203,10200,'P','Side Plate'),
+	(10204,10200,'O','Components')	
+
+--sub assembly : Supply Air Unit
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(10301,10300,'C','Casing'),
+	(10302,10300,'B','Bracket'),
+	(10303,10300,'D','Diffuser'),
+	(10304,10300,'O','Components')
+--sub assembly : Ventilated Ceiling
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(10401,10400,'E','Exhaust Beam'),
+	(10402,10400,'B','Bracket'),
+	(10403,10400,'J','Capture Jet Beam'),
+	(10404,10400,'S','Side Panel / Channel'),
+	(10405,10400,'M','Middle Roof'),
+	(10406,10400,'O','Components'),
+	(10407,10400,'L','Light Box / Plate'),
+	(10408,10400,'A','Air Supply Unit'),
+	(10409,10400,'L','Ceil Plate-AL'),
+	(10410,10400,'P','Profile')
+--sub assembly : Hood
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(10501,10500,'E','Exhaust Beam'),
+	(10502,10500,'B','Bracket'),
+	(10503,10500,'A','Air Supply Beam'),
+	(10504,10500,'S','Side Panel'),
+	(10505,10500,'M','Middle Roof'),
+	(10506,10500,'O','Components')	
+
+--Product name : Marine
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(20100,20000,'G','Valve & Grill / Fancoils / Air Flow Unit'),
+	(20200,20000,'B','Blast Valve / Galley Diffuser'),
+	(20300,20000,'H','Galley Hood'),
+	(20400,20000,'S','DSH'),
+	(20500,20000,'T','Cabin Diffuser'),
+	(20600,20000,'C','Cabin'),
+	(20700,20000,'D','Damper')
+
+--sub assembly : Valve & Grill / Fancoils / Air Flow Unit
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(20101,20100,'F','Frame'),
+	(20102,20100,'B','Blade'),
+	(20103,20100,'S','Support'),
+	(20104,20100,'O','Components')
+
+--sub assembly : Blast Valve / Galley Diffuser
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(20201,20200,'F','Frame'),
+	(20202,20200,'B','Blade'),
+	(20203,20200,'L','Linkage'),
+	(20204,20200,'S','Support'),
+	(20205,20200,'O','Components')
+
+--sub assembly : Galley Hood
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(20301,20300,'E','Exhaust Beam'),
+	(20302,20300,'B','Bracket'),
+	(20303,20300,'A','Air Supply Beam'),
+	(20304,20300,'S','Side Panel'),
+	(20305,20300,'M','Middle Roof'),
+	(20306,20300,'O','Components')
+
+--sub assembly : DSH
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(20401,20400,'F','Frame'),
+	(20402,20400,'D','Droplet Seperator'),
+	(20403,20400,'S','Support'),
+	(20404,20400,'O','Components')
+
+--sub assembly : Cabin Diffuser	
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(20501,20500,'C','Casing'),
+	(20502,20500,'O','Components')
+
+--sub assembly : Cabin	
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(20601,20600,'C','Casing'),
+	(20602,20600,'S','Support'),
+	(20603,20600,'V','Valve'),
+	(20604,20600,'I','Insulation'),
+	(20605,20600,'O','Components')
+
+--sub assembly : Damper	
+insert into DrawingNumCodeRule(CodeId,ParentId,Code,CodeName) 
+values(20701,20700,'F','Frame'),
+	(20702,20700,'B','Blade'),
+	(20703,20700,'L','Linkage'),
+	(20704,20700,'S','Support'),
+	(20705,20700,'O','Components')
+
+select CodeId,ParentId,Code,CodeName from DrawingNumCodeRule order by ParentId,CodeId asc
+
+
+
+select DrawingId,DrawingNum,DrawingDesc,DrawingType,Mark,DrawingNumMatrix.UserId,UserAccount,AddedDate,DrawingImage from DrawingNumMatrix
+	inner join Users on Users.UserId=DrawingNumMatrix.UserId
+	order by DrawingNum asc
+
+
+select * from DrawingNumMatrix
+select * from Users
+
+select * from DrawingPlan
+select * from Categories
+
+
+
+
+
+
+
+
+
+

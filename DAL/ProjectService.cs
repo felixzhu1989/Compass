@@ -265,8 +265,7 @@ namespace DAL
             sql += " values('{0}','{1}','{2}',{3},'{4}',{5},'{6}');select @@identity";
             sql = string.Format(sql, objProject.ODPNo, objProject.BPONo,
                 objProject.ProjectName, objProject.CustomerId, objProject.ShippingTime, objProject.UserId, objProject.HoodType);
-            List<string> sqlList = new List<string>();
-            sqlList.Add(sql);
+            List<string> sqlList = new List<string>{sql};
             string sqlTracking = string.Format("insert into ProjectTracking{0} (ProjectId,ProjectStatusId) values(@@IDENTITY,1)", sbu);
             sqlList.Add(sqlTracking);
             return SQLHelper.UpdateByTransaction(sqlList);
@@ -278,10 +277,12 @@ namespace DAL
         /// <returns></returns>
         public bool DeleteProjectAndTracking(string projectId, string sbu)
         {
-            List<string> sqlList = new List<string>();
-            sqlList.Add(string.Format("delete from ProjectTracking{0} where ProjectId={1}", sbu, projectId));
-            sqlList.Add(string.Format("delete from FinancialData{0} where ProjectId={1}", sbu, projectId));
-            sqlList.Add(string.Format("delete from Projects{0} where ProjectId={1}", sbu, projectId));
+            List<string> sqlList = new List<string>
+            {
+                string.Format("delete from ProjectTracking{0} where ProjectId={1}", sbu, projectId),
+                string.Format("delete from FinancialData{0} where ProjectId={1}", sbu, projectId),
+                string.Format("delete from Projects{0} where ProjectId={1}", sbu, projectId)
+            };
             return SQLHelper.UpdateByTransaction(sqlList);
         }
 

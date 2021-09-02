@@ -116,7 +116,7 @@
             this.btnQueryAllProjects.TabIndex = 34;
             this.btnQueryAllProjects.Text = "显示全部项目";
             this.btnQueryAllProjects.UseVisualStyleBackColor = false;
-            this.btnQueryAllProjects.Click += new System.EventHandler(this.btnQueryAllProjects_Click);
+            this.btnQueryAllProjects.Click += new System.EventHandler(this.BtnQueryAllProjects_Click);
             // 
             // btnProject
             // 
@@ -131,7 +131,7 @@
             this.btnProject.TabIndex = 33;
             this.btnProject.Text = "添加项目信息";
             this.btnProject.UseVisualStyleBackColor = false;
-            this.btnProject.Click += new System.EventHandler(this.btnProject_Click);
+            this.btnProject.Click += new System.EventHandler(this.BtnProject_Click);
             // 
             // dtpShippingTime
             // 
@@ -175,7 +175,7 @@
             this.btnQueryByODPNo.TabIndex = 27;
             this.btnQueryByODPNo.Text = "查询";
             this.btnQueryByODPNo.UseVisualStyleBackColor = false;
-            this.btnQueryByODPNo.Click += new System.EventHandler(this.btnQueryByODPNo_Click);
+            this.btnQueryByODPNo.Click += new System.EventHandler(this.BtnQueryByODPNo_Click);
             // 
             // btnQueryByUserId
             // 
@@ -189,7 +189,7 @@
             this.btnQueryByUserId.TabIndex = 28;
             this.btnQueryByUserId.Text = "查询";
             this.btnQueryByUserId.UseVisualStyleBackColor = false;
-            this.btnQueryByUserId.Click += new System.EventHandler(this.btnQueryByUserId_Click);
+            this.btnQueryByUserId.Click += new System.EventHandler(this.BtnQueryByUserId_Click);
             // 
             // label4
             // 
@@ -208,7 +208,7 @@
             this.cobUserId.Name = "cobUserId";
             this.cobUserId.Size = new System.Drawing.Size(108, 27);
             this.cobUserId.TabIndex = 25;
-            this.cobUserId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cobUserId_KeyDown);
+            this.cobUserId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CobUserId_KeyDown);
             // 
             // txtODPNo
             // 
@@ -216,7 +216,7 @@
             this.txtODPNo.Name = "txtODPNo";
             this.txtODPNo.Size = new System.Drawing.Size(108, 25);
             this.txtODPNo.TabIndex = 26;
-            this.txtODPNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtODPNo_KeyDown);
+            this.txtODPNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtODPNo_KeyDown);
             // 
             // label1
             // 
@@ -246,7 +246,7 @@
             this.tsmiRequirements.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.tsmiRequirements.Size = new System.Drawing.Size(239, 22);
             this.tsmiRequirements.Text = "添加特殊要求(R)";
-            this.tsmiRequirements.Click += new System.EventHandler(this.tsmiRequirements_Click);
+            this.tsmiRequirements.Click += new System.EventHandler(this.TsmiRequirements_Click);
             // 
             // tsmiShowProjectInfo
             // 
@@ -255,7 +255,7 @@
             this.tsmiShowProjectInfo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
             this.tsmiShowProjectInfo.Size = new System.Drawing.Size(239, 22);
             this.tsmiShowProjectInfo.Text = "显示详细信息(&I)";
-            this.tsmiShowProjectInfo.Click += new System.EventHandler(this.tsmiShowProjectInfo_Click);
+            this.tsmiShowProjectInfo.Click += new System.EventHandler(this.TsmiShowProjectInfo_Click);
             // 
             // tsmiEditProject
             // 
@@ -263,7 +263,7 @@
             this.tsmiEditProject.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
             this.tsmiEditProject.Size = new System.Drawing.Size(239, 22);
             this.tsmiEditProject.Text = "修改项目信息(&U)";
-            this.tsmiEditProject.Click += new System.EventHandler(this.tsmiEditProject_Click);
+            this.tsmiEditProject.Click += new System.EventHandler(this.TsmiEditProject_Click);
             // 
             // tsmiDeleteProject
             // 
@@ -271,7 +271,7 @@
             this.tsmiDeleteProject.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
             this.tsmiDeleteProject.Size = new System.Drawing.Size(239, 22);
             this.tsmiDeleteProject.Text = "删除项目信息(&D)";
-            this.tsmiDeleteProject.Click += new System.EventHandler(this.tsmiDeleteProject_Click);
+            this.tsmiDeleteProject.Click += new System.EventHandler(this.TsmiDeleteProject_Click);
             // 
             // tsmiShowModuleTree
             // 
@@ -279,7 +279,7 @@
             this.tsmiShowModuleTree.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
             this.tsmiShowModuleTree.Size = new System.Drawing.Size(239, 22);
             this.tsmiShowModuleTree.Text = "显示模型树(&M)";
-            this.tsmiShowModuleTree.Click += new System.EventHandler(this.tsmiShowModuleTree_Click);
+            this.tsmiShowModuleTree.Click += new System.EventHandler(this.TsmiShowModuleTree_Click);
             // 
             // cobCustomerId
             // 
@@ -306,7 +306,7 @@
             this.tsmiAddCustomer.Name = "tsmiAddCustomer";
             this.tsmiAddCustomer.Size = new System.Drawing.Size(124, 22);
             this.tsmiAddCustomer.Text = "添加客户";
-            this.tsmiAddCustomer.Click += new System.EventHandler(this.tsmiAddCustomer_Click);
+            this.tsmiAddCustomer.Click += new System.EventHandler(this.TsmiAddCustomer_Click);
             // 
             // label2
             // 
@@ -412,9 +412,9 @@
             this.dgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProjects.Size = new System.Drawing.Size(928, 396);
             this.dgvProjects.TabIndex = 35;
-            this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellDoubleClick);
-            this.dgvProjects.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjects_RowPostPaint);
-            this.dgvProjects.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProjects_KeyDown);
+            this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjects_CellDoubleClick);
+            this.dgvProjects.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvProjects_RowPostPaint);
+            this.dgvProjects.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvProjects_KeyDown);
             // 
             // UserAccount
             // 
@@ -697,7 +697,7 @@
             this.cobQueryYear.Name = "cobQueryYear";
             this.cobQueryYear.Size = new System.Drawing.Size(68, 27);
             this.cobQueryYear.TabIndex = 25;
-            this.cobQueryYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cobUserId_KeyDown);
+            this.cobQueryYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CobUserId_KeyDown);
             // 
             // label6
             // 
@@ -721,7 +721,7 @@
             this.btnLast.TabIndex = 28;
             this.btnLast.Text = ">>";
             this.btnLast.UseVisualStyleBackColor = false;
-            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
+            this.btnLast.Click += new System.EventHandler(this.BtnLast_Click);
             // 
             // btnNext
             // 
@@ -736,7 +736,7 @@
             this.btnNext.TabIndex = 28;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
             // btnPre
             // 
@@ -751,7 +751,7 @@
             this.btnPre.TabIndex = 28;
             this.btnPre.Text = "<";
             this.btnPre.UseVisualStyleBackColor = false;
-            this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
+            this.btnPre.Click += new System.EventHandler(this.BtnPre_Click);
             // 
             // btnFirst
             // 
@@ -766,7 +766,7 @@
             this.btnFirst.TabIndex = 28;
             this.btnFirst.Text = "<<";
             this.btnFirst.UseVisualStyleBackColor = false;
-            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
+            this.btnFirst.Click += new System.EventHandler(this.BtnFirst_Click);
             // 
             // btnToPage
             // 
@@ -780,7 +780,7 @@
             this.btnToPage.TabIndex = 28;
             this.btnToPage.Text = "GO";
             this.btnToPage.UseVisualStyleBackColor = false;
-            this.btnToPage.Click += new System.EventHandler(this.btnToPage_Click);
+            this.btnToPage.Click += new System.EventHandler(this.BtnToPage_Click);
             // 
             // btnQueryByYear
             // 
@@ -794,7 +794,7 @@
             this.btnQueryByYear.TabIndex = 28;
             this.btnQueryByYear.Text = "查询";
             this.btnQueryByYear.UseVisualStyleBackColor = false;
-            this.btnQueryByYear.Click += new System.EventHandler(this.btnQueryByYear_Click);
+            this.btnQueryByYear.Click += new System.EventHandler(this.BtnQueryByYear_Click);
             // 
             // FrmProject
             // 

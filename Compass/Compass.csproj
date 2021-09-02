@@ -157,6 +157,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="EDrawingsUserControl.Designer.cs" />
+    <Compile Include="FrmDrawingNumMatrix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDrawingNumMatrix.Designer.cs">
+      <DependentUpon>FrmDrawingNumMatrix.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmProjectMeasure.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1015,6 +1021,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CeilingForm\FrmDPCJ330.resx">
       <DependentUpon>FrmDPCJ330.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDrawingNumMatrix.resx">
+      <DependentUpon>FrmDrawingNumMatrix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProjectMeasure.resx">
       <DependentUpon>FrmProjectMeasure.cs</DependentUpon>

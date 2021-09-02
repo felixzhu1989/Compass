@@ -550,9 +550,58 @@ select day(ODPReceiveDate) as Day,sum(SubTotalWorkload) as Workload from Drawing
 	group by day(ODPReceiveDate) order by Day asc
 select day(ProdFinishActual) as Day,sum(SubTotalWorkload) as Workload from DrawingPlan
 	inner join ProjectTracking on ProjectTracking.ProjectId=DrawingPlan.ProjectId
-	where ODPReceiveDate like '2021%' and month(ProdFinishActual)='08'
+	where ProdFinishActual like '2021%' and month(ProdFinishActual)='08'
 	group by day(ProdFinishActual) order by Day asc
 select day(DeliverActual) as Day,sum(SubTotalWorkload) as Workload from DrawingPlan
 	inner join ProjectTracking on ProjectTracking.ProjectId=DrawingPlan.ProjectId
-	where ODPReceiveDate like '2021%' and month(DeliverActual)='08'
+	where DeliverActual like '2021%' and month(DeliverActual)='08'
 	group by day(DeliverActual)	order by Day asc
+
+
+select month(ShippingTime) as Mon, count(*) as OnTine from Projects
+	inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId
+	where ShippingTime like '2021%' and ProdFinishActual<=ShippingTime
+	group by month(ShippingTime) order by Mon asc
+
+select month(ShippingTime) as Mon, count(*) as Total from Projects
+	where ShippingTime like '2021%'
+	group by month(ShippingTime) order by Mon asc
+
+select month(ShippingTime) as Mon, sum(SubTotalWorkload) as OnTine from Projects
+	inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId
+	inner join DrawingPlan on DrawingPlan.ProjectId=Projects.ProjectId
+	where ShippingTime like '2021%' and ProdFinishActual<=ShippingTime
+	group by month(ShippingTime) order by Mon asc
+
+select month(ShippingTime) as Mon, sum(SubTotalWorkload) as Total from Projects
+	inner join DrawingPlan on DrawingPlan.ProjectId=Projects.ProjectId
+	where ShippingTime like '2021%'
+	group by month(ShippingTime) order by Mon asc
+
+select ODPNo from Projects
+	inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId
+	where ShippingTime like '2021%' and ProdFinishActual>ShippingTime
+	order by ShippingTime desc
+
+select month(ShippingTime) as Mon,sum(datediff(day,DrReleaseActual,ProdFinishActual))/count(*)+1 as CycleTime from ProjectTracking
+	inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId	
+	where ShippingTime like '2021%'	and DrReleaseActual<>'0001-01-01' and ProdFinishActual<>'0001-01-01'
+	group by month(ShippingTime) order by Mon asc
+
+select month(ShippingTime) as Mon,sum(datediff(day,ODPReceiveDate,ProdFinishActual))/count(*)+1 as CycleTime from ProjectTracking
+	inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId	
+	where ShippingTime like '2021%'	and ODPReceiveDate<>'0001-01-01' and ProdFinishActual<>'0001-01-01'
+	group by month(ShippingTime) order by Mon asc
+
+select month(ShippingTime) as Mon,sum(datediff(day,ODPReceiveDate,DeliverActual))/count(*)+1 as CycleTime from ProjectTracking
+	inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId	
+	where ShippingTime like '2021%'	and ODPReceiveDate<>'0001-01-01' and DeliverActual<>'0001-01-01'
+	group by month(ShippingTime) order by Mon asc
+
+
+select * from ProjectTracking
+	inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId	
+	where ShippingTime like '2021%' and month(ShippingTime)='09'
+	and DrReleaseActual<>'0001-01-01' and ProdFinishActual<>'0001-01-01'
+
+select * from Categories

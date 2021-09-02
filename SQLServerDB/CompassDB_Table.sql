@@ -351,13 +351,67 @@ GO
 alter table FinancialData add constraint fk_ProjectId_FinancialData foreign key(ProjectId) references Projects (ProjectId)
 
 
-
 select * from FinancialData
 
 
 select FinancialDataId,ProjectId,SalesValue from FinancialData where ProjectId=61
 
+--DrawingNumCodeRule
+if exists (select * from sysobjects where name='DrawingNumCodeRule')
+drop table DrawingNumCodeRule
+go
+create table DrawingNumCodeRule
+(
+    CodeId int not null,--不能自增，这个后面要手动定义分类号
+    ParentId int not null,--类型的父类，引用CodeId，约束后面再添加
+    Code char(1) not null,
+    CodeName varchar(50) not null
+)
 
+if exists (select * from sysobjects where name='pk_CodeId')
+    alter table DrawingNumCodeRule drop constraint pk_CodeId
+GO
+alter table DrawingNumCodeRule add constraint pk_CodeId primary key (CodeId)
+GO
 
+if exists (select * from sysobjects where name='fk_ParentId_CodeRule')
+    alter table DrawingNumCodeRule drop constraint fk_ParentId_CodeRule
+GO
+alter table DrawingNumCodeRule add constraint fk_ParentId_CodeRule foreign key(ParentId) references DrawingNumCodeRule (CodeId)
+GO
 
-
+--DrawingNumMatrix
+if exists (select * from sysobjects where name='DrawingNumMatrix')
+drop table DrawingNumMatrix
+go
+create table DrawingNumMatrix
+(
+    DrawingId int identity(1,1),
+	DrawingNum varchar(8) not null,
+    DrawingDesc varchar(100) not null,
+	DrawingType varchar(10) not null,	
+	Mark varchar(100),
+	AddedDate datetime,
+    UserId int not null,
+	DrawingImage text
+)
+if exists (select * from sysobjects where name='pk_DrawingId')
+    alter table DrawingNumMatrix drop constraint pk_DrawingId
+GO
+alter table DrawingNumMatrix add constraint pk_DrawingId primary key (DrawingId)
+GO
+if exists (select * from sysobjects where name='df_AddedDate_DrawingNumMatrix')
+    alter table DrawingNumMatrix drop constraint df_AddedDate_DrawingNumMatrix
+GO
+alter table DrawingNumMatrix add constraint df_AddedDate_DrawingNumMatrix default (getdate()) for AddedDate
+GO
+if exists (select * from sysobjects where name='uq_DrawingNum')
+    alter table DrawingNumMatrix drop constraint uq_DrawingNum
+GO
+alter table DrawingNumMatrix add constraint uq_DrawingNum unique (DrawingNum)
+GO
+if exists (select * from sysobjects where name='fk_UserId_DrawingNumMatrix')
+    alter table DrawingNumMatrix drop constraint fk_UserId_DrawingNumMatrix
+GO
+alter table DrawingNumMatrix add constraint fk_UserId_DrawingNumMatrix foreign key(UserId) references Users (UserId)
+GO

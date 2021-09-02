@@ -86,9 +86,9 @@
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCustomers.Size = new System.Drawing.Size(481, 447);
             this.dgvCustomers.TabIndex = 36;
-            this.dgvCustomers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellDoubleClick);
-            this.dgvCustomers.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvCustomers_RowPostPaint);
-            this.dgvCustomers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCustomers_KeyDown);
+            this.dgvCustomers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvCustomers_CellDoubleClick);
+            this.dgvCustomers.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvCustomers_RowPostPaint);
+            this.dgvCustomers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvCustomers_KeyDown);
             // 
             // CustomerId
             // 
@@ -119,14 +119,14 @@
             this.tsmiEditCustomer.Name = "tsmiEditCustomer";
             this.tsmiEditCustomer.Size = new System.Drawing.Size(148, 22);
             this.tsmiEditCustomer.Text = "修改客户名称";
-            this.tsmiEditCustomer.Click += new System.EventHandler(this.tsmiEditCustomer_Click);
+            this.tsmiEditCustomer.Click += new System.EventHandler(this.TsmiEditCustomer_Click);
             // 
             // tsmiDeleteCustomer
             // 
             this.tsmiDeleteCustomer.Name = "tsmiDeleteCustomer";
             this.tsmiDeleteCustomer.Size = new System.Drawing.Size(148, 22);
             this.tsmiDeleteCustomer.Text = "删除客户名称";
-            this.tsmiDeleteCustomer.Click += new System.EventHandler(this.tsmiDeleteCustomer_Click);
+            this.tsmiDeleteCustomer.Click += new System.EventHandler(this.TsmiDeleteCustomer_Click);
             // 
             // label3
             // 
@@ -145,7 +145,7 @@
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.Size = new System.Drawing.Size(284, 25);
             this.txtCustomerName.TabIndex = 37;
-            this.txtCustomerName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCustomerName_KeyDown);
+            this.txtCustomerName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtCustomerName_KeyDown);
             // 
             // btnCustomer
             // 
@@ -160,7 +160,7 @@
             this.btnCustomer.TabIndex = 39;
             this.btnCustomer.Text = "添加客户名称";
             this.btnCustomer.UseVisualStyleBackColor = false;
-            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
+            this.btnCustomer.Click += new System.EventHandler(this.BtnCustomer_Click);
             // 
             // txtCustomerId
             // 
@@ -194,7 +194,7 @@
             this.btmImportFromExcel.TabIndex = 39;
             this.btmImportFromExcel.Text = "从Excel导入";
             this.btmImportFromExcel.UseVisualStyleBackColor = false;
-            this.btmImportFromExcel.Click += new System.EventHandler(this.btmImportFromExcel_Click);
+            this.btmImportFromExcel.Click += new System.EventHandler(this.BtmImportFromExcel_Click);
             // 
             // dgvImportFromExcel
             // 
@@ -225,7 +225,7 @@
             this.dgvImportFromExcel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvImportFromExcel.Size = new System.Drawing.Size(481, 92);
             this.dgvImportFromExcel.TabIndex = 36;
-            this.dgvImportFromExcel.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvCustomers_RowPostPaint);
+            this.dgvImportFromExcel.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvCustomers_RowPostPaint);
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -248,7 +248,7 @@
             this.btnSaveToDB.TabIndex = 39;
             this.btnSaveToDB.Text = "保存到数据库";
             this.btnSaveToDB.UseVisualStyleBackColor = false;
-            this.btnSaveToDB.Click += new System.EventHandler(this.btnSaveToDB_Click);
+            this.btnSaveToDB.Click += new System.EventHandler(this.BtnSaveToDB_Click);
             // 
             // FrmCustomer
             // 
