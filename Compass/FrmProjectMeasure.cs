@@ -210,7 +210,7 @@ namespace Compass
 
             AddSeries("A", cycleTimeA, Color.GreenYellow);
             AddSeries("B", cycleTimeB, Color.LightSkyBlue);
-            AddSeries("B", cycleTimeC, Color.LimeGreen);
+            AddSeries("C", cycleTimeC, Color.LimeGreen);
             
 
             chartCycleTime.ChartAreas[0].AxisX.Title = "月 | Month";

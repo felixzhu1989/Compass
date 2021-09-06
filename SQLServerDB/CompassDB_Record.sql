@@ -344,6 +344,7 @@ select DrawingId,DrawingNum,DrawingDesc,DrawingType,Mark,DrawingNumMatrix.UserId
 
 select * from DrawingNumMatrix
 select * from Users
+select * from UserGroups
 
 select * from DrawingPlan
 select * from Categories

@@ -20,7 +20,7 @@ namespace Compass
             cobParentId.DisplayMember = "CategoryId";
             cobParentId.ValueMember = "CategoryDesc";
             cobParentId.SelectedIndex = -1;
-            this.cobParentId.SelectedIndexChanged += new System.EventHandler(this.cobParentId_SelectedIndexChanged);
+            this.cobParentId.SelectedIndexChanged += new System.EventHandler(this.CobParentId_SelectedIndexChanged);
         }
         /// <summary>
         /// 重载构造方法，传递分类模型对象参数
@@ -46,7 +46,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnChooseImage_Click(object sender, EventArgs e)
+        private void BtnChooseImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog objFileDialog = new OpenFileDialog();
             DialogResult result = objFileDialog.ShowDialog();
@@ -60,7 +60,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnClearImage_Click(object sender, EventArgs e)
+        private void BtnClearImage_Click(object sender, EventArgs e)
         {
             pbModelImage.Image = Image.FromFile("NoPic.png");
         }
@@ -69,7 +69,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEditCategory_Click(object sender, EventArgs e)
+        private void BtnEditCategory_Click(object sender, EventArgs e)
         {
             #region 数据验证
 
@@ -140,7 +140,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void llblHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LlblHelp_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("explorer.exe", txtKMLink.Text);
         }
@@ -149,7 +149,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobParentId_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobParentId_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblParentDesc.Text = cobParentId.SelectedValue.ToString();
         }

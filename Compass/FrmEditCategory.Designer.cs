@@ -134,7 +134,7 @@
             this.btnClearImage.TabIndex = 32;
             this.btnClearImage.Text = "清除图片";
             this.btnClearImage.UseVisualStyleBackColor = false;
-            this.btnClearImage.Click += new System.EventHandler(this.btnClearImage_Click);
+            this.btnClearImage.Click += new System.EventHandler(this.BtnClearImage_Click);
             // 
             // btnChooseImage
             // 
@@ -149,7 +149,7 @@
             this.btnChooseImage.TabIndex = 30;
             this.btnChooseImage.Text = "浏览图片";
             this.btnChooseImage.UseVisualStyleBackColor = false;
-            this.btnChooseImage.Click += new System.EventHandler(this.btnChooseImage_Click);
+            this.btnChooseImage.Click += new System.EventHandler(this.BtnChooseImage_Click);
             // 
             // btnEditCategory
             // 
@@ -164,7 +164,7 @@
             this.btnEditCategory.TabIndex = 6;
             this.btnEditCategory.Text = "修改分类";
             this.btnEditCategory.UseVisualStyleBackColor = false;
-            this.btnEditCategory.Click += new System.EventHandler(this.btnEditCategory_Click);
+            this.btnEditCategory.Click += new System.EventHandler(this.BtnEditCategory_Click);
             // 
             // label4
             // 
@@ -240,7 +240,7 @@
             this.llblHelp.TabIndex = 42;
             this.llblHelp.TabStop = true;
             this.llblHelp.Text = "帮助链接";
-            this.llblHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblHelp_LinkClicked);
+            this.llblHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlblHelp_LinkClicked);
             // 
             // txtModelPath
             // 

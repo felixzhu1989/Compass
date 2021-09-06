@@ -499,6 +499,21 @@ select TypeName,count(TypeName) from GeneralRequirements
 	where ShippingTime like'2021%' 
 	group by TypeName
 
+--按照金额计算
+--统计项目类型数量（月度）
+select TypeName,count(TypeName) from GeneralRequirements
+	inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements.TypeId
+	inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId
+	where ShippingTime like'2021%' and month(ShippingTime)='7'
+	group by TypeName
+--统计项目类型数量（年度）
+select TypeName,count(TypeName) from GeneralRequirements
+	inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements.TypeId
+	inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId
+	where ShippingTime like'2021%' 
+	group by TypeName
+
+
 select * from ProjectTypes
 
 --统计销售额（月度）

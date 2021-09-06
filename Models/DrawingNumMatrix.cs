@@ -14,6 +14,5 @@ namespace Models
         public string UserAccount { get; set; }
         public int UserId { get; set; }
         public string DrawingImage { get; set; }
-
     }
 }

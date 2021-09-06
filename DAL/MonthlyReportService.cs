@@ -202,7 +202,7 @@ namespace DAL
             return list;
         }
         /// <summary>
-        /// 项目类型月度统计
+        /// 项目类型月度统计(按照金额计算)
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>
@@ -210,9 +210,10 @@ namespace DAL
         public List<ChartData> GetProjectType(string year, string month)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select TypeName,count(TypeName) as Qty from GeneralRequirements";
+            string sql = "select TypeName,sum(SalesValue) as SalesValue from GeneralRequirements";
             sql += " inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements.TypeId";
             sql += " inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId";
+            sql += " inner join FinancialData on Projects.ProjectId=FinancialData.ProjectId";
             sql += WhereSql(year, month);
             sql += " group by TypeName";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -221,23 +222,24 @@ namespace DAL
                 list.Add(new ChartData()
                 {
                     Text = objReader["TypeName"].ToString(),
-                    Value = Convert.ToDouble(objReader["Qty"].ToString())
+                    Value = Convert.ToDouble((Convert.ToDouble(objReader["SalesValue"].ToString())/10000d).ToString("N2"))
                 });
             }
             objReader.Close();
             return list;
         }
         /// <summary>
-        /// 项目类型年度统计
+        /// 项目类型年度统计（按照金额计算）
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
         public List<ChartData> GetProjectType(string year)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select TypeName,count(TypeName) as Qty from GeneralRequirements";
+            string sql = "select TypeName,sum(SalesValue) as SalesValue from GeneralRequirements";
             sql += " inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements.TypeId";
             sql += " inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId";
+            sql += " inner join FinancialData on Projects.ProjectId=FinancialData.ProjectId";
             sql += string.Format(" where ShippingTime like'{0}%'", year);
             sql += " group by TypeName";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -246,7 +248,7 @@ namespace DAL
                 list.Add(new ChartData()
                 {
                     Text = objReader["TypeName"].ToString(),
-                    Value = Convert.ToDouble(objReader["Qty"].ToString())
+                    Value = Convert.ToDouble((Convert.ToDouble(objReader["SalesValue"].ToString()) / 10000d).ToString("N2"))
                 });
             }
             objReader.Close();

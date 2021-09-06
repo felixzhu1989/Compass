@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDrawingNumMatrix));
@@ -40,7 +41,10 @@
             this.btnCommit = new System.Windows.Forms.Button();
             this.pnlTabel = new System.Windows.Forms.Panel();
             this.dgvDrawingNumMatrix = new System.Windows.Forms.DataGridView();
-            this.ctrlEDrw = new System.Windows.Forms.Panel();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiEditDrawingNum = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDeleteDrawingNum = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiShowModel = new System.Windows.Forms.ToolStripMenuItem();
             this.txtMark = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtMeasurements = new System.Windows.Forms.TextBox();
@@ -50,8 +54,21 @@
             this.btnImportFromExcel = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnQuery = new System.Windows.Forms.Button();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tpgImage = new System.Windows.Forms.TabPage();
+            this.pbImage = new System.Windows.Forms.PictureBox();
+            this.tpgEDrawing = new System.Windows.Forms.TabPage();
+            this.ctrlEDrw = new Compass.EDrawingsUserControl();
+            this.btnClearImage = new System.Windows.Forms.Button();
+            this.btnChooseImage = new System.Windows.Forms.Button();
+            this.btnRefreshImage = new System.Windows.Forms.Button();
             this.pnlTabel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingNumMatrix)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.tpgImage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
+            this.tpgEDrawing.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCreateDrawingNum
@@ -123,6 +140,7 @@
             this.btnCommit.Tag = "0";
             this.btnCommit.Text = "添加图号";
             this.btnCommit.UseVisualStyleBackColor = false;
+            this.btnCommit.Click += new System.EventHandler(this.BtnCommit_Click);
             // 
             // pnlTabel
             // 
@@ -152,6 +170,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDrawingNumMatrix.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDrawingNumMatrix.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDrawingNumMatrix.ContextMenuStrip = this.contextMenuStrip;
             this.dgvDrawingNumMatrix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDrawingNumMatrix.EnableHeadersVisualStyles = false;
             this.dgvDrawingNumMatrix.Location = new System.Drawing.Point(0, 0);
@@ -162,17 +181,38 @@
             this.dgvDrawingNumMatrix.Size = new System.Drawing.Size(637, 373);
             this.dgvDrawingNumMatrix.TabIndex = 1;
             this.dgvDrawingNumMatrix.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvProjects_RowPostPaint);
+            this.dgvDrawingNumMatrix.SelectionChanged += new System.EventHandler(this.DgvDrawingNumMatrix_SelectionChanged);
+            this.dgvDrawingNumMatrix.DoubleClick += new System.EventHandler(this.DgvDrawingNumMatrix_DoubleClick);
             // 
-            // ctrlEDrw
+            // contextMenuStrip
             // 
-            this.ctrlEDrw.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlEDrw.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ctrlEDrw.Location = new System.Drawing.Point(653, 267);
-            this.ctrlEDrw.Name = "ctrlEDrw";
-            this.ctrlEDrw.Size = new System.Drawing.Size(371, 373);
-            this.ctrlEDrw.TabIndex = 42;
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiEditDrawingNum,
+            this.tsmiDeleteDrawingNum,
+            this.tsmiShowModel});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(125, 70);
+            // 
+            // tsmiEditDrawingNum
+            // 
+            this.tsmiEditDrawingNum.Name = "tsmiEditDrawingNum";
+            this.tsmiEditDrawingNum.Size = new System.Drawing.Size(124, 22);
+            this.tsmiEditDrawingNum.Text = "修改图号";
+            this.tsmiEditDrawingNum.Click += new System.EventHandler(this.TsmiEditDrawingNum_Click);
+            // 
+            // tsmiDeleteDrawingNum
+            // 
+            this.tsmiDeleteDrawingNum.Name = "tsmiDeleteDrawingNum";
+            this.tsmiDeleteDrawingNum.Size = new System.Drawing.Size(124, 22);
+            this.tsmiDeleteDrawingNum.Text = "删除图号";
+            this.tsmiDeleteDrawingNum.Click += new System.EventHandler(this.TsmiDeleteDrawingNum_Click);
+            // 
+            // tsmiShowModel
+            // 
+            this.tsmiShowModel.Name = "tsmiShowModel";
+            this.tsmiShowModel.Size = new System.Drawing.Size(124, 22);
+            this.tsmiShowModel.Text = "显示模型";
+            this.tsmiShowModel.Click += new System.EventHandler(this.TsmiShowModel_Click);
             // 
             // txtMark
             // 
@@ -211,13 +251,14 @@
             this.btnCaptureMeasurement.FlatAppearance.BorderSize = 0;
             this.btnCaptureMeasurement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCaptureMeasurement.ForeColor = System.Drawing.Color.White;
-            this.btnCaptureMeasurement.Location = new System.Drawing.Point(1030, 643);
+            this.btnCaptureMeasurement.Location = new System.Drawing.Point(1030, 644);
             this.btnCaptureMeasurement.Name = "btnCaptureMeasurement";
             this.btnCaptureMeasurement.Size = new System.Drawing.Size(160, 28);
             this.btnCaptureMeasurement.TabIndex = 44;
             this.btnCaptureMeasurement.Tag = "1";
             this.btnCaptureMeasurement.Text = "记录测量结果";
             this.btnCaptureMeasurement.UseVisualStyleBackColor = false;
+            this.btnCaptureMeasurement.Click += new System.EventHandler(this.OnCaptureMeasurement);
             // 
             // btnOpenFolder
             // 
@@ -227,13 +268,14 @@
             this.btnOpenFolder.FlatAppearance.BorderSize = 0;
             this.btnOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenFolder.ForeColor = System.Drawing.Color.White;
-            this.btnOpenFolder.Location = new System.Drawing.Point(859, 643);
+            this.btnOpenFolder.Location = new System.Drawing.Point(859, 644);
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(88, 28);
             this.btnOpenFolder.TabIndex = 45;
             this.btnOpenFolder.Tag = "1";
             this.btnOpenFolder.Text = "打开文件夹";
             this.btnOpenFolder.UseVisualStyleBackColor = false;
+            this.btnOpenFolder.Click += new System.EventHandler(this.BtnOpenFolder_Click);
             // 
             // btnOpen
             // 
@@ -242,23 +284,24 @@
             this.btnOpen.FlatAppearance.BorderSize = 0;
             this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpen.ForeColor = System.Drawing.Color.White;
-            this.btnOpen.Location = new System.Drawing.Point(953, 643);
+            this.btnOpen.Location = new System.Drawing.Point(953, 644);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(71, 28);
             this.btnOpen.TabIndex = 46;
             this.btnOpen.Tag = "0";
             this.btnOpen.Text = "显示模型";
             this.btnOpen.UseVisualStyleBackColor = false;
+            this.btnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
             // 
             // btnImportFromExcel
             // 
             this.btnImportFromExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnImportFromExcel.BackColor = System.Drawing.Color.Magenta;
+            this.btnImportFromExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             this.btnImportFromExcel.Enabled = false;
             this.btnImportFromExcel.FlatAppearance.BorderSize = 0;
             this.btnImportFromExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImportFromExcel.ForeColor = System.Drawing.Color.White;
-            this.btnImportFromExcel.Location = new System.Drawing.Point(9, 643);
+            this.btnImportFromExcel.Location = new System.Drawing.Point(9, 644);
             this.btnImportFromExcel.Name = "btnImportFromExcel";
             this.btnImportFromExcel.Size = new System.Drawing.Size(105, 28);
             this.btnImportFromExcel.TabIndex = 45;
@@ -274,7 +317,7 @@
             this.btnImport.FlatAppearance.BorderSize = 0;
             this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImport.ForeColor = System.Drawing.Color.White;
-            this.btnImport.Location = new System.Drawing.Point(120, 643);
+            this.btnImport.Location = new System.Drawing.Point(120, 644);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(131, 28);
             this.btnImport.TabIndex = 45;
@@ -298,17 +341,122 @@
             this.btnQuery.UseVisualStyleBackColor = false;
             this.btnQuery.Click += new System.EventHandler(this.BtnQuery_Click);
             // 
+            // tabControl
+            // 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Controls.Add(this.tpgImage);
+            this.tabControl.Controls.Add(this.tpgEDrawing);
+            this.tabControl.Location = new System.Drawing.Point(653, 267);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(371, 373);
+            this.tabControl.TabIndex = 47;
+            // 
+            // tpgImage
+            // 
+            this.tpgImage.Controls.Add(this.pbImage);
+            this.tpgImage.Location = new System.Drawing.Point(4, 28);
+            this.tpgImage.Name = "tpgImage";
+            this.tpgImage.Padding = new System.Windows.Forms.Padding(3);
+            this.tpgImage.Size = new System.Drawing.Size(363, 341);
+            this.tpgImage.TabIndex = 0;
+            this.tpgImage.Text = "图片";
+            this.tpgImage.UseVisualStyleBackColor = true;
+            // 
+            // pbImage
+            // 
+            this.pbImage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbImage.Image = global::Compass.Properties.Resources.NoPic;
+            this.pbImage.Location = new System.Drawing.Point(3, 3);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(357, 335);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbImage.TabIndex = 0;
+            this.pbImage.TabStop = false;
+            // 
+            // tpgEDrawing
+            // 
+            this.tpgEDrawing.Controls.Add(this.ctrlEDrw);
+            this.tpgEDrawing.Location = new System.Drawing.Point(4, 28);
+            this.tpgEDrawing.Name = "tpgEDrawing";
+            this.tpgEDrawing.Padding = new System.Windows.Forms.Padding(3);
+            this.tpgEDrawing.Size = new System.Drawing.Size(363, 341);
+            this.tpgEDrawing.TabIndex = 1;
+            this.tpgEDrawing.Text = "模型";
+            this.tpgEDrawing.UseVisualStyleBackColor = true;
+            // 
+            // ctrlEDrw
+            // 
+            this.ctrlEDrw.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ctrlEDrw.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlEDrw.Location = new System.Drawing.Point(3, 3);
+            this.ctrlEDrw.Margin = new System.Windows.Forms.Padding(4);
+            this.ctrlEDrw.Name = "ctrlEDrw";
+            this.ctrlEDrw.Size = new System.Drawing.Size(357, 335);
+            this.ctrlEDrw.TabIndex = 1;
+            this.ctrlEDrw.EDrawingsControlLoaded += new System.Action<eDrawings.Interop.EModelViewControl.EModelViewControl>(this.OnControlLoaded);
+            // 
+            // btnClearImage
+            // 
+            this.btnClearImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnClearImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnClearImage.FlatAppearance.BorderSize = 0;
+            this.btnClearImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearImage.ForeColor = System.Drawing.Color.White;
+            this.btnClearImage.Location = new System.Drawing.Point(710, 644);
+            this.btnClearImage.Name = "btnClearImage";
+            this.btnClearImage.Size = new System.Drawing.Size(44, 28);
+            this.btnClearImage.TabIndex = 48;
+            this.btnClearImage.Text = "清除";
+            this.btnClearImage.UseVisualStyleBackColor = false;
+            this.btnClearImage.Click += new System.EventHandler(this.BtnClearImage_Click);
+            // 
+            // btnChooseImage
+            // 
+            this.btnChooseImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChooseImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.btnChooseImage.FlatAppearance.BorderSize = 0;
+            this.btnChooseImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChooseImage.ForeColor = System.Drawing.Color.White;
+            this.btnChooseImage.Location = new System.Drawing.Point(657, 644);
+            this.btnChooseImage.Name = "btnChooseImage";
+            this.btnChooseImage.Size = new System.Drawing.Size(47, 28);
+            this.btnChooseImage.TabIndex = 49;
+            this.btnChooseImage.Text = "浏览";
+            this.btnChooseImage.UseVisualStyleBackColor = false;
+            this.btnChooseImage.Click += new System.EventHandler(this.BtnChooseImage_Click);
+            // 
+            // btnRefreshImage
+            // 
+            this.btnRefreshImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRefreshImage.BackColor = System.Drawing.Color.Magenta;
+            this.btnRefreshImage.FlatAppearance.BorderSize = 0;
+            this.btnRefreshImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefreshImage.ForeColor = System.Drawing.Color.White;
+            this.btnRefreshImage.Location = new System.Drawing.Point(760, 644);
+            this.btnRefreshImage.Name = "btnRefreshImage";
+            this.btnRefreshImage.Size = new System.Drawing.Size(82, 28);
+            this.btnRefreshImage.TabIndex = 38;
+            this.btnRefreshImage.Tag = "0";
+            this.btnRefreshImage.Text = "更新图片";
+            this.btnRefreshImage.UseVisualStyleBackColor = false;
+            this.btnRefreshImage.Click += new System.EventHandler(this.BtnRefreshImage_Click);
+            // 
             // FrmDrawingNumMatrix
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.btnClearImage);
+            this.Controls.Add(this.btnChooseImage);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnImportFromExcel);
             this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.btnCaptureMeasurement);
             this.Controls.Add(this.txtMeasurements);
-            this.Controls.Add(this.ctrlEDrw);
             this.Controls.Add(this.pnlTabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
@@ -318,6 +466,7 @@
             this.Controls.Add(this.txtDrawingDesc);
             this.Controls.Add(this.txtDrawingNum);
             this.Controls.Add(this.btnQuery);
+            this.Controls.Add(this.btnRefreshImage);
             this.Controls.Add(this.btnCommit);
             this.Controls.Add(this.btnCreateDrawingNum);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -326,6 +475,11 @@
             this.Text = "图号生成器";
             this.pnlTabel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingNumMatrix)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
+            this.tpgImage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
+            this.tpgEDrawing.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,7 +495,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCommit;
         private System.Windows.Forms.Panel pnlTabel;
-        private System.Windows.Forms.Panel ctrlEDrw;
         private System.Windows.Forms.DataGridView dgvDrawingNumMatrix;
         private System.Windows.Forms.TextBox txtMark;
         private System.Windows.Forms.Label label3;
@@ -352,5 +505,17 @@
         private System.Windows.Forms.Button btnImportFromExcel;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnQuery;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tpgImage;
+        private System.Windows.Forms.TabPage tpgEDrawing;
+        private System.Windows.Forms.PictureBox pbImage;
+        private System.Windows.Forms.Button btnClearImage;
+        private System.Windows.Forms.Button btnChooseImage;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDeleteDrawingNum;
+        private System.Windows.Forms.ToolStripMenuItem tsmiEditDrawingNum;
+        private System.Windows.Forms.ToolStripMenuItem tsmiShowModel;
+        private System.Windows.Forms.Button btnRefreshImage;
+        private EDrawingsUserControl ctrlEDrw;
     }
 }

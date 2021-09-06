@@ -67,9 +67,7 @@ namespace DAL
             string sql = $"insert into Categories{sbu}";
             sql += " (CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelImage,KMLink,ModelPath)";
             sql += " values({0},{1},'{2}','{3}','{4}','{5}','{6}','{7}','{8}')";
-            sql = string.Format(sql, objCategory.CategoryId, objCategory.ParentId, objCategory.CategoryName,
-                objCategory.CategoryDesc, objCategory.Model, objCategory.SubType, objCategory.ModelImage,
-                objCategory.KMLink, objCategory.ModelPath);
+            sql = string.Format(sql, objCategory.CategoryId, objCategory.ParentId, objCategory.CategoryName,objCategory.CategoryDesc, objCategory.Model, objCategory.SubType, objCategory.ModelImage,objCategory.KMLink, objCategory.ModelPath);
             try
             {
                 SQLHelper.GetSingleResult(sql);
@@ -171,12 +169,12 @@ namespace DAL
         /// <summary>
         /// 删除分类
         /// </summary>
-        /// <param name="userId"></param>
+        /// <param name="categoryId"></param>
         /// <returns></returns>
         public int DeleteCategory(string categoryId, string sbu)
         {
             string sql = $"delete from Categories{sbu}";
-            sql += "where CategoryId ={0}";
+            sql += " where CategoryId ={0}";
             sql = string.Format(sql, categoryId);
             try
             {

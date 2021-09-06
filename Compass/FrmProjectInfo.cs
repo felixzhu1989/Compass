@@ -265,16 +265,15 @@ namespace Compass
                 btnSwitch.Text = "按年";
                 ReportYearly();
                 //grbProjectStatus.Text = "项目状态分布--年";
-                grbRiskLevel.Text = "风险等级分布--年";
-                grbProjectType.Text = "项目类型分布--年";
+                grbRiskLevel.Text = "风险等级分布--年--(项目数量)";
+                grbProjectType.Text = "项目类型分布--年--(销售额单位：万元)";
             }
             else
             {
                 btnSwitch.Text = "按月";
                 ReportMonthly();
-                grbProjectStatus.Text = "项目状态分布--月";
-                grbRiskLevel.Text = "风险等级分布--月";
-                grbProjectType.Text = "项目类型分布--月";
+                grbRiskLevel.Text = "风险等级分布--月--(项目数量)";
+                grbProjectType.Text = "项目类型分布--月--(销售额单位：万元)";
             }
         }
         /// <summary>
