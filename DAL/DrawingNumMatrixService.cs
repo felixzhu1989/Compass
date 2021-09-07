@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using Models;
 
 namespace DAL
@@ -42,7 +37,7 @@ namespace DAL
         public List<DrawingNumMatrix> GetAllDrawingNum()
         {
             string sql =
-                "select DrawingId,DrawingNum,DrawingDesc,DrawingType,Mark,DrawingNumMatrix.UserId,UserAccount,AddedDate,DrawingImage from DrawingNumMatrix";
+                "select DrawingId,DrawingNum,DrawingDesc,DrawingType,Mark,DrawingNumMatrix.UserId,UserAccount,AddedDate from DrawingNumMatrix";
             sql += " inner join Users on Users.UserId = DrawingNumMatrix.UserId";
             sql += " order by DrawingNum asc";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -58,8 +53,8 @@ namespace DAL
                     Mark = objReader["Mark"].ToString(),
                     UserId = Convert.ToInt32(objReader["UserId"]),
                     UserAccount = objReader["UserAccount"].ToString(),
-                    AddedDate = Convert.ToDateTime(objReader["AddedDate"]),
-                    DrawingImage = objReader["DrawingImage"].ToString()
+                    AddedDate = Convert.ToDateTime(objReader["AddedDate"])
+                    
                 });
             }
             objReader.Close();
@@ -145,6 +140,18 @@ namespace DAL
                 throw ex;
             }
         }
+        /// <summary>
+        /// 根据Id查询图片
+        /// </summary>
+        /// <param name="drawingId"></param>
+        /// <returns></returns>
+        public string GetDrawingImage(string drawingId)
+        {
+            string sql = "select DrawingImage from DrawingNumMatrix where DrawingId={0}";
+            sql = string.Format(sql, drawingId);
+            return SQLHelper.GetSingleResult(sql).ToString();
+        }
+
         /// <summary>
         /// 只更新图片
         /// </summary>

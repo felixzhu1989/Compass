@@ -500,16 +500,20 @@ select TypeName,count(TypeName) from GeneralRequirements
 	group by TypeName
 
 --按照金额计算
+select * from FinancialData
 --统计项目类型数量（月度）
-select TypeName,count(TypeName) from GeneralRequirements
+select TypeName,sum(SalesValue) as SalesValue from GeneralRequirements
 	inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements.TypeId
 	inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId
+	inner join FinancialData on Projects.ProjectId=FinancialData.ProjectId
 	where ShippingTime like'2021%' and month(ShippingTime)='7'
 	group by TypeName
+
 --统计项目类型数量（年度）
-select TypeName,count(TypeName) from GeneralRequirements
+select TypeName,sum(SalesValue) as SalesValue from GeneralRequirements
 	inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements.TypeId
 	inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId
+	inner join FinancialData on Projects.ProjectId=FinancialData.ProjectId
 	where ShippingTime like'2021%' 
 	group by TypeName
 

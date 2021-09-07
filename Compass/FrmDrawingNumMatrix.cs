@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
 using DAL;
@@ -497,9 +494,10 @@ namespace Compass
         {
             DrawingNumMatrix currentDrawingNum = GetCurrentDrawingNum();
             if (currentDrawingNum == null) return;
-            pbImage.Image = currentDrawingNum.DrawingImage.Length == 0
+            string drawingImage = objDrawingNumMatrixService.GetDrawingImage(currentDrawingNum.DrawingId.ToString());
+            pbImage.Image = drawingImage.Length == 0
                 ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(currentDrawingNum.DrawingImage);
+                : (Image)new SerializeObjectToString().DeserializeObject(drawingImage);
         }
         /// <summary>
         /// 从表单获取当前的图号
@@ -564,9 +562,9 @@ namespace Compass
             {
                 if (objDrawingNumMatrixService.RefreshImage(image, drawingId) == 1)
                 {
-                    MessageBox.Show("图片更新成功成功", "提示信息");
                     objDrawingNumMatrices = objDrawingNumMatrixService.GetAllDrawingNum();
                     dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;
+                    MessageBox.Show("图片更新成功成功", "提示信息");
                 }
             }
             catch (Exception ex)
