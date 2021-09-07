@@ -41,6 +41,8 @@ namespace Compass
             subCode = new SubCode();
             dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;//初始化图号表格
             SetPermissions();
+
+            this.dgvDrawingNumMatrix.SelectionChanged += new System.EventHandler(this.DgvDrawingNumMatrix_SelectionChanged);
         }
 
         private void DgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -584,6 +586,7 @@ namespace Compass
         /// <param name="e"></param>
         private void BtnImportFromExcel_Click(object sender, EventArgs e)
         {
+            this.dgvDrawingNumMatrix.SelectionChanged -= new System.EventHandler(this.DgvDrawingNumMatrix_SelectionChanged);
             dgvDrawingNumMatrix.DataSource = null;
             //打开文件
             OpenFileDialog openFile = new OpenFileDialog();
@@ -610,6 +613,7 @@ namespace Compass
                 if (objImportDataFormExcel.ImportDrawingNum(drawingNumFromExcel))
                 {
                     MessageBox.Show("数据导入成功", "提示信息");
+                    dgvDrawingNumMatrix = null;
                     objDrawingNumMatrices = objDrawingNumMatrixService.GetAllDrawingNum();
                     dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;
                     drawingNumFromExcel.Clear();
@@ -617,14 +621,15 @@ namespace Compass
                 else
                 {
                     MessageBox.Show("数据导入失败", "提示信息");
+                    dgvDrawingNumMatrix = null;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("数据导入失败" + ex.Message, "错误提示");
+                dgvDrawingNumMatrix = null;
             }
-
-
+            this.dgvDrawingNumMatrix.SelectionChanged += new System.EventHandler(this.DgvDrawingNumMatrix_SelectionChanged);
         }
 
         #endregion

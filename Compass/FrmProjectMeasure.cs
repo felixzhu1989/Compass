@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using DAL;
-using Microsoft.VisualBasic.CompilerServices;
 using Models;
-using SolidWorks.Interop.sldworks;
 
 namespace Compass
 {
@@ -148,7 +140,7 @@ namespace Compass
                     series.Points[i].LabelToolTip = value.ToString() + "%";//鼠标放到标签上面的提示
                     series.Points[i].ToolTip = value.ToString() + "%";//鼠标放到图形上面的提示
                     if (value != 0d) series.Points[i].Label = "#VAL%";
-                    series.LegendText = "Delivery Reliability "+type+" Rate";
+                    series.LegendText = "Delivery Reliability Rate base on " + type;
                     series.Color = color;
                 }
             }
@@ -167,12 +159,15 @@ namespace Compass
             
             //获取所有延迟的项目号
             List<string> delayList = objProjectMeasureService.GetDelayODPNo(currentYear);
-            string delayStr = "延迟项目:\r\n";
+            string delayStr = "Delayed Projects:\r\n";
             foreach (string item in delayList)
             {
                 delayStr += item+"\r\n";
             }
             txtOdpNo.Text = delayStr;
+            string rateStr= "Rate YTD\r\nBase on Qty:\r\nOnTime / Total = " + objProjectMeasureService.GetOnTimeProjectsQtyRateYTD(currentYear) + " %\r\n";
+            rateStr+= "--------------------\r\nBase on Workload:\r\nOnTime / Total = " + objProjectMeasureService.GetOnTimeProjectsWorkloadRateYTD(currentYear) + " %\r\n";
+            txtYTDDeliveryReliabilityNote.Text = rateStr;
         }
         private void IniCycleTimeChart()
         {
@@ -219,9 +214,13 @@ namespace Compass
             chartCycleTime.ChartAreas[0].AxisX.Maximum = 12.5;
             chartCycleTime.ChartAreas[0].AxisY.Interval = 10;//也可以设置成20
             chartCycleTime.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
-            string cycleTimeNote = "Cycle time A=monthly AVE(production completed date-drawing released date)\r\n";
-            cycleTimeNote += "Cycle time B=monthly AVE(production completed date-ODP released date)\r\n";
-            cycleTimeNote += "Cycle time C=monthly AVE(product delivered date-ODP released date)\r\n";
+            
+            string cycleTimeNote = "Cycle Time YTD\r\nA : AVG(ProdCompleted - DrwRelease)\r\n= "+objProjectMeasureService.GetCycleTimeAYTD(currentYear)+" days\r\n";
+            cycleTimeNote += "--------------------\r\nB : AVG(ProdCompleted - ODPRelease)\r\n= " + objProjectMeasureService.GetCycleTimeBYTD(currentYear) + " days\r\n";
+            cycleTimeNote += "--------------------\r\nC : AVG(ProdDelivered - ODPRelease)\r\n= " + objProjectMeasureService.GetCycleTimeCYTD(currentYear) + " days\r\n";
+            //警告信息，后续数据准确可删除
+            cycleTimeNote +=
+                "--------------------\r\nDue to the loss of data, the YTD result may be inaccurate.";
             txtCycleTimeNote.Text = cycleTimeNote;
         }
 
