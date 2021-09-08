@@ -13,10 +13,7 @@ namespace DAL
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public List<SubAssy> GetSubAssysByProjectId(string projectId)
-        {
-            return GetSubAssysByWhereSql(string.Format(" where SubAssy.ProjectId={0}", projectId));
-        }
+        public List<SubAssy> GetSubAssysByProjectId(string projectId) => GetSubAssysByWhereSql($" where SubAssy.ProjectId={projectId}");
         /// <summary>
         /// 根据单个条件返回子装配合集
         /// </summary>
@@ -54,7 +51,7 @@ namespace DAL
         {
             string sql = "select SubAssyId,SubAssy.ProjectId,SubAssyName,SubAssyPath,ODPNo,ProjectName from SubAssy";
             sql += " inner join Projects on SubAssy.ProjectId=Projects.ProjectId";
-            sql += string.Format(" where SubAssyId={0}", subAssyId);
+            sql += $" where SubAssyId={subAssyId}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             SubAssy objSubAssy = null;
             while (objReader.Read())

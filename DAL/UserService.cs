@@ -17,8 +17,7 @@ namespace DAL
         /// <returns></returns>
         public User UserLogin(User objUser)
         {
-            string sql = "select UserId,UserGroupId,Email,Contact from Users where UserAccount='{0}' and UserPwd='{1}'";
-            sql = string.Format(sql, objUser.UserAccount, objUser.UserPwd);
+            string sql = $"select UserId,UserGroupId,Email,Contact from Users where UserAccount='{objUser.UserAccount}' and UserPwd='{objUser.UserPwd}'";
             try
             {
                 SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -50,10 +49,7 @@ namespace DAL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public List<User> GetUserById(string id)
-        {
-            return GetUserByWhereSql(string.Format(" where UserId={0}", id));
-        }
+        public List<User> GetUserById(string id) => GetUserByWhereSql($" where UserId={id}");
         /// <summary>
         /// 获取所有用户集合
         /// </summary>
@@ -65,7 +61,7 @@ namespace DAL
             sql += whereSql;
             sql += " order by Users.UserGroupId ASC";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
-            List<User> list=new List<User>();
+            List<User> list = new List<User>();
             while (objReader.Read())
             {
                 list.Add(new User()
@@ -114,17 +110,15 @@ namespace DAL
         /// <returns></returns>
         public int AddUser(User objUser)
         {
-            string sql = "insert into Users (UserGroupId,UserAccount,UserPwd,Email,Contact)";
-            sql += " values({0},'{1}','{2}','{3}','{4}');select @@identity";
-            sql = string.Format(sql, objUser.UserGroupId, objUser.UserAccount, objUser.UserPwd, objUser.Email,
-                objUser.Contact);
+            string sql = $"insert into Users (UserGroupId,UserAccount,UserPwd,Email,Contact) values({objUser.UserGroupId},'{objUser.UserAccount}','{objUser.UserPwd}','{objUser.Email}','{objUser.Contact}');select @@identity";
+
             try
             {
                 return Convert.ToInt32(SQLHelper.GetSingleResult(sql));
             }
             catch (SqlException ex)
             {
-                throw new Exception("添加用户时数据库访问异常"+ex.Message);
+                throw new Exception("添加用户时数据库访问异常" + ex.Message);
             }
             catch (Exception ex)
             {
@@ -138,13 +132,12 @@ namespace DAL
         /// <returns></returns>
         public User GetUserByUserId(string userId)
         {
-            string sql = "select UserId,UserGroupId,UserAccount,UserPwd,Email,Contact from Users where UserId={0}";
-            sql = string.Format(sql, userId);
+            string sql = $"select UserId,UserGroupId,UserAccount,UserPwd,Email,Contact from Users where UserId={userId}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             User objUser = null;
             if (objReader.Read())
             {
-                objUser=new User()
+                objUser = new User()
                 {
                     UserId = Convert.ToInt32(objReader["UserId"]),
                     UserGroupId = Convert.ToInt32(objReader["UserGroupId"]),
@@ -164,17 +157,15 @@ namespace DAL
         /// <returns></returns>
         public int EditUser(User objUser)
         {
-            string sql = "update Users set UserGroupId={0},UserAccount='{1}',UserPwd='{2}',Email='{3}',Contact='{4}'";
-            sql += " where UserId={5}";
-            sql = string.Format(sql, objUser.UserGroupId, objUser.UserAccount, objUser.UserPwd, objUser.Email,
-                objUser.Contact, objUser.UserId);
+            string sql = $"update Users set UserGroupId={objUser.UserGroupId},UserAccount='{objUser.UserAccount}',UserPwd='{objUser.UserPwd}',Email='{objUser.Email}',Contact='{objUser.Contact}'  where UserId={objUser.UserId}";
+            
             try
             {
                 return SQLHelper.Update(sql);
             }
             catch (SqlException ex)
             {
-                throw new Exception("数据库操作出现异常："+ex.Message);
+                throw new Exception("数据库操作出现异常：" + ex.Message);
             }
             catch (Exception ex)
             {
@@ -188,8 +179,7 @@ namespace DAL
         /// <returns></returns>
         public int DeleteUser(string userId)
         {
-            string sql = "delete from Users where UserId={0}";
-            sql = string.Format(sql, userId);
+            string sql = $"delete from Users where UserId={userId}";
             try
             {
                 return SQLHelper.Update(sql);
@@ -202,7 +192,7 @@ namespace DAL
                 }
                 else
                 {
-                    throw new Exception("数据库操作异常，不能执行删除："+ex.Message);
+                    throw new Exception("数据库操作异常，不能执行删除：" + ex.Message);
                 }
             }
             catch (Exception ex)
@@ -240,8 +230,7 @@ namespace DAL
         /// <returns></returns>
         public int AddUserGoup(UserGroup objUserGroup)
         {
-            string sql = "insert into UserGroups (GroupName) values('{0}');select @@identity";
-            sql = string.Format(sql, objUserGroup.GroupName);
+            string sql = $"insert into UserGroups (GroupName) values('{objUserGroup.GroupName}');select @@identity";
             try
             {
                 return Convert.ToInt32(SQLHelper.GetSingleResult(sql));

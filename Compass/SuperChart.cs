@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using Models;
 //添加需要的命名空间
 using System.Windows.Forms.DataVisualization.Charting;
@@ -10,8 +12,10 @@ namespace Compass
     /// </summary>
     public class SuperChart
     {
+        private KeyValuePair pair = new KeyValuePair();
         //当前要使用的图表空间对象
-        private Chart chart = null;
+        private readonly Chart chart;
+
         public SuperChart(Chart chart)
         {
             this.chart = chart;
@@ -26,8 +30,7 @@ namespace Compass
             //【1】清除所有的图表序列
             this.chart.Series.Clear();
             //【2】创建一个图表序列对象，（一个图表，可以添加多个图表序列，也就是绘图对象）
-            Series series1 = new Series();
-            series1.ChartType = chartType;//设置图表序列对象显示的类型。
+            Series series1 = new Series{ChartType = chartType};//设置图表序列对象显示的类型。
             this.chart.Series.Add(series1);//添加图表序列集合
             //【3】设置当前图表序列的各种属性值
             for (int i = 0; i < dataList.Count; i++)
@@ -94,8 +97,10 @@ namespace Compass
                 //3.5 X轴设置
                 if (chartType != SeriesChartType.Pie || chartType != SeriesChartType.Doughnut)
                 {
-                    series1.Points[i].AxisLabel = string.Format("{0}", text);
+                    series1.Points[i].AxisLabel = $"{text}";
                 }
+                //设置颜色
+                series1.Points[i].Color = pair.DefaultColorKeyValue.First(q => q.Key == i).Value;
             }
             //【4】设置图表绘图区域的X和Y坐标值（Y：表示具体需要显示的数值之间的间隔）
             this.chart.ChartAreas[0].AxisY.Interval = 50;//也可以设置成20

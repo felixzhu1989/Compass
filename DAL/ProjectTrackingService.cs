@@ -33,11 +33,7 @@ namespace DAL
             };
             return objSqlDataPager;
         }
-
-
-
-
-
+        
 
         /// <summary>
         /// 根据项目状态返回项目跟踪合集

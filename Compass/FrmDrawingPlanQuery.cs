@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Models;
@@ -9,16 +10,15 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Compass
 {
-
     public partial class FrmDrawingPlanQuery : MetroFramework.Forms.MetroForm
     {
         private DrawingPlanService objDrawingPlanService = new DrawingPlanService();
         private SuperChart superChartPlan = null;
         private SuperChart superChartPercent = null;
-        private SuperChart superChartUserPercent = null;
         private List<ChartData> dataList = new List<ChartData>();//用来保存数据的集合（主图）
         private List<ChartData> dataListMonth = new List<ChartData>();//用来保存数据的集合（次图）
         private SqlDataPager objSqlDataPager = null;
+        private KeyValuePair pair = new KeyValuePair();
         public FrmDrawingPlanQuery()
         {
             InitializeComponent();
@@ -27,7 +27,6 @@ namespace Compass
             //初始化自定义图表对象
             superChartPlan = new SuperChart(this.chartPlan);
             superChartPercent = new SuperChart(this.chartHoodTypePercent);
-            superChartUserPercent = new SuperChart(this.chartUserPercent);
             //查询年度初始化
             int currentYear = DateTime.Now.Year;
             cobQueryYear.Items.Add("ALL");//添加所有
@@ -57,11 +56,6 @@ namespace Compass
         }
         private void Query()
         {
-            //【1】设置分页查询的条件
-            //objSqlDataPager.Condition = string.Format("ShippingTime>='{0}/01/01' and ShippingTime<='{0}/12/31'", this.cobQueryYear.Text);
-            //【2】设置每页显示的条数
-            //objSqlDataPager.PageSize = Convert.ToInt32(this.cobRecordList.Text.Trim());
-            //【3】执行查询
             this.dgvDrawingPlan.DataSource = objSqlDataPager.GetPagedData();
         }
         /// <summary>
@@ -98,7 +92,9 @@ namespace Compass
             ShowYearWorkloadPie();
             BtnAllWorkload_Click(null, null);
         }
-
+        /// <summary>
+        /// 饼图
+        /// </summary>
         private void ShowYearWorkloadPie()
         {
             //年度烟罩和天花工作量占比
@@ -110,11 +106,25 @@ namespace Compass
             this.superChartPercent.ShowChart(SeriesChartType.Pie, chartPercentChartDatas);
             //年度各人员工作量占比
             //chartUserPercent
-            List<ChartData> chartUserPercentChartDatas = objDrawingPlanService.GetAllWorkloadByUser(cobQueryYear.Text);
-            this.superChartUserPercent.ShowChart(SeriesChartType.Pie, chartUserPercentChartDatas);
-            chartUserPercent.Series[0]["PieLabelStyle"] = "Outside";//在外侧显示label，参考官方文档设置
-            //chartUserPercent.Series[0].IsValueShownAsLabel = true;
-            chartUserPercent.Series[0]["PieLineColor"] = "Black";//绘制连线，label在外面时，连接到饼形图上
+            List<ChartData> userPercentChartDatas = objDrawingPlanService.GetAllWorkloadByUser(cobQueryYear.Text);
+            chartUserPercent.Series.Clear();
+            Series series=new Series{ChartType = SeriesChartType.Pie};
+            for (int i = 0; i < userPercentChartDatas.Count; i++)
+            {
+                string text = userPercentChartDatas[i].Text;
+                double value = userPercentChartDatas[i].Value;
+                series.Points.AddXY(text, value);
+                series.Points[i].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
+                series.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
+                series.XValueType = ChartValueType.String;
+                series.Points[i].Label = "#VAL (#PERCENT)";
+                series.LegendText = "#AXISLABEL";
+
+                series.Points[i].Color=pair.UserColorKeyValue.First(q => q.Key == text).Value;
+                series["PieLabelStyle"]="Outside";//在外侧显示label，参考官方文档设置
+                series["PieLineColor"] = "Black";//绘制连线，label在外面时，连接到饼形图上
+            }
+            chartUserPercent.Series.Add(series);
         }
         /// <summary>
         /// 年度普通烟罩数量统计
@@ -167,6 +177,7 @@ namespace Compass
             chartMonth.Series.Add(series1);
 
             series1.LegendText = cobQueryYear.Text + "年" + cobModel.Text + "按月数量统计 | 全年总数量：" + cobModel.SelectedValue;
+            series1.Color = pair.DefaultColorKeyValue.First(p => p.Key == Convert.ToInt32(cobModel.SelectedIndex)).Value;
             //series1.LegendText += " | " + cobQueryYear.Text + " | " + cobModel.Text + " | Monthly statistics | Total for the year:" + cobModel.SelectedValue;
             for (int i = 0; i <= 12; i++)
             {
@@ -208,6 +219,7 @@ namespace Compass
             chartPlan.Series[0].LegendText = cobQueryYear.Text + "年天花烟罩工作量统计 | 总工作量：" + objDrawingPlanService.GetTotalCeilingWorkloadByYear(cobQueryYear.Text);
             chartPlan.ChartAreas[0].AxisX.Title = "天花烟罩型号 | Ceiling Model";
             chartPlan.ChartAreas[0].AxisY.Title = "天花烟罩工作量 | Workload of Ceiling";
+
             //月度统计
             chartMonth.Series.Clear();
             chartMonth.ChartAreas[0].AxisY.Maximum = double.NaN;
@@ -215,28 +227,29 @@ namespace Compass
             chartMonth.ChartAreas[0].RecalculateAxesScale();
             dataListMonth.Clear();
             //循环所有模型
-            foreach (var model in dataList)
+            for (int i = 0; i < dataList.Count; i++)
             {
-                dataListMonth = objDrawingPlanService.GetCeilingWorkloadByMonth(cobQueryYear.Text, model.Text);
+                dataListMonth = objDrawingPlanService.GetCeilingWorkloadByMonth(cobQueryYear.Text, dataList[i].Text);
                 Series seriesMonth = new Series
                 {
                     ChartType = SeriesChartType.Column
                 };
                 chartMonth.Series.Add(seriesMonth);
-                seriesMonth.LegendText = model.Text + "(" + model.Value + ")";
-
-                for (int i = 0; i <= 12; i++)
+                seriesMonth.LegendText = dataList[i].Text + "(" + dataList[i].Value + ")";
+                seriesMonth.Color = pair.DefaultColorKeyValue.First(p => p.Key == i).Value;
+                for (int j = 0; j <= 12; j++)
                 {
                     double value = 0;
                     foreach (var item in dataListMonth)
                     {
-                        if (Convert.ToInt32(item.Text) == i) value = item.Value;
+                        if (Convert.ToInt32(item.Text) == j) value = item.Value;
                     }
-                    seriesMonth.Points.AddXY(i, value);
-                    seriesMonth.Points[i].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
-                    seriesMonth.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
-                    if (value != 0d) seriesMonth.Points[i].Label = "#VAL";
+                    seriesMonth.Points.AddXY(j, value);
+                    seriesMonth.Points[j].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
+                    seriesMonth.Points[j].ToolTip = value.ToString();//鼠标放到图形上面的提示
+                    if (value != 0d) seriesMonth.Points[j].Label = "#VAL";
                 }
+
             }
             chartMonth.ChartAreas[0].AxisX.Title = "月份 | Month";
             chartMonth.ChartAreas[0].AxisY.Title = "天花烟罩工作量 | Workload of Ceiling";
@@ -277,6 +290,7 @@ namespace Compass
             };
             chartPlan.Series.Add(seriesWorkloadMonthly);
             seriesWorkloadMonthly.YAxisType = AxisType.Primary;
+            seriesWorkloadMonthly.Color = Color.DeepSkyBlue;
             for (int i = 0; i <= 12; i++)
             {
                 double value = 0;
@@ -345,6 +359,8 @@ namespace Compass
                 //seriesDelay.Points[i].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
                 //seriesDelay.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
                 if (value != 0d) seriesDelayMonthly.Points[i].Label = "#VAL %";
+                //设置颜色
+                seriesDelayMonthly.Points[i].Color = pair.DefaultColorKeyValue.First(q => q.Key == i).Value;
             }
             chartPlan.ChartAreas[0].AxisY2.Title = "Delay天数占工作量的百分比 | DelayDays / Workload %";
             //chartPlan.ChartAreas[0].AxisY2.Interval = 5;//也可以设置成20
@@ -406,7 +422,9 @@ namespace Compass
                     seriesMonth.Points[i].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
                     seriesMonth.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
                     if (value != 0d) seriesMonth.Points[i].Label = "#VAL";
+                    //设置颜色
                 }
+                seriesMonth.Color = pair.UserColorKeyValue.First(q => q.Key == userData.Text).Value;
             }
             chartMonth.ChartAreas[0].AxisX.Title = "月份 | Month";
             chartMonth.ChartAreas[0].AxisY.Title = "工作量 | Workload";

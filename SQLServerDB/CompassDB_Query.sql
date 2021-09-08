@@ -657,3 +657,6 @@ select sum(datediff(day,ODPReceiveDate,DeliverActual))/count(*)+1 as CycleTime f
 
 
 select * from Categories
+use CompassDB
+go
+select * from DrawingNumMatrix order by DrawingNum asc

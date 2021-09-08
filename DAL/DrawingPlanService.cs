@@ -733,6 +733,25 @@ namespace DAL
             }
         }
         /// <summary>
+        /// 添加制图计划同时更新跟踪记录
+        /// </summary>
+        /// <param name="objDrawingPlan"></param>
+        /// <param name="sbu"></param>
+        /// <returns></returns>
+        public bool AddDraingPlanAndUpdateTracking(DrawingPlan objDrawingPlan, string sbu)
+        {
+            string sql = string.Format("insert into DrawingPlan{0} (ProjectId,Item,Model,ModuleNo,DrReleasetarget,SubTotalWorkload)", sbu);
+            sql += " values({0},'{1}','{2}','{3}','{4}','{5}');select @@identity";
+            sql = string.Format(sql, objDrawingPlan.ProjectId, objDrawingPlan.Item,
+                objDrawingPlan.Model, objDrawingPlan.ModuleNo, objDrawingPlan.DrReleaseTarget, objDrawingPlan.SubTotalWorkload);
+            List<string> sqlList = new List<string> { sql };
+            string sqlTracking =
+                $"update ProjectTracking{sbu} set ProjectStatusId=3 where ProjectId={objDrawingPlan.ProjectId}";
+            sqlList.Add(sqlTracking);
+            return SQLHelper.UpdateByTransaction(sqlList);
+        }
+
+        /// <summary>
         /// 修改制图计划记录
         /// </summary>
         /// <param name="objDrawingPlan"></param>

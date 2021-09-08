@@ -519,7 +519,7 @@ namespace Compass
             for (int i = 0; i < chartProjectStatus.Series[0].Points.Count; i++)
             {
                 string text = chartProjectStatusDatas[i].Text;
-                chartProjectStatus.Series[0].Points[i].Color = pair.ProjectStatusColorKeyValue.Where(q => q.Key == text).First().Value;
+                chartProjectStatus.Series[0].Points[i].Color = pair.ProjectStatusColorKeyValue.First(q => q.Key == text).Value;
             }
             //RiskLevel
             List<ChartData> chartRiskLevelDatas = objMonthlyReportService.GetRiskLevel(cobYear.Text, cobMonth.Text);
@@ -528,7 +528,7 @@ namespace Compass
             for (int i = 0; i < chartRiskLevel.Series[0].Points.Count; i++)
             {
                 string text = chartRiskLevelDatas[i].Text;
-                chartRiskLevel.Series[0].Points[i].Color = pair.RislLevelColorKeyValue.Where(q => q.Key ==text).First().Value;
+                chartRiskLevel.Series[0].Points[i].Color = pair.RislLevelColorKeyValue.First(q => q.Key ==text).Value;
             }
 
             //ProjectType
@@ -538,7 +538,7 @@ namespace Compass
             for (int i = 0; i < chartProjectType.Series[0].Points.Count; i++)
             {
                 string text = chartProjectTypeDatas[i].Text;
-                chartProjectType.Series[0].Points[i].Color = pair.ProjectTypeColorKeyValue.Where(q => q.Key == text).First().Value;
+                chartProjectType.Series[0].Points[i].Color = pair.ProjectTypeColorKeyValue.First(q => q.Key == text).Value;
             }
         }
 
@@ -557,7 +557,7 @@ namespace Compass
             for (int i = 0; i < chartRiskLevel.Series[0].Points.Count; i++)
             {
                 string text = chartRiskLevelDatas[i].Text;
-                chartRiskLevel.Series[0].Points[i].Color = pair.RislLevelColorKeyValue.Where(q => q.Key == text).First().Value;
+                chartRiskLevel.Series[0].Points[i].Color = pair.RislLevelColorKeyValue.First(q => q.Key == text).Value;
             }
 
             //ProjectType
@@ -567,7 +567,7 @@ namespace Compass
             for (int i = 0; i < chartProjectType.Series[0].Points.Count; i++)
             {
                 string text = chartProjectTypeDatas[i].Text;
-                chartProjectType.Series[0].Points[i].Color = pair.ProjectTypeColorKeyValue.Where(q => q.Key == text).First().Value;
+                chartProjectType.Series[0].Points[i].Color = pair.ProjectTypeColorKeyValue.First(q => q.Key == text).Value;
             }
         }
 

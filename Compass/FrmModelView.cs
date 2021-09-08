@@ -81,8 +81,7 @@ namespace Compass
         }
         private void OnCaptureMeasurement(object sender, EventArgs e)
         {
-            txtMeasurements.Text += (!string.IsNullOrEmpty(txtMeasurements.Text) ? Environment.NewLine : "")
-                                    + m_EDrawingsMarkupCtrl.MeasureResultString;
+            txtMeasurements.Text += (!string.IsNullOrEmpty(txtMeasurements.Text) ? Environment.NewLine : "")+ m_EDrawingsMarkupCtrl.MeasureResultString;
         }
 
         private void BtnOpenFolder_Click(object sender, EventArgs e)
