@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Common;
@@ -613,7 +614,7 @@ namespace Compass
                 if (objImportDataFormExcel.ImportDrawingNum(drawingNumFromExcel))
                 {
                     MessageBox.Show("数据导入成功", "提示信息");
-                    dgvDrawingNumMatrix = null;
+                    dgvDrawingNumMatrix.DataSource = null;
                     objDrawingNumMatrices = objDrawingNumMatrixService.GetAllDrawingNum();
                     dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;
                     drawingNumFromExcel.Clear();
@@ -621,13 +622,13 @@ namespace Compass
                 else
                 {
                     MessageBox.Show("数据导入失败", "提示信息");
-                    dgvDrawingNumMatrix = null;
+                    dgvDrawingNumMatrix.DataSource = null;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("数据导入失败" + ex.Message, "错误提示");
-                dgvDrawingNumMatrix = null;
+                dgvDrawingNumMatrix.DataSource = null;
             }
             this.dgvDrawingNumMatrix.SelectionChanged += new System.EventHandler(this.DgvDrawingNumMatrix_SelectionChanged);
         }
@@ -680,7 +681,7 @@ namespace Compass
                     filePath = purchPath + drawingNum + ".SLDPRT";
                     break;
                 case "5":
-                    filePath = fsPath + @"01 Standard\" + drawingNum+ ".SLDPRT";
+                    filePath = fsPath + @"01 Standard\" + drawingNum + ".SLDPRT";
                     break;
                 case "F":
                     if (currentDrawingNum.DrawingType == "ETO")
@@ -771,8 +772,48 @@ namespace Compass
             txtMeasurements.Text += (!string.IsNullOrEmpty(txtMeasurements.Text) ? Environment.NewLine : "")
                                     + m_EDrawingsMarkupCtrl.MeasureResultString;
         }
+
         #endregion
 
+        private void TxtDrawingNum_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13) BtnQuery_Click(null, null);
+        }
 
+        private void TxtDrawingDesc_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13) BtnQuery_Click(null, null);
+        }
+
+        private void TsmiBathImportImage_Click(object sender, EventArgs e)
+        {
+            //获取路径
+            string imagePath = string.Empty;
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                imagePath = fbd.SelectedPath;
+            }
+            //获取文件列表
+            string[] imageFiles = Directory.GetFiles(imagePath);
+            Dictionary<string, string> imagesDic = new Dictionary<string, string>();
+            foreach (string imageFile in imageFiles)
+            {
+                //序列化
+                string image = Image.FromFile(imageFile) != null ? new SerializeObjectToString().SerializeObject(Image.FromFile(imageFile)) : null;
+                //添加键值对
+                imagesDic.Add(Path.GetFileNameWithoutExtension(imageFile), image);
+            }
+            //提交数据库
+            if (objDrawingNumMatrixService.BathImportDrawingImage(imagesDic))
+            {
+                MessageBox.Show("批量导入图片成功！");
+                dgvDrawingNumMatrix.DataSource = null;
+                objDrawingNumMatrices = objDrawingNumMatrixService.GetAllDrawingNum();
+                dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;
+                imagesDic.Clear();
+            }
+
+        }
     }
 }

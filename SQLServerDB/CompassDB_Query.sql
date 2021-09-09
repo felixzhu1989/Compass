@@ -660,3 +660,12 @@ select * from Categories
 use CompassDB
 go
 select * from DrawingNumMatrix order by DrawingNum asc
+
+
+select Projects.ProjectId,ODPNo,BPONo,ProjectName,Projects.CustomerId,CustomerName,ShippingTime,Projects.UserId,UserAccount,RiskLevel,HoodType,SalesValue from Projects 
+inner join Users on Projects.UserId=Users.UserId 
+inner join Customers on Projects.CustomerId=Customers.CustomerId 
+left join GeneralRequirements on Projects.ProjectId=GeneralRequirements.ProjectId 
+left join FinancialData on Projects.ProjectId=FinancialData.ProjectId
+
+select * from DrawingNumMatrix

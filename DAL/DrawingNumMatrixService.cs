@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Text;
 using Models;
 
 namespace DAL
@@ -160,8 +161,7 @@ namespace DAL
         /// <returns></returns>
         public int RefreshImage(string image,string drawingId)
         {
-            string sql = "update DrawingNumMatrix set DrawingImage='{0}' where DrawingId={1}";
-            sql = string.Format(sql, image, drawingId);
+            string sql = $"update DrawingNumMatrix set DrawingImage='{image}' where DrawingId={drawingId}";
             try
             {
                 return SQLHelper.Update(sql);
@@ -177,7 +177,29 @@ namespace DAL
                 throw ex;
             }
         }
-        
+
+        /// <summary>
+        /// 批量导入图片
+        /// </summary>
+        /// <param name="imagesDic"></param>
+        /// <returns></returns>
+        public bool BathImportDrawingImage(Dictionary<string, string> imagesDic)
+        {
+            //编写SQL语句
+            StringBuilder sqlBuilder = new StringBuilder("update DrawingNumMatrix set DrawingImage='{0}' where DrawingNum='{1}'");
+            List<string> sqlList = new List<string>();//用来保存生成的多条SQL语句
+            //解析对象
+            foreach (var item in imagesDic)
+            {
+                string sql = string.Format(sqlBuilder.ToString(), item.Value,item.Key);
+                //将解析的SQL语句添加到集合
+                sqlList.Add(sql);
+            }
+            //将SQL语句集合提交到数据库
+            return SQLHelper.UpdateByTransaction(sqlList);
+        }
+
+
         /// <summary>
         /// 删除图号
         /// </summary>

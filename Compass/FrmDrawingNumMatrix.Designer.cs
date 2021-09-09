@@ -62,6 +62,7 @@
             this.btnClearImage = new System.Windows.Forms.Button();
             this.btnChooseImage = new System.Windows.Forms.Button();
             this.btnRefreshImage = new System.Windows.Forms.Button();
+            this.tsmiBathImportImage = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlTabel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingNumMatrix)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -92,6 +93,7 @@
             this.txtDrawingNum.Size = new System.Drawing.Size(100, 25);
             this.txtDrawingNum.TabIndex = 39;
             this.txtDrawingNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtDrawingNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDrawingNum_KeyDown);
             // 
             // txtDrawingDesc
             // 
@@ -99,6 +101,7 @@
             this.txtDrawingDesc.Name = "txtDrawingDesc";
             this.txtDrawingDesc.Size = new System.Drawing.Size(193, 25);
             this.txtDrawingDesc.TabIndex = 39;
+            this.txtDrawingDesc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDrawingDesc_KeyDown);
             // 
             // cobDrawingType
             // 
@@ -188,28 +191,29 @@
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiEditDrawingNum,
             this.tsmiDeleteDrawingNum,
-            this.tsmiShowModel});
+            this.tsmiShowModel,
+            this.tsmiBathImportImage});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(125, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(181, 114);
             // 
             // tsmiEditDrawingNum
             // 
             this.tsmiEditDrawingNum.Name = "tsmiEditDrawingNum";
-            this.tsmiEditDrawingNum.Size = new System.Drawing.Size(124, 22);
+            this.tsmiEditDrawingNum.Size = new System.Drawing.Size(180, 22);
             this.tsmiEditDrawingNum.Text = "修改图号";
             this.tsmiEditDrawingNum.Click += new System.EventHandler(this.TsmiEditDrawingNum_Click);
             // 
             // tsmiDeleteDrawingNum
             // 
             this.tsmiDeleteDrawingNum.Name = "tsmiDeleteDrawingNum";
-            this.tsmiDeleteDrawingNum.Size = new System.Drawing.Size(124, 22);
+            this.tsmiDeleteDrawingNum.Size = new System.Drawing.Size(180, 22);
             this.tsmiDeleteDrawingNum.Text = "删除图号";
             this.tsmiDeleteDrawingNum.Click += new System.EventHandler(this.TsmiDeleteDrawingNum_Click);
             // 
             // tsmiShowModel
             // 
             this.tsmiShowModel.Name = "tsmiShowModel";
-            this.tsmiShowModel.Size = new System.Drawing.Size(124, 22);
+            this.tsmiShowModel.Size = new System.Drawing.Size(180, 22);
             this.tsmiShowModel.Text = "显示模型";
             this.tsmiShowModel.Click += new System.EventHandler(this.TsmiShowModel_Click);
             // 
@@ -378,10 +382,10 @@
             // tpgEDrawing
             // 
             this.tpgEDrawing.Controls.Add(this.ctrlEDrw);
-            this.tpgEDrawing.Location = new System.Drawing.Point(4, 28);
+            this.tpgEDrawing.Location = new System.Drawing.Point(4, 22);
             this.tpgEDrawing.Name = "tpgEDrawing";
             this.tpgEDrawing.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgEDrawing.Size = new System.Drawing.Size(363, 341);
+            this.tpgEDrawing.Size = new System.Drawing.Size(363, 347);
             this.tpgEDrawing.TabIndex = 1;
             this.tpgEDrawing.Text = "模型";
             this.tpgEDrawing.UseVisualStyleBackColor = true;
@@ -393,7 +397,7 @@
             this.ctrlEDrw.Location = new System.Drawing.Point(3, 3);
             this.ctrlEDrw.Margin = new System.Windows.Forms.Padding(4);
             this.ctrlEDrw.Name = "ctrlEDrw";
-            this.ctrlEDrw.Size = new System.Drawing.Size(357, 335);
+            this.ctrlEDrw.Size = new System.Drawing.Size(357, 341);
             this.ctrlEDrw.TabIndex = 1;
             this.ctrlEDrw.EDrawingsControlLoaded += new System.Action<eDrawings.Interop.EModelViewControl.EModelViewControl>(this.OnControlLoaded);
             // 
@@ -442,6 +446,13 @@
             this.btnRefreshImage.Text = "更新图片";
             this.btnRefreshImage.UseVisualStyleBackColor = false;
             this.btnRefreshImage.Click += new System.EventHandler(this.BtnRefreshImage_Click);
+            // 
+            // tsmiBathImportImage
+            // 
+            this.tsmiBathImportImage.Name = "tsmiBathImportImage";
+            this.tsmiBathImportImage.Size = new System.Drawing.Size(180, 22);
+            this.tsmiBathImportImage.Text = "批量导入图片";
+            this.tsmiBathImportImage.Click += new System.EventHandler(this.TsmiBathImportImage_Click);
             // 
             // FrmDrawingNumMatrix
             // 
@@ -516,5 +527,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiShowModel;
         private System.Windows.Forms.Button btnRefreshImage;
         private EDrawingsUserControl ctrlEDrw;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBathImportImage;
     }
 }
