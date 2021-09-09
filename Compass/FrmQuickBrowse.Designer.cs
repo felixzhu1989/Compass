@@ -83,8 +83,8 @@
             this.dgvQuickBrowse.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvQuickBrowse.Size = new System.Drawing.Size(926, 236);
             this.dgvQuickBrowse.TabIndex = 36;
-            this.dgvQuickBrowse.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvQuickBrowse_CellDoubleClick);
-            this.dgvQuickBrowse.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvQuickBrowse_RowPostPaint);
+            this.dgvQuickBrowse.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvQuickBrowse_CellDoubleClick);
+            this.dgvQuickBrowse.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvQuickBrowse_RowPostPaint);
             // 
             // dgvCutList
             // 
@@ -115,8 +115,8 @@
             this.dgvCutList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCutList.Size = new System.Drawing.Size(926, 246);
             this.dgvCutList.TabIndex = 36;
-            this.dgvCutList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvCutList_RowPostPaint);
-            this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
+            this.dgvCutList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvCutList_RowPostPaint);
+            this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvCutList_KeyDown);
             // 
             // cmsCutlist
             // 
@@ -130,7 +130,7 @@
             this.tsmiDeleteCutList.Name = "tsmiDeleteCutList";
             this.tsmiDeleteCutList.Size = new System.Drawing.Size(124, 22);
             this.tsmiDeleteCutList.Text = "删除多行";
-            this.tsmiDeleteCutList.Click += new System.EventHandler(this.tsmiDeleteCutList_Click);
+            this.tsmiDeleteCutList.Click += new System.EventHandler(this.TsmiDeleteCutList_Click);
             // 
             // btnPrintCutList
             // 
@@ -145,7 +145,7 @@
             this.btnPrintCutList.TabIndex = 44;
             this.btnPrintCutList.Text = "打印CutList";
             this.btnPrintCutList.UseVisualStyleBackColor = false;
-            this.btnPrintCutList.Click += new System.EventHandler(this.btnPrintCutList_Click);
+            this.btnPrintCutList.Click += new System.EventHandler(this.BtnPrintCutList_Click);
             // 
             // lblModule
             // 

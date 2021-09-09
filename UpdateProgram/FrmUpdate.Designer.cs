@@ -61,7 +61,7 @@
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // btnCancel
             // 
@@ -76,7 +76,7 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "取    消";
             this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // btnNext
             // 
@@ -91,7 +91,7 @@
             this.btnNext.TabIndex = 3;
             this.btnNext.Text = "下一步";
             this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
             // label1
             // 
@@ -118,7 +118,7 @@
             this.btnFinish.TabIndex = 3;
             this.btnFinish.Text = "完    成";
             this.btnFinish.UseVisualStyleBackColor = false;
-            this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
+            this.btnFinish.Click += new System.EventHandler(this.BtnFinish_Click);
             // 
             // lblUpdateStatus
             // 

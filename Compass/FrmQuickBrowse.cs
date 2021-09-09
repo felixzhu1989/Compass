@@ -51,12 +51,12 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
             {
                 tsmiDeleteCutList.Visible = true;
-                this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
+                this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvCutList_KeyDown);
             }
             else
             {
                 tsmiDeleteCutList.Visible = false;
-                this.dgvCutList.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
+                this.dgvCutList.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.DgvCutList_KeyDown);
             }
         }
         
@@ -84,7 +84,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvQuickBrowse_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvQuickBrowse_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvQuickBrowse.RowCount == 0) return;
             if (dgvQuickBrowse.CurrentRow == null) return;
@@ -104,12 +104,12 @@ namespace Compass
             }
         }
 
-        private void dgvQuickBrowse_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvQuickBrowse_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvQuickBrowse, e);
         }
 
-        private void dgvCutList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvCutList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvCutList, e);
         }
@@ -118,7 +118,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDeleteCutList_Click(object sender, EventArgs e)
+        private void TsmiDeleteCutList_Click(object sender, EventArgs e)
         {
             if (dgvCutList.RowCount == 0) return;
             DialogResult result = MessageBox.Show("确定删除选中的多行数据吗?", "删除询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -144,16 +144,16 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvCutList_KeyDown(object sender, KeyEventArgs e)
+        private void DgvCutList_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 46) tsmiDeleteCutList_Click(null, null);
+            if (e.KeyValue == 46) TsmiDeleteCutList_Click(null, null);
         }
         /// <summary>
         /// 打印Cutlist
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnPrintCutList_Click(object sender, EventArgs e)
+        private void BtnPrintCutList_Click(object sender, EventArgs e)
         {
             if (dgvCutList.RowCount == 0) return;
             btnPrintCutList.Enabled = false;

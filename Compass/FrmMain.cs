@@ -393,5 +393,11 @@ namespace Compass
             FrmDrawingNumMatrix frmDrawingNumMatrix=new FrmDrawingNumMatrix();
             frmDrawingNumMatrix.Show();
         }
+
+        private void TsmiSyncFiles_Click(object sender, EventArgs e)
+        {
+            FrmSyncFiles frmSyncFiles=new FrmSyncFiles();
+            frmSyncFiles.Show();
+        }
     }
 }

@@ -45,7 +45,7 @@ namespace UpdateProgram
             this.pbDownLoadFile.Value = finishedPercent;
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -54,7 +54,7 @@ namespace UpdateProgram
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnFinish_Click(object sender, EventArgs e)
+        private void BtnFinish_Click(object sender, EventArgs e)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace UpdateProgram
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnNext_Click(object sender, EventArgs e)
+        private void BtnNext_Click(object sender, EventArgs e)
         {
             //this.btnNext.Enabled = false;
             try
@@ -105,7 +105,7 @@ namespace UpdateProgram
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("确认取消升级吗？", "取消询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) ==
                 DialogResult.OK)this.Close();

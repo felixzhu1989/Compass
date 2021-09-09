@@ -169,6 +169,13 @@
     <Compile Include="FrmProjectMeasure.Designer.cs">
       <DependentUpon>FrmProjectMeasure.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSyncFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSyncFiles.Designer.cs">
+      <DependentUpon>FrmSyncFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetSystemIcon.cs" />
     <Compile Include="HoodForm\FrmCH610.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1027,6 +1034,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProjectMeasure.resx">
       <DependentUpon>FrmProjectMeasure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSyncFiles.resx">
+      <DependentUpon>FrmSyncFiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmCH610.resx">
       <DependentUpon>FrmCH610.cs</DependentUpon>

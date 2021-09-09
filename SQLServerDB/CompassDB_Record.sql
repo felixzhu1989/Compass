@@ -358,6 +358,16 @@ select * from ProjectTracking where  projectId=62
 
 delete from projects where projectId=62
 
+select ProjectStatusId from ProjectTracking
+select * from ProjectStatus
+
+
+
+
+
+
+
+
 
 
 

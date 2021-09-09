@@ -79,10 +79,9 @@ namespace Compass
                 tsmiDeleteCeilingPackingList.Visible = true;
                 btnEditCeilingAccessory.Visible = true;
                 btnCeilingPackingList.Enabled = true;//只有技术部能够生成发货清单
-                this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
+                this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvCutList_KeyDown);
                 this.tvSubAssyTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TvSubAssyTree_KeyDown);
-                this.dgvCeilingPackingList.DoubleClick += new System.EventHandler(this.dgvCeilingPackingList_DoubleClick);
-                
+                this.dgvCeilingPackingList.DoubleClick += new System.EventHandler(this.DgvCeilingPackingList_DoubleClick);
             }
             else
             {
@@ -95,17 +94,13 @@ namespace Compass
                 btnCeilingPackingList.Enabled = false;
                 btnEditCeilingAccessory.Visible = false;
 
-                this.dgvCutList.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvCutList_KeyDown);
+                this.dgvCutList.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.DgvCutList_KeyDown);
                 this.tvSubAssyTree.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.TvSubAssyTree_KeyDown);
-                this.dgvCeilingPackingList.DoubleClick -= new System.EventHandler(this.dgvCeilingPackingList_DoubleClick);
+                this.dgvCeilingPackingList.DoubleClick -= new System.EventHandler(this.DgvCeilingPackingList_DoubleClick);
             }
-            
 
-            //按钮权限
-            btnPrintLabel.Enabled = false;
-            if (Program.ObjCurrentUser.UserId == 8) btnPrintLabel.Enabled = true;//只有生产fsprod才能打印标签
-            
-
+            //按钮权限，如果是fsprod则为true
+            btnPrintLabel.Enabled = false || Program.ObjCurrentUser.UserId == 8;
         }
         /// <summary>
         /// 下拉选择项目后自动切换
@@ -358,13 +353,6 @@ namespace Compass
             }
             btnJobCard.Enabled = true;
         }
-
-
-
-
-
-
-
         #endregion
 
         #region 导图页特有代码
@@ -496,7 +484,6 @@ namespace Compass
                 }
             }
         }
-
         /// <summary>
         /// 导出天花DXF图纸和Cutlist
         /// </summary>
@@ -589,7 +576,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnPrintCutList_Click(object sender, EventArgs e)
+        private void BtnPrintCutList_Click(object sender, EventArgs e)
         {
             if (dgvCutList.RowCount == 0) return;
             btnPrintCutList.Enabled = false;
@@ -605,7 +592,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDeleteCutList_Click(object sender, EventArgs e)
+        private void TsmiDeleteCutList_Click(object sender, EventArgs e)
         {
             if (dgvCutList.RowCount == 0) return;
             DialogResult result = MessageBox.Show("确定删除选中的多行数据吗?", "删除询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -627,41 +614,36 @@ namespace Compass
             }
         }
         //解决按键重复响应
-        
 
         /// <summary>
         /// 按下删除键删除多行数据
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvCutList_KeyDown(object sender, KeyEventArgs e)
+        private void DgvCutList_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 46) tsmiDeleteCutList_Click(null, null);
+            if (e.KeyValue == 46) TsmiDeleteCutList_Click(null, null);
         }
-        
-
-
-
         #endregion
 
         #region dgv添加行号
-        private void dgvWaitingList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvWaitingList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvWaitingList, e);
         }
-        private void dgvExecList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvExecList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvExecList, e);
         }
-        private void dgvSubAssyWaitingList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvSubAssyWaitingList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvSubAssyWaitingList, e);
         }
-        private void dgvSubAssyExecList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvSubAssyExecList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvSubAssyExecList, e);
         }
-        private void dgvCutList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvCutList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvCutList, e);
         }
@@ -677,7 +659,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtMainAssyPath_DragDrop(object sender, DragEventArgs e)
+        private void TxtMainAssyPath_DragDrop(object sender, DragEventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
             //获取拖放数据
@@ -706,7 +688,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtMainAssyPath_DragEnter(object sender, DragEventArgs e)
+        private void TxtMainAssyPath_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 e.Effect = DragDropEffects.Copy;//将拖放的图标变成加号
@@ -717,7 +699,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void btnCeilingPackingList_Click(object sender, EventArgs e)
+        private async void BtnCeilingPackingList_Click(object sender, EventArgs e)
         {
             //计算时间
             DateTime startTime = DateTime.Now;
@@ -725,8 +707,7 @@ namespace Compass
             tspbStatus.Step = 1;
             tspbStatus.Maximum = 2;
             btnCeilingPackingList.Enabled = false;
-            List<CeilingAccessory> ceilingAccessoriesList = null;
-           if (dgvCeilingPackingList.RowCount > 0)
+            if (dgvCeilingPackingList.RowCount > 0)
             {
                 DialogResult result = MessageBox.Show("发货清单有内容，标准配件将不会重复添加，如果需要添加标准件请手动添加或者删除本数据后再生成发货清单,继续请按YES，不生成发货清单请按NO?", "生成发货清单询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.No)
@@ -738,10 +719,9 @@ namespace Compass
             else
             {
                 //【1】查询项目的所有配件部分
-                if (txtTypeName.Text == "日本项目")
-                    ceilingAccessoriesList = objCeilingAccessoryService.GetCeilingAccessoriesForJapan();
-                else
-                    ceilingAccessoriesList = objCeilingAccessoryService.GetCeilingAccessoriesForNotJapan();
+                List<CeilingAccessory> ceilingAccessoriesList = txtTypeName.Text == "日本项目"
+                    ? objCeilingAccessoryService.GetCeilingAccessoriesForJapan()
+                    : objCeilingAccessoryService.GetCeilingAccessoriesForNotJapan();
                 foreach (var item in ceilingAccessoriesList)
                 {
                     item.ProjectId = objProject.ProjectId;
@@ -763,7 +743,7 @@ namespace Compass
 
                 tsslStatus.Text = "正在导出发货清单...";
                 //以异步的方式执行，让窗口可操作并且进度条更新
-                await exportCeilingPackingListAsync(txtMainAssyPath.Text, objProject);
+                await ExportCeilingPackingListAsync(txtMainAssyPath.Text, objProject);
             }
             catch (Exception ex)
             {
@@ -781,7 +761,7 @@ namespace Compass
             tspbStatus.Value = 2;
             btnCeilingPackingList.Enabled = true;
         }
-        private Task exportCeilingPackingListAsync(string mainAssyPath, Project objProject)
+        private Task ExportCeilingPackingListAsync(string mainAssyPath, Project objProject)
         {
             return Task.Run(() =>
             {
@@ -800,7 +780,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnPrintCeilingPackingList_Click(object sender, EventArgs e)
+        private void BtnPrintCeilingPackingList_Click(object sender, EventArgs e)
         {
             if (dgvCeilingPackingList.RowCount == 0) return;
             btnPrintCeilingPackingList.Enabled = false;
@@ -817,7 +797,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSaveToExcel_Click(object sender, EventArgs e)
+        private void BtnSaveToExcel_Click(object sender, EventArgs e)
         {
             if (dgvCeilingPackingList.RowCount == 0) return;
             btnSaveToExcel.Enabled = false;
@@ -834,7 +814,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnPrintLabel_Click(object sender, EventArgs e)
+        private void BtnPrintLabel_Click(object sender, EventArgs e)
         {
             //判断有没有数据，弹窗确定要打印选中的条目
             if (dgvCeilingPackingList.RowCount == 0) return;
@@ -870,7 +850,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiDeleteCeilingPackingList_Click(object sender, EventArgs e)
+        private void TsmiDeleteCeilingPackingList_Click(object sender, EventArgs e)
         {
             if (dgvCeilingPackingList.RowCount == 0) return;
             int firstRowIndex = dgvCeilingPackingList.CurrentRow.Index;
@@ -922,7 +902,7 @@ namespace Compass
             txtQuantity.Focus();
             txtQuantity.SelectAll();
         }
-        private void dgvCeilingPackingList_DoubleClick(object sender, EventArgs e)
+        private void DgvCeilingPackingList_DoubleClick(object sender, EventArgs e)
         {
             TsmiEditCeilingPackingList_Click(null, null);
         }
@@ -932,7 +912,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEditCeilingAccessory_Click(object sender, EventArgs e)
+        private void BtnEditCeilingAccessory_Click(object sender, EventArgs e)
         {
             if (txtPartDescription.Tag == null) return;
             int firstRowIndex = dgvCeilingPackingList.CurrentRow.Index;
@@ -979,16 +959,16 @@ namespace Compass
             dgvCeilingPackingList.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
             dgvCeilingPackingList.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
-        private void txtQuantity_KeyDown(object sender, KeyEventArgs e)
+        private void TxtQuantity_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13) btnEditCeilingAccessory_Click(null, null);
+            if (e.KeyValue == 13) BtnEditCeilingAccessory_Click(null, null);
         }
         /// <summary>
         /// 添加配件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiAddCeilingPackingList_Click(object sender, EventArgs e)
+        private void TsmiAddCeilingPackingList_Click(object sender, EventArgs e)
         {
             if (dgvCeilingPackingList.RowCount == 0) return;
             FrmAddCeilingPackingList objFrmAddCeilingPackingList = new FrmAddCeilingPackingList(objProject);
@@ -1003,7 +983,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiChangeLocation_Click(object sender, EventArgs e)
+        private void TsmiChangeLocation_Click(object sender, EventArgs e)
         {
 
             if (dgvCeilingPackingList.RowCount == 0 || dgvCeilingPackingList.SelectedRows.Count == 0) return;
@@ -1078,12 +1058,10 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        private void TabControl1_Selected(object sender, TabControlEventArgs e)
         {
             RefreshTree();
             RefreshDgv();
         }
-
-        
     }
 }

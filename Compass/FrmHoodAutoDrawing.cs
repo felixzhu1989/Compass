@@ -32,11 +32,11 @@ namespace Compass
             dgvWaitingList.AutoGenerateColumns = false;
             dgvExecList.AutoGenerateColumns = false;
             //项目编号下拉框
-            cobODPNo.DataSource = objProjectService.GetProjectsByHoodType("Hood",Program.ObjCurrentUser.SBU);
+            cobODPNo.DataSource = objProjectService.GetProjectsByHoodType("Hood", sbu);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;
-            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.cobODPNo_SelectedIndexChanged);
+            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
         }
 
         public FrmHoodAutoDrawing(string odpNo) : this()
@@ -49,7 +49,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobODPNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobODPNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
             objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text,Program.ObjCurrentUser.SBU);
@@ -72,7 +72,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvWaitingList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvWaitingList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvWaitingList, e);
         }
@@ -81,7 +81,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvExecList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvExecList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvExecList, e);
         }
@@ -90,7 +90,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e)
         {
             if (dgvWaitingList.CurrentRow == null) return;
             int moduleTreeId = Convert.ToInt32(dgvWaitingList.CurrentRow.Cells["ModuleTreeId"].Value);
@@ -109,7 +109,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSub_Click(object sender, EventArgs e)
+        private void BtnSub_Click(object sender, EventArgs e)
         {
             if (dgvExecList.CurrentRow == null) return;
             int moduleTreeId = Convert.ToInt32(dgvExecList.CurrentRow.Cells["ModuleTreeId2"].Value);
@@ -129,7 +129,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAddAll_Click(object sender, EventArgs e)
+        private void BtnAddAll_Click(object sender, EventArgs e)
         {
             if (dgvWaitingList.CurrentRow == null) return;
             foreach (var item in waitingList)
@@ -144,7 +144,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSubAll_Click(object sender, EventArgs e)
+        private void BtnSubAll_Click(object sender, EventArgs e)
         {
             if (dgvExecList.CurrentRow == null) return;
             foreach (var item in execList)
@@ -158,7 +158,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void btnExec_Click(object sender, EventArgs e)
+        private async void BtnExec_Click(object sender, EventArgs e)
         {
             if (execList.Count == 0) return;
             btnExec.Enabled = false;
@@ -200,7 +200,7 @@ namespace Compass
             TimeSpan timeSpan = DateTime.Now - startTime;
             tsslStatus.Text = "作图完成,总共耗时：" + timeSpan.TotalSeconds + "秒";
             tspbStatus.Value = execList.Count;
-            btnSubAll_Click(null, null);//清除执行数据
+            BtnSubAll_Click(null, null);//清除执行数据
             btnExec.Enabled = true;
         }
         /// <summary>
@@ -230,7 +230,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void btnJobCard_Click(object sender, EventArgs e)
+        private async void BtnJobCard_Click(object sender, EventArgs e)
         {
             if (execList.Count == 0) return;
             btnJobCard.Enabled = false;
@@ -245,7 +245,7 @@ namespace Compass
             }
             tsslStatus.Text = "JobCard打印完成！";
             tspbStatus.Value = execList.Count;
-            btnSubAll_Click(null, null);//清除执行数据
+            BtnSubAll_Click(null, null);//清除执行数据
             btnJobCard.Enabled = true;
         }
         /// <summary>
@@ -272,7 +272,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void btnExportDxf_Click(object sender, EventArgs e)
+        private async void BtnExportDxf_Click(object sender, EventArgs e)
         {
             if (execList.Count == 0) return;
             btnExportDxf.Enabled = false;
@@ -295,7 +295,7 @@ namespace Compass
                 {
                     tsslStatus.Text = item.Item + "(" + item.Module + ")正在导图...";
                     //以异步的方式执行，让窗口可操作并且进度条更新
-                    await exportDxfAsync(item, dxfPath, Program.ObjCurrentUser.UserId);
+                    await ExportDxfAsync(item, dxfPath, Program.ObjCurrentUser.UserId);
                     tspbStatus.Value += 1;
                 }
             }
@@ -310,7 +310,7 @@ namespace Compass
             TimeSpan timeSpan = DateTime.Now - startTime;
             tsslStatus.Text = "导出DXF图完成,总共耗时：" + timeSpan.TotalSeconds + "秒";
             tspbStatus.Value = execList.Count;
-            btnSubAll_Click(null, null);//清除执行数据
+            BtnSubAll_Click(null, null);//清除执行数据
             btnExportDxf.Enabled = true;
         }
         /// <summary>
@@ -319,7 +319,7 @@ namespace Compass
         /// <param name="item"></param>
         /// <param name="dxfPath"></param>
         /// <returns></returns>
-        private Task exportDxfAsync(ModuleTree item, string dxfPath,int userId)
+        private Task ExportDxfAsync(ModuleTree item, string dxfPath,int userId)
         {
             return Task.Run(() =>
             {
@@ -338,7 +338,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void btnHoodPackingList_Click(object sender, EventArgs e)
+        private async void BtnHoodPackingList_Click(object sender, EventArgs e)
         {
             if (execList.Count == 0) return;
             btnHoodPackingList.Enabled = false;

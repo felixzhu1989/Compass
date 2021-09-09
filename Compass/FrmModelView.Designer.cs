@@ -44,7 +44,7 @@
             this.ctrlEDrw.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ctrlEDrw.Location = new System.Drawing.Point(178, 50);
             this.ctrlEDrw.Name = "ctrlEDrw";
-            this.ctrlEDrw.Size = new System.Drawing.Size(837, 556);
+            this.ctrlEDrw.Size = new System.Drawing.Size(1013, 591);
             this.ctrlEDrw.TabIndex = 0;
             this.ctrlEDrw.EDrawingsControlLoaded += new System.Action<eDrawings.Interop.EModelViewControl.EModelViewControl>(this.OnControlLoaded);
             // 
@@ -55,7 +55,7 @@
             this.btnCaptureMeasurement.FlatAppearance.BorderSize = 0;
             this.btnCaptureMeasurement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCaptureMeasurement.ForeColor = System.Drawing.Color.White;
-            this.btnCaptureMeasurement.Location = new System.Drawing.Point(12, 607);
+            this.btnCaptureMeasurement.Location = new System.Drawing.Point(12, 642);
             this.btnCaptureMeasurement.Name = "btnCaptureMeasurement";
             this.btnCaptureMeasurement.Size = new System.Drawing.Size(160, 28);
             this.btnCaptureMeasurement.TabIndex = 40;
@@ -72,7 +72,7 @@
             this.txtMeasurements.Multiline = true;
             this.txtMeasurements.Name = "txtMeasurements";
             this.txtMeasurements.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMeasurements.Size = new System.Drawing.Size(160, 556);
+            this.txtMeasurements.Size = new System.Drawing.Size(160, 591);
             this.txtMeasurements.TabIndex = 39;
             this.txtMeasurements.Text = "选择线可直接显示结果，如果选择的是面则点击记录测量结果按钮。";
             // 
@@ -84,7 +84,7 @@
             this.btnOpenFolder.FlatAppearance.BorderSize = 0;
             this.btnOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenFolder.ForeColor = System.Drawing.Color.White;
-            this.btnOpenFolder.Location = new System.Drawing.Point(331, 607);
+            this.btnOpenFolder.Location = new System.Drawing.Point(331, 642);
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(119, 28);
             this.btnOpenFolder.TabIndex = 41;
@@ -100,7 +100,7 @@
             this.btnPublic.FlatAppearance.BorderSize = 0;
             this.btnPublic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPublic.ForeColor = System.Drawing.Color.White;
-            this.btnPublic.Location = new System.Drawing.Point(255, 607);
+            this.btnPublic.Location = new System.Drawing.Point(255, 642);
             this.btnPublic.Name = "btnPublic";
             this.btnPublic.Size = new System.Drawing.Size(70, 28);
             this.btnPublic.TabIndex = 42;
@@ -116,7 +116,7 @@
             this.btnLocal.FlatAppearance.BorderSize = 0;
             this.btnLocal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLocal.ForeColor = System.Drawing.Color.White;
-            this.btnLocal.Location = new System.Drawing.Point(178, 607);
+            this.btnLocal.Location = new System.Drawing.Point(178, 642);
             this.btnLocal.Name = "btnLocal";
             this.btnLocal.Size = new System.Drawing.Size(71, 28);
             this.btnLocal.TabIndex = 43;
@@ -129,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 640);
+            this.ClientSize = new System.Drawing.Size(1200, 675);
             this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.btnPublic);
             this.Controls.Add(this.btnLocal);

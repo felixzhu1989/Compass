@@ -94,7 +94,7 @@
             this.btnExec.TabIndex = 43;
             this.btnExec.Text = "开始作图";
             this.btnExec.UseVisualStyleBackColor = false;
-            this.btnExec.Click += new System.EventHandler(this.btnExec_Click);
+            this.btnExec.Click += new System.EventHandler(this.BtnExec_Click);
             // 
             // label2
             // 
@@ -151,7 +151,7 @@
             this.dgvWaitingList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvWaitingList.Size = new System.Drawing.Size(550, 543);
             this.dgvWaitingList.TabIndex = 45;
-            this.dgvWaitingList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvWaitingList_RowPostPaint);
+            this.dgvWaitingList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvWaitingList_RowPostPaint);
             // 
             // ModuleTreeId
             // 
@@ -222,7 +222,7 @@
             this.dgvExecList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvExecList.Size = new System.Drawing.Size(550, 543);
             this.dgvExecList.TabIndex = 45;
-            this.dgvExecList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvExecList_RowPostPaint);
+            this.dgvExecList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvExecList_RowPostPaint);
             // 
             // ModuleTreeId2
             // 
@@ -276,7 +276,7 @@
             this.btnAdd.TabIndex = 43;
             this.btnAdd.Text = ">";
             this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // btnSub
             // 
@@ -290,7 +290,7 @@
             this.btnSub.TabIndex = 43;
             this.btnSub.Text = "<";
             this.btnSub.UseVisualStyleBackColor = false;
-            this.btnSub.Click += new System.EventHandler(this.btnSub_Click);
+            this.btnSub.Click += new System.EventHandler(this.BtnSub_Click);
             // 
             // btnAddAll
             // 
@@ -304,7 +304,7 @@
             this.btnAddAll.TabIndex = 43;
             this.btnAddAll.Text = ">>";
             this.btnAddAll.UseVisualStyleBackColor = false;
-            this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
+            this.btnAddAll.Click += new System.EventHandler(this.BtnAddAll_Click);
             // 
             // btnSubAll
             // 
@@ -318,7 +318,7 @@
             this.btnSubAll.TabIndex = 43;
             this.btnSubAll.Text = "<<";
             this.btnSubAll.UseVisualStyleBackColor = false;
-            this.btnSubAll.Click += new System.EventHandler(this.btnSubAll_Click);
+            this.btnSubAll.Click += new System.EventHandler(this.BtnSubAll_Click);
             // 
             // label1
             // 
@@ -352,7 +352,7 @@
             this.btnJobCard.TabIndex = 43;
             this.btnJobCard.Text = "打印 Job Card";
             this.btnJobCard.UseVisualStyleBackColor = false;
-            this.btnJobCard.Click += new System.EventHandler(this.btnJobCard_Click);
+            this.btnJobCard.Click += new System.EventHandler(this.BtnJobCard_Click);
             // 
             // btnExportDxf
             // 
@@ -366,7 +366,7 @@
             this.btnExportDxf.TabIndex = 43;
             this.btnExportDxf.Text = "导出DXF图纸";
             this.btnExportDxf.UseVisualStyleBackColor = false;
-            this.btnExportDxf.Click += new System.EventHandler(this.btnExportDxf_Click);
+            this.btnExportDxf.Click += new System.EventHandler(this.BtnExportDxf_Click);
             // 
             // statusStrip1
             // 
@@ -409,7 +409,7 @@
             this.btnHoodPackingList.TabIndex = 43;
             this.btnHoodPackingList.Text = "导出装箱清单";
             this.btnHoodPackingList.UseVisualStyleBackColor = false;
-            this.btnHoodPackingList.Click += new System.EventHandler(this.btnHoodPackingList_Click);
+            this.btnHoodPackingList.Click += new System.EventHandler(this.BtnHoodPackingList_Click);
             // 
             // txtProjectName
             // 

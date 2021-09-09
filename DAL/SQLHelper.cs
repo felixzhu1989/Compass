@@ -66,6 +66,7 @@ namespace DAL
         /// <returns></returns>
         public static SqlDataReader GetReader(string sql)
         {
+
             SqlConnection conn=new SqlConnection(ConnString);
             SqlCommand cmd =new SqlCommand(sql,conn);
             try
