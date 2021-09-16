@@ -387,17 +387,18 @@ namespace Compass
             FrmProjectMeasure frmProjectMeasure=new FrmProjectMeasure();
             frmProjectMeasure.Show();
         }
-
-        private void TsmiDrawingNumMatrix_Click(object sender, EventArgs e)
-        {
-            FrmDrawingNumMatrix frmDrawingNumMatrix=new FrmDrawingNumMatrix();
-            frmDrawingNumMatrix.Show();
-        }
-
+        
         private void TsmiSyncFiles_Click(object sender, EventArgs e)
         {
             FrmSyncFiles frmSyncFiles=new FrmSyncFiles();
             frmSyncFiles.Show();
+            
+        }
+
+        private void TsmiDrawingNumMatrix_Click_1(object sender, EventArgs e)
+        {
+            FrmDrawingNumMatrix frmDrawingNumMatrix = new FrmDrawingNumMatrix();
+            frmDrawingNumMatrix.Show();
         }
     }
 }

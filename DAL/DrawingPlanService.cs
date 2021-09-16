@@ -586,7 +586,7 @@ namespace DAL
         /// <returns></returns>
         public DataSet GetScopeByDataSet(string projectId, string sbu)
         {
-            string sql = string.Format("select Model as '机型',sum(ModuleNo) as '总台数' from DrawingPlan{0}", sbu);
+            string sql = string.Format("select Model as '机型',sum(ModuleNo) as '烟罩台数/天花工作量' from DrawingPlan{0}", sbu);
             sql += string.Format(" where ProjectId={0}", projectId);
             sql += " group by Model";
             return SQLHelper.GetDataSet(sql);

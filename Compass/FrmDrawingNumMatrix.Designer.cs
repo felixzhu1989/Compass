@@ -45,6 +45,7 @@
             this.tsmiEditDrawingNum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteDrawingNum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiShowModel = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBathImportImage = new System.Windows.Forms.ToolStripMenuItem();
             this.txtMark = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtMeasurements = new System.Windows.Forms.TextBox();
@@ -62,7 +63,6 @@
             this.btnClearImage = new System.Windows.Forms.Button();
             this.btnChooseImage = new System.Windows.Forms.Button();
             this.btnRefreshImage = new System.Windows.Forms.Button();
-            this.tsmiBathImportImage = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlTabel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingNumMatrix)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -194,28 +194,35 @@
             this.tsmiShowModel,
             this.tsmiBathImportImage});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(181, 114);
+            this.contextMenuStrip.Size = new System.Drawing.Size(149, 92);
             // 
             // tsmiEditDrawingNum
             // 
             this.tsmiEditDrawingNum.Name = "tsmiEditDrawingNum";
-            this.tsmiEditDrawingNum.Size = new System.Drawing.Size(180, 22);
+            this.tsmiEditDrawingNum.Size = new System.Drawing.Size(148, 22);
             this.tsmiEditDrawingNum.Text = "修改图号";
             this.tsmiEditDrawingNum.Click += new System.EventHandler(this.TsmiEditDrawingNum_Click);
             // 
             // tsmiDeleteDrawingNum
             // 
             this.tsmiDeleteDrawingNum.Name = "tsmiDeleteDrawingNum";
-            this.tsmiDeleteDrawingNum.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDeleteDrawingNum.Size = new System.Drawing.Size(148, 22);
             this.tsmiDeleteDrawingNum.Text = "删除图号";
             this.tsmiDeleteDrawingNum.Click += new System.EventHandler(this.TsmiDeleteDrawingNum_Click);
             // 
             // tsmiShowModel
             // 
             this.tsmiShowModel.Name = "tsmiShowModel";
-            this.tsmiShowModel.Size = new System.Drawing.Size(180, 22);
+            this.tsmiShowModel.Size = new System.Drawing.Size(148, 22);
             this.tsmiShowModel.Text = "显示模型";
             this.tsmiShowModel.Click += new System.EventHandler(this.TsmiShowModel_Click);
+            // 
+            // tsmiBathImportImage
+            // 
+            this.tsmiBathImportImage.Name = "tsmiBathImportImage";
+            this.tsmiBathImportImage.Size = new System.Drawing.Size(148, 22);
+            this.tsmiBathImportImage.Text = "批量导入图片";
+            this.tsmiBathImportImage.Click += new System.EventHandler(this.TsmiBathImportImage_Click);
             // 
             // txtMark
             // 
@@ -306,11 +313,12 @@
             this.btnImportFromExcel.ForeColor = System.Drawing.Color.White;
             this.btnImportFromExcel.Location = new System.Drawing.Point(9, 644);
             this.btnImportFromExcel.Name = "btnImportFromExcel";
-            this.btnImportFromExcel.Size = new System.Drawing.Size(105, 28);
+            this.btnImportFromExcel.Size = new System.Drawing.Size(89, 28);
             this.btnImportFromExcel.TabIndex = 45;
             this.btnImportFromExcel.Tag = "1";
-            this.btnImportFromExcel.Text = "打开Excel文件";
+            this.btnImportFromExcel.Text = "选择Excel";
             this.btnImportFromExcel.UseVisualStyleBackColor = false;
+            this.btnImportFromExcel.Visible = false;
             this.btnImportFromExcel.Click += new System.EventHandler(this.BtnImportFromExcel_Click);
             // 
             // btnImport
@@ -320,13 +328,14 @@
             this.btnImport.FlatAppearance.BorderSize = 0;
             this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImport.ForeColor = System.Drawing.Color.White;
-            this.btnImport.Location = new System.Drawing.Point(120, 644);
+            this.btnImport.Location = new System.Drawing.Point(104, 644);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(131, 28);
+            this.btnImport.Size = new System.Drawing.Size(98, 28);
             this.btnImport.TabIndex = 45;
             this.btnImport.Tag = "1";
-            this.btnImport.Text = "添加入库/显示全部";
+            this.btnImport.Text = "批量入库";
             this.btnImport.UseVisualStyleBackColor = false;
+            this.btnImport.Visible = false;
             this.btnImport.Click += new System.EventHandler(this.BtnImport_Click);
             // 
             // btnQuery
@@ -382,10 +391,10 @@
             // tpgEDrawing
             // 
             this.tpgEDrawing.Controls.Add(this.ctrlEDrw);
-            this.tpgEDrawing.Location = new System.Drawing.Point(4, 22);
+            this.tpgEDrawing.Location = new System.Drawing.Point(4, 28);
             this.tpgEDrawing.Name = "tpgEDrawing";
             this.tpgEDrawing.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgEDrawing.Size = new System.Drawing.Size(363, 347);
+            this.tpgEDrawing.Size = new System.Drawing.Size(363, 341);
             this.tpgEDrawing.TabIndex = 1;
             this.tpgEDrawing.Text = "模型";
             this.tpgEDrawing.UseVisualStyleBackColor = true;
@@ -397,7 +406,7 @@
             this.ctrlEDrw.Location = new System.Drawing.Point(3, 3);
             this.ctrlEDrw.Margin = new System.Windows.Forms.Padding(4);
             this.ctrlEDrw.Name = "ctrlEDrw";
-            this.ctrlEDrw.Size = new System.Drawing.Size(357, 341);
+            this.ctrlEDrw.Size = new System.Drawing.Size(357, 335);
             this.ctrlEDrw.TabIndex = 1;
             this.ctrlEDrw.EDrawingsControlLoaded += new System.Action<eDrawings.Interop.EModelViewControl.EModelViewControl>(this.OnControlLoaded);
             // 
@@ -446,13 +455,6 @@
             this.btnRefreshImage.Text = "更新图片";
             this.btnRefreshImage.UseVisualStyleBackColor = false;
             this.btnRefreshImage.Click += new System.EventHandler(this.BtnRefreshImage_Click);
-            // 
-            // tsmiBathImportImage
-            // 
-            this.tsmiBathImportImage.Name = "tsmiBathImportImage";
-            this.tsmiBathImportImage.Size = new System.Drawing.Size(180, 22);
-            this.tsmiBathImportImage.Text = "批量导入图片";
-            this.tsmiBathImportImage.Click += new System.EventHandler(this.TsmiBathImportImage_Click);
             // 
             // FrmDrawingNumMatrix
             // 

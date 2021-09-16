@@ -55,11 +55,14 @@ namespace Compass
         /// </summary>
         private void SetPermissions()
         {
+            btnImportFromExcel.Visible = false;
+            btnImport.Visible = false;
 
             if (Program.ObjCurrentUser.UserGroupId == 1)
             {
                 //管理员才能导入清单,删除图号
                 btnImportFromExcel.Enabled = true;
+                btnImport.Enabled = true;
                 tsmiDeleteDrawingNum.Visible = true;
                 tsmiEditDrawingNum.Visible = true;
                 btnCommit.Enabled = true;
@@ -68,6 +71,7 @@ namespace Compass
             {
                 //技术部能添加图号，更改图号
                 btnImportFromExcel.Enabled = false;
+                btnImport.Enabled = false;
                 tsmiDeleteDrawingNum.Visible = false;
                 tsmiEditDrawingNum.Visible = true;
                 btnCommit.Enabled = true;
@@ -75,6 +79,7 @@ namespace Compass
             else
             {
                 btnImportFromExcel.Enabled = false;
+                btnImport.Enabled = false;
                 tsmiDeleteDrawingNum.Visible = false;
                 tsmiEditDrawingNum.Visible = false;
                 btnCommit.Enabled = false;
