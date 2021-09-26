@@ -172,8 +172,8 @@
             this.cobANSUL.Location = new System.Drawing.Point(871, 127);
             this.cobANSUL.Name = "cobANSUL";
             this.cobANSUL.Size = new System.Drawing.Size(100, 27);
-            this.cobANSUL.TabIndex = 5;
-            this.cobANSUL.SelectedIndexChanged += new System.EventHandler(this.cobANSUL_SelectedIndexChanged);
+            this.cobANSUL.TabIndex = 6;
+            this.cobANSUL.SelectedIndexChanged += new System.EventHandler(this.CobANSUL_SelectedIndexChanged);
             // 
             // cobLightType
             // 
@@ -187,7 +187,7 @@
             this.cobLightType.Name = "cobLightType";
             this.cobLightType.Size = new System.Drawing.Size(100, 27);
             this.cobLightType.TabIndex = 3;
-            this.cobLightType.SelectedIndexChanged += new System.EventHandler(this.cobLightType_SelectedIndexChanged);
+            this.cobLightType.SelectedIndexChanged += new System.EventHandler(this.CobLightType_SelectedIndexChanged);
             // 
             // btnEditData
             // 
@@ -200,10 +200,10 @@
             this.btnEditData.Location = new System.Drawing.Point(575, 616);
             this.btnEditData.Name = "btnEditData";
             this.btnEditData.Size = new System.Drawing.Size(198, 36);
-            this.btnEditData.TabIndex = 10;
+            this.btnEditData.TabIndex = 11;
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
-            this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
+            this.btnEditData.Click += new System.EventHandler(this.BtnEditData_Click);
             // 
             // grbLEDSpot
             // 
@@ -215,7 +215,7 @@
             this.grbLEDSpot.Location = new System.Drawing.Point(779, 81);
             this.grbLEDSpot.Name = "grbLEDSpot";
             this.grbLEDSpot.Size = new System.Drawing.Size(398, 45);
-            this.grbLEDSpot.TabIndex = 67;
+            this.grbLEDSpot.TabIndex = 5;
             this.grbLEDSpot.TabStop = false;
             this.grbLEDSpot.Text = "筒灯";
             // 
@@ -303,7 +303,7 @@
             this.cobSuNo.Name = "cobSuNo";
             this.cobSuNo.Size = new System.Drawing.Size(100, 27);
             this.cobSuNo.TabIndex = 0;
-            this.cobSuNo.SelectedIndexChanged += new System.EventHandler(this.cobSuNo_SelectedIndexChanged);
+            this.cobSuNo.SelectedIndexChanged += new System.EventHandler(this.CobSuNo_SelectedIndexChanged);
             // 
             // txtSuDis
             // 
@@ -380,7 +380,7 @@
             this.cobExNo.Name = "cobExNo";
             this.cobExNo.Size = new System.Drawing.Size(100, 27);
             this.cobExNo.TabIndex = 1;
-            this.cobExNo.SelectedIndexChanged += new System.EventHandler(this.cobExNo_SelectedIndexChanged);
+            this.cobExNo.SelectedIndexChanged += new System.EventHandler(this.CobExNo_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -473,8 +473,8 @@
             this.cobMARVEL.Location = new System.Drawing.Point(871, 387);
             this.cobMARVEL.Name = "cobMARVEL";
             this.cobMARVEL.Size = new System.Drawing.Size(100, 27);
-            this.cobMARVEL.TabIndex = 7;
-            this.cobMARVEL.SelectedIndexChanged += new System.EventHandler(this.cobMARVEL_SelectedIndexChanged);
+            this.cobMARVEL.TabIndex = 8;
+            this.cobMARVEL.SelectedIndexChanged += new System.EventHandler(this.CobMARVEL_SelectedIndexChanged);
             // 
             // groupBox7
             // 
@@ -496,7 +496,7 @@
             this.groupBox7.Location = new System.Drawing.Point(779, 517);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(398, 135);
-            this.groupBox7.TabIndex = 9;
+            this.groupBox7.TabIndex = 10;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "烟罩配置";
             // 
@@ -710,7 +710,7 @@
             this.txtDeepth.Name = "txtDeepth";
             this.txtDeepth.Size = new System.Drawing.Size(100, 25);
             this.txtDeepth.TabIndex = 1;
-            this.txtDeepth.TextChanged += new System.EventHandler(this.txtDeepth_TextChanged);
+            this.txtDeepth.TextChanged += new System.EventHandler(this.TxtDeepth_TextChanged);
             // 
             // txtLength
             // 
@@ -719,7 +719,7 @@
             this.txtLength.Name = "txtLength";
             this.txtLength.Size = new System.Drawing.Size(100, 25);
             this.txtLength.TabIndex = 0;
-            this.txtLength.TextChanged += new System.EventHandler(this.txtLength_TextChanged);
+            this.txtLength.TextChanged += new System.EventHandler(this.TxtLength_TextChanged);
             // 
             // grbANSUL
             // 
@@ -757,7 +757,7 @@
             this.grbANSUL.Location = new System.Drawing.Point(779, 146);
             this.grbANSUL.Name = "grbANSUL";
             this.grbANSUL.Size = new System.Drawing.Size(398, 238);
-            this.grbANSUL.TabIndex = 6;
+            this.grbANSUL.TabIndex = 7;
             this.grbANSUL.TabStop = false;
             this.grbANSUL.Text = "ANSUL";
             // 
@@ -986,7 +986,7 @@
             this.cobANDetectorNo.Name = "cobANDetectorNo";
             this.cobANDetectorNo.Size = new System.Drawing.Size(100, 27);
             this.cobANDetectorNo.TabIndex = 2;
-            this.cobANDetectorNo.SelectedIndexChanged += new System.EventHandler(this.cobDetectorNo_SelectedIndexChanged);
+            this.cobANDetectorNo.SelectedIndexChanged += new System.EventHandler(this.CobDetectorNo_SelectedIndexChanged);
             // 
             // label44
             // 
@@ -1008,7 +1008,7 @@
             this.cobANDropNo.Name = "cobANDropNo";
             this.cobANDropNo.Size = new System.Drawing.Size(100, 27);
             this.cobANDropNo.TabIndex = 8;
-            this.cobANDropNo.SelectedIndexChanged += new System.EventHandler(this.cobANDropNo_SelectedIndexChanged);
+            this.cobANDropNo.SelectedIndexChanged += new System.EventHandler(this.CobANDropNo_SelectedIndexChanged);
             // 
             // cobANDetectorEnd
             // 
@@ -1060,7 +1060,7 @@
             this.grbMARVEL.Location = new System.Drawing.Point(779, 409);
             this.grbMARVEL.Name = "grbMARVEL";
             this.grbMARVEL.Size = new System.Drawing.Size(398, 99);
-            this.grbMARVEL.TabIndex = 8;
+            this.grbMARVEL.TabIndex = 9;
             this.grbMARVEL.TabStop = false;
             this.grbMARVEL.Text = "MARVEL";
             // 
@@ -1075,7 +1075,7 @@
             this.cobIRNo.Name = "cobIRNo";
             this.cobIRNo.Size = new System.Drawing.Size(100, 27);
             this.cobIRNo.TabIndex = 0;
-            this.cobIRNo.SelectedIndexChanged += new System.EventHandler(this.cobIRNo_SelectedIndexChanged);
+            this.cobIRNo.SelectedIndexChanged += new System.EventHandler(this.CobIRNo_SelectedIndexChanged);
             // 
             // txtIRDis3
             // 

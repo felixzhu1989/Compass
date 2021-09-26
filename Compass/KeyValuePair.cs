@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-
 namespace Compass
 {
     /// <summary>
@@ -8,6 +7,7 @@ namespace Compass
     /// </summary>
     public class KeyValuePair
     {
+
         #region 中英文键值对
         /// <summary>
         /// 项目状态名称
@@ -16,8 +16,8 @@ namespace Compass
         {
             {"GettingODP", "收到ODP/GettingODP"},
             {"KickOff", "开工会议/KickOff"},
-            {"DrawingMaking", "制图中.../DrawingMaking"},
-            {"InProduction", "生产中.../InProduction"},
+            {"DrawingMaking", "制图中/DrawingMaking"},
+            {"InProduction", "生产中/InProduction"},
             {"ProductCompleted", "生产完成/ProductCompleted"},
             {"ProjectCompleted", "项目完成/ProjectCompleted"},
             {"FollowUp", "跟踪/FollowUp"},
@@ -36,16 +36,59 @@ namespace Compass
         };
         public Dictionary<string, string> HoodTypeKeyValue => this.hoodType;
 
-
-
-
-
         #endregion 中英文键值对
-
+        
+        
+        
+        
         #region 颜色标识键值对
 
 
-
+        /*  1	GettingODP	收到ODP     
+            2	KickOff	开工会议      
+            3	DrawingMaking	制图中       
+            4	InProduction	生产中       
+            5	ProductCompleted	生产完成      
+            6	ProjectCompleted	项目完成      
+            7	FollowUp	跟踪        
+            8	Pending	未决定       
+            9	Cancel	取消        
+            10	Import	引进        
+         */
+        /// <summary>
+        /// 项目状态Id-中文
+        /// </summary>
+        private readonly Dictionary<string, string> projectStatusIdCN = new Dictionary<string, string>()
+        {
+            {"1", "收到ODP"},
+            {"2", "开工会议"},
+            {"3", "制图中"},
+            {"4", "生产中"},
+            {"5", "生产完成"},
+            {"6", "项目完成"},
+            {"7", "跟踪"},
+            {"8", "未决定"},
+            {"9", "取消"},
+            {"10","引进"}
+        };
+        public Dictionary<string, string> ProjectStatusIdCNKeyValue => this.projectStatusIdCN;
+        /// <summary>
+        /// 项目状态中文-颜色
+        /// </summary>
+        private readonly Dictionary<string, Color> projectStatusCNColor = new Dictionary<string, Color>()
+        {
+            {"收到ODP", Color.LightSkyBlue},
+            {"开工会议", Color.DeepSkyBlue},
+            {"制图中", Color.Yellow},
+            {"生产中", Color.Orange},
+            {"生产完成", Color.GreenYellow},
+            {"项目完成", Color.LimeGreen},
+            {"跟踪", Color.LightPink},
+            {"未决定", Color.Red},
+            {"取消", Color.Silver},
+            {"引进", Color.Magenta}
+        };
+        public Dictionary<string, Color> ProjectStatusCNColorKeyValue => this.projectStatusCNColor;
         /// <summary>
         /// 项目状态颜色
         /// </summary>
@@ -64,14 +107,14 @@ namespace Compass
         };
         public Dictionary<string, Color> ProjectStatusColorKeyValue => this.projectStatusColor;
         /// <summary>
-        /// 项目状态颜色
+        /// 项目状态中文颜色
         /// </summary>
         private readonly Dictionary<string, Color> projectStatusChineseColor = new Dictionary<string, Color>()
         {
             {"收到ODP/GettingODP", Color.LightSkyBlue},
             {"开工会议/KickOff",Color.DeepSkyBlue},
-            {"制图中.../DrawingMaking", Color.Yellow},
-            {"生产中.../InProduction", Color.Orange},
+            {"制图中/DrawingMaking", Color.Yellow},
+            {"生产中/InProduction", Color.Orange},
             {"生产完成/ProductCompleted", Color.GreenYellow},
             {"项目完成/ProjectCompleted", Color.LimeGreen},
             {"跟踪/FollowUp", Color.LightPink},
@@ -79,6 +122,11 @@ namespace Compass
             {"取消/Cancel",Color.Silver},
             {"引进/Import", Color.Magenta}
         };
+
+
+
+
+
         public Dictionary<string, Color> ProjectStatusChineseColorKeyValue => this.projectStatusChineseColor;
         /// <summary>
         /// 风险等级颜色
@@ -92,6 +140,29 @@ namespace Compass
         };
         public Dictionary<string, Color> RislLevelColorKeyValue => this.rislLevelColor;
 
+        /*
+        1	国内项目
+        3	港澳台项目
+        4	日本项目
+        5	韩国项目
+        7	华为项目
+        8	其他
+         */
+
+        /// <summary>
+        /// 项目类型Id-中文
+        /// </summary>
+        private readonly Dictionary<string, string> projectTypeIdCN = new Dictionary<string, string>()
+        {
+            {"1", "国内项目"},
+            {"3", "港澳台项目"},
+            {"4", "日本项目"},
+            {"5", "韩国项目"},
+            {"7", "华为项目"},
+            {"8", "其他"}
+            
+        };
+        public Dictionary<string, string> ProjectTypeIdCNKeyValue => this.projectTypeIdCN;
         /// <summary>
         /// 项目类型颜色
         /// </summary>

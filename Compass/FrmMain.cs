@@ -400,5 +400,10 @@ namespace Compass
             FrmDrawingNumMatrix frmDrawingNumMatrix = new FrmDrawingNumMatrix();
             frmDrawingNumMatrix.Show();
         }
+
+        private void tsmiTestCode_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+        }
     }
 }

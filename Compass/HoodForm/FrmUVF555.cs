@@ -171,7 +171,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEditData_Click(object sender, EventArgs e)
+        private void BtnEditData_Click(object sender, EventArgs e)
         {
             #region 数据验证
             //必填项目
@@ -496,7 +496,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobLightType_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobLightType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobLightType.SelectedIndex == 2 || cobLightType.SelectedIndex == 3) grbLEDSpot.Visible = true;
             else grbLEDSpot.Visible = false;
@@ -506,7 +506,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobANSUL_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobANSUL_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobANSUL.SelectedIndex == 0) grbANSUL.Visible = true;
             else grbANSUL.Visible = false;
@@ -516,7 +516,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobMARVEL_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobMARVEL_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobMARVEL.SelectedIndex == 0) grbMARVEL.Visible = true;
             else grbMARVEL.Visible = false;
@@ -526,7 +526,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtLength_TextChanged(object sender, EventArgs e)
+        private void TxtLength_TextChanged(object sender, EventArgs e)
         {
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || txtLength.Text.Trim().Length == 0) return;
             txtExRightDis.Text = (Convert.ToDecimal(txtLength.Text.Trim()) / 2).ToString();
@@ -536,7 +536,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobANDropNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobANDropNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobANDropNo.SelectedIndex == 0)
             {
@@ -634,7 +634,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobExNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobExNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobExNo.SelectedIndex > 0)
             {
@@ -652,7 +652,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobSuNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobSuNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobSuNo.SelectedIndex > 0)
             {
@@ -670,7 +670,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobIRNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobIRNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobIRNo.SelectedIndex == 0)
             {

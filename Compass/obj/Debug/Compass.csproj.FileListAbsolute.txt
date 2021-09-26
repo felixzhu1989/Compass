@@ -311,3 +311,4 @@ E:\Compass\Compass\bin\Debug\eDrawings.Interop.EModelMarkupControl.dll
 E:\Compass\Compass\obj\Debug\Compass.FrmProjectMeasure.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmDrawingNumMatrix.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmSyncFiles.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmHWUVF650.resources

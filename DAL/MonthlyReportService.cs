@@ -109,17 +109,16 @@ namespace DAL
         public List<ChartData> GetProjectStatus(string year,string month)
         {
             List<ChartData> list=new List<ChartData>();
-            string sql = "select ProjectStatusName,count(ProjectStatusName) as Qty from ProjectTracking";
-            sql += " inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId";
+            string sql = "select ProjectStatusId,count(ProjectStatusId) as Qty from ProjectTracking";
             sql += " inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId";
             sql += WhereSql(year, month);
-            sql += " group by ProjectStatusName";
+            sql += " group by ProjectStatusId order by ProjectStatusId asc";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())
             {
                 list.Add(new ChartData()
                 {
-                    Text = objReader["ProjectStatusName"].ToString(),
+                    Text = objReader["ProjectStatusId"].ToString(),
                     Value = Convert.ToDouble(objReader["Qty"].ToString())
                 });
             }
@@ -210,18 +209,17 @@ namespace DAL
         public List<ChartData> GetProjectType(string year, string month)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select TypeName,sum(SalesValue) as SalesValue from GeneralRequirements";
-            sql += " inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements.TypeId";
+            string sql = "select TypeId,sum(SalesValue) as SalesValue from GeneralRequirements";
             sql += " inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId";
             sql += " inner join FinancialData on Projects.ProjectId=FinancialData.ProjectId";
             sql += WhereSql(year, month);
-            sql += " group by TypeName";
+            sql += " group by TypeId order by TypeId asc";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())
             {
                 list.Add(new ChartData()
                 {
-                    Text = objReader["TypeName"].ToString(),
+                    Text = objReader["TypeId"].ToString(),
                     Value = Convert.ToDouble((Convert.ToDouble(objReader["SalesValue"].ToString())/10000d).ToString("N2"))
                 });
             }
@@ -236,18 +234,17 @@ namespace DAL
         public List<ChartData> GetProjectType(string year)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select TypeName,sum(SalesValue) as SalesValue from GeneralRequirements";
-            sql += " inner join ProjectTypes on ProjectTypes.TypeId=GeneralRequirements.TypeId";
+            string sql = "select TypeId,sum(SalesValue) as SalesValue from GeneralRequirements";
             sql += " inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId";
             sql += " inner join FinancialData on Projects.ProjectId=FinancialData.ProjectId";
             sql += string.Format(" where ShippingTime like'{0}%'", year);
-            sql += " group by TypeName";
+            sql += " group by TypeId order by TypeId asc";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())
             {
                 list.Add(new ChartData()
                 {
-                    Text = objReader["TypeName"].ToString(),
+                    Text = objReader["TypeId"].ToString(),
                     Value = Convert.ToDouble((Convert.ToDouble(objReader["SalesValue"].ToString()) / 10000d).ToString("N2"))
                 });
             }

@@ -330,7 +330,7 @@ namespace Compass
             proInfo += "4. 客户名称：" + objProject.CustomerName + "\r\n";
             proInfo += "5. 烟罩类型：" + objProject.HoodType + "\r\n";
             proInfo += "6. 制图人员：" + objProject.UserAccount + "\r\n";
-            proInfo += "7. 发货日期：" + objProject.ShippingTime.ToShortDateString();
+            proInfo += "7. 完工日期：" + objProject.ShippingTime.ToShortDateString();
             txtProjectInfo.Text = proInfo;
             dgvScope.DataSource = objDrawingPlanService.GetScopeByDataSet(objProject.ProjectId.ToString(), sbu).Tables[0];
         }
@@ -514,13 +514,18 @@ namespace Compass
             lblProjectNum.Text = "统计区间项目总数：" + objMonthlyReportService.GetProjectNum(cobYear.Text, cobMonth.Text);
             //ProjectStatus
             List<ChartData> chartProjectStatusDatas = objMonthlyReportService.GetProjectStatus(cobYear.Text, cobMonth.Text);
+            foreach (var item in chartProjectStatusDatas)
+            {
+                item.Text = pair.ProjectStatusIdCNKeyValue.First(q => q.Key == item.Text).Value;
+            }
             SuperChart superChartProjectStatus = new SuperChart(chartProjectStatus);
             superChartProjectStatus.ShowChart(SeriesChartType.Pie, chartProjectStatusDatas);
             for (int i = 0; i < chartProjectStatus.Series[0].Points.Count; i++)
             {
                 string text = chartProjectStatusDatas[i].Text;
-                chartProjectStatus.Series[0].Points[i].Color = pair.ProjectStatusColorKeyValue.First(q => q.Key == text).Value;
+                chartProjectStatus.Series[0].Points[i].Color = pair.ProjectStatusCNColorKeyValue.First(q => q.Key == text).Value;
             }
+
             //RiskLevel
             List<ChartData> chartRiskLevelDatas = objMonthlyReportService.GetRiskLevel(cobYear.Text, cobMonth.Text);
             SuperChart superChartRiskLevel = new SuperChart(chartRiskLevel);
@@ -533,6 +538,10 @@ namespace Compass
 
             //ProjectType
             List<ChartData> chartProjectTypeDatas = objMonthlyReportService.GetProjectType(cobYear.Text, cobMonth.Text);
+            foreach (var item in chartProjectTypeDatas)
+            {
+                item.Text = pair.ProjectTypeIdCNKeyValue.First(q => q.Key == item.Text).Value;
+            }
             SuperChart superChartProjectType = new SuperChart(chartProjectType);
             superChartProjectType.ShowChart(SeriesChartType.Pie, chartProjectTypeDatas);
             for (int i = 0; i < chartProjectType.Series[0].Points.Count; i++)
@@ -562,6 +571,10 @@ namespace Compass
 
             //ProjectType
             List<ChartData> chartProjectTypeDatas = objMonthlyReportService.GetProjectType(cobYear.Text);
+            foreach (var item in chartProjectTypeDatas)
+            {
+                item.Text = pair.ProjectTypeIdCNKeyValue.First(q => q.Key == item.Text).Value;
+            }
             SuperChart superChartProjectType = new SuperChart(chartProjectType);
             superChartProjectType.ShowChart(SeriesChartType.Pie, chartProjectTypeDatas);
             for (int i = 0; i < chartProjectType.Series[0].Points.Count; i++)

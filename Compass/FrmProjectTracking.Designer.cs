@@ -47,7 +47,6 @@
             this.dtpEditProdFinishActual = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.dtpEditDeliverActual = new System.Windows.Forms.DateTimePicker();
-            this.btnQueryAllProjectTracking = new System.Windows.Forms.Button();
             this.grbEditProjectTracking = new System.Windows.Forms.GroupBox();
             this.cobEditODPNo = new System.Windows.Forms.ComboBox();
             this.dtpEditKickOffDate = new System.Windows.Forms.DateTimePicker();
@@ -60,7 +59,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.cobODPNo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtToPage = new MyUIControls.SuperTextBox(this.components);
@@ -92,6 +91,7 @@
             this.ShippingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProdFinishActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DeliverActual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AnomalyStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjectTrackingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTracking)).BeginInit();
@@ -132,6 +132,7 @@
             this.ShippingTime,
             this.ProdFinishActual,
             this.DeliverActual,
+            this.AnomalyStatus,
             this.ProjectTrackingId,
             this.UserAccount});
             this.dgvProjectTracking.ContextMenuStrip = this.contextMenuStrip;
@@ -142,9 +143,9 @@
             this.dgvProjectTracking.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProjectTracking.Size = new System.Drawing.Size(926, 392);
             this.dgvProjectTracking.TabIndex = 11;
-            this.dgvProjectTracking.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjectTracking_CellDoubleClick);
-            this.dgvProjectTracking.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjectTracking_RowPostPaint);
-            this.dgvProjectTracking.SelectionChanged += new System.EventHandler(this.dgvProjectTracking_SelectionChanged);
+            this.dgvProjectTracking.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjectTracking_CellDoubleClick);
+            this.dgvProjectTracking.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvProjectTracking_RowPostPaint);
+            this.dgvProjectTracking.SelectionChanged += new System.EventHandler(this.DgvProjectTracking_SelectionChanged);
             // 
             // contextMenuStrip
             // 
@@ -160,7 +161,7 @@
             this.tsmiEditProjectTracking.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
             this.tsmiEditProjectTracking.Size = new System.Drawing.Size(211, 22);
             this.tsmiEditProjectTracking.Text = "修改跟踪记录(&U)";
-            this.tsmiEditProjectTracking.Click += new System.EventHandler(this.tsmiEditProjectTracking_Click);
+            this.tsmiEditProjectTracking.Click += new System.EventHandler(this.TsmiEditProjectTracking_Click);
             // 
             // tsmiShowProjectInfo
             // 
@@ -168,7 +169,7 @@
             this.tsmiShowProjectInfo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
             this.tsmiShowProjectInfo.Size = new System.Drawing.Size(211, 22);
             this.tsmiShowProjectInfo.Text = "显示详细信息(&I)";
-            this.tsmiShowProjectInfo.Click += new System.EventHandler(this.tsmiShowProjectInfo_Click);
+            this.tsmiShowProjectInfo.Click += new System.EventHandler(this.TsmiShowProjectInfo_Click);
             // 
             // label1
             // 
@@ -202,7 +203,7 @@
             this.btnQueryByProjectId.TabIndex = 16;
             this.btnQueryByProjectId.Text = "查询";
             this.btnQueryByProjectId.UseVisualStyleBackColor = false;
-            this.btnQueryByProjectId.Click += new System.EventHandler(this.btnQueryByProjectId_Click);
+            this.btnQueryByProjectId.Click += new System.EventHandler(this.BtnQueryByProjectId_Click);
             // 
             // btnQueryByProjectStatus
             // 
@@ -216,7 +217,7 @@
             this.btnQueryByProjectStatus.TabIndex = 17;
             this.btnQueryByProjectStatus.Text = "查询";
             this.btnQueryByProjectStatus.UseVisualStyleBackColor = false;
-            this.btnQueryByProjectStatus.Click += new System.EventHandler(this.btnQueryByProjectStatus_Click);
+            this.btnQueryByProjectStatus.Click += new System.EventHandler(this.BtnQueryByProjectStatus_Click);
             // 
             // label4
             // 
@@ -290,20 +291,6 @@
             this.dtpEditDeliverActual.Size = new System.Drawing.Size(117, 25);
             this.dtpEditDeliverActual.TabIndex = 20;
             // 
-            // btnQueryAllProjectTracking
-            // 
-            this.btnQueryAllProjectTracking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnQueryAllProjectTracking.FlatAppearance.BorderSize = 0;
-            this.btnQueryAllProjectTracking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQueryAllProjectTracking.ForeColor = System.Drawing.Color.White;
-            this.btnQueryAllProjectTracking.Location = new System.Drawing.Point(277, 39);
-            this.btnQueryAllProjectTracking.Name = "btnQueryAllProjectTracking";
-            this.btnQueryAllProjectTracking.Size = new System.Drawing.Size(108, 28);
-            this.btnQueryAllProjectTracking.TabIndex = 23;
-            this.btnQueryAllProjectTracking.Text = "显示全部记录";
-            this.btnQueryAllProjectTracking.UseVisualStyleBackColor = false;
-            this.btnQueryAllProjectTracking.Click += new System.EventHandler(this.btnQueryAllProjectTracking_Click);
-            // 
             // grbEditProjectTracking
             // 
             this.grbEditProjectTracking.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -372,7 +359,7 @@
             this.btnEditProjectTracking.TabIndex = 22;
             this.btnEditProjectTracking.Text = "修改跟踪记录";
             this.btnEditProjectTracking.UseVisualStyleBackColor = false;
-            this.btnEditProjectTracking.Click += new System.EventHandler(this.btnEditProjectTracking_Click);
+            this.btnEditProjectTracking.Click += new System.EventHandler(this.BtnEditProjectTracking_Click);
             // 
             // txtEditProjectTrackingId
             // 
@@ -436,18 +423,18 @@
             this.label19.TabIndex = 21;
             this.label19.Text = "KickOff Date";
             // 
-            // button1
+            // btnAdd
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(136)))), ((int)(((byte)(242)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(391, 39);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(184, 28);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "扩展可视化监视面板";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnAdd.BackColor = System.Drawing.Color.Red;
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(280, 40);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(82, 28);
+            this.btnAdd.TabIndex = 22;
+            this.btnAdd.Text = "报告异常";
+            this.btnAdd.UseVisualStyleBackColor = false;
             // 
             // cobODPNo
             // 
@@ -612,7 +599,7 @@
             this.btnLast.TabIndex = 28;
             this.btnLast.Text = ">>";
             this.btnLast.UseVisualStyleBackColor = false;
-            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
+            this.btnLast.Click += new System.EventHandler(this.BtnLast_Click);
             // 
             // btnNext
             // 
@@ -627,7 +614,7 @@
             this.btnNext.TabIndex = 28;
             this.btnNext.Text = ">";
             this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
             // btnPre
             // 
@@ -642,7 +629,7 @@
             this.btnPre.TabIndex = 28;
             this.btnPre.Text = "<";
             this.btnPre.UseVisualStyleBackColor = false;
-            this.btnPre.Click += new System.EventHandler(this.btnPre_Click);
+            this.btnPre.Click += new System.EventHandler(this.BtnPre_Click);
             // 
             // btnFirst
             // 
@@ -657,7 +644,7 @@
             this.btnFirst.TabIndex = 28;
             this.btnFirst.Text = "<<";
             this.btnFirst.UseVisualStyleBackColor = false;
-            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
+            this.btnFirst.Click += new System.EventHandler(this.BtnFirst_Click);
             // 
             // btnToPage
             // 
@@ -671,7 +658,7 @@
             this.btnToPage.TabIndex = 28;
             this.btnToPage.Text = "GO";
             this.btnToPage.UseVisualStyleBackColor = false;
-            this.btnToPage.Click += new System.EventHandler(this.btnToPage_Click);
+            this.btnToPage.Click += new System.EventHandler(this.BtnToPage_Click);
             // 
             // btnQueryByYear
             // 
@@ -685,7 +672,7 @@
             this.btnQueryByYear.TabIndex = 28;
             this.btnQueryByYear.Text = "查询";
             this.btnQueryByYear.UseVisualStyleBackColor = false;
-            this.btnQueryByYear.Click += new System.EventHandler(this.btnQueryByYear_Click);
+            this.btnQueryByYear.Click += new System.EventHandler(this.BtnQueryByYear_Click);
             // 
             // ODPNo
             // 
@@ -768,6 +755,13 @@
             this.DeliverActual.ReadOnly = true;
             this.DeliverActual.Width = 86;
             // 
+            // AnomalyStatus
+            // 
+            this.AnomalyStatus.HeaderText = "异常状态";
+            this.AnomalyStatus.Name = "AnomalyStatus";
+            this.AnomalyStatus.ReadOnly = true;
+            this.AnomalyStatus.Width = 86;
+            // 
             // ProjectTrackingId
             // 
             this.ProjectTrackingId.DataPropertyName = "ProjectTrackingId";
@@ -792,8 +786,7 @@
             this.Controls.Add(this.grbEditProjectTracking);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cobODPNo);
-            this.Controls.Add(this.btnQueryAllProjectTracking);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnQueryByProjectId);
             this.Controls.Add(this.btnQueryByProjectStatus);
@@ -831,7 +824,6 @@
         private System.Windows.Forms.DateTimePicker dtpEditProdFinishActual;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker dtpEditDeliverActual;
-        private System.Windows.Forms.Button btnQueryAllProjectTracking;
         private System.Windows.Forms.GroupBox grbEditProjectTracking;
         private System.Windows.Forms.Button btnEditProjectTracking;
         private System.Windows.Forms.ComboBox cobEditProjectStatus;
@@ -841,7 +833,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiEditProjectTracking;
         private System.Windows.Forms.TextBox txtEditProjectTrackingId;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ComboBox cobODPNo;
         private System.Windows.Forms.ComboBox cobEditODPNo;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -879,6 +871,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ShippingTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProdFinishActual;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeliverActual;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AnomalyStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectTrackingId;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
     }

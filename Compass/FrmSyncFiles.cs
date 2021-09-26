@@ -38,8 +38,8 @@ namespace Compass
             txtBPONo.Text = objProject.BPONo;
             txtProjectName.Text = objProject.ProjectName;
             localPath = @"D:\MyProjects\" + objProject.ODPNo;
-            string curYearPath =
-                @"Z:\1-Project operation\20" + objProject.ODPNo.Substring(3, 2) + @" project\";
+            string year = objProject.ODPNo.StartsWith("S") ? objProject.ODPNo.Substring(4, 2) : objProject.ODPNo.Substring(3, 2);
+            string curYearPath = @"Z:\1-Project operation\20" + year + @" project\";
             if (!Directory.Exists(curYearPath))Directory.CreateDirectory(curYearPath);
             publicPath = curYearPath + objProject.ODPNo;
             if (!Directory.Exists(publicPath))
@@ -53,8 +53,6 @@ namespace Compass
                     di.MoveTo(publicPath);
                 }
             }
-            
-
             IniShow();
         }
 

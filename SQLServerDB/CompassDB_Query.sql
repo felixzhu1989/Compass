@@ -669,3 +669,16 @@ left join GeneralRequirements on Projects.ProjectId=GeneralRequirements.ProjectI
 left join FinancialData on Projects.ProjectId=FinancialData.ProjectId
 
 select * from DrawingNumMatrix
+
+
+select ProjectStatusId,count(ProjectStatusId) as Qty from ProjectTracking 
+inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId 
+where ShippingTime like'2021%' and month(ShippingTime) between 9 and 10  group by ProjectStatusId
+order by ProjectStatusId asc
+
+select * from ProjectStatus
+select * from ProjectTypes
+
+
+
+

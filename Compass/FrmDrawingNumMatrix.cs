@@ -11,6 +11,9 @@ using DAL;
 using eDrawings.Interop.EModelMarkupControl;
 using eDrawings.Interop.EModelViewControl;
 using Models;
+using SolidWorks.Interop.sldworks;
+using SolidWorks.Interop.swconst;
+using SolidWorksHelper;
 
 namespace Compass
 {
@@ -25,6 +28,8 @@ namespace Compass
         private EModelViewControl m_EDrawingsCtrl;
         private EModelMarkupControl m_EDrawingsMarkupCtrl;
         private string filePath;
+        private string imageDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + @"\\Compass\\DrawingNumImage\\";//获取我的文档地址，将缓存图片存在我的文档中
+
         public FrmDrawingNumMatrix()
         {
             InitializeComponent();
@@ -40,10 +45,13 @@ namespace Compass
             cobDrawingType.SelectedIndex = -1;
 
             subCode = new SubCode();
+            dgvDrawingNumMatrix.AutoGenerateColumns = false;
             dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;//初始化图号表格
             SetPermissions();
 
             this.dgvDrawingNumMatrix.SelectionChanged += new System.EventHandler(this.DgvDrawingNumMatrix_SelectionChanged);
+            
+            if (!Directory.Exists(imageDir)) Directory.CreateDirectory(imageDir);
         }
 
         private void DgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -474,6 +482,11 @@ namespace Compass
             }
             string drawingId = dgvDrawingNumMatrix.CurrentRow.Cells["DrawingId"].Value.ToString();
             string drawingNum = dgvDrawingNumMatrix.CurrentRow.Cells["DrawingNum"].Value.ToString();
+            if (Common.DataValidate.IsInteger(drawingNum.Substring(0,1)))
+            {
+                MessageBox.Show("不允许删除标准件和采购件，删除请联系管理员", "删除询问");
+                return;
+            }
             //删除询问
             DialogResult result = MessageBox.Show("确定要删除图号（ " + drawingNum + " ）吗？", "删除询问", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -502,10 +515,25 @@ namespace Compass
         {
             DrawingNumMatrix currentDrawingNum = GetCurrentDrawingNum();
             if (currentDrawingNum == null) return;
-            string drawingImage = objDrawingNumMatrixService.GetDrawingImage(currentDrawingNum.DrawingId.ToString());
-            pbImage.Image = drawingImage.Length == 0
-                ? Image.FromFile("NoPic.png")
-                : (Image)new SerializeObjectToString().DeserializeObject(drawingImage);
+            //改成图片缓存本地
+            string imagePath = imageDir + currentDrawingNum.DrawingNum + ".png";
+            if (File.Exists(imagePath))
+            {
+                pbImage.Image = Image.FromFile(imagePath);
+            }
+            else
+            {
+                string drawingImage = objDrawingNumMatrixService.GetDrawingImage(currentDrawingNum.DrawingId.ToString());
+                if (drawingImage.Length != 0)
+                {
+                    ((Image)new SerializeObjectToString().DeserializeObject(drawingImage)).Save(imagePath);
+                    pbImage.Image = Image.FromFile(imagePath);
+                }
+                else
+                {
+                    pbImage.Image = Image.FromFile("NoPic.png");
+                }
+            }
         }
         /// <summary>
         /// 从表单获取当前的图号
@@ -549,12 +577,14 @@ namespace Compass
             pbImage.Image = Image.FromFile("NoPic.png");
         }
         /// <summary>
-        /// 更新图片
+        /// 更新图片，同时删除本地缓存的图片（待完善）
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BtnRefreshImage_Click(object sender, EventArgs e)
         {
+            
+
             if (dgvDrawingNumMatrix.RowCount == 0)
             {
                 return;
@@ -572,6 +602,10 @@ namespace Compass
                 {
                     objDrawingNumMatrices = objDrawingNumMatrixService.GetAllDrawingNum();
                     dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;
+                    //改成图片缓存本地
+                    string saveImagePath = imageDir + dgvDrawingNumMatrix.CurrentRow.Cells["DrawingNum"].Value.ToString() +".png";
+                    if (File.Exists(saveImagePath)) File.Delete(saveImagePath);//先删除本地，然后在将图片保存下来
+                    pbImage.Image.Save(saveImagePath);
                     MessageBox.Show("图片更新成功成功", "提示信息");
                 }
             }
@@ -755,6 +789,7 @@ namespace Compass
             if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(filePath)))
             {
                 btnOpenFolder.Enabled = true;
+                btnAddCustomInfo.Enabled = true;
             }
             if (System.IO.File.Exists(filePath))
             {
@@ -772,11 +807,8 @@ namespace Compass
                 MessageBox.Show("未找到该文档!\r\n\r\n请尝试打开文件夹...");
             }
         }
-        private void OnCaptureMeasurement(object sender, EventArgs e)
-        {
-            txtMeasurements.Text += (!string.IsNullOrEmpty(txtMeasurements.Text) ? Environment.NewLine : "")
-                                    + m_EDrawingsMarkupCtrl.MeasureResultString;
-        }
+        private void OnCaptureMeasurement(object sender, EventArgs e) => txtMeasurements.Text += (!string.IsNullOrEmpty(txtMeasurements.Text) ? System.Environment.NewLine : "")
++ m_EDrawingsMarkupCtrl.MeasureResultString;
 
         #endregion
 
@@ -802,23 +834,77 @@ namespace Compass
             //获取文件列表
             string[] imageFiles = Directory.GetFiles(imagePath);
             Dictionary<string, string> imagesDic = new Dictionary<string, string>();
+            Dictionary<string, Image> imageList =new Dictionary<string, Image>();
             foreach (string imageFile in imageFiles)
             {
                 //序列化
                 string image = Image.FromFile(imageFile) != null ? new SerializeObjectToString().SerializeObject(Image.FromFile(imageFile)) : null;
                 //添加键值对
                 imagesDic.Add(Path.GetFileNameWithoutExtension(imageFile), image);
+                imageList.Add(Path.GetFileNameWithoutExtension(imageFile),Image.FromFile(imageFile));
             }
             //提交数据库
             if (objDrawingNumMatrixService.BathImportDrawingImage(imagesDic))
             {
-                MessageBox.Show("批量导入图片成功！");
                 dgvDrawingNumMatrix.DataSource = null;
                 objDrawingNumMatrices = objDrawingNumMatrixService.GetAllDrawingNum();
                 dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;
                 imagesDic.Clear();
+
+                //改成图片缓存本地
+                
+                foreach (var item in imageList)
+                {
+                    string saveImagePath = imageDir + item.Key +".png";
+                    if (File.Exists(saveImagePath)) File.Delete(saveImagePath);//先删除本地，然后在将图片保存下来
+                    item.Value.Save(saveImagePath);
+                }
+                imageList.Clear();
+                MessageBox.Show("批量导入图片成功！");
             }
 
+        }
+        /// <summary>
+        /// 将信息写入SolidWorks属性
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void BtnAddCustomInfo_Click(object sender, EventArgs e)
+        {
+            if (dgvDrawingNumMatrix.RowCount == 0)
+            {
+                return;
+            }
+            if (dgvDrawingNumMatrix.CurrentRow == null)
+            {
+                MessageBox.Show("请选中需要更新图片的图号", "验证信息");
+                return;
+            }
+            string userAccount = dgvDrawingNumMatrix.CurrentRow.Cells["UserAccount"].Value.ToString();
+            string drawingType = dgvDrawingNumMatrix.CurrentRow.Cells["DrawingType"].Value.ToString();
+            string drawingDesc = dgvDrawingNumMatrix.CurrentRow.Cells["DrawingDesc"].Value.ToString();
+
+            SldWorks swApp = await SolidWorksSingleton.GetApplicationAsync();
+            if (swApp == null) return;
+            ModelDoc2 swModel = (ModelDoc2)swApp.ActiveDoc;
+
+            //SBU，Product Class，
+            //DrawnBy，Parts Class，Part Name，Description
+
+            swModel.DeleteCustomInfo2("", "DrawnBy");
+            swModel.AddCustomInfo3("", "DrawnBy", (int)swCustomInfoType_e.swCustomInfoText, userAccount);
+
+            swModel.DeleteCustomInfo2("", "Parts Class");
+            swModel.AddCustomInfo3("", "Parts Class", (int)swCustomInfoType_e.swCustomInfoText, drawingType);
+
+            swModel.DeleteCustomInfo2("", "Part Name");
+            swModel.AddCustomInfo3("", "Part Name", (int)swCustomInfoType_e.swCustomInfoText, drawingDesc);
+
+            swModel.DeleteCustomInfo2("", "Description");
+            swModel.AddCustomInfo3("", "Description", (int)swCustomInfoType_e.swCustomInfoText, drawingDesc);
+            MessageBox.Show("属性写入完成");
+
+            swApp.CommandInProgress = false;
         }
     }
 }

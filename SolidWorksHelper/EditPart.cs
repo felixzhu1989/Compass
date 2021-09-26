@@ -620,6 +620,7 @@ namespace SolidWorksHelper
                 swFeat = swComp.FeatureByName("UVDOUBLE");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
             }
+
             //解压检修门，水洗烟罩，且带UV，短灯>=1600,长灯>=2400
             //if (UWHood != null && ((UVType == "SHORT" && length >= 1600m) || (UVType == "LONG" && length >= 2400m)))
             //{

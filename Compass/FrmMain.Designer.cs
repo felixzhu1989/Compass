@@ -51,6 +51,7 @@
             this.tsmiMarineAutoDrawing = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSyncFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDrawingNumMatrix = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiQuery = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiProjectMeasure = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,7 +67,8 @@
             this.tsmiUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSolidWorksSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmieSolidWorksTools = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDrawingNumMatrix = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTestCode = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -214,7 +216,9 @@
             this.toolStripMenuItem4,
             this.tsmiQuery,
             this.toolStripMenuItem3,
-            this.tsmiSetting});
+            this.tsmiSetting,
+            this.toolStripMenuItem5,
+            this.tsmiTestCode});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1200, 25);
@@ -303,6 +307,13 @@
             this.tsmiSyncFiles.Text = "同步文件";
             this.tsmiSyncFiles.Click += new System.EventHandler(this.TsmiSyncFiles_Click);
             // 
+            // tsmiDrawingNumMatrix
+            // 
+            this.tsmiDrawingNumMatrix.Name = "tsmiDrawingNumMatrix";
+            this.tsmiDrawingNumMatrix.Size = new System.Drawing.Size(80, 21);
+            this.tsmiDrawingNumMatrix.Text = "图号生成器";
+            this.tsmiDrawingNumMatrix.Click += new System.EventHandler(this.TsmiDrawingNumMatrix_Click_1);
+            // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
@@ -361,72 +372,78 @@
             // tsmiUsersManage
             // 
             this.tsmiUsersManage.Name = "tsmiUsersManage";
-            this.tsmiUsersManage.Size = new System.Drawing.Size(180, 22);
+            this.tsmiUsersManage.Size = new System.Drawing.Size(153, 22);
             this.tsmiUsersManage.Text = "用户信息";
             this.tsmiUsersManage.Click += new System.EventHandler(this.TsmiUsersManage_Click);
             // 
             // tsmiCategories
             // 
             this.tsmiCategories.Name = "tsmiCategories";
-            this.tsmiCategories.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCategories.Size = new System.Drawing.Size(153, 22);
             this.tsmiCategories.Text = "模型分类";
             this.tsmiCategories.Click += new System.EventHandler(this.TsmiCategories_Click);
             // 
             // tsmiDXFCutList
             // 
             this.tsmiDXFCutList.Name = "tsmiDXFCutList";
-            this.tsmiDXFCutList.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDXFCutList.Size = new System.Drawing.Size(153, 22);
             this.tsmiDXFCutList.Text = "Cutlist模版";
             this.tsmiDXFCutList.Click += new System.EventHandler(this.TsmiDXFCutList_Click);
             // 
             // tsmiCeilingAccessories
             // 
             this.tsmiCeilingAccessories.Name = "tsmiCeilingAccessories";
-            this.tsmiCeilingAccessories.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCeilingAccessories.Size = new System.Drawing.Size(153, 22);
             this.tsmiCeilingAccessories.Text = "天花配件";
             this.tsmiCeilingAccessories.Click += new System.EventHandler(this.TsmiCeilingAccessories_Click);
             // 
             // tsmiWorkLoad
             // 
             this.tsmiWorkLoad.Name = "tsmiWorkLoad";
-            this.tsmiWorkLoad.Size = new System.Drawing.Size(180, 22);
+            this.tsmiWorkLoad.Size = new System.Drawing.Size(153, 22);
             this.tsmiWorkLoad.Text = "设计工作量";
             this.tsmiWorkLoad.Click += new System.EventHandler(this.TsmiWorkLoad_Click);
             // 
             // tsmiStatusTypes
             // 
             this.tsmiStatusTypes.Name = "tsmiStatusTypes";
-            this.tsmiStatusTypes.Size = new System.Drawing.Size(180, 22);
+            this.tsmiStatusTypes.Size = new System.Drawing.Size(153, 22);
             this.tsmiStatusTypes.Text = "项目状态/类型";
             this.tsmiStatusTypes.Click += new System.EventHandler(this.TsmiStatusTypes_Click);
             // 
             // tsmiUpdate
             // 
             this.tsmiUpdate.Name = "tsmiUpdate";
-            this.tsmiUpdate.Size = new System.Drawing.Size(180, 22);
+            this.tsmiUpdate.Size = new System.Drawing.Size(153, 22);
             this.tsmiUpdate.Text = "系统升级";
             this.tsmiUpdate.Click += new System.EventHandler(this.TsmiUpdate_Click);
             // 
             // tsmiSolidWorksSetting
             // 
             this.tsmiSolidWorksSetting.Name = "tsmiSolidWorksSetting";
-            this.tsmiSolidWorksSetting.Size = new System.Drawing.Size(180, 22);
+            this.tsmiSolidWorksSetting.Size = new System.Drawing.Size(153, 22);
             this.tsmiSolidWorksSetting.Text = "SW一键设置";
             this.tsmiSolidWorksSetting.Click += new System.EventHandler(this.TsmiSolidWorksSetting_Click);
             // 
             // tsmieSolidWorksTools
             // 
             this.tsmieSolidWorksTools.Name = "tsmieSolidWorksTools";
-            this.tsmieSolidWorksTools.Size = new System.Drawing.Size(180, 22);
+            this.tsmieSolidWorksTools.Size = new System.Drawing.Size(153, 22);
             this.tsmieSolidWorksTools.Text = "SW实用工具";
             this.tsmieSolidWorksTools.Click += new System.EventHandler(this.TsmieSolidWorksTools_Click);
             // 
-            // tsmiDrawingNumMatrix
+            // tsmiTestCode
             // 
-            this.tsmiDrawingNumMatrix.Name = "tsmiDrawingNumMatrix";
-            this.tsmiDrawingNumMatrix.Size = new System.Drawing.Size(80, 21);
-            this.tsmiDrawingNumMatrix.Text = "图号生成器";
-            this.tsmiDrawingNumMatrix.Click += new System.EventHandler(this.TsmiDrawingNumMatrix_Click_1);
+            this.tsmiTestCode.Name = "tsmiTestCode";
+            this.tsmiTestCode.Size = new System.Drawing.Size(68, 21);
+            this.tsmiTestCode.Text = "测试代码";
+            this.tsmiTestCode.Click += new System.EventHandler(this.tsmiTestCode_Click);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(23, 21);
+            this.toolStripMenuItem5.Text = "|";
             // 
             // FrmMain
             // 
@@ -496,6 +513,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiSyncFiles;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem tsmiDrawingNumMatrix;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem tsmiTestCode;
     }
 }
 

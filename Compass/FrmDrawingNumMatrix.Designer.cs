@@ -41,6 +41,13 @@
             this.btnCommit = new System.Windows.Forms.Button();
             this.pnlTabel = new System.Windows.Forms.Panel();
             this.dgvDrawingNumMatrix = new System.Windows.Forms.DataGridView();
+            this.DrawingNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DrawingDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DrawingType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DrawingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditDrawingNum = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteDrawingNum = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,10 +66,12 @@
             this.tpgImage = new System.Windows.Forms.TabPage();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.tpgEDrawing = new System.Windows.Forms.TabPage();
-            this.ctrlEDrw = new Compass.EDrawingsUserControl();
             this.btnClearImage = new System.Windows.Forms.Button();
             this.btnChooseImage = new System.Windows.Forms.Button();
             this.btnRefreshImage = new System.Windows.Forms.Button();
+            this.btnAddCustomInfo = new System.Windows.Forms.Button();
+            this.ctrlEDrw = new Compass.EDrawingsUserControl();
+            this.label4 = new System.Windows.Forms.Label();
             this.pnlTabel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingNumMatrix)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -82,7 +91,7 @@
             this.btnCreateDrawingNum.Name = "btnCreateDrawingNum";
             this.btnCreateDrawingNum.Size = new System.Drawing.Size(104, 28);
             this.btnCreateDrawingNum.TabIndex = 38;
-            this.btnCreateDrawingNum.Text = "生成图号";
+            this.btnCreateDrawingNum.Text = "1.生成图号";
             this.btnCreateDrawingNum.UseVisualStyleBackColor = false;
             this.btnCreateDrawingNum.Click += new System.EventHandler(this.BtnCreateDrawingNum_Click);
             // 
@@ -141,7 +150,7 @@
             this.btnCommit.Size = new System.Drawing.Size(104, 28);
             this.btnCommit.TabIndex = 38;
             this.btnCommit.Tag = "0";
-            this.btnCommit.Text = "添加图号";
+            this.btnCommit.Text = "2.添加图号";
             this.btnCommit.UseVisualStyleBackColor = false;
             this.btnCommit.Click += new System.EventHandler(this.BtnCommit_Click);
             // 
@@ -161,7 +170,6 @@
             this.dgvDrawingNumMatrix.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
             this.dgvDrawingNumMatrix.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDrawingNumMatrix.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvDrawingNumMatrix.BackgroundColor = System.Drawing.Color.White;
             this.dgvDrawingNumMatrix.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -172,7 +180,15 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvDrawingNumMatrix.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvDrawingNumMatrix.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDrawingNumMatrix.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvDrawingNumMatrix.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DrawingNum,
+            this.DrawingDesc,
+            this.DrawingType,
+            this.AddedDate,
+            this.UserAccount,
+            this.Mark,
+            this.DrawingId});
             this.dgvDrawingNumMatrix.ContextMenuStrip = this.contextMenuStrip;
             this.dgvDrawingNumMatrix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDrawingNumMatrix.EnableHeadersVisualStyles = false;
@@ -180,11 +196,65 @@
             this.dgvDrawingNumMatrix.Name = "dgvDrawingNumMatrix";
             this.dgvDrawingNumMatrix.ReadOnly = true;
             this.dgvDrawingNumMatrix.RowHeadersWidth = 55;
+            this.dgvDrawingNumMatrix.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvDrawingNumMatrix.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDrawingNumMatrix.Size = new System.Drawing.Size(637, 373);
             this.dgvDrawingNumMatrix.TabIndex = 1;
             this.dgvDrawingNumMatrix.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvProjects_RowPostPaint);
             this.dgvDrawingNumMatrix.DoubleClick += new System.EventHandler(this.DgvDrawingNumMatrix_DoubleClick);
+            // 
+            // DrawingNum
+            // 
+            this.DrawingNum.DataPropertyName = "DrawingNum";
+            this.DrawingNum.HeaderText = "图号/料号";
+            this.DrawingNum.Name = "DrawingNum";
+            this.DrawingNum.ReadOnly = true;
+            // 
+            // DrawingDesc
+            // 
+            this.DrawingDesc.DataPropertyName = "DrawingDesc";
+            this.DrawingDesc.HeaderText = "描述";
+            this.DrawingDesc.Name = "DrawingDesc";
+            this.DrawingDesc.ReadOnly = true;
+            this.DrawingDesc.Width = 200;
+            // 
+            // DrawingType
+            // 
+            this.DrawingType.DataPropertyName = "DrawingType";
+            this.DrawingType.HeaderText = "分类";
+            this.DrawingType.Name = "DrawingType";
+            this.DrawingType.ReadOnly = true;
+            this.DrawingType.Width = 85;
+            // 
+            // AddedDate
+            // 
+            this.AddedDate.DataPropertyName = "AddedDate";
+            this.AddedDate.HeaderText = "添加日期";
+            this.AddedDate.Name = "AddedDate";
+            this.AddedDate.ReadOnly = true;
+            this.AddedDate.Width = 110;
+            // 
+            // UserAccount
+            // 
+            this.UserAccount.DataPropertyName = "UserAccount";
+            this.UserAccount.HeaderText = "修改人";
+            this.UserAccount.Name = "UserAccount";
+            this.UserAccount.ReadOnly = true;
+            this.UserAccount.Width = 80;
+            // 
+            // Mark
+            // 
+            this.Mark.DataPropertyName = "Mark";
+            this.Mark.HeaderText = "备注";
+            this.Mark.Name = "Mark";
+            this.Mark.ReadOnly = true;
+            // 
+            // DrawingId
+            // 
+            this.DrawingId.DataPropertyName = "DrawingId";
+            this.DrawingId.HeaderText = "ID";
+            this.DrawingId.Name = "DrawingId";
+            this.DrawingId.ReadOnly = true;
             // 
             // contextMenuStrip
             // 
@@ -274,16 +344,15 @@
             // 
             this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOpenFolder.BackColor = System.Drawing.Color.Orange;
-            this.btnOpenFolder.Enabled = false;
             this.btnOpenFolder.FlatAppearance.BorderSize = 0;
             this.btnOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenFolder.ForeColor = System.Drawing.Color.White;
-            this.btnOpenFolder.Location = new System.Drawing.Point(859, 644);
+            this.btnOpenFolder.Location = new System.Drawing.Point(924, 644);
             this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(88, 28);
+            this.btnOpenFolder.Size = new System.Drawing.Size(100, 28);
             this.btnOpenFolder.TabIndex = 45;
             this.btnOpenFolder.Tag = "1";
-            this.btnOpenFolder.Text = "打开文件夹";
+            this.btnOpenFolder.Text = "II.打开文件夹";
             this.btnOpenFolder.UseVisualStyleBackColor = false;
             this.btnOpenFolder.Click += new System.EventHandler(this.BtnOpenFolder_Click);
             // 
@@ -294,12 +363,12 @@
             this.btnOpen.FlatAppearance.BorderSize = 0;
             this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpen.ForeColor = System.Drawing.Color.White;
-            this.btnOpen.Location = new System.Drawing.Point(953, 644);
+            this.btnOpen.Location = new System.Drawing.Point(842, 644);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(71, 28);
+            this.btnOpen.Size = new System.Drawing.Size(79, 28);
             this.btnOpen.TabIndex = 46;
             this.btnOpen.Tag = "0";
-            this.btnOpen.Text = "显示模型";
+            this.btnOpen.Text = "I.显示模型";
             this.btnOpen.UseVisualStyleBackColor = false;
             this.btnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
             // 
@@ -313,10 +382,10 @@
             this.btnImportFromExcel.ForeColor = System.Drawing.Color.White;
             this.btnImportFromExcel.Location = new System.Drawing.Point(9, 644);
             this.btnImportFromExcel.Name = "btnImportFromExcel";
-            this.btnImportFromExcel.Size = new System.Drawing.Size(89, 28);
+            this.btnImportFromExcel.Size = new System.Drawing.Size(113, 28);
             this.btnImportFromExcel.TabIndex = 45;
             this.btnImportFromExcel.Tag = "1";
-            this.btnImportFromExcel.Text = "选择Excel";
+            this.btnImportFromExcel.Text = "A.选择Excel文件";
             this.btnImportFromExcel.UseVisualStyleBackColor = false;
             this.btnImportFromExcel.Visible = false;
             this.btnImportFromExcel.Click += new System.EventHandler(this.BtnImportFromExcel_Click);
@@ -328,12 +397,12 @@
             this.btnImport.FlatAppearance.BorderSize = 0;
             this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImport.ForeColor = System.Drawing.Color.White;
-            this.btnImport.Location = new System.Drawing.Point(104, 644);
+            this.btnImport.Location = new System.Drawing.Point(128, 644);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(98, 28);
+            this.btnImport.Size = new System.Drawing.Size(106, 28);
             this.btnImport.TabIndex = 45;
             this.btnImport.Tag = "1";
-            this.btnImport.Text = "批量入库";
+            this.btnImport.Text = "B.批量导入图号";
             this.btnImport.UseVisualStyleBackColor = false;
             this.btnImport.Visible = false;
             this.btnImport.Click += new System.EventHandler(this.BtnImport_Click);
@@ -391,24 +460,13 @@
             // tpgEDrawing
             // 
             this.tpgEDrawing.Controls.Add(this.ctrlEDrw);
-            this.tpgEDrawing.Location = new System.Drawing.Point(4, 28);
+            this.tpgEDrawing.Location = new System.Drawing.Point(4, 22);
             this.tpgEDrawing.Name = "tpgEDrawing";
             this.tpgEDrawing.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgEDrawing.Size = new System.Drawing.Size(363, 341);
+            this.tpgEDrawing.Size = new System.Drawing.Size(363, 347);
             this.tpgEDrawing.TabIndex = 1;
             this.tpgEDrawing.Text = "模型";
             this.tpgEDrawing.UseVisualStyleBackColor = true;
-            // 
-            // ctrlEDrw
-            // 
-            this.ctrlEDrw.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ctrlEDrw.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlEDrw.Location = new System.Drawing.Point(3, 3);
-            this.ctrlEDrw.Margin = new System.Windows.Forms.Padding(4);
-            this.ctrlEDrw.Name = "ctrlEDrw";
-            this.ctrlEDrw.Size = new System.Drawing.Size(357, 335);
-            this.ctrlEDrw.TabIndex = 1;
-            this.ctrlEDrw.EDrawingsControlLoaded += new System.Action<eDrawings.Interop.EModelViewControl.EModelViewControl>(this.OnControlLoaded);
             // 
             // btnClearImage
             // 
@@ -417,7 +475,7 @@
             this.btnClearImage.FlatAppearance.BorderSize = 0;
             this.btnClearImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearImage.ForeColor = System.Drawing.Color.White;
-            this.btnClearImage.Location = new System.Drawing.Point(710, 644);
+            this.btnClearImage.Location = new System.Drawing.Point(706, 644);
             this.btnClearImage.Name = "btnClearImage";
             this.btnClearImage.Size = new System.Drawing.Size(44, 28);
             this.btnClearImage.TabIndex = 48;
@@ -432,9 +490,9 @@
             this.btnChooseImage.FlatAppearance.BorderSize = 0;
             this.btnChooseImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChooseImage.ForeColor = System.Drawing.Color.White;
-            this.btnChooseImage.Location = new System.Drawing.Point(657, 644);
+            this.btnChooseImage.Location = new System.Drawing.Point(654, 644);
             this.btnChooseImage.Name = "btnChooseImage";
-            this.btnChooseImage.Size = new System.Drawing.Size(47, 28);
+            this.btnChooseImage.Size = new System.Drawing.Size(50, 28);
             this.btnChooseImage.TabIndex = 49;
             this.btnChooseImage.Text = "浏览";
             this.btnChooseImage.UseVisualStyleBackColor = false;
@@ -447,14 +505,51 @@
             this.btnRefreshImage.FlatAppearance.BorderSize = 0;
             this.btnRefreshImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefreshImage.ForeColor = System.Drawing.Color.White;
-            this.btnRefreshImage.Location = new System.Drawing.Point(760, 644);
+            this.btnRefreshImage.Location = new System.Drawing.Point(752, 644);
             this.btnRefreshImage.Name = "btnRefreshImage";
-            this.btnRefreshImage.Size = new System.Drawing.Size(82, 28);
+            this.btnRefreshImage.Size = new System.Drawing.Size(77, 28);
             this.btnRefreshImage.TabIndex = 38;
             this.btnRefreshImage.Tag = "0";
             this.btnRefreshImage.Text = "更新图片";
             this.btnRefreshImage.UseVisualStyleBackColor = false;
             this.btnRefreshImage.Click += new System.EventHandler(this.BtnRefreshImage_Click);
+            // 
+            // btnAddCustomInfo
+            // 
+            this.btnAddCustomInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddCustomInfo.BackColor = System.Drawing.Color.Crimson;
+            this.btnAddCustomInfo.FlatAppearance.BorderSize = 0;
+            this.btnAddCustomInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddCustomInfo.ForeColor = System.Drawing.Color.White;
+            this.btnAddCustomInfo.Location = new System.Drawing.Point(477, 644);
+            this.btnAddCustomInfo.Name = "btnAddCustomInfo";
+            this.btnAddCustomInfo.Size = new System.Drawing.Size(170, 28);
+            this.btnAddCustomInfo.TabIndex = 45;
+            this.btnAddCustomInfo.Tag = "1";
+            this.btnAddCustomInfo.Text = "写入SolidWorks文件属性";
+            this.btnAddCustomInfo.UseVisualStyleBackColor = false;
+            this.btnAddCustomInfo.Click += new System.EventHandler(this.BtnAddCustomInfo_Click);
+            // 
+            // ctrlEDrw
+            // 
+            this.ctrlEDrw.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ctrlEDrw.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlEDrw.Location = new System.Drawing.Point(3, 3);
+            this.ctrlEDrw.Margin = new System.Windows.Forms.Padding(65, 189, 65, 189);
+            this.ctrlEDrw.Name = "ctrlEDrw";
+            this.ctrlEDrw.Size = new System.Drawing.Size(357, 341);
+            this.ctrlEDrw.TabIndex = 1;
+            this.ctrlEDrw.EDrawingsControlLoaded += new System.Action<eDrawings.Interop.EModelViewControl.EModelViewControl>(this.OnControlLoaded);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.ForeColor = System.Drawing.Color.Crimson;
+            this.label4.Location = new System.Drawing.Point(313, 639);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(161, 42);
+            this.label4.TabIndex = 41;
+            this.label4.Text = "确保列表中选中的图号为SolidWorks当前打开文档";
             // 
             // FrmDrawingNumMatrix
             // 
@@ -465,11 +560,13 @@
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnImportFromExcel);
+            this.Controls.Add(this.btnAddCustomInfo);
             this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.btnCaptureMeasurement);
             this.Controls.Add(this.txtMeasurements);
             this.Controls.Add(this.pnlTabel);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -530,5 +627,14 @@
         private System.Windows.Forms.Button btnRefreshImage;
         private EDrawingsUserControl ctrlEDrw;
         private System.Windows.Forms.ToolStripMenuItem tsmiBathImportImage;
+        private System.Windows.Forms.Button btnAddCustomInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DrawingNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DrawingDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DrawingType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AddedDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mark;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DrawingId;
+        private System.Windows.Forms.Label label4;
     }
 }

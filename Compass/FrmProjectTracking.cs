@@ -46,10 +46,10 @@ namespace Compass
             //分页查询
             objSqlDataPager = objProjectTrackingService.GetSqlDataPager(sbu);
 
-            btnQueryByYear_Click(null, null);
+            BtnQueryByYear_Click(null, null);
 
             //初始化下拉框后关联事件委托
-            this.cobProjectStatus.SelectedIndexChanged += new System.EventHandler(this.cobProjectStatus_SelectedIndexChanged);
+            this.cobProjectStatus.SelectedIndexChanged += new System.EventHandler(this.CobProjectStatus_SelectedIndexChanged);
 
             SetPermissions();
         }
@@ -62,12 +62,12 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1)
             {
                 tsmiEditProjectTracking.Visible = true;
-                this.dgvProjectTracking.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjectTracking_CellDoubleClick);
+                this.dgvProjectTracking.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjectTracking_CellDoubleClick);
             }
             else
             {
                 tsmiEditProjectTracking.Visible = false;
-                this.dgvProjectTracking.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjectTracking_CellDoubleClick);
+                this.dgvProjectTracking.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjectTracking_CellDoubleClick);
             }
         }
         /// <summary>
@@ -158,7 +158,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvProjectTracking_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        private void DgvProjectTracking_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvProjectTracking, e);
             if (e.RowIndex > -1)
@@ -167,60 +167,13 @@ namespace Compass
                 dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectStatusColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
             }
         }
-        /// <summary>
-        /// 添加项目跟踪信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnAddProjectTracking_Click(object sender, EventArgs e)
-        {
-            #region 数据验证
-            if (cobODPNo.SelectedIndex == -1)
-            {
-                MessageBox.Show("请选择或者输入项目编号，如果没有，请到项目列表中添加后再选择", "验证信息");
-                cobODPNo.Focus();
-                return;
-            }
-            //验证日期顺序的正确性
-
-            #endregion
-            //封装项目跟踪对象
-            ProjectTracking objProjectTracking = new ProjectTracking()
-            {
-                ProjectId = Convert.ToInt32(cobODPNo.SelectedValue),
-                ProjectStatusId = 3,
-                //(默认)因为dtp最小日期限制
-                DrReleaseActual = DateTime.MinValue,
-                ProdFinishActual = DateTime.MinValue,
-                DeliverActual = DateTime.MinValue,
-                ODPReceiveDate = DateTime.MinValue,
-                KickOffDate = DateTime.MinValue
-            };
-            //提交添加
-            try
-            {
-                int projectTrackingId = objProjectTrackingService.AddProjectTracking(objProjectTracking, sbu);
-                if (projectTrackingId > 1)
-                {
-                    //提示添加成功
-                    MessageBox.Show("项目跟踪条目添加成功", "提示信息");
-                    //刷新显示
-                    btnQueryAllProjectTracking_Click(null, null);
-                    //清空内容
-                    cobODPNo.SelectedIndex = -1;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
         /// <summary>
         /// 根据项目状态查询跟踪记录
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnQueryByProjectStatus_Click(object sender, EventArgs e)
+        private void BtnQueryByProjectStatus_Click(object sender, EventArgs e)
         {
             if (cobProjectStatus.SelectedIndex == -1) return;
             objSqlDataPager.Condition = string.Format("ProjectTracking{0}.ProjectStatusId = {1}", sbu, cobProjectStatus.SelectedValue.ToString());
@@ -232,16 +185,16 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobProjectStatus_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobProjectStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnQueryByProjectStatus_Click(null, null);
+            BtnQueryByProjectStatus_Click(null, null);
         }
         /// <summary>
         /// 根据项目号查询跟踪记录
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnQueryByProjectId_Click(object sender, EventArgs e)
+        private void BtnQueryByProjectId_Click(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
             objSqlDataPager.Condition = string.Format("ProjectTracking{0}.ProjectId = {1}", sbu, cobODPNo.SelectedValue.ToString());
@@ -253,37 +206,19 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvProjectTracking_SelectionChanged(object sender, EventArgs e)
+        private void DgvProjectTracking_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvProjectTracking.RowCount == 0) return;
             if (dgvProjectTracking.CurrentRow == null) return;
             cobODPNo.Text = this.dgvProjectTracking.CurrentRow.Cells["ODPNo"].Value.ToString();
         }
-
-        /// <summary>
-        /// 显示全部项目跟踪记录
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnQueryAllProjectTracking_Click(object sender, EventArgs e)
-        {
-            QureyAll();
-        }
-        /// <summary>
-        /// 查询所有项目跟踪记录菜单
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tsmiQueryAllProjectTracking_Click(object sender, EventArgs e)
-        {
-            btnQueryAllProjectTracking_Click(null, null);
-        }
+        
         /// <summary>
         /// 修改跟踪记录菜单
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmiEditProjectTracking_Click(object sender, EventArgs e)
+        private void TsmiEditProjectTracking_Click(object sender, EventArgs e)
         {
             if (dgvProjectTracking.RowCount == 0)
             {
@@ -307,18 +242,18 @@ namespace Compass
             cobEditProjectStatus.Text = objProjectTracking.ProjectStatusName;
 
             //断开事件委托
-            this.dtpEditDrReleaseActual.ValueChanged -= new System.EventHandler(this.dtpEditDrReleaseActual_ValueChanged);
-            this.dtpEditProdFinishActual.ValueChanged -= new System.EventHandler(this.dtpEditProdFinishActual_ValueChanged);
-            this.dtpEditDeliverActual.ValueChanged -= new System.EventHandler(this.dtpEditDeliverActual_ValueChanged);
+            this.dtpEditDrReleaseActual.ValueChanged -= new System.EventHandler(this.DtpEditDrReleaseActual_ValueChanged);
+            this.dtpEditProdFinishActual.ValueChanged -= new System.EventHandler(this.DtpEditProdFinishActual_ValueChanged);
+            this.dtpEditDeliverActual.ValueChanged -= new System.EventHandler(this.DtpEditDeliverActual_ValueChanged);
 
             dtpEditDrReleaseActual.Text = objProjectTracking.DrReleaseActual == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.DrReleaseActual.ToShortDateString();
             dtpEditProdFinishActual.Text = objProjectTracking.ProdFinishActual == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.ProdFinishActual.ToShortDateString();
             dtpEditDeliverActual.Text = objProjectTracking.DeliverActual == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.DeliverActual.ToShortDateString();
 
             //重新建立事件委托
-            this.dtpEditDrReleaseActual.ValueChanged += new System.EventHandler(this.dtpEditDrReleaseActual_ValueChanged);
-            this.dtpEditProdFinishActual.ValueChanged += new System.EventHandler(this.dtpEditProdFinishActual_ValueChanged);
-            this.dtpEditDeliverActual.ValueChanged += new System.EventHandler(this.dtpEditDeliverActual_ValueChanged);
+            this.dtpEditDrReleaseActual.ValueChanged += new System.EventHandler(this.DtpEditDrReleaseActual_ValueChanged);
+            this.dtpEditProdFinishActual.ValueChanged += new System.EventHandler(this.DtpEditProdFinishActual_ValueChanged);
+            this.dtpEditDeliverActual.ValueChanged += new System.EventHandler(this.DtpEditDeliverActual_ValueChanged);
 
             dtpEditODPReceiveDate.Text = objProjectTracking.ODPReceiveDate == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.ODPReceiveDate.ToShortDateString();
             dtpEditKickOffDate.Text = objProjectTracking.KickOffDate == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.KickOffDate.ToShortDateString();
@@ -330,16 +265,16 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvProjectTracking_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvProjectTracking_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            tsmiEditProjectTracking_Click(null, null);
+            TsmiEditProjectTracking_Click(null, null);
         }
         /// <summary>
         /// 提交修改
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEditProjectTracking_Click(object sender, EventArgs e)
+        private void BtnEditProjectTracking_Click(object sender, EventArgs e)
         {
             #region 数据验证
             if (cobEditProjectStatus.SelectedIndex == -1)
@@ -388,7 +323,7 @@ namespace Compass
                 {
                     MessageBox.Show("修改计划成功！", "提示信息");
                     grbEditProjectTracking.Visible = false;
-                    btnQueryByYear_Click(null, null);
+                    BtnQueryByYear_Click(null, null);
                 }
             }
             catch (Exception ex)
@@ -397,45 +332,6 @@ namespace Compass
             }
             dgvProjectTracking.ClearSelection();
 
-            dgvProjectTracking.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
-            dgvProjectTracking.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
-        }
-        /// <summary>
-        /// 删除跟踪记录菜单
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tsmiDeleteProjectTracking_Click(object sender, EventArgs e)
-        {
-            if (dgvProjectTracking.RowCount == 0)
-            {
-                return;
-            }
-            if (dgvProjectTracking.CurrentRow == null)
-            {
-                MessageBox.Show("请选中需要删除的跟踪记录", "验证信息");
-                return;
-            }
-            string projectTrackingId = dgvProjectTracking.CurrentRow.Cells["ProjectTrackingId"].Value.ToString();
-            string odpNo = dgvProjectTracking.CurrentRow.Cells["ODPNo"].Value.ToString();
-            //删除询问
-            DialogResult result = MessageBox.Show("确定要删除（项目编号ODP： " + odpNo + " ）这条跟踪记录吗？", "删除询问", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-            if (result == DialogResult.No) return;
-            int firstRowIndex = dgvProjectTracking.CurrentRow.Index;
-            try
-            {
-                if (objProjectTrackingService.DeleteProjectTracking(projectTrackingId, sbu) == 1)
-                {
-                    btnQueryAllProjectTracking_Click(null, null);//同步刷新显示数据
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            grbEditProjectTracking.Visible = false;
-            dgvProjectTracking.ClearSelection();
             dgvProjectTracking.Rows[firstRowIndex].Selected = true;//将刚修改的行选中
             dgvProjectTracking.FirstDisplayedScrollingRowIndex = firstRowIndex;//将修改的行显示在第一行
         }
@@ -445,7 +341,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dtpEditDrReleaseActual_ValueChanged(object sender, EventArgs e)
+        private void DtpEditDrReleaseActual_ValueChanged(object sender, EventArgs e)
         {
             cobEditProjectStatus.SelectedValue = 4;
         }
@@ -454,7 +350,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dtpEditProdFinishActual_ValueChanged(object sender, EventArgs e)
+        private void DtpEditProdFinishActual_ValueChanged(object sender, EventArgs e)
         {
             cobEditProjectStatus.SelectedValue = 5;
         }
@@ -463,21 +359,17 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dtpEditDeliverActual_ValueChanged(object sender, EventArgs e)
+        private void DtpEditDeliverActual_ValueChanged(object sender, EventArgs e)
         {
             cobEditProjectStatus.SelectedValue = 6;
         }
-
-        private void dgvProjectTracking_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-
-        }
+        
         /// <summary>
         /// 根据年份查询
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnQueryByYear_Click(object sender, EventArgs e)
+        private void BtnQueryByYear_Click(object sender, EventArgs e)
         {
             if (this.cobQueryYear.SelectedIndex == -1)
             {
@@ -495,7 +387,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnFirst_Click(object sender, EventArgs e)
+        private void BtnFirst_Click(object sender, EventArgs e)
         {
             objSqlDataPager.CurrentPage = 1;//每次执行查询都必须设置为第一页
             QueryByYear();
@@ -508,7 +400,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnPre_Click(object sender, EventArgs e)
+        private void BtnPre_Click(object sender, EventArgs e)
         {
             objSqlDataPager.CurrentPage -= 1;//在当前页码上减一
             QueryByYear();
@@ -524,7 +416,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnNext_Click(object sender, EventArgs e)
+        private void BtnNext_Click(object sender, EventArgs e)
         {
             objSqlDataPager.CurrentPage += 1;//在当前页码上加一
             QueryByYear();
@@ -540,7 +432,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnLast_Click(object sender, EventArgs e)
+        private void BtnLast_Click(object sender, EventArgs e)
         {
             objSqlDataPager.CurrentPage = objSqlDataPager.TotalPages;//在当前页码上加一
             QueryByYear();
@@ -553,7 +445,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnToPage_Click(object sender, EventArgs e)
+        private void BtnToPage_Click(object sender, EventArgs e)
         {
             int a = this.txtToPage.IsInteger("跳转的页码");
             if (a != 0)
@@ -561,11 +453,11 @@ namespace Compass
                 int toPage = Convert.ToInt32(this.txtToPage.Text.Trim());
                 if (toPage > objSqlDataPager.TotalPages)
                 {
-                    btnLast_Click(null, null);//直接为最后一页
+                    BtnLast_Click(null, null);//直接为最后一页
                 }
                 else if (toPage == 0)
                 {
-                    btnFirst_Click(null, null);//第一页
+                    BtnFirst_Click(null, null);//第一页
                 }
                 else
                 {
@@ -587,7 +479,7 @@ namespace Compass
             }
         }
 
-        private void tsmiShowProjectInfo_Click(object sender, EventArgs e)
+        private void TsmiShowProjectInfo_Click(object sender, EventArgs e)
         {
             if (dgvProjectTracking.RowCount == 0) return;
             if (dgvProjectTracking.CurrentRow == null) return;

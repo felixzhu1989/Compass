@@ -81,7 +81,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(20, 60);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 32F));
@@ -99,11 +99,11 @@
             this.lvwLocal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvwLocal.FullRowSelect = true;
             this.lvwLocal.HideSelection = false;
-            this.lvwLocal.Location = new System.Drawing.Point(3, 33);
+            this.lvwLocal.Location = new System.Drawing.Point(3, 35);
             this.lvwLocal.MultiSelect = false;
             this.lvwLocal.Name = "lvwLocal";
             this.tableLayoutPanel1.SetRowSpan(this.lvwLocal, 3);
-            this.lvwLocal.Size = new System.Drawing.Size(539, 538);
+            this.lvwLocal.Size = new System.Drawing.Size(539, 535);
             this.lvwLocal.SmallImageList = this.imageList;
             this.lvwLocal.TabIndex = 0;
             this.lvwLocal.UseCompatibleStateImageBehavior = false;
@@ -137,7 +137,7 @@
             this.btnPublicToLocal.FlatAppearance.BorderSize = 0;
             this.btnPublicToLocal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPublicToLocal.ForeColor = System.Drawing.Color.White;
-            this.btnPublicToLocal.Location = new System.Drawing.Point(548, 33);
+            this.btnPublicToLocal.Location = new System.Drawing.Point(548, 35);
             this.btnPublicToLocal.Name = "btnPublicToLocal";
             this.btnPublicToLocal.Size = new System.Drawing.Size(64, 85);
             this.btnPublicToLocal.TabIndex = 45;
@@ -167,9 +167,9 @@
             // 
             this.lblLocalCount.AutoSize = true;
             this.lblLocalCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLocalCount.Location = new System.Drawing.Point(3, 574);
+            this.lblLocalCount.Location = new System.Drawing.Point(3, 573);
             this.lblLocalCount.Name = "lblLocalCount";
-            this.lblLocalCount.Size = new System.Drawing.Size(419, 21);
+            this.lblLocalCount.Size = new System.Drawing.Size(419, 22);
             this.lblLocalCount.TabIndex = 46;
             this.lblLocalCount.Text = "0个项目";
             // 
@@ -177,9 +177,9 @@
             // 
             this.lblPublicCount.AutoSize = true;
             this.lblPublicCount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPublicCount.Location = new System.Drawing.Point(618, 574);
+            this.lblPublicCount.Location = new System.Drawing.Point(618, 573);
             this.lblPublicCount.Name = "lblPublicCount";
-            this.lblPublicCount.Size = new System.Drawing.Size(419, 21);
+            this.lblPublicCount.Size = new System.Drawing.Size(419, 22);
             this.lblPublicCount.TabIndex = 47;
             this.lblPublicCount.Text = "0个项目";
             // 
@@ -192,7 +192,7 @@
             this.btnLocal.ForeColor = System.Drawing.Color.White;
             this.btnLocal.Location = new System.Drawing.Point(428, 3);
             this.btnLocal.Name = "btnLocal";
-            this.btnLocal.Size = new System.Drawing.Size(114, 24);
+            this.btnLocal.Size = new System.Drawing.Size(114, 26);
             this.btnLocal.TabIndex = 45;
             this.btnLocal.Text = "打开本地盘";
             this.btnLocal.UseVisualStyleBackColor = false;
@@ -207,7 +207,7 @@
             this.btnPublic.ForeColor = System.Drawing.Color.White;
             this.btnPublic.Location = new System.Drawing.Point(1043, 3);
             this.btnPublic.Name = "btnPublic";
-            this.btnPublic.Size = new System.Drawing.Size(114, 24);
+            this.btnPublic.Size = new System.Drawing.Size(114, 26);
             this.btnPublic.TabIndex = 48;
             this.btnPublic.Text = "打开公共盘";
             this.btnPublic.UseVisualStyleBackColor = false;
@@ -223,11 +223,11 @@
             this.lvwPublic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvwPublic.FullRowSelect = true;
             this.lvwPublic.HideSelection = false;
-            this.lvwPublic.Location = new System.Drawing.Point(618, 33);
+            this.lvwPublic.Location = new System.Drawing.Point(618, 35);
             this.lvwPublic.MultiSelect = false;
             this.lvwPublic.Name = "lvwPublic";
             this.tableLayoutPanel1.SetRowSpan(this.lvwPublic, 3);
-            this.lvwPublic.Size = new System.Drawing.Size(539, 538);
+            this.lvwPublic.Size = new System.Drawing.Size(539, 535);
             this.lvwPublic.SmallImageList = this.imageList;
             this.lvwPublic.TabIndex = 0;
             this.lvwPublic.UseCompatibleStateImageBehavior = false;
@@ -255,7 +255,7 @@
             this.btnLocalToPublic.FlatAppearance.BorderSize = 0;
             this.btnLocalToPublic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLocalToPublic.ForeColor = System.Drawing.Color.White;
-            this.btnLocalToPublic.Location = new System.Drawing.Point(548, 305);
+            this.btnLocalToPublic.Location = new System.Drawing.Point(548, 306);
             this.btnLocalToPublic.Name = "btnLocalToPublic";
             this.btnLocalToPublic.Size = new System.Drawing.Size(64, 85);
             this.btnLocalToPublic.TabIndex = 44;

@@ -79,6 +79,9 @@
             this.tpgProjectInfo = new System.Windows.Forms.TabPage();
             this.tpgProjectList = new System.Windows.Forms.TabPage();
             this.dgvProjects = new System.Windows.Forms.DataGridView();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.btnScroll = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BPONo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,8 +91,10 @@
             this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RiskLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            this.btnScroll = new System.Windows.Forms.Button();
+            this.AnomalyStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grbAnomalyStatus = new System.Windows.Forms.GroupBox();
             this.grbProject.SuspendLayout();
             this.grbGeneralRequirements.SuspendLayout();
             this.grbSpecialRequirements.SuspendLayout();
@@ -109,6 +114,7 @@
             this.tpgProjectInfo.SuspendLayout();
             this.tpgProjectList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label3
@@ -124,9 +130,10 @@
             // grbProject
             // 
             this.grbProject.Controls.Add(this.txtProjectInfo);
-            this.grbProject.Location = new System.Drawing.Point(6, 6);
+            this.grbProject.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbProject.Location = new System.Drawing.Point(3, 3);
             this.grbProject.Name = "grbProject";
-            this.grbProject.Size = new System.Drawing.Size(302, 227);
+            this.grbProject.Size = new System.Drawing.Size(275, 175);
             this.grbProject.TabIndex = 2;
             this.grbProject.TabStop = false;
             this.grbProject.Text = "项目基本信息";
@@ -139,15 +146,16 @@
             this.txtProjectInfo.Name = "txtProjectInfo";
             this.txtProjectInfo.ReadOnly = true;
             this.txtProjectInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtProjectInfo.Size = new System.Drawing.Size(296, 203);
+            this.txtProjectInfo.Size = new System.Drawing.Size(269, 151);
             this.txtProjectInfo.TabIndex = 0;
             // 
             // grbGeneralRequirements
             // 
             this.grbGeneralRequirements.Controls.Add(this.txtGeneralRequirements);
-            this.grbGeneralRequirements.Location = new System.Drawing.Point(6, 239);
+            this.grbGeneralRequirements.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbGeneralRequirements.Location = new System.Drawing.Point(3, 184);
             this.grbGeneralRequirements.Name = "grbGeneralRequirements";
-            this.grbGeneralRequirements.Size = new System.Drawing.Size(302, 150);
+            this.grbGeneralRequirements.Size = new System.Drawing.Size(275, 115);
             this.grbGeneralRequirements.TabIndex = 3;
             this.grbGeneralRequirements.TabStop = false;
             this.grbGeneralRequirements.Text = "通用技术要求";
@@ -160,17 +168,16 @@
             this.txtGeneralRequirements.Name = "txtGeneralRequirements";
             this.txtGeneralRequirements.ReadOnly = true;
             this.txtGeneralRequirements.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtGeneralRequirements.Size = new System.Drawing.Size(296, 126);
+            this.txtGeneralRequirements.Size = new System.Drawing.Size(269, 91);
             this.txtGeneralRequirements.TabIndex = 0;
             // 
             // grbSpecialRequirements
             // 
-            this.grbSpecialRequirements.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.grbSpecialRequirements.Controls.Add(this.txtSpecialRequirements);
-            this.grbSpecialRequirements.Location = new System.Drawing.Point(6, 392);
+            this.grbSpecialRequirements.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbSpecialRequirements.Location = new System.Drawing.Point(3, 305);
             this.grbSpecialRequirements.Name = "grbSpecialRequirements";
-            this.grbSpecialRequirements.Size = new System.Drawing.Size(302, 181);
+            this.grbSpecialRequirements.Size = new System.Drawing.Size(275, 298);
             this.grbSpecialRequirements.TabIndex = 4;
             this.grbSpecialRequirements.TabStop = false;
             this.grbSpecialRequirements.Text = "特殊技术要求";
@@ -183,7 +190,7 @@
             this.txtSpecialRequirements.Name = "txtSpecialRequirements";
             this.txtSpecialRequirements.ReadOnly = true;
             this.txtSpecialRequirements.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSpecialRequirements.Size = new System.Drawing.Size(296, 157);
+            this.txtSpecialRequirements.Size = new System.Drawing.Size(269, 274);
             this.txtSpecialRequirements.TabIndex = 0;
             // 
             // cobODPNo
@@ -215,13 +222,11 @@
             // 
             // grbModuleStatistics
             // 
-            this.grbModuleStatistics.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grbModuleStatistics.Controls.Add(this.dgvScope);
-            this.grbModuleStatistics.Location = new System.Drawing.Point(310, 460);
+            this.grbModuleStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbModuleStatistics.Location = new System.Drawing.Point(565, 184);
             this.grbModuleStatistics.Name = "grbModuleStatistics";
-            this.grbModuleStatistics.Size = new System.Drawing.Size(470, 113);
+            this.grbModuleStatistics.Size = new System.Drawing.Size(277, 115);
             this.grbModuleStatistics.TabIndex = 5;
             this.grbModuleStatistics.TabStop = false;
             this.grbModuleStatistics.Text = "机型统计";
@@ -244,13 +249,16 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvScope.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvScope.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvScope.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Model,
+            this.Num});
             this.dgvScope.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvScope.EnableHeadersVisualStyles = false;
             this.dgvScope.Location = new System.Drawing.Point(3, 21);
             this.dgvScope.Name = "dgvScope";
             this.dgvScope.ReadOnly = true;
             this.dgvScope.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvScope.Size = new System.Drawing.Size(464, 89);
+            this.dgvScope.Size = new System.Drawing.Size(271, 91);
             this.dgvScope.TabIndex = 0;
             this.dgvScope.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvScope_RowPostPaint);
             // 
@@ -275,14 +283,13 @@
             // 
             // grbFinancialData
             // 
-            this.grbFinancialData.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grbFinancialData.Controls.Add(this.txtSalesValue);
             this.grbFinancialData.Controls.Add(this.btnFinancialData);
             this.grbFinancialData.Controls.Add(this.lblSalesValue);
-            this.grbFinancialData.Location = new System.Drawing.Point(310, 392);
+            this.grbFinancialData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbFinancialData.Location = new System.Drawing.Point(565, 3);
             this.grbFinancialData.Name = "grbFinancialData";
-            this.grbFinancialData.Size = new System.Drawing.Size(470, 62);
+            this.grbFinancialData.Size = new System.Drawing.Size(277, 175);
             this.grbFinancialData.TabIndex = 1;
             this.grbFinancialData.TabStop = false;
             this.grbFinancialData.Text = "财务数据";
@@ -294,7 +301,7 @@
             this.btnFinancialData.FlatAppearance.BorderSize = 0;
             this.btnFinancialData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinancialData.ForeColor = System.Drawing.Color.White;
-            this.btnFinancialData.Location = new System.Drawing.Point(356, 23);
+            this.btnFinancialData.Location = new System.Drawing.Point(163, 136);
             this.btnFinancialData.Name = "btnFinancialData";
             this.btnFinancialData.Size = new System.Drawing.Size(108, 28);
             this.btnFinancialData.TabIndex = 1;
@@ -330,18 +337,18 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartTracking.Series.Add(series1);
-            this.chartTracking.Size = new System.Drawing.Size(463, 359);
+            this.chartTracking.Size = new System.Drawing.Size(269, 272);
             this.chartTracking.TabIndex = 7;
             this.chartTracking.Text = "chart1";
             // 
             // grbTracking
             // 
-            this.grbTracking.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.grbTracking.Controls.Add(this.chartTracking);
-            this.grbTracking.Location = new System.Drawing.Point(311, 6);
+            this.grbTracking.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbTracking.Location = new System.Drawing.Point(284, 3);
             this.grbTracking.Name = "grbTracking";
-            this.grbTracking.Size = new System.Drawing.Size(469, 383);
+            this.tableLayoutPanel1.SetRowSpan(this.grbTracking, 2);
+            this.grbTracking.Size = new System.Drawing.Size(275, 296);
             this.grbTracking.TabIndex = 8;
             this.grbTracking.TabStop = false;
             this.grbTracking.Text = "跟踪信息";
@@ -350,9 +357,9 @@
             // 
             this.grbProjectStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.grbProjectStatus.Controls.Add(this.chartProjectStatus);
-            this.grbProjectStatus.Location = new System.Drawing.Point(798, 86);
+            this.grbProjectStatus.Location = new System.Drawing.Point(863, 86);
             this.grbProjectStatus.Name = "grbProjectStatus";
-            this.grbProjectStatus.Size = new System.Drawing.Size(400, 200);
+            this.grbProjectStatus.Size = new System.Drawing.Size(335, 200);
             this.grbProjectStatus.TabIndex = 8;
             this.grbProjectStatus.TabStop = false;
             this.grbProjectStatus.Text = "项目状态分布--月--(项目数量)";
@@ -383,7 +390,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.chartProjectStatus.Series.Add(series2);
-            this.chartProjectStatus.Size = new System.Drawing.Size(394, 176);
+            this.chartProjectStatus.Size = new System.Drawing.Size(329, 176);
             this.chartProjectStatus.TabIndex = 7;
             this.chartProjectStatus.Text = "chart1";
             // 
@@ -423,9 +430,9 @@
             // 
             this.grbRiskLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.grbRiskLevel.Controls.Add(this.chartRiskLevel);
-            this.grbRiskLevel.Location = new System.Drawing.Point(798, 292);
+            this.grbRiskLevel.Location = new System.Drawing.Point(863, 292);
             this.grbRiskLevel.Name = "grbRiskLevel";
-            this.grbRiskLevel.Size = new System.Drawing.Size(400, 200);
+            this.grbRiskLevel.Size = new System.Drawing.Size(335, 200);
             this.grbRiskLevel.TabIndex = 8;
             this.grbRiskLevel.TabStop = false;
             this.grbRiskLevel.Text = "风险等级分布--月--(项目数量)";
@@ -456,7 +463,7 @@
             series3.Legend = "Legend1";
             series3.Name = "Series1";
             this.chartRiskLevel.Series.Add(series3);
-            this.chartRiskLevel.Size = new System.Drawing.Size(394, 176);
+            this.chartRiskLevel.Size = new System.Drawing.Size(329, 176);
             this.chartRiskLevel.TabIndex = 7;
             this.chartRiskLevel.Text = "chart1";
             // 
@@ -464,9 +471,9 @@
             // 
             this.grbProjectType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.grbProjectType.Controls.Add(this.chartProjectType);
-            this.grbProjectType.Location = new System.Drawing.Point(798, 498);
+            this.grbProjectType.Location = new System.Drawing.Point(863, 498);
             this.grbProjectType.Name = "grbProjectType";
-            this.grbProjectType.Size = new System.Drawing.Size(400, 200);
+            this.grbProjectType.Size = new System.Drawing.Size(335, 200);
             this.grbProjectType.TabIndex = 8;
             this.grbProjectType.TabStop = false;
             this.grbProjectType.Text = "项目类型分布--月--(销售额单位：万元)";
@@ -497,7 +504,7 @@
             series4.Legend = "Legend1";
             series4.Name = "Series1";
             this.chartProjectType.Series.Add(series4);
-            this.chartProjectType.Size = new System.Drawing.Size(394, 176);
+            this.chartProjectType.Size = new System.Drawing.Size(329, 176);
             this.chartProjectType.TabIndex = 7;
             this.chartProjectType.Text = "chart1";
             // 
@@ -520,11 +527,11 @@
             // 
             this.lblProjectNum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblProjectNum.AutoSize = true;
-            this.lblProjectNum.Location = new System.Drawing.Point(850, 57);
+            this.lblProjectNum.Location = new System.Drawing.Point(868, 57);
             this.lblProjectNum.Name = "lblProjectNum";
-            this.lblProjectNum.Size = new System.Drawing.Size(126, 19);
+            this.lblProjectNum.Size = new System.Drawing.Size(100, 19);
             this.lblProjectNum.TabIndex = 9;
-            this.lblProjectNum.Text = "统计区间项目总数：";
+            this.lblProjectNum.Text = "区间项目总数：";
             // 
             // lblTime
             // 
@@ -547,21 +554,16 @@
             this.tabControl.Location = new System.Drawing.Point(1, 53);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(794, 644);
+            this.tabControl.Size = new System.Drawing.Size(859, 644);
             this.tabControl.TabIndex = 11;
             // 
             // tpgProjectInfo
             // 
-            this.tpgProjectInfo.Controls.Add(this.grbProject);
-            this.tpgProjectInfo.Controls.Add(this.grbFinancialData);
-            this.tpgProjectInfo.Controls.Add(this.grbGeneralRequirements);
-            this.tpgProjectInfo.Controls.Add(this.grbModuleStatistics);
-            this.tpgProjectInfo.Controls.Add(this.grbSpecialRequirements);
-            this.tpgProjectInfo.Controls.Add(this.grbTracking);
+            this.tpgProjectInfo.Controls.Add(this.tableLayoutPanel1);
             this.tpgProjectInfo.Location = new System.Drawing.Point(4, 28);
             this.tpgProjectInfo.Name = "tpgProjectInfo";
             this.tpgProjectInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgProjectInfo.Size = new System.Drawing.Size(786, 612);
+            this.tpgProjectInfo.Size = new System.Drawing.Size(851, 612);
             this.tpgProjectInfo.TabIndex = 0;
             this.tpgProjectInfo.Text = "详细信息";
             this.tpgProjectInfo.UseVisualStyleBackColor = true;
@@ -569,10 +571,10 @@
             // tpgProjectList
             // 
             this.tpgProjectList.Controls.Add(this.dgvProjects);
-            this.tpgProjectList.Location = new System.Drawing.Point(4, 22);
+            this.tpgProjectList.Location = new System.Drawing.Point(4, 28);
             this.tpgProjectList.Name = "tpgProjectList";
             this.tpgProjectList.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgProjectList.Size = new System.Drawing.Size(786, 618);
+            this.tpgProjectList.Size = new System.Drawing.Size(851, 612);
             this.tpgProjectList.TabIndex = 1;
             this.tpgProjectList.Text = "项目列表";
             this.tpgProjectList.UseVisualStyleBackColor = true;
@@ -604,16 +606,60 @@
             this.ProjectStatusName,
             this.TypeName,
             this.RiskLevel,
-            this.HoodType});
+            this.HoodType,
+            this.AnomalyStatus});
             this.dgvProjects.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProjects.EnableHeadersVisualStyles = false;
             this.dgvProjects.Location = new System.Drawing.Point(3, 3);
             this.dgvProjects.Name = "dgvProjects";
             this.dgvProjects.ReadOnly = true;
             this.dgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvProjects.Size = new System.Drawing.Size(780, 612);
+            this.dgvProjects.Size = new System.Drawing.Size(845, 606);
             this.dgvProjects.TabIndex = 36;
             this.dgvProjects.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvProjects_RowPostPaint);
+            // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
+            // btnScroll
+            // 
+            this.btnScroll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.btnScroll.FlatAppearance.BorderSize = 0;
+            this.btnScroll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnScroll.ForeColor = System.Drawing.Color.White;
+            this.btnScroll.Location = new System.Drawing.Point(310, 18);
+            this.btnScroll.Name = "btnScroll";
+            this.btnScroll.Size = new System.Drawing.Size(72, 28);
+            this.btnScroll.TabIndex = 1;
+            this.btnScroll.Text = "暂停循环";
+            this.btnScroll.UseVisualStyleBackColor = false;
+            this.btnScroll.Click += new System.EventHandler(this.BtnScroll_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel1.Controls.Add(this.grbProject, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.grbGeneralRequirements, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.grbSpecialRequirements, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.grbTracking, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.grbFinancialData, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.grbModuleStatistics, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.grbAnomalyStatus, 1, 2);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(845, 606);
+            this.tableLayoutPanel1.TabIndex = 9;
             // 
             // UserAccount
             // 
@@ -688,25 +734,39 @@
             this.HoodType.ReadOnly = true;
             this.HoodType.Width = 86;
             // 
-            // timer
+            // AnomalyStatus
             // 
-            this.timer.Enabled = true;
-            this.timer.Interval = 1000;
-            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
+            this.AnomalyStatus.HeaderText = "异常状态";
+            this.AnomalyStatus.Name = "AnomalyStatus";
+            this.AnomalyStatus.ReadOnly = true;
+            this.AnomalyStatus.Width = 86;
             // 
-            // btnScroll
+            // Model
             // 
-            this.btnScroll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.btnScroll.FlatAppearance.BorderSize = 0;
-            this.btnScroll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnScroll.ForeColor = System.Drawing.Color.White;
-            this.btnScroll.Location = new System.Drawing.Point(310, 18);
-            this.btnScroll.Name = "btnScroll";
-            this.btnScroll.Size = new System.Drawing.Size(72, 28);
-            this.btnScroll.TabIndex = 1;
-            this.btnScroll.Text = "暂停循环";
-            this.btnScroll.UseVisualStyleBackColor = false;
-            this.btnScroll.Click += new System.EventHandler(this.BtnScroll_Click);
+            this.Model.DataPropertyName = "Model";
+            this.Model.HeaderText = "机型";
+            this.Model.Name = "Model";
+            this.Model.ReadOnly = true;
+            this.Model.Width = 60;
+            // 
+            // Num
+            // 
+            this.Num.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Num.DataPropertyName = "Num";
+            this.Num.HeaderText = "烟罩数量/天花工作量";
+            this.Num.Name = "Num";
+            this.Num.ReadOnly = true;
+            // 
+            // grbAnomalyStatus
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.grbAnomalyStatus, 2);
+            this.grbAnomalyStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbAnomalyStatus.Location = new System.Drawing.Point(284, 305);
+            this.grbAnomalyStatus.Name = "grbAnomalyStatus";
+            this.grbAnomalyStatus.Size = new System.Drawing.Size(558, 298);
+            this.grbAnomalyStatus.TabIndex = 9;
+            this.grbAnomalyStatus.TabStop = false;
+            this.grbAnomalyStatus.Text = "异常信息";
             // 
             // FrmProjectInfo
             // 
@@ -752,6 +812,7 @@
             this.tpgProjectInfo.ResumeLayout(false);
             this.tpgProjectList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -794,6 +855,7 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button btnScroll;
         private System.Windows.Forms.DataGridView dgvProjects;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ODPNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn BPONo;
@@ -803,5 +865,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn RiskLevel;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoodType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AnomalyStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Model;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Num;
+        private System.Windows.Forms.GroupBox grbAnomalyStatus;
     }
 }
