@@ -689,15 +689,33 @@ namespace SolidWorksHelper
                 swPart.Parameter("D1@Sketch1").SystemValue = (item.Length - 8m) / 1000m;
                 if (item.ANSUL == "YES")
                 {
-                    if (item.ANDetector == "LEFT" || item.ANDetector == "BOTH")
+                    if (item.ANDetector == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("ANDTEC-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
-                    }
-                    if (item.ANDetector == "RIGHT" || item.ANDetector == "BOTH")
-                    {
+                        swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
+                    }
+                    else if (item.ANDetector == "LEFT")
+                    {
+                        swFeat = swComp.FeatureByName("ANDTEC-LEFT");
+                        swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
+                        swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
+                    }
+                    if (item.ANDetector == "RIGHT")
+                    {
+                        swFeat = swComp.FeatureByName("ANDTEC-LEFT");
+                        swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
+                        swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
+                    }
+                    else
+                    {
+                        swFeat = swComp.FeatureByName("ANDTEC-LEFT");
+                        swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
+                        swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
                     }
                 }
                 else
@@ -1403,7 +1421,7 @@ namespace SolidWorksHelper
                     swFeat = swComp.FeatureByName("DRAINCHANNEL-LEFT");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 }
-                
+
                 //----------蓝牙和LOGO----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900200001-1"));
                 if (item.Bluetooth == "YES") swComp.SetSuppression2(2); //2解压缩，0压缩

@@ -510,8 +510,8 @@ namespace Compass
 
         private void ReportMonthly()
         {
-            //统计区间项目总数：
-            lblProjectNum.Text = "统计区间项目总数：" + objMonthlyReportService.GetProjectNum(cobYear.Text, cobMonth.Text);
+            //统计项目总数：
+            lblProjectNum.Text = "统计项目总数：" + objMonthlyReportService.GetProjectNum(cobYear.Text, cobMonth.Text);
             //ProjectStatus
             List<ChartData> chartProjectStatusDatas = objMonthlyReportService.GetProjectStatus(cobYear.Text, cobMonth.Text);
             foreach (var item in chartProjectStatusDatas)
@@ -554,7 +554,7 @@ namespace Compass
         private void ReportYearly()
         {
             //统计区间项目总数：
-            lblProjectNum.Text = "统计区间项目总数：" + objMonthlyReportService.GetProjectNum(cobYear.Text);
+            lblProjectNum.Text = "统计项目总数：" + objMonthlyReportService.GetProjectNum(cobYear.Text);
             //ProjectStatus，不显示年度的状态信息
             //List<ChartData> chartProjectStatusDatas = objMonthlyReportService.GetProjectStatus(cobYear.Text);
             //SuperChart superChartProjectStatus = new SuperChart(chartProjectStatus);

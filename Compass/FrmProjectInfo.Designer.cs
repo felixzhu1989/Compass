@@ -133,7 +133,7 @@
             this.grbProject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grbProject.Location = new System.Drawing.Point(3, 3);
             this.grbProject.Name = "grbProject";
-            this.grbProject.Size = new System.Drawing.Size(275, 175);
+            this.grbProject.Size = new System.Drawing.Size(195, 175);
             this.grbProject.TabIndex = 2;
             this.grbProject.TabStop = false;
             this.grbProject.Text = "项目基本信息";
@@ -146,7 +146,7 @@
             this.txtProjectInfo.Name = "txtProjectInfo";
             this.txtProjectInfo.ReadOnly = true;
             this.txtProjectInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtProjectInfo.Size = new System.Drawing.Size(269, 151);
+            this.txtProjectInfo.Size = new System.Drawing.Size(189, 151);
             this.txtProjectInfo.TabIndex = 0;
             // 
             // grbGeneralRequirements
@@ -155,7 +155,7 @@
             this.grbGeneralRequirements.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grbGeneralRequirements.Location = new System.Drawing.Point(3, 184);
             this.grbGeneralRequirements.Name = "grbGeneralRequirements";
-            this.grbGeneralRequirements.Size = new System.Drawing.Size(275, 115);
+            this.grbGeneralRequirements.Size = new System.Drawing.Size(195, 115);
             this.grbGeneralRequirements.TabIndex = 3;
             this.grbGeneralRequirements.TabStop = false;
             this.grbGeneralRequirements.Text = "通用技术要求";
@@ -168,7 +168,7 @@
             this.txtGeneralRequirements.Name = "txtGeneralRequirements";
             this.txtGeneralRequirements.ReadOnly = true;
             this.txtGeneralRequirements.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtGeneralRequirements.Size = new System.Drawing.Size(269, 91);
+            this.txtGeneralRequirements.Size = new System.Drawing.Size(189, 91);
             this.txtGeneralRequirements.TabIndex = 0;
             // 
             // grbSpecialRequirements
@@ -177,7 +177,7 @@
             this.grbSpecialRequirements.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grbSpecialRequirements.Location = new System.Drawing.Point(3, 305);
             this.grbSpecialRequirements.Name = "grbSpecialRequirements";
-            this.grbSpecialRequirements.Size = new System.Drawing.Size(275, 298);
+            this.grbSpecialRequirements.Size = new System.Drawing.Size(195, 298);
             this.grbSpecialRequirements.TabIndex = 4;
             this.grbSpecialRequirements.TabStop = false;
             this.grbSpecialRequirements.Text = "特殊技术要求";
@@ -190,7 +190,7 @@
             this.txtSpecialRequirements.Name = "txtSpecialRequirements";
             this.txtSpecialRequirements.ReadOnly = true;
             this.txtSpecialRequirements.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSpecialRequirements.Size = new System.Drawing.Size(269, 274);
+            this.txtSpecialRequirements.Size = new System.Drawing.Size(189, 274);
             this.txtSpecialRequirements.TabIndex = 0;
             // 
             // cobODPNo
@@ -224,9 +224,9 @@
             // 
             this.grbModuleStatistics.Controls.Add(this.dgvScope);
             this.grbModuleStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbModuleStatistics.Location = new System.Drawing.Point(565, 184);
+            this.grbModuleStatistics.Location = new System.Drawing.Point(577, 184);
             this.grbModuleStatistics.Name = "grbModuleStatistics";
-            this.grbModuleStatistics.Size = new System.Drawing.Size(277, 115);
+            this.grbModuleStatistics.Size = new System.Drawing.Size(265, 115);
             this.grbModuleStatistics.TabIndex = 5;
             this.grbModuleStatistics.TabStop = false;
             this.grbModuleStatistics.Text = "机型统计";
@@ -258,7 +258,7 @@
             this.dgvScope.Name = "dgvScope";
             this.dgvScope.ReadOnly = true;
             this.dgvScope.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvScope.Size = new System.Drawing.Size(271, 91);
+            this.dgvScope.Size = new System.Drawing.Size(259, 91);
             this.dgvScope.TabIndex = 0;
             this.dgvScope.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvScope_RowPostPaint);
             // 
@@ -287,9 +287,9 @@
             this.grbFinancialData.Controls.Add(this.btnFinancialData);
             this.grbFinancialData.Controls.Add(this.lblSalesValue);
             this.grbFinancialData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbFinancialData.Location = new System.Drawing.Point(565, 3);
+            this.grbFinancialData.Location = new System.Drawing.Point(577, 3);
             this.grbFinancialData.Name = "grbFinancialData";
-            this.grbFinancialData.Size = new System.Drawing.Size(277, 175);
+            this.grbFinancialData.Size = new System.Drawing.Size(265, 175);
             this.grbFinancialData.TabIndex = 1;
             this.grbFinancialData.TabStop = false;
             this.grbFinancialData.Text = "财务数据";
@@ -301,7 +301,7 @@
             this.btnFinancialData.FlatAppearance.BorderSize = 0;
             this.btnFinancialData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinancialData.ForeColor = System.Drawing.Color.White;
-            this.btnFinancialData.Location = new System.Drawing.Point(163, 136);
+            this.btnFinancialData.Location = new System.Drawing.Point(151, 136);
             this.btnFinancialData.Name = "btnFinancialData";
             this.btnFinancialData.Size = new System.Drawing.Size(108, 28);
             this.btnFinancialData.TabIndex = 1;
@@ -337,7 +337,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartTracking.Series.Add(series1);
-            this.chartTracking.Size = new System.Drawing.Size(269, 272);
+            this.chartTracking.Size = new System.Drawing.Size(361, 272);
             this.chartTracking.TabIndex = 7;
             this.chartTracking.Text = "chart1";
             // 
@@ -345,10 +345,10 @@
             // 
             this.grbTracking.Controls.Add(this.chartTracking);
             this.grbTracking.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbTracking.Location = new System.Drawing.Point(284, 3);
+            this.grbTracking.Location = new System.Drawing.Point(204, 3);
             this.grbTracking.Name = "grbTracking";
             this.tableLayoutPanel1.SetRowSpan(this.grbTracking, 2);
-            this.grbTracking.Size = new System.Drawing.Size(275, 296);
+            this.grbTracking.Size = new System.Drawing.Size(367, 296);
             this.grbTracking.TabIndex = 8;
             this.grbTracking.TabStop = false;
             this.grbTracking.Text = "跟踪信息";
@@ -531,7 +531,7 @@
             this.lblProjectNum.Name = "lblProjectNum";
             this.lblProjectNum.Size = new System.Drawing.Size(100, 19);
             this.lblProjectNum.TabIndex = 9;
-            this.lblProjectNum.Text = "区间项目总数：";
+            this.lblProjectNum.Text = "统计项目总数：";
             // 
             // lblTime
             // 
@@ -641,9 +641,9 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 270F));
             this.tableLayoutPanel1.Controls.Add(this.grbProject, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.grbGeneralRequirements, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.grbSpecialRequirements, 0, 2);
@@ -761,9 +761,9 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.grbAnomalyStatus, 2);
             this.grbAnomalyStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbAnomalyStatus.Location = new System.Drawing.Point(284, 305);
+            this.grbAnomalyStatus.Location = new System.Drawing.Point(204, 305);
             this.grbAnomalyStatus.Name = "grbAnomalyStatus";
-            this.grbAnomalyStatus.Size = new System.Drawing.Size(558, 298);
+            this.grbAnomalyStatus.Size = new System.Drawing.Size(638, 298);
             this.grbAnomalyStatus.TabIndex = 9;
             this.grbAnomalyStatus.TabStop = false;
             this.grbAnomalyStatus.Text = "异常信息";

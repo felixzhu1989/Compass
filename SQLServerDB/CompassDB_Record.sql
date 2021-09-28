@@ -361,7 +361,8 @@ delete from projects where projectId=62
 select ProjectStatusId from ProjectTracking
 select * from ProjectStatus
 
-
+select * from drawingnummatrix where drawingid between 488 and 516
+update drawingnummatrix set DrawingType='Standard' where drawingid between 488 and 516
 
 
 

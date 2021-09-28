@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Drawing;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using Common;
 using DAL;
 using eDrawings.Interop.EModelViewControl;
 using eDrawings.Interop.EModelMarkupControl;
-using SolidWorks.Interop.sldworks;
-using SolidWorks.Interop.swconst;
 using Models;
-using SolidWorksHelper;
 
 namespace Compass
 {
@@ -197,7 +195,8 @@ namespace Compass
             {
                 filePath = modelViewData.PublicPath;
             }
-            string linkPath = @"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\SOLIDWORKS 2021\eDrawings 2021 x64 Edition.lnk";
+            string linkPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms), @"SOLIDWORKS 2021\eDrawings 2021 x64 Edition.lnk");
+            //string linkPath =@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\SOLIDWORKS 2021\eDrawings 2021 x64 Edition.lnk"; 
             //string exePath = @"C:\Program Files\SOLIDWORKS2021 Corp\eDrawings\eDrawings.exe";
             string exePath = modelViewData.EDrawingPath;
             if (System.IO.File.Exists(filePath))
@@ -230,12 +229,13 @@ namespace Compass
             }
             if (System.IO.File.Exists(filePath))
             {
-                int errors = 0;
-                int warnings = 0;
-                SldWorks swApp = SolidWorksSingleton.GetApplication();
-                ModelDoc2 swModel = swApp.OpenDoc6(filePath, (int)swDocumentTypes_e.swDocASSEMBLY,
-                    (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
-                swModel.ForceRebuild3(true);
+                //int errors = 0;
+                //int warnings = 0;
+                //SldWorks swApp = SolidWorksSingleton.GetApplication();
+                //ModelDoc2 swModel = swApp.OpenDoc6(filePath, (int)swDocumentTypes_e.swDocASSEMBLY,
+                //    (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
+                //swModel.ForceRebuild3(true);
+                Process.Start(filePath);
             }
             else
             {

@@ -490,7 +490,7 @@ create table HWUVF650
     LEDSpotDis decimal(6,2),
     LightType varchar(7),
 	LightYDis decimal(6,2),
-    UVType varchar(5),
+    UVType varchar(6),
     ANSUL varchar(3),
     ANSide varchar(5),
     ANDetector varchar(5),
@@ -509,6 +509,8 @@ create table HWUVF650
 	SuNo int,
 	SuDis decimal(6,2)
 )
+
+select * from HWUVF650
 
 --UVF450
 if exists (select * from sysobjects where name='UVF450')

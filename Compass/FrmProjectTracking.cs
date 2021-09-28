@@ -229,12 +229,13 @@ namespace Compass
                 MessageBox.Show("请选中需要修改的跟踪记录", "提示信息");
                 return;
             }
+
             string projectTrackingId = dgvProjectTracking.CurrentRow.Cells["ProjectTrackingId"].Value.ToString();
             ProjectTracking objProjectTracking = objProjectTrackingService.GetProjectTrackingById(projectTrackingId, sbu);
             //初始化修改信息
             grbEditProjectTracking.Visible = true;//显示修改框
             grbEditProjectTracking.Location = new Point(10, 9);
-            txtEditProjectTrackingId.Text = objProjectTracking.ProjectTrackingId.ToString();
+            btnEditProjectTracking.Tag = objProjectTracking.ProjectTrackingId.ToString();
             IniODPNo(cobEditODPNo);
             IniProjectStatus(cobEditProjectStatus);
            
@@ -306,7 +307,7 @@ namespace Compass
             //封装项目跟踪对象
             ProjectTracking objProjectTracking = new ProjectTracking()
             {
-                ProjectTrackingId = Convert.ToInt32(txtEditProjectTrackingId.Text.Trim()),
+                ProjectTrackingId = Convert.ToInt32(btnEditProjectTracking.Tag),
                 ProjectId = Convert.ToInt32(cobEditODPNo.SelectedValue),
                 ProjectStatusId = Convert.ToInt32(cobEditProjectStatus.SelectedValue),
                 DrReleaseActual = Convert.ToDateTime(dtpEditDrReleaseActual.Text) == Convert.ToDateTime("1/1/2020") ? DateTime.MinValue : Convert.ToDateTime(dtpEditDrReleaseActual.Text),
@@ -343,7 +344,14 @@ namespace Compass
         /// <param name="e"></param>
         private void DtpEditDrReleaseActual_ValueChanged(object sender, EventArgs e)
         {
-            cobEditProjectStatus.SelectedValue = 4;
+            if (Convert.ToDateTime(dtpEditDrReleaseActual.Text) == Convert.ToDateTime("1/1/2020"))
+            {
+                cobEditProjectStatus.SelectedValue = 3;
+            }
+            else
+            {
+                cobEditProjectStatus.SelectedValue = 4;
+            }
         }
         /// <summary>
         /// 更改实际完工日期后，项目状态自动切换成生产完工
@@ -352,7 +360,14 @@ namespace Compass
         /// <param name="e"></param>
         private void DtpEditProdFinishActual_ValueChanged(object sender, EventArgs e)
         {
-            cobEditProjectStatus.SelectedValue = 5;
+            if (Convert.ToDateTime(dtpEditProdFinishActual.Text) == Convert.ToDateTime("1/1/2020"))
+            {
+                cobEditProjectStatus.SelectedValue =4;
+            }
+            else
+            {
+                cobEditProjectStatus.SelectedValue = 5;
+            }
         }
         /// <summary>
         /// 更改实际发货日期后，项目状态自动切换成项目完成
@@ -361,7 +376,14 @@ namespace Compass
         /// <param name="e"></param>
         private void DtpEditDeliverActual_ValueChanged(object sender, EventArgs e)
         {
-            cobEditProjectStatus.SelectedValue = 6;
+            if (Convert.ToDateTime(dtpEditDeliverActual.Text) == Convert.ToDateTime("1/1/2020"))
+            {
+                cobEditProjectStatus.SelectedValue = 5;
+            }
+            else
+            {
+                cobEditProjectStatus.SelectedValue = 6;
+            }
         }
         
         /// <summary>

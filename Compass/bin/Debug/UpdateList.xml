@@ -5,45 +5,45 @@
   <!--升级文件信息-->
   <UpdateInfo>
     <!--升级文件的更新日期-->
-    <UpdateTime Date="2021-09-26 16:00"/>
+    <UpdateTime Date="2021-09-28 17:00"/>
     <!--升级文件的版本号-->
-    <Version Num="1.0.3.14"/>
+    <Version Num="1.0.3.15"/>
   </UpdateInfo>
   <!--升级文件列表-->
   <UpdateFileList>   
 	<!--DLL文件-->
-	<UpdateFile Ver="1.0.3.14" FileName="Common.dll" ContentLength="10KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="DAL.dll" ContentLength="227KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="eDrawings.Interop.EModelMarkupControl.dll" ContentLength="20KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="eDrawings.Interop.EModelViewControl.dll" ContentLength="66KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="MetroFramework.Design.dll" ContentLength="11KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="MetroFramework.dll" ContentLength="11KB"/>	
-	<UpdateFile Ver="1.0.3.14" FileName="MetroFramework.Fonts.dll" ContentLength="11KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="Models.dll" ContentLength="114KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="MyUIControls.dll" ContentLength="6KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="SolidWorksHelper.dll" ContentLength="1510KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="Common.dll" ContentLength="10KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="DAL.dll" ContentLength="227KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="eDrawings.Interop.EModelMarkupControl.dll" ContentLength="20KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="eDrawings.Interop.EModelViewControl.dll" ContentLength="66KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="MetroFramework.Design.dll" ContentLength="11KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="MetroFramework.dll" ContentLength="11KB"/>	
+	<UpdateFile Ver="1.0.3.15" FileName="MetroFramework.Fonts.dll" ContentLength="11KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="Models.dll" ContentLength="114KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="MyUIControls.dll" ContentLength="6KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="SolidWorksHelper.dll" ContentLength="1510KB"/>
 	
 	<!--主程序文件-->
-	<UpdateFile Ver="1.0.3.14" FileName="Compass.exe" ContentLength="1815KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="Compass.exe" ContentLength="1815KB"/>
 	
 	<!--图标文件-->
-	<UpdateFile Ver="1.0.3.14" FileName="compass_64px.ico" ContentLength="1815KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="compass_64px.ico" ContentLength="1815KB"/>
 	
 	<!--缺省图文件-->
-	<UpdateFile Ver="1.0.3.14" FileName="NoPic.png" ContentLength="1815KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="NoPic.png" ContentLength="1815KB"/>
 	
 	<!--excel文件-->
-	<UpdateFile Ver="1.0.3.14" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="CeilingLabel.xlsx" ContentLength="5KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="JobCard.xlsx" ContentLength="1.0.3.149KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="JobCard_Ceiling.xlsx" ContentLength="1.0.3.146KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="CutList.xlsx" ContentLength="11KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="Cutlist导入模板.xlsx" ContentLength="10KB"/>
-	<UpdateFile Ver="1.0.3.14" FileName="DrawingNum导入模板.xlsx" ContentLength="13KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="CeilingLabel.xlsx" ContentLength="5KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="JobCard.xlsx" ContentLength="1.0.3.159KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="JobCard_Ceiling.xlsx" ContentLength="1.0.3.156KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="CutList.xlsx" ContentLength="11KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="Cutlist导入模板.xlsx" ContentLength="10KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="DrawingNum导入模板.xlsx" ContentLength="13KB"/>
 	
 	<!--xml文件-->
-	<UpdateFile Ver="1.0.3.14" FileName="UpdateList.xml" ContentLength="2KB"/>
+	<UpdateFile Ver="1.0.3.15" FileName="UpdateList.xml" ContentLength="2KB"/>
 	
   </UpdateFileList>
 </autoUpdater>

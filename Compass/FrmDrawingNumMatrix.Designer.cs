@@ -66,12 +66,14 @@
             this.tpgImage = new System.Windows.Forms.TabPage();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.tpgEDrawing = new System.Windows.Forms.TabPage();
+            this.ctrlEDrw = new Compass.EDrawingsUserControl();
             this.btnClearImage = new System.Windows.Forms.Button();
             this.btnChooseImage = new System.Windows.Forms.Button();
             this.btnRefreshImage = new System.Windows.Forms.Button();
             this.btnAddCustomInfo = new System.Windows.Forms.Button();
-            this.ctrlEDrw = new Compass.EDrawingsUserControl();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnOpenFile = new System.Windows.Forms.Button();
+            this.btnOpenDrawing = new System.Windows.Forms.Button();
             this.pnlTabel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingNumMatrix)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -342,17 +344,17 @@
             // 
             // btnOpenFolder
             // 
-            this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnOpenFolder.BackColor = System.Drawing.Color.Orange;
             this.btnOpenFolder.FlatAppearance.BorderSize = 0;
             this.btnOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenFolder.ForeColor = System.Drawing.Color.White;
-            this.btnOpenFolder.Location = new System.Drawing.Point(924, 644);
+            this.btnOpenFolder.Location = new System.Drawing.Point(560, 644);
             this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(100, 28);
+            this.btnOpenFolder.Size = new System.Drawing.Size(87, 28);
             this.btnOpenFolder.TabIndex = 45;
             this.btnOpenFolder.Tag = "1";
-            this.btnOpenFolder.Text = "II.打开文件夹";
+            this.btnOpenFolder.Text = "打开文件夹";
             this.btnOpenFolder.UseVisualStyleBackColor = false;
             this.btnOpenFolder.Click += new System.EventHandler(this.BtnOpenFolder_Click);
             // 
@@ -363,12 +365,12 @@
             this.btnOpen.FlatAppearance.BorderSize = 0;
             this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpen.ForeColor = System.Drawing.Color.White;
-            this.btnOpen.Location = new System.Drawing.Point(842, 644);
+            this.btnOpen.Location = new System.Drawing.Point(858, 644);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(79, 28);
             this.btnOpen.TabIndex = 46;
             this.btnOpen.Tag = "0";
-            this.btnOpen.Text = "I.显示模型";
+            this.btnOpen.Text = "显示模型";
             this.btnOpen.UseVisualStyleBackColor = false;
             this.btnOpen.Click += new System.EventHandler(this.BtnOpen_Click);
             // 
@@ -468,6 +470,17 @@
             this.tpgEDrawing.Text = "模型";
             this.tpgEDrawing.UseVisualStyleBackColor = true;
             // 
+            // ctrlEDrw
+            // 
+            this.ctrlEDrw.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ctrlEDrw.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlEDrw.Location = new System.Drawing.Point(3, 3);
+            this.ctrlEDrw.Margin = new System.Windows.Forms.Padding(155, 589, 155, 589);
+            this.ctrlEDrw.Name = "ctrlEDrw";
+            this.ctrlEDrw.Size = new System.Drawing.Size(357, 341);
+            this.ctrlEDrw.TabIndex = 1;
+            this.ctrlEDrw.EDrawingsControlLoaded += new System.Action<eDrawings.Interop.EModelViewControl.EModelViewControl>(this.OnControlLoaded);
+            // 
             // btnClearImage
             // 
             this.btnClearImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -521,52 +534,74 @@
             this.btnAddCustomInfo.FlatAppearance.BorderSize = 0;
             this.btnAddCustomInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddCustomInfo.ForeColor = System.Drawing.Color.White;
-            this.btnAddCustomInfo.Location = new System.Drawing.Point(477, 644);
+            this.btnAddCustomInfo.Location = new System.Drawing.Point(301, 644);
             this.btnAddCustomInfo.Name = "btnAddCustomInfo";
-            this.btnAddCustomInfo.Size = new System.Drawing.Size(170, 28);
+            this.btnAddCustomInfo.Size = new System.Drawing.Size(175, 28);
             this.btnAddCustomInfo.TabIndex = 45;
             this.btnAddCustomInfo.Tag = "1";
-            this.btnAddCustomInfo.Text = "写入SolidWorks文件属性";
+            this.btnAddCustomInfo.Text = "II.写入SolidWorks文件属性";
             this.btnAddCustomInfo.UseVisualStyleBackColor = false;
             this.btnAddCustomInfo.Click += new System.EventHandler(this.BtnAddCustomInfo_Click);
-            // 
-            // ctrlEDrw
-            // 
-            this.ctrlEDrw.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ctrlEDrw.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlEDrw.Location = new System.Drawing.Point(3, 3);
-            this.ctrlEDrw.Margin = new System.Windows.Forms.Padding(65, 189, 65, 189);
-            this.ctrlEDrw.Name = "ctrlEDrw";
-            this.ctrlEDrw.Size = new System.Drawing.Size(357, 341);
-            this.ctrlEDrw.TabIndex = 1;
-            this.ctrlEDrw.EDrawingsControlLoaded += new System.Action<eDrawings.Interop.EModelViewControl.EModelViewControl>(this.OnControlLoaded);
             // 
             // label4
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.ForeColor = System.Drawing.Color.Crimson;
-            this.label4.Location = new System.Drawing.Point(313, 639);
+            this.label4.Location = new System.Drawing.Point(146, 638);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(161, 42);
             this.label4.TabIndex = 41;
             this.label4.Text = "确保列表中选中的图号为SolidWorks当前打开文档";
             // 
+            // btnOpenFile
+            // 
+            this.btnOpenFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOpenFile.BackColor = System.Drawing.Color.SlateBlue;
+            this.btnOpenFile.FlatAppearance.BorderSize = 0;
+            this.btnOpenFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenFile.ForeColor = System.Drawing.Color.White;
+            this.btnOpenFile.Location = new System.Drawing.Point(480, 644);
+            this.btnOpenFile.Name = "btnOpenFile";
+            this.btnOpenFile.Size = new System.Drawing.Size(76, 28);
+            this.btnOpenFile.TabIndex = 45;
+            this.btnOpenFile.Tag = "1";
+            this.btnOpenFile.Text = "I.打开模型";
+            this.btnOpenFile.UseVisualStyleBackColor = false;
+            this.btnOpenFile.Click += new System.EventHandler(this.BtnOpenFile_Click);
+            // 
+            // btnOpenDrawing
+            // 
+            this.btnOpenDrawing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpenDrawing.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnOpenDrawing.FlatAppearance.BorderSize = 0;
+            this.btnOpenDrawing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenDrawing.ForeColor = System.Drawing.Color.White;
+            this.btnOpenDrawing.Location = new System.Drawing.Point(941, 644);
+            this.btnOpenDrawing.Name = "btnOpenDrawing";
+            this.btnOpenDrawing.Size = new System.Drawing.Size(79, 28);
+            this.btnOpenDrawing.TabIndex = 46;
+            this.btnOpenDrawing.Tag = "0";
+            this.btnOpenDrawing.Text = "显示图纸";
+            this.btnOpenDrawing.UseVisualStyleBackColor = false;
+            this.btnOpenDrawing.Click += new System.EventHandler(this.BtnOpenDrawing_Click);
+            // 
             // FrmDrawingNumMatrix
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.btnOpenFile);
+            this.Controls.Add(this.btnAddCustomInfo);
+            this.Controls.Add(this.btnOpenFolder);
+            this.Controls.Add(this.btnOpenDrawing);
+            this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.btnClearImage);
             this.Controls.Add(this.btnChooseImage);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnImportFromExcel);
-            this.Controls.Add(this.btnAddCustomInfo);
-            this.Controls.Add(this.btnOpenFolder);
-            this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.btnCaptureMeasurement);
             this.Controls.Add(this.txtMeasurements);
             this.Controls.Add(this.pnlTabel);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
@@ -578,6 +613,7 @@
             this.Controls.Add(this.btnRefreshImage);
             this.Controls.Add(this.btnCommit);
             this.Controls.Add(this.btnCreateDrawingNum);
+            this.Controls.Add(this.label4);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmDrawingNumMatrix";
@@ -636,5 +672,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Mark;
         private System.Windows.Forms.DataGridViewTextBoxColumn DrawingId;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnOpenFile;
+        private System.Windows.Forms.Button btnOpenDrawing;
     }
 }

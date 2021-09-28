@@ -45,6 +45,9 @@ namespace Compass
             this.Text = "COMPASS." + currentSBU;
             TsmiProjectList_Click(null, null);
             SetPermissions();
+            //隐藏测试代码
+            //tsmiTestCode.Visible = false;
+
         }
         /// <summary>
         /// 设置权限
@@ -401,9 +404,10 @@ namespace Compass
             frmDrawingNumMatrix.Show();
         }
 
-        private void tsmiTestCode_Click(object sender, EventArgs e)
+        private void TsmiTestCode_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            //MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
+            MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms));
         }
     }
 }

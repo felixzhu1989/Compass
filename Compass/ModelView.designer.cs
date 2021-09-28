@@ -167,14 +167,13 @@
             this.btnOpenSolidWorks.FlatAppearance.BorderSize = 0;
             this.btnOpenSolidWorks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenSolidWorks.ForeColor = System.Drawing.Color.White;
-            this.btnOpenSolidWorks.Location = new System.Drawing.Point(615, 171);
+            this.btnOpenSolidWorks.Location = new System.Drawing.Point(618, 379);
             this.btnOpenSolidWorks.Name = "btnOpenSolidWorks";
             this.btnOpenSolidWorks.Size = new System.Drawing.Size(119, 28);
             this.btnOpenSolidWorks.TabIndex = 35;
             this.btnOpenSolidWorks.Tag = "1";
             this.btnOpenSolidWorks.Text = "打开SolidWorks";
             this.btnOpenSolidWorks.UseVisualStyleBackColor = false;
-            this.btnOpenSolidWorks.Visible = false;
             this.btnOpenSolidWorks.Click += new System.EventHandler(this.BtnOpenSolidWorks_Click);
             // 
             // btnOpenFolder
@@ -185,7 +184,7 @@
             this.btnOpenFolder.FlatAppearance.BorderSize = 0;
             this.btnOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenFolder.ForeColor = System.Drawing.Color.White;
-            this.btnOpenFolder.Location = new System.Drawing.Point(615, 103);
+            this.btnOpenFolder.Location = new System.Drawing.Point(618, 103);
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(119, 28);
             this.btnOpenFolder.TabIndex = 35;
@@ -202,7 +201,7 @@
             this.btnOpeneDrawing.FlatAppearance.BorderSize = 0;
             this.btnOpeneDrawing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpeneDrawing.ForeColor = System.Drawing.Color.White;
-            this.btnOpeneDrawing.Location = new System.Drawing.Point(615, 137);
+            this.btnOpeneDrawing.Location = new System.Drawing.Point(618, 345);
             this.btnOpeneDrawing.Name = "btnOpeneDrawing";
             this.btnOpeneDrawing.Size = new System.Drawing.Size(119, 28);
             this.btnOpeneDrawing.TabIndex = 35;
@@ -219,7 +218,7 @@
             this.btnPublic.FlatAppearance.BorderSize = 0;
             this.btnPublic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPublic.ForeColor = System.Drawing.Color.White;
-            this.btnPublic.Location = new System.Drawing.Point(664, 69);
+            this.btnPublic.Location = new System.Drawing.Point(667, 69);
             this.btnPublic.Name = "btnPublic";
             this.btnPublic.Size = new System.Drawing.Size(70, 28);
             this.btnPublic.TabIndex = 35;
@@ -235,7 +234,7 @@
             this.btnLocal.FlatAppearance.BorderSize = 0;
             this.btnLocal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLocal.ForeColor = System.Drawing.Color.White;
-            this.btnLocal.Location = new System.Drawing.Point(663, 35);
+            this.btnLocal.Location = new System.Drawing.Point(666, 35);
             this.btnLocal.Name = "btnLocal";
             this.btnLocal.Size = new System.Drawing.Size(71, 28);
             this.btnLocal.TabIndex = 36;

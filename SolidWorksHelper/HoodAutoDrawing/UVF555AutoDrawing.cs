@@ -685,15 +685,33 @@ namespace SolidWorksHelper
                 swPart.Parameter("D1@Sketch1").SystemValue = (item.Length - 8m) / 1000m;
                 if (item.ANSUL == "YES")
                 {
-                    if (item.ANDetector == "LEFT" || item.ANDetector == "BOTH")
+                    if (item.ANDetector == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("ANDTEC-LEFT");
                         swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
-                    }
-                    if (item.ANDetector == "RIGHT" || item.ANDetector == "BOTH")
-                    {
                         swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
                         swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
+                    }
+                    else if (item.ANDetector == "LEFT")
+                    {
+                        swFeat = swComp.FeatureByName("ANDTEC-LEFT");
+                        swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
+                        swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
+                    }
+                    if (item.ANDetector == "RIGHT")
+                    {
+                        swFeat = swComp.FeatureByName("ANDTEC-LEFT");
+                        swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
+                        swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
+                    }
+                    else
+                    {
+                        swFeat = swComp.FeatureByName("ANDTEC-LEFT");
+                        swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
+                        swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
+                        swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
                     }
                 }
                 else

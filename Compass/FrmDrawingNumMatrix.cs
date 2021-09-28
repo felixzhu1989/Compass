@@ -708,6 +708,17 @@ namespace Compass
         private void BtnOpen_Click(object sender, EventArgs e)
         {
             tabControl.SelectTab(1);
+            GetFilePath(".SLDPRT");
+            OnOpen(sender, e);
+        }
+        private void BtnOpenDrawing_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectTab(1);
+            GetFilePath(".SLDDRW");
+            OnOpen(sender, e);
+        }
+        private void GetFilePath(string extension)
+        {
             DrawingNumMatrix currentDrawingNum = GetCurrentDrawingNum();
             if (currentDrawingNum == null) return;
             string drawingNum = currentDrawingNum.DrawingNum;
@@ -717,29 +728,49 @@ namespace Compass
             switch (drawingNum.Substring(0, 1))
             {
                 case "2":
-                    filePath = purchPath + drawingNum + ".SLDPRT";
+                    filePath = purchPath + drawingNum + extension;
                     break;
                 case "5":
-                    filePath = fsPath + @"01 Standard\" + drawingNum + ".SLDPRT";
+                    filePath = fsPath + @"01 Standard\" + drawingNum + extension;
                     break;
                 case "F":
                     if (currentDrawingNum.DrawingType == "ETO")
                     {
-                        filePath = fsPath + @"03 ETO\" + drawingNum + ".SLDPRT";
+                        filePath = fsPath + @"03 ETO\" + drawingNum + extension;
                     }
                     else
                     {
-                        filePath = fsPath + @"02 Common\" + drawingNum + ".SLDPRT";
+                        filePath = fsPath + @"02 Common\" + drawingNum + extension;
                     }
                     break;
                 case "M":
                     //Marine项目将来完善
+
+
+
+
+
+
+
                     break;
                 default:
                     break;
             }
-            OnOpen(sender, e);
         }
+        
+
+        /// <summary>
+        /// 直接打开模型
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnOpenFile_Click(object sender, EventArgs e)
+        {
+            GetFilePath(".SLDPRT");
+            if (System.IO.File.Exists(filePath)) Process.Start(filePath);
+            else MessageBox.Show("未找到该路径!");
+        }
+
         /// <summary>
         /// 打开文件夹按钮
         /// </summary>
@@ -747,6 +778,7 @@ namespace Compass
         /// <param name="e"></param>
         private void BtnOpenFolder_Click(object sender, EventArgs e)
         {
+            GetFilePath(".SLDPRT");
             if (System.IO.File.Exists(filePath))
             {
                 System.Diagnostics.Process.Start("Explorer.exe", "/select," + System.IO.Path.GetDirectoryName(filePath) + "\\" + System.IO.Path.GetFileName(filePath));
@@ -759,7 +791,7 @@ namespace Compass
                 }
                 else
                 {
-                    MessageBox.Show("未找到该路径,请先点击显示模型试试!");
+                    MessageBox.Show("未找到该路径!");
                 }
             }
         }
@@ -906,5 +938,7 @@ namespace Compass
 
             swApp.CommandInProgress = false;
         }
+
+        
     }
 }

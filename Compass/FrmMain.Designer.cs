@@ -67,8 +67,8 @@
             this.tsmiUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSolidWorksSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmieSolidWorksTools = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiTestCode = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiTestCode = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -432,18 +432,18 @@
             this.tsmieSolidWorksTools.Text = "SW实用工具";
             this.tsmieSolidWorksTools.Click += new System.EventHandler(this.TsmieSolidWorksTools_Click);
             // 
-            // tsmiTestCode
-            // 
-            this.tsmiTestCode.Name = "tsmiTestCode";
-            this.tsmiTestCode.Size = new System.Drawing.Size(68, 21);
-            this.tsmiTestCode.Text = "测试代码";
-            this.tsmiTestCode.Click += new System.EventHandler(this.tsmiTestCode_Click);
-            // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(23, 21);
             this.toolStripMenuItem5.Text = "|";
+            // 
+            // tsmiTestCode
+            // 
+            this.tsmiTestCode.Name = "tsmiTestCode";
+            this.tsmiTestCode.Size = new System.Drawing.Size(68, 21);
+            this.tsmiTestCode.Text = "测试代码";
+            this.tsmiTestCode.Click += new System.EventHandler(this.TsmiTestCode_Click);
             // 
             // FrmMain
             // 
