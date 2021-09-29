@@ -150,6 +150,10 @@ insert into Categories (CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubT
 
 insert into Categories (CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelPath)
 	values(1150,1100,'CMODF555','CMOD水雾烟罩高度555新风F型','CMOD','F555','D:\halton\01 Tech Dept\05 Products Library\02 Hood\CMODF555.SLDASM')
+insert into Categories (CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelPath)
+	values(1151,1100,'CMODI555-2','CMOD水雾烟罩高度555新风I型','CMOD','I555','D:\halton\01 Tech Dept\05 Products Library\02 Hood\CMODI555.SLDASM')
+
+
 
 
 insert into Categories (CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelPath)
@@ -367,9 +371,13 @@ update drawingnummatrix set DrawingType='Standard' where drawingid between 488 a
 
 
 
+select * from CMODI555
+select * from ModuleTree where CategoryId=1149
 
+select * from Categories where CategoryName='CMODI555'
 
+select * from ModuleTree where CategoryId=1151
+select * from ModuleTree where CategoryId=1149
+update ModuleTree set CategoryId=1170 where CategoryId=1173
 
-
-
-
+update Categories set CategoryId=1174 where CategoryName='KCD'

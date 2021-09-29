@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using SolidWorks.Interop.sldworks;
+﻿using SolidWorks.Interop.sldworks;
 
 namespace SolidWorksHelper
 {
@@ -662,26 +661,26 @@ namespace SolidWorksHelper
         /// <summary>
         /// 华为MiddleRoof灯板
         /// </summary>
-        public void FNHM0031(Component2 swComp,string uw,decimal length,decimal deepth,string height,decimal exRightDis, decimal midRoofTopHoleDis,decimal midRoofSecondHoleDis,int midRoofHoleNo,string lightType,decimal lightYDis,int ledSpotNo,decimal ledSpotDis,string ansul,int anDropNo,decimal anYDis,decimal anDropDis1, decimal anDropDis2, decimal anDropDis3, decimal anDropDis4, decimal anDropDis5,string anDetectorEnd,int anDetectorNo,decimal anDetectorDis1, decimal anDetectorDis2, decimal anDetectorDis3, decimal anDetectorDis4, decimal anDetectorDis5, string bluetooth,string uvType,string marvel,int irNo,decimal irDis1,decimal irDis2,decimal irDis3)
+        public void FNHM0031(Component2 swComp, string uw, decimal length, decimal deepth, string height, decimal exRightDis, decimal midRoofTopHoleDis, decimal midRoofSecondHoleDis, int midRoofHoleNo, string lightType, decimal lightYDis, int ledSpotNo, decimal ledSpotDis, string ansul, int anDropNo, decimal anYDis, decimal anDropDis1, decimal anDropDis2, decimal anDropDis3, decimal anDropDis4, decimal anDropDis5, string anDetectorEnd, int anDetectorNo, decimal anDetectorDis1, decimal anDetectorDis2, decimal anDetectorDis3, decimal anDetectorDis4, decimal anDetectorDis5, string bluetooth, string uvType, string marvel, int irNo, decimal irDis1, decimal irDis2, decimal irDis3)
         {
             swPart = swComp.GetModelDoc2();
             if (height == "650")
             {
-                swPart.Parameter("D2@草图1").SystemValue = (deepth - 669m + 95m + 95m) / 1000m;
+                swPart.Parameter("D2@草图1").SystemValue = (deepth - 669m + 95m + 95m-2m) / 1000m;
                 swPart.Parameter("D1@Sketch5").SystemValue = (86.5m + 95m) / 1000m;
                 swPart.Parameter("D1@Sketch6").SystemValue = (86.5m + 95m) / 1000m;
             }
             else
             {
-                swPart.Parameter("D2@草图1").SystemValue = (deepth - 669m) / 1000m;
+                swPart.Parameter("D2@草图1").SystemValue = (deepth - 669m-2m) / 1000m;
                 swPart.Parameter("D1@Sketch5").SystemValue = 86.5m / 1000m;
                 swPart.Parameter("D1@Sketch6").SystemValue = 86.5m / 1000m;
             }
-            
-            swPart.Parameter("D1@草图6").SystemValue = (deepth - 896m) / 1000m;
+
+            swPart.Parameter("D1@草图6").SystemValue = (deepth - 896m-2m) / 1000m;
 
 
-            if (length >= 2200m && length <= 2400m)
+            if ((height == "650" && length >= 1950) || (height != "650" && length >= 2100m))
             {
                 swFeat = swComp.FeatureByName("Edge-Flange1");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
@@ -874,12 +873,12 @@ namespace SolidWorksHelper
                 {
                     swFeat = swComp.FeatureByName("AN5");
                     swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@Sketch15").SystemValue =anDropDis5 / 1000m;
+                    swPart.Parameter("D1@Sketch15").SystemValue = anDropDis5 / 1000m;
                 }
                 //探测器
                 //swFeat = swComp.FeatureByName("ANDTECACROSS");
                 //swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                if (uw=="UW")
+                if (uw == "UW")
                 {
                     if (anDetectorNo > 0)
                     {
@@ -971,6 +970,8 @@ namespace SolidWorksHelper
             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
             swFeat = swComp.FeatureByName("CUT-BACK-RIGHT");
             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
+            swFeat = swComp.FeatureByName("CUT-FRONT-RIGHT");
+            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
             if (bluetooth == "YES")
             {
                 swFeat = swComp.FeatureByName("CUT-FRONT-LEFT");
@@ -1019,7 +1020,7 @@ namespace SolidWorksHelper
             }
 
             //400新风腔IR安装孔
-            if (marvel == "YES" && height=="400")
+            if (marvel == "YES" && height == "400")
             {
                 if (irNo > 0)
                 {
@@ -1055,16 +1056,16 @@ namespace SolidWorksHelper
         public void FNHM0032(Component2 swComp, string uw, decimal deepth, string height, decimal midRoofTopHoleDis)
         {
             swPart = swComp.GetModelDoc2();
-            swPart.Parameter("D2@Sketch25").SystemValue = (deepth - 534m - 360m) / 1000m;
-            swPart.Parameter("D1@Sketch32").SystemValue = midRoofTopHoleDis;
+            swPart.Parameter("D2@Sketch25").SystemValue = (deepth - 534m - 360m-5m) / 1000m;
+            swPart.Parameter("D1@Sketch32").SystemValue = midRoofTopHoleDis-3m/1000m;
             swPart.Parameter("D1@Sketch31").SystemValue = (deepth - 840m) / 3000;
             swFeat = swComp.FeatureByName("Cut-Extrude4");
-            if (uw=="UW") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+            if (uw == "UW") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
             else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-            if(height== "650") swPart.Parameter("D1@Sketch25").SystemValue = (77m+95m) / 1000;
+            if (height == "650") swPart.Parameter("D1@Sketch25").SystemValue = (77m + 95m) / 1000;
             else swPart.Parameter("D1@Sketch25").SystemValue = 77m / 1000;
         }
-        
+
 
 
 

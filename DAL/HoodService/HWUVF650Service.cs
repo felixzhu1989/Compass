@@ -48,10 +48,7 @@ namespace DAL
         public IModel GetModelByWhereSql(string whereSql)
         {
             string sql =
-                "select HWUVF650Id,ModuleTreeId,Length,Deepth,ExRightDis,ExNo,EXDis,ExLength,ExWidth,ExHeight,SuNo,SuDis,SidePanel," +
-                "Outlet,LEDlogo,Bluetooth,BackToBack,WaterCollection,LEDSpotNo,LEDSpotDis,LightType,LightYDis,UVType," +
-                "ANSUL,ANSide,ANDetector,ANYDis,ANDropNo,ANDropDis1,ANDropDis2,ANDropDis3,ANDropDis4,ANDropDis5," +
-                "MARVEL,IRNo,IRDis1,IRDis2,IRDis3 from HWUVF650";
+                "select HWUVF650Id,ModuleTreeId,Length,Deepth,ExRightDis,ExNo,EXDis,ExLength,ExWidth,ExHeight,SuNo,SuDis,SidePanel,Outlet,LEDlogo,Bluetooth,BackToBack,WaterCollection,LEDSpotNo,LEDSpotDis,LightType,LightYDis,UVType,ANSUL,ANSide,ANDetector,ANYDis,ANDropNo,ANDropDis1,ANDropDis2,ANDropDis3,ANDropDis4,ANDropDis5,MARVEL,IRNo,IRDis1,IRDis2,IRDis3 from HWUVF650";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             HWUVF650 objModel = null;

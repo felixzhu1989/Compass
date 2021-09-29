@@ -779,10 +779,10 @@ namespace SolidWorksHelper
                 }
 
                 //----------吊装槽钢----------
-                //swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100001-1"));
-                //swPart = swComp.GetModelDoc2();
-                //if (item.ANSUL == "YES") swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 250) / 1000m;
-                //else swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 100m) / 1000m;
+                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100001-1"));
+                swPart = swComp.GetModelDoc2();
+                if (item.ANSUL == "YES") swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 250) / 1000m;
+                else swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 100m) / 1000m;
 
                 //----------大侧板----------
                 if (item.SidePanel == "BOTH")

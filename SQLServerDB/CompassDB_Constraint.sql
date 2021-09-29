@@ -635,6 +635,24 @@ if exists (select * from sysobjects where name='df_Height_UVI555')
 GO
 alter table UVI555 add constraint df_Height_UVI555 default ('555') for Height
 GO
+--HWUVI650，华为1.2mm板材
+if exists (select * from sysobjects where name='pk_HWUVI650Id')
+    alter table HWUVI650 drop constraint pk_HWUVI650Id
+GO
+alter table HWUVI650 add constraint pk_HWUVI650Id primary key (HWUVI650Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_HWUVI650')
+    alter table HWUVI650 drop constraint fk_ModuleTreeId_HWUVI650
+GO
+alter table HWUVI650 add constraint fk_ModuleTreeId_HWUVI650 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_HWUVI650')
+    alter table HWUVI650 drop constraint df_Height_HWUVI650
+GO
+alter table HWUVI650 add constraint df_Height_HWUVI650 default ('650') for Height
+GO
+
+
 --UVIMR555
 if exists (select * from sysobjects where name='pk_UVIMR555Id')
     alter table UVIMR555 drop constraint pk_UVIMR555Id

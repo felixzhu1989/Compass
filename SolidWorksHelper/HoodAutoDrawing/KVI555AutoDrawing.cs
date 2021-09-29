@@ -46,7 +46,6 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy = default(AssemblyDoc);
             Component2 swComp;
             Feature swFeat = default(Feature);
-            object configNames = null;
             EditPart swEdit = new EditPart();
 
 
@@ -95,10 +94,10 @@ namespace SolidWorksHelper
                 swModel.Parameter("D1@Distance32").SystemValue = item.Deepth / 1000m;
                 //判断KSA数量，KSA侧板长度，如果太小，则使用特殊小侧板侧边
                 swFeat = swAssy.FeatureByName("LocalLPattern1");
-                if (ksaNo == 1) swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                if (ksaNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 else
                 {
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swModel.Parameter("D1@LocalLPattern1").SystemValue = ksaNo; //D1阵列数量,D3阵列距离
                 }
                 //KSA距离左边缘
@@ -132,19 +131,19 @@ namespace SolidWorksHelper
                 {
                     swModel.Parameter("D1@Distance22").SystemValue = (item.ExRightDis - item.ExLength / 2) / 1000m;
                     swFeat = swAssy.FeatureByName("LocalLPattern2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else if (item.ExNo == 2 && (item.MARVEL == "YES" || item.ExHeight == 100m))
                 {
                     swFeat = swAssy.FeatureByName("LocalLPattern2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
                     swModel.Parameter("D1@Distance22").SystemValue =
                         (item.ExRightDis - item.ExLength - item.ExDis / 2) / 1000m;
                     swFeat = swAssy.FeatureByName("LocalLPattern2");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swModel.Parameter("D1@LocalLPattern2").SystemValue = item.ExNo; //D1阵列数量,D3阵列距离
                     swModel.Parameter("D3@LocalLPattern2").SystemValue =
                         (item.ExDis + item.ExLength) / 1000m; //D1阵列数量,D3阵列距离
@@ -175,21 +174,21 @@ namespace SolidWorksHelper
                 if (midRoofHoleNo == 1)
                 {
                     swFeat = swComp.FeatureByName("LPattern1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
                     swFeat = swComp.FeatureByName("LPattern1");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
                 }
                 //排风口
                 if (item.ExNo == 1)
                 {
                     swFeat = swComp.FeatureByName("EXCOONE");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("EXCOTWO");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D4@Sketch9").SystemValue = item.ExRightDis / 1000m;
                     swPart.Parameter("D2@Sketch9").SystemValue = item.ExLength / 1000m;
                     swPart.Parameter("D3@Sketch9").SystemValue = item.ExWidth / 1000m;
@@ -197,9 +196,9 @@ namespace SolidWorksHelper
                 else
                 {
                     swFeat = swComp.FeatureByName("EXCOONE");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("EXCOTWO");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D5@Sketch10").SystemValue = item.ExRightDis / 1000m;
                     swPart.Parameter("D1@Sketch10").SystemValue = item.ExDis / 1000m;
                     swPart.Parameter("D3@Sketch10").SystemValue = item.ExLength / 1000m;
@@ -211,64 +210,64 @@ namespace SolidWorksHelper
                     if (item.SidePanel == "RIGHT")
                     {
                         swFeat = swComp.FeatureByName("DRAINCHANNEL-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("DRAINCHANNEL-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     else if (item.SidePanel == "LEFT")
                     {
                         swFeat = swComp.FeatureByName("DRAINCHANNEL-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("DRAINCHANNEL-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     else if (item.SidePanel == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("DRAINCHANNEL-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("DRAINCHANNEL-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     }
                 }
                 else
                 {
                     swFeat = swComp.FeatureByName("DRAINCHANNEL-RIGHT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("DRAINCHANNEL-LEFT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 //油塞
                 if (item.Outlet == "LEFTTAP")
                 {
                     swFeat = swComp.FeatureByName("DRAINTAP-LEFT");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("DRAINTAP-RIGHT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else if (item.Outlet == "RIGHTTAP")
                 {
                     swFeat = swComp.FeatureByName("DRAINTAP-LEFT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("DRAINTAP-RIGHT");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
                     swFeat = swComp.FeatureByName("DRAINTAP-LEFT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("DRAINTAP-RIGHT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 //背靠背
                 if (item.BackToBack == "YES")
                 {
                     swFeat = swComp.FeatureByName("BACKTOBACK");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
                     swFeat = swComp.FeatureByName("BACKTOBACK");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 //ANSUL
                 if (item.ANSUL == "YES")
@@ -277,79 +276,79 @@ namespace SolidWorksHelper
                     if (item.ANSide == "LEFT")
                     {
                         swFeat = swComp.FeatureByName("ANSUL-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("CHANNEL-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     }
                     else if (item.ANSide == "RIGHT")
                     {
                         swFeat = swComp.FeatureByName("ANSUL-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("CHANNEL-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     }
                     else
                     {
                         swFeat = swComp.FeatureByName("ANSUL-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("ANSUL-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("CHANNEL-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("CHANNEL-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //探测器
                     if (item.ANDetector == "RIGHT" || item.ANDetector == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     }
                     if (item.ANDetector == "LEFT" || item.ANDetector == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("ANDTEC-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     }
                     else
                     {
                         swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("ANDTEC-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                 }
                 //MARVEL
                 swFeat = swComp.FeatureByName("MA-NTC");
                 if (item.MARVEL == "YES")
                 {
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     if (item.ExNo == 1) swPart.Parameter("D1@Sketch21").SystemValue = (item.ExRightDis + item.ExLength / 2 + 50m) / 1000m;
                     else swPart.Parameter("D1@Sketch21").SystemValue = (item.ExRightDis + item.ExDis / 2 + item.ExLength + 50m) / 1000m;
                 }
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
 
                 //UVHood,UVRack-UV灯架孔和UV cable-UV灯线缆穿孔//非UVHood压缩
                 swFeat = swComp.FeatureByName("UVRACK");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("UVCABLE");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 //----------排风腔前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0002-1"));
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D1@草图1").SystemValue = item.Length / 1000m;
                 swFeat = swComp.FeatureByName("EXTAB-UP");
-                if (item.MARVEL == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                if (item.MARVEL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 //UV Hood,过滤器感应出线孔，UV门，UV cable-UV灯线缆穿孔避让缺口
                 swFeat = swComp.FeatureByName("FILTER-CABLE");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 //非UVHood
                 swFeat = swComp.FeatureByName("UVDOOR-LONG");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("UVDOOR-SHORT");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("UVCABLE");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 //----------KSA侧边----------
                 if (ksaSideLength < 12m / 1000m && ksaSideLength > 2m / 1000m)
                 {
@@ -431,8 +430,8 @@ namespace SolidWorksHelper
                     swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength + 50m) / 1000m;
                     swPart.Parameter("D2@Sketch1").SystemValue = item.ExHeight / 1000m;
                     swFeat = swComp.FeatureByName("ANSUL");
-                    if (item.ANSUL == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                    else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    if (item.ANSUL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0007-1"));
                     swComp.SetSuppression2(2);//2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();
@@ -457,7 +456,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201030401-5"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swFeat = swComp.FeatureByName("ANDTEC");
-                    swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
                 }
                 else if (item.ANSUL == "YES" && item.SidePanel == "LEFT")
                 {
@@ -466,7 +465,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201030401-5"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swFeat = swComp.FeatureByName("ANDTEC");
-                    swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
                 }
                 else if (item.ANSUL == "YES" && item.SidePanel == "RIGHT")
                 {
@@ -475,7 +474,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201030401-4"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swFeat = swComp.FeatureByName("ANDTEC");
-                    swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
                 }
                 else
                 {
@@ -517,33 +516,33 @@ namespace SolidWorksHelper
                 swPart.Parameter("D2@草图26").SystemValue = (item.Deepth - 840m) / 3000;
                 swPart.Parameter("D1@Sketch3").SystemValue = midRoofSecondHoleDis - 2m / 1000m;
                 swFeat = swComp.FeatureByName("NAMEPLATE");
-                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("LPattern1");
-                if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 else
                 {
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                     swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
                 }
                 //灯具
                 if (item.LightType == "LED60")
                 {
                     swFeat = swComp.FeatureByName("LED140");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("LPattern3");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("FSLONG");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("FSSHORT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("LED60");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                     if (item.LEDSpotNo == 1) swPart.Parameter("D2@Sketch1").SystemValue = 0;
                     else
                     {
                         swPart.Parameter("D2@Sketch1").SystemValue = (item.LEDSpotDis * (item.LEDSpotNo / 2m - 1) + item.LEDSpotDis / 2m) / 1000m;
                         swFeat = swComp.FeatureByName("LPattern2");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                         swPart.Parameter("D1@LPattern2").SystemValue = item.LEDSpotNo;
                         swPart.Parameter("D3@LPattern2").SystemValue = item.LEDSpotDis / 1000m;
                     }
@@ -551,21 +550,21 @@ namespace SolidWorksHelper
                 else if (item.LightType == "LED140")
                 {
                     swFeat = swComp.FeatureByName("LED60");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("LPattern2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("FSLONG");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("FSSHORT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("LED140");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                     if (item.LEDSpotNo == 1) swPart.Parameter("D5@Sketch7").SystemValue = 0;
                     else
                     {
                         swPart.Parameter("D5@Sketch7").SystemValue = (item.LEDSpotDis * (item.LEDSpotNo / 2m - 1) + item.LEDSpotDis / 2m) / 1000m;
                         swFeat = swComp.FeatureByName("LPattern3");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                         swPart.Parameter("D1@LPattern3").SystemValue = item.LEDSpotNo;
                         swPart.Parameter("D3@LPattern3").SystemValue = item.LEDSpotDis / 1000m;
                     }
@@ -573,137 +572,137 @@ namespace SolidWorksHelper
                 else if (item.LightType == "FSLONG")
                 {
                     swFeat = swComp.FeatureByName("LED60");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("LPattern2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("LED140");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("LPattern3");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("FSLONG");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("FSSHORT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else if (item.LightType == "FSSHORT")
                 {
                     swFeat = swComp.FeatureByName("LED60");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("LPattern2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("LED140");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("LPattern3");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("FSLONG");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("FSSHORT");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
                     swFeat = swComp.FeatureByName("LED60");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("LPattern2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("LED140");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("LPattern3");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("FSLONG");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("FSSHORT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 //ANSUL
                 if (item.ANSUL == "YES")
                 {
                     swFeat = swComp.FeatureByName("AN1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("AN2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("AN3");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("AN4");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("AN5");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     if (item.ANDropNo > 0)
                     {
                         swFeat = swComp.FeatureByName("AN1");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D1@Sketch11").SystemValue = item.ANDropDis1 / 1000m;
                         swPart.Parameter("D3@Sketch11").SystemValue = (item.ANYDis - 360m) / 1000m;
                     } 
                     if (item.ANDropNo > 1)
                     {
                         swFeat = swComp.FeatureByName("AN2");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D1@Sketch12").SystemValue = item.ANDropDis2 / 1000m;
                     }
                     if (item.ANDropNo > 2)
                     {
                         swFeat = swComp.FeatureByName("AN3");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D1@Sketch13").SystemValue = item.ANDropDis3 / 1000m;
                     }
                     if (item.ANDropNo > 3)
                     {
                         swFeat = swComp.FeatureByName("AN4");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D1@Sketch14").SystemValue = item.ANDropDis4 / 1000m;
                     }
                     if (item.ANDropNo > 4)
                     {
                         swFeat = swComp.FeatureByName("AN5");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D1@Sketch15").SystemValue = item.ANDropDis5 / 1000m;
                     }
                 }
                 else
                 {
                     swFeat = swComp.FeatureByName("AN1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("AN2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("AN3");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("AN4");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("AN5");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 }
                 //UW/KW HOOD 水洗烟罩探测器在midRoof上，非水洗烟罩压缩
                 swFeat = swComp.FeatureByName("ANDTECACROSS");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("ANDTEC1");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 swFeat = swComp.FeatureByName("ANDTEC2");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 swFeat = swComp.FeatureByName("ANDTEC3");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 swFeat = swComp.FeatureByName("ANDTEC4");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 swFeat = swComp.FeatureByName("ANDTEC5");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 //开方孔，UV或待MARVEL时解压
                  swFeat = swComp.FeatureByName("CUT-BACK-LEFT");
-                if (item.MARVEL == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                if (item.MARVEL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 swFeat = swComp.FeatureByName("CUT-BACK-RIGHT");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 swFeat = swComp.FeatureByName("CUT-FRONT-LEFT");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 //UV灯线缆穿孔
                 swFeat = swComp.FeatureByName("UVCABLE");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
 
                 swFeat = swComp.FeatureByName("MAINS1");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("MAINS2");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("MAINS3");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
 
                 //----------吊装槽钢----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100001-1"));
@@ -848,10 +847,10 @@ namespace SolidWorksHelper
                 swPart.Parameter("D3@Sketch3").SystemValue = midRoofSecondHoleDis;
                 swPart.Parameter("D9@草图7").SystemValue = 200m / 1000m - midRoofTopHoleDis;
                 swFeat = swComp.FeatureByName("LPattern1");
-                if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 else
                 {
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
                 }
                 //MARVEL
@@ -860,52 +859,52 @@ namespace SolidWorksHelper
                     if (item.IRNo > 0)
                     {
                         swFeat = swComp.FeatureByName("MA1");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D3@Sketch14").SystemValue = item.IRDis1 / 1000m;
                         swFeat = swComp.FeatureByName("MACABLE1");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D1@Sketch17").SystemValue = item.IRDis1 / 1000m;
                     }
                     if (item.IRNo > 1)
                     {
                         swFeat = swComp.FeatureByName("MA2");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D3@Sketch15").SystemValue = item.IRDis2 / 1000m;
                         swFeat = swComp.FeatureByName("MACABLE2");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D1@Sketch18").SystemValue = item.IRDis2 / 1000m;
                     }
                     if (item.IRNo > 2)
                     {
                         swFeat = swComp.FeatureByName("MA3");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D3@Sketch16").SystemValue = item.IRDis3 / 1000m;
                         swFeat = swComp.FeatureByName("MACABLE3");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D1@Sketch19").SystemValue = item.IRDis3 / 1000m;
                     }
                 }
                 else
                 {
                     swFeat = swComp.FeatureByName("MA1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("MA2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("MA3");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("MACABLE1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("MACABLE2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("MACABLE3");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 //UV HOOD
                 swFeat = swComp.FeatureByName("SUCABLE-LEFT");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
-                if (item.MARVEL == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                if (item.MARVEL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
 
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0003-1"));
@@ -924,41 +923,41 @@ namespace SolidWorksHelper
                 swPart.Parameter("D1@LPattern1").SystemValue = frontPanelHoleNo;
                 swPart.Parameter("D3@LPattern1").SystemValue = frontPanelHoleDis;
                 swFeat = swComp.FeatureByName("BLUETOOTH");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("LOGO");
-                if (item.LEDlogo == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                if (item.LEDlogo == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 //集水翻边
                 if (item.WaterCollection == "YES")
                 {
                     if (item.SidePanel == "RIGHT")
                     {
                         swFeat = swComp.FeatureByName("DRAINCHANNEL-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("DRAINCHANNEL-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     else if (item.SidePanel == "LEFT")
                     {
                         swFeat = swComp.FeatureByName("DRAINCHANNEL-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("DRAINCHANNEL-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     }
                     else if (item.SidePanel == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("DRAINCHANNEL-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("DRAINCHANNEL-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                     }
                 }
                 else
                 {
                     swFeat = swComp.FeatureByName("DRAINCHANNEL-RIGHT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("DRAINCHANNEL-LEFT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 //----------LOGO----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900300005-1"));

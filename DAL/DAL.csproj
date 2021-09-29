@@ -91,6 +91,7 @@
     <Compile Include="HoodService\HWUWF555400Service.cs" />
     <Compile Include="HoodService\HWUWF555Service.cs" />
     <Compile Include="HoodService\HWUVF650Service.cs" />
+    <Compile Include="HoodService\HWUVI650Service.cs" />
     <Compile Include="IModelService.cs" />
     <Compile Include="CeilingService\INFService.cs" />
     <Compile Include="JobCardService.cs" />

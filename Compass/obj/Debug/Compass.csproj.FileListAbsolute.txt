@@ -312,3 +312,4 @@ E:\Compass\Compass\obj\Debug\Compass.FrmProjectMeasure.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmDrawingNumMatrix.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmSyncFiles.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmHWUVF650.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmHWUVI650.resources

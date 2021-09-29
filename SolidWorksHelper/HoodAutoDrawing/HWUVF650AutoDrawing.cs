@@ -39,7 +39,7 @@ namespace SolidWorksHelper
                 packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
 
             //查询参数
-            HWUVF650 item = (HWUVF650) objHWUVF650Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            HWUVF650 item = (HWUVF650)objHWUVF650Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
 
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
             int warnings = 0;
@@ -53,8 +53,8 @@ namespace SolidWorksHelper
             EditPart swEdit = new EditPart();
 
             //打开Pack后的模型
-            swModel = swApp.OpenDoc6(packedAssyPath, (int) swDocumentTypes_e.swDocASSEMBLY,
-                (int) swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
+            swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
+                (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
             swAssy = swModel as AssemblyDoc; //装配体
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true); //TopOnly参数设置成true，只重建顶层，不重建零件内部
@@ -64,30 +64,30 @@ namespace SolidWorksHelper
             */
             //-----------计算中间值，----------
             //新风面板卡扣数量及间距
-            int frontPanelKaKouNo = (int) ((item.Length - 300m) / 450m) + 2;
+            int frontPanelKaKouNo = (int)((item.Length - 300m) / 450m) + 2;
             decimal frontPanelKaKouDis = Convert.ToDecimal((item.Length - 300m) / (frontPanelKaKouNo - 1)) / 1000m;
             //新风面板螺丝孔数量及间距
-            int frontPanelHoleNo = (int) ((item.Length - 300m) / 900m) + 2;
+            int frontPanelHoleNo = (int)((item.Length - 300m) / 900m) + 2;
             decimal frontPanelHoleDis = Convert.ToDecimal((item.Length - 300) / (frontPanelHoleNo - 1)) / 1000m;
             //新风CJ孔数量和新风CJ孔第一个CJ距离边缘距离
-            int frontCjNo = (int) ((item.Length - 30m) / 32m) + 1;
+            int frontCjNo = (int)((item.Length - 30m) / 32m) + 1;
             decimal frontCjFirstDis = Convert.ToDecimal((item.Length - (frontCjNo - 1) * 32m) / 2) / 1000m;
             //Midroof灯板螺丝孔数量及第二个孔距离边缘距离,灯板顶面吊装槽钢螺丝孔位距离
-            int midRoofHoleNo = (int) ((item.Length - 300m) / 400m);
+            int midRoofHoleNo = (int)((item.Length - 300m) / 400m);
             decimal midRoofSecondHoleDis = Convert.ToDecimal((item.Length - (midRoofHoleNo - 1) * 400m) / 2) / 1000m;
             decimal midRoofTopHoleDis =
                 Convert.ToDecimal(item.Deepth - 535m - 360m - 90m -
-                                  (int) ((item.Deepth - 535m - 360m - 90m - 100m) / 50m) * 50m) / 1000m;
+                                  (int)((item.Deepth - 535m - 360m - 90m - 100m) / 50m) * 50m) / 1000m;
             //KSA数量，KSA侧板长度(以全长计算)
-            int ksaNo = (int) ((item.Length + 1) / 498m);
+            int ksaNo = (int)((item.Length + 1) / 498m);
             decimal ksaSideLength = Convert.ToDecimal((item.Length - ksaNo * 498m) / 2) / 1000m;
             //MESH侧板长度(除去排风三角板3mm计算)
             decimal meshSideLength =
-                Convert.ToDecimal((item.Length - 3m - (int) ((item.Length - 2m) / 498m) * 498m) / 2) / 1000m;
+                Convert.ToDecimal((item.Length - 3m - (int)((item.Length - 2m) / 498m) * 498m) / 2m-2m) / 1000m;
             //侧板CJ孔整列到烟罩底部
-            int sidePanelDownCjNo = (int) ((item.Deepth - 95m) / 32m);
+            int sidePanelDownCjNo = (int)((item.Deepth - 95m) / 32m);
             //非水洗烟罩KV/UV
-            int sidePanelSideCjNo = (int) ((item.Deepth - 305m) / 32m);
+            int sidePanelSideCjNo = (int)((item.Deepth - 305m) / 32m);
             //水洗烟罩KW/UW
             //int sidePanelSideCjNo = (int)((item.Deepth - 380) / 32);
 
@@ -149,8 +149,14 @@ namespace SolidWorksHelper
                     swModel.Parameter("D3@LocalLPattern2").SystemValue =
                         (item.ExDis + item.ExLength) / 1000m; //D1阵列数量,D3阵列距离
                 }
+
+                //UV灯支架，两个
+                swFeat = swAssy.FeatureByName("LocalLPattern5");
+                if (item.UVType == "DOUBLE") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+
                 //灯板加强筋
-                
+
                 //if (item.Deepth > 1649m && ((item.LightType == "FSLONG" && item.Length > 1900m) ||
                 //                           (item.LightType == "FSSHORT" && item.Length > 1500m) || (item.Length > 2000m)))
                 //{
@@ -168,7 +174,7 @@ namespace SolidWorksHelper
                 //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0006-2"));
                 //    swComp.SetSuppression2(0); //2解压缩，0压缩
                 //}
-                
+
                 //----------新风脖颈----------
                 swFeat = swAssy.FeatureByName("LocalLPattern3");
                 if (item.SuNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
@@ -186,8 +192,8 @@ namespace SolidWorksHelper
                 //----------排风腔----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0186-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D1@草图1").SystemValue = (item.Length-6.4m) / 1000m;
-                swPart.Parameter("D2@Sketch3").SystemValue = midRoofSecondHoleDis-3.2m/1000m;
+                swPart.Parameter("D1@草图1").SystemValue = (item.Length - 6.4m) / 1000m;
+                swPart.Parameter("D2@Sketch3").SystemValue = midRoofSecondHoleDis - 3.2m / 1000m;
                 if (midRoofHoleNo == 1)
                 {
                     swFeat = swComp.FeatureByName("LPattern1");
@@ -206,7 +212,7 @@ namespace SolidWorksHelper
                     swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("EXCOTWO");
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D4@Sketch9").SystemValue = (item.ExRightDis-3.2m) / 1000m;
+                    swPart.Parameter("D4@Sketch9").SystemValue = (item.ExRightDis - 3.2m) / 1000m;
                     swPart.Parameter("D2@Sketch9").SystemValue = item.ExLength / 1000m;
                     swPart.Parameter("D3@Sketch9").SystemValue = item.ExWidth / 1000m;
                 }
@@ -216,7 +222,7 @@ namespace SolidWorksHelper
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("EXCOTWO");
                     swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D5@Sketch10").SystemValue = (item.ExRightDis-3.2m) / 1000m;
+                    swPart.Parameter("D5@Sketch10").SystemValue = (item.ExRightDis - 3.2m) / 1000m;
                     swPart.Parameter("D1@Sketch10").SystemValue = item.ExDis / 1000m;
                     swPart.Parameter("D3@Sketch10").SystemValue = item.ExLength / 1000m;
                     swPart.Parameter("D4@Sketch10").SystemValue = item.ExWidth / 1000m;
@@ -343,15 +349,15 @@ namespace SolidWorksHelper
                 //    else swPart.Parameter("D1@Sketch21").SystemValue = (item.ExRightDis + item.ExDis / 2 + item.ExLength + 50m) / 1000m;
                 //}
                 //else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                
-                
+
+
                 //UVHood,UVRack-UV灯架孔和UV cable-UV灯线缆穿孔
-                
+
                 if (item.UVType == "DOUBLE")
                 {
                     swFeat = swComp.FeatureByName("UVDOUBLE");
                     swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D7@Sketch17").SystemValue = (item.ExRightDis-3.2m) / 1000m;
+                    swPart.Parameter("D7@Sketch17").SystemValue = (item.ExRightDis - 3.2m) / 1000m;
                     swFeat = swComp.FeatureByName("UVRACK");
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
@@ -386,7 +392,7 @@ namespace SolidWorksHelper
                 //----------排风腔前面板----------//对应FNHE0149
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0187-1"));
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D1@草图1").SystemValue = (item.Length-6.4m) / 1000m;
+                swPart.Parameter("D1@草图1").SystemValue = (item.Length - 6.4m) / 1000m;
                 //UV Hood,过滤器感应出线孔，UV门，UV cable-UV灯线缆穿孔避让缺口
                 //UV灯门
                 if (item.UVType == "DOUBLE")
@@ -504,7 +510,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0170-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
-                
+
                 //----------排风滑门/导轨----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0164-1"));
                 swComp.SetSuppression2(2);//2解压缩，0压缩
@@ -617,7 +623,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0158-2"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
-                
+
                 ////----------UV灯，UV灯门，标准----------
                 //if (item.UVType == "LONG")
                 //{
@@ -814,7 +820,7 @@ namespace SolidWorksHelper
                         swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
                         swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
                     }
-                    if (item.ANDetector == "RIGHT" )
+                    else if (item.ANDetector == "RIGHT")
                     {
                         swFeat = swComp.FeatureByName("ANDTEC-LEFT");
                         swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
@@ -913,7 +919,7 @@ namespace SolidWorksHelper
                 //----------MiddleRoof灯板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0031-1"));
                 swEdit.FNHM0031(swComp, "UV", item.Length, item.Deepth, "650", item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, item.LightYDis, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
-                
+
                 //华为灯板左右加高
                 if (item.Length >= 2200m && item.Length <= 2400m)
                 {
@@ -921,7 +927,7 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0032-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHM0032(swComp,"UV", item.Deepth, "650",midRoofTopHoleDis);
+                    swEdit.FNHM0032(swComp, "UV", item.Deepth, "650", midRoofTopHoleDis);
                 }
                 else
                 {
@@ -932,10 +938,10 @@ namespace SolidWorksHelper
                 }
 
                 //----------吊装槽钢----------
-                //swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100001-1"));
-                //swPart = swComp.GetModelDoc2();
-                //if (item.ANSUL == "YES") swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 250) / 1000m;
-                //else swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 100m) / 1000m;
+                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100001-1"));
+                swPart = swComp.GetModelDoc2();
+                if (item.ANSUL == "YES") swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 250) / 1000m;
+                else swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 100m) / 1000m;
                 //----------大侧板----------
                 if (item.SidePanel == "BOTH")
                 {
@@ -962,7 +968,7 @@ namespace SolidWorksHelper
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0071-1"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                         swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 368m+88m) / 1000m;//水洗烟罩(item.Deepth - 368m) / 1000m;
+                        swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 368m + 88m) / 1000m;//水洗烟罩(item.Deepth - 368m) / 1000m;
                         swPart.Parameter("D5@Sketch7").SystemValue = 12m / 1000m;//水洗烟罩19.87m / 1000m
                         swPart.Parameter("D5@Sketch10").SystemValue = 27.3m / 1000m;
                         //UV555400，22m,标准烟罩27.3
@@ -1069,10 +1075,10 @@ namespace SolidWorksHelper
                 //------------F型新风腔主体----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0108-1"));
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Length-6.4m) / 1000m;
+                swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Length - 6.4m) / 1000m;
                 swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
                 swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis;
-                swPart.Parameter("D3@Sketch3").SystemValue = midRoofSecondHoleDis-3.2m / 1000m;
+                swPart.Parameter("D3@Sketch3").SystemValue = midRoofSecondHoleDis - 3.2m / 1000m;
                 swPart.Parameter("D5@草图7").SystemValue = 200m / 1000m - midRoofTopHoleDis;
                 swFeat = swComp.FeatureByName("LPattern1");
                 if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 

@@ -93,6 +93,7 @@
     <Compile Include="HoodAutoDrawing\HWUWF555400AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\HWUWF555AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\HWUVF650AutoDrawing.cs" />
+    <Compile Include="HoodAutoDrawing\HWUVI650AutoDrawing.cs" />
     <Compile Include="IAutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\KVI555AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\KWI555AutoDrawing.cs" />

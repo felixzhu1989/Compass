@@ -163,6 +163,12 @@
     <Compile Include="FrmDrawingNumMatrix.Designer.cs">
       <DependentUpon>FrmDrawingNumMatrix.cs</DependentUpon>
     </Compile>
+    <Compile Include="HoodForm\FrmHWUVI650.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoodForm\FrmHWUVI650.Designer.cs">
+      <DependentUpon>FrmHWUVI650.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmHWUVF650.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1073,6 +1079,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmHWUVF650.resx">
       <DependentUpon>FrmHWUVF650.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoodForm\FrmHWUVI650.resx">
+      <DependentUpon>FrmHWUVI650.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmHWUWF555.resx">
       <DependentUpon>FrmHWUWF555.cs</DependentUpon>

@@ -744,7 +744,7 @@ namespace SolidWorksHelper
                 //    swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
                 //    swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
                 //}
-                //if (item.ANDetector == "RIGHT")
+                //else if (item.ANDetector == "RIGHT")
                 //{
                 //    swFeat = swComp.FeatureByName("ANDTEC-LEFT");
                 //    swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
