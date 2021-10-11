@@ -380,7 +380,7 @@ namespace SolidWorksHelper
                 swPart.Parameter("D6@Sketch12").SystemValue = item.ExRightDis / 1000m;
                 //非UVHood
                 //swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                if (item.UVType == "LONG") swPart.Parameter("D5@Sketch12").SystemValue = 1640m / 1000m;
+                if (item.UVType == "LONG") swPart.Parameter("D5@Sketch12").SystemValue = 1620m / 1000m;
                 else swPart.Parameter("D5@Sketch12").SystemValue = 930m / 1000m;
                 swFeat = swComp.FeatureByName("UVCABLE");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩

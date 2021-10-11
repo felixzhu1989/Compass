@@ -292,6 +292,7 @@
             this.tsmiMarineAutoDrawing.Name = "tsmiMarineAutoDrawing";
             this.tsmiMarineAutoDrawing.Size = new System.Drawing.Size(85, 21);
             this.tsmiMarineAutoDrawing.Text = "Marine作图";
+            this.tsmiMarineAutoDrawing.Click += new System.EventHandler(this.TsmiMarineAutoDrawing_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -312,7 +313,7 @@
             this.tsmiDrawingNumMatrix.Name = "tsmiDrawingNumMatrix";
             this.tsmiDrawingNumMatrix.Size = new System.Drawing.Size(80, 21);
             this.tsmiDrawingNumMatrix.Text = "图号生成器";
-            this.tsmiDrawingNumMatrix.Click += new System.EventHandler(this.TsmiDrawingNumMatrix_Click_1);
+            this.tsmiDrawingNumMatrix.Click += new System.EventHandler(this.TsmiDrawingNumMatrix_Click);
             // 
             // toolStripMenuItem4
             // 

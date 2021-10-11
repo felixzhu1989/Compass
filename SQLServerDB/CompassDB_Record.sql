@@ -368,8 +368,8 @@ select * from ProjectStatus
 select * from drawingnummatrix where drawingid between 488 and 516
 update drawingnummatrix set DrawingType='Standard' where drawingid between 488 and 516
 
-
-
+select * from Users
+update Users set UserGroupId=1 where UserAccount='jack'
 
 select * from CMODI555
 select * from ModuleTree where CategoryId=1149

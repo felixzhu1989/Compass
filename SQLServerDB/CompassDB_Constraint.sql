@@ -895,6 +895,23 @@ GO
 alter table UVF555 add constraint df_Height_UVF555 default ('555') for Height
 GO
 
+--法国烟罩FRUVF555
+if exists (select * from sysobjects where name='pk_FRUVF555Id')
+    alter table FRUVF555 drop constraint pk_FRUVF555Id
+GO
+alter table FRUVF555 add constraint pk_FRUVF555Id primary key (FRUVF555Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_FRUVF555')
+    alter table FRUVF555 drop constraint fk_ModuleTreeId_FRUVF555
+GO
+alter table FRUVF555 add constraint fk_ModuleTreeId_FRUVF555 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_FRUVF555')
+    alter table FRUVF555 drop constraint df_Height_FRUVF555
+GO
+alter table FRUVF555 add constraint df_Height_FRUVF555 default ('555') for Height
+GO
+
 --HWUVF650，华为1.2mm板材
 if exists (select * from sysobjects where name='pk_HWUVF650Id')
     alter table HWUVF650 drop constraint pk_HWUVF650Id

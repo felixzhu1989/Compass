@@ -8,7 +8,7 @@ using Models;
 
 namespace Compass
 {
-
+    public delegate void RefreshTreeDelegate();
     public partial class FrmCategoryTree : MetroFramework.Forms.MetroForm
     {
         //创建委托变量

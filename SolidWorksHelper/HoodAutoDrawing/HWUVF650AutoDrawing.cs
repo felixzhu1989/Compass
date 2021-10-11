@@ -1040,7 +1040,7 @@ namespace SolidWorksHelper
                     {
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0071-1"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0082-1"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0072-1"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                         swPart = swComp.GetModelDoc2();
                         swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 368m + 88m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;

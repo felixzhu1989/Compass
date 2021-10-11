@@ -157,10 +157,10 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="EDrawingsUserControl.Designer.cs" />
-    <Compile Include="FrmDrawingNumMatrix.cs">
+    <Compile Include="SingletonForm\FrmDrawingNumMatrix.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDrawingNumMatrix.Designer.cs">
+    <Compile Include="SingletonForm\FrmDrawingNumMatrix.Designer.cs">
       <DependentUpon>FrmDrawingNumMatrix.cs</DependentUpon>
     </Compile>
     <Compile Include="HoodForm\FrmHWUVI650.cs">
@@ -175,16 +175,16 @@
     <Compile Include="HoodForm\FrmHWUVF650.Designer.cs">
       <DependentUpon>FrmHWUVF650.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProjectMeasure.cs">
+    <Compile Include="SingletonForm\FrmProjectMeasure.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmProjectMeasure.Designer.cs">
+    <Compile Include="SingletonForm\FrmProjectMeasure.Designer.cs">
       <DependentUpon>FrmProjectMeasure.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSyncFiles.cs">
+    <Compile Include="SingletonForm\FrmSyncFiles.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSyncFiles.Designer.cs">
+    <Compile Include="SingletonForm\FrmSyncFiles.Designer.cs">
       <DependentUpon>FrmSyncFiles.cs</DependentUpon>
     </Compile>
     <Compile Include="GetSystemIcon.cs" />
@@ -200,10 +200,10 @@
     <Compile Include="FrmModelView.Designer.cs">
       <DependentUpon>FrmModelView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSolidWorksTools.cs">
+    <Compile Include="SingletonForm\FrmSolidWorksTools.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmSolidWorksTools.Designer.cs">
+    <Compile Include="SingletonForm\FrmSolidWorksTools.Designer.cs">
       <DependentUpon>FrmSolidWorksTools.cs</DependentUpon>
     </Compile>
     <Compile Include="HoodForm\FrmHWUWF555.cs">
@@ -362,10 +362,10 @@
     <Compile Include="HoodForm\FrmCMODF555.Designer.cs">
       <DependentUpon>FrmCMODF555.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDXFCutList.cs">
+    <Compile Include="SingletonForm\FrmDXFCutList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDXFCutList.Designer.cs">
+    <Compile Include="SingletonForm\FrmDXFCutList.Designer.cs">
       <DependentUpon>FrmDXFCutList.cs</DependentUpon>
     </Compile>
     <Compile Include="CeilingForm\FrmLFUMC150DXF.cs">
@@ -440,10 +440,10 @@
     <Compile Include="FrmAddCeilingPackingList.Designer.cs">
       <DependentUpon>FrmAddCeilingPackingList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmCategories.cs">
+    <Compile Include="SingletonForm\FrmCategories.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmCategories.Designer.cs">
+    <Compile Include="SingletonForm\FrmCategories.Designer.cs">
       <DependentUpon>FrmCategories.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmCategoryTree.cs">
@@ -452,16 +452,16 @@
     <Compile Include="FrmCategoryTree.Designer.cs">
       <DependentUpon>FrmCategoryTree.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmCeilingAccessories.cs">
+    <Compile Include="SingletonForm\FrmCeilingAccessories.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmCeilingAccessories.Designer.cs">
+    <Compile Include="SingletonForm\FrmCeilingAccessories.Designer.cs">
       <DependentUpon>FrmCeilingAccessories.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmCeilingAutoDrawing.cs">
+    <Compile Include="SingletonForm\FrmCeilingAutoDrawing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmCeilingAutoDrawing.Designer.cs">
+    <Compile Include="SingletonForm\FrmCeilingAutoDrawing.Designer.cs">
       <DependentUpon>FrmCeilingAutoDrawing.cs</DependentUpon>
     </Compile>
     <Compile Include="CeilingForm\FrmCJ300.cs">
@@ -536,22 +536,22 @@
     <Compile Include="FrmCustomer.Designer.cs">
       <DependentUpon>FrmCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDesignWorkload.cs">
+    <Compile Include="SingletonForm\FrmDesignWorkload.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDesignWorkload.Designer.cs">
+    <Compile Include="SingletonForm\FrmDesignWorkload.Designer.cs">
       <DependentUpon>FrmDesignWorkload.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDrawingPlan.cs">
+    <Compile Include="SingletonForm\FrmDrawingPlan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDrawingPlan.Designer.cs">
+    <Compile Include="SingletonForm\FrmDrawingPlan.Designer.cs">
       <DependentUpon>FrmDrawingPlan.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDrawingPlanQuery.cs">
+    <Compile Include="SingletonForm\FrmDrawingPlanQuery.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDrawingPlanQuery.Designer.cs">
+    <Compile Include="SingletonForm\FrmDrawingPlanQuery.Designer.cs">
       <DependentUpon>FrmDrawingPlanQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmDrawing.cs">
@@ -806,34 +806,34 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmModuleTree.cs">
+    <Compile Include="SingletonForm\FrmModuleTree.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmModuleTree.Designer.cs">
+    <Compile Include="SingletonForm\FrmModuleTree.Designer.cs">
       <DependentUpon>FrmModuleTree.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProject.cs">
+    <Compile Include="SingletonForm\FrmProject.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmProject.Designer.cs">
+    <Compile Include="SingletonForm\FrmProject.Designer.cs">
       <DependentUpon>FrmProject.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProjectInfo.cs">
+    <Compile Include="SingletonForm\FrmProjectInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmProjectInfo.Designer.cs">
+    <Compile Include="SingletonForm\FrmProjectInfo.Designer.cs">
       <DependentUpon>FrmProjectInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmProjectTracking.cs">
+    <Compile Include="SingletonForm\FrmProjectTracking.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmProjectTracking.Designer.cs">
+    <Compile Include="SingletonForm\FrmProjectTracking.Designer.cs">
       <DependentUpon>FrmProjectTracking.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmQuickBrowse.cs">
+    <Compile Include="SingletonForm\FrmQuickBrowse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmQuickBrowse.Designer.cs">
+    <Compile Include="SingletonForm\FrmQuickBrowse.Designer.cs">
       <DependentUpon>FrmQuickBrowse.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmRequirements.cs">
@@ -842,10 +842,10 @@
     <Compile Include="FrmRequirements.Designer.cs">
       <DependentUpon>FrmRequirements.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmHoodAutoDrawing.cs">
+    <Compile Include="SingletonForm\FrmHoodAutoDrawing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmHoodAutoDrawing.Designer.cs">
+    <Compile Include="SingletonForm\FrmHoodAutoDrawing.Designer.cs">
       <DependentUpon>FrmHoodAutoDrawing.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmUserLogin.cs">
@@ -854,10 +854,10 @@
     <Compile Include="FrmUserLogin.Designer.cs">
       <DependentUpon>FrmUserLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmUserManage.cs">
+    <Compile Include="SingletonForm\FrmUserManage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmUserManage.Designer.cs">
+    <Compile Include="SingletonForm\FrmUserManage.Designer.cs">
       <DependentUpon>FrmUserManage.cs</DependentUpon>
     </Compile>
     <Compile Include="HoodForm\FrmUVF555.cs">
@@ -878,10 +878,10 @@
     <Compile Include="HoodForm\FrmUVI555.Designer.cs">
       <DependentUpon>FrmUVI555.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmStatusTypes.cs">
+    <Compile Include="SingletonForm\FrmStatusTypes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmStatusTypes.Designer.cs">
+    <Compile Include="SingletonForm\FrmStatusTypes.Designer.cs">
       <DependentUpon>FrmStatusTypes.cs</DependentUpon>
     </Compile>
     <Compile Include="KeyValuePair.cs" />
@@ -900,6 +900,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SingletonObject.cs" />
     <Compile Include="SolidWorksSetting.cs" />
     <Compile Include="SolidWorksSingleton.cs" />
     <Compile Include="SuperChart.cs" />
@@ -1017,16 +1018,16 @@
     <EmbeddedResource Include="FrmAddCeilingPackingList.resx">
       <DependentUpon>FrmAddCeilingPackingList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmCategories.resx">
+    <EmbeddedResource Include="SingletonForm\FrmCategories.resx">
       <DependentUpon>FrmCategories.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCategoryTree.resx">
       <DependentUpon>FrmCategoryTree.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmCeilingAccessories.resx">
+    <EmbeddedResource Include="SingletonForm\FrmCeilingAccessories.resx">
       <DependentUpon>FrmCeilingAccessories.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmCeilingAutoDrawing.resx">
+    <EmbeddedResource Include="SingletonForm\FrmCeilingAutoDrawing.resx">
       <DependentUpon>FrmCeilingAutoDrawing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CeilingForm\FrmNOCJ300.resx">
@@ -1041,19 +1042,19 @@
     <EmbeddedResource Include="CeilingForm\FrmDPCJ330.resx">
       <DependentUpon>FrmDPCJ330.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDrawingNumMatrix.resx">
+    <EmbeddedResource Include="SingletonForm\FrmDrawingNumMatrix.resx">
       <DependentUpon>FrmDrawingNumMatrix.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmProjectMeasure.resx">
+    <EmbeddedResource Include="SingletonForm\FrmProjectMeasure.resx">
       <DependentUpon>FrmProjectMeasure.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSyncFiles.resx">
+    <EmbeddedResource Include="SingletonForm\FrmSyncFiles.resx">
       <DependentUpon>FrmSyncFiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmCH610.resx">
       <DependentUpon>FrmCH610.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDXFCutList.resx">
+    <EmbeddedResource Include="SingletonForm\FrmDXFCutList.resx">
       <DependentUpon>FrmDXFCutList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmJobCardCeiling.resx">
@@ -1074,7 +1075,7 @@
     <EmbeddedResource Include="FrmModelView.resx">
       <DependentUpon>FrmModelView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmSolidWorksTools.resx">
+    <EmbeddedResource Include="SingletonForm\FrmSolidWorksTools.resx">
       <DependentUpon>FrmSolidWorksTools.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmHWUVF650.resx">
@@ -1158,13 +1159,13 @@
     <EmbeddedResource Include="FrmCustomer.resx">
       <DependentUpon>FrmCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDesignWorkload.resx">
+    <EmbeddedResource Include="SingletonForm\FrmDesignWorkload.resx">
       <DependentUpon>FrmDesignWorkload.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDrawingPlan.resx">
+    <EmbeddedResource Include="SingletonForm\FrmDrawingPlan.resx">
       <DependentUpon>FrmDrawingPlan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDrawingPlanQuery.resx">
+    <EmbeddedResource Include="SingletonForm\FrmDrawingPlanQuery.resx">
       <DependentUpon>FrmDrawingPlanQuery.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDrawing.resx">
@@ -1218,31 +1219,31 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmModuleTree.resx">
+    <EmbeddedResource Include="SingletonForm\FrmModuleTree.resx">
       <DependentUpon>FrmModuleTree.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmProject.resx">
+    <EmbeddedResource Include="SingletonForm\FrmProject.resx">
       <DependentUpon>FrmProject.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmProjectInfo.resx">
+    <EmbeddedResource Include="SingletonForm\FrmProjectInfo.resx">
       <DependentUpon>FrmProjectInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmProjectTracking.resx">
+    <EmbeddedResource Include="SingletonForm\FrmProjectTracking.resx">
       <DependentUpon>FrmProjectTracking.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmQuickBrowse.resx">
+    <EmbeddedResource Include="SingletonForm\FrmQuickBrowse.resx">
       <DependentUpon>FrmQuickBrowse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRequirements.resx">
       <DependentUpon>FrmRequirements.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmHoodAutoDrawing.resx">
+    <EmbeddedResource Include="SingletonForm\FrmHoodAutoDrawing.resx">
       <DependentUpon>FrmHoodAutoDrawing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUserLogin.resx">
       <DependentUpon>FrmUserLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmUserManage.resx">
+    <EmbeddedResource Include="SingletonForm\FrmUserManage.resx">
       <DependentUpon>FrmUserManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmLSDOST.resx">
@@ -1281,7 +1282,7 @@
     <EmbeddedResource Include="HoodForm\FrmUVI555.resx">
       <DependentUpon>FrmUVI555.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmStatusTypes.resx">
+    <EmbeddedResource Include="SingletonForm\FrmStatusTypes.resx">
       <DependentUpon>FrmStatusTypes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmUWF555400.resx">
