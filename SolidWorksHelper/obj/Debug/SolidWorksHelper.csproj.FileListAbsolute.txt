@@ -6,7 +6,6 @@ E:\Compass\SolidWorksHelper\bin\Debug\Models.dll
 E:\Compass\SolidWorksHelper\bin\Debug\Common.pdb
 E:\Compass\SolidWorksHelper\bin\Debug\DAL.pdb
 E:\Compass\SolidWorksHelper\bin\Debug\Models.pdb
-E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csprojAssemblyReference.cache
 E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.CoreCompileInputs.cache
 E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.CopyComplete
 E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.dll
@@ -24,3 +23,4 @@ D:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.CoreCompileInputs.
 D:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.CopyComplete
 D:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.dll
 D:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.pdb
+E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.AssemblyReference.cache
