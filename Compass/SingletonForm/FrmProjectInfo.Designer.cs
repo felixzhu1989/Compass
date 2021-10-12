@@ -57,6 +57,8 @@
             this.tsmiRequirement = new System.Windows.Forms.ToolStripMenuItem();
             this.grbModuleStatistics = new System.Windows.Forms.GroupBox();
             this.dgvScope = new System.Windows.Forms.DataGridView();
+            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSalesValue = new System.Windows.Forms.TextBox();
             this.lblSalesValue = new System.Windows.Forms.Label();
             this.grbFinancialData = new System.Windows.Forms.GroupBox();
@@ -77,11 +79,10 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tpgProjectInfo = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.grbAnomalyStatus = new System.Windows.Forms.GroupBox();
             this.tpgProjectList = new System.Windows.Forms.TabPage();
             this.dgvProjects = new System.Windows.Forms.DataGridView();
-            this.timer = new System.Windows.Forms.Timer(this.components);
-            this.btnScroll = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BPONo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,9 +93,11 @@
             this.RiskLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HoodType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AnomalyStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Num = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grbAnomalyStatus = new System.Windows.Forms.GroupBox();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.btnScroll = new System.Windows.Forms.Button();
+            this.lblShowInfo = new System.Windows.Forms.Label();
+            this.timerShowInfo = new System.Windows.Forms.Timer(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
             this.grbProject.SuspendLayout();
             this.grbGeneralRequirements.SuspendLayout();
             this.grbSpecialRequirements.SuspendLayout();
@@ -112,9 +115,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.chartProjectType)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tpgProjectInfo.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.tpgProjectList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label3
@@ -133,7 +137,7 @@
             this.grbProject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grbProject.Location = new System.Drawing.Point(3, 3);
             this.grbProject.Name = "grbProject";
-            this.grbProject.Size = new System.Drawing.Size(195, 175);
+            this.grbProject.Size = new System.Drawing.Size(195, 176);
             this.grbProject.TabIndex = 2;
             this.grbProject.TabStop = false;
             this.grbProject.Text = "项目基本信息";
@@ -146,14 +150,14 @@
             this.txtProjectInfo.Name = "txtProjectInfo";
             this.txtProjectInfo.ReadOnly = true;
             this.txtProjectInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtProjectInfo.Size = new System.Drawing.Size(189, 151);
+            this.txtProjectInfo.Size = new System.Drawing.Size(189, 152);
             this.txtProjectInfo.TabIndex = 0;
             // 
             // grbGeneralRequirements
             // 
             this.grbGeneralRequirements.Controls.Add(this.txtGeneralRequirements);
             this.grbGeneralRequirements.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbGeneralRequirements.Location = new System.Drawing.Point(3, 184);
+            this.grbGeneralRequirements.Location = new System.Drawing.Point(3, 185);
             this.grbGeneralRequirements.Name = "grbGeneralRequirements";
             this.grbGeneralRequirements.Size = new System.Drawing.Size(195, 115);
             this.grbGeneralRequirements.TabIndex = 3;
@@ -175,7 +179,7 @@
             // 
             this.grbSpecialRequirements.Controls.Add(this.txtSpecialRequirements);
             this.grbSpecialRequirements.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbSpecialRequirements.Location = new System.Drawing.Point(3, 305);
+            this.grbSpecialRequirements.Location = new System.Drawing.Point(3, 306);
             this.grbSpecialRequirements.Name = "grbSpecialRequirements";
             this.grbSpecialRequirements.Size = new System.Drawing.Size(195, 298);
             this.grbSpecialRequirements.TabIndex = 4;
@@ -224,7 +228,7 @@
             // 
             this.grbModuleStatistics.Controls.Add(this.dgvScope);
             this.grbModuleStatistics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbModuleStatistics.Location = new System.Drawing.Point(577, 184);
+            this.grbModuleStatistics.Location = new System.Drawing.Point(577, 185);
             this.grbModuleStatistics.Name = "grbModuleStatistics";
             this.grbModuleStatistics.Size = new System.Drawing.Size(265, 115);
             this.grbModuleStatistics.TabIndex = 5;
@@ -262,6 +266,22 @@
             this.dgvScope.TabIndex = 0;
             this.dgvScope.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvScope_RowPostPaint);
             // 
+            // Model
+            // 
+            this.Model.DataPropertyName = "Model";
+            this.Model.HeaderText = "机型";
+            this.Model.Name = "Model";
+            this.Model.ReadOnly = true;
+            this.Model.Width = 60;
+            // 
+            // Num
+            // 
+            this.Num.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Num.DataPropertyName = "Num";
+            this.Num.HeaderText = "烟罩数量/天花工作量";
+            this.Num.Name = "Num";
+            this.Num.ReadOnly = true;
+            // 
             // txtSalesValue
             // 
             this.txtSalesValue.Location = new System.Drawing.Point(54, 20);
@@ -289,7 +309,7 @@
             this.grbFinancialData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grbFinancialData.Location = new System.Drawing.Point(577, 3);
             this.grbFinancialData.Name = "grbFinancialData";
-            this.grbFinancialData.Size = new System.Drawing.Size(265, 175);
+            this.grbFinancialData.Size = new System.Drawing.Size(265, 176);
             this.grbFinancialData.TabIndex = 1;
             this.grbFinancialData.TabStop = false;
             this.grbFinancialData.Text = "财务数据";
@@ -301,7 +321,7 @@
             this.btnFinancialData.FlatAppearance.BorderSize = 0;
             this.btnFinancialData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFinancialData.ForeColor = System.Drawing.Color.White;
-            this.btnFinancialData.Location = new System.Drawing.Point(151, 136);
+            this.btnFinancialData.Location = new System.Drawing.Point(151, 137);
             this.btnFinancialData.Name = "btnFinancialData";
             this.btnFinancialData.Size = new System.Drawing.Size(108, 28);
             this.btnFinancialData.TabIndex = 1;
@@ -337,7 +357,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartTracking.Series.Add(series1);
-            this.chartTracking.Size = new System.Drawing.Size(361, 272);
+            this.chartTracking.Size = new System.Drawing.Size(361, 273);
             this.chartTracking.TabIndex = 7;
             this.chartTracking.Text = "chart1";
             // 
@@ -348,7 +368,7 @@
             this.grbTracking.Location = new System.Drawing.Point(204, 3);
             this.grbTracking.Name = "grbTracking";
             this.tableLayoutPanel1.SetRowSpan(this.grbTracking, 2);
-            this.grbTracking.Size = new System.Drawing.Size(367, 296);
+            this.grbTracking.Size = new System.Drawing.Size(367, 297);
             this.grbTracking.TabIndex = 8;
             this.grbTracking.TabStop = false;
             this.grbTracking.Text = "跟踪信息";
@@ -423,7 +443,7 @@
             // timerScroll
             // 
             this.timerScroll.Enabled = true;
-            this.timerScroll.Interval = 60000;
+            this.timerScroll.Interval = 1000;
             this.timerScroll.Tick += new System.EventHandler(this.TimerScroll_Tick);
             // 
             // grbRiskLevel
@@ -537,8 +557,8 @@
             // 
             this.lblTime.AutoSize = true;
             this.lblTime.Font = new System.Drawing.Font("微软雅黑", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblTime.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblTime.Location = new System.Drawing.Point(388, 11);
+            this.lblTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.lblTime.Location = new System.Drawing.Point(388, 9);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(463, 46);
             this.lblTime.TabIndex = 10;
@@ -554,7 +574,7 @@
             this.tabControl.Location = new System.Drawing.Point(1, 53);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(859, 644);
+            this.tabControl.Size = new System.Drawing.Size(859, 645);
             this.tabControl.TabIndex = 11;
             // 
             // tpgProjectInfo
@@ -563,18 +583,52 @@
             this.tpgProjectInfo.Location = new System.Drawing.Point(4, 28);
             this.tpgProjectInfo.Name = "tpgProjectInfo";
             this.tpgProjectInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgProjectInfo.Size = new System.Drawing.Size(851, 612);
+            this.tpgProjectInfo.Size = new System.Drawing.Size(851, 613);
             this.tpgProjectInfo.TabIndex = 0;
             this.tpgProjectInfo.Text = "详细信息";
             this.tpgProjectInfo.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 270F));
+            this.tableLayoutPanel1.Controls.Add(this.grbProject, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.grbGeneralRequirements, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.grbSpecialRequirements, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.grbTracking, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.grbFinancialData, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.grbModuleStatistics, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.grbAnomalyStatus, 1, 2);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(845, 607);
+            this.tableLayoutPanel1.TabIndex = 9;
+            // 
+            // grbAnomalyStatus
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.grbAnomalyStatus, 2);
+            this.grbAnomalyStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbAnomalyStatus.Location = new System.Drawing.Point(204, 306);
+            this.grbAnomalyStatus.Name = "grbAnomalyStatus";
+            this.grbAnomalyStatus.Size = new System.Drawing.Size(638, 298);
+            this.grbAnomalyStatus.TabIndex = 9;
+            this.grbAnomalyStatus.TabStop = false;
+            this.grbAnomalyStatus.Text = "异常信息";
+            // 
             // tpgProjectList
             // 
             this.tpgProjectList.Controls.Add(this.dgvProjects);
-            this.tpgProjectList.Location = new System.Drawing.Point(4, 28);
+            this.tpgProjectList.Location = new System.Drawing.Point(4, 22);
             this.tpgProjectList.Name = "tpgProjectList";
             this.tpgProjectList.Padding = new System.Windows.Forms.Padding(3);
-            this.tpgProjectList.Size = new System.Drawing.Size(851, 612);
+            this.tpgProjectList.Size = new System.Drawing.Size(851, 619);
             this.tpgProjectList.TabIndex = 1;
             this.tpgProjectList.Text = "项目列表";
             this.tpgProjectList.UseVisualStyleBackColor = true;
@@ -614,52 +668,9 @@
             this.dgvProjects.Name = "dgvProjects";
             this.dgvProjects.ReadOnly = true;
             this.dgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvProjects.Size = new System.Drawing.Size(845, 606);
+            this.dgvProjects.Size = new System.Drawing.Size(845, 613);
             this.dgvProjects.TabIndex = 36;
             this.dgvProjects.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvProjects_RowPostPaint);
-            // 
-            // timer
-            // 
-            this.timer.Enabled = true;
-            this.timer.Interval = 1000;
-            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
-            // 
-            // btnScroll
-            // 
-            this.btnScroll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.btnScroll.FlatAppearance.BorderSize = 0;
-            this.btnScroll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnScroll.ForeColor = System.Drawing.Color.White;
-            this.btnScroll.Location = new System.Drawing.Point(310, 18);
-            this.btnScroll.Name = "btnScroll";
-            this.btnScroll.Size = new System.Drawing.Size(72, 28);
-            this.btnScroll.TabIndex = 1;
-            this.btnScroll.Text = "暂停循环";
-            this.btnScroll.UseVisualStyleBackColor = false;
-            this.btnScroll.Click += new System.EventHandler(this.BtnScroll_Click);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 270F));
-            this.tableLayoutPanel1.Controls.Add(this.grbProject, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.grbGeneralRequirements, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.grbSpecialRequirements, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.grbTracking, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.grbFinancialData, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.grbModuleStatistics, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.grbAnomalyStatus, 1, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(845, 606);
-            this.tableLayoutPanel1.TabIndex = 9;
             // 
             // UserAccount
             // 
@@ -741,37 +752,60 @@
             this.AnomalyStatus.ReadOnly = true;
             this.AnomalyStatus.Width = 86;
             // 
-            // Model
+            // timer
             // 
-            this.Model.DataPropertyName = "Model";
-            this.Model.HeaderText = "机型";
-            this.Model.Name = "Model";
-            this.Model.ReadOnly = true;
-            this.Model.Width = 60;
+            this.timer.Enabled = true;
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
-            // Num
+            // btnScroll
             // 
-            this.Num.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Num.DataPropertyName = "Num";
-            this.Num.HeaderText = "烟罩数量/天花工作量";
-            this.Num.Name = "Num";
-            this.Num.ReadOnly = true;
+            this.btnScroll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.btnScroll.FlatAppearance.BorderSize = 0;
+            this.btnScroll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnScroll.ForeColor = System.Drawing.Color.White;
+            this.btnScroll.Location = new System.Drawing.Point(310, 18);
+            this.btnScroll.Name = "btnScroll";
+            this.btnScroll.Size = new System.Drawing.Size(72, 28);
+            this.btnScroll.TabIndex = 1;
+            this.btnScroll.Text = "暂停循环";
+            this.btnScroll.UseVisualStyleBackColor = false;
+            this.btnScroll.Click += new System.EventHandler(this.BtnScroll_Click);
             // 
-            // grbAnomalyStatus
+            // lblShowInfo
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.grbAnomalyStatus, 2);
-            this.grbAnomalyStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbAnomalyStatus.Location = new System.Drawing.Point(204, 305);
-            this.grbAnomalyStatus.Name = "grbAnomalyStatus";
-            this.grbAnomalyStatus.Size = new System.Drawing.Size(638, 298);
-            this.grbAnomalyStatus.TabIndex = 9;
-            this.grbAnomalyStatus.TabStop = false;
-            this.grbAnomalyStatus.Text = "异常信息";
+            this.lblShowInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblShowInfo.AutoSize = true;
+            this.lblShowInfo.BackColor = System.Drawing.Color.Transparent;
+            this.lblShowInfo.Font = new System.Drawing.Font("微软雅黑", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblShowInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            this.lblShowInfo.Location = new System.Drawing.Point(987, 1);
+            this.lblShowInfo.Name = "lblShowInfo";
+            this.lblShowInfo.Size = new System.Drawing.Size(217, 46);
+            this.lblShowInfo.TabIndex = 10;
+            this.lblShowInfo.Text = "Infomation";
+            // 
+            // timerShowInfo
+            // 
+            this.timerShowInfo.Enabled = true;
+            this.timerShowInfo.Interval = 1;
+            this.timerShowInfo.Tick += new System.EventHandler(this.timerShowInfo_Tick);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Controls.Add(this.lblShowInfo);
+            this.panel1.Location = new System.Drawing.Point(-8, 700);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1216, 56);
+            this.panel1.TabIndex = 12;
             // 
             // FrmProjectInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1200, 700);
+            this.ClientSize = new System.Drawing.Size(1200, 750);
             this.ContextMenuStrip = this.cmsRequirement;
             this.Controls.Add(this.cobODPNo);
             this.Controls.Add(this.tabControl);
@@ -785,6 +819,7 @@
             this.Controls.Add(this.grbRiskLevel);
             this.Controls.Add(this.grbProjectStatus);
             this.Controls.Add(this.lblTime);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "FrmProjectInfo";
             this.Text = "项目信息";
@@ -810,9 +845,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.chartProjectType)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.tpgProjectInfo.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.tpgProjectList.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjects)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -869,5 +906,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Model;
         private System.Windows.Forms.DataGridViewTextBoxColumn Num;
         private System.Windows.Forms.GroupBox grbAnomalyStatus;
+        private System.Windows.Forms.Label lblShowInfo;
+        private System.Windows.Forms.Timer timerShowInfo;
+        private System.Windows.Forms.Panel panel1;
     }
 }

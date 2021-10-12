@@ -22,14 +22,19 @@ namespace DAL
         */
         public string WhereSql(string year,string month)
         {
-            string whereSql="";
+            string whereSql;
             if (Convert.ToInt32(month)==12)
             {
-                whereSql = string.Format(" where ShippingTime >='{0}/{1}/01' and ShippingTime <='{2}/01/31'", year, month, Convert.ToInt32(year) + 1);
+                whereSql = $" where ShippingTime >='{year}/11/01' and ShippingTime <'{Convert.ToInt32(year) + 1}/02/1'";
+            }
+            else if (Convert.ToInt32(month) == 1)
+            {
+                whereSql = $" where ShippingTime >='{Convert.ToInt32(year) - 1}/12/01' and ShippingTime <'{year}/03/1'";
             }
             else
             {
-                whereSql = string.Format(" where ShippingTime like'{0}%' and month(ShippingTime) between {1} and {2} ", year, month, Convert.ToInt32(month) + 1);
+                whereSql =
+                    $" where ShippingTime like'{year}%' and month(ShippingTime) between {Convert.ToInt32(month) - 1} and {Convert.ToInt32(month) + 1} ";
             }
             return whereSql;
         }
@@ -39,12 +44,12 @@ namespace DAL
         /// <returns></returns>
         public List<string> GetScrollODPNoList()
         {
-            string sql = "select ODPNo from Projects";
+            StringBuilder sql =new StringBuilder( "select ODPNo from Projects");
             //sql += " inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId";
             //sql += " where ProjectStatusId between 1 and 4 order by ShippingTime asc";
-            sql += WhereSql(DateTime.Now.Year.ToString(),DateTime.Now.Month.ToString()); 
-
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            sql.Append(WhereSql(DateTime.Now.Year.ToString(),DateTime.Now.Month.ToString()));
+            sql.Append(" order by ShippingTime asc");
+            SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             List<string> list = new List<string>();
             while (objReader.Read())
             {
@@ -57,25 +62,26 @@ namespace DAL
         /// 获取需要展示的项目列表
         /// </summary>
         /// <returns></returns>
-        public DataTable GetDisplayProjects(string sbu)
+        public DataTable GetDisplayProjects(string sbu, string year, string month)
         {
-            StringBuilder sql = new StringBuilder(string.Format("select Projects{0}.ProjectId,ODPNo,BPONo,ProjectName,Projects{0}.CustomerId,CustomerName,ShippingTime,Projects{0}.UserId,UserAccount,TypeName,RiskLevel,ProjectStatusName,HoodType,SalesValue from Projects{0}", sbu));
-            sql.Append(string.Format(" inner join Users on Projects{0}.UserId=Users.UserId", sbu));
-            sql.Append(string.Format(" inner join Customers on Projects{0}.CustomerId=Customers.CustomerId", sbu));
-            sql.Append(string.Format(" inner join ProjectTracking{0} on Projects{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu));
-            sql.Append(string.Format(" inner join ProjectStatus on ProjectTracking{0}.ProjectStatusId=ProjectStatus.ProjectStatusId", sbu));
-            sql.Append(string.Format(" left join GeneralRequirements{0} on Projects{0}.ProjectId=GeneralRequirements{0}.ProjectId", sbu));
-            sql.Append(string.Format(" left join FinancialData{0} on Projects{0}.ProjectId=FinancialData{0}.ProjectId", sbu));
-            sql.Append(string.Format(" left join ProjectTypes{0} on ProjectTypes{0}.TypeId=GeneralRequirements{0}.TypeId", sbu));
-            string whereSql = WhereSql(DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString());
+            StringBuilder sql = new StringBuilder(
+                $"select Projects{sbu}.ProjectId,ODPNo,BPONo,ProjectName,Projects{sbu}.CustomerId,CustomerName,ShippingTime,Projects{sbu}.UserId,UserAccount,TypeName,RiskLevel,ProjectStatusName,HoodType,SalesValue from Projects{sbu}");
+            sql.Append($" inner join Users on Projects{sbu}.UserId=Users.UserId");
+            sql.Append($" inner join Customers on Projects{sbu}.CustomerId=Customers.CustomerId");
+            sql.Append($" inner join ProjectTracking{sbu} on Projects{sbu}.ProjectId=ProjectTracking{sbu}.ProjectId");
+            sql.Append(
+                $" inner join ProjectStatus on ProjectTracking{sbu}.ProjectStatusId=ProjectStatus.ProjectStatusId");
+            sql.Append(
+                $" left join GeneralRequirements{sbu} on Projects{sbu}.ProjectId=GeneralRequirements{sbu}.ProjectId");
+            sql.Append($" left join FinancialData{sbu} on Projects{sbu}.ProjectId=FinancialData{sbu}.ProjectId");
+            sql.Append($" left join ProjectTypes{sbu} on ProjectTypes{sbu}.TypeId=GeneralRequirements{sbu}.TypeId");
+            string whereSql = WhereSql(year,month);
             sql.Append(whereSql);
             sql.Append(" order by ShippingTime desc");//按照发货日期，倒序排列
 
             DataSet ds = SQLHelper.GetDataSet(sql.ToString());
             return ds.Tables[0];
         }
-
-
 
         /// <summary>
         /// 项目数量月度统计
@@ -96,7 +102,7 @@ namespace DAL
         /// <returns></returns>
         public string GetProjectNum(string year)
         {
-            string sql = string.Format("select count(*) from Projects where ShippingTime like'{0}%'", year);
+            string sql = $"select count(*) from Projects where ShippingTime like'{year}%'";
             return SQLHelper.GetSingleResult(sql).ToString();
         }
 
@@ -109,11 +115,11 @@ namespace DAL
         public List<ChartData> GetProjectStatus(string year,string month)
         {
             List<ChartData> list=new List<ChartData>();
-            string sql = "select ProjectStatusId,count(ProjectStatusId) as Qty from ProjectTracking";
-            sql += " inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId";
-            sql += WhereSql(year, month);
-            sql += " group by ProjectStatusId order by ProjectStatusId asc";
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            StringBuilder sql =new StringBuilder("select ProjectStatusId,count(ProjectStatusId) as Qty from ProjectTracking");
+            sql.Append(" inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId");
+            sql.Append( WhereSql(year, month));
+            sql.Append( " group by ProjectStatusId order by ProjectStatusId asc");
+            SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             while (objReader.Read())
             {
                 list.Add(new ChartData()
@@ -134,12 +140,12 @@ namespace DAL
         public List<ChartData> GetProjectStatus(string year)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select ProjectStatusName,count(ProjectStatusName) as Qty from ProjectTracking";
-            sql += " inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId";
-            sql += " inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId";
-            sql += string.Format(" where ShippingTime like'{0}%'", year);
-            sql += " group by ProjectStatusName";
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            StringBuilder sql =new StringBuilder( "select ProjectStatusName,count(ProjectStatusName) as Qty from ProjectTracking");
+            sql.Append( " inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId");
+            sql.Append(" inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId");
+            sql.Append($" where ShippingTime like'{year}%'");
+            sql.Append(" group by ProjectStatusName");
+            SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             while (objReader.Read())
             {
                 list.Add(new ChartData()
@@ -160,11 +166,11 @@ namespace DAL
         public List<ChartData> GetRiskLevel(string year, string month)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select RiskLevel,count(RiskLevel) as Qty from GeneralRequirements";
-            sql += " inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId";
-            sql += WhereSql(year, month);
-            sql += " group by RiskLevel";
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            StringBuilder sql =new StringBuilder( "select RiskLevel,count(RiskLevel) as Qty from GeneralRequirements");
+            sql.Append(" inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId");
+            sql.Append(WhereSql(year, month));
+            sql.Append(" group by RiskLevel");
+            SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             while (objReader.Read())
             {
                 list.Add(new ChartData()

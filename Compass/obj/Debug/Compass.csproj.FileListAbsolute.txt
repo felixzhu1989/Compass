@@ -1,4 +1,3 @@
-E:\Compass\Compass\obj\Debug\Compass.csprojAssemblyReference.cache
 E:\Compass\Compass\obj\Debug\Compass.csproj.ResolveComReference.cache
 E:\Compass\Compass\obj\Debug\Compass.FrmBCJ300.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmBCJ330.resources
@@ -142,7 +141,6 @@ E:\Compass\Compass\bin\Debug\MyUIControls.pdb
 E:\Compass\Compass\bin\Debug\SolidWorksHelper.pdb
 E:\Compass\Compass\bin\Debug\UpdateProgram.pdb
 E:\Compass\Compass\bin\Debug\UpdateProgram.exe.config
-E:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
 E:\Compass\Compass\obj\Debug\Compass.exe
 E:\Compass\Compass\obj\Debug\Compass.pdb
 E:\Compass\Compass\obj\Debug\Compass.FrmCH610.resources
@@ -313,3 +311,5 @@ E:\Compass\Compass\obj\Debug\Compass.FrmDrawingNumMatrix.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmSyncFiles.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmHWUVF650.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmHWUVI650.resources
+E:\Compass\Compass\obj\Debug\Compass.csproj.AssemblyReference.cache
+E:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
