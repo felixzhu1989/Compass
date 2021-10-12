@@ -15,7 +15,7 @@ namespace DAL
         /// <returns></returns>
         public List<CeilingCutList> GetCeilingCutListsBySubAssyId(string subAssyId)
         {
-            return GetCeilingCutListsByWhereSql(string.Format(" where SubAssyId = '{0}'", subAssyId));
+            return GetCeilingCutListsByWhereSql($" where SubAssyId = '{subAssyId}'");
         }
         /// <summary>
         /// 根据条件返回Cutlist集合

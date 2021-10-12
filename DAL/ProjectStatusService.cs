@@ -36,7 +36,7 @@ namespace DAL
         public ProjectStatus GetProjectStatusById(string projectStatusId)
         {
             string sql = "select ProjectStatusId,ProjectStatusName,StatusDesc from ProjectStatus";
-            sql += string.Format(" where ProjectStatusId='{0}'", projectStatusId);
+            sql += $" where ProjectStatusId='{projectStatusId}'";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             ProjectStatus objProjectStatus = null;
             if (objReader.Read())

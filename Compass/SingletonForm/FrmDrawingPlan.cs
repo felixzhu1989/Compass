@@ -133,7 +133,7 @@ namespace Compass
         }
         private void QureyAll()
         {
-            objSqlDataPager.Condition = string.Format("DrawingPlan{0}.DrReleasetarget>='2020/01/01'",sbu);
+            objSqlDataPager.Condition = $"DrawingPlan{sbu}.DrReleasetarget>='2020/01/01'";
             objSqlDataPager.PageSize = 10000;
             Query();
         }
@@ -312,7 +312,7 @@ namespace Compass
         private void BtnQueryByProjectId_Click(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("DrawingPlan{0}.ProjectId={1}", sbu,cobODPNo.SelectedValue.ToString());
+            objSqlDataPager.Condition = $"DrawingPlan{sbu}.ProjectId={cobODPNo.SelectedValue}";
             objSqlDataPager.PageSize = 10000;
             Query();
         }
@@ -595,7 +595,7 @@ namespace Compass
         private void BtnQueryByUserId_Click(object sender, EventArgs e)
         {
             if (cobUserId.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("Projects{0}.UserId={1}", sbu,cobUserId.SelectedValue.ToString());
+            objSqlDataPager.Condition = $"Projects{sbu}.UserId={cobUserId.SelectedValue}";
             objSqlDataPager.PageSize = 10000;
             Query();
         }

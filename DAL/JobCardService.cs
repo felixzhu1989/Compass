@@ -16,7 +16,7 @@ namespace DAL
             sql += $" inner join Customers on Projects{tree.SBU}.CustomerId=Customers.CustomerId";
             sql += $" inner join Categories{tree.SBU} on Categories{tree.SBU}.CategoryId=ModuleTree{tree.SBU}.CategoryId";
             sql += " inner Join " + tree.CategoryName + " on " + tree.CategoryName + $".ModuleTreeId=ModuleTree{tree.SBU}.ModuleTreeId";
-            sql += string.Format(" where ModuleTree.ModuleTreeId={0}", tree.ModuleTreeId);
+            sql += $" where ModuleTree.ModuleTreeId={tree.ModuleTreeId}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             JobCard objJobCard = null;
             while (objReader.Read())

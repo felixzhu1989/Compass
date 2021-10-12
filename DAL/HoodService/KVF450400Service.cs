@@ -18,7 +18,7 @@ namespace DAL
             string sql = "select KVF450400Id,KVF450400.ModuleTreeId,Item,Module,Length,Deepth,ExRightDis,ExNo,EXDis,ExLength,ExWidth,ExHeight,SuNo,SuDis,SidePanel,Outlet,LEDlogo,BackToBack,WaterCollection,LEDSpotNo,LEDSpotDis,LightType,ANSUL,ANSide,ANDetector,ANYDis,ANDropNo,ANDropDis1,ANDropDis2,ANDropDis3,ANDropDis4,ANDropDis5,MARVEL,IRNo,IRDis1,IRDis2,IRDis3 from KVF450400";
             sql += " inner join ModuleTree on KVF450400.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
-            sql += string.Format(" where ProjectId={0}", projectId);
+            sql += $" where ProjectId={projectId}";
             sql += " order by Item,Module";
             return SQLHelper.GetDataSet(sql);
         }
@@ -29,7 +29,7 @@ namespace DAL
         /// <returns></returns>
         public IModel GetModelById(string id)
         {
-            return GetModelByWhereSql(string.Format(" where KVF450400Id={0}", id));
+            return GetModelByWhereSql($" where KVF450400Id={id}");
         }
         /// <summary>
         /// 根据模型树ID返回KVF450400
@@ -38,7 +38,7 @@ namespace DAL
         /// <returns></returns>
         public IModel GetModelByModuleTreeId(string moduleTreeId)
         {
-            return GetModelByWhereSql(string.Format(" where ModuleTreeId={0}", moduleTreeId));
+            return GetModelByWhereSql($" where ModuleTreeId={moduleTreeId}");
         }
         /// <summary>
         /// 根据条件查找KVF450400

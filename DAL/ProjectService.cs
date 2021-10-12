@@ -15,10 +15,11 @@ namespace DAL
         /// <returns></returns>
         public SqlDataPager GetSqlDataPager(string sbu)
         {
-            StringBuilder innerJoin = new StringBuilder(string.Format("inner join Users on Projects{0}.UserId=Users.UserId", sbu));
-            innerJoin.Append(string.Format(" inner join Customers on Projects{0}.CustomerId=Customers.CustomerId", sbu));
+            StringBuilder innerJoin = new StringBuilder($"inner join Users on Projects{sbu}.UserId=Users.UserId");
+            innerJoin.Append($" inner join Customers on Projects{sbu}.CustomerId=Customers.CustomerId");
             innerJoin.Append(string.Format(" inner join ProjectTracking{0} on Projects{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu));
-            innerJoin.Append(string.Format(" inner join ProjectStatus on ProjectTracking{0}.ProjectStatusId=ProjectStatus.ProjectStatusId", sbu));
+            innerJoin.Append(
+                $" inner join ProjectStatus on ProjectTracking{sbu}.ProjectStatusId=ProjectStatus.ProjectStatusId");
             innerJoin.Append(string.Format(" left join GeneralRequirements{0} on Projects{0}.ProjectId=GeneralRequirements{0}.ProjectId", sbu));
             innerJoin.Append(string.Format(" left join FinancialData{0} on Projects{0}.ProjectId=FinancialData{0}.ProjectId", sbu));
             innerJoin.Append(string.Format(" left join ProjectTypes{0} on ProjectTypes{0}.TypeId=GeneralRequirements{0}.TypeId", sbu));
@@ -26,11 +27,11 @@ namespace DAL
             //初始化分页对象
             SqlDataPager objSqlDataPager = new SqlDataPager()
             {
-                PrimaryKey = string.Format("Projects{0}.ProjectId",
-                    sbu),
+                PrimaryKey = $"Projects{sbu}.ProjectId",
                 TableName = "Projects" + sbu,
                 InnerJoin1 = innerJoin.ToString(),
-                FiledName = string.Format("Projects{0}.ProjectId,ODPNo,BPONo,ProjectName,CustomerName,ShippingTime,UserAccount,TypeName,RiskLevel,ProjectStatusName,HoodType,SalesValue", sbu),
+                FiledName =
+                    $"Projects{sbu}.ProjectId,ODPNo,BPONo,ProjectName,CustomerName,ShippingTime,UserAccount,TypeName,RiskLevel,ProjectStatusName,HoodType,SalesValue",
                 CurrentPage = 1,
                 Sort = "ShippingTime desc",
             };
@@ -45,7 +46,7 @@ namespace DAL
         /// <returns></returns>
         public List<Project> GetProjectsByHoodType(string hoodType, string sbu)
         {
-            return GetProjectsByWhereSql(string.Format(" where HoodType = '{0}'", hoodType), sbu);
+            return GetProjectsByWhereSql($" where HoodType = '{hoodType}'", sbu);
         }
         /// <summary>
         /// 根据项目号返回集合，其实只有一个订单
@@ -54,7 +55,7 @@ namespace DAL
         /// <returns></returns>
         public List<Project> GetProjectsByODPNo(string odpNo, string sbu)
         {
-            return GetProjectsByWhereSql(string.Format(" where ODPNo = '{0}'", odpNo), sbu);
+            return GetProjectsByWhereSql($" where ODPNo = '{odpNo}'", sbu);
         }
         /// <summary>
         /// 根据制图人员返回项目集合
@@ -63,7 +64,7 @@ namespace DAL
         /// <returns></returns>
         public List<Project> GetProjectsByUserId(string userId, string sbu)
         {
-            return GetProjectsByWhereSql(string.Format(" where Projects{0}.UserId = {1}", sbu, userId), sbu);
+            return GetProjectsByWhereSql($" where Projects{sbu}.UserId = {userId}", sbu);
         }
 
         /// <summary>
@@ -74,10 +75,11 @@ namespace DAL
         public List<Project> GetProjectsByWhereSql(string whereSql, string sbu)
         {
             StringBuilder sql = new StringBuilder(string.Format("select Projects{0}.ProjectId,ODPNo,BPONo,ProjectName,Projects{0}.CustomerId,CustomerName,ShippingTime,Projects{0}.UserId,UserAccount,TypeName,RiskLevel,ProjectStatusName,HoodType,SalesValue from Projects{0}", sbu));
-            sql.Append(string.Format(" inner join Users on Projects{0}.UserId=Users.UserId", sbu));
-            sql.Append(string.Format(" inner join Customers on Projects{0}.CustomerId=Customers.CustomerId", sbu));
+            sql.Append($" inner join Users on Projects{sbu}.UserId=Users.UserId");
+            sql.Append($" inner join Customers on Projects{sbu}.CustomerId=Customers.CustomerId");
             sql.Append(string.Format(" inner join ProjectTracking{0} on Projects{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu));
-            sql.Append(string.Format(" inner join ProjectStatus on ProjectTracking{0}.ProjectStatusId=ProjectStatus.ProjectStatusId", sbu));
+            sql.Append(
+                $" inner join ProjectStatus on ProjectTracking{sbu}.ProjectStatusId=ProjectStatus.ProjectStatusId");
             sql.Append(string.Format(" left join GeneralRequirements{0} on Projects{0}.ProjectId=GeneralRequirements{0}.ProjectId", sbu));
             sql.Append(string.Format(" left join FinancialData{0} on Projects{0}.ProjectId=FinancialData{0}.ProjectId", sbu));
             sql.Append(string.Format(" left join ProjectTypes{0} on ProjectTypes{0}.TypeId=GeneralRequirements{0}.TypeId", sbu));
@@ -115,7 +117,7 @@ namespace DAL
         /// <returns></returns>
         public Project GetProjectByODPNo(string odpNo, string sbu)
         {
-            return GetProjectByWhereSql(string.Format(" where ODPNo='{0}'", odpNo), sbu);
+            return GetProjectByWhereSql($" where ODPNo='{odpNo}'", sbu);
         }
         /// <summary>
         /// 根据序号返回单个项目信息
@@ -124,7 +126,7 @@ namespace DAL
         /// <returns></returns>
         public Project GetProjectByProjectId(string projectId, string sbu)
         {
-            return GetProjectByWhereSql(string.Format(" where Projects{0}.ProjectId={1}", sbu, projectId), sbu);
+            return GetProjectByWhereSql($" where Projects{sbu}.ProjectId={projectId}", sbu);
         }
         /// <summary>
         /// 根据条件返回单个项目信息
@@ -134,8 +136,8 @@ namespace DAL
         public Project GetProjectByWhereSql(string whereSql, string sbu)
         {
             string sql = string.Format("select Projects{0}.ProjectId,ODPNo,BPONo,ProjectName,Projects{0}.CustomerId,CustomerName,ShippingTime,Projects{0}.UserId,UserAccount,RiskLevel,HoodType,SalesValue from Projects{0}", sbu);
-            sql += string.Format(" inner join Users on Projects{0}.UserId=Users.UserId", sbu);
-            sql += string.Format(" inner join Customers on Projects{0}.CustomerId=Customers.CustomerId", sbu);
+            sql += $" inner join Users on Projects{sbu}.UserId=Users.UserId";
+            sql += $" inner join Customers on Projects{sbu}.CustomerId=Customers.CustomerId";
             sql += string.Format(" left join GeneralRequirements{0} on Projects{0}.ProjectId=GeneralRequirements{0}.ProjectId", sbu);
             sql += string.Format(" left join FinancialData{0} on Projects{0}.ProjectId=FinancialData{0}.ProjectId", sbu);
             sql += whereSql;
@@ -266,7 +268,7 @@ namespace DAL
             sql = string.Format(sql, objProject.ODPNo, objProject.BPONo,
                 objProject.ProjectName, objProject.CustomerId, objProject.ShippingTime, objProject.UserId, objProject.HoodType);
             List<string> sqlList = new List<string>{sql};
-            string sqlTracking = string.Format("insert into ProjectTracking{0} (ProjectId,ProjectStatusId) values(@@IDENTITY,1)", sbu);
+            string sqlTracking = $"insert into ProjectTracking{sbu} (ProjectId,ProjectStatusId) values(@@IDENTITY,1)";
             sqlList.Add(sqlTracking);
             return SQLHelper.UpdateByTransaction(sqlList);
         }
@@ -279,9 +281,9 @@ namespace DAL
         {
             List<string> sqlList = new List<string>
             {
-                string.Format("delete from ProjectTracking{0} where ProjectId={1}", sbu, projectId),
-                string.Format("delete from FinancialData{0} where ProjectId={1}", sbu, projectId),
-                string.Format("delete from Projects{0} where ProjectId={1}", sbu, projectId)
+                $"delete from ProjectTracking{sbu} where ProjectId={projectId}",
+                $"delete from FinancialData{sbu} where ProjectId={projectId}",
+                $"delete from Projects{sbu} where ProjectId={projectId}"
             };
             return SQLHelper.UpdateByTransaction(sqlList);
         }
@@ -293,7 +295,8 @@ namespace DAL
             sqlProject += "ShippingTime='{5}',UserId={6},HoodType='{7}' where ProjectId={8}";
             sqlProject = string.Format(sqlProject, sbu,objProject.ODPNo, objProject.BPONo, objProject.ProjectName, objProject.CustomerId,objProject.ShippingTime, objProject.UserId, objProject.HoodType, objProject.ProjectId);
             sqlList.Add(sqlProject);
-            string sqlFinancialData = string.Format("update FinancialData{0} set SalesValue={1} where ProjectId={2}", sbu,objProject.SalesValue,objProject.ProjectId);
+            string sqlFinancialData =
+                $"update FinancialData{sbu} set SalesValue={objProject.SalesValue} where ProjectId={objProject.ProjectId}";
             sqlList.Add(sqlFinancialData);
 
             return SQLHelper.UpdateByTransaction(sqlList);

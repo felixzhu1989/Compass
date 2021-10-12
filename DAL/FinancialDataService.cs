@@ -14,8 +14,8 @@ namespace DAL
         /// <returns></returns>
         public int AddFinancialData(FinancialData objFinancialData, string sbu)
         {
-            string sql = string.Format("insert into FinancialData{0} (ProjectId,SalesValue) values({1},{2})", sbu,
-                objFinancialData.ProjectId, objFinancialData.SalesValue);
+            string sql =
+                $"insert into FinancialData{sbu} (ProjectId,SalesValue) values({objFinancialData.ProjectId},{objFinancialData.SalesValue})";
             try
             {
                 return Convert.ToInt32(SQLHelper.GetSingleResult(sql));
@@ -45,7 +45,8 @@ namespace DAL
         /// <returns></returns>
         public int EditFinancialData(FinancialData objFinancialData, string sbu)
         {
-            string sql = string.Format("update FinancialData{0} set SalesValue={1} where ProjectId={2}", sbu,objFinancialData.SalesValue,objFinancialData.ProjectId);
+            string sql =
+                $"update FinancialData{sbu} set SalesValue={objFinancialData.SalesValue} where ProjectId={objFinancialData.ProjectId}";
             try
             {
                 return SQLHelper.Update(sql);
@@ -62,13 +63,13 @@ namespace DAL
 
         public FinancialData GetFinancialDataByProjectId(string projectId, string sbu)
         {
-            return GetFinancialDataByWhereSql(string.Format(" where ProjectId={0}", projectId), sbu);
+            return GetFinancialDataByWhereSql($" where ProjectId={projectId}", sbu);
         }
 
 
         public FinancialData GetFinancialDataByWhereSql(string whereSql, string sbu)
         {
-            string sql = string.Format("select FinancialDataId,ProjectId,SalesValue from FinancialData{0}", sbu);
+            string sql = $"select FinancialDataId,ProjectId,SalesValue from FinancialData{sbu}";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             FinancialData objFinancialData = null;

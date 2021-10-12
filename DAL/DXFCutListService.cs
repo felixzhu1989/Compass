@@ -19,7 +19,7 @@ namespace DAL
         /// <returns></returns>
         public List<DXFCutList> GetDXFCutListsByCategoryId(string categoryId)
         {
-            return GetDXFCutListsByWhereSql(string.Format(" where CategoryId = {0}", categoryId));
+            return GetDXFCutListsByWhereSql($" where CategoryId = {categoryId}");
         }
         /// <summary>
         /// 根据条件返回Cutlist集合
@@ -58,7 +58,7 @@ namespace DAL
         /// <returns></returns>
         public DXFCutList GetDXFCutListById(string cutListId)
         {
-            return GetDXFCutListByWhereSql(string.Format(" where CutListId={0}", cutListId));
+            return GetDXFCutListByWhereSql($" where CutListId={cutListId}");
         }
         /// <summary>
         /// 根据条件返回单个Cutlist对象

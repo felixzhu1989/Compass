@@ -14,7 +14,7 @@ namespace DAL
         /// <returns></returns>
         public List<Drawing> GetDrawingsByProjectId(string projectId, string sbu)
         {
-            return GetDrawingsByWhereSql(string.Format(" where DrawingPlan{0}.ProjectId = {1}", sbu,projectId),sbu);
+            return GetDrawingsByWhereSql($" where DrawingPlan{sbu}.ProjectId = {projectId}",sbu);
         }
         /// <summary>
         /// 根据项目号返回图纸集合
@@ -23,7 +23,7 @@ namespace DAL
         /// <returns></returns>
         public List<Drawing> GetDrawingsByODPNo(string odpNo, string sbu)
         {
-            return GetDrawingsByWhereSql(string.Format(" where ODPNo = '{0}'", odpNo),sbu);
+            return GetDrawingsByWhereSql($" where ODPNo = '{odpNo}'",sbu);
         }
         /// <summary>
         /// 根据条件返回图纸集合
@@ -61,7 +61,7 @@ namespace DAL
         /// <returns></returns>
         public Drawing GetDrawingById(string drawingPlanId, string sbu)
         {
-            return GetDrawingByWhereSql(string.Format(" where DrawingPlanId={0}", drawingPlanId),sbu);
+            return GetDrawingByWhereSql($" where DrawingPlanId={drawingPlanId}",sbu);
         }
         /// <summary>
         /// 根据条件返回单张图纸

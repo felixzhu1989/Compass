@@ -789,7 +789,7 @@
             // 
             this.timerShowInfo.Enabled = true;
             this.timerShowInfo.Interval = 1;
-            this.timerShowInfo.Tick += new System.EventHandler(this.timerShowInfo_Tick);
+            this.timerShowInfo.Tick += new System.EventHandler(this.TimerShowInfo_Tick);
             // 
             // panel1
             // 

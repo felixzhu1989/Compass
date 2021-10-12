@@ -36,7 +36,7 @@ namespace DAL
         public Customer GetCustomerById(string customerId)
         {
             string sql = "select CustomerId,CustomerName from Customers";
-            sql += string.Format(" where CustomerId={0}", customerId);
+            sql += $" where CustomerId={customerId}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             Customer objCustomer = null;
             if (objReader.Read())

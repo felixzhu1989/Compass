@@ -192,7 +192,7 @@ namespace DAL
             List<ChartData> list = new List<ChartData>();
             string sql = "select RiskLevel,count(RiskLevel) as Qty from GeneralRequirements";
             sql += " inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId";
-            sql += string.Format(" where ShippingTime like'{0}%'", year);
+            sql += $" where ShippingTime like'{year}%'";
             sql += " group by RiskLevel";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())
@@ -243,7 +243,7 @@ namespace DAL
             string sql = "select TypeId,sum(SalesValue) as SalesValue from GeneralRequirements";
             sql += " inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId";
             sql += " inner join FinancialData on Projects.ProjectId=FinancialData.ProjectId";
-            sql += string.Format(" where ShippingTime like'{0}%'", year);
+            sql += $" where ShippingTime like'{year}%'";
             sql += " group by TypeId order by TypeId asc";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())

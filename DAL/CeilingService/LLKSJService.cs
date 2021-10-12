@@ -43,19 +43,19 @@ namespace DAL
             string sql = "select LLKSJId,LLKSJ.ModuleTreeId,Item,Module,Length,LongGlassNo,ShortGlassNo,LeftLength,RightLength from LLKSJ";
             sql += " inner join ModuleTree on LLKSJ.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
-            sql += string.Format(" where ProjectId={0}", projectId);
+            sql += $" where ProjectId={projectId}";
             sql += " order by Item,Module";
             return SQLHelper.GetDataSet(sql);
         }
 
         public IModel GetModelById(string id)
         {
-            return GetModelByWhereSql(string.Format(" where LLKSJId={0}", id));
+            return GetModelByWhereSql($" where LLKSJId={id}");
         }
 
         public IModel GetModelByModuleTreeId(string moduleTreeId)
         {
-            return GetModelByWhereSql(string.Format(" where ModuleTreeId={0}", moduleTreeId));
+            return GetModelByWhereSql($" where ModuleTreeId={moduleTreeId}");
         }
 
         public IModel GetModelByWhereSql(string whereSql)

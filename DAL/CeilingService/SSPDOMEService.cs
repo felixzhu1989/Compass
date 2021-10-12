@@ -18,7 +18,7 @@ namespace DAL
             string sql = "select SSPDOMEId,SSPDOME.ModuleTreeId,Length,LeftType,RightType,LeftLength,RightLength,MPanelNo,LightType from SSPDOME";
             sql += " inner join ModuleTree on SSPDOME.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
-            sql += string.Format(" where ProjectId={0}", projectId);
+            sql += $" where ProjectId={projectId}";
             sql += " order by Item,Module";
             return SQLHelper.GetDataSet(sql);
         }
@@ -29,7 +29,7 @@ namespace DAL
         /// <returns></returns>
         public IModel GetModelById(string id)
         {
-            return GetModelByWhereSql(string.Format(" where SSPDOMEId={0}", id));
+            return GetModelByWhereSql($" where SSPDOMEId={id}");
         }
         /// <summary>
         /// 根据模型树ID返回SSPDOME
@@ -38,7 +38,7 @@ namespace DAL
         /// <returns></returns>
         public IModel GetModelByModuleTreeId(string moduleTreeId)
         {
-            return GetModelByWhereSql(string.Format(" where ModuleTreeId={0}", moduleTreeId));
+            return GetModelByWhereSql($" where ModuleTreeId={moduleTreeId}");
         }
         /// <summary>
         /// 根据条件查找SSPDOME

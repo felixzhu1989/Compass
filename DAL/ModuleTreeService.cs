@@ -61,7 +61,7 @@ namespace DAL
         {
             string sql = $"select ModuleTreeId,Module,ModuleTree{sbu}.CategoryId,CategoryName,Model from ModuleTree{sbu}";
             sql += $" inner join Categories{sbu} on Categories{sbu}.CategoryId=ModuleTree{sbu}.CategoryId";
-            sql += string.Format(" where ModuleTreeId={0}", moduleTreeId);
+            sql += $" where ModuleTreeId={moduleTreeId}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             ModuleTree objModuleTree = null;
             while (objReader.Read())
@@ -190,7 +190,7 @@ namespace DAL
             Category objCategory = objCategoryService.GetCategoryByCategoryId(objModuleTree.CategoryId.ToString(), sbu);
             string sqldata = string.Format("delete from " + objCategory.CategoryName + " where ModuleTreeId={0}", objModuleTree.ModuleTreeId);
             sqlList.Add(sqldata);
-            string sql = string.Format("delete from ModuleTree{0} where ModuleTreeId={1}",sbu, objModuleTree.ModuleTreeId);
+            string sql = $"delete from ModuleTree{sbu} where ModuleTreeId={objModuleTree.ModuleTreeId}";
             sqlList.Add(sql);
             return SQLHelper.UpdateByTransaction(sqlList);
         }

@@ -68,7 +68,7 @@ namespace DAL
         /// <returns></returns>
         public CeilingAccessory GetCeilingAccessoryById(string ceilingAccessoryId)
         {
-            return GetCeilingAccessoryByWhereSql(string.Format(" where CeilingAccessoryId='{0}'", ceilingAccessoryId));
+            return GetCeilingAccessoryByWhereSql($" where CeilingAccessoryId='{ceilingAccessoryId}'");
         }
         /// <summary>
         /// 根据部件编号返回配件1个条目
@@ -77,7 +77,7 @@ namespace DAL
         /// <returns></returns>
         public CeilingAccessory GetCeilingAccessoryByPartNo(string partNo)
         {
-            return GetCeilingAccessoryByWhereSql(string.Format(" where PartNo='{0}'", partNo));
+            return GetCeilingAccessoryByWhereSql($" where PartNo='{partNo}'");
         }
         /// <summary>
         /// 根据条件返回单个配件对象
@@ -219,7 +219,7 @@ namespace DAL
         /// <returns></returns>
         public List<CeilingAccessory> GetCeilingPackingListByProjectId(string projectId)
         {
-            return GetCeilingPackingListByWhereSql(string.Format(" where ProjectId = {0}", projectId));
+            return GetCeilingPackingListByWhereSql($" where ProjectId = {projectId}");
         }
         /// <summary>
         /// 根据where条件返回发货清单集合
@@ -269,7 +269,7 @@ namespace DAL
         /// <returns></returns>
         public CeilingAccessory GetCeilingPackingItemById(string packingListId)
         {
-            return GetCeilingPackingItemByWhereSql(string.Format(" where CeilingPackingListId={0}", packingListId));
+            return GetCeilingPackingItemByWhereSql($" where CeilingPackingListId={packingListId}");
         }
         /// <summary>
         /// 根据where条件返回发货清单条目

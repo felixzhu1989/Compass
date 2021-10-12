@@ -36,7 +36,7 @@ namespace DAL
         public ProjectType GetProjectTypeById(string typeId,string sbu)
         {
             string sql = "select TypeId,TypeName,KMLink from ProjectTypes"+sbu;
-            sql += string.Format(" where TypeId={0}", typeId);
+            sql += $" where TypeId={typeId}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             ProjectType objProjectType = null;
             if (objReader.Read())

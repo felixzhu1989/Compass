@@ -149,7 +149,7 @@ namespace Compass
 
         private void QueryByYear()
         {
-            objSqlDataPager.Condition = string.Format(" ShippingTime like '{0}%'", this.cobQueryYear.Text);
+            objSqlDataPager.Condition = $" ShippingTime like '{this.cobQueryYear.Text}%'";
             objSqlDataPager.PageSize = Convert.ToInt32(this.cobRecordList.Text.Trim());
             Query();
         }
@@ -460,7 +460,7 @@ namespace Compass
         private void BtnQueryByODPNo_Click(object sender, EventArgs e)
         {
             if (txtODPNo.Text.Trim().Length == 0) return;
-            objSqlDataPager.Condition = string.Format("ODPNo = '{0}'", txtODPNo.Text.Trim());
+            objSqlDataPager.Condition = $"ODPNo = '{txtODPNo.Text.Trim()}'";
             objSqlDataPager.PageSize = Convert.ToInt32(cobRecordList.Text);
             Query();
         }
@@ -476,7 +476,8 @@ namespace Compass
         private void BtnQueryByUserId_Click(object sender, EventArgs e)
         {
             if (cobUserId.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("Projects{0}.UserId = {1} and ShippingTime like '{2}%'", sbu,cobUserId.SelectedValue.ToString(), this.cobQueryYear.Text);
+            objSqlDataPager.Condition =
+                $"Projects{sbu}.UserId = {cobUserId.SelectedValue} and ShippingTime like '{this.cobQueryYear.Text}%'";
             objSqlDataPager.PageSize = 10000;
             Query();
         }

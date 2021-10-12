@@ -100,7 +100,7 @@ namespace DAL
         public DrawingNumMatrix GetDrawingNumById(string drawingId)
         {
             string sql ="select DrawingId,DrawingNum,DrawingDesc,DrawingType,Mark from DrawingNumMatrix";
-            sql += string.Format(" where DrawingId={0}", drawingId);
+            sql += $" where DrawingId={drawingId}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             DrawingNumMatrix objDrawingNum = null;
             if (objReader.Read())

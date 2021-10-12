@@ -90,7 +90,7 @@ namespace DAL
         public List<Category> GetCategoriesByParentId(string parentId, string sbu)
         {
             string sql = $"select CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelPath from Categories{sbu}";
-            sql += string.Format(" where ParentId={0}", parentId);
+            sql += $" where ParentId={parentId}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<Category> list = new List<Category>();
             while (objReader.Read())
@@ -118,7 +118,7 @@ namespace DAL
         {
             string sql =
                 $"select CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelImage,KMLink,ModelPath from Categories{sbu}";
-            sql += string.Format(" where CategoryId={0}", categoryId);
+            sql += $" where CategoryId={categoryId}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             Category objCategory = null;
             if (objReader.Read())

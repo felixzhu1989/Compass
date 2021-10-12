@@ -20,19 +20,19 @@ namespace DAL
         public SqlDataPager GetSqlDataPager(string sbu)
         {
             StringBuilder innerJoin1 = new StringBuilder(string.Format("inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId", sbu));
-            innerJoin1.Append(string.Format(" inner join Users on Users.UserId=Projects{0}.UserId", sbu));
+            innerJoin1.Append($" inner join Users on Users.UserId=Projects{sbu}.UserId");
             innerJoin1.Append(string.Format(" left join ProjectTracking{0} on DrawingPlan{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu));
 
             //初始化分页对象
             SqlDataPager objSqlDataPager = new SqlDataPager()
             {
                 PrimaryKey = "DrawingPlanId",
-                TableName = string.Format("DrawingPlan{0}", sbu),
+                TableName = $"DrawingPlan{sbu}",
                 InnerJoin1 = innerJoin1.ToString(),
                 InnerJoin2 = string.Format("inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId", sbu),
                 FiledName = string.Format("DrawingPlanId,UserAccount,ODPNo,Item,Model,ModuleNo,DrawingPlan{0}.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,ProjectName,HoodType,IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan{0}.DrReleaseTarget)<0,0,DATEDIFF(DAY,GETDATE(),DrawingPlan{0}.DrReleaseTarget)) as RemainingDays,IIF(DATEDIFF(DAY,GETDATE(),DrawingPlan{0}.DrReleaseTarget)<=0,100,100*DATEDIFF(DAY,GETDATE(),DrawingPlan{0}.AddedDate)/DATEDIFF(DAY,DrawingPlan{0}.DrReleaseTarget,DrawingPlan{0}.AddedDate)) as ProgressValue", sbu),
                 CurrentPage = 1,
-                Sort = string.Format("DrawingPlan{0}.DrReleasetarget desc", sbu),
+                Sort = $"DrawingPlan{sbu}.DrReleasetarget desc",
             };
             return objSqlDataPager;
         }
@@ -55,7 +55,7 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
             sql += " group by month(ShippingTime) order by Mon asc";
 
@@ -89,7 +89,7 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())
@@ -128,9 +128,9 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
-            sql += string.Format(" and UserAccount='{0}'", userAcc);
+            sql += $" and UserAccount='{userAcc}'";
             sql += " and DATEDIFF(DAY,Drtarget,DrActual)>0 group by month(Drtarget) order by Mon asc";
 
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -165,9 +165,9 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
-            sql += string.Format(" and UserAccount='{0}'", userAcc);
+            sql += $" and UserAccount='{userAcc}'";
             sql += " group by month(ShippingTime) order by Mon asc";
 
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -199,7 +199,7 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
             sql += " group by UserAccount order by TotalWorkload desc";
 
@@ -238,7 +238,7 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
             sql += " and DATEDIFF(DAY,Drtarget,DrActual)>0 group by month(Drtarget) order by Mon asc";
 
@@ -272,7 +272,7 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
             sql += " and DATEDIFF(DAY,Drtarget,DrActual)>0";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -302,7 +302,7 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
             sql += " group by month(ShippingTime) order by Mon asc";
 
@@ -336,7 +336,7 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             while (objReader.Read())
@@ -363,7 +363,7 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
             sql += " and HoodType='Hood'";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -397,9 +397,9 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
-            sql += string.Format(" and HoodType='Ceiling' and Model='{0}'", modelType);
+            sql += $" and HoodType='Ceiling' and Model='{modelType}'";
             sql += " group by month(ShippingTime) order by Mon asc";
 
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -431,7 +431,7 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
             sql += " and HoodType='Ceiling'";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -459,7 +459,7 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
             sql += " and HoodType='Ceiling' group by Model order by TotalWorkload desc";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -495,9 +495,9 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
-            sql += string.Format(" and HoodType='Hood' and Model='{0}'", modelType);
+            sql += $" and HoodType='Hood' and Model='{modelType}'";
             sql += " group by month(ShippingTime) order by Mon asc";
 
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -530,7 +530,7 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
             sql += " and HoodType='Hood'";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -558,7 +558,7 @@ namespace DAL
             }
             else
             {
-                sql += string.Format(" where ShippingTime like '{0}%'", year);
+                sql += $" where ShippingTime like '{year}%'";
             }
             sql += " and HoodType='Hood' group by Model order by TotalModuleNo desc";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -586,8 +586,8 @@ namespace DAL
         /// <returns></returns>
         public DataSet GetScopeByDataSet(string projectId, string sbu)
         {
-            string sql = string.Format("select Model,sum(ModuleNo) as Num from DrawingPlan{0}", sbu);
-            sql += string.Format(" where ProjectId={0}", projectId);
+            string sql = $"select Model,sum(ModuleNo) as Num from DrawingPlan{sbu}";
+            sql += $" where ProjectId={projectId}";
             sql += " group by Model";
             return SQLHelper.GetDataSet(sql);
         }
@@ -601,7 +601,7 @@ namespace DAL
         /// <returns></returns>
         public List<DrawingPlan> GetDrawingPlanByUserId(string userId, string sbu)
         {
-            return GetDrawingPlanByWhereSql(string.Format(" where Projects{0}.UserId={1}", sbu, userId), sbu);
+            return GetDrawingPlanByWhereSql($" where Projects{sbu}.UserId={userId}", sbu);
         }
 
 
@@ -613,7 +613,7 @@ namespace DAL
         /// <returns></returns>
         public List<DrawingPlan> GetDrawingPlanByODPNo(string odpNo, string sbu)
         {
-            return GetDrawingPlanByWhereSql(string.Format(" where ODPNo='{0}'", odpNo), sbu);
+            return GetDrawingPlanByWhereSql($" where ODPNo='{odpNo}'", sbu);
         }
 
 
@@ -625,7 +625,7 @@ namespace DAL
         /// <returns></returns>
         public List<DrawingPlan> GetDrawingPlanByProjectId(string projectId, string sbu)
         {
-            return GetDrawingPlanByWhereSql(string.Format(" where DrawingPlan{0}.ProjectId={1}", sbu, projectId), sbu);
+            return GetDrawingPlanByWhereSql($" where DrawingPlan{sbu}.ProjectId={projectId}", sbu);
         }
 
 
@@ -640,10 +640,10 @@ namespace DAL
         {
             string sql = string.Format("select DrawingPlanId,UserAccount,DrawingPlan{0}.ProjectId,ODPNo,Item,Model,ModuleNo,DrawingPlan{0}.DrReleaseTarget,DrReleaseActual,SubTotalWorkload,DrawingPlan{0}.AddedDate,ProjectName from DrawingPlan{0}", sbu);
             sql += string.Format(" inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId", sbu);
-            sql += string.Format(" inner join Users on Users.UserId=Projects{0}.UserId", sbu);
+            sql += $" inner join Users on Users.UserId=Projects{sbu}.UserId";
             sql += string.Format(" left join ProjectTracking{0} on DrawingPlan{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu);
             sql += whereSql;
-            sql += string.Format(" order by DrawingPlan{0}.DrReleasetarget desc", sbu);//按照计划发图日期，倒序排列
+            sql += $" order by DrawingPlan{sbu}.DrReleasetarget desc";//按照计划发图日期，倒序排列
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<DrawingPlan> list = new List<DrawingPlan>();
             while (objReader.Read())
@@ -684,8 +684,8 @@ namespace DAL
         {
             string sql = string.Format("select DrawingPlanId,UserAccount,DrawingPlan{0}.ProjectId,ODPNo,Item,Model,ModuleNo,DrReleaseTarget,SubTotalWorkload,DrawingPlan{0}.AddedDate,ProjectName from DrawingPlan{0}", sbu);
             sql += string.Format(" inner join Projects{0} on DrawingPlan{0}.ProjectId=Projects{0}.ProjectId", sbu);
-            sql += string.Format(" inner join Users on Users.UserId=Projects{0}.UserId", sbu);
-            sql += string.Format(" where DrawingPlanId = {0}", drawingPlanId);
+            sql += $" inner join Users on Users.UserId=Projects{sbu}.UserId";
+            sql += $" where DrawingPlanId = {drawingPlanId}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             DrawingPlan objDrawingPlan = null;
             if (objReader.Read())
@@ -715,7 +715,8 @@ namespace DAL
         /// <returns></returns>
         public int AddDraingPlan(DrawingPlan objDrawingPlan, string sbu)
         {
-            string sql = string.Format("insert into DrawingPlan{0} (ProjectId,Item,Model,ModuleNo,DrReleasetarget,SubTotalWorkload)", sbu);
+            string sql =
+                $"insert into DrawingPlan{sbu} (ProjectId,Item,Model,ModuleNo,DrReleasetarget,SubTotalWorkload)";
             sql += " values({0},'{1}','{2}','{3}','{4}','{5}');select @@identity";
             sql = string.Format(sql, objDrawingPlan.ProjectId, objDrawingPlan.Item,
                 objDrawingPlan.Model, objDrawingPlan.ModuleNo, objDrawingPlan.DrReleaseTarget, objDrawingPlan.SubTotalWorkload);
@@ -740,7 +741,8 @@ namespace DAL
         /// <returns></returns>
         public bool AddDraingPlanAndUpdateTracking(DrawingPlan objDrawingPlan, string sbu)
         {
-            string sql = string.Format("insert into DrawingPlan{0} (ProjectId,Item,Model,ModuleNo,DrReleasetarget,SubTotalWorkload)", sbu);
+            string sql =
+                $"insert into DrawingPlan{sbu} (ProjectId,Item,Model,ModuleNo,DrReleasetarget,SubTotalWorkload)";
             sql += " values({0},'{1}','{2}','{3}','{4}','{5}');select @@identity";
             sql = string.Format(sql, objDrawingPlan.ProjectId, objDrawingPlan.Item,
                 objDrawingPlan.Model, objDrawingPlan.ModuleNo, objDrawingPlan.DrReleaseTarget, objDrawingPlan.SubTotalWorkload);
@@ -758,7 +760,7 @@ namespace DAL
         /// <returns></returns>
         public int EditDrawingPlan(DrawingPlan objDrawingPlan, string sbu)
         {
-            string sql = string.Format("update DrawingPlan{0}", sbu);
+            string sql = $"update DrawingPlan{sbu}";
             sql += " set ProjectId={0},Item='{1}',Model='{2}',ModuleNo='{3}',";
             sql += "DrReleasetarget='{4}',SubTotalWorkload='{5}',AddedDate='{6}' where DrawingPlanId={7}";
             sql = string.Format(sql, objDrawingPlan.ProjectId, objDrawingPlan.Item, objDrawingPlan.Model, objDrawingPlan.ModuleNo,
@@ -783,7 +785,7 @@ namespace DAL
         /// <returns></returns>
         public int DeleteDrawingPlan(string drawingPlanId, string sbu)
         {
-            string sql = string.Format("delete from DrawingPlan{0}", sbu);
+            string sql = $"delete from DrawingPlan{sbu}";
             sql += " where DrawingPlanId={0}";
             sql = string.Format(sql, drawingPlanId);
             try

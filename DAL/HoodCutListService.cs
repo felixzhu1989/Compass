@@ -15,7 +15,7 @@ namespace DAL
         /// <returns></returns>
         public List<HoodCutList> GetHoodCutListsByModuleTreeId(string moduleTreeId)
         {
-            return GetHoodCutListsByWhereSql(string.Format(" where ModuleTreeId = '{0}'", moduleTreeId));
+            return GetHoodCutListsByWhereSql($" where ModuleTreeId = '{moduleTreeId}'");
         }
         /// <summary>
         /// 根据条件返回Cutlist集合

@@ -62,7 +62,7 @@ namespace Compass
             //初始化项目列表
             dgvProjects.AutoGenerateColumns = false;
             dt = objMonthlyReportService.GetDisplayProjects(sbu, DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString());
-            dgvProjects.DataSource = AddChinese(dt);
+            dgvProjects.DataSource = AddChineseToDataTable(dt);
             tabControl.SelectTab(1);//选中第二张tab选项卡
 
             //开启计时器
@@ -113,6 +113,7 @@ namespace Compass
         }
 
         #region 其他操作
+        
         /// <summary>
         /// 手动输入项目号按回车查询项目信息
         /// </summary>
@@ -147,33 +148,7 @@ namespace Compass
             InitData();
         }
         /// <summary>
-        /// 删除通用技术要求菜单
-        /// </summary>
-        private void DeleteGeneralRequirement()
-        {
-            if (txtGeneralRequirements.Tag.ToString().Length == 0)
-            {
-                return;
-            }
-            string generalRequirementId = txtGeneralRequirements.Tag.ToString();
-            //删除询问
-            DialogResult result = MessageBox.Show("确定要删除（项目编号ODP： " + cobODPNo.Text + " ）这个项目的通用技术要求吗？", "删除询问", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-            if (result == DialogResult.No) return;
-            try
-            {
-                if (objRequirementService.DeleteGeneralRequirement(generalRequirementId, sbu) == 1)
-                {
-                    InitData();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        /// <summary>
-        /// 添加行号
+        /// Scope范围表添加行号
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -182,117 +157,10 @@ namespace Compass
             DataGridViewStyle.DgvRowPostPaint(this.dgvScope, e);
         }
         /// <summary>
-        /// 输入金额千位分隔符显示
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TxtSalesValue_TextChanged(object sender, EventArgs e)
-        {
-            if (!decimal.TryParse(txtSalesValue.Text.Trim(), out decimal salseValue))
-            {
-                txtSalesValue.Clear();
-                return;
-            }
-            txtSalesValue.Text = salseValue.ToString("N0");
-            txtSalesValue.SelectionStart = txtSalesValue.Text.Length;
-        }
-        /// <summary>
-        /// 年份选择后更新数据
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CobYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ReportYearly();
-        }
-        /// <summary>
-        /// 月份选择后更新数据
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CobMonth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ReportMonthly();
-        }
-        /// <summary>
-        /// 定时器，循环项目和统计信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TimerScroll_Tick(object sender, EventArgs e)
-        {
-            //DateTime scrollEnd = scrollStart.AddSeconds(odpNoList.Count*2);//调试
-            DateTime scrollEnd = scrollStart.AddMinutes(odpNoList.Count * 2);
-            if (DateTime.Now < scrollEnd)
-            {
-                //if (DateTime.Now.Second % 2 == 0)//调试
-                if (DateTime.Now.Minute % 2 == 0)
-                {
-                    tabControl.SelectTab(0);
-                    if (scrollNum < 1) scrollNum = odpNoList.Count;
-                    cobODPNo.Text = odpNoList[scrollNum - 1];
-                    scrollNum--;
-                }
-                else
-                {
-                    tabControl.SelectTab(1);//选中第二张tab选项卡 
-                }
-            }
-            else
-            {
-                scrollStart = DateTime.Now;
-            }
-        }
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            lblTime.Text = DateTime.Now.ToString("yyyy年MM月dd日 hh:mm:ss");
-        }
-        /// <summary>
-        /// 暂停/开启循环
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnScroll_Click(object sender, EventArgs e)
-        {
-            if (btnScroll.Text == "暂停循环")
-            {
-                timerScroll.Enabled = false;
-                btnScroll.Text = "开始循环";
-            }
-            else
-            {
-                timerScroll.Enabled = true;
-                btnScroll.Text = "暂停循环";
-            }
-        }
-        /// <summary>
-        /// 按年和按月切换统计信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnSwitch_Click(object sender, EventArgs e)
-        {
-            if (btnSwitch.Text == "按月")
-            {
-                btnSwitch.Text = "按年";
-                ReportYearly();
-                //grbProjectStatus.Text = "项目状态分布--年";
-                grbRiskLevel.Text = "风险等级分布--年--(项目数量)";
-                grbProjectType.Text = "项目类型分布--年--(销售额单位：万元)";
-            }
-            else
-            {
-                btnSwitch.Text = "按月";
-                ReportMonthly();
-                grbRiskLevel.Text = "风险等级分布--月--(项目数量)";
-                grbProjectType.Text = "项目类型分布--月--(销售额单位：万元)";
-            }
-        }
-        /// <summary>
         /// 项目状态，烟罩类型内容需要中英文
         /// </summary>
         /// <param name="table"></param>
-        private DataTable AddChinese(DataTable table)
+        private DataTable AddChineseToDataTable(DataTable table)
         {
             for (int i = 0; i < table.Rows.Count; i++)
             {
@@ -306,14 +174,36 @@ namespace Compass
                 string newHood = pair.HoodTypeKeyValue.First(q => q.Key == oldHood).Value;
                 //给当前行的地ProjectStatusName赋值
                 table.Rows[i]["HoodType"] = newHood;
-
-
             }
             return table;
         }
 
-
-        #endregion 其他操作
+        #region 删除通用技术要求菜单
+        //private void DeleteGeneralRequirement()
+        //{
+        //    if (txtGeneralRequirements.Tag.ToString().Length == 0)
+        //    {
+        //        return;
+        //    }
+        //    string generalRequirementId = txtGeneralRequirements.Tag.ToString();
+        //    //删除询问
+        //    DialogResult result = MessageBox.Show("确定要删除（项目编号ODP： " + cobODPNo.Text + " ）这个项目的通用技术要求吗？", "删除询问", MessageBoxButtons.YesNo,
+        //        MessageBoxIcon.Question);
+        //    if (result == DialogResult.No) return;
+        //    try
+        //    {
+        //        if (objRequirementService.DeleteGeneralRequirement(generalRequirementId, sbu) == 1)
+        //        {
+        //            InitData();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //} 
+        #endregion
+        #endregion
 
         #region 初始化各种信息
         /// <summary>
@@ -329,7 +219,6 @@ namespace Compass
             InitTracking();
             lblShowInfo.Text = showText.ToString();
         }
-
         /// <summary>
         /// 1.初始化项目基本信息
         /// </summary>
@@ -401,7 +290,7 @@ namespace Compass
 
         }
         /// <summary>
-        /// 5.初始化财务数据
+        /// 4.初始化财务数据
         /// </summary>
         private void InitFinancialData()
         {
@@ -418,41 +307,9 @@ namespace Compass
                 btnFinancialData.Text = "更新财务数据";
                 btnFinancialData.Tag = objFinancialData.ProjectId;
             }
-
         }
         /// <summary>
-        /// 添加和更新财务数据按钮
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnFinancialData_Click(object sender, EventArgs e)
-        {
-            if (cobODPNo.SelectedIndex == -1 || txtSalesValue.Text.Length == 0) return;
-            FinancialData objFinancialData = new FinancialData()
-            {
-                ProjectId = Convert.ToInt32(cobODPNo.SelectedValue),
-                SalesValue = Convert.ToDecimal(txtSalesValue.Text)
-            };
-
-            try
-            {
-                if (Convert.ToInt32(btnFinancialData.Tag) == 0)
-                {
-                    if (objFinancialDataService.AddFinancialData(objFinancialData, sbu) > 0) MessageBox.Show("财务数据添加成功", "提示信息");
-                }
-                else
-                {
-                    if (objFinancialDataService.EditFinancialData(objFinancialData, sbu) == 1) MessageBox.Show("财务数据更新成功！", "提示信息");
-                }
-                InitData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        /// <summary>
-        /// 7.初始化跟踪图表
+        /// 5.初始化跟踪图表
         /// </summary>
         private void InitTracking()
         {
@@ -522,11 +379,50 @@ namespace Compass
             chartTracking.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White;//刻度值颜色
             chartTracking.ChartAreas[0].AxisY.MajorTickMark.Enabled = false;//隐藏刻度线 
         }
-
-        #endregion 初始化各种信息
+        #endregion
 
         #region 月度和年度统计
-
+        /// <summary>
+        /// 按年和按月切换统计信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSwitch_Click(object sender, EventArgs e)
+        {
+            if (btnSwitch.Text == "按月")
+            {
+                btnSwitch.Text = "按年";
+                ReportYearly();
+                //grbProjectStatus.Text = "项目状态分布--年";
+                grbRiskLevel.Text = "风险等级分布--年--(项目数量)";
+                grbProjectType.Text = "项目类型分布--年--(销售额单位：万元)";
+            }
+            else
+            {
+                btnSwitch.Text = "按月";
+                ReportMonthly();
+                grbRiskLevel.Text = "风险等级分布--月--(项目数量)";
+                grbProjectType.Text = "项目类型分布--月--(销售额单位：万元)";
+            }
+        }
+        /// <summary>
+        /// 年份选择后更新数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CobYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReportYearly();
+        }
+        /// <summary>
+        /// 月份选择后更新数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CobMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReportMonthly();
+        }
         private void ReportMonthly()
         {
             //统计项目总数：
@@ -570,7 +466,6 @@ namespace Compass
             }
             RefreshProject();
         }
-
         private void ReportYearly()
         {
             //统计区间项目总数：
@@ -604,21 +499,65 @@ namespace Compass
             }
             RefreshProject();
         }
-
+        //同步更新项目列表
         void RefreshProject()
         {
             dt = objMonthlyReportService.GetDisplayProjects(sbu, cobYear.Text, cobMonth.Text);
-            dgvProjects.DataSource = AddChinese(dt);
+            dgvProjects.DataSource = AddChineseToDataTable(dt);
         }
-
-
-
 
         #endregion 月度和年度统计
 
+        #region 财务数据
+        /// <summary>
+        /// 输入金额千位分隔符显示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtSalesValue_TextChanged(object sender, EventArgs e)
+        {
+            if (!decimal.TryParse(txtSalesValue.Text.Trim(), out decimal salseValue))
+            {
+                txtSalesValue.Clear();
+                return;
+            }
+            txtSalesValue.Text = salseValue.ToString("N0");
+            txtSalesValue.SelectionStart = txtSalesValue.Text.Length;
+        }
+        /// <summary>
+        /// 添加和更新财务数据按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnFinancialData_Click(object sender, EventArgs e)
+        {
+            if (cobODPNo.SelectedIndex == -1 || txtSalesValue.Text.Length == 0) return;
+            FinancialData objFinancialData = new FinancialData()
+            {
+                ProjectId = Convert.ToInt32(cobODPNo.SelectedValue),
+                SalesValue = Convert.ToDecimal(txtSalesValue.Text)
+            };
+
+            try
+            {
+                if (Convert.ToInt32(btnFinancialData.Tag) == 0)
+                {
+                    if (objFinancialDataService.AddFinancialData(objFinancialData, sbu) > 0) MessageBox.Show("财务数据添加成功", "提示信息");
+                }
+                else
+                {
+                    if (objFinancialDataService.EditFinancialData(objFinancialData, sbu) == 1) MessageBox.Show("财务数据更新成功！", "提示信息");
+                }
+                InitData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
+
         #region 项目列表
-
-
         /// <summary>
         /// 显示行号
         /// </summary>
@@ -642,12 +581,65 @@ namespace Compass
             }
         }
 
-        #endregion 项目列表
+        #endregion
 
-        private void timerShowInfo_Tick(object sender, EventArgs e)
+        #region 定时器与滚动字幕
+        /// <summary>
+        /// 定时器，循环项目和统计信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimerScroll_Tick(object sender, EventArgs e)
+        {
+            //DateTime scrollEnd = scrollStart.AddSeconds(odpNoList.Count*2);//调试
+            DateTime scrollEnd = scrollStart.AddMinutes(odpNoList.Count * 2);
+            if (DateTime.Now < scrollEnd)
+            {
+                //if (DateTime.Now.Second % 2 == 0)//调试
+                if (DateTime.Now.Minute % 2 == 0)
+                {
+                    tabControl.SelectTab(0);
+                    if (scrollNum < 1) scrollNum = odpNoList.Count;
+                    cobODPNo.Text = odpNoList[scrollNum - 1];
+                    scrollNum--;
+                }
+                else
+                {
+                    tabControl.SelectTab(1);//选中第二张tab选项卡 
+                }
+            }
+            else
+            {
+                scrollStart = DateTime.Now;
+            }
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            lblTime.Text = DateTime.Now.ToString("yyyy年MM月dd日 hh:mm:ss");
+        }
+        /// <summary>
+        /// 暂停/开启循环
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnScroll_Click(object sender, EventArgs e)
+        {
+            if (btnScroll.Text == "暂停循环")
+            {
+                timerScroll.Enabled = false;
+                btnScroll.Text = "开始循环";
+            }
+            else
+            {
+                timerScroll.Enabled = true;
+                btnScroll.Text = "暂停循环";
+            }
+        }
+        private void TimerShowInfo_Tick(object sender, EventArgs e)
         {
             lblShowInfo.Left--;
             if (lblShowInfo.Right < 0) lblShowInfo.Left = this.Left;
-        }
+        } 
+        #endregion
     }
 }

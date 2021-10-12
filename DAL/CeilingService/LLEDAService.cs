@@ -39,19 +39,19 @@ namespace DAL
             string sql = "select LLEDAId,LLEDA.ModuleTreeId,Item,Module,Length from LLEDA";
             sql += " inner join ModuleTree on LLEDA.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
-            sql += string.Format(" where ProjectId={0}", projectId);
+            sql += $" where ProjectId={projectId}";
             sql += " order by Item,Module";
             return SQLHelper.GetDataSet(sql);
         }
 
         public IModel GetModelById(string id)
         {
-            return GetModelByWhereSql(string.Format(" where LLEDAId={0}", id));
+            return GetModelByWhereSql($" where LLEDAId={id}");
         }
 
         public IModel GetModelByModuleTreeId(string moduleTreeId)
         {
-            return GetModelByWhereSql(string.Format(" where ModuleTreeId={0}", moduleTreeId));
+            return GetModelByWhereSql($" where ModuleTreeId={moduleTreeId}");
         }
 
         public IModel GetModelByWhereSql(string whereSql)

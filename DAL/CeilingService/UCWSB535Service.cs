@@ -76,19 +76,19 @@ namespace DAL
                          "SSPType,Gutter,GutterWidth,ANSUL,ANSide,MARVEL,Japan,HCLSide,HCLSideLeft,HCLSideRight from UCWSB535";
             sql += " inner join ModuleTree on UCWSB535.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
-            sql += string.Format(" where ProjectId={0}", projectId);
+            sql += $" where ProjectId={projectId}";
             sql += " order by Item,Module";
             return SQLHelper.GetDataSet(sql);
         }
 
         public IModel GetModelById(string id)
         {
-            return GetModelByWhereSql(string.Format(" where UCWSB535Id={0}", id));
+            return GetModelByWhereSql($" where UCWSB535Id={id}");
         }
 
         public IModel GetModelByModuleTreeId(string moduleTreeId)
         {
-            return GetModelByWhereSql(string.Format(" where ModuleTreeId={0}", moduleTreeId));
+            return GetModelByWhereSql($" where ModuleTreeId={moduleTreeId}");
         }
 
         public IModel GetModelByWhereSql(string whereSql)

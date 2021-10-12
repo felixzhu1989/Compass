@@ -120,15 +120,12 @@ namespace Compass
             Query();
         }
 
-        private void QureyAll()
-        {
-            objSqlDataPager.Condition = "ShippingTime>='2020/01/01'";
-            objSqlDataPager.PageSize = 10000;
-            Query();
-        }
-
-
-
+        //private void QureyAll()
+        //{
+        //    objSqlDataPager.Condition = "ShippingTime>='2020/01/01'";
+        //    objSqlDataPager.PageSize = 10000;
+        //    Query();
+        //}
 
         /// <summary>
         /// 初始化项目状态下拉框
@@ -164,7 +161,7 @@ namespace Compass
             if (e.RowIndex > -1)
             {
                 string projectStatus = this.dgvProjectTracking.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
-                dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectStatusColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
+                dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectStatusColorKeyValue.First(q => q.Key == projectStatus).Value;
             }
         }
         
@@ -176,7 +173,8 @@ namespace Compass
         private void BtnQueryByProjectStatus_Click(object sender, EventArgs e)
         {
             if (cobProjectStatus.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("ProjectTracking{0}.ProjectStatusId = {1}", sbu, cobProjectStatus.SelectedValue.ToString());
+            objSqlDataPager.Condition =
+                $"ProjectTracking{sbu}.ProjectStatusId = {cobProjectStatus.SelectedValue}";
             objSqlDataPager.PageSize = 10000;
             Query();
         }
@@ -197,7 +195,7 @@ namespace Compass
         private void BtnQueryByProjectId_Click(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
-            objSqlDataPager.Condition = string.Format("ProjectTracking{0}.ProjectId = {1}", sbu, cobODPNo.SelectedValue.ToString());
+            objSqlDataPager.Condition = $"ProjectTracking{sbu}.ProjectId = {cobODPNo.SelectedValue}";
             objSqlDataPager.PageSize = 10000;
             Query();
         }
