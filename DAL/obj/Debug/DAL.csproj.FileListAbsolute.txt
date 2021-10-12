@@ -4,6 +4,7 @@ E:\Compass\DAL\bin\Debug\Common.dll
 E:\Compass\DAL\bin\Debug\Models.dll
 E:\Compass\DAL\bin\Debug\Common.pdb
 E:\Compass\DAL\bin\Debug\Models.pdb
+E:\Compass\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
 E:\Compass\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 E:\Compass\DAL\obj\Debug\DAL.csproj.CopyComplete
 E:\Compass\DAL\obj\Debug\DAL.dll
@@ -19,4 +20,3 @@ D:\Compass\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 D:\Compass\DAL\obj\Debug\DAL.csproj.CopyComplete
 D:\Compass\DAL\obj\Debug\DAL.dll
 D:\Compass\DAL\obj\Debug\DAL.pdb
-E:\Compass\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache

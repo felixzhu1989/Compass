@@ -21,4 +21,4 @@ D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csproj.GenerateResource.cache
 D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csproj.CoreCompileInputs.cache
 D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.exe
 D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.pdb
-E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csproj.AssemblyReference.cache
+E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csprojAssemblyReference.cache

@@ -1,3 +1,4 @@
+E:\Compass\Compass\obj\Debug\Compass.csprojAssemblyReference.cache
 E:\Compass\Compass\obj\Debug\Compass.csproj.ResolveComReference.cache
 E:\Compass\Compass\obj\Debug\Compass.FrmBCJ300.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmBCJ330.resources
@@ -312,4 +313,3 @@ E:\Compass\Compass\obj\Debug\Compass.FrmDrawingNumMatrix.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmSyncFiles.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmHWUVF650.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmHWUVI650.resources
-E:\Compass\Compass\obj\Debug\Compass.csproj.AssemblyReference.cache
