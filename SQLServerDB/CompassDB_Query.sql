@@ -679,6 +679,3 @@ order by ProjectStatusId asc
 select * from ProjectStatus
 select * from ProjectTypes
 
-
-
-

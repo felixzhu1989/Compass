@@ -15,43 +15,27 @@ namespace SolidWorksHelper
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址
-            string itemPath = projectPath + @"\" + tree.Item + "-" + tree.Module + "-" + tree.CategoryName;
-            if (!Directory.Exists(itemPath))
-            {
-                Directory.CreateDirectory(itemPath);
-            }
-            else
-            {
-                Common.ShowMsg show = new ShowMsg();
-                DialogResult result = show.ShowMessageBoxTimeout("模型文件夹" + itemPath + "存在，如果之前pack已经执行过，将不执行pack过程而是直接修改模型，如果要中断作图点击YES，继续作图请点击No或者3s后窗口会自动消失", "提示信息", MessageBoxButtons.YesNo, 3000);
-                if (result == DialogResult.Yes) return;
-            }
+            string itemPath =$@"{projectPath}\{tree.Item}-{tree.Module}-{tree.CategoryName}";
+            if (!CommonFunc.CreateProjectPath(itemPath)) return;
             //Pack的后缀
-            string suffix = tree.Item + "-" + tree.Module + "-" +
-                            tree.ODPNo.Substring(tree.ODPNo.Length - 6);
+            string suffix = $@"{tree.Item}-{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
+
             //判断文件是否存在，如果存在将不执行pack，如果不存在则执行pack
             //packango后需要接收打包完成的地址，参数为后缀
-            string packedAssyPath = itemPath + @"\" + tree.CategoryName.ToLower() + "_" + suffix + ".sldasm";
+            string packedAssyPath =$@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
             if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
-
+            
             //查询参数
             KVS item = (KVS)objKVSService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
-            int warnings = 0;
+            var warnings = 0;
             int errors = 0;
             suffix = "_" + suffix;//后缀
-            ModelDoc2 swModel = default(ModelDoc2);
-            ModelDoc2 swPart = default(ModelDoc2);
-            AssemblyDoc swAssy = default(AssemblyDoc);
-            Component2 swComp;
-            Feature swFeat = default(Feature);
-            object configNames = null;
 
             //打开Pack后的模型
-            swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
+            var swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
                 (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
-            swAssy = swModel as AssemblyDoc;//装配体
+            var swAssy = swModel as AssemblyDoc;
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true);//TopOnly参数设置成true，只重建顶层，不重建零件内部
             /*注意SolidWorks单位是m，计算是应当/1000m
@@ -79,10 +63,10 @@ namespace SolidWorksHelper
                 //----------Top Level----------
                 ////判断KSA数量，KSA侧板长度，如果太小，则使用特殊小侧板侧边
                 //swFeat = swAssy.FeatureByName("LocalLPattern1");
-                //if (ksaNo == 1) swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                //if (ksaNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 //else
                 //{
-                //    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                //    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 //    swModel.Parameter("D1@LocalLPattern1").SystemValue = ksaNo; //D1阵列数量,D3阵列距离
                 //}
                 ////KSA距离左边缘
@@ -90,21 +74,23 @@ namespace SolidWorksHelper
                 //else swModel.Parameter("D1@Distance15").SystemValue = ksaSideLength;
 
                 //排风脖颈数量和距离
+                Feature swFeat;
                 if (item.ExNo == 1)
                 {
                     swModel.Parameter("D1@Distance52").SystemValue = (item.Length - item.ExLength) / 2000m;
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else if (item.ExNo == 2)
                 {
                     swModel.Parameter("D1@Distance52").SystemValue = ((item.Length - item.ExDis) / 2m - item.ExLength) / 1000m;
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swModel.Parameter("D1@LocalLPattern1").SystemValue = item.ExNo; //D1阵列数量,D3阵列距离
                     swModel.Parameter("D3@LocalLPattern1").SystemValue = (item.ExDis + item.ExLength) / 1000m; //D1阵列数量,D3阵列距离
                 }
                 //日光灯
+                Component2 swComp;
                 if (item.LightType == "FSSHORT")
                 {
                     //SHORT
@@ -197,16 +183,16 @@ namespace SolidWorksHelper
                 }
                 //----------排风腔----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0110-1"));
-                swPart = swComp.GetModelDoc2();//打开零件3
+                ModelDoc2 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D1@Sketch1").SystemValue = (item.Length - 7m) / 1000m;
                 swPart.Parameter("D5@Sketch62").SystemValue = (item.ExDis + item.ExLength) / 1000m;
                 //排风口
                 if (item.ExNo == 1)
                 {
                     swFeat = swComp.FeatureByName("EXCOONE");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("EXCOTWO");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D1@Sketch115").SystemValue = item.ExLength / 1000m;
                     swPart.Parameter("D2@Sketch115").SystemValue = item.ExWidth / 1000m;
                     swPart.Parameter("D5@Sketch62").SystemValue = midRoofSecondHoleDis / 1000m;
@@ -214,9 +200,9 @@ namespace SolidWorksHelper
                 else
                 {
                     swFeat = swComp.FeatureByName("EXCOONE");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("EXCOTWO");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D4@Sketch114").SystemValue = item.ExDis / 1000m;
                     swPart.Parameter("D2@Sketch114").SystemValue = item.ExLength / 1000m;
                     swPart.Parameter("D1@Sketch114").SystemValue = item.ExWidth / 1000m;
@@ -224,13 +210,13 @@ namespace SolidWorksHelper
                     if (midRoofSecondHoleDis > 300m)
                     {
                         swFeat = swComp.FeatureByName("MIDROOFINSDIS2");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D3@Sketch116").SystemValue = midRoofSecondHoleDis / 1000m;
                     }
                     else
                     {
                         swFeat = swComp.FeatureByName("MIDROOFINSDIS2");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                 }
                 //----------其他零件----------
@@ -269,7 +255,7 @@ namespace SolidWorksHelper
                 if (item.ExNo == 1)
                 {
                     swFeat = swComp.FeatureByName("MIDROOFINSDIS2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D2@Sketch20").SystemValue = midRoofSecondHoleDis / 1000m;
                 }
                 else
@@ -278,29 +264,29 @@ namespace SolidWorksHelper
                     if (midRoofSecondHoleDis > 300m)
                     {
                         swFeat = swComp.FeatureByName("MIDROOFINSDIS2");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D1@Sketch26").SystemValue = midRoofSecondHoleDis / 1000m;
                     }
                     else
                     {
                         swFeat = swComp.FeatureByName("MIDROOFINSDIS2");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                 }
                 //灯具
                 if (item.LightType == "FSSHORT")
                 {
                     swFeat = swComp.FeatureByName("FSLONG");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("FSSHORT");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
                     swFeat = swComp.FeatureByName("FSLONG");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("FSSHORT");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201020401-1"));
                 swPart = swComp.GetModelDoc2();
@@ -326,7 +312,7 @@ namespace SolidWorksHelper
                 if (item.ExNo == 1)
                 {
                     swFeat = swComp.FeatureByName("MIDROOFINSDIS2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D3@Sketch50").SystemValue = midRoofSecondHoleDis / 1000m;
                 }
                 else
@@ -335,13 +321,13 @@ namespace SolidWorksHelper
                     if (midRoofSecondHoleDis > 300m)
                     {
                         swFeat = swComp.FeatureByName("MIDROOFINSDIS2");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D3@Sketch127").SystemValue = midRoofSecondHoleDis / 1000m;
                     }
                     else
                     {
                         swFeat = swComp.FeatureByName("MIDROOFINSDIS2");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                 }
                 swPart.Parameter("D1@LPattern2").SystemValue = rivetNo + 1;

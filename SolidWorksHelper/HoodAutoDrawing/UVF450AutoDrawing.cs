@@ -16,24 +16,16 @@ namespace SolidWorksHelper
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址
-            string itemPath = projectPath + @"\" + tree.Item + "-" + tree.Module + "-" + tree.CategoryName;
-            if (!Directory.Exists(itemPath))
-            {
-                Directory.CreateDirectory(itemPath);
-            }
-            else
-            {
-                Common.ShowMsg show = new ShowMsg();
-                DialogResult result = show.ShowMessageBoxTimeout("模型文件夹" + itemPath + "存在，如果之前pack已经执行过，将不执行pack过程而是直接修改模型，如果要中断作图点击YES，继续作图请点击No或者3s后窗口会自动消失", "提示信息", MessageBoxButtons.YesNo, 3000);
-                if (result == DialogResult.Yes) return;
-            }
+            string itemPath = $@"{projectPath}\{tree.Item}-{tree.Module}-{tree.CategoryName}";
+            if (!CommonFunc.CreateProjectPath(itemPath)) return;
             //Pack的后缀
-            string suffix = tree.Item + "-" + tree.Module + "-" +
-                            tree.ODPNo.Substring(tree.ODPNo.Length - 6);
+            string suffix = $@"{tree.Item}-{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
+
             //判断文件是否存在，如果存在将不执行pack，如果不存在则执行pack
             //packango后需要接收打包完成的地址，参数为后缀
-            string packedAssyPath = itemPath + @"\" + tree.CategoryName.ToLower() + "_" + suffix + ".sldasm";
+            string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
             if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
+
 
             //查询参数
             UVF450 item = (UVF450)objUVF450Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
@@ -392,7 +384,7 @@ namespace SolidWorksHelper
                 swPart.Parameter("D1@草图1").SystemValue = item.Length / 1000m;
                 swFeat = swComp.FeatureByName("EXTAB-UP");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                //UV Hood,过滤器感应出线孔，UV门，UV cable-UV灯线缆穿孔避让缺口
+                //UV HoodParent,过滤器感应出线孔，UV门，UV cable-UV灯线缆穿孔避让缺口
                 swFeat = swComp.FeatureByName("FILTER-CABLE");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 //非UVHood
@@ -1092,14 +1084,14 @@ namespace SolidWorksHelper
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0005-1"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                         swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 275m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;
+                        swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 275m-5m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;
                         swPart.Parameter("D5@Sketch7").SystemValue = 13.68m / 1000m;//水洗烟罩19.87m / 1000m
                         swPart.Parameter("D5@Sketch10").SystemValue = 27.3m / 1000m;
                         //UV555400，22m,标准烟罩27.3
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0006-1"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                         swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 275m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;
+                        swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 275m-5m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;
                         swPart.Parameter("D5@Sketch7").SystemValue = 13.68m / 1000m;//水洗烟罩19.87m / 1000m
                         swPart.Parameter("D5@Sketch8").SystemValue = 27.3m / 1000m;
                         //UV555400，22m,标准烟罩27.3
@@ -1134,7 +1126,7 @@ namespace SolidWorksHelper
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0005-1"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                         swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 275m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;
+                        swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 275m-5m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;
                         swPart.Parameter("D5@Sketch7").SystemValue = 13.68m / 1000m;//水洗烟罩19.87m / 1000m
                         swPart.Parameter("D5@Sketch10").SystemValue = 27.3m / 1000m;
                         //UV555400，22m,标准烟罩27.3
@@ -1168,7 +1160,7 @@ namespace SolidWorksHelper
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0006-1"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                         swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 275m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;
+                        swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 275m-5m) / 1000m;//水洗烟罩(item.Deepth - 368) / 1000m;
                         swPart.Parameter("D5@Sketch7").SystemValue = 13.68m / 1000m;//水洗烟罩19.87m / 1000m
                         swPart.Parameter("D5@Sketch8").SystemValue = 27.3m / 1000m;
                         //UV555400，22m,标准烟罩27.3

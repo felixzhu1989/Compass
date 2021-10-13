@@ -503,6 +503,7 @@ namespace Compass
         void RefreshProject()
         {
             dt = objMonthlyReportService.GetDisplayProjects(sbu, cobYear.Text, cobMonth.Text);
+            dgvProjects.AutoGenerateColumns = false;
             dgvProjects.DataSource = AddChineseToDataTable(dt);
         }
 
@@ -566,18 +567,10 @@ namespace Compass
         private void DgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvProjects, e);
-            //if (e.RowIndex > -1)
-            //{
-            //    int risk = Convert.ToInt32(this.dgvProjects.Rows[e.RowIndex].Cells["RiskLevel"].Value);
-            //    if (risk == 1)
-            //    {
-            //        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
-            //    }
-            //}
             if (e.RowIndex > -1)
             {
                 string projectStatus = this.dgvProjects.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
-                dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectStatusChineseColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
+                dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectStatusChineseColorKeyValue.First(q => q.Key == projectStatus).Value;
             }
         }
 
@@ -638,7 +631,7 @@ namespace Compass
         private void TimerShowInfo_Tick(object sender, EventArgs e)
         {
             lblShowInfo.Left--;
-            if (lblShowInfo.Right < 0) lblShowInfo.Left = this.Left;
+            if (lblShowInfo.Right < 0) lblShowInfo.Left = this.Right;
         } 
         #endregion
     }

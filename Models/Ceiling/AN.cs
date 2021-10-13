@@ -3,7 +3,7 @@
 namespace Models
 {
     [Serializable]
-   public class AN:IModel
+   public class AN:IModel,IAnsul, IAnsulDetector,IMarvel
     {
         public int ANId { get; set; }
         public int ModuleTreeId { get; set; }
@@ -12,6 +12,8 @@ namespace Models
         public decimal Width { get; set; }
         //ANSUL
         public string ANSUL { get; set; }
+        public string ANSide { get; set; }//此处无用
+        public string ANDetector { get; set; }//此处无用
         public decimal ANYDis { get; set; }
         public int ANDropNo { get; set; }
         public decimal ANDropDis1 { get; set; }

@@ -14,16 +14,16 @@ namespace Compass
         /// </summary>
         private readonly Dictionary<string, string> projectStatusName = new Dictionary<string, string>()
         {
-            {"GettingODP", "收到ODP/GettingODP"},
-            {"KickOff", "开工会议/KickOff"},
-            {"DrawingMaking", "制图中/DrawingMaking"},
-            {"InProduction", "生产中/InProduction"},
-            {"ProductCompleted", "生产完成/ProductCompleted"},
-            {"ProjectCompleted", "项目完成/ProjectCompleted"},
-            {"FollowUp", "跟踪/FollowUp"},
-            {"Pending", "未决定/Pending"},
-            {"Cancel", "取消/Cancel"},
-            {"Import", "引进/Import"}
+            {"GettingODP", "收到ODP"},
+            {"KickOff", "开工会议"},
+            {"DrawingMaking", "制图中"},
+            {"InProduction", "生产中"},
+            {"ProductCompleted", "生产完成"},
+            {"ProjectCompleted", "项目完成"},
+            {"FollowUp", "跟踪"},
+            {"Pending", "未决定"},
+            {"Cancel", "取消"},
+            {"Import", "引进"}
         };
         public Dictionary<string, string> ProjectStatusNameKeyValue => this.projectStatusName;
         /// <summary>
@@ -31,8 +31,8 @@ namespace Compass
         /// </summary>
         private readonly Dictionary<string, string> hoodType = new Dictionary<string, string>()
         {
-            {"Hood", "烟罩/Hood"},
-            {"Ceiling", "天花/Ceiling"},
+            {"Hood", "烟罩"},
+            {"Ceiling", "天花"},
         };
         public Dictionary<string, string> HoodTypeKeyValue => this.hoodType;
 
@@ -111,16 +111,16 @@ namespace Compass
         /// </summary>
         private readonly Dictionary<string, Color> projectStatusChineseColor = new Dictionary<string, Color>()
         {
-            {"收到ODP/GettingODP", Color.LightSkyBlue},
-            {"开工会议/KickOff",Color.DeepSkyBlue},
-            {"制图中/DrawingMaking", Color.Yellow},
-            {"生产中/InProduction", Color.Orange},
-            {"生产完成/ProductCompleted", Color.GreenYellow},
-            {"项目完成/ProjectCompleted", Color.LimeGreen},
-            {"跟踪/FollowUp", Color.LightPink},
-            {"未决定/Pending", Color.Red},
-            {"取消/Cancel",Color.Silver},
-            {"引进/Import", Color.Magenta}
+            {"收到ODP", Color.LightSkyBlue},
+            {"开工会议",Color.DeepSkyBlue},
+            {"制图中", Color.Yellow},
+            {"生产中", Color.Orange},
+            {"生产完成", Color.GreenYellow},
+            {"项目完成", Color.LimeGreen},
+            {"跟踪", Color.LightPink},
+            {"未决定", Color.Red},
+            {"取消",Color.Silver},
+            {"引进", Color.Magenta}
         };
 
 

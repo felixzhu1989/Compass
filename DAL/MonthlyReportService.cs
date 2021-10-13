@@ -39,15 +39,15 @@ namespace DAL
             return whereSql;
         }
         /// <summary>
-        /// 获取需要循环的项目列表
+        /// 获取需要循环的项目列表，只查询当月上下两月中没有完工的项目
         /// </summary>
         /// <returns></returns>
         public List<string> GetScrollODPNoList()
         {
             StringBuilder sql =new StringBuilder( "select ODPNo from Projects");
-            //sql += " inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId";
-            //sql += " where ProjectStatusId between 1 and 4 order by ShippingTime asc";
+            sql.Append(" inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId");
             sql.Append(WhereSql(DateTime.Now.Year.ToString(),DateTime.Now.Month.ToString()));
+            sql.Append(" and ProjectStatusId between 0 and 4");
             sql.Append(" order by ShippingTime asc");
             SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             List<string> list = new List<string>();

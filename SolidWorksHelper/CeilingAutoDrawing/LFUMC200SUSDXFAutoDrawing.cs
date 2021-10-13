@@ -35,7 +35,7 @@ namespace SolidWorksHelper
             Project objProject = objProjectService.GetProjectByProjectId(tree.ProjectId.ToString(),tree.SBU);
 
             #region HoodCutList
-            if (objProject.HoodType == "Hood")
+            if (objProject.HoodType == "HoodParent")
             {
                 //乘以数量，赋值moduletreeid
                 foreach (var item in oldList)

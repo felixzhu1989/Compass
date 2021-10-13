@@ -15,24 +15,16 @@ namespace SolidWorksHelper
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址
-            string itemPath = projectPath + @"\" + tree.Item + "-" + tree.Module + "-" + tree.CategoryName;
-            if (!Directory.Exists(itemPath))
-            {
-                Directory.CreateDirectory(itemPath);
-            }
-            else
-            {
-                Common.ShowMsg show = new ShowMsg();
-                DialogResult result = show.ShowMessageBoxTimeout("模型文件夹" + itemPath + "存在，如果之前pack已经执行过，将不执行pack过程而是直接修改模型，如果要中断作图点击YES，继续作图请点击No或者3s后窗口会自动消失", "提示信息", MessageBoxButtons.YesNo, 3000);
-                if (result == DialogResult.Yes) return;
-            }
+            string itemPath = $@"{projectPath}\{tree.Item}-{tree.Module}-{tree.CategoryName}";
+            if (!CommonFunc.CreateProjectPath(itemPath)) return;
             //Pack的后缀
-            string suffix = tree.Item + "-" + tree.Module + "-" +
-                            tree.ODPNo.Substring(tree.ODPNo.Length - 6);
+            string suffix = $@"{tree.Item}-{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
+
             //判断文件是否存在，如果存在将不执行pack，如果不存在则执行pack
             //packango后需要接收打包完成的地址，参数为后缀
-            string packedAssyPath = itemPath + @"\" + tree.CategoryName.ToLower() + "_" + suffix + ".sldasm";
+            string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
             if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
+
 
             //查询参数
             LSDOST item = (LSDOST)objLSDOSTService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());

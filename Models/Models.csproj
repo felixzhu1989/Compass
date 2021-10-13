@@ -67,6 +67,8 @@
     <Compile Include="DrawingNumCodeRule.cs" />
     <Compile Include="DrawingNumMatrix.cs" />
     <Compile Include="FinancialData.cs" />
+    <Compile Include="Hood\FRUVF555.cs" />
+    <Compile Include="HoodParent.cs" />
     <Compile Include="Hood\CH610.cs" />
     <Compile Include="ChartData.cs" />
     <Compile Include="Hood\HOODBCJ.cs" />
@@ -99,9 +101,17 @@
     <Compile Include="Hood\HWUWF555.cs" />
     <Compile Include="Hood\HWUVF650.cs" />
     <Compile Include="Hood\HWUVI650.cs" />
+    <Compile Include="Interface\IHoodW.cs" />
+    <Compile Include="Interface\IAnsul.cs" />
+    <Compile Include="Interface\IAnsulDetector.cs" />
+    <Compile Include="Interface\IMarvel.cs" />
+    <Compile Include="Interface\ISuF.cs" />
+    <Compile Include="Interface\IUV.cs" />
+    <Compile Include="Interface\IVHoodOptions.cs" />
+    <Compile Include="Interface\IWaterCollection.cs" />
     <Compile Include="JobCard.cs" />
     <Compile Include="Hood\KVI555.cs" />
-    <Compile Include="IModel.cs" />
+    <Compile Include="Interface\IModel.cs" />
     <Compile Include="Hood\KWI555.cs" />
     <Compile Include="Hood\KWF555.cs" />
     <Compile Include="Hood\UWI555.cs" />

@@ -65,6 +65,7 @@
     <Compile Include="CeilingService\CJ330Service.cs" />
     <Compile Include="DrawingNumMatrixService.cs" />
     <Compile Include="FinancialDataService.cs" />
+    <Compile Include="HoodService\FRUVF555Service.cs" />
     <Compile Include="HoodService\CH610Service.cs" />
     <Compile Include="HoodService\HOODBCJService.cs" />
     <Compile Include="HoodService\CMODF555400Service.cs" />

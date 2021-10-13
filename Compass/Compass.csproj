@@ -1380,11 +1380,10 @@
     <Content Include="images\compass_64px.ico" />
     <Content Include="images\FolderClosed.png" />
     <Content Include="images\FolderOpen.png" />
+    <None Include="images\Halton_Logo_RGB.jpg" />
     <Content Include="images\NewUpdate.png" />
     <Content Include="images\Project.png" />
-    <Content Include="images\Setting.png" />
     <Content Include="images\Update.png" />
-    <Content Include="images\UpdateIcon.png" />
     <Content Include="images\UpdateStart.png" />
   </ItemGroup>
   <ItemGroup>
