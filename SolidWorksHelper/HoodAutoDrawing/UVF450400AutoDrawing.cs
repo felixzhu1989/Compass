@@ -14,6 +14,7 @@ namespace SolidWorksHelper
         UVF450400Service objUVF450400Service = new UVF450400Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
+            #region 准备工作
             //创建项目模型存放地址
             string itemPath = $@"{projectPath}\{tree.Item}-{tree.Module}-{tree.CategoryName}";
             if (!CommonFunc.CreateProjectPath(itemPath)) return;
@@ -25,6 +26,7 @@ namespace SolidWorksHelper
             string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
             if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
 
+            
 
             //查询参数
             UVF450400 item = (UVF450400)objUVF450400Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
@@ -50,7 +52,9 @@ namespace SolidWorksHelper
              * 整形与整形运算得出的结果仍然时整形，1640 / 1000m结果为0，因此必须将其中一个转化成decimal型，使用后缀m就可以了
              * (int)不进行四舍五入，Convert.ToInt32会四舍五入
             */
-            //-----------计算中间值，----------
+            #endregion
+            
+            #region 计算中间值
             //新风面板卡扣数量及间距
             int frontPanelKaKouNo = (int)((item.Length - 300m) / 450m) + 2;
             decimal frontPanelKaKouDis = Convert.ToDecimal((item.Length - 300m) / (frontPanelKaKouNo - 1)) / 1000m;
@@ -81,9 +85,9 @@ namespace SolidWorksHelper
 
             //UVF450400斜侧板CJ孔计算,106为排风底部长度，450-400为高度差
             int sidePanelDownCjNo = (int)(((decimal)(Math.Sqrt(Math.Pow((double)item.Deepth - 106d, 2) + Math.Pow(450d - 400d, 2))) - 95m) / 32m);
-            int sidePanelSideCjNo = sidePanelDownCjNo - 3;
-
-
+            int sidePanelSideCjNo = sidePanelDownCjNo - 3; 
+            #endregion
+            
             try
             {
                 //----------Top Level----------
@@ -1232,7 +1236,6 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D1@Sketch20").SystemValue = item.IRDis1 / 1000m;
                         swFeat = swComp.FeatureByName("MACABLE1");
-                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D3@Sketch17").SystemValue = 150m / 1000m;
                     }
