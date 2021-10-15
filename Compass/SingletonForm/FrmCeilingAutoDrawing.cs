@@ -44,19 +44,24 @@ namespace Compass
             dgvSubAssyWaitingList.AutoGenerateColumns = false;
             dgvSubAssyExecList.AutoGenerateColumns = false;
             //dgvCutList.AutoGenerateColumns = false;
-
-            //项目编号下拉框
-            cobODPNo.DataSource = objProjectService.GetProjectsByHoodType("Ceiling",sbu);
-            cobODPNo.DisplayMember = "ODPNo";
-            cobODPNo.ValueMember = "ProjectId";
-            cobODPNo.SelectedIndex = -1;
-            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+            IniCobODPNo();
             this.tvSubAssyTree.AllowDrop = true;//允许文件拖拽
             this.txtMainAssyPath.AllowDrop = true;
             btnEditCeilingAccessory.Enabled = false;
             
             dgvCeilingPackingList.AutoGenerateColumns = false;
             SetPermissions();
+        }
+
+        public void IniCobODPNo()
+        {
+            this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+            //项目编号下拉框
+            cobODPNo.DataSource = objProjectService.GetProjectsByHoodType("Ceiling", sbu);
+            cobODPNo.DisplayMember = "ODPNo";
+            cobODPNo.ValueMember = "ProjectId";
+            cobODPNo.SelectedIndex = -1;
+            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
         }
         
         #region 单例模式，重写关闭方法，显示时选择ODP号
@@ -68,7 +73,13 @@ namespace Compass
         public void ShowWithOdpNo(string odpNo)
         {
             if (odpNo.Length != 0) cobODPNo.Text = odpNo;
+            ShowAndFocus();
+        }
+        internal void ShowAndFocus()
+        {
             this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.Focus();
         }
         #endregion
 

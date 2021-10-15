@@ -53,13 +53,19 @@ namespace Compass
                 Sort = "DrawingPlan.DrReleasetarget desc",
             };
             BtnQueryByYear_Click(null, null);
-
         }
         #region 单例模式，重写关闭方法
         protected override void OnClosing(CancelEventArgs e)
         {
             this.Hide();
             e.Cancel = true;
+        }
+        internal void ShowAndFocus()
+        {
+            BtnQueryByYear_Click(null, null);
+            this.Show();
+            this.WindowState = FormWindowState.Maximized;
+            this.Focus();
         }
         #endregion
 
@@ -89,7 +95,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnQueryByYear_Click(object sender, EventArgs e)
+        public void BtnQueryByYear_Click(object sender, EventArgs e)
         {
             if (this.cobQueryYear.SelectedIndex == -1)
             {
@@ -267,7 +273,6 @@ namespace Compass
             chartMonth.ChartAreas[0].AxisY.Interval = 25;//也可以设置成20
             chartMonth.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
         }
-
         /// <summary>
         /// 年度所有烟罩工作量统计
         /// </summary>

@@ -17,7 +17,7 @@ namespace DAL
             sqlBuilder.Append("FCSide=@FCSide,FCSideLeft=@FCSideLeft,FCSideRight=@FCSideRight,FCBlindNo=@FCBlindNo,");
             sqlBuilder.Append("SidePanel=@SidePanel,DPSide=@DPSide,LightType=@LightType,");
             sqlBuilder.Append("SSPType=@SSPType,Gutter=@Gutter,GutterWidth=@GutterWidth,ANSUL=@ANSUL,ANSide=@ANSide,");
-            sqlBuilder.Append("MARVEL=@MARVEL,Japan=@Japan where KCWSB535Id=@KCWSB535Id");
+            sqlBuilder.Append("MARVEL=@MARVEL,Japan=@Japan,HCLSide=@HCLSide,HCLSideLeft=@HCLSideLeft,HCLSideRight=@HCLSideRight where KCWSB535Id=@KCWSB535Id");
             //定义参数数组
             SqlParameter[] param = new SqlParameter[]
             {
@@ -44,6 +44,10 @@ namespace DAL
                 new SqlParameter("@MARVEL",objModel.MARVEL),
                 new SqlParameter("@Japan",objModel.Japan),
 
+                new SqlParameter("@HCLSide",objModel.HCLSide),
+                new SqlParameter("@HCLSideLeft",objModel.HCLSideLeft),
+                new SqlParameter("@HCLSideRight",objModel.HCLSideRight),
+
                 new SqlParameter("@KCWSB535Id",objModel.KCWSB535Id)
             };
             try
@@ -64,7 +68,7 @@ namespace DAL
         {
             string sql = "select KCWSB535Id,KCWSB535.ModuleTreeId,Item,Module,Length,ExRightDis,ExLength,ExWidth,ExHeight," +
                          "FCSide,FCSideLeft,FCSideRight,FCBlindNo,SidePanel,DPSide,LightType,SSPType,Gutter,GutterWidth," +
-                         "ANSUL,ANSide,MARVEL,Japan from KCWSB535";
+                         "ANSUL,ANSide,MARVEL,Japan,HCLSide,HCLSideLeft,HCLSideRight from KCWSB535";
             sql += " inner join ModuleTree on KCWSB535.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
             sql += $" where ProjectId={projectId}";
@@ -87,7 +91,7 @@ namespace DAL
             string sql =
                 "select KCWSB535Id,ModuleTreeId,Length,ExRightDis,ExLength,ExWidth,ExHeight," +
                 "FCSide,FCSideLeft,FCSideRight,FCBlindNo,SidePanel,DPSide,LightType,SSPType,Gutter,GutterWidth," +
-                "ANSUL,ANSide,MARVEL,Japan from KCWSB535";
+                "ANSUL,ANSide,MARVEL,Japan,HCLSide,HCLSideLeft,HCLSideRight from KCWSB535";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             KCWSB535 objModel = null;
@@ -121,6 +125,9 @@ namespace DAL
                     ANSide = objReader["ANSide"].ToString().Length == 0 ? "" : objReader["ANSide"].ToString(),
                     MARVEL = objReader["MARVEL"].ToString().Length == 0 ? "" : objReader["MARVEL"].ToString(),
                     Japan = objReader["Japan"].ToString().Length == 0 ? "" : objReader["Japan"].ToString(),
+                    HCLSide = objReader["HCLSide"].ToString().Length == 0 ? "" : objReader["HCLSide"].ToString(),
+                    HCLSideLeft = objReader["HCLSideLeft"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["HCLSideLeft"]),
+                    HCLSideRight = objReader["HCLSideRight"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["HCLSideRight"]),
                 };
             }
             objReader.Close();

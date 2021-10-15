@@ -446,10 +446,10 @@
     <Compile Include="SingletonForm\FrmCategories.Designer.cs">
       <DependentUpon>FrmCategories.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmCategoryTree.cs">
+    <Compile Include="SingletonForm\FrmCategoryTree.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmCategoryTree.Designer.cs">
+    <Compile Include="SingletonForm\FrmCategoryTree.Designer.cs">
       <DependentUpon>FrmCategoryTree.cs</DependentUpon>
     </Compile>
     <Compile Include="SingletonForm\FrmCeilingAccessories.cs">
@@ -900,7 +900,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SingletonObject.cs" />
+    <Compile Include="SingletonForm\SingletonObject.cs" />
     <Compile Include="SolidWorksSetting.cs" />
     <Compile Include="SolidWorksSingleton.cs" />
     <Compile Include="SuperChart.cs" />
@@ -1021,7 +1021,7 @@
     <EmbeddedResource Include="SingletonForm\FrmCategories.resx">
       <DependentUpon>FrmCategories.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmCategoryTree.resx">
+    <EmbeddedResource Include="SingletonForm\FrmCategoryTree.resx">
       <DependentUpon>FrmCategoryTree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SingletonForm\FrmCeilingAccessories.resx">

@@ -75,6 +75,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtLength = new System.Windows.Forms.TextBox();
             this.modelView = new Compass.ModelView();
+            this.lblHCLSide = new System.Windows.Forms.Label();
+            this.txtHCLSideRight = new System.Windows.Forms.TextBox();
+            this.cobHCLSide = new System.Windows.Forms.ComboBox();
+            this.lblHCLSideRight = new System.Windows.Forms.Label();
+            this.lblHCLSideLeft = new System.Windows.Forms.Label();
+            this.txtHCLSideLeft = new System.Windows.Forms.TextBox();
             this.grbMARVEL.SuspendLayout();
             this.grbANSUL.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -86,6 +92,12 @@
             // grbMARVEL
             // 
             this.grbMARVEL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbMARVEL.Controls.Add(this.lblHCLSide);
+            this.grbMARVEL.Controls.Add(this.txtHCLSideRight);
+            this.grbMARVEL.Controls.Add(this.cobHCLSide);
+            this.grbMARVEL.Controls.Add(this.lblHCLSideRight);
+            this.grbMARVEL.Controls.Add(this.lblHCLSideLeft);
+            this.grbMARVEL.Controls.Add(this.txtHCLSideLeft);
             this.grbMARVEL.Controls.Add(this.lblLightType);
             this.grbMARVEL.Controls.Add(this.cobLightType);
             this.grbMARVEL.Controls.Add(this.cobSSPType);
@@ -102,7 +114,7 @@
             // lblLightType
             // 
             this.lblLightType.AutoSize = true;
-            this.lblLightType.Location = new System.Drawing.Point(11, 58);
+            this.lblLightType.Location = new System.Drawing.Point(11, 61);
             this.lblLightType.Name = "lblLightType";
             this.lblLightType.Size = new System.Drawing.Size(61, 19);
             this.lblLightType.TabIndex = 4;
@@ -115,10 +127,11 @@
             this.cobLightType.BackColor = System.Drawing.Color.Azure;
             this.cobLightType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobLightType.FormattingEnabled = true;
-            this.cobLightType.Location = new System.Drawing.Point(92, 54);
+            this.cobLightType.Location = new System.Drawing.Point(92, 57);
             this.cobLightType.Name = "cobLightType";
             this.cobLightType.Size = new System.Drawing.Size(100, 27);
             this.cobLightType.TabIndex = 2;
+            this.cobLightType.SelectedIndexChanged += new System.EventHandler(this.cobLightType_SelectedIndexChanged);
             // 
             // cobSSPType
             // 
@@ -588,6 +601,68 @@
             this.modelView.Size = new System.Drawing.Size(750, 460);
             this.modelView.TabIndex = 77;
             // 
+            // lblHCLSide
+            // 
+            this.lblHCLSide.AutoSize = true;
+            this.lblHCLSide.Location = new System.Drawing.Point(198, 61);
+            this.lblHCLSide.Name = "lblHCLSide";
+            this.lblHCLSide.Size = new System.Drawing.Size(61, 19);
+            this.lblHCLSide.TabIndex = 9;
+            this.lblHCLSide.Text = "HCL侧板";
+            this.lblHCLSide.Visible = false;
+            // 
+            // txtHCLSideRight
+            // 
+            this.txtHCLSideRight.BackColor = System.Drawing.Color.Azure;
+            this.txtHCLSideRight.Location = new System.Drawing.Point(279, 95);
+            this.txtHCLSideRight.Name = "txtHCLSideRight";
+            this.txtHCLSideRight.Size = new System.Drawing.Size(100, 25);
+            this.txtHCLSideRight.TabIndex = 11;
+            this.txtHCLSideRight.Visible = false;
+            // 
+            // cobHCLSide
+            // 
+            this.cobHCLSide.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobHCLSide.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobHCLSide.BackColor = System.Drawing.Color.Azure;
+            this.cobHCLSide.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobHCLSide.FormattingEnabled = true;
+            this.cobHCLSide.Location = new System.Drawing.Point(279, 57);
+            this.cobHCLSide.Name = "cobHCLSide";
+            this.cobHCLSide.Size = new System.Drawing.Size(100, 27);
+            this.cobHCLSide.TabIndex = 8;
+            this.cobHCLSide.Visible = false;
+            this.cobHCLSide.SelectedIndexChanged += new System.EventHandler(this.cobHCLSide_SelectedIndexChanged);
+            // 
+            // lblHCLSideRight
+            // 
+            this.lblHCLSideRight.AutoSize = true;
+            this.lblHCLSideRight.Location = new System.Drawing.Point(199, 97);
+            this.lblHCLSideRight.Name = "lblHCLSideRight";
+            this.lblHCLSideRight.Size = new System.Drawing.Size(74, 19);
+            this.lblHCLSideRight.TabIndex = 6;
+            this.lblHCLSideRight.Text = "HCL右侧板";
+            this.lblHCLSideRight.Visible = false;
+            // 
+            // lblHCLSideLeft
+            // 
+            this.lblHCLSideLeft.AutoSize = true;
+            this.lblHCLSideLeft.Location = new System.Drawing.Point(5, 97);
+            this.lblHCLSideLeft.Name = "lblHCLSideLeft";
+            this.lblHCLSideLeft.Size = new System.Drawing.Size(74, 19);
+            this.lblHCLSideLeft.TabIndex = 7;
+            this.lblHCLSideLeft.Text = "HCL左侧板";
+            this.lblHCLSideLeft.Visible = false;
+            // 
+            // txtHCLSideLeft
+            // 
+            this.txtHCLSideLeft.BackColor = System.Drawing.Color.Azure;
+            this.txtHCLSideLeft.Location = new System.Drawing.Point(91, 94);
+            this.txtHCLSideLeft.Name = "txtHCLSideLeft";
+            this.txtHCLSideLeft.Size = new System.Drawing.Size(100, 25);
+            this.txtHCLSideLeft.TabIndex = 10;
+            this.txtHCLSideLeft.Visible = false;
+            // 
             // FrmKCWSB535
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -670,5 +745,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtLength;
         private ModelView modelView;
+        private System.Windows.Forms.Label lblHCLSide;
+        private System.Windows.Forms.TextBox txtHCLSideRight;
+        private System.Windows.Forms.ComboBox cobHCLSide;
+        private System.Windows.Forms.Label lblHCLSideRight;
+        private System.Windows.Forms.Label lblHCLSideLeft;
+        private System.Windows.Forms.TextBox txtHCLSideLeft;
     }
 }

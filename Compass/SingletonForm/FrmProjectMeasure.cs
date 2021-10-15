@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using DAL;
 using Models;
@@ -34,9 +35,7 @@ namespace Compass
             cobMonth.SelectedIndex = currentMonth - 1;//默认定位当前月份
             this.cobMonth.SelectedIndexChanged += new System.EventHandler(this.CobMonth_SelectedIndexChanged);
             this.cobYear.SelectedIndexChanged += new System.EventHandler(this.CobYear_SelectedIndexChanged);
-            IniTrendChart();
-            IniDeliveryReliabilityChart();
-            IniCycleTimeChart();
+            IniAllData();
         }
         #region 单例模式，重写关闭方法
         protected override void OnClosing(CancelEventArgs e)
@@ -44,16 +43,25 @@ namespace Compass
             this.Hide();
             e.Cancel = true;
         }
+        internal void ShowAndFocus()
+        {
+            IniAllData();
+            this.Show();
+            this.WindowState = FormWindowState.Maximized;
+            this.Focus();
+        }
         #endregion
-
-
-        private void CobYear_SelectedIndexChanged(object sender, EventArgs e)
+        //对外更新所有数据
+        public void IniAllData()
         {
             IniTrendChart();
             IniDeliveryReliabilityChart();
             IniCycleTimeChart();
         }
-
+        private void CobYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            IniAllData();
+        }
         private void CobMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
             IniTrendChart();
@@ -234,6 +242,6 @@ namespace Compass
             txtCycleTimeNote.Text = cycleTimeNote;
         }
 
-
+       
     }
 }

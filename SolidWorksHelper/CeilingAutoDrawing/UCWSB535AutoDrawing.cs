@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Windows.Forms;
-using Common;
 using DAL;
 using Models;
 using SolidWorks.Interop.sldworks;
@@ -70,7 +68,7 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCO0004[WPSSB535]-1"));
                 if (item.SidePanel == "LEFT") swComp.SetSuppression2(2); //2解压缩，0压缩.
                 else swComp.SetSuppression2(0); //2解压缩，0压缩.
-                //水洗挡板挂钩,水洗挂管长度
+                //水洗挡板挂钩
                 swModel.Parameter("D1@LocalLPattern3").SystemValue = bfSupportNo;
                 swModel.Parameter("D3@LocalLPattern3").SystemValue = bfSupportDis;
                 //UV灯
@@ -87,45 +85,6 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "CEILING UVRACK SPECIAL 4S-2"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
-                }
-                //一次性解压与压缩HCL配件
-                if (item.LightType == "HCL")
-                {
-                    //压缩NOHCL
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0156-1"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0034-1"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩.
-                    //解压HCL
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0095-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0080-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0081-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0081-2"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201020417-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                }
-                else
-                {
-                    //压缩NOHCL
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0156-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0034-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    //解压HCL
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0095-1"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0080-1"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0081-1"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0081-2"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201020417-1"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩.
                 }
                 #endregion
 
@@ -469,6 +428,48 @@ namespace SolidWorksHelper
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0059[BP-]{}-1"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         break;
+                }
+                #endregion
+
+                #region HCL零件解压与压缩
+                //一次性解压与压缩HCL配件
+                if (item.LightType == "HCL")
+                {
+                    //压缩NOHCL
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0156-1"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩.
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0034-1"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩.
+                    //解压HCL
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0095-1"));
+                    swComp.SetSuppression2(2); //2解压缩，0压缩.
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0080-1"));
+                    swComp.SetSuppression2(2); //2解压缩，0压缩.
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0081-1"));
+                    swComp.SetSuppression2(2); //2解压缩，0压缩.
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0081-2"));
+                    swComp.SetSuppression2(2); //2解压缩，0压缩.
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201020417-1"));
+                    swComp.SetSuppression2(2); //2解压缩，0压缩.
+                }
+                else
+                {
+                    //压缩NOHCL
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0156-1"));
+                    swComp.SetSuppression2(2); //2解压缩，0压缩.
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0034-1"));
+                    swComp.SetSuppression2(2); //2解压缩，0压缩.
+                    //解压HCL
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0095-1"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩.
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0080-1"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩.
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0081-1"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩.
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0081-2"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩.
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201020417-1"));
+                    swComp.SetSuppression2(0); //2解压缩，0压缩.
                 }
                 #endregion
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using DAL;
@@ -16,6 +17,116 @@ namespace SolidWorksHelper
         int warnings = 0;
         int errors = 0;
         Dictionary<string, int> sheetMetalDic = new Dictionary<string, int>();
+
+        /// <summary>
+        /// 遍历装配体导出钣金dxf下料图
+        /// </summary>
+        /// <param name="swApp"></param>
+        public void AssyExportDxf(SldWorks swApp)
+        {
+            Dictionary<string, int> sheetMetalDic = new Dictionary<string, int>();
+
+            ModelDoc2 swModel = (ModelDoc2)swApp.ActiveDoc;//获取当前打开的零件
+            if (swModel == null)
+            {
+                MessageBox.Show("没有打开装配体");
+                return;
+            }
+
+
+
+
+
+            //判断为装配体时继续执行，否则跳出
+            if (swModel.GetType() != (int)swDocumentTypes_e.swDocASSEMBLY) return;
+            AssemblyDoc swAssy = (AssemblyDoc)swModel;
+            
+            //获取所有零部件集合
+            var compList = swAssy.GetComponents(false);
+            //遍历集合中的所有零部件对象，判断并获取需要导图的零件
+            foreach (var item in compList)
+            {
+                Component2 swComp = (Component2)item;
+                //判断需要导出下料图的零件：1.是否显示，2.是否被压缩，3.是否封套，4.是否为零件
+                if (swComp.Visible != (int)swComponentVisibilityState_e.swComponentVisible
+                    || swComp.IsSuppressed() || swComp.IsEnvelope()
+                    || Path.GetExtension(swComp.GetPathName()).ToLower() != ".sldprt")
+                    continue;//继续遍历下一个组件
+
+                //递归判断父装配体的状态
+                if (ParentCompState(swComp)) continue;
+
+                //获取文档中的实体Body对象集合
+                var bodyList = swComp.GetBodies2((int)swBodyType_e.swSolidBody);
+                //遍历集合中的所有Body对象,判断是否为钣金
+                foreach (var swBody in bodyList)
+                {
+                    //如果是钣金则将零件地址添加到字典中,存在则数量+1
+                    if (!swBody.IsSheetMetal()) continue;
+                    if (sheetMetalDic.ContainsKey(swComp.GetPathName())) sheetMetalDic[swComp.GetPathName()] += 1;
+                    else sheetMetalDic.Add(swComp.GetPathName(), 1);
+                }
+
+            }
+            string assyPath = swModel.GetPathName();
+            //关闭装配体零件
+            swApp.CloseDoc(assyPath);
+            string dxfPath = assyPath.Substring(0, assyPath.Length - 7) + "-DXF\\";
+            //判断文件夹是否存在，不存在就创建它
+            if (!Directory.Exists(dxfPath)) Directory.CreateDirectory(dxfPath);
+
+            //遍历钣金零件
+            foreach (var sheetMetal in sheetMetalDic)
+            {
+                int errors = 0;
+                int warnings = 0;
+
+                //打开模型
+                ModelDoc2 swPart = swApp.OpenDoc6(sheetMetal.Key, (int)swDocumentTypes_e.swDocPART,
+                    (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings);
+
+                //导图
+                string swModelName = swPart.GetPathName(); ;//零件地址
+                string swModelTitle = swPart.GetTitle();
+                //带后缀的情况
+                string swDxfName = dxfPath + swModelTitle.Substring(0, swModelTitle.Length - 7) + ".dxf";//Dxf图地址,或者dwg文件
+                //判断不带后缀的情况
+                if (swModelTitle.Substring(swModelTitle.Length - 7).ToLower() != ".sldprt")
+                    swDxfName = dxfPath + swModelTitle + ".dxf";
+
+                //导出零件
+                
+                //关闭零件
+                swApp.CloseDoc(sheetMetal.Key);
+            }
+            //清除字典
+            sheetMetalDic.Clear();
+        }
+
+        /// <summary>
+        /// 递归方法
+        /// </summary>
+        /// <param name="swComp"></param>
+        private bool ParentCompState(Component2 swComp)
+        {
+            Component2 swParentComp = swComp.GetParent();//获取父装配体
+            //直接装配在总装中的零件，GetParent方法会返回null，参见方法的remarks，此时无需判断父装配体
+            //不为null，则需要判断父装配体：1.是否显示，2.是否被压缩，3.是否封套
+            if (swParentComp != null)
+            {
+                Debug.Print(swParentComp.GetPathName());
+                if (swParentComp.Visible != (int)swComponentVisibilityState_e.swComponentVisible
+                    || swParentComp.IsSuppressed() || swParentComp.IsEnvelope())
+                    return true;//继续遍历下一个 
+                return ParentCompState(swParentComp);//递归操作
+            }
+            return false;
+        }
+
+
+
+
+
         /// <summary>
         /// 天花子装配导出DXF图纸
         /// </summary>
@@ -132,7 +243,7 @@ namespace SolidWorksHelper
                         }
                         swFeat = swFeat.GetNextFeature();
                     }
-                    PartToDxf(swApp, swPart, modulePath);
+                    ExportDxfMethod(swApp, swPart, modulePath);
                     //关闭零件
                     swApp.CloseDoc(sheetMetal.Key);
                 }
@@ -225,7 +336,7 @@ namespace SolidWorksHelper
                 }
                 //关闭装配体零件
                 swApp.CloseDoc(assyPath);
-                //遍历钣金零件
+                //遍历钣金零件,获取Cutlist信息
                 foreach (var sheetMetal in sheetMetalDic)
                 {
                     //打开模型
@@ -274,7 +385,7 @@ namespace SolidWorksHelper
                         }
                         swFeat = swFeat.GetNextFeature();
                     }
-                    PartToDxf(swApp, swPart, modulePath);
+                    ExportDxfMethod(swApp, swPart, modulePath);
                     //关闭零件
                     swApp.CloseDoc(sheetMetal.Key);
                 }
@@ -300,13 +411,12 @@ namespace SolidWorksHelper
                 throw new Exception("Cutlist导入数据库失败" + ex.Message);
             }
         }
-        /// <summary>
-        /// 零件导出dxf
-        /// </summary>
-        /// <param name="swApp"></param>
-        /// <param name="swPart"></param>
-        /// <param name="dxfPath"></param>
-        public void PartToDxf(SldWorks swApp, ModelDoc2 swModel, string modulePath)
+
+
+
+
+        #region 零件导出dxf图通用方法
+        public void ExportDxfMethod(SldWorks swApp, ModelDoc2 swModel, string modulePath)
         {
 
             PartDoc swPart = (PartDoc)swModel;
@@ -385,6 +495,7 @@ namespace SolidWorksHelper
             {
                 throw new Exception(swModelName + "导图过程发生异常" + ex.Message);
             }
-        }
+        } 
+        #endregion
     }
 }

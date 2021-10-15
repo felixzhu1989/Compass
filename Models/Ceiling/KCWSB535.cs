@@ -31,5 +31,9 @@ namespace Models
         public string ANSUL { get; set; }
         public string ANSide { get; set; }
         public string MARVEL { get; set; }
+        //HCL
+        public string HCLSide { get; set; }
+        public decimal HCLSideLeft { get; set; }
+        public decimal HCLSideRight { get; set; }
     }
 }

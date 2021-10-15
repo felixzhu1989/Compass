@@ -9,7 +9,7 @@ using Common;
 namespace Compass
 {
     //显示模型树委托
-    public delegate void ShowModelTreeDelegate(string id);
+    //public delegate void ShowModelTreeDelegate(string id);
     
 
     public partial class FrmProject : Form
@@ -21,7 +21,7 @@ namespace Compass
         private string projectId = string.Empty;
         KeyValuePair pair=new KeyValuePair();
         //创建委托变量
-        public ShowModelTreeDelegate ShowModelTreeDeg;
+        //public ShowModelTreeDelegate ShowModelTreeDeg;
         private string sbu = Program.ObjCurrentUser.SBU;//当前事业部
 
         public FrmProject()
@@ -56,17 +56,14 @@ namespace Compass
             this.btnLast.Enabled = false;
             //分页sql语句
             objSqlDataPager = objProjectService.GetSqlDataPager(sbu);
-
             BtnQueryByYear_Click(null, null);
-
-            this.dgvProjects.SelectionChanged += new System.EventHandler(this.DgvProjects_SelectionChanged);
-
             SetPermissions();
+            this.dgvProjects.SelectionChanged += new System.EventHandler(this.DgvProjects_SelectionChanged);
         }
-        public FrmProject(ShowModelTreeDelegate del):this()
-        {
-            this.ShowModelTreeDeg = del;
-        }
+        //public FrmProject(ShowModelTreeDelegate del):this()
+        //{
+        //    this.ShowModelTreeDeg = del;
+        //}
         /// <summary>
         /// 设置权限
         /// </summary>
@@ -205,6 +202,18 @@ namespace Compass
         {
             QureyAll();
         }
+
+        public void RefreshAllCobODPNo()
+        {
+            SingletonObject.GetSingleton().FrmDP.IniCobODPNo();
+            SingletonObject.GetSingleton().FrmPT.IniCobODPNo();
+            SingletonObject.GetSingleton().FrmHAD.IniCobODPNo();
+            SingletonObject.GetSingleton().FrmCAD.IniCobODPNo();
+            SingletonObject.GetSingleton().FrmPI.IniCobODPNo();
+            SingletonObject.GetSingleton().FrmSF.IniCobODPNo();
+        }
+
+
         /// <summary>
         /// 按钮，增加或修改
         /// </summary>
@@ -275,10 +284,10 @@ namespace Compass
                     bool result = objProjectService.AddProjectAndTracking(objProject, sbu);//基于事务添加技术要求和跟踪
                     if (result)
                     {
-                        //提示添加成功
-                        MessageBox.Show("项目信息添加成功", "提示信息");
                         //刷新显示
                         BtnQueryByYear_Click(null, null);
+                        RefreshAllCobODPNo();
+                        SingletonObject.GetSingleton().FrmPT.BtnQueryByYear_Click(null,null);
                         //清空内容
                         cobCustomerId.SelectedIndex = -1;
                         cobHoodType.SelectedIndex = -1;
@@ -290,6 +299,8 @@ namespace Compass
                                 item.Text = "";
                             }
                         }
+                        //提示添加成功
+                        MessageBox.Show("项目信息添加成功", "提示信息");
                     }
                 }
                 catch (Exception ex)
@@ -318,8 +329,10 @@ namespace Compass
                 {
                     if (objProjectService.EditProject(objProject,sbu)==1)
                     {
-                        MessageBox.Show("修改项目信息成功！", "提示信息");
                         BtnQueryByYear_Click(null, null); //同步刷新显示数据
+                        RefreshAllCobODPNo();
+                        SingletonObject.GetSingleton().FrmDP.BtnQueryByYear_Click(null, null);
+                        SingletonObject.GetSingleton().FrmPT.BtnQueryByYear_Click(null, null);
                         btnProject.Text = "添加项目信息";
                         cobCustomerId.SelectedIndex = -1;
                         cobHoodType.SelectedIndex = -1;
@@ -331,6 +344,7 @@ namespace Compass
                                 item.Text = "";
                             }
                         }
+                        MessageBox.Show("修改项目信息成功！", "提示信息");
                     }
                 }
                 catch (Exception ex)
@@ -399,8 +413,10 @@ namespace Compass
             int firstRowIndex = dgvProjects.CurrentRow.Index;
             try
             {
-                //if (objProjectService.DeleteProject(projectId) == 1)
-                if (objProjectService.DeleteProjectAndTracking(projectId,sbu)) BtnQueryAllProjects_Click(null, null);//同步刷新显示数据
+                if (objProjectService.DeleteProjectAndTracking(projectId,sbu)){
+                    BtnQueryAllProjects_Click(null, null);//同步刷新显示数据
+                    RefreshAllCobODPNo();
+                }
                 else MessageBox.Show("删除项目出错，项目是否被其他数据关联，请联系管理员查看后台数据。");
             }
             catch (Exception ex)
@@ -428,18 +444,10 @@ namespace Compass
         private void DgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvProjects, e);
-            //if (e.RowIndex > -1)
-            //{
-            //    int risk = Convert.ToInt32(this.dgvProjects.Rows[e.RowIndex].Cells["RiskLevel"].Value);
-            //    if (risk == 1)
-            //    {
-            //        dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
-            //    }
-            //}
             if (e.RowIndex > -1)
             {
                 string projectStatus = this.dgvProjects.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
-                dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor =pair.ProjectStatusColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
+                dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor =pair.ProjectStatusColorKeyValue.First(q => q.Key == projectStatus).Value;
             }
         }
 
@@ -448,9 +456,7 @@ namespace Compass
             if (dgvProjects.RowCount == 0) return;
             if (dgvProjects.CurrentRow == null) return;
             string odpNo = dgvProjects.CurrentRow.Cells["ODPNo"].Value.ToString();
-            
             SingletonObject.GetSingleton().FrmPI.ShowWithOdpNo(odpNo);
-            SingletonObject.GetSingleton().FrmPI.WindowState = FormWindowState.Maximized;
         }
         /// <summary>
         /// 根据订单号查询订单
@@ -507,7 +513,9 @@ namespace Compass
                 return;
             }
             txtODPNo.Text = this.dgvProjects.CurrentRow.Cells["ODPNo"].Value.ToString();
-            ShowModelTreeDeg(txtODPNo.Text);
+            //ShowModelTreeDeg(txtODPNo.Text);
+            if(txtODPNo.Text.Trim().Length==0)return;
+            SingletonObject.GetSingleton().FrmMT.ShowWithOdpNo(txtODPNo.Text);
         }
 
         /// <summary>
@@ -524,7 +532,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnQueryByYear_Click(object sender, EventArgs e)
+        public void BtnQueryByYear_Click(object sender, EventArgs e)
         {
             if (this.cobQueryYear.SelectedIndex == -1)
             {

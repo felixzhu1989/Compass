@@ -50,15 +50,8 @@ namespace Compass
             this.cobYear.SelectedIndexChanged += new System.EventHandler(this.CobYear_SelectedIndexChanged);
             this.cobMonth.SelectedIndexChanged += new System.EventHandler(this.CobMonth_SelectedIndexChanged);
             ReportMonthly();//初始化月度统计数据
-
-            //绑定ODPNo下拉框
-            cobODPNo.DataSource = objProjectService.GetProjectsByWhereSql("", Program.ObjCurrentUser.SBU);
-            cobODPNo.DisplayMember = "ODPNo";
-            cobODPNo.ValueMember = "ProjectId";
-            //初始化后关联事件委托
-            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+            IniCobODPNo();
             SetPermissions();
-
             //初始化项目列表
             dgvProjects.AutoGenerateColumns = false;
             dt = objMonthlyReportService.GetDisplayProjects(sbu, DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString());
@@ -74,23 +67,37 @@ namespace Compass
             cobODPNo.Text = odpNoList[odpNoList.Count - 1];
             cobODPNo.SelectAll();
         }
+
+        public void IniCobODPNo()
+        {
+            this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+            //绑定ODPNo下拉框
+            cobODPNo.DataSource = objProjectService.GetProjectsByWhereSql("", Program.ObjCurrentUser.SBU);
+            cobODPNo.DisplayMember = "ODPNo";
+            cobODPNo.ValueMember = "ProjectId";
+            //初始化后关联事件委托
+            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+        }
         #region 单例模式，重写关闭方法，显示时选择ODP号
         protected override void OnClosing(CancelEventArgs e)
         {
             this.Hide();
             e.Cancel = true;
         }
+
         public void ShowWithOdpNo(string odpNo)
         {
             if (odpNo.Length != 0) cobODPNo.Text = odpNo;
-            this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
-            InitData();//初始化项目数据
-            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
-            cobODPNo.Focus();
-            tabControl.SelectTab(0);//选中第一张tab选项卡
-            timerScroll.Enabled = false;//关闭循环
+            tabControl.SelectTab(0); //选中第一张tab选项卡
+            timerScroll.Enabled = false; //关闭循环
             btnScroll.Text = "开始循环";
+            ShowAndFocus();
+        }
+        internal void ShowAndFocus()
+        {
             this.Show();
+            this.WindowState = FormWindowState.Maximized;
+            this.Focus();
         }
         #endregion
 
@@ -598,12 +605,14 @@ namespace Compass
                 }
                 else
                 {
-                    tabControl.SelectTab(1);//选中第二张tab选项卡 
+                    tabControl.SelectTab(1);//选中第二张tab选项卡
+                    RefreshProject();
                 }
             }
             else
             {
                 scrollStart = DateTime.Now;
+                odpNoList = objMonthlyReportService.GetScrollODPNoList();//获取循环ODP列表
             }
         }
         private void Timer_Tick(object sender, EventArgs e)

@@ -110,14 +110,15 @@
             this.label2.ForeColor = System.Drawing.Color.Blue;
             this.label2.Location = new System.Drawing.Point(24, 636);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(343, 19);
+            this.label2.Size = new System.Drawing.Size(349, 19);
             this.label2.TabIndex = 11;
-            this.label2.Text = "烟罩分段号M1M2M3...，天花烟罩B1.1，CJ01，SSP01...";
+            this.label2.Text = "烟罩分段号M1,M2,M3...，天花烟罩B1.1，CJ01，SSP01...";
             // 
             // lblODPNo
             // 
             this.lblODPNo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblODPNo.AutoSize = true;
+            this.lblODPNo.ForeColor = System.Drawing.Color.Red;
             this.lblODPNo.Location = new System.Drawing.Point(24, 573);
             this.lblODPNo.Name = "lblODPNo";
             this.lblODPNo.Size = new System.Drawing.Size(57, 19);
@@ -128,6 +129,7 @@
             // 
             this.lblItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblItem.AutoSize = true;
+            this.lblItem.ForeColor = System.Drawing.Color.Red;
             this.lblItem.Location = new System.Drawing.Point(179, 573);
             this.lblItem.Name = "lblItem";
             this.lblItem.Size = new System.Drawing.Size(37, 19);

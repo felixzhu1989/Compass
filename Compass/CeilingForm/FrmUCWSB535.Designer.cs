@@ -134,7 +134,7 @@
             // txtHCLSideRight
             // 
             this.txtHCLSideRight.BackColor = System.Drawing.Color.Azure;
-            this.txtHCLSideRight.Location = new System.Drawing.Point(281, 97);
+            this.txtHCLSideRight.Location = new System.Drawing.Point(280, 97);
             this.txtHCLSideRight.Name = "txtHCLSideRight";
             this.txtHCLSideRight.Size = new System.Drawing.Size(100, 25);
             this.txtHCLSideRight.TabIndex = 5;
@@ -157,7 +157,7 @@
             // lblLightType
             // 
             this.lblLightType.AutoSize = true;
-            this.lblLightType.Location = new System.Drawing.Point(6, 58);
+            this.lblLightType.Location = new System.Drawing.Point(6, 61);
             this.lblLightType.Name = "lblLightType";
             this.lblLightType.Size = new System.Drawing.Size(61, 19);
             this.lblLightType.TabIndex = 4;
@@ -170,7 +170,7 @@
             this.cobLightType.BackColor = System.Drawing.Color.Azure;
             this.cobLightType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobLightType.FormattingEnabled = true;
-            this.cobLightType.Location = new System.Drawing.Point(92, 54);
+            this.cobLightType.Location = new System.Drawing.Point(92, 57);
             this.cobLightType.Name = "cobLightType";
             this.cobLightType.Size = new System.Drawing.Size(100, 27);
             this.cobLightType.TabIndex = 2;

@@ -61,7 +61,12 @@ namespace Compass
             e.Cancel = true;
         }
         #endregion
-
+        internal void ShowAndFocus()
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.Focus();
+        }
 
         private void DgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
@@ -433,9 +438,8 @@ namespace Compass
                 txtMark.Text = "";
                 cobDrawingType.SelectedIndex = -1;
             }
-
-
         }
+
         /// <summary>
         /// 修改图号菜单
         /// </summary>

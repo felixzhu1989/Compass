@@ -22,7 +22,8 @@ namespace Compass
             toolTip.SetToolTip(cobQueryYear, "按照项目完工日期年度查询");
             IniUserId(cobUserId);
             IniModel(cobModel);
-            IniODPNo(cobODPNo);
+            IniModel(cobEditModel);
+            IniCobODPNo();
             dgvDrawingPlan.AutoGenerateColumns = false;
             grbEditDrawingPlan.Visible = false;
 
@@ -47,9 +48,22 @@ namespace Compass
             objSqlDataPager = objDrawingPlanService.GetSqlDataPager(sbu);
 
             BtnQueryByYear_Click(null, null);
-
             SetPermissions();
         }
+        public void IniCobODPNo()
+        {
+            IniODPNo(cobODPNo);
+            IniODPNo(cobEditODPNo);
+            void IniODPNo(ComboBox cobItem)
+            {
+                //绑定ODPNo下拉框
+                cobItem.DataSource = objProjectService.GetProjectsByWhereSql("", sbu);
+                cobItem.DisplayMember = "ODPNo";
+                cobItem.ValueMember = "ProjectId";
+                cobItem.SelectedIndex = -1;//默认不要选中
+            }
+        }
+        
         /// <summary>
         /// 设置权限
         /// </summary>
@@ -170,18 +184,6 @@ namespace Compass
             cobItem.SelectedIndex = -1;//默认不要选中
         }
         /// <summary>
-        /// 初始化ODPNo下拉框
-        /// </summary>
-        /// <param name="cobItem"></param>
-        private void IniODPNo(ComboBox cobItem)
-        {
-            //绑定ODPNo下拉框
-            cobItem.DataSource = objProjectService.GetProjectsByWhereSql("",sbu);
-            cobItem.DisplayMember = "ODPNo";
-            cobItem.ValueMember = "ProjectId";
-            cobItem.SelectedIndex = -1;//默认不要选中
-        }
-        /// <summary>
         /// dgv添加行号
         /// </summary>
         /// <param name="sender"></param>
@@ -286,15 +288,17 @@ namespace Compass
                 //添加制图计划同时更新项目跟踪记录为制图中
                 if (objDrawingPlanService.AddDraingPlanAndUpdateTracking(objDrawingPlan, sbu))
                 {
-                    //提示添加成功
-                    MessageBox.Show("制图计划添加成功", "提示信息");
                     //刷新显示
                     BtnQueryByYear_Click(null, null);
+                    SingletonObject.GetSingleton().FrmPT.BtnQueryByYear_Click(null, null);
+                    
                     //清空内容
                     txtSubTotalWorkload.Text = "";
                     txtModuleNo.Text = "";
                     txtItem.Text = "";
                     txtItem.Focus();
+                    //提示添加成功
+                    MessageBox.Show("制图计划添加成功", "提示信息");
                 }
             }
             catch (Exception ex)
@@ -338,8 +342,6 @@ namespace Compass
             //初始化修改信息
             grbEditDrawingPlan.Visible = true;//显示修改框
             grbEditDrawingPlan.Location = new Point(10, 9);
-            IniModel(cobEditModel);
-            IniODPNo(cobEditODPNo);
             btnEditDrawingPlan.Tag = objDrawingPlan.DrawingPlanId;
             txtEditItem.Text = objDrawingPlan.Item;
 
@@ -451,9 +453,10 @@ namespace Compass
             {
                 if (objDrawingPlanService.EditDrawingPlan(objDrawingPlan,sbu) == 1)
                 {
-                    MessageBox.Show("修改计划成功！", "提示信息");
                     grbEditDrawingPlan.Visible = false;
                     BtnQueryByYear_Click(null, null);//同步刷新显示数据
+                    SingletonObject.GetSingleton().FrmPT.BtnQueryByYear_Click(null, null);
+                    MessageBox.Show("修改计划成功！", "提示信息");
                 }
             }
             catch (Exception ex)
@@ -633,7 +636,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnQueryByYear_Click(object sender, EventArgs e)
+        public void BtnQueryByYear_Click(object sender, EventArgs e)
         {
             if (this.cobQueryYear.SelectedIndex == -1)
             {

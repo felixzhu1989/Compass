@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Compass
@@ -10,7 +11,19 @@ namespace Compass
             InitializeComponent();
             txteDrawingsPath.Text = Properties.Settings.Default.eDrawings;
         }
-
+        #region 单例模式，重写关闭方法
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true;
+        }
+        internal void ShowAndFocus()
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.Focus();
+        }
+        #endregion
         private void BtnSearch_Click(object sender, EventArgs e)
         {
             OpenFileDialog objFileDialog = new OpenFileDialog
@@ -32,5 +45,7 @@ namespace Compass
             MessageBox.Show("eDrawing路径更新成功！");
             this.Close();
         }
+
+       
     }
 }

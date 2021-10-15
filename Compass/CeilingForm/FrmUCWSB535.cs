@@ -91,7 +91,6 @@ namespace Compass
             cobHCLSide.Items.Add("RIGHT");
             cobHCLSide.Items.Add("BOTH");
             cobHCLSide.Items.Add("NO");
-            
         }
 
         private void txtLength_TextChanged(object sender, EventArgs e)

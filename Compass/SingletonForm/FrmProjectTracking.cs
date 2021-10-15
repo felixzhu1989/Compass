@@ -22,10 +22,9 @@ namespace Compass
             InitializeComponent();
             toolTip.SetToolTip(cobQueryYear, "按照项目完工日期年度查询");
             IniProjectStatus(cobProjectStatus);
-            IniODPNo(cobODPNo);
+            IniCobODPNo();
             dgvProjectTracking.AutoGenerateColumns = false;
             grbEditProjectTracking.Visible = false;
-
             //查询年度初始化
             int currentYear = DateTime.Now.Year;
             cobQueryYear.Items.Add(currentYear + 1);//先添加下一年
@@ -42,16 +41,36 @@ namespace Compass
             this.btnPre.Enabled = false;
             this.btnNext.Enabled = false;
             this.btnLast.Enabled = false;
-
             //分页查询
             objSqlDataPager = objProjectTrackingService.GetSqlDataPager(sbu);
-
             BtnQueryByYear_Click(null, null);
-
-            //初始化下拉框后关联事件委托
-            this.cobProjectStatus.SelectedIndexChanged += new System.EventHandler(this.CobProjectStatus_SelectedIndexChanged);
-
             SetPermissions();
+        }
+        public void IniCobODPNo()
+        {
+            IniODPNo(cobODPNo);
+            IniODPNo(cobEditODPNo);
+            void IniODPNo(ComboBox cobItem)
+            {
+                //绑定ODPNo下拉框
+                cobItem.DataSource = objProjectService.GetProjectsByWhereSql("", sbu);
+                cobItem.DisplayMember = "ODPNo";
+                cobItem.ValueMember = "ProjectId";
+                cobItem.SelectedIndex = -1;//默认不要选中
+            }
+        }
+        /// <summary>
+        /// 初始化项目状态下拉框
+        /// </summary>
+        /// <param name="cobItem"></param>
+        private void IniProjectStatus(ComboBox cobItem)
+        {
+            this.cobProjectStatus.SelectedIndexChanged -= new System.EventHandler(this.CobProjectStatus_SelectedIndexChanged);
+            cobItem.DataSource = objProjectStatusService.GetAllProjectStatus();
+            cobItem.DisplayMember = "ProjectStatusName";
+            cobItem.ValueMember = "ProjectStatusId";
+            cobItem.SelectedIndex = -1;//默认不要选中
+            this.cobProjectStatus.SelectedIndexChanged += new System.EventHandler(this.CobProjectStatus_SelectedIndexChanged);
         }
         /// <summary>
         /// 设置权限
@@ -127,29 +146,8 @@ namespace Compass
         //    Query();
         //}
 
-        /// <summary>
-        /// 初始化项目状态下拉框
-        /// </summary>
-        /// <param name="cobItem"></param>
-        private void IniProjectStatus(ComboBox cobItem)
-        {
-            cobItem.DataSource = objProjectStatusService.GetAllProjectStatus();
-            cobItem.DisplayMember = "ProjectStatusName";
-            cobItem.ValueMember = "ProjectStatusId";
-            cobItem.SelectedIndex = -1;//默认不要选中
-        }
-        /// <summary>
-        /// 初始化ODPNo下拉框
-        /// </summary>
-        /// <param name="cobItem"></param>
-        private void IniODPNo(ComboBox cobItem)
-        {
-            //绑定ODPNo下拉框
-            cobItem.DataSource = objProjectService.GetProjectsByWhereSql("", Program.ObjCurrentUser.SBU);
-            cobItem.DisplayMember = "ODPNo";
-            cobItem.ValueMember = "ProjectId";
-            cobItem.SelectedIndex = -1;//默认不要选中
-        }
+
+
         /// <summary>
         /// dgv添加行号
         /// </summary>
@@ -164,7 +162,7 @@ namespace Compass
                 dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectStatusColorKeyValue.First(q => q.Key == projectStatus).Value;
             }
         }
-        
+
         /// <summary>
         /// 根据项目状态查询跟踪记录
         /// </summary>
@@ -210,7 +208,7 @@ namespace Compass
             if (dgvProjectTracking.CurrentRow == null) return;
             cobODPNo.Text = this.dgvProjectTracking.CurrentRow.Cells["ODPNo"].Value.ToString();
         }
-        
+
         /// <summary>
         /// 修改跟踪记录菜单
         /// </summary>
@@ -234,9 +232,9 @@ namespace Compass
             grbEditProjectTracking.Visible = true;//显示修改框
             grbEditProjectTracking.Location = new Point(10, 9);
             btnEditProjectTracking.Tag = objProjectTracking.ProjectTrackingId.ToString();
-            IniODPNo(cobEditODPNo);
+
             IniProjectStatus(cobEditProjectStatus);
-           
+
             cobEditODPNo.Text = objProjectTracking.ODPNo;
             cobEditProjectStatus.Text = objProjectTracking.ProjectStatusName;
 
@@ -288,7 +286,7 @@ namespace Compass
                 cobEditODPNo.Focus();
                 return;
             }
-            
+
             //验证日期顺序的正确性
             if (dtpEditDrReleaseActual.Value.ToString("MM/dd/yyyy") != "01/01/2020" && dtpEditProdFinishActual.Value.ToString("MM/dd/yyyy") != "01/01/2020" && DateTime.Compare(dtpEditDrReleaseActual.Value, dtpEditProdFinishActual.Value) > 0)
             {
@@ -313,16 +311,17 @@ namespace Compass
                 DeliverActual = Convert.ToDateTime(dtpEditDeliverActual.Text) == Convert.ToDateTime("1/1/2020") ? DateTime.MinValue : Convert.ToDateTime(dtpEditDeliverActual.Text),
                 ODPReceiveDate = Convert.ToDateTime(dtpEditODPReceiveDate.Text) == Convert.ToDateTime("1/1/2020") ? DateTime.MinValue : Convert.ToDateTime(dtpEditODPReceiveDate.Text),
                 KickOffDate = Convert.ToDateTime(dtpEditKickOffDate.Text) == Convert.ToDateTime("1/1/2020") ? DateTime.MinValue : Convert.ToDateTime(dtpEditKickOffDate.Text)
-
             };
             //调用后台方法修改对象
             try
             {
                 if (objProjectTrackingService.EditProjectTracing(objProjectTracking, sbu) == 1)
                 {
-                    MessageBox.Show("修改计划成功！", "提示信息");
                     grbEditProjectTracking.Visible = false;
                     BtnQueryByYear_Click(null, null);
+                    SingletonObject.GetSingleton().FrmP.BtnQueryByYear_Click(null, null);
+                    SingletonObject.GetSingleton().FrmDP.BtnQueryByYear_Click(null, null);
+                    MessageBox.Show("修改计划成功！", "提示信息");
                 }
             }
             catch (Exception ex)
@@ -360,7 +359,7 @@ namespace Compass
         {
             if (Convert.ToDateTime(dtpEditProdFinishActual.Text) == Convert.ToDateTime("1/1/2020"))
             {
-                cobEditProjectStatus.SelectedValue =4;
+                cobEditProjectStatus.SelectedValue = 4;
             }
             else
             {
@@ -383,13 +382,13 @@ namespace Compass
                 cobEditProjectStatus.SelectedValue = 6;
             }
         }
-        
+
         /// <summary>
         /// 根据年份查询
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnQueryByYear_Click(object sender, EventArgs e)
+        public void BtnQueryByYear_Click(object sender, EventArgs e)
         {
             if (this.cobQueryYear.SelectedIndex == -1)
             {
@@ -505,7 +504,6 @@ namespace Compass
             if (dgvProjectTracking.CurrentRow == null) return;
             string odpNo = dgvProjectTracking.CurrentRow.Cells["ODPNo"].Value.ToString();
             SingletonObject.GetSingleton().FrmPI.ShowWithOdpNo(odpNo);
-            SingletonObject.GetSingleton().FrmPI.WindowState = FormWindowState.Maximized;
         }
     }
 }

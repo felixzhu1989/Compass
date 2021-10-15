@@ -73,7 +73,7 @@ namespace Compass
         }
 
         #region 初始化模型树
-        private void RefreshTree()
+        public void RefreshTree()
         {
             if (objProject == null) return;
             //创建第一个节点
@@ -182,12 +182,7 @@ namespace Compass
                 string drawingPlanId = tvModule.SelectedNode.Tag.ToString();
                 drawingPlanId = drawingPlanId.Substring(4);//除去item
                 Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId, sbu);
-                FrmCategoryTree objFrmCategoryTree = new FrmCategoryTree(objDrawing)
-                {
-                    //关联委托方法和委托变量
-                    RefreshTreeDeg = RefreshTree
-                };
-                objFrmCategoryTree.Show();
+                SingletonObject.GetSingleton().FrmCT.AddModule(objDrawing);
             }
         }
         /// <summary>
@@ -207,11 +202,7 @@ namespace Compass
                 ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId, sbu);
                 FrmCategoryTree objFrmCategoryTree = new FrmCategoryTree(objDrawing, objModuleTree);
                 DialogResult result = objFrmCategoryTree.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    //更新模型树
-                    RefreshTree();
-                }
+                if (result == DialogResult.OK) RefreshTree();
             }
         }
         /// <summary>
@@ -322,11 +313,9 @@ namespace Compass
             {
                 case "Hood":
                     SingletonObject.GetSingleton().FrmHAD.ShowWithOdpNo(objProject.ODPNo);
-                    SingletonObject.GetSingleton().FrmHAD.WindowState = FormWindowState.Normal;
                     break;
                 case "Ceiling":
                     SingletonObject.GetSingleton().FrmCAD.ShowWithOdpNo(objProject.ODPNo);
-                    SingletonObject.GetSingleton().FrmCAD.WindowState = FormWindowState.Normal;
                     break;
                 case "Marine":
                     break;
@@ -355,10 +344,7 @@ namespace Compass
             {
                 node = tvModule.SelectedNode.Parent.Parent;
             }
-            //ShowProjectInfoDeg(node.Text);//使用委托显示项目信息
             SingletonObject.GetSingleton().FrmPI.ShowWithOdpNo(node.Text);
-            SingletonObject.GetSingleton().FrmPI.WindowState = FormWindowState.Maximized;
-
         }
         /// <summary>
         /// 打开天花总装

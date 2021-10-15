@@ -34,6 +34,7 @@ namespace Compass
         public FrmProjectMeasure FrmPM { get; set; }
         public FrmDrawingPlanQuery FrmDPQ { get; set; }
         public FrmSolidWorksTools FrmSWT { get; set; }
+        public FrmCategoryTree FrmCT { get; set; }
 
         //嵌入
         public FrmProject FrmP { get; set; }
@@ -60,7 +61,7 @@ namespace Compass
             if (frmObj is FrmProjectMeasure) this.FrmPM = frmObj as FrmProjectMeasure;
             if (frmObj is FrmDrawingPlanQuery) this.FrmDPQ = frmObj as FrmDrawingPlanQuery;
             if (frmObj is FrmSolidWorksTools) this.FrmSWT = frmObj as FrmSolidWorksTools;
-
+            if (frmObj is FrmCategoryTree) this.FrmCT = frmObj as FrmCategoryTree;
         }
 
         public void AddForm(Form frmObj)
@@ -77,7 +78,6 @@ namespace Compass
             if (frmObj is FrmDesignWorkload) this.FrmDW = frmObj as FrmDesignWorkload;
             if (frmObj is FrmStatusTypes) this.FrmST = frmObj as FrmStatusTypes;
             if (frmObj is FrmCeilingAccessories) this.FrmCA = frmObj as FrmCeilingAccessories;
-
         }
 
 

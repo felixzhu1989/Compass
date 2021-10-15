@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,13 +9,9 @@ using Models;
 
 namespace Compass
 {
-    public delegate void RefreshTreeDelegate();
     public partial class FrmCategoryTree : MetroFramework.Forms.MetroForm
     {
-        //创建委托变量
-        public RefreshTreeDelegate RefreshTreeDeg = null;
         private string sbu = Program.ObjCurrentUser.SBU;
-
         ModuleTreeService objModuleTreeService = new ModuleTreeService();
         private Drawing objDrawing = null;
         public FrmCategoryTree()
@@ -23,15 +20,26 @@ namespace Compass
             //加载产品目录树
             LoadTvCategory();
         }
-
-        public FrmCategoryTree(Drawing drawing) : this()
+        #region 单例模式，重写关闭方法
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            this.Hide();
+            e.Cancel = true;
+        }
+        public void AddModule(Drawing drawing)
         {
             objDrawing = drawing;
             lblODPNo.Text = objDrawing.ODPNo;
             lblItem.Text = objDrawing.Item;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.Focus();
         }
-        public FrmCategoryTree(Drawing drawing, ModuleTree tree) : this(drawing)
+        #endregion
+
+        public FrmCategoryTree(Drawing drawing, ModuleTree tree) : this()
         {
+            AddModule(drawing);
             tvCategory.Enabled = false;
             txtModule.Text = tree.Module;
             btnAddModule.Text = "修改分段名称";
@@ -156,22 +164,13 @@ namespace Compass
                 //提交添加
                 try
                 {
-                    //int moduleTreeId = objModuleTreeService.AddModuleTree(objModuleTree);
-                    //if (moduleTreeId > 1)
-                    //{
-                    //    MessageBox.Show("烟罩分段添加成功");
-                    //    this.Close();
-                    //    this.DialogResult = DialogResult.OK;
-                    //}
                     bool result = objModuleTreeService.AddModuleAndData(objModuleTree,sbu);
                     if (result)
                     {
+                        SingletonObject.GetSingleton().FrmMT.RefreshTree();
                         MessageBox.Show("烟罩分段添加成功");
                         //this.Close();不关闭窗口
                         //this.DialogResult = DialogResult.OK;
-
-                        //调用委托更新模型树
-                        RefreshTreeDeg();
                     }
                 }
                 catch (Exception ex)

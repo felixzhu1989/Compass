@@ -76,6 +76,11 @@ namespace Compass
             cobFCBlindNo.Items.Add("2");
             cobFCBlindNo.Items.Add("3");
             cobFCBlindNo.SelectedIndex = 0;
+            //HCL左右
+            cobHCLSide.Items.Add("LEFT");
+            cobHCLSide.Items.Add("RIGHT");
+            cobHCLSide.Items.Add("BOTH");
+            cobHCLSide.Items.Add("NO");
         }
 
         private void txtLength_TextChanged(object sender, EventArgs e)
@@ -100,6 +105,7 @@ namespace Compass
             cobJapan.Text = objKCWSB535.Japan;
             cobFCSide.Text = objKCWSB535.FCSide;
             cobFCBlindNo.Text = objKCWSB535.FCBlindNo.ToString();
+            cobHCLSide.Text = objKCWSB535.HCLSide;
 
             txtLength.Text = objKCWSB535.Length.ToString();
             txtExRightDis.Text = objKCWSB535.ExRightDis.ToString();
@@ -109,6 +115,8 @@ namespace Compass
             txtGutterWidth.Text = objKCWSB535.GutterWidth.ToString();
             txtFCSideLeft.Text = objKCWSB535.FCSideLeft.ToString();
             txtFCSideRight.Text = objKCWSB535.FCSideRight.ToString();
+            txtHCLSideLeft.Text = objKCWSB535.HCLSideLeft.ToString();
+            txtHCLSideRight.Text = objKCWSB535.HCLSideRight.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -253,6 +261,7 @@ namespace Compass
                 SidePanel = cobSidePanel.Text,
                 LightType = cobLightType.Text,
                 DPSide = cobDPSide.Text,
+                HCLSide = cobHCLSide.Text,
 
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),
                 ExRightDis = Convert.ToDecimal(txtExRightDis.Text.Trim()),
@@ -261,7 +270,9 @@ namespace Compass
                 ExHeight = Convert.ToDecimal(txtExHeight.Text.Trim()),
                 GutterWidth = Convert.ToDecimal(txtGutterWidth.Text.Trim()),
                 FCSideLeft = Convert.ToDecimal(txtFCSideLeft.Text.Trim()),
-                FCSideRight = Convert.ToDecimal(txtFCSideRight.Text.Trim())
+                FCSideRight = Convert.ToDecimal(txtFCSideRight.Text.Trim()),
+                HCLSideLeft = Convert.ToDecimal(txtHCLSideLeft.Text.Trim()),
+                HCLSideRight = Convert.ToDecimal(txtHCLSideRight.Text.Trim()),
             };
             //提交修改
             try
@@ -334,6 +345,50 @@ namespace Compass
             {
                 lblANSide.Visible = false;
                 cobANSide.Visible = false;
+            }
+        }
+        private void cobLightType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cobLightType.SelectedIndex == 2)
+            {
+                lblHCLSide.Visible = true;
+                cobHCLSide.Visible = true;
+            }
+            else
+            {
+                lblHCLSide.Visible = false;
+                cobHCLSide.Visible = false;
+            }
+        }
+
+        private void cobHCLSide_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cobHCLSide.Text.Trim())
+            {
+                case "LEFT":
+                    lblHCLSideLeft.Visible = true;
+                    lblHCLSideRight.Visible = false;
+                    txtHCLSideLeft.Visible = true;
+                    txtHCLSideRight.Visible = false;
+                    break;
+                case "RIGHT":
+                    lblHCLSideLeft.Visible = false;
+                    lblHCLSideRight.Visible = true;
+                    txtHCLSideLeft.Visible = false;
+                    txtHCLSideRight.Visible = true;
+                    break;
+                case "BOTH":
+                    lblHCLSideLeft.Visible = true;
+                    lblHCLSideRight.Visible = true;
+                    txtHCLSideLeft.Visible = true;
+                    txtHCLSideRight.Visible = true;
+                    break;
+                default:
+                    lblHCLSideLeft.Visible = false;
+                    lblHCLSideRight.Visible = false;
+                    txtHCLSideLeft.Visible = false;
+                    txtHCLSideRight.Visible = false;
+                    break;
             }
         }
     }

@@ -31,6 +31,12 @@ namespace Compass
             InitializeComponent();
             dgvWaitingList.AutoGenerateColumns = false;
             dgvExecList.AutoGenerateColumns = false;
+            IniCobODPNo();
+        }
+
+        public void IniCobODPNo()
+        {
+            this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
             //项目编号下拉框
             cobODPNo.DataSource = objProjectService.GetProjectsByHoodType("Hood", sbu);
             cobODPNo.DisplayMember = "ODPNo";
@@ -47,8 +53,14 @@ namespace Compass
         public void ShowWithOdpNo(string odpNo)
         {
             if (odpNo.Length != 0) cobODPNo.Text = odpNo;
+            ShowAndFocus();
+        }
+        internal void ShowAndFocus()
+        {
             this.Show();
-        } 
+            this.WindowState = FormWindowState.Normal;
+            this.Focus();
+        }
         #endregion
 
         //public static FrmHoodAutoDrawing GetSingle()

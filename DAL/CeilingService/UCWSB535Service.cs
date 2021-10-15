@@ -71,9 +71,7 @@ namespace DAL
 
         public DataSet GetModelByDataSet(string projectId)
         {
-            string sql = "select UCWSB535Id,UCWSB535.ModuleTreeId,Item,Module,Length,ExRightDis,ExLength,ExWidth,ExHeight," +
-                         "FCSide,FCSideLeft,FCSideRight,FCBlindNo,SidePanel,DPSide,LightType,UVType,SensorNo,SensorDis1,SensorDis2," +
-                         "SSPType,Gutter,GutterWidth,ANSUL,ANSide,MARVEL,Japan,HCLSide,HCLSideLeft,HCLSideRight from UCWSB535";
+            string sql = "select UCWSB535Id,UCWSB535.ModuleTreeId,Item,Module,Length,ExRightDis,ExLength,ExWidth,ExHeight,FCSide,FCSideLeft,FCSideRight,FCBlindNo,SidePanel,DPSide,LightType,UVType,SensorNo,SensorDis1,SensorDis2,SSPType,Gutter,GutterWidth,ANSUL,ANSide,MARVEL,Japan,HCLSide,HCLSideLeft,HCLSideRight from UCWSB535";
             sql += " inner join ModuleTree on UCWSB535.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
             sql += $" where ProjectId={projectId}";
@@ -94,9 +92,7 @@ namespace DAL
         public IModel GetModelByWhereSql(string whereSql)
         {
             string sql =
-                "select UCWSB535Id,ModuleTreeId,Length,ExRightDis,ExLength,ExWidth,ExHeight," +
-                "FCSide,FCSideLeft,FCSideRight,FCBlindNo,SidePanel,DPSide,LightType,UVType,SensorNo,SensorDis1,SensorDis2," +
-                "SSPType,Gutter,GutterWidth,ANSUL,ANSide,MARVEL,Japan,HCLSide,HCLSideLeft,HCLSideRight from UCWSB535";
+                "select UCWSB535Id,ModuleTreeId,Length,ExRightDis,ExLength,ExWidth,ExHeight,FCSide,FCSideLeft,FCSideRight,FCBlindNo,SidePanel,DPSide,LightType,UVType,SensorNo,SensorDis1,SensorDis2,SSPType,Gutter,GutterWidth,ANSUL,ANSide,MARVEL,Japan,HCLSide,HCLSideLeft,HCLSideRight from UCWSB535";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             UCWSB535 objModel = null;

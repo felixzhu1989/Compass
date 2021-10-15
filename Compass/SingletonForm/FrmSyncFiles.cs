@@ -19,13 +19,25 @@ namespace Compass
         public FrmSyncFiles()
         {
             InitializeComponent();
+            IniCobODPNo();
+        }
+        internal void ShowAndFocus()
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.Focus();
+        }
+        public void IniCobODPNo()
+        {
+            this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
             //项目编号下拉框
-            cobODPNo.DataSource = objProjectService.GetProjectsByWhereSql("",sbu);
+            cobODPNo.DataSource = objProjectService.GetProjectsByWhereSql("", sbu);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;
             this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
         }
+
         #region 单例模式，重写关闭方法，显示时选择ODP号
         protected override void OnClosing(CancelEventArgs e)
         {
@@ -34,8 +46,11 @@ namespace Compass
         }
         public void ShowWithOdpNo(string odpNo)
         {
+            IniCobODPNo();
             if (odpNo.Length != 0) cobODPNo.Text = odpNo; 
             this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.Focus();
         }
         #endregion
 

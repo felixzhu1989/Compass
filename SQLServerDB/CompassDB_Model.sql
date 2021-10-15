@@ -1901,7 +1901,10 @@ create table KCWSB265
     ANSUL varchar(3),
     ANSide varchar(5),   
     MARVEL varchar(3),
-    Japan varchar(3)	
+    Japan varchar(3),
+	HCLSide varchar(6),
+	HCLSideLeft decimal(6,2),
+	HCLSideRight decimal(6,2),		
 )
 --KCWSB535
 if exists (select * from sysobjects where name='KCWSB535')
