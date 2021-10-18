@@ -441,8 +441,6 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0034-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                     //解压HCL
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0095-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0080-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0081-1"));
@@ -455,8 +453,6 @@ namespace SolidWorksHelper
                 else
                 {
                     //压缩NOHCL
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0156-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0034-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     //解压HCL
@@ -479,7 +475,13 @@ namespace SolidWorksHelper
                     //重命名排风腔体，写入排风腔信息，供发货清单导出
                     compReName = "FNCE0095[UCWSB535-" + tree.Module + "]{" + (int)item.Length + "}";
                     status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0095-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
-                    if (status) swModelDocExt.RenameDocument(compReName);
+                    if (status)
+                    {
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0095-1"));
+                        swComp.SetSuppression2(2); //2解压缩，0压缩.
+                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0095-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                        swModelDocExt.RenameDocument(compReName);
+                    }
                     swModel.ClearSelection2(true);
                     status = swModelDocExt.SelectByID2(compReName + "-1" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                     swModel.ClearSelection2(true);
@@ -632,7 +634,13 @@ namespace SolidWorksHelper
                     //重命名排风腔体，写入排风腔信息，供发货清单导出
                     compReName = "FNCE0156[UCWSB535-" + tree.Module + "]{" + (int)item.Length + "}";
                     status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0156-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
-                    if (status) swModelDocExt.RenameDocument(compReName);
+                    if (status)
+                    {
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0156-1"));
+                        swComp.SetSuppression2(2); //2解压缩，0压缩.
+                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0156-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                        swModelDocExt.RenameDocument(compReName);
+                    }
                     swModel.ClearSelection2(true);
                     status = swModelDocExt.SelectByID2(compReName + "-1" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                     swModel.ClearSelection2(true);
@@ -825,6 +833,7 @@ namespace SolidWorksHelper
                     switch (item.HCLSide)
                     {
                         case "LEFT":
+                            swModel.Parameter("D1@Distance89").SystemValue = item.HCLSideLeft/1000m;
                             //重命名装配体内部
                             compReName = "FNCE0082[HCLSP-" + tree.Module + "]{" + ((int)item.HCLSideLeft - 3) + "}";
                             status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0082-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -849,6 +858,7 @@ namespace SolidWorksHelper
                             swComp.SetSuppression2(0); //2解压缩，0压缩.
                             break;
                         case "RIGHT":
+                            swModel.Parameter("D1@Distance89").SystemValue =0.5m / 1000m;
                             swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0082-1"));
                             swComp.SetSuppression2(0); //2解压缩，0压缩.
                             //重命名装配体内部
@@ -873,6 +883,7 @@ namespace SolidWorksHelper
                             }
                             break;
                         case "BOTH":
+                            swModel.Parameter("D1@Distance89").SystemValue = item.HCLSideLeft / 1000m;
                             //重命名装配体内部
                             compReName = "FNCE0082[HCLSP-" + tree.Module + "]{" + ((int)item.HCLSideLeft - 3) + "}";
                             status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0082-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);

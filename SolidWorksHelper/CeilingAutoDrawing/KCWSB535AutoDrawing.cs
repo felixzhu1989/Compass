@@ -92,16 +92,16 @@ namespace SolidWorksHelper
                 switch (item.SidePanel)
                 {
                     case "LEFT":
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-4"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-2"));
                         if (item.DPSide == "LEFT") swComp.SetSuppression2(2); //2解压缩，0压缩.
                         else swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-5"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-3"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0016-4"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0016-5"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0044-6"));//LEFT
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0044-4"));//LEFT
                         swFeat = swComp.FeatureByName("L1");
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("L2");
@@ -116,7 +116,7 @@ namespace SolidWorksHelper
                         swFeat = swComp.FeatureByName("HCL");
                         if (item.LightType == "HCL") swFeat.SetSuppression2(1, 2, null);
                         else swFeat.SetSuppression2(0, 2, null);
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0045-5"));//RIGHT
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0045-3"));//RIGHT
                         swFeat = swComp.FeatureByName("R1");
                         swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("R2");
@@ -133,16 +133,16 @@ namespace SolidWorksHelper
                         break;
 
                     case "RIGHT":
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-4"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-2"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-5"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-3"));
                         if (item.DPSide == "RIGHT") swComp.SetSuppression2(2); //2解压缩，0压缩.
                         else swComp.SetSuppression2(0); //2解压缩，0压缩.
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0016-4"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0016-5"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0044-6"));//LEFT
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0044-4"));//LEFT
                         swFeat = swComp.FeatureByName("L1");
                         swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("L2");
@@ -156,7 +156,7 @@ namespace SolidWorksHelper
                         swFeat = swComp.FeatureByName("HCL");
                         if (item.LightType == "HCL") swFeat.SetSuppression2(1, 2, null);
                         else swFeat.SetSuppression2(0, 2, null);
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0045-5"));//RIGHT
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0045-3"));//RIGHT
                         swFeat = swComp.FeatureByName("R1");
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("R2");
@@ -174,17 +174,17 @@ namespace SolidWorksHelper
                         break;
 
                     case "BOTH":
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-4"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-2"));
                         if (item.DPSide == "LEFT") swComp.SetSuppression2(2); //2解压缩，0压缩.
                         else swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-5"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-3"));
                         if (item.DPSide == "RIGHT") swComp.SetSuppression2(2); //2解压缩，0压缩.
                         else swComp.SetSuppression2(0); //2解压缩，0压缩.
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0016-4"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0016-5"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0044-6"));//LEFT
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0044-4"));//LEFT
                         swFeat = swComp.FeatureByName("L1");
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("L2");
@@ -199,7 +199,7 @@ namespace SolidWorksHelper
                         swFeat = swComp.FeatureByName("HCL");
                         if (item.LightType == "HCL") swFeat.SetSuppression2(1, 2, null);
                         else swFeat.SetSuppression2(0, 2, null);
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0045-5"));//RIGHT
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0045-3"));//RIGHT
                         swFeat = swComp.FeatureByName("R1");
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("R2");
@@ -217,15 +217,15 @@ namespace SolidWorksHelper
                         break;
 
                     default:
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-4"));//3mm板
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-2"));//3mm板
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-5"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-3"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0016-4"));//边缘挡板
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0016-5"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0044-6"));//LEFT
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0044-4"));//LEFT
                         swFeat = swComp.FeatureByName("L1");
                         swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("L2");
@@ -239,7 +239,7 @@ namespace SolidWorksHelper
                         swFeat = swComp.FeatureByName("HCL");
                         if (item.LightType == "HCL") swFeat.SetSuppression2(1, 2, null);
                         else swFeat.SetSuppression2(0, 2, null);
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0045-5"));//RIGHT
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0045-3"));//RIGHT
                         swFeat = swComp.FeatureByName("R1");
                         swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("R2");
@@ -426,8 +426,6 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0034-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                     //解压HCL
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0096-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0080-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0081-1"));
@@ -439,12 +437,10 @@ namespace SolidWorksHelper
                 }
                 else
                 {
-                    //压缩NOHCL
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0032-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
+                    //NOHCL
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0034-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    //解压HCL
+                    //HCL
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0096-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0080-1"));
@@ -465,7 +461,13 @@ namespace SolidWorksHelper
                     //重命名排风腔体，写入排风腔信息，供发货清单导出
                     compReName = "FNCE0096[KCWSB535-" + tree.Module + "]{" + (int)item.Length + "}";
                     status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0096-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
-                    if (status) swModelDocExt.RenameDocument(compReName);
+                    if (status)
+                    {
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0096-1"));
+                        swComp.SetSuppression2(2); //2解压缩，0压缩.
+                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0096-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                        swModelDocExt.RenameDocument(compReName);
+                    }
                     swModel.ClearSelection2(true);
                     status = swModelDocExt.SelectByID2(compReName + "-1" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                     swModel.ClearSelection2(true);
@@ -596,7 +598,13 @@ namespace SolidWorksHelper
                     //重命名排风腔体，写入排风腔信息，供发货清单导出
                     compReName = "FNCE0032[KCWSB535-" + tree.Module + "]{" + (int)item.Length + "}";
                     status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0032-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
-                    if (status) swModelDocExt.RenameDocument(compReName);
+                    if (status)
+                    {
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0032-1"));
+                        swComp.SetSuppression2(2); //2解压缩，0压缩.
+                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0032-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                        swModelDocExt.RenameDocument(compReName);
+                    }
                     swModel.ClearSelection2(true);
                     status = swModelDocExt.SelectByID2(compReName + "-1" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                     swModel.ClearSelection2(true);
@@ -765,6 +773,7 @@ namespace SolidWorksHelper
                     switch (item.HCLSide)
                     {
                         case "LEFT":
+                            swModel.Parameter("D1@Distance80").SystemValue = item.HCLSideLeft/1000m;
                             //重命名装配体内部
                             compReName = "FNCE0082[HCLSP-" + tree.Module + "]{" + ((int)item.HCLSideLeft - 3) + "}";
                             status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0082-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -789,6 +798,7 @@ namespace SolidWorksHelper
                             swComp.SetSuppression2(0); //2解压缩，0压缩.
                             break;
                         case "RIGHT":
+                            swModel.Parameter("D1@Distance80").SystemValue = 0.5m/1000m;
                             swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0082-1"));
                             swComp.SetSuppression2(0); //2解压缩，0压缩.
                             //重命名装配体内部
@@ -813,6 +823,7 @@ namespace SolidWorksHelper
                             }
                             break;
                         case "BOTH":
+                            swModel.Parameter("D1@Distance80").SystemValue = item.HCLSideLeft/1000m;
                             //重命名装配体内部
                             compReName = "FNCE0082[HCLSP-" + tree.Module + "]{" + ((int)item.HCLSideLeft - 3) + "}";
                             status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0082-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -1046,9 +1057,6 @@ namespace SolidWorksHelper
 
                 #region 其余零件
                 //----------FC上导轨----------
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0034-1"));
-                swPart = swComp.GetModelDoc2();//打开零件
-                swPart.Parameter("D1@Skizze1").SystemValue = item.Length / 1000m;
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0003-1"));
                 swPart = swComp.GetModelDoc2();//打开零件
                 swPart.Parameter("D1@Aufsatz-Linear austragen1").SystemValue = item.Length / 1000m;

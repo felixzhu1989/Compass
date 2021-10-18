@@ -64,6 +64,7 @@
     <Compile Include="Ceiling\BCJ330.cs" />
     <Compile Include="Ceiling\CJ330.cs" />
     <Compile Include="Ceiling\LFUMC150SUSDXF.cs" />
+    <Compile Include="CutList.cs" />
     <Compile Include="DrawingNumCodeRule.cs" />
     <Compile Include="DrawingNumMatrix.cs" />
     <Compile Include="FinancialData.cs" />

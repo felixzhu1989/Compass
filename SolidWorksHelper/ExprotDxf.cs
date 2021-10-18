@@ -12,97 +12,67 @@ namespace SolidWorksHelper
 {
     public class ExprotDxf
     {
-        HoodCutListService objHoodCutListService = new HoodCutListService();
-        CeilingCutListService objCeilingCutListService = new CeilingCutListService();
-        int warnings = 0;
-        int errors = 0;
-        Dictionary<string, int> sheetMetalDic = new Dictionary<string, int>();
-
-        /// <summary>
-        /// 遍历装配体导出钣金dxf下料图
-        /// </summary>
-        /// <param name="swApp"></param>
-        public void AssyExportDxf(SldWorks swApp)
+        #region 遍历装配体，获取导图清单GetSheetMetalDic
+        private Dictionary<string, int> GetSheetMetalDic(SldWorks swApp, string assyPath)
         {
+            int warnings = 0;
+            int errors = 0;
+            swApp.CommandInProgress = true;
+            //零件计数用
             Dictionary<string, int> sheetMetalDic = new Dictionary<string, int>();
-
-            ModelDoc2 swModel = (ModelDoc2)swApp.ActiveDoc;//获取当前打开的零件
-            if (swModel == null)
+            try
             {
-                MessageBox.Show("没有打开装配体");
-                return;
-            }
-
-
-
-
-
-            //判断为装配体时继续执行，否则跳出
-            if (swModel.GetType() != (int)swDocumentTypes_e.swDocASSEMBLY) return;
-            AssemblyDoc swAssy = (AssemblyDoc)swModel;
-            
-            //获取所有零部件集合
-            var compList = swAssy.GetComponents(false);
-            //遍历集合中的所有零部件对象，判断并获取需要导图的零件
-            foreach (var item in compList)
-            {
-                Component2 swComp = (Component2)item;
-                //判断需要导出下料图的零件：1.是否显示，2.是否被压缩，3.是否封套，4.是否为零件
-                if (swComp.Visible != (int)swComponentVisibilityState_e.swComponentVisible
-                    || swComp.IsSuppressed() || swComp.IsEnvelope()
-                    || Path.GetExtension(swComp.GetPathName()).ToLower() != ".sldprt")
-                    continue;//继续遍历下一个组件
-
-                //递归判断父装配体的状态
-                if (ParentCompState(swComp)) continue;
-
-                //获取文档中的实体Body对象集合
-                var bodyList = swComp.GetBodies2((int)swBodyType_e.swSolidBody);
-                //遍历集合中的所有Body对象,判断是否为钣金
-                foreach (var swBody in bodyList)
-                {
-                    //如果是钣金则将零件地址添加到字典中,存在则数量+1
-                    if (!swBody.IsSheetMetal()) continue;
-                    if (sheetMetalDic.ContainsKey(swComp.GetPathName())) sheetMetalDic[swComp.GetPathName()] += 1;
-                    else sheetMetalDic.Add(swComp.GetPathName(), 1);
-                }
-
-            }
-            string assyPath = swModel.GetPathName();
-            //关闭装配体零件
-            swApp.CloseDoc(assyPath);
-            string dxfPath = assyPath.Substring(0, assyPath.Length - 7) + "-DXF\\";
-            //判断文件夹是否存在，不存在就创建它
-            if (!Directory.Exists(dxfPath)) Directory.CreateDirectory(dxfPath);
-
-            //遍历钣金零件
-            foreach (var sheetMetal in sheetMetalDic)
-            {
-                int errors = 0;
-                int warnings = 0;
-
                 //打开模型
-                ModelDoc2 swPart = swApp.OpenDoc6(sheetMetal.Key, (int)swDocumentTypes_e.swDocPART,
-                    (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings);
+                if (!(swApp.OpenDoc6(assyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
+                    (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) is ModelDoc2 swModel))
+                {
+                    MessageBox.Show("模型不存在，请认真检查", "模型不存在");
+                    return null;
+                }
+                //判断为装配体时继续执行，否则跳出
+                if (swModel.GetType() != (int)swDocumentTypes_e.swDocASSEMBLY) return null;
+                swModel.ForceRebuild3(true);
+                AssemblyDoc swAssy = (AssemblyDoc)swModel;
 
-                //导图
-                string swModelName = swPart.GetPathName(); ;//零件地址
-                string swModelTitle = swPart.GetTitle();
-                //带后缀的情况
-                string swDxfName = dxfPath + swModelTitle.Substring(0, swModelTitle.Length - 7) + ".dxf";//Dxf图地址,或者dwg文件
-                //判断不带后缀的情况
-                if (swModelTitle.Substring(swModelTitle.Length - 7).ToLower() != ".sldprt")
-                    swDxfName = dxfPath + swModelTitle + ".dxf";
+                //获取所有零部件集合
+                var compList = swAssy.GetComponents(false);
+                //遍历集合中的所有零部件对象，判断并获取需要导图的零件
+                foreach (var item in compList)
+                {
+                    Component2 swComp = (Component2)item;
+                    //判断需要导出下料图的零件：1.是否显示，2.是否被压缩，3.是否封套，4.是否为零件
+                    if (swComp.Visible != (int)swComponentVisibilityState_e.swComponentVisible
+                        || swComp.IsSuppressed() || swComp.IsEnvelope()
+                        || Path.GetExtension(swComp.GetPathName()).ToLower() != ".sldprt")
+                        continue;//继续遍历下一个组件
 
-                //导出零件
-                
-                //关闭零件
-                swApp.CloseDoc(sheetMetal.Key);
+                    //递归判断父装配体的状态
+                    if (ParentCompState(swComp)) continue;
+
+                    //获取文档中的实体Body对象集合
+                    var bodyList = swComp.GetBodies2((int)swBodyType_e.swSolidBody);
+                    //遍历集合中的所有Body对象,判断是否为钣金
+                    foreach (var swBody in bodyList)
+                    {
+                        //如果是钣金则将零件地址添加到字典中,存在则数量+1
+                        if (!swBody.IsSheetMetal()) continue;
+                        if (sheetMetalDic.ContainsKey(swComp.GetPathName())) sheetMetalDic[swComp.GetPathName()] += 1;
+                        else sheetMetalDic.Add(swComp.GetPathName(), 1);
+                    }
+                }
             }
-            //清除字典
-            sheetMetalDic.Clear();
+            catch (Exception ex)
+            {
+                sheetMetalDic.Clear();
+                throw new Exception("获取导图清单时异常，详细：" + ex.Message);
+            }
+            finally
+            {
+                swApp.CloseDoc(assyPath);//关闭，很快
+                swApp.CommandInProgress = false;
+            }
+            return sheetMetalDic;
         }
-
         /// <summary>
         /// 递归方法
         /// </summary>
@@ -122,78 +92,17 @@ namespace SolidWorksHelper
             }
             return false;
         }
+        #endregion
 
-
-
-
-
-        /// <summary>
-        /// 天花子装配导出DXF图纸
-        /// </summary>
-        /// <param name="swApp"></param>
-        /// <param name="tree"></param>
-        /// <param name="dxfPath"></param>
-        /// <param name="userId"></param>
-        public void CeilingAssyToDxf(SldWorks swApp, SubAssy subAssy, string dxfPath, int userId)
+        #region 获取下料清单信息和导出dxf图GetCutListsInfoAndExport
+        private List<CutList> GetCutListsInfoAndExport(SldWorks swApp, Dictionary<string, int> sheetMetalDic, string modulePath)
         {
+            int warnings = 0;
+            int errors = 0;
             swApp.CommandInProgress = true;
-            List<CeilingCutList> celingCutLists = new List<CeilingCutList>();
-            string assyPath = subAssy.SubAssyPath;
-            if (assyPath.Length == 0) return;
+            List<CutList> cutLists = new List<CutList>();
             try
             {
-                //打开模型
-                if (!(swApp.OpenDoc6(assyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
-                    (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) is ModelDoc2 swModel))
-                {
-                    MessageBox.Show("模型不存在，请认真检查", "模型不存在");
-                    return;
-                }
-                string modulePath = dxfPath + @"\" + subAssy.SubAssyName;
-                if (!Directory.Exists(modulePath))
-                {
-                    Directory.CreateDirectory(modulePath);
-                }
-                swModel.ForceRebuild3(true);
-                AssemblyDoc swAssy = swModel as AssemblyDoc;
-                //获取所有零部件集合
-                var compList = swAssy.GetComponents(false);
-                //遍历集合中的所有零部件对象
-                foreach (var swComp in compList)
-                {
-                    //判断零件是否被压缩，不显示，封套，零件名称不是以sldprt或SLDPRT结尾
-                    if (swComp.Visible == 1 && !swComp.IsEnvelope() && !swComp.IsSuppressed() &&
-                        (swComp.GetPathName().EndsWith(".sldprt") || swComp.GetPathName().EndsWith(".SLDPRT")))
-                    {
-                        Component2 swParentComp = swComp.GetParent();
-                        //总装没有父装配体
-                        if (swParentComp == null)
-                        {
-                            ConfigurationManager swConfigMgr = swModel.ConfigurationManager;
-                            Configuration swConfig2 = swConfigMgr.ActiveConfiguration;
-                            swParentComp = swConfig2.GetRootComponent3(true);
-                        }
-                        //判断父装配体是否可视，并且不封套
-                        if (swParentComp.Visible == 1 && !swParentComp.IsEnvelope() && !swComp.IsSuppressed())
-                        {
-                            PartDoc swPart = swComp.GetModelDoc2();
-                            //获取文档中的额Body对象集合
-                            var bodyList = swPart.GetBodies2(0, false);
-                            //遍历集合中的所有Body对象,判断是否为钣金
-                            foreach (var swBody in bodyList)
-                            {
-                                //如果是钣金则将零件地址添加到列表中
-                                if (swBody.IsSheetMetal())
-                                {
-                                    if (sheetMetalDic.ContainsKey(swComp.GetPathName())) sheetMetalDic[swComp.GetPathName()] += 1;
-                                    else sheetMetalDic.Add(swComp.GetPathName(), 1);
-                                }
-                            }
-                        }
-                    }
-                }
-                //关闭装配体零件
-                swApp.CloseDoc(assyPath);
                 //遍历钣金零件
                 foreach (var sheetMetal in sheetMetalDic)
                 {
@@ -201,12 +110,7 @@ namespace SolidWorksHelper
                     ModelDoc2 swPart = swApp.OpenDoc6(sheetMetal.Key, (int)swDocumentTypes_e.swDocPART,
                         (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
                     Feature swFeat = (Feature)swPart.FirstFeature();
-                    CeilingCutList cutRecord = new CeilingCutList()
-                    {
-                        SubAssyId = subAssy.SubAssyId,
-                        Quantity = sheetMetal.Value,
-                        UserId = userId
-                    };
+                    CutList cutRecord = new CutList() { Quantity = sheetMetal.Value };
                     while (swFeat != null)
                     {
                         var suppStatus = swFeat.IsSuppressed2((int)swInConfigurationOpts_e.swThisConfiguration, null);
@@ -223,8 +127,6 @@ namespace SolidWorksHelper
                                 swSubBodyFolder.UpdateCutList();
                                 string val = string.Empty;
                                 string valout = string.Empty;
-                                //bool wasResolved = false;
-                                //bool linkToProp = false;
                                 SubFeat.CustomPropertyManager.Get4("Bounding Box Length", false, out val, out valout);
                                 cutRecord.Length = Convert.ToDecimal(valout);
                                 SubFeat.CustomPropertyManager.Get4("Bounding Box Width", false, out val, out valout);
@@ -233,12 +135,10 @@ namespace SolidWorksHelper
                                 cutRecord.Thickness = Convert.ToDecimal(valout);
                                 SubFeat.CustomPropertyManager.Get4("Material", false, out val, out valout);
                                 cutRecord.Materials = valout;
-                                //swPart.GetActiveConfiguration().CustomPropertyManager.Get6("Description", false, out valout, out val, out wasResolved, out linkToProp);
-                                //cutRecord.PartDescription = valout;
                                 cutRecord.PartDescription = swPart.CustomInfo["Part Name"];//不用Description了
 
                                 cutRecord.PartNo = swPart.GetTitle().Substring(0, swPart.GetTitle().Length - 7);
-                                celingCutLists.Add(cutRecord);//将信息添加到集合中
+                                cutLists.Add(cutRecord);//将信息添加到集合中
                             }
                         }
                         swFeat = swFeat.GetNextFeature();
@@ -250,175 +150,20 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception(assyPath + "导图过程发生异常，详细：" + ex.Message);
+                throw new Exception("导图过程发生异常，详细：" + ex.Message);
             }
             finally
             {
                 sheetMetalDic.Clear();
-                swApp.CloseDoc(assyPath);//关闭，很快
                 swApp.CommandInProgress = false; //及时关闭外部命令调用，否则影响SolidWorks的使用
             }
-            //基于事务ceilingCutLists提交SQLServer
-            if (celingCutLists.Count == 0) return;
-            try
-            {
-                if (objCeilingCutListService.ImportCutList(celingCutLists)) celingCutLists.Clear();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Cutlist导入数据库失败" + ex.Message);
-            }
+            return cutLists;
         }
-        /// <summary>
-        /// 标准烟罩装配体导出dxf图纸
-        /// </summary>
-        /// <param name="swApp"></param>
-        /// <param name="tree"></param>
-        /// <param name="dxfPath"></param>
-        public void HoodAssyToDxf(SldWorks swApp, ModuleTree tree, string dxfPath, int userId)
-        {
-            swApp.CommandInProgress = true;
-            List<HoodCutList> hoodCutLists = new List<HoodCutList>();
-            string assyPath = @"D:\MyProjects\" + tree.ODPNo + @"\" + tree.Item + "-" + tree.Module + "-" + tree.CategoryName
-                              + @"\" + tree.CategoryName.ToLower() + "_" + tree.Item + "-" + tree.Module + "-" +
-                              tree.ODPNo.Substring(tree.ODPNo.Length - 6) + ".sldasm";
-            try
-            {
-                //打开模型
-                if (!(swApp.OpenDoc6(assyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
-                (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) is ModelDoc2 swModel))
-                {
-                    MessageBox.Show("模型不存在，请认真检查", "模型不存在");
-                    return;
-                }
-                string modulePath = dxfPath + @"\" + tree.Item + "-" + tree.Module;
-                if (!Directory.Exists(modulePath))
-                {
-                    Directory.CreateDirectory(modulePath);
-                }
-                swModel.ForceRebuild3(true);
-                AssemblyDoc swAssy = swModel as AssemblyDoc;
-                //获取所有零部件集合
-                var compList = swAssy.GetComponents(false);
-                //遍历集合中的所有零部件对象
-                foreach (var swComp in compList)
-                {
-                    //判断零件是否被压缩，不显示，封套，零件名称不是以sldprt或SLDPRT结尾
-                    if (swComp.Visible == 1 && !swComp.IsEnvelope() && !swComp.IsSuppressed() &&
-                        (swComp.GetPathName().EndsWith(".sldprt") || swComp.GetPathName().EndsWith(".SLDPRT")))
-                    {
-                        Component2 swParentComp = swComp.GetParent();
-                        //总装没有父装配体
-                        if (swParentComp == null)
-                        {
-                            ConfigurationManager swConfigMgr = swModel.ConfigurationManager;
-                            Configuration swConfig2 = swConfigMgr.ActiveConfiguration;
-                            swParentComp = swConfig2.GetRootComponent3(true);
-                        }
-                        //判断父装配体是否可视，并且不封套
-                        if (swParentComp.Visible == 1 && !swParentComp.IsEnvelope() && !swComp.IsSuppressed())
-                        {
-                            PartDoc swPart = swComp.GetModelDoc2();
-                            //获取文档中的额Body对象集合
-                            var bodyList = swPart.GetBodies2(0, false);
-                            //遍历集合中的所有Body对象,判断是否为钣金
-                            foreach (var swBody in bodyList)
-                            {
-                                //如果是钣金则将零件地址添加到列表中
-                                if (swBody.IsSheetMetal())
-                                {
-                                    if (sheetMetalDic.ContainsKey(swComp.GetPathName())) sheetMetalDic[swComp.GetPathName()] += 1;
-                                    else sheetMetalDic.Add(swComp.GetPathName(), 1);
-                                }
-                            }
-                        }
-                    }
-                }
-                //关闭装配体零件
-                swApp.CloseDoc(assyPath);
-                //遍历钣金零件,获取Cutlist信息
-                foreach (var sheetMetal in sheetMetalDic)
-                {
-                    //打开模型
-                    ModelDoc2 swPart = swApp.OpenDoc6(sheetMetal.Key, (int)swDocumentTypes_e.swDocPART,
-                        (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
-                    Feature swFeat = (Feature)swPart.FirstFeature();
-                    HoodCutList cutRecord = new HoodCutList()
-                    {
-                        ModuleTreeId = tree.ModuleTreeId,
-                        Quantity = sheetMetal.Value,
-                        UserId = userId
-                    };
-                    while (swFeat != null)
-                    {
-                        var suppStatus = swFeat.IsSuppressed2((int)swInConfigurationOpts_e.swThisConfiguration, null);
-                        if (suppStatus[0] == false && swFeat.GetTypeName() == "SolidBodyFolder")
-                        {
-                            BodyFolder swBodyFolder = (BodyFolder)swFeat.GetSpecificFeature2();
-                            swBodyFolder.SetAutomaticCutList(true);
-                            swBodyFolder.SetAutomaticUpdate(true);
-                            Feature SubFeat = swFeat.GetFirstSubFeature();
-                            if (SubFeat != null)
-                            {
-                                Feature ownerFeature = SubFeat.GetOwnerFeature();
-                                BodyFolder swSubBodyFolder = ownerFeature.GetSpecificFeature2();
-                                swSubBodyFolder.UpdateCutList();
-                                string val = string.Empty;
-                                string valout = string.Empty;
-                                //bool wasResolved = false;
-                                //bool linkToProp = false;
-                                SubFeat.CustomPropertyManager.Get4("Bounding Box Length", false, out val, out valout);
-                                cutRecord.Length = Convert.ToDecimal(valout);
-                                SubFeat.CustomPropertyManager.Get4("Bounding Box Width", false, out val, out valout);
-                                cutRecord.Width = Convert.ToDecimal(valout);
-                                SubFeat.CustomPropertyManager.Get4("Sheet Metal Thickness", false, out val, out valout);
-                                cutRecord.Thickness = Convert.ToDecimal(valout);
-                                SubFeat.CustomPropertyManager.Get4("Material", false, out val, out valout);
-                                cutRecord.Materials = valout;
-                                //swPart.GetActiveConfiguration().CustomPropertyManager.Get6("Description", false, out valout, out val, out wasResolved, out linkToProp);
-                                //cutRecord.PartDescription = valout;
-                                cutRecord.PartDescription = swPart.CustomInfo["Part Name"];//不用Description了
-
-                                cutRecord.PartNo = swPart.GetTitle().Substring(0, swPart.GetTitle().Length - 7);
-                                hoodCutLists.Add(cutRecord);//将信息添加到集合中
-                            }
-                        }
-                        swFeat = swFeat.GetNextFeature();
-                    }
-                    ExportDxfMethod(swApp, swPart, modulePath);
-                    //关闭零件
-                    swApp.CloseDoc(sheetMetal.Key);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(assyPath + "导图过程发生异常，详细：" + ex.Message);
-            }
-            finally
-            {
-                sheetMetalDic.Clear();
-                swApp.CloseDoc(assyPath);//关闭，很快
-                swApp.CommandInProgress = false; //及时关闭外部命令调用，否则影响SolidWorks的使用
-            }
-            //基于事务hoodCutLists提交SQLServer
-            if (hoodCutLists.Count == 0) return;
-            try
-            {
-                if (objHoodCutListService.ImportCutList(hoodCutLists)) hoodCutLists.Clear();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Cutlist导入数据库失败" + ex.Message);
-            }
-        }
-
-
-
+        #endregion
 
         #region 零件导出dxf图通用方法
         public void ExportDxfMethod(SldWorks swApp, ModelDoc2 swModel, string modulePath)
         {
-
             PartDoc swPart = (PartDoc)swModel;
             if (swPart == null) return;
             string swModelName = swModel.GetPathName();
@@ -495,7 +240,93 @@ namespace SolidWorksHelper
             {
                 throw new Exception(swModelName + "导图过程发生异常" + ex.Message);
             }
-        } 
+        }
+        #endregion
+
+        #region 天花子装配导出DXF图纸
+        public void CeilingAssyToDxf(SldWorks swApp, SubAssy subAssy, string dxfPath, int userId)
+        {
+            //获取导图清单
+            string assyPath = subAssy.SubAssyPath;
+            if (assyPath.Length == 0) return;
+            Dictionary<string, int> sheetMetalDic = GetSheetMetalDic(swApp, assyPath);
+            //获取下料清单信息和导出dxf图
+            string modulePath = dxfPath + @"\" + subAssy.SubAssyName;
+            if (!Directory.Exists(modulePath)) Directory.CreateDirectory(modulePath);
+            List<CutList> cutLists = GetCutListsInfoAndExport(swApp, sheetMetalDic, modulePath);
+            //将cutlist转化为celing并赋值subassyId
+            List<CeilingCutList> celingCutLists = new List<CeilingCutList>();
+            foreach (var cutList in cutLists)
+            {
+                CeilingCutList cutRecord = new CeilingCutList()
+                {
+                    SubAssyId = subAssy.SubAssyId,
+                    UserId = userId,
+                    Quantity = cutList.Quantity,
+                    Length = cutList.Length,
+                    Width = cutList.Width,
+                    Thickness = cutList.Thickness,
+                    Materials = cutList.Materials,
+                    PartDescription = cutList.PartDescription,
+                    PartNo = cutList.PartNo
+                };
+                celingCutLists.Add(cutRecord);
+            }
+            //基于事务ceilingCutLists提交SQLServer
+            CeilingCutListService objCeilingCutListService = new CeilingCutListService();
+            if (celingCutLists.Count == 0) return;
+            try
+            {
+                if (objCeilingCutListService.ImportCutList(celingCutLists)) celingCutLists.Clear();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Cutlist导入数据库失败" + ex.Message);
+            }
+        }
+        #endregion
+
+        #region 标准烟罩装配体导出dxf图纸
+        public void HoodAssyToDxf(SldWorks swApp, ModuleTree tree, string dxfPath, int userId)
+        {
+            //获取导图清单
+            string assyPath =
+                $@"D:\MyProjects\{tree.ODPNo}\{tree.Item}-{tree.Module}-{tree.CategoryName}\{tree.CategoryName.ToLower()}_{tree.Item}-{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}.sldasm";
+            Dictionary<string, int> sheetMetalDic = GetSheetMetalDic(swApp, assyPath);
+            //获取下料清单信息和导出dxf图
+            string modulePath = dxfPath + @"\" + tree.Item + "-" + tree.Module;
+            if (!Directory.Exists(modulePath)) Directory.CreateDirectory(modulePath);
+            List<CutList> cutLists = GetCutListsInfoAndExport(swApp, sheetMetalDic, modulePath);
+            //将cutlist转化为celing并赋值subassyId
+            List<HoodCutList> hoodCutLists = new List<HoodCutList>();
+            foreach (var cutList in cutLists)
+            {
+                HoodCutList cutRecord = new HoodCutList()
+                {
+                    ModuleTreeId = tree.ModuleTreeId,
+                    UserId = userId,
+                    Quantity = cutList.Quantity,
+                    Length = cutList.Length,
+                    Width = cutList.Width,
+                    Thickness = cutList.Thickness,
+                    Materials = cutList.Materials,
+                    PartDescription = cutList.PartDescription,
+                    PartNo = cutList.PartNo
+                };
+                hoodCutLists.Add(cutRecord);
+            }
+            //基于事务hoodCutLists提交SQLServer
+            HoodCutListService objHoodCutListService = new HoodCutListService();
+            if (hoodCutLists.Count == 0) return;
+            try
+            {
+                if (objHoodCutListService.ImportCutList(hoodCutLists)) hoodCutLists.Clear();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Cutlist导入数据库失败" + ex.Message);
+            }
+        }
         #endregion
     }
 }
