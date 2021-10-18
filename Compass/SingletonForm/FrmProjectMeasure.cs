@@ -50,7 +50,6 @@ namespace Compass
             this.WindowState = FormWindowState.Maximized;
             this.Focus();
         }
-        #endregion
         //对外更新所有数据
         public void IniAllData()
         {
@@ -58,6 +57,9 @@ namespace Compass
             IniDeliveryReliabilityChart();
             IniCycleTimeChart();
         }
+        #endregion
+
+        #region 下拉框动作
         private void CobYear_SelectedIndexChanged(object sender, EventArgs e)
         {
             IniAllData();
@@ -66,55 +68,61 @@ namespace Compass
         {
             IniTrendChart();
         }
+        #endregion
+
+        #region 初始化趋势图表
         private void IniTrendChart()
         {
             currentYear = Convert.ToInt32(cobYear.Text);
             currentMonth = Convert.ToInt32(cobMonth.Text);
+            DateTime startOpen = Convert.ToDateTime($"{currentYear}/{currentMonth - 1}/15");
+            DateTime endOpen = Convert.ToDateTime($"{currentYear}/{currentMonth}/15");
             List<ChartData> projectOpenDatas =
-                objProjectMeasureService.GetProjectOpenTrend(currentYear, currentMonth);
-            TargetTrendChart(chartProjectOpen, projectOpenDatas, Color.DodgerBlue);
-            List<ChartData> productionCloseDatas =
-                objProjectMeasureService.GetProductionCloseTrend(currentYear, currentMonth);
-            TargetTrendChart(chartProductionClose, productionCloseDatas, Color.LimeGreen);
-            List<ChartData> projectCloseDatas =
-                objProjectMeasureService.GetProjectCloseTrend(currentYear, currentMonth);
-            TargetTrendChart(chartProjectClose, projectCloseDatas, Color.DarkGreen);
-        }
+                objProjectMeasureService.GetProjectOpenTrend(startOpen.ToShortDateString(), endOpen.ToShortDateString());
+            TargetTrendChart(chartProjectOpen, projectOpenDatas, startOpen, endOpen, Color.DodgerBlue);
 
-        private void TargetTrendChart(Chart chartTarget, List<ChartData> datas,Color color)
+            DateTime startDate = Convert.ToDateTime($"{currentYear}/{currentMonth}/1");
+            DateTime endDate = Convert.ToDateTime($"{currentYear}/{currentMonth+1}/1");
+            List<ChartData> productionCloseDatas =
+                objProjectMeasureService.GetProductionCloseTrend(startDate.ToShortDateString(), endDate.ToShortDateString());
+            TargetTrendChart(chartProductionClose, productionCloseDatas, startDate, endDate, Color.LimeGreen);
+            List<ChartData> projectCloseDatas =
+                objProjectMeasureService.GetProjectCloseTrend(startDate.ToShortDateString(), endDate.ToShortDateString());
+            TargetTrendChart(chartProjectClose, projectCloseDatas, startDate, endDate, Color.DarkGreen);
+        }
+        private void TargetTrendChart(Chart chartTarget, List<ChartData> datas, DateTime startDate, DateTime endDate, Color color)
         {
-            int daysInMonth = System.DateTime.DaysInMonth(currentYear, currentMonth);
             chartTarget.Series.Clear();
             chartTarget.ChartAreas[0].AxisY.Maximum = double.NaN;
             chartTarget.ChartAreas[0].RecalculateAxesScale();
             Series series = new Series
             {
-                ChartType = SeriesChartType.Line
+                ChartType = SeriesChartType.Line,
+                XValueType = ChartValueType.Date
             };
             chartTarget.Series.Add(series);
             series.YAxisType = AxisType.Primary;
             double total = 0;
-            for (int i = 0; i <= 31; i++)
+            int i = 0;
+            for (DateTime dt= startDate;dt <endDate;dt=dt.AddDays(1))
             {
                 double value = 0;
                 foreach (var item in datas)
                 {
-                    if (Convert.ToInt32(item.Text) == i) { value = item.Value; total += value; }
+                    if (Convert.ToDateTime(item.Text).Equals(dt)) { value = item.Value; total += value; }
                 }
-                series.Points.AddXY(i, value);
-                series.Points[i].LabelToolTip = value.ToString();//鼠标放到标签上面的提示
-                series.Points[i].ToolTip = value.ToString();//鼠标放到图形上面的提示
+                series.Points.AddXY(dt, value);
                 if (value != 0d) series.Points[i].Label = "#VAL";
+                i++;
                 series.LegendText = chartTarget.Text;
                 series.Color = color;
             }
-            chartTarget.ChartAreas[0].AxisX.Title = "日 | Day";
             chartTarget.ChartAreas[0].AxisY.Title = "工作量 | Workload";
-            chartTarget.ChartAreas[0].AxisX.Minimum = 0;
-            chartTarget.ChartAreas[0].AxisX.Maximum = daysInMonth+0.5;//X轴最大值设置为当月天数
             chartTarget.ChartAreas[0].AxisY.Interval = 10;//也可以设置成20
             chartTarget.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
+            chartTarget.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
             //绘制均值线
+            int daysInMonth = endDate.Subtract(startDate).Days;
             double avg = total / daysInMonth;
             StripLine stripAvg = new StripLine()
             {
@@ -129,7 +137,9 @@ namespace Compass
             chartTarget.ChartAreas[0].AxisY.StripLines.Clear();
             chartTarget.ChartAreas[0].AxisY.StripLines.Add(stripAvg);
         }
+        #endregion
 
+        #region 初始化完工率图
         private void IniDeliveryReliabilityChart()
         {
             List<ChartData> qtyDatas = objProjectMeasureService.GetOnTimeProjectsQtyRate(currentYear);
@@ -139,7 +149,7 @@ namespace Compass
             chartDeliveryReliability.ChartAreas[0].AxisY.Maximum = double.NaN;
             chartDeliveryReliability.ChartAreas[0].RecalculateAxesScale();
 
-            void AddSeries(string type, List<ChartData> datas,Color color)
+            void AddSeries(string type, List<ChartData> datas, Color color)
             {
                 Series series = new Series
                 {
@@ -174,19 +184,22 @@ namespace Compass
             chartDeliveryReliability.ChartAreas[0].AxisY.Maximum = 105;
             chartDeliveryReliability.ChartAreas[0].AxisY.Interval = 10;//也可以设置成20
             chartDeliveryReliability.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
-            
+
             //获取所有延迟的项目号
             List<string> delayList = objProjectMeasureService.GetDelayODPNo(currentYear);
             string delayStr = "Delayed Projects:\r\n";
             foreach (string item in delayList)
             {
-                delayStr += item+"\r\n";
+                delayStr += item + "\r\n";
             }
             txtOdpNo.Text = delayStr;
-            string rateStr= "Rate YTD\r\nBase on Qty:\r\nOnTime / Total = " + objProjectMeasureService.GetOnTimeProjectsQtyRateYTD(currentYear) + " %\r\n";
-            rateStr+= "--------------------\r\nBase on Workload:\r\nOnTime / Total = " + objProjectMeasureService.GetOnTimeProjectsWorkloadRateYTD(currentYear) + " %\r\n";
+            string rateStr = "Rate YTD\r\nBase on Qty:\r\nOnTime / Total = " + objProjectMeasureService.GetOnTimeProjectsQtyRateYTD(currentYear) + " %\r\n";
+            rateStr += "--------------------\r\nBase on Workload:\r\nOnTime / Total = " + objProjectMeasureService.GetOnTimeProjectsWorkloadRateYTD(currentYear) + " %\r\n";
             txtYTDDeliveryReliabilityNote.Text = rateStr;
-        }
+        } 
+        #endregion
+
+        #region 初始化循环周期图表
         private void IniCycleTimeChart()
         {
             List<ChartData> cycleTimeA = objProjectMeasureService.GetCycleTimeA(currentYear);
@@ -197,7 +210,7 @@ namespace Compass
             chartCycleTime.ChartAreas[0].AxisY.Maximum = double.NaN;
             chartCycleTime.ChartAreas[0].RecalculateAxesScale();
 
-            void AddSeries(string type, List<ChartData> datas,Color color)
+            void AddSeries(string type, List<ChartData> datas, Color color)
             {
                 Series series = new Series
                 {
@@ -224,7 +237,7 @@ namespace Compass
             AddSeries("A", cycleTimeA, Color.GreenYellow);
             AddSeries("B", cycleTimeB, Color.LightSkyBlue);
             AddSeries("C", cycleTimeC, Color.LimeGreen);
-            
+
 
             chartCycleTime.ChartAreas[0].AxisX.Title = "月 | Month";
             chartCycleTime.ChartAreas[0].AxisY.Title = "项目周期 | Cycle Time Days";
@@ -232,16 +245,17 @@ namespace Compass
             chartCycleTime.ChartAreas[0].AxisX.Maximum = 12.5;
             chartCycleTime.ChartAreas[0].AxisY.Interval = 10;//也可以设置成20
             chartCycleTime.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
-            
-            string cycleTimeNote = "Cycle Time YTD\r\nA : AVG(ProdCompleted - DrwRelease)\r\n= "+objProjectMeasureService.GetCycleTimeAYTD(currentYear)+" days\r\n";
+
+            string cycleTimeNote = "Cycle Time YTD\r\nA : AVG(ProdCompleted - DrwRelease)\r\n= " + objProjectMeasureService.GetCycleTimeAYTD(currentYear) + " days\r\n";
             cycleTimeNote += "--------------------\r\nB : AVG(ProdCompleted - ODPRelease)\r\n= " + objProjectMeasureService.GetCycleTimeBYTD(currentYear) + " days\r\n";
             cycleTimeNote += "--------------------\r\nC : AVG(ProdDelivered - ODPRelease)\r\n= " + objProjectMeasureService.GetCycleTimeCYTD(currentYear) + " days\r\n";
             //警告信息，后续数据准确可删除
             cycleTimeNote +=
                 "--------------------\r\nDue to the loss of data, the YTD result may be inaccurate.";
             txtCycleTimeNote.Text = cycleTimeNote;
-        }
+        } 
+        #endregion
 
-       
+
     }
 }

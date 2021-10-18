@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Text;
 using Models;
 
 namespace DAL
@@ -8,31 +9,31 @@ namespace DAL
     public class ProjectMeasureService
     {
         #region 项目趋势
-        public List<ChartData> GetProjectOpenTrend(int year, int month)
+        public List<ChartData> GetProjectOpenTrend(string startDate, string endDate)
         {
-            return GetTargetTrend("ODPReceiveDate", year, month);
+            return GetTargetTrend("ODPReceiveDate", startDate, endDate);
         }
-        public List<ChartData> GetProductionCloseTrend(int year, int month)
+        public List<ChartData> GetProductionCloseTrend(string startDate, string endDate)
         {
-            return GetTargetTrend("ProdFinishActual", year, month);
+            return GetTargetTrend("ProdFinishActual", startDate, endDate);
         }
-        public List<ChartData> GetProjectCloseTrend(int year, int month)
+        public List<ChartData> GetProjectCloseTrend(string startDate, string endDate)
         {
-            return GetTargetTrend("DeliverActual", year, month);
+            return GetTargetTrend("DeliverActual", startDate, endDate);
         }
-        public List<ChartData> GetTargetTrend(string target, int year, int month)
+        public List<ChartData> GetTargetTrend(string target, string startDate, string endDate)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = $"select day({target}) as Day,sum(SubTotalWorkload) as Workload from DrawingPlan";
-            sql += " inner join ProjectTracking on ProjectTracking.ProjectId=DrawingPlan.ProjectId";
-            sql += $" where {target} like '{year}%' and month({target})='{month}'";
-            sql += $" group by day({target}) order by Day asc";
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            StringBuilder sql = new StringBuilder($"select {target},sum(SubTotalWorkload) as Workload from DrawingPlan");
+            sql.Append(" inner join ProjectTracking on ProjectTracking.ProjectId=DrawingPlan.ProjectId");
+            sql.Append($" where {target}>='{startDate}' and {target}<'{endDate}'");
+            sql.Append($" group by {target} order by  {target} asc");
+            SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             while (objReader.Read())
             {
                 list.Add(new ChartData()
                 {
-                    Text = objReader["Day"].ToString(),
+                    Text = objReader[$"{target}"].ToString(),
                     Value = Convert.ToDouble(objReader["Workload"].ToString())
                 });
             }
@@ -66,11 +67,11 @@ namespace DAL
         public List<ChartData> GetOnTimeProjectsCount(int year)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select month(ShippingTime) as Mon, count(*) as OnTime from Projects";
-            sql += " inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId";
-            sql += $" where ShippingTime like '{year}%' and ProdFinishActual<=ShippingTime";
-            sql += " group by month(ShippingTime) order by Mon asc";
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            StringBuilder sql = new StringBuilder("select month(ShippingTime) as Mon, count(*) as OnTime from Projects");
+            sql.Append(" inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId");
+            sql.Append($" where ShippingTime like '{year}%' and ProdFinishActual<=ShippingTime");
+            sql.Append(" group by month(ShippingTime) order by Mon asc");
+            SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             while (objReader.Read())
             {
                 list.Add(new ChartData()
@@ -90,10 +91,10 @@ namespace DAL
         public List<ChartData> GetTotalProjectsCount(int year)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select month(ShippingTime) as Mon, count(*) as Total from Projects";
-            sql += $" where ShippingTime like '{year}%'";
-            sql += " group by month(ShippingTime) order by Mon asc";
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            StringBuilder sql = new StringBuilder("select month(ShippingTime) as Mon, count(*) as Total from Projects");
+            sql.Append($" where ShippingTime like '{year}%'");
+            sql.Append(" group by month(ShippingTime) order by Mon asc");
+            SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             while (objReader.Read())
             {
                 list.Add(new ChartData()
@@ -147,12 +148,12 @@ namespace DAL
         public List<ChartData> GetOnTimeProjectsWorkload(int year)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select month(ShippingTime) as Mon, sum(SubTotalWorkload) as OnTime from Projects";
-            sql += " inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId";
-            sql += " inner join DrawingPlan on DrawingPlan.ProjectId=Projects.ProjectId";
-            sql += $" where ShippingTime like '{year}%' and ProdFinishActual<=ShippingTime";
-            sql += " group by month(ShippingTime) order by Mon asc";
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            StringBuilder sql = new StringBuilder("select month(ShippingTime) as Mon, sum(SubTotalWorkload) as OnTime from Projects");
+            sql.Append(" inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId");
+            sql.Append(" inner join DrawingPlan on DrawingPlan.ProjectId=Projects.ProjectId");
+            sql.Append($" where ShippingTime like '{year}%' and ProdFinishActual<=ShippingTime");
+            sql.Append(" group by month(ShippingTime) order by Mon asc");
+            SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             while (objReader.Read())
             {
                 list.Add(new ChartData()
@@ -172,11 +173,11 @@ namespace DAL
         public List<ChartData> GetTotalProjectsWorkload(int year)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = "select month(ShippingTime) as Mon, sum(SubTotalWorkload) as Total from Projects";
-            sql += " inner join DrawingPlan on DrawingPlan.ProjectId=Projects.ProjectId";
-            sql += $" where ShippingTime like '{year}%'";
-            sql += " group by month(ShippingTime) order by Mon asc";
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            StringBuilder sql = new StringBuilder("select month(ShippingTime) as Mon, sum(SubTotalWorkload) as Total from Projects");
+            sql.Append(" inner join DrawingPlan on DrawingPlan.ProjectId=Projects.ProjectId");
+            sql.Append($" where ShippingTime like '{year}%'");
+            sql.Append(" group by month(ShippingTime) order by Mon asc");
+            SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             while (objReader.Read())
             {
                 list.Add(new ChartData()
@@ -217,11 +218,11 @@ namespace DAL
         public List<string> GetDelayODPNo(int year)
         {
             List<string> list = new List<string>();
-            string sql = "select ODPNo from Projects";
-            sql += " inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId";
-            sql += $" where ShippingTime like '{year}%' and ProdFinishActual>ShippingTime";
-            sql += " order by ShippingTime desc";
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            StringBuilder sql = new StringBuilder("select ODPNo from Projects");
+            sql.Append(" inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId");
+            sql.Append($" where ShippingTime like '{year}%' and ProdFinishActual>ShippingTime");
+            sql.Append(" order by ShippingTime desc");
+            SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             while (objReader.Read())
             {
                 list.Add(objReader["ODPNo"].ToString());
@@ -253,11 +254,11 @@ namespace DAL
         public List<ChartData> GetCycleTimeTarget(string date1, string date2, int year)
         {
             List<ChartData> list = new List<ChartData>();
-            string sql = $"select month(ShippingTime) as Mon,sum(datediff(day,{date1},{date2}))/count(*)+1 as CycleTime from ProjectTracking";
-            sql += " inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId";
-            sql += $" where ShippingTime like '{year}%' and {date1}<>'0001-01-01' and {date2}<>'0001-01-01'";
-            sql += " group by month(ShippingTime) order by Mon asc";
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            StringBuilder sql = new StringBuilder($"select month(ShippingTime) as Mon,sum(datediff(day,{date1},{date2}))/count(*)+1 as CycleTime from ProjectTracking");
+            sql.Append(" inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId");
+            sql.Append($" where ShippingTime like '{year}%' and {date1}<>'0001-01-01' and {date2}<>'0001-01-01'");
+            sql.Append(" group by month(ShippingTime) order by Mon asc");
+            SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             while (objReader.Read())
             {
                 list.Add(new ChartData()
@@ -290,13 +291,11 @@ namespace DAL
         /// <returns></returns>
         public string GetCycleTimeTargetYTD(string date1, string date2, int year)
         {
-            string sql =
-                $"select sum(datediff(day,{date1},{date2}))/count(*)+1 as CycleTime from ProjectTracking";
-            sql += " inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId";
-            sql += $" where ShippingTime like '{year}%'	and {date1}<>'0001-01-01' and {date2}<>'0001-01-01'";
-            return SQLHelper.GetSingleResult(sql).ToString();
+            StringBuilder sql = new StringBuilder($"select sum(datediff(day,{date1},{date2}))/count(*)+1 as CycleTime from ProjectTracking");
+            sql.Append(" inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId");
+            sql.Append($" where ShippingTime like '{year}%'	and {date1}<>'0001-01-01' and {date2}<>'0001-01-01'");
+            return SQLHelper.GetSingleResult(sql.ToString()).ToString();
         }
-
         #endregion
     }
 }
