@@ -2281,6 +2281,19 @@ create table LKS258HCL
 	HCLSideRight decimal(6,2),		
 )
 
+--LKS270HCL
+if exists (select * from sysobjects where name='LKS270HCL')
+drop table LKS270HCL
+go
+create table LKS270HCL
+(
+    LKS270HCLId int identity(1,1),
+    ModuleTreeId int,
+    Length decimal(6,2),
+	HCLSide varchar(6),
+	HCLSideLeft decimal(6,2),
+	HCLSideRight decimal(6,2),		
+)
 
 --LLEDS
 if exists (select * from sysobjects where name='LLEDS')

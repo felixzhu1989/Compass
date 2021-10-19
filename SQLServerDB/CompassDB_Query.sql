@@ -679,3 +679,9 @@ order by ProjectStatusId asc
 select * from ProjectStatus
 select * from ProjectTypes
 
+
+select ODPReceiveDate,sum(SubTotalWorkload) as Workload from DrawingPlan 
+inner join ProjectTracking on ProjectTracking.ProjectId=DrawingPlan.ProjectId 
+where ODPReceiveDate >='2021/9/15' and ODPReceiveDate <'2021/10/15' 
+group by ODPReceiveDate order by ODPReceiveDate asc
+

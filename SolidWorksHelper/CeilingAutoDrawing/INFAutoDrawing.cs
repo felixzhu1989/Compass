@@ -69,8 +69,8 @@ namespace SolidWorksHelper
                 
                 //----------W板----------
                 //重命名装配体内部
-                compReName = "F[INF-" + tree.Module + "]{" + (int)item.Length + "}(" + (int)item.Width + ")";
-                status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "F-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                compReName = "FNCL0038[INF-" + tree.Module + "]{" + (int)item.Length + "}(" + (int)item.Width + ")";
+                status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCL0038-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                 if (status) swModelDocExt.RenameDocument(compReName);
                 swModel.ClearSelection2(true);
                 status = swModelDocExt.SelectByID2(compReName + "-1" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);

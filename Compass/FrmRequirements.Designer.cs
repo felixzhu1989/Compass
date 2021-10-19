@@ -42,8 +42,8 @@
             this.tsmiDeleteSpecialRequirement = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSpecialRequirement = new System.Windows.Forms.Button();
             this.txtContant = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.txtSpecialRequirementId = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.grbGeneralRequirements = new System.Windows.Forms.GroupBox();
             this.cobANSULSystem = new System.Windows.Forms.ComboBox();
             this.cobANSULPrepipe = new System.Windows.Forms.ComboBox();
@@ -63,7 +63,7 @@
             this.txtODPNo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtProjectId = new System.Windows.Forms.TextBox();
+            this.txtProjectName = new System.Windows.Forms.TextBox();
             this.grbSpecialRequirements.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpecialRequirements)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -194,6 +194,15 @@
             this.txtContant.TabIndex = 40;
             this.txtContant.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContant_KeyDown);
             // 
+            // txtSpecialRequirementId
+            // 
+            this.txtSpecialRequirementId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSpecialRequirementId.Location = new System.Drawing.Point(718, 20);
+            this.txtSpecialRequirementId.Name = "txtSpecialRequirementId";
+            this.txtSpecialRequirementId.ReadOnly = true;
+            this.txtSpecialRequirementId.Size = new System.Drawing.Size(59, 25);
+            this.txtSpecialRequirementId.TabIndex = 40;
+            // 
             // label9
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -203,15 +212,6 @@
             this.label9.Size = new System.Drawing.Size(39, 19);
             this.label9.TabIndex = 41;
             this.label9.Text = "SRID";
-            // 
-            // txtSpecialRequirementId
-            // 
-            this.txtSpecialRequirementId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSpecialRequirementId.Location = new System.Drawing.Point(718, 20);
-            this.txtSpecialRequirementId.Name = "txtSpecialRequirementId";
-            this.txtSpecialRequirementId.ReadOnly = true;
-            this.txtSpecialRequirementId.Size = new System.Drawing.Size(59, 25);
-            this.txtSpecialRequirementId.TabIndex = 40;
             // 
             // grbGeneralRequirements
             // 
@@ -363,7 +363,7 @@
             this.txtGeneralRequirementId.Location = new System.Drawing.Point(825, 30);
             this.txtGeneralRequirementId.Name = "txtGeneralRequirementId";
             this.txtGeneralRequirementId.ReadOnly = true;
-            this.txtGeneralRequirementId.Size = new System.Drawing.Size(91, 25);
+            this.txtGeneralRequirementId.Size = new System.Drawing.Size(97, 25);
             this.txtGeneralRequirementId.TabIndex = 40;
             // 
             // btnGeneralRequirement
@@ -402,7 +402,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(257, 30);
+            this.label3.Location = new System.Drawing.Point(274, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 19);
             this.label3.TabIndex = 41;
@@ -413,23 +413,25 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(497, 30);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 19);
+            this.label8.Size = new System.Drawing.Size(61, 19);
             this.label8.TabIndex = 41;
-            this.label8.Text = "项目ID";
+            this.label8.Text = "项目名称";
             // 
-            // txtProjectId
+            // txtProjectName
             // 
-            this.txtProjectId.Location = new System.Drawing.Point(581, 27);
-            this.txtProjectId.Name = "txtProjectId";
-            this.txtProjectId.ReadOnly = true;
-            this.txtProjectId.Size = new System.Drawing.Size(108, 25);
-            this.txtProjectId.TabIndex = 40;
+            this.txtProjectName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtProjectName.Location = new System.Drawing.Point(581, 27);
+            this.txtProjectName.Name = "txtProjectName";
+            this.txtProjectName.ReadOnly = true;
+            this.txtProjectName.Size = new System.Drawing.Size(358, 25);
+            this.txtProjectName.TabIndex = 40;
             // 
             // FrmRequirements
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(950, 568);
-            this.Controls.Add(this.txtProjectId);
+            this.Controls.Add(this.txtProjectName);
             this.Controls.Add(this.txtODPNo);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
@@ -471,7 +473,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtProjectId;
+        private System.Windows.Forms.TextBox txtProjectName;
         private System.Windows.Forms.TextBox txtContant;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtSpecialRequirementId;

@@ -1780,6 +1780,19 @@ GO
 alter table LKS258HCL add constraint fk_ModuleTreeId_LKS258HCL foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
 GO
 
+--LKS270HCL
+if exists (select * from sysobjects where name='pk_LKS270HCLId')
+    alter table LKS270HCL drop constraint pk_LKS270HCLId
+GO
+alter table LKS270HCL add constraint pk_LKS270HCLId primary key (LKS270HCLId)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_LKS270HCL')
+    alter table LKS270HCL drop constraint fk_ModuleTreeId_LKS270HCL
+GO
+alter table LKS270HCL add constraint fk_ModuleTreeId_LKS270HCL foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+
+
 --LLEDS
 if exists (select * from sysobjects where name='pk_LLEDSId')
     alter table LLEDS drop constraint pk_LLEDSId

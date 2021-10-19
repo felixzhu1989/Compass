@@ -7,9 +7,9 @@ using SolidWorks.Interop.swconst;
 
 namespace SolidWorksHelper
 {
-    public class LKS258HCLAutoDrawing : IAutoDrawing
+    public class LKS270HCLAutoDrawing : IAutoDrawing
     {
-        LKS258HCLService objLKS258HCLService = new LKS258HCLService();
+        LKS270HCLService objLKS270HCLService = new LKS270HCLService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址
@@ -23,7 +23,7 @@ namespace SolidWorksHelper
             if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
 
             //查询参数
-            LKS258HCL item = (LKS258HCL)objLKS258HCLService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            LKS270HCL item = (LKS270HCL)objLKS270HCLService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
 
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
             int warnings = 0;
@@ -104,6 +104,7 @@ namespace SolidWorksHelper
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0083-1"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         break;
+
                     case "RIGHT":
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0082-1"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
@@ -128,6 +129,7 @@ namespace SolidWorksHelper
                             swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideRight - 3m) / 1000m;
                         }
                         break;
+
                     case "BOTH":
                         //重命名装配体内部
                         compReName = "FNCE0082[HCLSP-" + tree.Module + "]{" + ((int)item.HCLSideLeft - 3) + "}";
@@ -182,9 +184,15 @@ namespace SolidWorksHelper
 
                 //----------灯腔主体----------
                 //重命名装配体内部
-                compReName = "FNCL0036[LKS258HCL-" + tree.Module + "]{" + (int)item.Length + "}";
-                status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCL0036-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
-                if (status) swModelDocExt.RenameDocument(compReName);
+                compReName = "FNCL0039[LKS270HCL-" + tree.Module + "]{" + (int)item.Length + "}";
+                status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCL0039-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                if (status)
+                {
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0039-1"));
+                    swComp.SetSuppression2(2); //2解压缩，0压缩.
+                    status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0039-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                    swModelDocExt.RenameDocument(compReName);
+                }
                 swModel.ClearSelection2(true);
                 status = swModelDocExt.SelectByID2(compReName + "-1" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                 swModel.ClearSelection2(true);
@@ -220,7 +228,7 @@ namespace SolidWorksHelper
 
                 //支撑条
 
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0034-1"));
+                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCL0041-1"));
                 swPart = swComp.GetModelDoc2();//打开零件
                 switch (item.HCLSide)
                 {

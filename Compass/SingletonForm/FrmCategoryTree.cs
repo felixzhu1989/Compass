@@ -31,20 +31,28 @@ namespace Compass
             objDrawing = drawing;
             lblODPNo.Text = objDrawing.ODPNo;
             lblItem.Text = objDrawing.Item;
+            tvCategory.Enabled = true;
+            txtModule.Text ="";
+            btnAddModule.Text = "添加：-";
+            btnAddModule.Tag = null;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.Focus();
+        }
+        public void EditModule(Drawing drawing, ModuleTree tree)
+        {
+            objDrawing = drawing;
+            lblODPNo.Text = objDrawing.ODPNo;
+            lblItem.Text = objDrawing.Item;
+            tvCategory.Enabled = false;
+            txtModule.Text = tree.Module;
+            btnAddModule.Text = "修改分段名称";
+            btnAddModule.Tag = tree.ModuleTreeId.ToString();
             this.Show();
             this.WindowState = FormWindowState.Normal;
             this.Focus();
         }
         #endregion
-
-        public FrmCategoryTree(Drawing drawing, ModuleTree tree) : this()
-        {
-            AddModule(drawing);
-            tvCategory.Enabled = false;
-            txtModule.Text = tree.Module;
-            btnAddModule.Text = "修改分段名称";
-            btnAddModule.Tag = tree.ModuleTreeId.ToString();
-        }
         private List<Category> categoryList = null;
         private CategoryService objCategoryService = new CategoryService();
         private void LoadTvCategory()
@@ -138,9 +146,9 @@ namespace Compass
                 {
                     if (objModuleTreeService.EditModuleTree(objModuleTree,sbu) == 1)
                     {
+                        SingletonObject.GetSingleton().FrmMT.RefreshTree();
                         MessageBox.Show("修改分段名称成功！", "提示信息");
                         this.Close();
-                        this.DialogResult = DialogResult.OK;
                     }
                 }
                 catch (Exception ex)
@@ -168,9 +176,7 @@ namespace Compass
                     if (result)
                     {
                         SingletonObject.GetSingleton().FrmMT.RefreshTree();
-                        MessageBox.Show("烟罩分段添加成功");
-                        //this.Close();不关闭窗口
-                        //this.DialogResult = DialogResult.OK;
+                        MessageBox.Show("烟罩分段添加成功"); //this.Close();不关闭窗口
                     }
                 }
                 catch (Exception ex)

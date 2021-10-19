@@ -48,7 +48,8 @@ namespace Compass
         public FrmRequirements(Project objProject) :this()
         {
             txtODPNo.Text = objProject.ODPNo;
-            txtProjectId.Text = objProject.ProjectId.ToString();
+            txtODPNo.Tag = objProject.ProjectId;
+            txtProjectName.Text = objProject.ProjectName;
             GeneralRequirement objGeneralRequirement =
                 objRequirementService.GetGeneralRequirementByODPNo(objProject.ODPNo,sbu);
             if (objGeneralRequirement == null)
@@ -146,7 +147,7 @@ namespace Compass
                 //封装对象
                 GeneralRequirement objGeneralRequirement = new GeneralRequirement()
                 {
-                    ProjectId=Convert.ToInt32(txtProjectId.Text.Trim()),
+                    ProjectId=Convert.ToInt32(txtODPNo.Tag),
                     TypeId=Convert.ToInt32(cobTypeName.SelectedValue),
                     InputPower=cobInputPower.Text,
                     MARVEL=cobMARVEL.Text,
@@ -160,6 +161,7 @@ namespace Compass
                     int GeneralRequirementId =objRequirementService.AddGeneralRequirement(objGeneralRequirement,sbu);
                     if (GeneralRequirementId > 1)
                     {
+                        SingletonObject.GetSingleton().FrmP.BtnQueryByYear_Click(null, null);
                         //提示添加成功
                         MessageBox.Show("通用技术要求添加成功", "提示信息");
                         //刷新显示
@@ -178,7 +180,7 @@ namespace Compass
                 GeneralRequirement objGeneralRequirement = new GeneralRequirement()
                 {
                     GeneralRequirementId = Convert.ToInt32(txtGeneralRequirementId.Text.Trim()),
-                    ProjectId = Convert.ToInt32(txtProjectId.Text.Trim()),
+                    ProjectId = Convert.ToInt32(txtODPNo.Tag),
                     TypeId = Convert.ToInt32(cobTypeName.SelectedValue),
                     InputPower = cobInputPower.Text,
                     MARVEL = cobMARVEL.Text,
@@ -192,6 +194,7 @@ namespace Compass
                 {
                     if (objRequirementService.EditGeneralRequirement(objGeneralRequirement,sbu) == 1)
                     {
+                        SingletonObject.GetSingleton().FrmP.BtnQueryByYear_Click(null, null);
                         MessageBox.Show("修改通用技术要求成功！", "提示信息");
                     }
                 }
@@ -222,7 +225,7 @@ namespace Compass
                 //封装对象
                 SpecialRequirement objSpecialRequirement = new SpecialRequirement()
                 {
-                    ProjectId = Convert.ToInt32(txtProjectId.Text.Trim()),
+                    ProjectId = Convert.ToInt32(txtODPNo.Tag),
                     Content = txtContant.Text
                 };
                 //提交添加
@@ -250,7 +253,7 @@ namespace Compass
                 SpecialRequirement objSpecialRequirement = new SpecialRequirement()
                 {
                     SpecialRequirementId = Convert.ToInt32(txtSpecialRequirementId.Text.Trim()),
-                    ProjectId = Convert.ToInt32(txtProjectId.Text.Trim()),
+                    ProjectId = Convert.ToInt32(txtODPNo.Tag),
                     Content = txtContant.Text
                 };
                 //提交修改

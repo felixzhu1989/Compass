@@ -157,6 +157,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="EDrawingsUserControl.Designer.cs" />
+    <Compile Include="CeilingForm\FrmLKS270HCL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CeilingForm\FrmLKS270HCL.Designer.cs">
+      <DependentUpon>FrmLKS270HCL.cs</DependentUpon>
+    </Compile>
     <Compile Include="SingletonForm\FrmDrawingNumMatrix.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1017,6 +1023,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddCeilingPackingList.resx">
       <DependentUpon>FrmAddCeilingPackingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CeilingForm\FrmLKS270HCL.resx">
+      <DependentUpon>FrmLKS270HCL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SingletonForm\FrmCategories.resx">
       <DependentUpon>FrmCategories.cs</DependentUpon>

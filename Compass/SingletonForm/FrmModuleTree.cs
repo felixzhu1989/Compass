@@ -200,9 +200,7 @@ namespace Compass
                 Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId, sbu);
                 string moduleTreeId = tvModule.SelectedNode.Tag.ToString();
                 ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId, sbu);
-                FrmCategoryTree objFrmCategoryTree = new FrmCategoryTree(objDrawing, objModuleTree);
-                DialogResult result = objFrmCategoryTree.ShowDialog();
-                if (result == DialogResult.OK) RefreshTree();
+                SingletonObject.GetSingleton().FrmCT.EditModule(objDrawing, objModuleTree);
             }
         }
         /// <summary>
