@@ -746,7 +746,7 @@ namespace SolidWorksHelper
                             break;
                         case "RIGHT":
                             swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideRight) / 1000m;
-                            swModel.Parameter("D1@Distance775").SystemValue = 0m;
+                            swModel.Parameter("D1@Distance77").SystemValue = 0m;
                             break;
                         case "BOTH":
                             swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideLeft - item.HCLSideRight) / 1000m;

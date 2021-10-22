@@ -284,7 +284,7 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();//打开零件3
                     swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength + 50m) / 1000m;
-                    swPart.Parameter("D1@Sketch1").SystemValue = item.ExHeight / 1000m;
+                    swPart.Parameter("D2@Sketch1").SystemValue = item.ExHeight / 1000m;
                     swFeat = swComp.FeatureByName("ANSUL");
                     swFeat.SetSuppression2(0, 2, configNames);
                 }
@@ -298,7 +298,7 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2(); //打开零件3
                     swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength + 50m) / 1000m;
-                    swPart.Parameter("D1@Sketch1").SystemValue = item.ExHeight / 1000m;
+                    swPart.Parameter("D2@Sketch1").SystemValue = item.ExHeight / 1000m;
                 }
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0008-1"));
                 if (item.ExHeight == 100m)

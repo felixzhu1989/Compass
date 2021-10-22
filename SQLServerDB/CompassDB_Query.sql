@@ -685,3 +685,7 @@ inner join ProjectTracking on ProjectTracking.ProjectId=DrawingPlan.ProjectId
 where ODPReceiveDate >='2021/9/15' and ODPReceiveDate <'2021/10/15' 
 group by ODPReceiveDate order by ODPReceiveDate asc
 
+select * from NOCJSPEC
+
+
+
