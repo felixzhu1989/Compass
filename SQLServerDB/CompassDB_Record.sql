@@ -381,3 +381,9 @@ select * from ModuleTree where CategoryId=1149
 update ModuleTree set CategoryId=1170 where CategoryId=1173
 
 update Categories set CategoryId=1174 where CategoryName='KCD'
+
+select * from ProjectTracking where ProjectTrackingId=290
+update ProjectTracking set ProjectStatusId=8 where ProjectTrackingId=291
+select * from ProjectStatus
+
+select * from ProjectTracking

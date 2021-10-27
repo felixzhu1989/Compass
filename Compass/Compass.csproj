@@ -163,6 +163,12 @@
     <Compile Include="CeilingForm\FrmLKS270HCL.Designer.cs">
       <DependentUpon>FrmLKS270HCL.cs</DependentUpon>
     </Compile>
+    <Compile Include="HoodForm\FrmFRUVF555.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoodForm\FrmFRUVF555.Designer.cs">
+      <DependentUpon>FrmFRUVF555.cs</DependentUpon>
+    </Compile>
     <Compile Include="SingletonForm\FrmDrawingNumMatrix.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1026,6 +1032,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CeilingForm\FrmLKS270HCL.resx">
       <DependentUpon>FrmLKS270HCL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoodForm\FrmFRUVF555.resx">
+      <DependentUpon>FrmFRUVF555.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SingletonForm\FrmCategories.resx">
       <DependentUpon>FrmCategories.cs</DependentUpon>

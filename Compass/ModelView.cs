@@ -43,7 +43,7 @@ namespace Compass
             }
             string suffix = drawing.Item + "-" + tree.Module + "-" +
                             drawing.ODPNo.Substring(drawing.ODPNo.Length - 6);
-            if (drawing.HoodType=="Ceiling")//天花烟罩的后缀少一个item
+            if (drawing.HoodType == "Ceiling")//天花烟罩的后缀少一个item
             {
                 suffix = tree.Module + "-" +
                          drawing.ODPNo.Substring(drawing.ODPNo.Length - 6);
@@ -53,7 +53,7 @@ namespace Compass
 
             string localPath = @"D:\MyProjects\" + packedAssyPath;
             string publicPath = @"Z:\1-Project operation\20" + drawing.ODPNo.Substring(3, 2) + @" project\" + packedAssyPath;
-            
+
             modelViewData.ModelImage = modelImage;
             modelViewData.LabelImage = labelImage;
             modelViewData.LocalPath = localPath;
@@ -126,18 +126,18 @@ namespace Compass
             //if (!string.IsNullOrEmpty(filePath))
             if (System.IO.File.Exists(filePath))
             {
-                btnOpeneDrawing.Enabled = true; 
+                btnOpeneDrawing.Enabled = true;
                 btnOpenSolidWorks.Enabled = true;
                 //开启独立线程，避免当前程序被占用
-                Thread objThread=new Thread(() =>
-                {
-                    if (m_EDrawingsCtrl == null)
-                    {
-                        throw new NullReferenceException("eDrawings control is not loaded");
-                    }
-                    m_EDrawingsCtrl.CloseActiveDoc("");
-                    m_EDrawingsCtrl.OpenDoc(filePath, false, false, false, "");
-                })
+                Thread objThread = new Thread(() =>
+                  {
+                      if (m_EDrawingsCtrl == null)
+                      {
+                          throw new NullReferenceException("eDrawings control is not loaded");
+                      }
+                      m_EDrawingsCtrl.CloseActiveDoc("");
+                      m_EDrawingsCtrl.OpenDoc(filePath, false, false, false, "");
+                  })
                 {
                     IsBackground = true
                 };
@@ -151,7 +151,7 @@ namespace Compass
         private void BtnOpenFolder_Click(object sender, EventArgs e)
         {
             btnOpenFolder.Enabled = false;
-            string filePath = "";
+            string filePath;
             if (((Button)sender).Tag.ToString() == "0")
             {
                 filePath = modelViewData.LocalPath;
@@ -160,10 +160,8 @@ namespace Compass
             {
                 filePath = modelViewData.PublicPath;
             }
-
-            
-                if (System.IO.File.Exists(filePath))
-                {
+            if (System.IO.File.Exists(filePath))
+            {
                 System.Diagnostics.Process.Start("Explorer.exe", "/select," + System.IO.Path.GetDirectoryName(filePath) + "\\" + System.IO.Path.GetFileName(filePath));
             }
             else
@@ -186,7 +184,7 @@ namespace Compass
         private void BtnOpeneDrawing_Click(object sender, EventArgs e)
         {
             btnOpeneDrawing.Enabled = false;
-            string filePath = "";
+            string filePath;
             if (((Button)sender).Tag.ToString() == "0")
             {
                 filePath = modelViewData.LocalPath;
@@ -218,7 +216,7 @@ namespace Compass
         private void BtnOpenSolidWorks_Click(object sender, EventArgs e)
         {
             btnOpenSolidWorks.Enabled = false;
-            string filePath = "";
+            string filePath;
             if (((Button)sender).Tag.ToString() == "0")
             {
                 filePath = modelViewData.LocalPath;

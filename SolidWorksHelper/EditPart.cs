@@ -678,7 +678,7 @@ namespace SolidWorksHelper
             }
 
             swPart.Parameter("D1@草图6").SystemValue = (deepth - 896m-2m) / 1000m;
-
+            swPart.Parameter("D1@草图1").SystemValue = (length-6.5m) / 1000m;
 
             if ((height == "650" && length >= 1950) || (height != "650" && length >= 2100m))
             {
@@ -694,10 +694,13 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("ANDTECACROSS");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swPart.Parameter("D1@草图1").SystemValue = length / 1000m;
+                swFeat = swComp.FeatureByName("Edge-Flange3");
+                swFeat.SetSuppression2(2, 2, null); //参数1：1解压，0压缩
             }
             else
             {
+                swFeat = swComp.FeatureByName("Edge-Flange3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("Edge-Flange1");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("Edge-Flange2");
@@ -710,14 +713,11 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("ANDTECACROSS");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                swPart.Parameter("D1@草图1").SystemValue = (length - 4m) / 1000m;
+                if(height == "650") swPart.Parameter("D1@Sketch23").SystemValue = (84.5m + 95m) / 1000m;
+                else swPart.Parameter("D1@Sketch23").SystemValue = 84.5m / 1000m;
                 swPart.Parameter("D3@草图25").SystemValue = midRoofTopHoleDis;
-                swPart.Parameter("D2@草图26").SystemValue = (deepth - 840m) / 3000;
+                swPart.Parameter("D2@草图26").SystemValue = (deepth - 840m) / 3000m;
             }
-
-            swFeat = swComp.FeatureByName("NAMEPLATE");
-            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-
             swPart.Parameter("D1@Sketch3").SystemValue = midRoofSecondHoleDis - 2m / 1000m;
             swFeat = swComp.FeatureByName("LPattern1");
             if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
@@ -988,7 +988,7 @@ namespace SolidWorksHelper
             {
                 swFeat = swComp.FeatureByName("UVCABLE-DOUBLE");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
-                swPart.Parameter("D1@Sketch41").SystemValue = exRightDis / 1000m;
+                swPart.Parameter("D1@Sketch41").SystemValue = (exRightDis-6.5m) / 1000m;
                 swFeat = swComp.FeatureByName("UVCABLE");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
             }
@@ -998,7 +998,7 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 swFeat = swComp.FeatureByName("UVCABLE");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
-                swPart.Parameter("D4@草图28").SystemValue = exRightDis / 1000m;
+                swPart.Parameter("D4@草图28").SystemValue = (exRightDis - 6.5m) / 1000m;
                 swPart.Parameter("D3@草图28").SystemValue = 1500m / 1000m;
             }
             else if (uvType == "SHORT")
@@ -1007,7 +1007,7 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 swFeat = swComp.FeatureByName("UVCABLE");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
-                swPart.Parameter("D4@草图28").SystemValue = exRightDis / 1000m;
+                swPart.Parameter("D4@草图28").SystemValue = (exRightDis - 6.5m) / 1000m;
                 swPart.Parameter("D3@草图28").SystemValue = 790m / 1000m;
             }
             else
