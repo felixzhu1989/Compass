@@ -387,3 +387,29 @@ update ProjectTracking set ProjectStatusId=8 where ProjectTrackingId=291
 select * from ProjectStatus
 
 select * from ProjectTracking
+
+select * from Users
+insert into Users(Contact,Email,UserGroupId,UserAccount,UserPwd) 
+values('13701958039','vince.lv@halton.com',3,'vince','123'),
+('17702112161','even.zhang@halton.com',3,'even','123'),
+('13636693630','silin.yang@halton.com',7,'silin','123'),
+('13916436141','kevin.dai@halton.com',7,'kevin','123'),
+('13918896608','duke.shao@halton.com',4,'duke','123'),
+('13501682104','alex.xian@halton.com',3,'alex','123'),
+('15801841556','qingmei.cheng@halton.com',6,'qingmei','123'),
+('17317363332','geoff.shi@halton.com',7,'geoff','123'),
+('18049774893','tengfei.gai@halton.com',7,'tengfei','123'),
+('13122910781','warehouseb7.cn@halton.com',5,'warehouseb7','123'),
+('15121182319','jiabao.gu@halton.com',5,'jiabao','123'),
+('18930259821','mulan.yao@halton.com',5,'mulan','123'),
+('15618728992','chuanhan.tan@halton.com',6,'chuanhan','123'),
+('13072111613','harry.ding@halton.com',6,'harry','123'),
+('13764746070','krystal.xi@halton.com',6,'krystal','123'),
+('13701616545','vicky.wu@halton.com',6,'vicky','123'),
+('18516231570','john.zhao@halton.com',6,'john','123')
+
+
+
+
+
+

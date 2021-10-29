@@ -17,8 +17,19 @@ create table Users
     UserAccount varchar(15) not null,
     UserPwd varchar(15) not null,
     Email varchar(50),
-    Contact char(11)
+    Contact char(11),
+	EmailPwd varchar(30),
+	UserStatus int
 ) 
+if exists (select * from sysobjects where name='df_UserStatus')
+    alter table Users drop constraint df_UserStatus
+GO
+alter table Users add constraint df_UserStatus default (1) for UserStatus
+GO
+
+
+
+
 if exists (select * from sysobjects where name='Categories')
     drop table Categories
 create table Categories

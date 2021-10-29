@@ -14,5 +14,8 @@
     <Setting Name="eDrawings" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Compass_cn_com_webxml_www_WeatherWebService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://www.webxml.com.cn/WebServices/WeatherWebService.asmx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

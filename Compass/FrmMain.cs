@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using Models;
@@ -40,6 +41,7 @@ namespace Compass
             //隐藏测试代码
             tsmiTestCode.Visible = false;
             TsmiProjectList_Click(null, null);
+            
         }
         /// <summary>
         /// 设置权限
@@ -102,6 +104,7 @@ namespace Compass
         {
             System.Diagnostics.Process.Start("explorer.exe", "https://github.com/felixzhu1989/Compass/commits/main");
         }
+       
         /// <summary>
         /// 退出询问
         /// </summary>
@@ -137,6 +140,50 @@ namespace Compass
             }
             this.timerUpdate.Enabled = false;//停止定时器，防止频繁弹出
         }
+        //每10分钟更新数据
+        private void timerRefreshData_Tick(object sender, EventArgs e)
+        {
+            SingletonObject.GetSingleton().FrmP.BtnQueryByYear_Click(null,null);
+            SingletonObject.GetSingleton().FrmDP.BtnQueryByYear_Click(null,null);
+            SingletonObject.GetSingleton().FrmPT.BtnQueryByYear_Click(null,null);
+        }
+        //开机自启动
+        private void tsmiSetStartUp_Click(object sender, EventArgs e)
+        {
+            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser;
+            Microsoft.Win32.RegistryKey run = key.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");
+            string exePath = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+            DialogResult result = MessageBox.Show("设置Compass程序开机自启动，确定请按“是”，不要开机自启请按“否”，不想设置请按“取消”","设置开机自启",MessageBoxButtons.YesNoCancel);
+            try
+            {
+                if (result == DialogResult.Yes)
+                {
+                    run.SetValue("Compass", exePath); //将exe添加到注册表
+                }
+                else if (result == DialogResult.No)
+                {
+                    run.DeleteValue("Compass");//删除注册表
+                }
+            }
+            catch
+            {
+            }
+        }
+        ////只能打开一次
+        //private void FrmMain_Load(object sender, EventArgs e)
+        //{
+        //    if (!CanOpen())
+        //    {
+        //        MessageBox.Show("程序已打开！");
+        //        Application.Exit();
+        //    }
+        //}
+        //bool CanOpen()
+        //{
+        //    bool isClosed;
+        //    var m = new Mutex(true, "Compass", out isClosed);
+        //    return isClosed;
+        //}
         #endregion
 
         #region 初始化单例窗体
@@ -354,6 +401,10 @@ namespace Compass
             //MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
             MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms));
         }
+
+
         #endregion
-        }
+
+        
+    }
 }

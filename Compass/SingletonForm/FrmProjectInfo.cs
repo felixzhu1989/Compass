@@ -10,6 +10,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using Models;
 using System.Data;
 using System.Text;
+using Compass.cn.com.webxml.www;
 
 
 namespace Compass
@@ -66,6 +67,7 @@ namespace Compass
             lblTime.Text = DateTime.Now.ToString("yyyy年MM月dd日 hh:mm:ss");
             cobODPNo.Text = odpNoList[odpNoList.Count - 1];
             cobODPNo.SelectAll();
+            ShowWeather();
         }
 
         public void IniCobODPNo()
@@ -641,6 +643,15 @@ namespace Compass
         {
             lblShowInfo.Left--;
             if (lblShowInfo.Right < 0) lblShowInfo.Left = this.Right;
+        }
+        #endregion
+
+        #region 显示天气信息
+        void ShowWeather()
+        {
+            WeatherWebService wws = new WeatherWebService();
+            var reports = wws.getWeatherbyCityName("上海");
+            lblWeather.Text = $"上海:{reports[6]}/{reports[13]}";
         } 
         #endregion
     }

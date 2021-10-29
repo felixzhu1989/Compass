@@ -60,10 +60,7 @@ namespace Compass
             SetPermissions();
             this.dgvProjects.SelectionChanged += new System.EventHandler(this.DgvProjects_SelectionChanged);
         }
-        //public FrmProject(ShowModelTreeDelegate del):this()
-        //{
-        //    this.ShowModelTreeDeg = del;
-        //}
+        
         /// <summary>
         /// 设置权限
         /// </summary>

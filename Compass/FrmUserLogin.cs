@@ -80,7 +80,7 @@ namespace Compass
         }
 
 
-        //改善用户体验
+        //改善用户体验,程序只能打开一次
         private void FrmUserLogin_Load(object sender, EventArgs e)
         {
             txtUserPwd.Focus();//获取焦点，如果已经保存密码可以直接按回车登陆
