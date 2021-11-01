@@ -1,4 +1,5 @@
 ﻿using SolidWorks.Interop.sldworks;
+using System;
 
 namespace SolidWorksHelper
 {
@@ -140,6 +141,88 @@ namespace SolidWorksHelper
         }
 
         #endregion
+
+        #region 法国烟罩大侧板
+        internal void FNHS0073(Component2 swComp, decimal deepth, decimal height, int sidePanelSideCjNo, int sidePanelDownCjNo)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D1@Sketch1").SystemValue = deepth / 1000m;
+            swPart.Parameter("D2@Sketch1").SystemValue = (height-20m) / 1000m;
+            swPart.Parameter("D1@LPattern2").SystemValue = sidePanelSideCjNo;
+            swPart.Parameter("D1@LPattern1").SystemValue = sidePanelDownCjNo;
+        }
+        internal void FNHS0075(Component2 swComp, decimal deepth, decimal height,decimal withoutExSuMiDis)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D7@Sketch1").SystemValue = deepth/ 1000m;
+            swPart.Parameter("D6@Sketch1").SystemValue = (height - 1m) / 1000m;
+            //侧板铆钉，大孔相对与铆钉孔居中分布，铆钉孔2个，距离边分别为20和30,与侧板联动
+            if (withoutExSuMiDis >= 90)
+            {
+                //解压
+                swFeat = swComp.FeatureByName("LPattern1");
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D3@LPattern1").SystemValue = (withoutExSuMiDis - 50m) / 1000m;
+                swFeat = swComp.FeatureByName("LPattern2");
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D3@LPattern2").SystemValue = (withoutExSuMiDis - 50m) / 1000m;
+            }
+            else
+            {
+                //压缩
+                swFeat = swComp.FeatureByName("LPattern1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("LPattern2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+        }
+
+        internal void FNHS0074(Component2 swComp, decimal deepth, decimal height, int sidePanelSideCjNo, int sidePanelDownCjNo)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D1@Sketch1").SystemValue = deepth / 1000m;
+            swPart.Parameter("D2@Sketch1").SystemValue = (height - 20m) / 1000m;
+            swPart.Parameter("D1@LPattern2").SystemValue = sidePanelSideCjNo;
+            swPart.Parameter("D1@LPattern1").SystemValue = sidePanelDownCjNo;
+        }
+        internal void FNHS0076(Component2 swComp, decimal deepth, decimal height, decimal withoutExSuMiDis)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D7@Sketch1").SystemValue = deepth / 1000m;
+            swPart.Parameter("D6@Sketch1").SystemValue = (height - 1m) / 1000m;
+            //侧板铆钉，大孔相对与铆钉孔居中分布，铆钉孔2个，距离边分别为20和30,与侧板联动
+            if (withoutExSuMiDis >= 90)
+            {
+                //解压
+                swFeat = swComp.FeatureByName("LPattern1");
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D3@LPattern1").SystemValue = (withoutExSuMiDis - 50m) / 1000m;
+                swFeat = swComp.FeatureByName("LPattern2");
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D3@LPattern2").SystemValue = (withoutExSuMiDis - 50m) / 1000m;
+            }
+            else
+            {
+                //压缩
+                swFeat = swComp.FeatureByName("LPattern1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("LPattern2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+        }
+
+        internal void FNHS0077(Component2 swComp, decimal deepth)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D2@Base-Flange1").SystemValue = (deepth - 283.5m) / 1000m;
+        }
+        internal void FNHS0078(Component2 swComp, decimal deepth)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D2@Base-Flange1").SystemValue = (deepth - 283.5m) / 1000m;
+        }
+        #endregion
+
 
         #region Hood SidePanel 华为555烟罩大侧板
 
@@ -1052,6 +1135,8 @@ namespace SolidWorksHelper
             }
 
         }
+
+        
 
         public void FNHM0032(Component2 swComp, string uw, decimal deepth, string height, decimal midRoofTopHoleDis)
         {
