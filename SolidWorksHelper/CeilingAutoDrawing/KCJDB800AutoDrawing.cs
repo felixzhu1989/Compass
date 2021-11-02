@@ -68,72 +68,10 @@ namespace SolidWorksHelper
             try
             {
                 //----------Top Level----------
-
-
-
-                //判断是否是HCL特殊灯腔
-                if (item.LightType == "HCL")
-                {
-                    //NOHCL压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0116-1"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0114-2"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0114-1"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0056-1"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0056-2"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩.
-
-                    //HCL解压
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0087-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0091-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0090-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0090-2"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0091-2"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0092-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0094-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0088-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0088-2"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0093-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "HCL-1000-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩.
-
-                    //先解压缩出来零件再改顶层装配关系
-                    swModel.Parameter("D1@Distance41").SystemValue = item.LightPanelLeft / 1000m;
-                    swModel.Parameter("D1@Distance42").SystemValue = item.LightPanelLeft / 1000m;
-                    //镀锌片数量
-                    if (item.LightPanelSide == "BOTH")
-                    {
-                        swModel.Parameter("D1@LocalLPattern8").SystemValue = 8;
-                    }
-                    else if (item.LightPanelSide == "RIGHT" || item.LightPanelSide == "LEFT")
-                    {
-                        swModel.Parameter("D1@LocalLPattern8").SystemValue = 4;
-                    }
-                    else
-                    {
-                        swFeat = swAssy.FeatureByName("LocalLPattern6");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0093-1"));
-                        swComp.SetSuppression2(0); //2解压缩，0压缩.
-                    }
-                }
-
+                
 
                 //判断FC数量，FC侧板长度
-                    if (item.FCBlindNo > 0)
+                if (item.FCBlindNo > 0)
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0107[BP-500]{500}-3"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
@@ -206,7 +144,7 @@ namespace SolidWorksHelper
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2(); //打开零件
                             if (item.FCType == "KSA") swPart.Parameter("D2@草图1").SystemValue = (item.FCSideLeft + fcNo * 2.5m) / 1000m;
-                            else swPart.Parameter("D2@草图1").SystemValue = (item.FCSideLeft -fcNo) / 1000m;
+                            else swPart.Parameter("D2@草图1").SystemValue = (item.FCSideLeft - fcNo) / 1000m;
                         }
                         status = swModelDocExt.SelectByID2(compReName + "-4" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         swModel.ClearSelection2(true);
@@ -577,28 +515,6 @@ namespace SolidWorksHelper
                             swFeat = swComp.FeatureByName("LIGHT HOLE LEFT");
                             swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                             swFeat = swComp.FeatureByName("LIGHT HOLE RIGHT");
-                            swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                        }
-                        //HCL出线孔
-                        if (item.LightPanelSide == "LEFT")
-                        {
-                            swFeat = swComp.FeatureByName("HCL LIGHT HOLE LEFT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                            swFeat = swComp.FeatureByName("HCL LIGHT HOLE RIGHT");
-                            swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                        }
-                        else if (item.LightPanelSide == "RIGHT")
-                        {
-                            swFeat = swComp.FeatureByName("HCL LIGHT HOLE LEFT");
-                            swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                            swFeat = swComp.FeatureByName("HCL LIGHT HOLE RIGHT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        }
-                        else
-                        {
-                            swFeat = swComp.FeatureByName("HCL LIGHT HOLE LEFT");
-                            swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                            swFeat = swComp.FeatureByName("HCL LIGHT HOLE RIGHT");
                             swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                         }
                     }

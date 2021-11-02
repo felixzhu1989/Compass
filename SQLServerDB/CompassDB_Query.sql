@@ -18,6 +18,7 @@ select * from AfterSaleFeedbacks
 select * from ProjectLearneds
 select * from ModuleTree
 select * from UVI555
+select * from KCJDB800
 go
 select * from CeilingCutList order by cutlistid desc
 
