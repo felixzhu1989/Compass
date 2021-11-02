@@ -23,4 +23,3 @@ D:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.CopyComplete
 D:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.dll
 D:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.pdb
 E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.AssemblyReference.cache
-E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.CopyComplete

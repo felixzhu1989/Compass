@@ -83,7 +83,7 @@ namespace SolidWorksHelper
             {
                 //----------Top Level----------
                 //烟罩深度
-                swModel.Parameter("D1@Distance29").SystemValue = item.Deepth / 1000m;
+                swModel.Parameter("D1@Distance14").SystemValue = item.Deepth / 1000m;
                 //判断KSA数量，KSA侧板长度，如果太小，则使用特殊小侧板侧边
                 swFeat = swAssy.FeatureByName("LocalLPattern1");
                 if (ksaNo == 1) swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
@@ -97,31 +97,31 @@ namespace SolidWorksHelper
                 else swModel.Parameter("D1@Distance13").SystemValue = ksaSideLength;
 
                 //油塞
-                if (item.Outlet == "LEFTTAP")
-                {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100014-1"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100014-2"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩
-                }
-                else if (item.Outlet == "RIGHTTAP")
-                {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100014-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100014-2"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩
-                }
-                else
-                {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100014-1"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100014-2"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩
-                }
+                //if (item.Outlet == "LEFTTAP")
+                //{
+                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100014-1"));
+                //    swComp.SetSuppression2(0); //2解压缩，0压缩
+                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100014-2"));
+                //    swComp.SetSuppression2(2); //2解压缩，0压缩
+                //}
+                //else if (item.Outlet == "RIGHTTAP")
+                //{
+                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100014-1"));
+                //    swComp.SetSuppression2(2); //2解压缩，0压缩
+                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100014-2"));
+                //    swComp.SetSuppression2(0); //2解压缩，0压缩
+                //}
+                //else
+                //{
+                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100014-1"));
+                //    swComp.SetSuppression2(0); //2解压缩，0压缩
+                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100014-2"));
+                //    swComp.SetSuppression2(0); //2解压缩，0压缩
+                //}
                 //排风脖颈数量和距离
                 if (item.ExNo == 1)
                 {
-                    swModel.Parameter("D1@Distance33").SystemValue = (item.ExRightDis - item.ExLength / 2) / 1000m;
+                    swModel.Parameter("D1@Distance17").SystemValue = (item.ExRightDis - item.ExLength / 2) / 1000m;
                     swFeat = swAssy.FeatureByName("LocalLPattern2");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 }
@@ -132,7 +132,7 @@ namespace SolidWorksHelper
                 }
                 else
                 {
-                    swModel.Parameter("D1@Distance33").SystemValue =
+                    swModel.Parameter("D1@Distance17").SystemValue =
                         (item.ExRightDis - item.ExLength - item.ExDis / 2) / 1000m;
                     swFeat = swAssy.FeatureByName("LocalLPattern2");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
@@ -362,7 +362,7 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
                 //----------排风滑门/导轨----------
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0013-5"));
+                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0013-2"));
                 if (item.ExWidth == 300m) swComp.SetSuppression2(0); //2解压缩，0压缩
                 else swComp.SetSuppression2(2); //2解压缩，0压缩
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0013-1"));
@@ -1054,8 +1054,8 @@ namespace SolidWorksHelper
                 //    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 //}
                 //UV HOOD
-                //swFeat = swComp.FeatureByName("SUCABLE-LEFT");
-                //swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
                 if (item.MARVEL == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩

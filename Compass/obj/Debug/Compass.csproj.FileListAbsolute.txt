@@ -314,3 +314,4 @@ E:\Compass\Compass\obj\Debug\Compass.FrmHWUVI650.resources
 E:\Compass\Compass\obj\Debug\Compass.csproj.AssemblyReference.cache
 E:\Compass\Compass\obj\Debug\Compass.FrmLKS270HCL.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmFRUVF555.resources
+E:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
