@@ -161,7 +161,7 @@ namespace Compass
                     int GeneralRequirementId =objRequirementService.AddGeneralRequirement(objGeneralRequirement,sbu);
                     if (GeneralRequirementId > 1)
                     {
-                        SingletonObject.GetSingleton().FrmP.BtnQueryByYear_Click(null, null);
+                        SingletonObject.GetSingleton.FrmP.BtnQueryByYear_Click(null, null);
                         //提示添加成功
                         MessageBox.Show("通用技术要求添加成功", "提示信息");
                         //刷新显示
@@ -194,7 +194,7 @@ namespace Compass
                 {
                     if (objRequirementService.EditGeneralRequirement(objGeneralRequirement,sbu) == 1)
                     {
-                        SingletonObject.GetSingleton().FrmP.BtnQueryByYear_Click(null, null);
+                        SingletonObject.GetSingleton.FrmP.BtnQueryByYear_Click(null, null);
                         MessageBox.Show("修改通用技术要求成功！", "提示信息");
                     }
                 }

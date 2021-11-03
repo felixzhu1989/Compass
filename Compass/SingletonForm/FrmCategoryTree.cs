@@ -146,7 +146,7 @@ namespace Compass
                 {
                     if (objModuleTreeService.EditModuleTree(objModuleTree,sbu) == 1)
                     {
-                        SingletonObject.GetSingleton().FrmMT.RefreshTree();
+                        SingletonObject.GetSingleton.FrmMT.RefreshTree();
                         MessageBox.Show("修改分段名称成功！", "提示信息");
                         this.Close();
                     }
@@ -175,7 +175,7 @@ namespace Compass
                     bool result = objModuleTreeService.AddModuleAndData(objModuleTree,sbu);
                     if (result)
                     {
-                        SingletonObject.GetSingleton().FrmMT.RefreshTree();
+                        SingletonObject.GetSingleton.FrmMT.RefreshTree();
                         MessageBox.Show("烟罩分段添加成功"); //this.Close();不关闭窗口
                     }
                 }

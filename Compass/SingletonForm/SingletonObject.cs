@@ -15,13 +15,9 @@ namespace Compass
     {
         #region 设计单例模式
         private SingletonObject() { }
-        private static SingletonObject Singleton = null;
+        private static readonly Lazy<SingletonObject> _singleton=new Lazy<SingletonObject>(()=>new SingletonObject());
+        public static SingletonObject GetSingleton => _singleton.Value;
 
-        public static SingletonObject GetSingleton()
-        {
-            if(Singleton==null)Singleton=new SingletonObject();
-            return Singleton;
-        }
         #endregion
 
         //1.管理所有的单例对象
@@ -79,10 +75,6 @@ namespace Compass
             if (frmObj is FrmStatusTypes) this.FrmST = frmObj as FrmStatusTypes;
             if (frmObj is FrmCeilingAccessories) this.FrmCA = frmObj as FrmCeilingAccessories;
         }
-
-
-
-
 
     }
 }

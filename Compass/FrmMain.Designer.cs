@@ -453,14 +453,14 @@
             // 
             this.timerRefreshData.Enabled = true;
             this.timerRefreshData.Interval = 600000;
-            this.timerRefreshData.Tick += new System.EventHandler(this.timerRefreshData_Tick);
+            this.timerRefreshData.Tick += new System.EventHandler(this.TimerRefreshData_Tick);
             // 
             // tsmiSetStartUp
             // 
             this.tsmiSetStartUp.Name = "tsmiSetStartUp";
             this.tsmiSetStartUp.Size = new System.Drawing.Size(180, 22);
             this.tsmiSetStartUp.Text = "设置开机自启";
-            this.tsmiSetStartUp.Click += new System.EventHandler(this.tsmiSetStartUp_Click);
+            this.tsmiSetStartUp.Click += new System.EventHandler(this.TsmiSetStartUp_Click);
             // 
             // FrmMain
             // 

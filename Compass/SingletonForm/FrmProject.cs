@@ -202,12 +202,12 @@ namespace Compass
 
         public void RefreshAllCobODPNo()
         {
-            SingletonObject.GetSingleton().FrmDP.IniCobODPNo();
-            SingletonObject.GetSingleton().FrmPT.IniCobODPNo();
-            SingletonObject.GetSingleton().FrmHAD.IniCobODPNo();
-            SingletonObject.GetSingleton().FrmCAD.IniCobODPNo();
-            SingletonObject.GetSingleton().FrmPI.IniCobODPNo();
-            SingletonObject.GetSingleton().FrmSF.IniCobODPNo();
+            SingletonObject.GetSingleton.FrmDP.IniCobODPNo();
+            SingletonObject.GetSingleton.FrmPT.IniCobODPNo();
+            SingletonObject.GetSingleton.FrmHAD.IniCobODPNo();
+            SingletonObject.GetSingleton.FrmCAD.IniCobODPNo();
+            SingletonObject.GetSingleton.FrmPI.IniCobODPNo();
+            SingletonObject.GetSingleton.FrmSF.IniCobODPNo();
         }
 
 
@@ -284,7 +284,7 @@ namespace Compass
                         //刷新显示
                         BtnQueryByYear_Click(null, null);
                         RefreshAllCobODPNo();
-                        SingletonObject.GetSingleton().FrmPT.BtnQueryByYear_Click(null,null);
+                        SingletonObject.GetSingleton.FrmPT.BtnQueryByYear_Click(null,null);
                         //清空内容
                         cobCustomerId.SelectedIndex = -1;
                         cobHoodType.SelectedIndex = -1;
@@ -328,8 +328,8 @@ namespace Compass
                     {
                         BtnQueryByYear_Click(null, null); //同步刷新显示数据
                         RefreshAllCobODPNo();
-                        SingletonObject.GetSingleton().FrmDP.BtnQueryByYear_Click(null, null);
-                        SingletonObject.GetSingleton().FrmPT.BtnQueryByYear_Click(null, null);
+                        SingletonObject.GetSingleton.FrmDP.BtnQueryByYear_Click(null, null);
+                        SingletonObject.GetSingleton.FrmPT.BtnQueryByYear_Click(null, null);
                         btnProject.Text = "添加项目信息";
                         cobCustomerId.SelectedIndex = -1;
                         cobHoodType.SelectedIndex = -1;
@@ -453,7 +453,7 @@ namespace Compass
             if (dgvProjects.RowCount == 0) return;
             if (dgvProjects.CurrentRow == null) return;
             string odpNo = dgvProjects.CurrentRow.Cells["ODPNo"].Value.ToString();
-            SingletonObject.GetSingleton().FrmPI.ShowWithOdpNo(odpNo);
+            SingletonObject.GetSingleton.FrmPI.ShowWithOdpNo(odpNo);
         }
         /// <summary>
         /// 根据订单号查询订单
@@ -512,7 +512,7 @@ namespace Compass
             txtODPNo.Text = this.dgvProjects.CurrentRow.Cells["ODPNo"].Value.ToString();
             //ShowModelTreeDeg(txtODPNo.Text);
             if(txtODPNo.Text.Trim().Length==0)return;
-            SingletonObject.GetSingleton().FrmMT.ShowWithOdpNo(txtODPNo.Text);
+            SingletonObject.GetSingleton.FrmMT.ShowWithOdpNo(txtODPNo.Text);
         }
 
         /// <summary>
