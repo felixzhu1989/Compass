@@ -320,7 +320,7 @@ namespace Compass
                     grbEditProjectTracking.Visible = false;
                     BtnQueryByYear_Click(null, null);
                     SingletonObject.GetSingleton.FrmP.BtnQueryByYear_Click(null, null);
-                    SingletonObject.GetSingleton.FrmDP.BtnQueryByYear_Click(null, null);
+                    SingletonObject.GetSingleton.FrmDP?.BtnQueryByYear_Click(null, null);
                     MessageBox.Show("修改计划成功！", "提示信息");
                 }
             }

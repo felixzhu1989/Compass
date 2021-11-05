@@ -455,7 +455,7 @@ namespace Compass
                 {
                     grbEditDrawingPlan.Visible = false;
                     BtnQueryByYear_Click(null, null);//同步刷新显示数据
-                    SingletonObject.GetSingleton.FrmPT.BtnQueryByYear_Click(null, null);
+                    SingletonObject.GetSingleton.FrmPT?.BtnQueryByYear_Click(null, null);
                     SingletonObject.GetSingleton.FrmMT.RefreshTree();
                     MessageBox.Show("修改计划成功！", "提示信息");
                 }

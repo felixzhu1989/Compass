@@ -72,6 +72,7 @@
     <Compile Include="CeilingAutoDrawing\BCJ330AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\CJ330AutoDrawing.cs" />
     <Compile Include="EditPartMarine.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="HoodAutoDrawing\FRUVF555AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\CH610AutoDrawing.cs" />
     <Compile Include="EditPart.cs" />

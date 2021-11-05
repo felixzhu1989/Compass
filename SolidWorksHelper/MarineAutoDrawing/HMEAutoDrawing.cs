@@ -9,7 +9,7 @@ namespace SolidWorksHelper
 {
     public class HMEAutoDrawing : IAutoDrawing
     {
-        HMEService objHMEService = new HMEService();
+        readonly HMEService objHMEService = new HMEService();
 
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
@@ -33,11 +33,11 @@ namespace SolidWorksHelper
             int warnings = 0;
             int errors = 0;
             suffix = "_" + suffix; //后缀
-            ModelDoc2 swModel = default(ModelDoc2);
-            ModelDoc2 swPart = default(ModelDoc2);
-            AssemblyDoc swAssy = default(AssemblyDoc);
+            ModelDoc2 swModel;
+            ModelDoc2 swPart;
+            AssemblyDoc swAssy;
             Component2 swComp;
-            Feature swFeat = default(Feature);
+            Feature swFeat;
             EditPartMarine swEdit = new EditPartMarine();
 
 
@@ -57,9 +57,9 @@ namespace SolidWorksHelper
             {
 
                 #region 顶层
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NTC-anturi-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NTC-anturi-1");
                 swComp.SetSuppression2(0); //2解压缩，0压缩
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "TerminalBlock-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "TerminalBlock-1");
                 swComp.SetSuppression2(0); //2解压缩，0压缩 
                 #endregion
 
@@ -67,15 +67,15 @@ namespace SolidWorksHelper
                 //插口位置//右/左/前
                 if (item.PlugPosition == "Right")
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2xRJ12-2"));//网线右
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2xRJ12-2");//网线右
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NAC31-2"));//电源右
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NAC31-2");//电源右
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2xRJ12-1"));//网线前
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2xRJ12-1");//网线前
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NAC31-1"));
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NAC31-1");
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NAC21-1"));
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NAC21-1");
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
                 else if (item.PlugPosition == "Left")
@@ -84,13 +84,13 @@ namespace SolidWorksHelper
                 }
                 else//前面
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2xRJ12-2"));//网线右
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2xRJ12-2");//网线右
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NAC31-2"));//电源右
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NAC31-2");//电源右
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                     if (item.NetPlug == "2xRJ12")
                     {
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2xRJ12-1"));//网线前
+                        swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2xRJ12-1");//网线前
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                                                    //压缩其他的网线接口
                                                    //swComp = swAssy.GetComponentByName("XXXXX-1");//网线前
@@ -98,48 +98,48 @@ namespace SolidWorksHelper
                     }
                     else if (item.NetPlug == "2xRJ45")
                     {
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2xRJ12-1"));//网线前
+                        swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2xRJ12-1");//网线前
                         swComp.SetSuppression2(0); //2解压缩，0压缩
 
                     }
                     else if (item.NetPlug == "Both")
                     {
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2xRJ12-1"));//网线前
+                        swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2xRJ12-1");//网线前
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                     }
                     else
                     {
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2xRJ12-1"));//网线前
+                        swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2xRJ12-1");//网线前
                         swComp.SetSuppression2(0); //2解压缩，0压缩
                     }
 
                     if (item.PowerPlug == "NAC31")
                     {
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NAC31-1"));//网线前
+                        swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NAC31-1");//网线前
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                                                    //压缩其他的接口
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NAC21-1"));//网线前
+                        swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NAC21-1");//网线前
                         swComp.SetSuppression2(0); //2解压缩，0压缩
                     }
                     else if (item.PowerPlug == "NAC21")
                     {
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NAC31-1"));//网线前
+                        swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NAC31-1");//网线前
                         swComp.SetSuppression2(0); //2解压缩，0压缩
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NAC21-1"));//网线前
+                        swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NAC21-1");//网线前
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                     }
                     else if (item.PowerPlug == "Both")
                     {
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NAC31-1"));//网线前
+                        swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NAC31-1");//网线前
                         swComp.SetSuppression2(2); //2解压缩，0压缩
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NAC21-1"));//网线前
+                        swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NAC21-1");//网线前
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                     }
                     else
                     {
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NAC31-1"));//网线前
+                        swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NAC31-1");//网线前
                         swComp.SetSuppression2(0); //2解压缩，0压缩
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "NAC21-1"));//网线前
+                        swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NAC21-1");//网线前
                         swComp.SetSuppression2(0); //2解压缩，0压缩
                     }
                 }
@@ -150,25 +150,25 @@ namespace SolidWorksHelper
                 //电加热//YES/NO
                 if (item.Heater == "Yes")
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "LH-9129-2"));//加热管组件
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "LH-9129-2");//加热管组件
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "LH-9152-1"));//加热管组件
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "LH-9152-1");//加热管组件
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "LH-9151-1"));//加热管组件
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "LH-9151-1");//加热管组件
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "LH-9156-1"));//加热管组件
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "LH-9156-1");//加热管组件
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                 }
                 else if (item.Heater == "No")
                 {
 
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "LH-9129-2"));//加热管组件
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "LH-9129-2");//加热管组件
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "LH-9152-1"));//加热管组件
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "LH-9152-1");//加热管组件
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "LH-9151-1"));//加热管组件
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "LH-9151-1");//加热管组件
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "LH-9156-1"));//加热管组件
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "LH-9156-1");//加热管组件
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
 
@@ -177,7 +177,7 @@ namespace SolidWorksHelper
                 //-------------分块（一组）--------------------
 
                 //----------------外壳-大底板--------------------------
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCC0001-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0001-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("Pituus@Base-Extrude-Thin").SystemValue = item.Length / 1000m - 4.5m / 1000m;
                 swPart.Parameter("Leveys@Sketch1").SystemValue = item.Width / 1000m - 1.5m / 1000m;
@@ -280,7 +280,7 @@ namespace SolidWorksHelper
                 }
 
                 //----------外壳-进风口盖板(前)------------------------
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCC0002-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0002-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("Leveys@Sketch1").SystemValue = item.Width / 1000m + 0.75m / 1000m;
                 swPart.Parameter("Korkeus@Base-Extrude-Thin").SystemValue = item.Height / 1000m - 2m / 1000m;
@@ -370,7 +370,7 @@ namespace SolidWorksHelper
 
 
                 //----------内胆---------------
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCC0006-2"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0006-2");
 
                 swEdit.MNCC0006(swComp, "HME", item.Height, item.PowerPlug, item.PowerPlugDis, item.NetPlug, item.PlugPosition, item.Heater, item.TemperatureSwitch);
 
@@ -393,12 +393,12 @@ namespace SolidWorksHelper
 
                 //
                 //----------外壳-底板(后)------------------------MNCC0003
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCC0003-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0003-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000m - 0.25m / 1000m;
 
                 //----------外壳-出风口大盖板-----------------------MNCC0003
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCC0008-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0008-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D@Sketch3").SystemValue = item.OutletDia / 1000m + 9m / 1000m;
                 swPart.Parameter("D4@Sketch3").SystemValue = (item.OutletDia / 1000m + 9m / 1000m) / 2 - 4.2m / 1000m;
@@ -407,7 +407,7 @@ namespace SolidWorksHelper
 
 
                 //----------外壳-出风口前盖板------------------------MNCC0004
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCC0004-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0004-1");
                 swPart = swComp.GetModelDoc2();
                 if (item.HangPosition == "Up")
                 {
@@ -448,7 +448,7 @@ namespace SolidWorksHelper
                 //////********************进、出风脖颈************************////
                 //HMS-S-In，进风脖颈
 
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "HMS-S-In-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "HMS-S-In-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D3@Sketch1").SystemValue = (item.InletDia / 1000m - 2m / 1000m) / 2;
 
@@ -456,7 +456,7 @@ namespace SolidWorksHelper
 
                 //HMS-S-Out，出风脖颈
 
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "HMS-S-Out-2"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "HMS-S-Out-2");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D3@Sketch1").SystemValue = (item.OutletDia / 1000m - 2m / 1000m) / 2;
 
@@ -473,19 +473,19 @@ namespace SolidWorksHelper
 
                 ////MNCI0001 底板棉
 
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCI0001-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0001-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000m - 4m / 1000m;
 
                 ////MNCI0002 侧板棉
 
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCI0002-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0002-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000m - 28m / 1000m;
 
                 ////MNCI0003 侧板棉
 
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCI0003-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0003-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000m - 28m / 1000m;
 
@@ -538,14 +538,14 @@ namespace SolidWorksHelper
 
                 // MNCI0009，出风口棉
 
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCI0009-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0009-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D3@Sketch2").SystemValue = item.OutletDia / 1000m + 4m / 1000m;
 
 
                 // MNCI0007，进风口棉
 
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCI0007-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0007-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D3@Sketch2").SystemValue = item.InletDia / 1000m + 4m / 1000m;
                 swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000m - 54m / 1000m;
@@ -622,12 +622,12 @@ namespace SolidWorksHelper
                 // MNCI0006，内胆前棉
 
 
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCI0006-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0006-1");
 
                 swEdit.MNCI0006(swComp, "HME");
 
 
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "MNCI0006-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0006-1");
                 swPart = swComp.GetModelDoc2();
 
 
@@ -720,7 +720,7 @@ namespace SolidWorksHelper
 
                 //NTC 温度感应器//  （HMF需要  TerminalBlock-1  NTC-anturi-1两零件释放，其他压缩）
 
-                /* swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix,"NTC-anturi-1");
+                /* swComp = swAssy.GetComponentByNameWithSuffix(suffix,"NTC-anturi-1");
 
                  swEdit.NTC-anturi(swComp, "HME");
 

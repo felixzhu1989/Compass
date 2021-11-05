@@ -205,12 +205,9 @@ namespace SolidWorksHelper
 
 
         }
-
-
+        
         public void MNCI0006(Component2 swComp, string model)
         {
-
-
             if (model == "HME")
             {
                 swFeat = swComp.FeatureByName("HME");

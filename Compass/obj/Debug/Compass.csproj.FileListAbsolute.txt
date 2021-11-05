@@ -164,7 +164,6 @@ D:\Compass\Compass\bin\Debug\MyUIControls.pdb
 D:\Compass\Compass\bin\Debug\SolidWorksHelper.pdb
 D:\Compass\Compass\bin\Debug\UpdateProgram.pdb
 D:\Compass\Compass\bin\Debug\UpdateProgram.exe.config
-D:\Compass\Compass\obj\Debug\Compass.csprojAssemblyReference.cache
 D:\Compass\Compass\obj\Debug\Compass.csproj.ResolveComReference.cache
 D:\Compass\Compass\obj\Debug\Compass.FrmBCJ300.resources
 D:\Compass\Compass\obj\Debug\Compass.FrmBCJ330.resources
@@ -291,7 +290,6 @@ D:\Compass\Compass\obj\Debug\Compass.FrmUWI555.resources
 D:\Compass\Compass\obj\Debug\Compass.Properties.Resources.resources
 D:\Compass\Compass\obj\Debug\Compass.csproj.GenerateResource.cache
 D:\Compass\Compass\obj\Debug\Compass.csproj.CoreCompileInputs.cache
-D:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
 D:\Compass\Compass\obj\Debug\Compass.exe
 D:\Compass\Compass\obj\Debug\Compass.pdb
 E:\Compass\Compass\bin\Debug\eDrawings.Interop.EModelViewControl.dll
@@ -318,3 +316,4 @@ D:\Compass\Compass\obj\Debug\Compass.FrmSolidWorksTools.resources
 D:\Compass\Compass\obj\Debug\Compass.FrmHWUVF650.resources
 D:\Compass\Compass\obj\Debug\Compass.FrmHWUVI650.resources
 D:\Compass\Compass\obj\Debug\Compass.ModelView.resources
+D:\Compass\Compass\obj\Debug\Compass.csproj.AssemblyReference.cache

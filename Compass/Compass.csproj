@@ -165,10 +165,10 @@
     <Compile Include="CeilingForm\FrmLKS270HCL.Designer.cs">
       <DependentUpon>FrmLKS270HCL.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMarineAutoDrawing.cs">
+    <Compile Include="SingletonForm\FrmMarineAutoDrawing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMarineAutoDrawing.Designer.cs">
+    <Compile Include="SingletonForm\FrmMarineAutoDrawing.Designer.cs">
       <DependentUpon>FrmMarineAutoDrawing.cs</DependentUpon>
     </Compile>
     <Compile Include="HoodForm\FrmFRUVF555.cs">

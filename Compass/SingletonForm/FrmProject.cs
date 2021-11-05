@@ -35,7 +35,9 @@ namespace Compass
             cobHoodType.Items.Add("Hood");
             cobHoodType.Items.Add("Ceiling");
             cobHoodType.Items.Add("Marine");
-            cobHoodType.SelectedIndex = -1;
+            if(sbu=="Marine") cobHoodType.SelectedIndex = 2;
+            else cobHoodType.SelectedIndex = -1;
+
             dgvProjects.AutoGenerateColumns = false;
             btnProject.Text = "添加项目信息";
 
@@ -203,12 +205,12 @@ namespace Compass
 
         public void RefreshAllCobODPNo()
         {
-            SingletonObject.GetSingleton.FrmDP.IniCobODPNo();
-            SingletonObject.GetSingleton.FrmPT.IniCobODPNo();
+            SingletonObject.GetSingleton.FrmDP?.IniCobODPNo();
+            SingletonObject.GetSingleton.FrmPT?.IniCobODPNo();
             SingletonObject.GetSingleton.FrmHAD.IniCobODPNo();
             SingletonObject.GetSingleton.FrmCAD.IniCobODPNo();
             SingletonObject.GetSingleton.FrmPI.IniCobODPNo();
-            SingletonObject.GetSingleton.FrmSF.IniCobODPNo();
+            SingletonObject.GetSingleton.FrmSF?.IniCobODPNo();
         }
 
 
@@ -285,7 +287,7 @@ namespace Compass
                         //刷新显示
                         BtnQueryByYear_Click(null, null);
                         RefreshAllCobODPNo();
-                        SingletonObject.GetSingleton.FrmPT.BtnQueryByYear_Click(null,null);
+                        SingletonObject.GetSingleton.FrmPT?.BtnQueryByYear_Click(null,null);
                         //清空内容
                         cobCustomerId.SelectedIndex = -1;
                         cobHoodType.SelectedIndex = -1;
@@ -329,8 +331,8 @@ namespace Compass
                     {
                         BtnQueryByYear_Click(null, null); //同步刷新显示数据
                         RefreshAllCobODPNo();
-                        SingletonObject.GetSingleton.FrmDP.BtnQueryByYear_Click(null, null);
-                        SingletonObject.GetSingleton.FrmPT.BtnQueryByYear_Click(null, null);
+                        SingletonObject.GetSingleton.FrmDP?.BtnQueryByYear_Click(null, null);
+                        SingletonObject.GetSingleton.FrmPT?.BtnQueryByYear_Click(null, null);
                         btnProject.Text = "添加项目信息";
                         cobCustomerId.SelectedIndex = -1;
                         cobHoodType.SelectedIndex = -1;

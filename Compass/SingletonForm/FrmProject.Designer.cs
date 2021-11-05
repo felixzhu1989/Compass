@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnQueryAllProjects = new System.Windows.Forms.Button();
             this.btnProject = new System.Windows.Forms.Button();
             this.dtpShippingTime = new System.Windows.Forms.DateTimePicker();
@@ -472,10 +472,10 @@
             // SalesValue
             // 
             this.SalesValue.DataPropertyName = "SalesValue";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "C0";
-            dataGridViewCellStyle7.NullValue = null;
-            this.SalesValue.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "C0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.SalesValue.DefaultCellStyle = dataGridViewCellStyle3;
             this.SalesValue.HeaderText = "销售额(元)";
             this.SalesValue.Name = "SalesValue";
             this.SalesValue.ReadOnly = true;
@@ -543,9 +543,9 @@
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             this.label13.Location = new System.Drawing.Point(297, 20);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(67, 19);
+            this.label13.Size = new System.Drawing.Size(99, 19);
             this.label13.TabIndex = 36;
-            this.label13.Text = "烟罩/天花";
+            this.label13.Text = "烟罩/天花/海工";
             // 
             // groupBox1
             // 
