@@ -412,4 +412,9 @@ values('13701958039','vince.lv@halton.com',3,'vince','123'),
 
 
 
-
+select * from CategoriesMarine
+select * from Categories
+insert into CategoriesMarine (CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelPath)
+	values
+		(1000,1000,'Halton','Halton',' ',' ',' ')
+		

@@ -160,6 +160,7 @@
     <Compile Include="Hood\KVI450300.cs" />
     <Compile Include="Hood\KVV555.cs" />
     <Compile Include="Ceiling\LKS270HCL.cs" />
+    <Compile Include="Marine\HME.cs" />
     <Compile Include="ModelViewData.cs" />
     <Compile Include="ModuleTree.cs" />
     <Compile Include="Ceiling\NOCJ300.cs" />
@@ -205,8 +206,6 @@
     <Compile Include="Hood\UVI450300.cs" />
     <Compile Include="Hood\UVF450.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Marine\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

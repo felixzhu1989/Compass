@@ -2847,3 +2847,77 @@ create table UCJFCCOMBIDXF
     ModuleTreeId int,
 	Quantity int    
 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------HME -----------------------------------------------------------------------------
+if exists (select * from sysobjects where name='HME')
+drop table HME
+go
+create table HME
+(
+	HMEId int identity(1,1),
+	ModuleTreeId int,
+	Length decimal(6,2),
+	Width decimal(6,2),
+	Height decimal(6,2),
+	InletDia decimal(6,2),
+	OutletDia decimal(6,2),
+	OutletHeight decimal(6,2),
+	HangPosition varchar(4),
+	PowerPlug varchar(5),
+	PowerPlugDis decimal(6,2),
+	NetPlug varchar(6),
+	PlugPosition varchar(5),
+	Heater varchar(3),
+	TemperatureSwitch varchar(3),
+	NamePlate varchar(3),
+	WindPressure varchar(3)
+)
+-----------------------------------------------------------HMF-----------------------------------------------------------------------------
+if exists (select * from sysobjects where name='HMF')
+drop table HMF
+go
+create table HMF
+(
+	HMFId int identity(1,1),
+	ModuleTreeId int,
+	Length decimal(6,2),
+	Width decimal(6,2),
+	Height decimal(6,2),
+	InletDia decimal(6,2),
+	OutletDia decimal(6,2),
+	OutletHeight decimal(6,2),
+	HangPosition varchar(4),
+	PowerPlug varchar(5),
+	PowerPlugDis decimal(6,2),
+	NetPlug varchar(6),
+	PlugPosition varchar(5),
+	Heater varchar(3),
+	TemperatureSwitch varchar(3),
+	NamePlate varchar(3),
+	WindPressure varchar(3)
+)

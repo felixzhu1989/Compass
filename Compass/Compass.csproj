@@ -171,6 +171,12 @@
     <Compile Include="HoodForm\FrmFRUVF555.Designer.cs">
       <DependentUpon>FrmFRUVF555.cs</DependentUpon>
     </Compile>
+    <Compile Include="MarineForm\FrmHME.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MarineForm\FrmHME.designer.cs">
+      <DependentUpon>FrmHME.cs</DependentUpon>
+    </Compile>
     <Compile Include="SingletonForm\FrmDrawingNumMatrix.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1043,6 +1049,9 @@
     <EmbeddedResource Include="HoodForm\FrmFRUVF555.resx">
       <DependentUpon>FrmFRUVF555.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MarineForm\FrmHME.resx">
+      <DependentUpon>FrmHME.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SingletonForm\FrmCategories.resx">
       <DependentUpon>FrmCategories.cs</DependentUpon>
     </EmbeddedResource>
@@ -1417,9 +1426,7 @@
     <Content Include="images\Update.png" />
     <Content Include="images\UpdateStart.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MarineForm\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>

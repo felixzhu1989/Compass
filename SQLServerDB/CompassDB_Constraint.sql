@@ -2279,3 +2279,49 @@ if exists (select * from sysobjects where name='fk_ModuleTreeId_UCJFCCOMBIDXF')
 GO
 alter table UCJFCCOMBIDXF add constraint fk_ModuleTreeId_UCJFCCOMBIDXF foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
 GO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------HME-----------------------------------------------------------
+if exists (select * from sysobjects where name='pk_HMEId')
+    alter table HME drop constraint pk_HMEId
+GO
+alter table HME add constraint pk_HMEId primary key (HMEId)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_HME')
+    alter table HME drop constraint fk_ModuleTreeId_HME
+GO
+alter table HME add constraint fk_ModuleTreeId_HME foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+
+-------------------------------------HMF-----------------------------------------------------------
+if exists (select * from sysobjects where name='pk_HMFId')
+    alter table HMF drop constraint pk_HMFId
+GO
+alter table HMF add constraint pk_HMFId primary key (HMFId)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_HMF')
+    alter table HMF drop constraint fk_ModuleTreeId_HMF
+GO
+alter table HMF add constraint fk_ModuleTreeId_HMF foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO

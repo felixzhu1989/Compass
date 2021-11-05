@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="CeilingAutoDrawing\BCJ330AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\CJ330AutoDrawing.cs" />
+    <Compile Include="EditPartMarine.cs" />
     <Compile Include="HoodAutoDrawing\FRUVF555AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\CH610AutoDrawing.cs" />
     <Compile Include="EditPart.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="HoodAutoDrawing\KVI450300AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\KVV555AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\LKS270HCLAutoDrawing.cs" />
+    <Compile Include="MarineAutoDrawing\HMEAutoDrawing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HoodAutoDrawing\KVF555AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\KWF555AutoDrawing.cs" />
@@ -196,8 +198,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MarineAutoDrawing\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

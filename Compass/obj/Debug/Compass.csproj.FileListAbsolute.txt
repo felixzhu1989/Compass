@@ -156,11 +156,7 @@ D:\Compass\Compass\bin\Debug\MetroFramework.Fonts.dll
 D:\Compass\Compass\bin\Debug\Models.dll
 D:\Compass\Compass\bin\Debug\MyUIControls.dll
 D:\Compass\Compass\bin\Debug\SolidWorksHelper.dll
-D:\Compass\Compass\bin\Debug\Spire.License.dll
-D:\Compass\Compass\bin\Debug\Spire.Pdf.dll
-D:\Compass\Compass\bin\Debug\Spire.XLS.dll
 D:\Compass\Compass\bin\Debug\UpdateProgram.exe
-D:\Compass\Compass\bin\Debug\Microsoft.mshtml.dll
 D:\Compass\Compass\bin\Debug\Common.pdb
 D:\Compass\Compass\bin\Debug\DAL.pdb
 D:\Compass\Compass\bin\Debug\Models.pdb
@@ -168,9 +164,6 @@ D:\Compass\Compass\bin\Debug\MyUIControls.pdb
 D:\Compass\Compass\bin\Debug\SolidWorksHelper.pdb
 D:\Compass\Compass\bin\Debug\UpdateProgram.pdb
 D:\Compass\Compass\bin\Debug\UpdateProgram.exe.config
-D:\Compass\Compass\bin\Debug\Spire.License.xml
-D:\Compass\Compass\bin\Debug\Spire.Pdf.xml
-D:\Compass\Compass\bin\Debug\Spire.XLS.xml
 D:\Compass\Compass\obj\Debug\Compass.csprojAssemblyReference.cache
 D:\Compass\Compass\obj\Debug\Compass.csproj.ResolveComReference.cache
 D:\Compass\Compass\obj\Debug\Compass.FrmBCJ300.resources
@@ -314,3 +307,14 @@ E:\Compass\Compass\obj\Debug\Compass.FrmHWUVI650.resources
 E:\Compass\Compass\obj\Debug\Compass.csproj.AssemblyReference.cache
 E:\Compass\Compass\obj\Debug\Compass.FrmLKS270HCL.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmFRUVF555.resources
+D:\Compass\Compass\obj\Debug\Compass.FrmLKS270HCL.resources
+D:\Compass\Compass\obj\Debug\Compass.FrmFRUVF555.resources
+D:\Compass\Compass\obj\Debug\Compass.FrmHME.resources
+D:\Compass\Compass\obj\Debug\Compass.FrmDrawingNumMatrix.resources
+D:\Compass\Compass\obj\Debug\Compass.FrmProjectMeasure.resources
+D:\Compass\Compass\obj\Debug\Compass.FrmSyncFiles.resources
+D:\Compass\Compass\obj\Debug\Compass.FrmModelView.resources
+D:\Compass\Compass\obj\Debug\Compass.FrmSolidWorksTools.resources
+D:\Compass\Compass\obj\Debug\Compass.FrmHWUVF650.resources
+D:\Compass\Compass\obj\Debug\Compass.FrmHWUVI650.resources
+D:\Compass\Compass\obj\Debug\Compass.ModelView.resources

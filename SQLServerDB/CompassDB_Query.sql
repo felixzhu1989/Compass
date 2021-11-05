@@ -689,3 +689,4 @@ group by ODPReceiveDate order by ODPReceiveDate asc
 
 select * from Users
 select * from UserGroups order by usergroupid
+select * from CategoriesMarine
