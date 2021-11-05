@@ -725,7 +725,9 @@ namespace SolidWorksHelper
                  swEdit.NTC-anturi(swComp, "HME");
 
               */
-
+                swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
+                swModel.Save();//保存，很耗时间
+                swApp.CloseDoc(packedAssyPath);//关闭，很快
             }
             catch (Exception ex)
             {
