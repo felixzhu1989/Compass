@@ -316,6 +316,7 @@ namespace Compass
                     SingletonObject.GetSingleton.FrmCAD.ShowWithOdpNo(objProject.ODPNo);
                     break;
                 case "Marine":
+                    SingletonObject.GetSingleton.FrmMAD.ShowWithOdpNo(objProject.ODPNo);
                     break;
             }
         }

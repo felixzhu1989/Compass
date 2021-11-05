@@ -24,6 +24,7 @@ namespace Compass
         //非嵌入
         public FrmHoodAutoDrawing FrmHAD { get; set; }
         public FrmCeilingAutoDrawing FrmCAD { get; set; }
+        public FrmMarineAutoDrawing FrmMAD { get; set; }
         public FrmProjectInfo FrmPI { get; set; }
         public FrmSyncFiles FrmSF { get; set; }
         public FrmDrawingNumMatrix FrmDNM { get; set; }
@@ -51,6 +52,7 @@ namespace Compass
         {
             if (frmObj is FrmHoodAutoDrawing) this.FrmHAD = frmObj as FrmHoodAutoDrawing;
             if (frmObj is FrmCeilingAutoDrawing) this.FrmCAD =frmObj as FrmCeilingAutoDrawing;
+            if (frmObj is FrmMarineAutoDrawing) this.FrmMAD =frmObj as FrmMarineAutoDrawing;
             if (frmObj is FrmProjectInfo) this.FrmPI = frmObj as FrmProjectInfo;
             if (frmObj is FrmSyncFiles) this.FrmSF = frmObj as FrmSyncFiles;
             if (frmObj is FrmDrawingNumMatrix) this.FrmDNM = frmObj as FrmDrawingNumMatrix;

@@ -194,14 +194,15 @@ namespace Compass
             SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmDrawingNumMatrix>(() => new FrmDrawingNumMatrix()).Value);
             SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmCeilingAutoDrawing>(() => new FrmCeilingAutoDrawing()).Value);
             SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmHoodAutoDrawing>(() => new FrmHoodAutoDrawing()).Value);
+            SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmMarineAutoDrawing>(() => new FrmMarineAutoDrawing()).Value);
             SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmSolidWorksTools>(() => new FrmSolidWorksTools()).Value);
             SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmProjectMeasure>(() => new FrmProjectMeasure()).Value);
             SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmDrawingPlanQuery>(() => new FrmDrawingPlanQuery()).Value);
             SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmCategoryTree>(() => new FrmCategoryTree()).Value);
             //嵌入
             SingletonObject.GetSingleton.AddForm(new Lazy<FrmProject>(() => new FrmProject()).Value);
-            SingletonObject.GetSingleton.AddForm(new Lazy<FrmModuleTree>(() => new FrmModuleTree()).Value);
-            SingletonObject.GetSingleton.AddForm(new Lazy<FrmQuickBrowse>(() => new FrmQuickBrowse()).Value);
+            SingletonObject.GetSingleton.AddForm(new FrmModuleTree(QuickBrowse));
+            SingletonObject.GetSingleton.AddForm(new FrmQuickBrowse() );
             ShowForm(SingletonObject.GetSingleton.FrmMT, splitContainer.Panel1);
             SingletonObject.GetSingleton.AddForm(new Lazy<FrmDrawingPlan>(() => new FrmDrawingPlan()).Value);
             SingletonObject.GetSingleton.AddForm(new Lazy<FrmProjectTracking>(() => new FrmProjectTracking()).Value);

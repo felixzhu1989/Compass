@@ -2311,7 +2311,7 @@ GO
 if exists (select * from sysobjects where name='fk_ModuleTreeId_HME')
     alter table HME drop constraint fk_ModuleTreeId_HME
 GO
-alter table HME add constraint fk_ModuleTreeId_HME foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+alter table HME add constraint fk_ModuleTreeId_HME foreign key(ModuleTreeId) references ModuleTreeMarine (ModuleTreeId)
 GO
 
 -------------------------------------HMF-----------------------------------------------------------
@@ -2323,5 +2323,5 @@ GO
 if exists (select * from sysobjects where name='fk_ModuleTreeId_HMF')
     alter table HMF drop constraint fk_ModuleTreeId_HMF
 GO
-alter table HMF add constraint fk_ModuleTreeId_HMF foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+alter table HMF add constraint fk_ModuleTreeId_HMF foreign key(ModuleTreeId) references ModuleTreeMarine (ModuleTreeId)
 GO

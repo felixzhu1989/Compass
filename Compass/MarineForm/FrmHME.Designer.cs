@@ -45,25 +45,25 @@
             this.txtWidth = new System.Windows.Forms.TextBox();
             this.txtLength = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.cobHeater = new System.Windows.Forms.ComboBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.cobWindPressure = new System.Windows.Forms.ComboBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.cobHangPosition = new System.Windows.Forms.ComboBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.cobNamePlate = new System.Windows.Forms.ComboBox();
-            this.label20 = new System.Windows.Forms.Label();
             this.cobTemperatureSwitch = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
+            this.cobNamePlate = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.cobHangPosition = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cobWindPressure = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cobHeater = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cobNetPlug = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cobPowerPlug = new System.Windows.Forms.ComboBox();
+            this.txtPowerPlugDis = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cobPlugPosition = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtPowerPlugDis = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -95,6 +95,7 @@
             this.btnEditData.TabIndex = 15;
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
+            this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
             // 
             // groupBox1
             // 
@@ -243,77 +244,29 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "辅件配置";
             // 
-            // cobHeater
+            // cobTemperatureSwitch
             // 
-            this.cobHeater.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cobHeater.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobHeater.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobHeater.BackColor = System.Drawing.Color.Azure;
-            this.cobHeater.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobHeater.FormattingEnabled = true;
-            this.cobHeater.Location = new System.Drawing.Point(75, 28);
-            this.cobHeater.Name = "cobHeater";
-            this.cobHeater.Size = new System.Drawing.Size(73, 27);
-            this.cobHeater.TabIndex = 0;
+            this.cobTemperatureSwitch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cobTemperatureSwitch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobTemperatureSwitch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobTemperatureSwitch.BackColor = System.Drawing.Color.Azure;
+            this.cobTemperatureSwitch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobTemperatureSwitch.FormattingEnabled = true;
+            this.cobTemperatureSwitch.Location = new System.Drawing.Point(239, 93);
+            this.cobTemperatureSwitch.Name = "cobTemperatureSwitch";
+            this.cobTemperatureSwitch.Size = new System.Drawing.Size(65, 27);
+            this.cobTemperatureSwitch.TabIndex = 18;
             // 
-            // label17
+            // label21
             // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(21, 31);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(48, 19);
-            this.label17.TabIndex = 11;
-            this.label17.Text = "电加热";
-            // 
-            // cobWindPressure
-            // 
-            this.cobWindPressure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cobWindPressure.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobWindPressure.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobWindPressure.BackColor = System.Drawing.Color.Azure;
-            this.cobWindPressure.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobWindPressure.FormattingEnabled = true;
-            this.cobWindPressure.Location = new System.Drawing.Point(75, 63);
-            this.cobWindPressure.Name = "cobWindPressure";
-            this.cobWindPressure.Size = new System.Drawing.Size(73, 27);
-            this.cobWindPressure.TabIndex = 12;
-            // 
-            // label18
-            // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(21, 66);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(48, 19);
-            this.label18.TabIndex = 13;
-            this.label18.Text = "风压管";
-            // 
-            // cobHangPosition
-            // 
-            this.cobHangPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cobHangPosition.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobHangPosition.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobHangPosition.BackColor = System.Drawing.Color.Azure;
-            this.cobHangPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobHangPosition.FormattingEnabled = true;
-            this.cobHangPosition.Location = new System.Drawing.Point(75, 95);
-            this.cobHangPosition.Name = "cobHangPosition";
-            this.cobHangPosition.Size = new System.Drawing.Size(73, 27);
-            this.cobHangPosition.TabIndex = 14;
-            // 
-            // label19
-            // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(6, 101);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(61, 19);
-            this.label19.TabIndex = 15;
-            this.label19.Text = "吊脚位置";
+            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(172, 98);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(61, 19);
+            this.label21.TabIndex = 19;
+            this.label21.Text = "复位开关";
             // 
             // cobNamePlate
             // 
@@ -339,29 +292,77 @@
             this.label20.TabIndex = 17;
             this.label20.Text = "铭牌";
             // 
-            // cobTemperatureSwitch
+            // cobHangPosition
             // 
-            this.cobTemperatureSwitch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cobTemperatureSwitch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobTemperatureSwitch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobTemperatureSwitch.BackColor = System.Drawing.Color.Azure;
-            this.cobTemperatureSwitch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobTemperatureSwitch.FormattingEnabled = true;
-            this.cobTemperatureSwitch.Location = new System.Drawing.Point(239, 93);
-            this.cobTemperatureSwitch.Name = "cobTemperatureSwitch";
-            this.cobTemperatureSwitch.Size = new System.Drawing.Size(65, 27);
-            this.cobTemperatureSwitch.TabIndex = 18;
+            this.cobHangPosition.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cobHangPosition.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobHangPosition.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobHangPosition.BackColor = System.Drawing.Color.Azure;
+            this.cobHangPosition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobHangPosition.FormattingEnabled = true;
+            this.cobHangPosition.Location = new System.Drawing.Point(75, 95);
+            this.cobHangPosition.Name = "cobHangPosition";
+            this.cobHangPosition.Size = new System.Drawing.Size(73, 27);
+            this.cobHangPosition.TabIndex = 14;
             // 
-            // label21
+            // label19
             // 
-            this.label21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(172, 98);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(61, 19);
-            this.label21.TabIndex = 19;
-            this.label21.Text = "复位开关";
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.Color.Black;
+            this.label19.Location = new System.Drawing.Point(6, 101);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(61, 19);
+            this.label19.TabIndex = 15;
+            this.label19.Text = "吊脚位置";
+            // 
+            // cobWindPressure
+            // 
+            this.cobWindPressure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cobWindPressure.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobWindPressure.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobWindPressure.BackColor = System.Drawing.Color.Azure;
+            this.cobWindPressure.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobWindPressure.FormattingEnabled = true;
+            this.cobWindPressure.Location = new System.Drawing.Point(75, 63);
+            this.cobWindPressure.Name = "cobWindPressure";
+            this.cobWindPressure.Size = new System.Drawing.Size(73, 27);
+            this.cobWindPressure.TabIndex = 12;
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.Black;
+            this.label18.Location = new System.Drawing.Point(21, 66);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(48, 19);
+            this.label18.TabIndex = 13;
+            this.label18.Text = "风压管";
+            // 
+            // cobHeater
+            // 
+            this.cobHeater.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cobHeater.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobHeater.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobHeater.BackColor = System.Drawing.Color.Azure;
+            this.cobHeater.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobHeater.FormattingEnabled = true;
+            this.cobHeater.Location = new System.Drawing.Point(75, 28);
+            this.cobHeater.Name = "cobHeater";
+            this.cobHeater.Size = new System.Drawing.Size(73, 27);
+            this.cobHeater.TabIndex = 0;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.Color.Black;
+            this.label17.Location = new System.Drawing.Point(21, 31);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(48, 19);
+            this.label17.TabIndex = 11;
+            this.label17.Text = "电加热";
             // 
             // groupBox2
             // 
@@ -429,6 +430,14 @@
             this.cobPowerPlug.Size = new System.Drawing.Size(73, 27);
             this.cobPowerPlug.TabIndex = 12;
             // 
+            // txtPowerPlugDis
+            // 
+            this.txtPowerPlugDis.BackColor = System.Drawing.Color.Azure;
+            this.txtPowerPlugDis.Location = new System.Drawing.Point(127, 97);
+            this.txtPowerPlugDis.Name = "txtPowerPlugDis";
+            this.txtPowerPlugDis.Size = new System.Drawing.Size(76, 25);
+            this.txtPowerPlugDis.TabIndex = 3;
+            // 
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -463,14 +472,6 @@
             this.label12.Size = new System.Drawing.Size(61, 19);
             this.label12.TabIndex = 11;
             this.label12.Text = "插口位置";
-            // 
-            // txtPowerPlugDis
-            // 
-            this.txtPowerPlugDis.BackColor = System.Drawing.Color.Azure;
-            this.txtPowerPlugDis.Location = new System.Drawing.Point(127, 97);
-            this.txtPowerPlugDis.Name = "txtPowerPlugDis";
-            this.txtPowerPlugDis.Size = new System.Drawing.Size(76, 25);
-            this.txtPowerPlugDis.TabIndex = 3;
             // 
             // FrmHME
             // 

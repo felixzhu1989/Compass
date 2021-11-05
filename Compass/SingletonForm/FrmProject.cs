@@ -34,6 +34,7 @@ namespace Compass
 
             cobHoodType.Items.Add("Hood");
             cobHoodType.Items.Add("Ceiling");
+            cobHoodType.Items.Add("Marine");
             cobHoodType.SelectedIndex = -1;
             dgvProjects.AutoGenerateColumns = false;
             btnProject.Text = "添加项目信息";

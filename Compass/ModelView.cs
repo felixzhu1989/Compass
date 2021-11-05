@@ -18,6 +18,7 @@ namespace Compass
         private EModelMarkupControl m_EDrawingsMarkupCtrl;
         private CategoryService objCategoryService = new CategoryService();
         private ModelViewData modelViewData = new ModelViewData();
+        private string sbu = Program.ObjCurrentUser.SBU;
         public ModelView()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace Compass
         /// </summary>
         public void GetData(Drawing drawing, ModuleTree tree)
         {
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), tree.SBU);
+            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), sbu);
             Image modelImage = objCategory.ModelImage.Length == 0
                 ? Image.FromFile("NoPic.png")
                 : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);

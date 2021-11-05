@@ -690,3 +690,20 @@ group by ODPReceiveDate order by ODPReceiveDate asc
 select * from Users
 select * from UserGroups order by usergroupid
 select * from CategoriesMarine
+use CompassDB
+go
+select * from drawingplanmarine
+select * from moduletreeMarine
+select * from hme
+
+select HMEId,ModuleTreeId,
+Length,Width,Height,InletDia,OutletDia,OutletHeight,HangPosition,PowerPlug,
+PowerPlugDis,NetPlug,PlugPosition,Heater,TemperatureSwitch,NamePlate,WindPressure 
+from HME where ModuleTreeId=5
+
+select * from kvF555
+
+select HMEId,ModuleTreeId,Length,Width,Height,InletDia,OutletDia,OutletHeight,HangPosition,PowerPlug,PowerPlugDis,NetPlug,PlugPosition,Heater,TemperatureSwitch,NamePlate,WindPressure from HME where ModuleTreeId=5
+
+
+

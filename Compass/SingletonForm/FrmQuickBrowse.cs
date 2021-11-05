@@ -12,10 +12,11 @@ namespace Compass
     
     public partial class FrmQuickBrowse : Form
     {
+        private string sbu = Program.ObjCurrentUser.SBU;
         private HoodCutListService objHoodCutListService = new HoodCutListService();
         ModuleTreeService objModuleTreeService = new ModuleTreeService();
         private Drawing objDrawing = null;
-        private string sbu = Program.ObjCurrentUser.SBU;
+        
 
         public FrmQuickBrowse()
         {

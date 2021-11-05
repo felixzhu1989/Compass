@@ -19,8 +19,8 @@ namespace DAL
         public DataSet GetModelByDataSet(string projectId)
         {
             string sql = "select HMEId,HME.ModuleTreeId,Item,Module,Length,Width,Height,InletDia,OutletDia,OutletHeight,HangPosition,PowerPlug,PowerPlugDis,NetPlug,PlugPosition,Heater,TemperatureSwitch,NamePlate,WindPressure from HME";
-            sql += " inner join ModuleTree on HME.ModuleTreeId=ModuleTree.ModuleTreeId";
-            sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
+            sql += " inner join ModuleTreeMarine on HME.ModuleTreeId=ModuleTreeMarine.ModuleTreeId";
+            sql += " inner join DrawingPlanMarine on ModuleTreeMarine.DrawingPlanId=DrawingPlanMarine.DrawingPlanId";
             sql += $" where ProjectId={projectId}";
             sql += " order by Item,Module";
             return SQLHelper.GetDataSet(sql);
@@ -56,33 +56,33 @@ namespace DAL
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             HME objModel = null;
-            objModel = new HME()
-            {
-                HMEId = Convert.ToInt32(objReader["HMEId"]),
-                ModuleTreeId = Convert.ToInt32(objReader["ModuleTreeId"]),
-                //最好不要用=null去判断，提示类型转换错误
-                Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Length"]),
-                Width = objReader["Width"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Width"]),
-                Height = objReader["Height"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Height"]),
-                InletDia = objReader["InletDia"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["InletDia"]),
-
-                OutletDia = objReader["OutletDia"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["OutletDia"]),
-                OutletHeight = objReader["OutletHeight"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["OutletHeight"]),
-
-
-                HangPosition = objReader["HangPosition"].ToString().Length == 0 ? "" : objReader["HangPosition"].ToString(),
-                PowerPlug = objReader["PowerPlug"].ToString().Length == 0 ? "" : objReader["PowerPlug"].ToString(),
-
-                PowerPlugDis = objReader["PowerPlugDis"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["PowerPlugDis"]),
-                NetPlug = objReader["NetPlug"].ToString().Length == 0 ? "" : objReader["NetPlug"].ToString(),
-                PlugPosition = objReader["PlugPosition"].ToString().Length == 0 ? "" : objReader["PlugPosition"].ToString(),
-                Heater = objReader["Heater"].ToString().Length == 0 ? "" : objReader["Heater"].ToString(),
-                TemperatureSwitch = objReader["TemperatureSwitch"].ToString().Length == 0 ? "" : objReader["TemperatureSwitch"].ToString(),
-                NamePlate = objReader["NamePlate"].ToString().Length == 0 ? "" : objReader["NamePlate"].ToString(),
-                WindPressure = objReader["WindPressure"].ToString().Length == 0 ? "" : objReader["WindPressure"].ToString(),
-            };
             if (objReader.Read())
             {
+                objModel = new HME()
+                {
+                    HMEId = Convert.ToInt32(objReader["HMEId"]),
+                    ModuleTreeId = Convert.ToInt32(objReader["ModuleTreeId"]),
+                    //最好不要用=null去判断，提示类型转换错误
+                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Length"]),
+                    Width = objReader["Width"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Width"]),
+                    Height = objReader["Height"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Height"]),
+                    InletDia = objReader["InletDia"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["InletDia"]),
+
+                    OutletDia = objReader["OutletDia"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["OutletDia"]),
+                    OutletHeight = objReader["OutletHeight"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["OutletHeight"]),
+
+
+                    HangPosition = objReader["HangPosition"].ToString().Length == 0 ? "" : objReader["HangPosition"].ToString(),
+                    PowerPlug = objReader["PowerPlug"].ToString().Length == 0 ? "" : objReader["PowerPlug"].ToString(),
+
+                    PowerPlugDis = objReader["PowerPlugDis"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["PowerPlugDis"]),
+                    NetPlug = objReader["NetPlug"].ToString().Length == 0 ? "" : objReader["NetPlug"].ToString(),
+                    PlugPosition = objReader["PlugPosition"].ToString().Length == 0 ? "" : objReader["PlugPosition"].ToString(),
+                    Heater = objReader["Heater"].ToString().Length == 0 ? "" : objReader["Heater"].ToString(),
+                    TemperatureSwitch = objReader["TemperatureSwitch"].ToString().Length == 0 ? "" : objReader["TemperatureSwitch"].ToString(),
+                    NamePlate = objReader["NamePlate"].ToString().Length == 0 ? "" : objReader["NamePlate"].ToString(),
+                    WindPressure = objReader["WindPressure"].ToString().Length == 0 ? "" : objReader["WindPressure"].ToString(),
+                };
             }
             objReader.Close();
             return objModel;
@@ -98,7 +98,7 @@ namespace DAL
             //编写带参数的SQL语句
             StringBuilder sqlBuilder = new StringBuilder();
             sqlBuilder.Append("Update HME set Length=@Length,Width=@Width,Height=@Height,InletDia=@InletDia,OutletDia=@OutletDia,OutletHeight=@OutletHeight,HangPosition=@HangPosition,PowerPlug=@PowerPlug,PowerPlugDis=@PowerPlugDis,");
-            
+
             sqlBuilder.Append("NetPlug=@NetPlug,PlugPosition=@PlugPosition,Heater=@Heater,TemperatureSwitch=@TemperatureSwitch,NamePlate=@NamePlate,WindPressure=@WindPressure where HMEId=@HMEId");
             //定义参数数组
             SqlParameter[] param = new SqlParameter[]
@@ -118,7 +118,7 @@ namespace DAL
                 new SqlParameter("@TemperatureSwitch",objModel.TemperatureSwitch),
                 new SqlParameter("@NamePlate",objModel.NamePlate),
                 new SqlParameter("@WindPressure",objModel.WindPressure),
-                
+
                 new SqlParameter("@HMEId",objModel.HMEId)
             };
             try
