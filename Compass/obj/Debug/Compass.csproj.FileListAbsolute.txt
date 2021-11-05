@@ -316,4 +316,6 @@ D:\Compass\Compass\obj\Debug\Compass.FrmSolidWorksTools.resources
 D:\Compass\Compass\obj\Debug\Compass.FrmHWUVF650.resources
 D:\Compass\Compass\obj\Debug\Compass.FrmHWUVI650.resources
 D:\Compass\Compass\obj\Debug\Compass.ModelView.resources
-D:\Compass\Compass\obj\Debug\Compass.csproj.AssemblyReference.cache
+D:\Compass\Compass\obj\Debug\Compass.csprojAssemblyReference.cache
+D:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
+D:\Compass\Compass\obj\Debug\Compass.FrmMarineAutoDrawing.resources

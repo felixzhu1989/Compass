@@ -258,8 +258,6 @@ namespace Compass
         /// <summary>
         /// 打印JobCard
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private async void BtnJobCard_Click(object sender, EventArgs e)
         {
             if (execList.Count == 0) return;

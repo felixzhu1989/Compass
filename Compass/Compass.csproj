@@ -1085,6 +1085,9 @@
     <EmbeddedResource Include="SingletonForm\FrmDrawingNumMatrix.resx">
       <DependentUpon>FrmDrawingNumMatrix.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SingletonForm\FrmMarineAutoDrawing.resx">
+      <DependentUpon>FrmMarineAutoDrawing.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SingletonForm\FrmProjectMeasure.resx">
       <DependentUpon>FrmProjectMeasure.cs</DependentUpon>
     </EmbeddedResource>
