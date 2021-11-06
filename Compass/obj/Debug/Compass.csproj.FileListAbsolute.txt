@@ -319,3 +319,4 @@ D:\Compass\Compass\obj\Debug\Compass.ModelView.resources
 D:\Compass\Compass\obj\Debug\Compass.csprojAssemblyReference.cache
 D:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
 D:\Compass\Compass\obj\Debug\Compass.FrmMarineAutoDrawing.resources
+D:\Compass\Compass\obj\Debug\Compass.FrmHMF.resources
