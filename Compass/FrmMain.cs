@@ -143,9 +143,9 @@ namespace Compass
         //每10分钟更新数据
         private void TimerRefreshData_Tick(object sender, EventArgs e)
         {
-            SingletonObject.GetSingleton.FrmP.BtnQueryByYear_Click(null,null);
-            SingletonObject.GetSingleton.FrmDP.BtnQueryByYear_Click(null,null);
-            SingletonObject.GetSingleton.FrmPT.BtnQueryByYear_Click(null,null);
+            SingletonObject.GetSingleton.FrmP?.BtnQueryByYear_Click(null,null);
+            SingletonObject.GetSingleton.FrmDP?.BtnQueryByYear_Click(null,null);
+            SingletonObject.GetSingleton.FrmPT?.BtnQueryByYear_Click(null,null);
         }
         //开机自启动
         private void TsmiSetStartUp_Click(object sender, EventArgs e)
@@ -250,7 +250,7 @@ namespace Compass
         //非嵌入
         private void TsmiProjectInfo_Click(object sender, EventArgs e)
         {
-            SingletonObject.GetSingleton.FrmPI.ShowAndFocus();
+            SingletonObject.GetSingleton.FrmPI?.ShowAndFocus();
         }
         #region 【2】根据委托创建方法
 
@@ -260,7 +260,7 @@ namespace Compass
             {
                 ShowForm(SingletonObject.GetSingleton.FrmQB, splitContainer.Panel2);
             }
-            SingletonObject.GetSingleton.FrmQB.ShowWithItem(drawing, tree);
+            SingletonObject.GetSingleton.FrmQB?.ShowWithItem(drawing, tree);
         }
         #endregion
         #endregion 项目信息菜单
@@ -268,16 +268,16 @@ namespace Compass
         #region SolidWorks自动绘图
         private void TsmiHoodAutoDrawing_Click(object sender, EventArgs e)
         {
-            SingletonObject.GetSingleton.FrmHAD.ShowAndFocus();
+            SingletonObject.GetSingleton.FrmHAD?.ShowAndFocus();
         }
 
         private void TsmiCeilingAutoDrawing_Click(object sender, EventArgs e)
         {
-            SingletonObject.GetSingleton.FrmCAD.ShowAndFocus();
+            SingletonObject.GetSingleton.FrmCAD?.ShowAndFocus();
         }
         private void TsmiMarineAutoDrawing_Click(object sender, EventArgs e)
         {
-            SingletonObject.GetSingleton.FrmMAD.ShowAndFocus();
+            SingletonObject.GetSingleton.FrmMAD?.ShowAndFocus();
         }
         #endregion  SolidWorks自动绘图
 
@@ -285,7 +285,7 @@ namespace Compass
         private void TsmiProjectMeasure_Click(object sender, EventArgs e)
         {
            if(SingletonObject.GetSingleton.FrmPM==null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmProjectMeasure>(() => new FrmProjectMeasure()).Value);
-            SingletonObject.GetSingleton.FrmPM.ShowAndFocus();
+            SingletonObject.GetSingleton.FrmPM?.ShowAndFocus();
         }
         /// <summary>
         /// 制图计划统计
@@ -295,7 +295,7 @@ namespace Compass
         private void TsmiDrawingPlanQuery_Click(object sender, EventArgs e)
         {
            if(SingletonObject.GetSingleton.FrmDPQ==null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmDrawingPlanQuery>(() => new FrmDrawingPlanQuery()).Value);
-            SingletonObject.GetSingleton.FrmDPQ.ShowAndFocus();
+            SingletonObject.GetSingleton.FrmDPQ?.ShowAndFocus();
         }
 
         #endregion
@@ -354,7 +354,7 @@ namespace Compass
         private void TsmieSolidWorksTools_Click(object sender, EventArgs e)
         {
            if(SingletonObject.GetSingleton.FrmSWT==null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmSolidWorksTools>(() => new FrmSolidWorksTools()).Value);
-            SingletonObject.GetSingleton.FrmSWT.ShowAndFocus();
+            SingletonObject.GetSingleton.FrmSWT?.ShowAndFocus();
         }
 
         //非窗体
@@ -395,12 +395,12 @@ namespace Compass
         {
            if(SingletonObject.GetSingleton.FrmSF==null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmSyncFiles>(() => new FrmSyncFiles()).Value);
             
-            SingletonObject.GetSingleton.FrmSF.ShowAndFocus();
+            SingletonObject.GetSingleton.FrmSF?.ShowAndFocus();
         }
         private void TsmiDrawingNumMatrix_Click(object sender, EventArgs e)
         {
            if(SingletonObject.GetSingleton.FrmDNM==null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmDrawingNumMatrix>(() => new FrmDrawingNumMatrix()).Value);
-            SingletonObject.GetSingleton.FrmDNM.ShowAndFocus();
+            SingletonObject.GetSingleton.FrmDNM?.ShowAndFocus();
         }
         private void TsmiTestCode_Click(object sender, EventArgs e)
         {

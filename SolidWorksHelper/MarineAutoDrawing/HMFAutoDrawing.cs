@@ -62,9 +62,9 @@ namespace SolidWorksHelper
 
                 #region 顶层
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "NTC-anturi-1");
-                swComp.SetSuppression2(0); //2解压缩，0压缩
+                swComp.SetSuppression2(2); //2解压缩，0压缩
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "TerminalBlock-1");
-                swComp.SetSuppression2(0); //2解压缩，0压缩 
+                swComp.SetSuppression2(2); //2解压缩，0压缩 
                 #endregion
 
                 #region 插口位置判断
@@ -345,7 +345,7 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(1, 2, null);
                         swFeat = swComp.FeatureByName("NAC21");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D4@Sketch39").SystemValue = item.Height / 2000 - 28m / 1000m;
+                        swPart.Parameter("D4@Sketch39").SystemValue = 28m / 1000m;
                     }
                     else
                     {
@@ -379,23 +379,7 @@ namespace SolidWorksHelper
                 swEdit.MNCC0006(swComp, "HMF", item.Height, item.PowerPlug, item.PowerPlugDis, item.NetPlug, item.PlugPosition, item.Heater, item.TemperatureSwitch);
 
 
-                //
-                if (item.TemperatureSwitch == "Yes")
-                {
-                    swFeat = swComp.FeatureByName("TemperatureSwitch-HMF");
-                    swFeat.SetSuppression2(1, 2, null);
-                    swFeat = swComp.FeatureByName("TemperatureSwitch-HMM");
-                    swFeat.SetSuppression2(0, 2, null);
-                }
-                else
-                {
-                    swFeat = swComp.FeatureByName("TemperatureSwitch-HMF");
-                    swFeat.SetSuppression2(0, 2, null);
-                    swFeat = swComp.FeatureByName("TemperatureSwitch-HMM");
-                    swFeat.SetSuppression2(0, 2, null);
-                }
-
-                //
+               
                 //----------外壳-底板(后)------------------------MNCC0003
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0003-1");
                 swPart = swComp.GetModelDoc2();
@@ -609,7 +593,7 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(1, 2, null);
                         swFeat = swComp.FeatureByName("NAC21");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D3@Sketch5").SystemValue = 45m / 1000m;
+                        swPart.Parameter("D3@Sketch5").SystemValue = 55m / 1000m;
                     }
                     else
                     {

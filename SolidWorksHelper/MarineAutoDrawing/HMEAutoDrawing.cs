@@ -375,23 +375,6 @@ namespace SolidWorksHelper
                 swEdit.MNCC0006(swComp, "HME", item.Height, item.PowerPlug, item.PowerPlugDis, item.NetPlug, item.PlugPosition, item.Heater, item.TemperatureSwitch);
 
 
-                //
-                if (item.TemperatureSwitch == "Yes")
-                {
-                    swFeat = swComp.FeatureByName("TemperatureSwitch-HMF");
-                    swFeat.SetSuppression2(1, 2, null);
-                    swFeat = swComp.FeatureByName("TemperatureSwitch-HMM");
-                    swFeat.SetSuppression2(0, 2, null);
-                }
-                else
-                {
-                    swFeat = swComp.FeatureByName("TemperatureSwitch-HMF");
-                    swFeat.SetSuppression2(0, 2, null);
-                    swFeat = swComp.FeatureByName("TemperatureSwitch-HMM");
-                    swFeat.SetSuppression2(0, 2, null);
-                }
-
-                //
                 //----------外壳-底板(后)------------------------MNCC0003
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0003-1");
                 swPart = swComp.GetModelDoc2();

@@ -202,7 +202,7 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(1, 2, null);
                 swPart.Parameter("D4@Sketch92").SystemValue = 43m / 1000m;
             }
-            else if (temperatureSwitch == "NO")
+            else if (temperatureSwitch == "No")
             {
                 swFeat = swComp.FeatureByName("TemperatureSwitch");
                 swFeat.SetSuppression2(0, 2, null);

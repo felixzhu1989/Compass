@@ -182,7 +182,7 @@ namespace Compass
                 string drawingPlanId = tvModule.SelectedNode.Tag.ToString();
                 drawingPlanId = drawingPlanId.Substring(4);//除去item
                 Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId, sbu);
-                SingletonObject.GetSingleton.FrmCT.AddModule(objDrawing);
+                SingletonObject.GetSingleton.FrmCT?.AddModule(objDrawing);
             }
         }
         /// <summary>
@@ -200,7 +200,7 @@ namespace Compass
                 Drawing objDrawing = objDrawingService.GetDrawingById(drawingPlanId, sbu);
                 string moduleTreeId = tvModule.SelectedNode.Tag.ToString();
                 ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId, sbu);
-                SingletonObject.GetSingleton.FrmCT.EditModule(objDrawing, objModuleTree);
+                SingletonObject.GetSingleton.FrmCT?.EditModule(objDrawing, objModuleTree);
             }
         }
         /// <summary>
@@ -310,13 +310,13 @@ namespace Compass
             switch (objProject.HoodType)
             {
                 case "Hood":
-                    SingletonObject.GetSingleton.FrmHAD.ShowWithOdpNo(objProject.ODPNo);
+                    SingletonObject.GetSingleton.FrmHAD?.ShowWithOdpNo(objProject.ODPNo);
                     break;
                 case "Ceiling":
-                    SingletonObject.GetSingleton.FrmCAD.ShowWithOdpNo(objProject.ODPNo);
+                    SingletonObject.GetSingleton.FrmCAD?.ShowWithOdpNo(objProject.ODPNo);
                     break;
                 case "Marine":
-                    SingletonObject.GetSingleton.FrmMAD.ShowWithOdpNo(objProject.ODPNo);
+                    SingletonObject.GetSingleton.FrmMAD?.ShowWithOdpNo(objProject.ODPNo);
                     break;
             }
         }
@@ -343,7 +343,7 @@ namespace Compass
             {
                 node = tvModule.SelectedNode.Parent.Parent;
             }
-            SingletonObject.GetSingleton.FrmPI.ShowWithOdpNo(node.Text);
+            SingletonObject.GetSingleton.FrmPI?.ShowWithOdpNo(node.Text);
         }
         /// <summary>
         /// 打开天花总装

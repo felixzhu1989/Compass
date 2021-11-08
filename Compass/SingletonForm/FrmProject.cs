@@ -207,9 +207,9 @@ namespace Compass
         {
             SingletonObject.GetSingleton.FrmDP?.IniCobODPNo();
             SingletonObject.GetSingleton.FrmPT?.IniCobODPNo();
-            SingletonObject.GetSingleton.FrmHAD.IniCobODPNo();
-            SingletonObject.GetSingleton.FrmCAD.IniCobODPNo();
-            SingletonObject.GetSingleton.FrmPI.IniCobODPNo();
+            SingletonObject.GetSingleton.FrmHAD?.IniCobODPNo();
+            SingletonObject.GetSingleton.FrmCAD?.IniCobODPNo();
+            SingletonObject.GetSingleton.FrmPI?.IniCobODPNo();
             SingletonObject.GetSingleton.FrmSF?.IniCobODPNo();
         }
 
@@ -456,7 +456,7 @@ namespace Compass
             if (dgvProjects.RowCount == 0) return;
             if (dgvProjects.CurrentRow == null) return;
             string odpNo = dgvProjects.CurrentRow.Cells["ODPNo"].Value.ToString();
-            SingletonObject.GetSingleton.FrmPI.ShowWithOdpNo(odpNo);
+            SingletonObject.GetSingleton.FrmPI?.ShowWithOdpNo(odpNo);
         }
         /// <summary>
         /// 根据订单号查询订单
@@ -515,7 +515,7 @@ namespace Compass
             txtODPNo.Text = this.dgvProjects.CurrentRow.Cells["ODPNo"].Value.ToString();
             //ShowModelTreeDeg(txtODPNo.Text);
             if(txtODPNo.Text.Trim().Length==0)return;
-            SingletonObject.GetSingleton.FrmMT.ShowWithOdpNo(txtODPNo.Text);
+            SingletonObject.GetSingleton.FrmMT?.ShowWithOdpNo(txtODPNo.Text);
         }
 
         /// <summary>

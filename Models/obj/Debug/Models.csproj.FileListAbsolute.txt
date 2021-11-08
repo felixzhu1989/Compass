@@ -6,7 +6,6 @@ E:\Compass\Models\obj\Debug\Models.pdb
 E:\Compass\Models\obj\Debug\Models.csproj.AssemblyReference.cache
 D:\Compass\Models\bin\Debug\Models.dll
 D:\Compass\Models\bin\Debug\Models.pdb
-D:\Compass\Models\obj\Debug\Models.csprojAssemblyReference.cache
 D:\Compass\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 D:\Compass\Models\obj\Debug\Models.dll
 D:\Compass\Models\obj\Debug\Models.pdb
