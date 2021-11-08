@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHME));
-           
             this.btnEditData = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -64,11 +63,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.cobPlugPosition = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            
             // 
             // btnEditData
             // 
@@ -462,10 +461,18 @@
             this.label12.TabIndex = 11;
             this.label12.Text = "插口位置";
             // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(25, 50);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(750, 460);
+            this.panel1.TabIndex = 22;
+            // 
             // FrmHME
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnEditData);
@@ -522,5 +529,6 @@
         private System.Windows.Forms.ComboBox cobPlugPosition;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtPowerPlugDis;
+        private System.Windows.Forms.Panel panel1;
     }
 }

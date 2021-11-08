@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Common;
 using DAL;
 using Models;
 
@@ -17,9 +9,13 @@ namespace Compass
     {
         HMEService objHMEService = new HMEService();
         private HME objHME;
+        private ModelView modelView;
         public FrmHME()
         {
             InitializeComponent();
+            modelView = new ModelView();
+            panel1.Controls.Add(modelView);
+            modelView.Dock = DockStyle.Fill;
             IniCob();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
@@ -30,8 +26,8 @@ namespace Compass
             objHME = (HME)objHMEService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objHME == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            //modelView.GetData(drawing, tree);
-            //modelView.ShowImage();
+            modelView.GetData(drawing, tree);
+            modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -85,7 +81,7 @@ namespace Compass
         private void FillData()
         {
             if (objHME == null) return;
-            //modelView.Tag = objHME.HMEId;
+            modelView.Tag = objHME.HMEId;
             txtLength.Text = objHME.Length== 0 ? "600" : objHME.Length.ToString();
             txtWidth.Text = objHME.Width== 0 ? "500" : objHME.Width.ToString();
             txtHeight.Text = objHME.Height.ToString();
@@ -112,14 +108,13 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            //if (modelView.Tag.ToString().Length == 0) return;
-            
+            if (modelView.Tag.ToString().Length == 0) return;
 
             #endregion
             //封装对象
             HME objHME = new HME()
             {
-                //HMEId = Convert.ToInt32(modelView.Tag),
+                HMEId = Convert.ToInt32(modelView.Tag),
 
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),
                 Width = Convert.ToDecimal(txtWidth.Text.Trim()),
@@ -137,7 +132,6 @@ namespace Compass
                 TemperatureSwitch = cobTemperatureSwitch.Text,//Yes,No
                 NamePlate = cobNamePlate.Text,//Yes,No
                 WindPressure = cobWindPressure.Text//Yes,No
-
             };
             //提交修改
             try

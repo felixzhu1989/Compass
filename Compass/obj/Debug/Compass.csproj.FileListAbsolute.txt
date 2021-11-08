@@ -177,7 +177,6 @@ D:\Compass\Compass\bin\Debug\MyUIControls.pdb
 D:\Compass\Compass\bin\Debug\SolidWorksHelper.pdb
 D:\Compass\Compass\bin\Debug\UpdateProgram.pdb
 D:\Compass\Compass\bin\Debug\UpdateProgram.exe.config
-D:\Compass\Compass\obj\Debug\Compass.csprojAssemblyReference.cache
 D:\Compass\Compass\obj\Debug\Compass.csproj.ResolveComReference.cache
 D:\Compass\Compass\obj\Debug\Compass.FrmBCJ300.resources
 D:\Compass\Compass\obj\Debug\Compass.FrmBCJ330.resources
@@ -320,3 +319,4 @@ D:\Compass\Compass\obj\Debug\Compass.csproj.CoreCompileInputs.cache
 D:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
 D:\Compass\Compass\obj\Debug\Compass.exe
 D:\Compass\Compass\obj\Debug\Compass.pdb
+D:\Compass\Compass\obj\Debug\Compass.csproj.AssemblyReference.cache
