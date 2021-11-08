@@ -11,7 +11,7 @@ namespace Models
     public class HMF : IModel
     {
 
-        public int HMEId { get; set; }
+        public int HMFId { get; set; }
         public int ModuleTreeId { get; set; }
 
 

@@ -30,8 +30,8 @@ namespace Compass
             objHME = (HME)objHMEService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (objHME == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            modelView.GetData(drawing, tree);
-            modelView.ShowImage();
+            //modelView.GetData(drawing, tree);
+            //modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -85,7 +85,7 @@ namespace Compass
         private void FillData()
         {
             if (objHME == null) return;
-            modelView.Tag = objHME.HMEId;
+            //modelView.Tag = objHME.HMEId;
             txtLength.Text = objHME.Length== 0 ? "600" : objHME.Length.ToString();
             txtWidth.Text = objHME.Width== 0 ? "500" : objHME.Width.ToString();
             txtHeight.Text = objHME.Height.ToString();
@@ -108,18 +108,18 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEditData_Click(object sender, EventArgs e)
+        private void BtnEditData_Click(object sender, EventArgs e)
         {
             #region 数据验证
             //必填项目
-            if (modelView.Tag.ToString().Length == 0) return;
+            //if (modelView.Tag.ToString().Length == 0) return;
             
 
             #endregion
             //封装对象
             HME objHME = new HME()
             {
-                HMEId = Convert.ToInt32(modelView.Tag),
+                //HMEId = Convert.ToInt32(modelView.Tag),
 
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),
                 Width = Convert.ToDecimal(txtWidth.Text.Trim()),

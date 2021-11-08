@@ -49,7 +49,8 @@ namespace Compass
             dgvDrawingNumMatrix.AutoGenerateColumns = false;
             dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;//初始化图号表格
             SetPermissions();
-
+            btnImportFromExcel.Visible=true;
+            btnImport.Visible = true;
             this.dgvDrawingNumMatrix.SelectionChanged += new System.EventHandler(this.DgvDrawingNumMatrix_SelectionChanged);
             
             if (!Directory.Exists(imageDir)) Directory.CreateDirectory(imageDir);

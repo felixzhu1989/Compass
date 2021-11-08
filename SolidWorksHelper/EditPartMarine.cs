@@ -188,21 +188,26 @@ namespace SolidWorksHelper
             else swFeat.SetSuppression2(0, 2, null);
             //temperatureSwitch
 
-            if (temperatureSwitch == "Yes")
+            if (temperatureSwitch == "Yes" && model == "HMF")
             {
-                swFeat = swComp.FeatureByName("TemperatureSwitch-HMF");
+                swFeat = swComp.FeatureByName("TemperatureSwitch");
                 swFeat.SetSuppression2(1, 2, null);
-                swFeat = swComp.FeatureByName("TemperatureSwitch-HMM");
-                swFeat.SetSuppression2(0, 2, null);
-            }
-            else
-            {
-                swFeat = swComp.FeatureByName("TemperatureSwitch-HMF");
-                swFeat.SetSuppression2(0, 2, null);
-                swFeat = swComp.FeatureByName("TemperatureSwitch-HMM");
-                swFeat.SetSuppression2(0, 2, null);
-            }
+                swPart.Parameter("D4@Sketch92").SystemValue = 53m / 1000m;
 
+            }
+            else if (temperatureSwitch == "Yes" && model == "HMM")
+            {
+
+                swFeat = swComp.FeatureByName("TemperatureSwitch");
+                swFeat.SetSuppression2(1, 2, null);
+                swPart.Parameter("D4@Sketch92").SystemValue = 43m / 1000m;
+            }
+            else if (temperatureSwitch == "NO")
+            {
+                swFeat = swComp.FeatureByName("TemperatureSwitch");
+                swFeat.SetSuppression2(0, 2, null);
+
+            }
 
         }
         
