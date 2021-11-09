@@ -319,4 +319,4 @@ D:\Compass\Compass\obj\Debug\Compass.csproj.CoreCompileInputs.cache
 D:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
 D:\Compass\Compass\obj\Debug\Compass.exe
 D:\Compass\Compass\obj\Debug\Compass.pdb
-D:\Compass\Compass\obj\Debug\Compass.csprojAssemblyReference.cache
+D:\Compass\Compass\obj\Debug\Compass.csproj.AssemblyReference.cache

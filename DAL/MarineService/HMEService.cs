@@ -63,26 +63,27 @@ namespace DAL
                     HMEId = Convert.ToInt32(objReader["HMEId"]),
                     ModuleTreeId = Convert.ToInt32(objReader["ModuleTreeId"]),
                     //最好不要用=null去判断，提示类型转换错误
-                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Length"]),
-                    Width = objReader["Width"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Width"]),
-                    Height = objReader["Height"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Height"]),
-                    InletDia = objReader["InletDia"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["InletDia"]),
+                    Length = objReader["Length"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["Length"]),
+                    Width = objReader["Width"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["Width"]),
+                    Height = objReader["Height"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["Height"]),
+                    InletDia = objReader["InletDia"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["InletDia"]),
 
-                    OutletDia = objReader["OutletDia"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["OutletDia"]),
-                    OutletHeight = objReader["OutletHeight"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["OutletHeight"]),
+                    OutletDia = objReader["OutletDia"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["OutletDia"]),
+                    OutletHeight = objReader["OutletHeight"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["OutletHeight"]),
 
 
-                    HangPosition = objReader["HangPosition"].ToString().Length == 0 ? "" : objReader["HangPosition"].ToString(),
-                    PowerPlug = objReader["PowerPlug"].ToString().Length == 0 ? "" : objReader["PowerPlug"].ToString(),
+                    HangPosition = objReader["HangPosition"] == DBNull.Value ? "" : objReader["HangPosition"].ToString(),
+                    PowerPlug = objReader["PowerPlug"] == DBNull.Value ? "" : objReader["PowerPlug"].ToString(),
 
-                    PowerPlugDis = objReader["PowerPlugDis"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["PowerPlugDis"]),
-                    NetPlug = objReader["NetPlug"].ToString().Length == 0 ? "" : objReader["NetPlug"].ToString(),
-                    PlugPosition = objReader["PlugPosition"].ToString().Length == 0 ? "" : objReader["PlugPosition"].ToString(),
-                    Heater = objReader["Heater"].ToString().Length == 0 ? "" : objReader["Heater"].ToString(),
-                    TemperatureSwitch = objReader["TemperatureSwitch"].ToString().Length == 0 ? "" : objReader["TemperatureSwitch"].ToString(),
-                    NamePlate = objReader["NamePlate"].ToString().Length == 0 ? "" : objReader["NamePlate"].ToString(),
-                    WindPressure = objReader["WindPressure"].ToString().Length == 0 ? "" : objReader["WindPressure"].ToString(),
+                    PowerPlugDis = objReader["PowerPlugDis"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["PowerPlugDis"]),
+                    NetPlug = objReader["NetPlug"] == DBNull.Value ? "" : objReader["NetPlug"].ToString(),
+                    PlugPosition = objReader["PlugPosition"] == DBNull.Value ? "" : objReader["PlugPosition"].ToString(),
+                    Heater = objReader["Heater"] == DBNull.Value ? "" : objReader["Heater"].ToString(),
+                    TemperatureSwitch = objReader["TemperatureSwitch"] == DBNull.Value ? "" : objReader["TemperatureSwitch"].ToString(),
+                    NamePlate = objReader["NamePlate"] == DBNull.Value ? "" : objReader["NamePlate"].ToString(),
+                    WindPressure = objReader["WindPressure"] == DBNull.Value ? "" : objReader["WindPressure"].ToString(),
                 };
+                
             }
             objReader.Close();
             return objModel;
