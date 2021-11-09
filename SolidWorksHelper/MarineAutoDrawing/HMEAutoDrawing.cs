@@ -341,7 +341,7 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(1, 2, null);
                         swFeat = swComp.FeatureByName("NAC21");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D4@Sketch39").SystemValue = item.Height / 2000 - 28m / 1000m;
+                        swPart.Parameter("D4@Sketch39").SystemValue = 28m / 1000m;
                     }
                     else
                     {
@@ -588,7 +588,7 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(1, 2, null);
                         swFeat = swComp.FeatureByName("NAC21");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D3@Sketch5").SystemValue = 45m / 1000m;
+                        swPart.Parameter("D3@Sketch5").SystemValue = 55m / 1000m;
                     }
                     else
                     {
@@ -615,11 +615,11 @@ namespace SolidWorksHelper
 
 
 
-                if (item.Height < 220m)
+                if (item.Height < 220m || item.Height == 220m)
                 {
                     swPart.Parameter("Korkeus@Sketch1").SystemValue = 134.5m / 1000m;
                 }
-                else
+                else if(item.Height > 220m || item.Height == 220m)
                 {
                     swPart.Parameter("Korkeus@Sketch1").SystemValue = 155m / 1000m;
                 }

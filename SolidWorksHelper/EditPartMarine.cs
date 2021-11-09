@@ -18,10 +18,19 @@ namespace SolidWorksHelper
             if (height < 220m)
             {
                 swPart.Parameter("Korkeus2@Sketch1").SystemValue = 109.75m / 1000m;
+                swPart.Parameter("D3@Sketch16").SystemValue = 14.5m / 1000m;
             }
+
+            if (height ==220m)
+            {
+                swPart.Parameter("Korkeus2@Sketch1").SystemValue = 129.75m / 1000m;
+                swPart.Parameter("D3@Sketch16").SystemValue = 22.5m / 1000m;
+            }
+            
             else
             {
                 swPart.Parameter("Korkeus2@Sketch1").SystemValue = 129.75m / 1000m;
+                swPart.Parameter("D3@Sketch16").SystemValue = 14.5m / 1000m;
             }
 
             #region 模型
