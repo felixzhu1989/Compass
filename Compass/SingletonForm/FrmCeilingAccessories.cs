@@ -8,7 +8,7 @@ namespace Compass
 {
     public partial class FrmCeilingAccessories : Form
     {
-        private CeilingAccessoryService objCeilingAccessoryService = new CeilingAccessoryService();
+        private readonly CeilingAccessoryService _objCeilingAccessoryService = new CeilingAccessoryService();
 
         public FrmCeilingAccessories()
         {
@@ -25,7 +25,7 @@ namespace Compass
             cobClassNo.Items.Add("3");
             cobClassNo.Items.Add("4");
             dgvCeilingAccessories.AutoGenerateColumns = false;
-            dgvCeilingAccessories.DataSource = objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
+            dgvCeilingAccessories.DataSource = _objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
         }
 
 
@@ -96,12 +96,12 @@ namespace Compass
                 //提交添加
                 try
                 {
-                    if (objCeilingAccessoryService.AddCeilingAccessory(objCeilingAccessory))
+                    if (_objCeilingAccessoryService.AddCeilingAccessory(objCeilingAccessory))
                     {
                         //提示添加成功
                         MessageBox.Show("配件信息添加成功", "提示信息");
                         //刷新显示
-                        dgvCeilingAccessories.DataSource = objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
+                        dgvCeilingAccessories.DataSource = _objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
                         //清空内容
                         foreach (Control item in Controls)
                         {
@@ -141,11 +141,11 @@ namespace Compass
                 //调用后台方法修改对象
                 try
                 {
-                    if (objCeilingAccessoryService.EditCeilingAccessory(objCeilingAccessory) == 1)
+                    if (_objCeilingAccessoryService.EditCeilingAccessory(objCeilingAccessory) == 1)
                     {
                         MessageBox.Show("修改配件信息成功！", "提示信息");
                         dgvCeilingAccessories.DataSource =
-                            objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
+                            _objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
                         //清空内容
                         foreach (Control item in Controls)
                         {
@@ -182,7 +182,7 @@ namespace Compass
             if(dgvCeilingAccessories.RowCount==0)return;
             if(dgvCeilingAccessories.CurrentRow==null)return;
             string id = dgvCeilingAccessories.CurrentRow.Cells["CeilingAccessoryId"].Value.ToString();
-            CeilingAccessory objCeilingAccessory = objCeilingAccessoryService.GetCeilingAccessoryById(id);
+            CeilingAccessory objCeilingAccessory = _objCeilingAccessoryService.GetCeilingAccessoryById(id);
             //初始化修改信息
             btnCeilingAccessory.Text = "修改配件";
             btnCeilingAccessory.Tag = 1;
@@ -218,8 +218,8 @@ namespace Compass
             int firstRowIndex = dgvCeilingAccessories.CurrentRow.Index;
             try
             {
-                if (objCeilingAccessoryService.DeleteCeilingAccessory(id) == 1)
-                    dgvCeilingAccessories.DataSource = objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
+                if (_objCeilingAccessoryService.DeleteCeilingAccessory(id) == 1)
+                    dgvCeilingAccessories.DataSource = _objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
                 else MessageBox.Show("删除配件信息出错，项目是否被其他数据关联，请联系管理员查看后台数据。");
             }
             catch (Exception ex)

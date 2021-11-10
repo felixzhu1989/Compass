@@ -7,8 +7,8 @@ namespace Compass
 {
     public partial class FrmJobCardCeiling : MetroFramework.Forms.MetroForm
     {
-        private Project item = null;
-        private string sbu = Program.ObjCurrentUser.SBU;
+        private readonly Project _item = null;
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
 
         public FrmJobCardCeiling()
         {
@@ -17,7 +17,7 @@ namespace Compass
         public FrmJobCardCeiling(Project objProject):this()
         {
             lblProject.Text = objProject.ODPNo +" - "+ objProject.ProjectName;
-            item = objProject;
+            _item = objProject;
         }
 
         private async void btnJobCard_Click(object sender, EventArgs e)
@@ -31,7 +31,7 @@ namespace Compass
             }
             try
             {
-                await PrintJobCardAsync(item, txtItemNo.Text.Trim() ,txtModel.Text.Trim());
+                await PrintJobCardAsync(_item, txtItemNo.Text.Trim() ,txtModel.Text.Trim());
                 this.DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace Compass
             {
                 try
                 {
-                    new PrintReports().ExecPrintCeilingJobCard(item, itemNo, model,sbu);
+                    new PrintReports().ExecPrintCeilingJobCard(item, itemNo, model,_sbu);
                 }
                 catch (Exception ex)
                 {

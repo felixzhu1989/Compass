@@ -6,21 +6,21 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmMU1BOXDXF :MetroFramework.Forms.MetroForm
+    public partial class FrmMu1Boxdxf :MetroFramework.Forms.MetroForm
     {
-        MU1BOXDXFService objMU1BOXDXFService = new MU1BOXDXFService();
-        private MU1BOXDXF objMU1BOXDXF = null;
-        public FrmMU1BOXDXF()
+        readonly MU1BOXDXFService _objMu1BoxdxfService = new MU1BOXDXFService();
+        private readonly MU1BOXDXF _objMu1Boxdxf = null;
+        public FrmMu1Boxdxf()
         {
             InitializeComponent();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmMU1BOXDXF(Drawing drawing, ModuleTree tree) : this()
+        public FrmMu1Boxdxf(Drawing drawing, ModuleTree tree) : this()
         {
-            objMU1BOXDXF = (MU1BOXDXF)objMU1BOXDXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objMU1BOXDXF == null) return;
+            _objMu1Boxdxf = (MU1BOXDXF)_objMu1BoxdxfService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objMu1Boxdxf == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -31,11 +31,11 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objMU1BOXDXF == null) return;
-            modelView.Tag = objMU1BOXDXF.MU1BOXDXFId;
+            if (_objMu1Boxdxf == null) return;
+            modelView.Tag = _objMu1Boxdxf.MU1BOXDXFId;
 
             //默认txtQuantity为1
-            txtQuantity.Text = objMU1BOXDXF.Quantity == 0 ? "1" : objMU1BOXDXF.Quantity.ToString();
+            txtQuantity.Text = _objMu1Boxdxf.Quantity == 0 ? "1" : _objMu1Boxdxf.Quantity.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -59,7 +59,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            MU1BOXDXF objMU1BOXDXF = new MU1BOXDXF()
+            MU1BOXDXF objMu1Boxdxf = new MU1BOXDXF()
             {
                 MU1BOXDXFId = Convert.ToInt32(modelView.Tag),
                 Quantity = Convert.ToInt32(txtQuantity.Text)
@@ -68,7 +68,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objMU1BOXDXFService.EditModel(objMU1BOXDXF) == 1)
+                if (_objMu1BoxdxfService.EditModel(objMu1Boxdxf) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

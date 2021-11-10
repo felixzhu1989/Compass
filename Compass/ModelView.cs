@@ -14,11 +14,11 @@ namespace Compass
 {
     public partial class ModelView : UserControl
     {
-        private EModelViewControl m_EDrawingsCtrl;
-        private EModelMarkupControl m_EDrawingsMarkupCtrl;
-        private CategoryService objCategoryService = new CategoryService();
-        private ModelViewData modelViewData = new ModelViewData();
-        private string sbu = Program.ObjCurrentUser.SBU;
+        private EModelViewControl _mEDrawingsCtrl;
+        private EModelMarkupControl _mEDrawingsMarkupCtrl;
+        private readonly CategoryService _objCategoryService = new CategoryService();
+        private readonly ModelViewData _modelViewData = new ModelViewData();
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
         public ModelView()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace Compass
         /// </summary>
         public void GetData(Drawing drawing, ModuleTree tree)
         {
-            Category objCategory = objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), sbu);
+            Category objCategory = _objCategoryService.GetCategoryByCategoryId(tree.CategoryId.ToString(), _sbu);
             Image modelImage = objCategory.ModelImage.Length == 0
                 ? Image.FromFile("NoPic.png")
                 : (Image)new SerializeObjectToString().DeserializeObject(objCategory.ModelImage);
@@ -55,15 +55,15 @@ namespace Compass
             string localPath = @"D:\MyProjects\" + packedAssyPath;
             string publicPath = @"Z:\1-Project operation\20" + drawing.ODPNo.Substring(3, 2) + @" project\" + packedAssyPath;
 
-            modelViewData.ModelImage = modelImage;
-            modelViewData.LabelImage = labelImage;
-            modelViewData.LocalPath = localPath;
-            modelViewData.PublicPath = publicPath;
-            modelViewData.EDrawingPath = Properties.Settings.Default.eDrawings;
+            _modelViewData.ModelImage = modelImage;
+            _modelViewData.LabelImage = labelImage;
+            _modelViewData.LocalPath = localPath;
+            _modelViewData.PublicPath = publicPath;
+            _modelViewData.EDrawingPath = Properties.Settings.Default.eDrawings;
         }
         public void ShowImage()
         {
-            this.pbModelImage.Image = modelViewData.ModelImage;
+            this.pbModelImage.Image = _modelViewData.ModelImage;
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -72,11 +72,11 @@ namespace Compass
         }
         private void OnControlLoaded(EModelViewControl ctrl)
         {
-            m_EDrawingsCtrl = ctrl;
+            _mEDrawingsCtrl = ctrl;
 
-            m_EDrawingsCtrl.OnFinishedLoadingDocument += OnFinishedLoadingDocument;
-            m_EDrawingsCtrl.OnFailedLoadingDocument += OnFailedLoadingDocument;
-            m_EDrawingsMarkupCtrl = m_EDrawingsCtrl.CoCreateInstance("EModelViewMarkup.EModelMarkupControl") as EModelMarkupControl;
+            _mEDrawingsCtrl.OnFinishedLoadingDocument += OnFinishedLoadingDocument;
+            _mEDrawingsCtrl.OnFailedLoadingDocument += OnFailedLoadingDocument;
+            _mEDrawingsMarkupCtrl = _mEDrawingsCtrl.CoCreateInstance("EModelViewMarkup.EModelMarkupControl") as EModelMarkupControl;
         }
         private void OnFailedLoadingDocument(string fileName, int errorCode, string errorString)
         {
@@ -85,7 +85,7 @@ namespace Compass
         private void OnFinishedLoadingDocument(string fileName)
         {
             Trace.WriteLine($"{fileName} loaded");
-            m_EDrawingsMarkupCtrl.ViewOperator = EMVMarkupOperators.eMVOperatorMeasure;
+            _mEDrawingsMarkupCtrl.ViewOperator = EMVMarkupOperators.eMVOperatorMeasure;
         }
         /// <summary>
         /// 记录测量结果按钮
@@ -95,7 +95,7 @@ namespace Compass
         private void OnCaptureMeasurement(object sender, EventArgs e)
         {
             txtMeasurements.Text += (!string.IsNullOrEmpty(txtMeasurements.Text) ? System.Environment.NewLine : "")
-                                    + m_EDrawingsMarkupCtrl.MeasureResultString;
+                                    + _mEDrawingsMarkupCtrl.MeasureResultString;
         }
         /// <summary>
         /// 在嵌入eDrawings中打开文件
@@ -107,14 +107,14 @@ namespace Compass
             string filePath = "";
             if (((Button)sender).Tag.ToString() == "0")
             {
-                filePath = modelViewData.LocalPath;
+                filePath = _modelViewData.LocalPath;
                 btnOpenFolder.Tag = "0";
                 btnOpeneDrawing.Tag = "0";
                 btnOpenSolidWorks.Tag = "0";
             }
             else
             {
-                filePath = modelViewData.PublicPath;
+                filePath = _modelViewData.PublicPath;
                 btnOpenFolder.Tag = "1";
                 btnOpeneDrawing.Tag = "1";
                 btnOpenSolidWorks.Tag = "1";
@@ -132,12 +132,12 @@ namespace Compass
                 //开启独立线程，避免当前程序被占用
                 Thread objThread = new Thread(() =>
                   {
-                      if (m_EDrawingsCtrl == null)
+                      if (_mEDrawingsCtrl == null)
                       {
                           throw new NullReferenceException("eDrawings control is not loaded");
                       }
-                      m_EDrawingsCtrl.CloseActiveDoc("");
-                      m_EDrawingsCtrl.OpenDoc(filePath, false, false, false, "");
+                      _mEDrawingsCtrl.CloseActiveDoc("");
+                      _mEDrawingsCtrl.OpenDoc(filePath, false, false, false, "");
                   })
                 {
                     IsBackground = true
@@ -155,11 +155,11 @@ namespace Compass
             string filePath;
             if (((Button)sender).Tag.ToString() == "0")
             {
-                filePath = modelViewData.LocalPath;
+                filePath = _modelViewData.LocalPath;
             }
             else
             {
-                filePath = modelViewData.PublicPath;
+                filePath = _modelViewData.PublicPath;
             }
             if (System.IO.File.Exists(filePath))
             {
@@ -188,16 +188,16 @@ namespace Compass
             string filePath;
             if (((Button)sender).Tag.ToString() == "0")
             {
-                filePath = modelViewData.LocalPath;
+                filePath = _modelViewData.LocalPath;
             }
             else
             {
-                filePath = modelViewData.PublicPath;
+                filePath = _modelViewData.PublicPath;
             }
             string linkPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms), @"SOLIDWORKS 2021\eDrawings 2021 x64 Edition.lnk");
             //string linkPath =@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\SOLIDWORKS 2021\eDrawings 2021 x64 Edition.lnk"; 
             //string exePath = @"C:\Program Files\SOLIDWORKS2021 Corp\eDrawings\eDrawings.exe";
-            string exePath = modelViewData.EDrawingPath;
+            string exePath = _modelViewData.EDrawingPath;
             if (System.IO.File.Exists(filePath))
             {
                 if (System.IO.File.Exists(linkPath))
@@ -220,11 +220,11 @@ namespace Compass
             string filePath;
             if (((Button)sender).Tag.ToString() == "0")
             {
-                filePath = modelViewData.LocalPath;
+                filePath = _modelViewData.LocalPath;
             }
             else
             {
-                filePath = modelViewData.PublicPath;
+                filePath = _modelViewData.PublicPath;
             }
             if (System.IO.File.Exists(filePath))
             {
@@ -243,11 +243,11 @@ namespace Compass
         }
         private void BtnModelImage_Click(object sender, EventArgs e)
         {
-            this.pbModelImage.Image = modelViewData.ModelImage;
+            this.pbModelImage.Image = _modelViewData.ModelImage;
         }
         private void BtnLabelImage_Click(object sender, EventArgs e)
         {
-            this.pbModelImage.Image = modelViewData.LabelImage;
+            this.pbModelImage.Image = _modelViewData.LabelImage;
         }
     }
 }

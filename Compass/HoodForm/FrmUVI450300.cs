@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmUVI450300 : MetroFramework.Forms.MetroForm
+    public partial class FrmUvi450300 : MetroFramework.Forms.MetroForm
     {
-        UVI450300Service objUVI450300Service = new UVI450300Service();
-        private UVI450300 objUVI450300 = null;
-        public FrmUVI450300()
+        readonly UVI450300Service _objUvi450300Service = new UVI450300Service();
+        private readonly UVI450300 _objUvi450300 = null;
+        public FrmUvi450300()
         {
             InitializeComponent();
             SetVisibleFalse();
@@ -19,10 +19,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmUVI450300(Drawing drawing, ModuleTree tree) : this()
+        public FrmUvi450300(Drawing drawing, ModuleTree tree) : this()
         {
-            objUVI450300 = (UVI450300)objUVI450300Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objUVI450300 == null) return;
+            _objUvi450300 = (UVI450300)_objUvi450300Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objUvi450300 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -122,47 +122,47 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objUVI450300 == null) return;
-            modelView.Tag = objUVI450300.UVI450300Id;
+            if (_objUvi450300 == null) return;
+            modelView.Tag = _objUvi450300.UVI450300Id;
 
-            cobSidePanel.Text = objUVI450300.SidePanel;
+            cobSidePanel.Text = _objUvi450300.SidePanel;
             //默认ExNo为1
-            cobExNo.Text = objUVI450300.ExNo == 0 ? "1" : objUVI450300.ExNo.ToString();
+            cobExNo.Text = _objUvi450300.ExNo == 0 ? "1" : _objUvi450300.ExNo.ToString();
             
-            cobLightType.Text = objUVI450300.LightType;
-            cobLEDSpotNo.Text = objUVI450300.LEDSpotNo.ToString();
-            cobANSUL.Text = objUVI450300.ANSUL;
-            cobANSide.Text = objUVI450300.ANSide;
-            cobANDetector.Text = objUVI450300.ANDetector;
-            cobANDropNo.Text = objUVI450300.ANDropNo.ToString();
-            cobMARVEL.Text = objUVI450300.MARVEL;
-            cobIRNo.Text = objUVI450300.IRNo.ToString();
-            cobUVType.Text = objUVI450300.UVType;
-            cobBluetooth.Text = objUVI450300.Bluetooth;
-            cobLEDLogo.Text = objUVI450300.LEDlogo;
-            cobOutlet.Text = objUVI450300.Outlet;
-            cobWaterCollection.Text = objUVI450300.WaterCollection;
-            cobBackToBack.Text = objUVI450300.BackToBack;
+            cobLightType.Text = _objUvi450300.LightType;
+            cobLEDSpotNo.Text = _objUvi450300.LEDSpotNo.ToString();
+            cobANSUL.Text = _objUvi450300.ANSUL;
+            cobANSide.Text = _objUvi450300.ANSide;
+            cobANDetector.Text = _objUvi450300.ANDetector;
+            cobANDropNo.Text = _objUvi450300.ANDropNo.ToString();
+            cobMARVEL.Text = _objUvi450300.MARVEL;
+            cobIRNo.Text = _objUvi450300.IRNo.ToString();
+            cobUVType.Text = _objUvi450300.UVType;
+            cobBluetooth.Text = _objUvi450300.Bluetooth;
+            cobLEDLogo.Text = _objUvi450300.LEDlogo;
+            cobOutlet.Text = _objUvi450300.Outlet;
+            cobWaterCollection.Text = _objUvi450300.WaterCollection;
+            cobBackToBack.Text = _objUvi450300.BackToBack;
 
-            txtLength.Text = objUVI450300.Length.ToString();
-            txtDeepth.Text = objUVI450300.Deepth.ToString();
-            txtExRightDis.Text = objUVI450300.ExRightDis.ToString();
-            txtExDis.Text = objUVI450300.ExDis.ToString();
+            txtLength.Text = _objUvi450300.Length.ToString();
+            txtDeepth.Text = _objUvi450300.Deepth.ToString();
+            txtExRightDis.Text = _objUvi450300.ExRightDis.ToString();
+            txtExDis.Text = _objUvi450300.ExDis.ToString();
             
-            txtExLength.Text = objUVI450300.ExLength.ToString();
-            txtExWidth.Text = objUVI450300.ExWidth.ToString();
-            txtExHeight.Text = objUVI450300.ExHeight.ToString();
+            txtExLength.Text = _objUvi450300.ExLength.ToString();
+            txtExWidth.Text = _objUvi450300.ExWidth.ToString();
+            txtExHeight.Text = _objUvi450300.ExHeight.ToString();
             //LEDSpotDis默认400
-            txtLEDSpotDis.Text = objUVI450300.LEDSpotDis == 0 ? "400" : objUVI450300.LEDSpotDis.ToString();
-            txtANYDis.Text = objUVI450300.ANYDis.ToString();
-            txtDropDis1.Text = objUVI450300.ANDropDis1.ToString();
-            txtDropDis2.Text = objUVI450300.ANDropDis2.ToString();
-            txtDropDis3.Text = objUVI450300.ANDropDis3.ToString();
-            txtDropDis4.Text = objUVI450300.ANDropDis4.ToString();
-            txtDropDis5.Text = objUVI450300.ANDropDis5.ToString();
-            txtIRDis1.Text = objUVI450300.IRDis1.ToString();
-            txtIRDis2.Text = objUVI450300.IRDis2.ToString();
-            txtIRDis3.Text = objUVI450300.IRDis3.ToString();
+            txtLEDSpotDis.Text = _objUvi450300.LEDSpotDis == 0 ? "400" : _objUvi450300.LEDSpotDis.ToString();
+            txtANYDis.Text = _objUvi450300.ANYDis.ToString();
+            txtDropDis1.Text = _objUvi450300.ANDropDis1.ToString();
+            txtDropDis2.Text = _objUvi450300.ANDropDis2.ToString();
+            txtDropDis3.Text = _objUvi450300.ANDropDis3.ToString();
+            txtDropDis4.Text = _objUvi450300.ANDropDis4.ToString();
+            txtDropDis5.Text = _objUvi450300.ANDropDis5.ToString();
+            txtIRDis1.Text = _objUvi450300.IRDis1.ToString();
+            txtIRDis2.Text = _objUvi450300.IRDis2.ToString();
+            txtIRDis3.Text = _objUvi450300.IRDis3.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -421,7 +421,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            UVI450300 objUVI450300 = new UVI450300()
+            UVI450300 objUvi450300 = new UVI450300()
             {
                 UVI450300Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -464,7 +464,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objUVI450300Service.EditModel(objUVI450300) == 1)
+                if (_objUvi450300Service.EditModel(objUvi450300) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

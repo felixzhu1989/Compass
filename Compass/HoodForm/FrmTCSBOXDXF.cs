@@ -6,21 +6,21 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmTCSBOXDXF : MetroFramework.Forms.MetroForm
+    public partial class FrmTcsboxdxf : MetroFramework.Forms.MetroForm
     {
-        TCSBOXDXFService objTCSBOXDXFService = new TCSBOXDXFService();
-        private TCSBOXDXF objTCSBOXDXF = null;
-        public FrmTCSBOXDXF()
+        readonly TCSBOXDXFService _objTcsboxdxfService = new TCSBOXDXFService();
+        private readonly TCSBOXDXF _objTcsboxdxf = null;
+        public FrmTcsboxdxf()
         {
             InitializeComponent();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmTCSBOXDXF(Drawing drawing, ModuleTree tree) : this()
+        public FrmTcsboxdxf(Drawing drawing, ModuleTree tree) : this()
         {
-            objTCSBOXDXF = (TCSBOXDXF)objTCSBOXDXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objTCSBOXDXF == null) return;
+            _objTcsboxdxf = (TCSBOXDXF)_objTcsboxdxfService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objTcsboxdxf == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -31,11 +31,11 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objTCSBOXDXF == null) return;
-            modelView.Tag = objTCSBOXDXF.TCSBOXDXFId;
+            if (_objTcsboxdxf == null) return;
+            modelView.Tag = _objTcsboxdxf.TCSBOXDXFId;
 
             //默认txtQuantity为1
-            txtQuantity.Text = objTCSBOXDXF.Quantity == 0 ? "1" : objTCSBOXDXF.Quantity.ToString();
+            txtQuantity.Text = _objTcsboxdxf.Quantity == 0 ? "1" : _objTcsboxdxf.Quantity.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -59,7 +59,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            TCSBOXDXF objTCSBOXDXF = new TCSBOXDXF()
+            TCSBOXDXF objTcsboxdxf = new TCSBOXDXF()
             {
                 TCSBOXDXFId = Convert.ToInt32(modelView.Tag),
                 Quantity = Convert.ToInt32(txtQuantity.Text)
@@ -68,7 +68,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objTCSBOXDXFService.EditModel(objTCSBOXDXF) == 1)
+                if (_objTcsboxdxfService.EditModel(objTcsboxdxf) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

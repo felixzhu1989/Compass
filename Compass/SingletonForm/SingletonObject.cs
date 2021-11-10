@@ -15,67 +15,67 @@ namespace Compass
     {
         #region 设计单例模式
         private SingletonObject() { }
-        private static readonly Lazy<SingletonObject> _singleton=new Lazy<SingletonObject>(()=>new SingletonObject());
-        public static SingletonObject GetSingleton => _singleton.Value;
+        private static readonly Lazy<SingletonObject> Singleton=new Lazy<SingletonObject>(()=>new SingletonObject());
+        public static SingletonObject GetSingleton => Singleton.Value;
 
         #endregion
 
         //1.管理所有的单例对象
         //非嵌入
-        public FrmHoodAutoDrawing FrmHAD { get; set; }
-        public FrmCeilingAutoDrawing FrmCAD { get; set; }
-        public FrmMarineAutoDrawing FrmMAD { get; set; }
-        public FrmProjectInfo FrmPI { get; set; }
-        public FrmSyncFiles FrmSF { get; set; }
-        public FrmDrawingNumMatrix FrmDNM { get; set; }
-        public FrmProjectMeasure FrmPM { get; set; }
-        public FrmDrawingPlanQuery FrmDPQ { get; set; }
-        public FrmSolidWorksTools FrmSWT { get; set; }
-        public FrmCategoryTree FrmCT { get; set; }
+        public FrmHoodAutoDrawing FrmHad { get; set; }
+        public FrmCeilingAutoDrawing FrmCad { get; set; }
+        public FrmMarineAutoDrawing FrmMad { get; set; }
+        public FrmProjectInfo FrmPi { get; set; }
+        public FrmSyncFiles FrmSf { get; set; }
+        public FrmDrawingNumMatrix FrmDnm { get; set; }
+        public FrmProjectMeasure FrmPm { get; set; }
+        public FrmDrawingPlanQuery FrmDpq { get; set; }
+        public FrmSolidWorksTools FrmSwt { get; set; }
+        public FrmCategoryTree FrmCt { get; set; }
 
         //嵌入
         public FrmProject FrmP { get; set; }
-        public FrmModuleTree FrmMT { get; set; }
-        public FrmQuickBrowse FrmQB { get; set; }
-        public FrmDrawingPlan FrmDP { get; set; }
-        public FrmProjectTracking FrmPT { get; set; }
-        public FrmUserManage FrmUM { get; set; }
+        public FrmModuleTree FrmMt { get; set; }
+        public FrmQuickBrowse FrmQb { get; set; }
+        public FrmDrawingPlan FrmDp { get; set; }
+        public FrmProjectTracking FrmPt { get; set; }
+        public FrmUserManage FrmUm { get; set; }
         public FrmCategories FrmC { get; set; }
-        public FrmDXFCutList FrmDC { get; set; }
-        public FrmDesignWorkload FrmDW { get; set; }
-        public FrmStatusTypes FrmST { get; set; }
-        public FrmCeilingAccessories FrmCA { get; set; }
+        public FrmDxfCutList FrmDc { get; set; }
+        public FrmDesignWorkload FrmDw { get; set; }
+        public FrmStatusTypes FrmSt { get; set; }
+        public FrmCeilingAccessories FrmCa { get; set; }
 
 
         //2.对单例对象赋值
         public void AddMetroForm(MetroForm frmObj)
         {
-            if (frmObj is FrmHoodAutoDrawing) this.FrmHAD = frmObj as FrmHoodAutoDrawing;
-            if (frmObj is FrmCeilingAutoDrawing) this.FrmCAD =frmObj as FrmCeilingAutoDrawing;
-            if (frmObj is FrmMarineAutoDrawing) this.FrmMAD =frmObj as FrmMarineAutoDrawing;
-            if (frmObj is FrmProjectInfo) this.FrmPI = frmObj as FrmProjectInfo;
-            if (frmObj is FrmSyncFiles) this.FrmSF = frmObj as FrmSyncFiles;
-            if (frmObj is FrmDrawingNumMatrix) this.FrmDNM = frmObj as FrmDrawingNumMatrix;
-            if (frmObj is FrmProjectMeasure) this.FrmPM = frmObj as FrmProjectMeasure;
-            if (frmObj is FrmDrawingPlanQuery) this.FrmDPQ = frmObj as FrmDrawingPlanQuery;
-            if (frmObj is FrmSolidWorksTools) this.FrmSWT = frmObj as FrmSolidWorksTools;
-            if (frmObj is FrmCategoryTree) this.FrmCT = frmObj as FrmCategoryTree;
+            if (frmObj is FrmHoodAutoDrawing) this.FrmHad = frmObj as FrmHoodAutoDrawing;
+            if (frmObj is FrmCeilingAutoDrawing) this.FrmCad =frmObj as FrmCeilingAutoDrawing;
+            if (frmObj is FrmMarineAutoDrawing) this.FrmMad =frmObj as FrmMarineAutoDrawing;
+            if (frmObj is FrmProjectInfo) this.FrmPi = frmObj as FrmProjectInfo;
+            if (frmObj is FrmSyncFiles) this.FrmSf = frmObj as FrmSyncFiles;
+            if (frmObj is FrmDrawingNumMatrix) this.FrmDnm = frmObj as FrmDrawingNumMatrix;
+            if (frmObj is FrmProjectMeasure) this.FrmPm = frmObj as FrmProjectMeasure;
+            if (frmObj is FrmDrawingPlanQuery) this.FrmDpq = frmObj as FrmDrawingPlanQuery;
+            if (frmObj is FrmSolidWorksTools) this.FrmSwt = frmObj as FrmSolidWorksTools;
+            if (frmObj is FrmCategoryTree) this.FrmCt = frmObj as FrmCategoryTree;
         }
 
         public void AddForm(Form frmObj)
         {
             //嵌入
             if (frmObj is FrmProject) this.FrmP = frmObj as FrmProject;
-            if (frmObj is FrmModuleTree) this.FrmMT = frmObj as FrmModuleTree;
-            if (frmObj is FrmQuickBrowse) this.FrmQB = frmObj as FrmQuickBrowse;
-            if (frmObj is FrmDrawingPlan) this.FrmDP = frmObj as FrmDrawingPlan;
-            if (frmObj is FrmProjectTracking) this.FrmPT = frmObj as FrmProjectTracking;
-            if (frmObj is FrmUserManage) this.FrmUM = frmObj as FrmUserManage;
+            if (frmObj is FrmModuleTree) this.FrmMt = frmObj as FrmModuleTree;
+            if (frmObj is FrmQuickBrowse) this.FrmQb = frmObj as FrmQuickBrowse;
+            if (frmObj is FrmDrawingPlan) this.FrmDp = frmObj as FrmDrawingPlan;
+            if (frmObj is FrmProjectTracking) this.FrmPt = frmObj as FrmProjectTracking;
+            if (frmObj is FrmUserManage) this.FrmUm = frmObj as FrmUserManage;
             if (frmObj is FrmCategories) this.FrmC = frmObj as FrmCategories;
-            if (frmObj is FrmDXFCutList) this.FrmDC = frmObj as FrmDXFCutList;
-            if (frmObj is FrmDesignWorkload) this.FrmDW = frmObj as FrmDesignWorkload;
-            if (frmObj is FrmStatusTypes) this.FrmST = frmObj as FrmStatusTypes;
-            if (frmObj is FrmCeilingAccessories) this.FrmCA = frmObj as FrmCeilingAccessories;
+            if (frmObj is FrmDxfCutList) this.FrmDc = frmObj as FrmDxfCutList;
+            if (frmObj is FrmDesignWorkload) this.FrmDw = frmObj as FrmDesignWorkload;
+            if (frmObj is FrmStatusTypes) this.FrmSt = frmObj as FrmStatusTypes;
+            if (frmObj is FrmCeilingAccessories) this.FrmCa = frmObj as FrmCeilingAccessories;
         }
 
     }

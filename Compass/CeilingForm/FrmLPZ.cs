@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLPZ : MetroFramework.Forms.MetroForm
+    public partial class FrmLpz : MetroFramework.Forms.MetroForm
     {
-        LPZService objLPZService = new LPZService();
-        private LPZ objLPZ = null;
-        public FrmLPZ()
+        readonly LPZService _objLpzService = new LPZService();
+        private readonly LPZ _objLpz = null;
+        public FrmLpz()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLPZ(Drawing drawing, ModuleTree tree) : this()
+        public FrmLpz(Drawing drawing, ModuleTree tree) : this()
         {
-            objLPZ = (LPZ)objLPZService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLPZ == null) return;
+            _objLpz = (LPZ)_objLpzService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLpz == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -61,14 +61,14 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objLPZ == null) return;
-            modelView.Tag = objLPZ.LPZId;
-            cobZPanelNo.Text = objLPZ.ZPanelNo.ToString();
+            if (_objLpz == null) return;
+            modelView.Tag = _objLpz.LPZId;
+            cobZPanelNo.Text = _objLpz.ZPanelNo.ToString();
             
-            txtLength.Text = objLPZ.Length.ToString();
-            txtWidth.Text = objLPZ.Width.ToString();
+            txtLength.Text = _objLpz.Length.ToString();
+            txtWidth.Text = _objLpz.Width.ToString();
 
-            cobLightType.Text = objLPZ.LightType;
+            cobLightType.Text = _objLpz.LightType;
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -101,7 +101,7 @@ namespace Compass
                 return;
             }
             //封装对象
-            LPZ objLPZ = new LPZ()
+            LPZ objLpz = new LPZ()
             {
                 LPZId = Convert.ToInt32(modelView.Tag),
 
@@ -113,7 +113,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLPZService.EditModel(objLPZ) == 1)
+                if (_objLpzService.EditModel(objLpz) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

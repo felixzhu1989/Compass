@@ -12,7 +12,7 @@ namespace SolidWorksHelper
     //2.实现接口具体方法
     public class KVF400AutoDrawing : IAutoDrawing
     {
-        KVF400Service objKVF400Service = new KVF400Service();
+        readonly KVF400Service objKVF400Service = new KVF400Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

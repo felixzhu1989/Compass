@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmNOCJ340 : MetroFramework.Forms.MetroForm
+    public partial class FrmNocj340 : MetroFramework.Forms.MetroForm
     {
-        NOCJ340Service objNOCJ340Service = new NOCJ340Service();
-        private NOCJ340 objNOCJ340 = null;
-        public FrmNOCJ340()
+        readonly NOCJ340Service _objNocj340Service = new NOCJ340Service();
+        private readonly NOCJ340 _objNocj340 = null;
+        public FrmNocj340()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmNOCJ340(Drawing drawing, ModuleTree tree) : this()
+        public FrmNocj340(Drawing drawing, ModuleTree tree) : this()
         {
-            objNOCJ340 = (NOCJ340)objNOCJ340Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objNOCJ340 == null) return;
+            _objNocj340 = (NOCJ340)_objNocj340Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objNocj340 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -104,25 +104,25 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objNOCJ340 == null) return;
-            modelView.Tag = objNOCJ340.NOCJ340Id;
+            if (_objNocj340 == null) return;
+            modelView.Tag = _objNocj340.NOCJ340Id;
 
-            cobSidePanel.Text = objNOCJ340.SidePanel;
+            cobSidePanel.Text = _objNocj340.SidePanel;
 
-            cobBackCJSide.Text = objNOCJ340.BackCJSide;
-            cobDPSide.Text = objNOCJ340.DPSide;
-            cobLeftBeamType.Text = objNOCJ340.LeftBeamType;
-            cobRightBeamType.Text = objNOCJ340.RightBeamType;
-            cobLKSide.Text = objNOCJ340.LKSide;
-            cobGutterSide.Text = objNOCJ340.GutterSide;
+            cobBackCJSide.Text = _objNocj340.BackCJSide;
+            cobDPSide.Text = _objNocj340.DPSide;
+            cobLeftBeamType.Text = _objNocj340.LeftBeamType;
+            cobRightBeamType.Text = _objNocj340.RightBeamType;
+            cobLKSide.Text = _objNocj340.LKSide;
+            cobGutterSide.Text = _objNocj340.GutterSide;
 
-            txtLength.Text = objNOCJ340.Length.ToString();
-            txtWidth.Text = objNOCJ340.Width.ToString();
-            txtLeftDis.Text = objNOCJ340.LeftDis.ToString();
-            txtRightDis.Text = objNOCJ340.RightDis.ToString();
-            txtLeftBeamDis.Text = objNOCJ340.LeftBeamDis.ToString();
-            txtRightBeamDis.Text = objNOCJ340.RightBeamDis.ToString();
-            txtGutterWidth.Text = objNOCJ340.GutterWidth.ToString();
+            txtLength.Text = _objNocj340.Length.ToString();
+            txtWidth.Text = _objNocj340.Width.ToString();
+            txtLeftDis.Text = _objNocj340.LeftDis.ToString();
+            txtRightDis.Text = _objNocj340.RightDis.ToString();
+            txtLeftBeamDis.Text = _objNocj340.LeftBeamDis.ToString();
+            txtRightBeamDis.Text = _objNocj340.RightBeamDis.ToString();
+            txtGutterWidth.Text = _objNocj340.GutterWidth.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -200,7 +200,7 @@ namespace Compass
             }
             #endregion
             //封装对象
-            NOCJ340 objNOCJ340 = new NOCJ340()
+            NOCJ340 objNocj340 = new NOCJ340()
             {
                 NOCJ340Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -222,7 +222,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objNOCJ340Service.EditModel(objNOCJ340) == 1)
+                if (_objNocj340Service.EditModel(objNocj340) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

@@ -6,21 +6,21 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLLEDS : MetroFramework.Forms.MetroForm
+    public partial class FrmLleds : MetroFramework.Forms.MetroForm
     {
-        LLEDSService objLLEDSService = new LLEDSService();
-        private LLEDS objLLEDS = null;
-        public FrmLLEDS()
+        readonly LLEDSService _objLledsService = new LLEDSService();
+        private readonly LLEDS _objLleds = null;
+        public FrmLleds()
         {
             InitializeComponent();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLLEDS(Drawing drawing, ModuleTree tree) : this()
+        public FrmLleds(Drawing drawing, ModuleTree tree) : this()
         {
-            objLLEDS = (LLEDS)objLLEDSService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLLEDS == null) return;
+            _objLleds = (LLEDS)_objLledsService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLleds == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -31,10 +31,10 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objLLEDS == null) return;
-            modelView.Tag = objLLEDS.LLEDSId;
+            if (_objLleds == null) return;
+            modelView.Tag = _objLleds.LLEDSId;
 
-            txtLength.Text = objLLEDS.Length.ToString();
+            txtLength.Text = _objLleds.Length.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -49,7 +49,7 @@ namespace Compass
             }
             
             //封装对象
-            LLEDS objLLEDS = new LLEDS()
+            LLEDS objLleds = new LLEDS()
             {
                 LLEDSId = Convert.ToInt32(modelView.Tag),
 
@@ -58,7 +58,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLLEDSService.EditModel(objLLEDS) == 1)
+                if (_objLledsService.EditModel(objLleds) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

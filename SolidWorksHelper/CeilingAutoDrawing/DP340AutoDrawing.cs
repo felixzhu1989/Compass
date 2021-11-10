@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class DP340AutoDrawing:IAutoDrawing
     {
-        DP340Service objDP340Service = new DP340Service();
+        readonly DP340Service objDP340Service = new DP340Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

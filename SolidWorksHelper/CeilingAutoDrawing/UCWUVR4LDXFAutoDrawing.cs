@@ -9,14 +9,14 @@ namespace SolidWorksHelper
 {
     public class UCWUVR4LDXFAutoDrawing : IAutoDrawing
     {
-        UCWUVR4LDXFService objUCWUVR4LDXFService = new UCWUVR4LDXFService();
-        ProjectService objProjectService = new ProjectService();
-        DXFCutListService objDxfCutListService = new DXFCutListService();
-        HoodCutListService objHoodCutListService = new HoodCutListService();
-        SubAssyService objSubAssyService = new SubAssyService();
-        CeilingCutListService objCeilingCutListService = new CeilingCutListService();
-        List<HoodCutList> hoodCutLists = new List<HoodCutList>();
-        List<CeilingCutList> ceilingCutLists = new List<CeilingCutList>();
+        readonly UCWUVR4LDXFService objUCWUVR4LDXFService = new UCWUVR4LDXFService();
+        readonly ProjectService objProjectService = new ProjectService();
+        readonly DXFCutListService objDxfCutListService = new DXFCutListService();
+        readonly HoodCutListService objHoodCutListService = new HoodCutListService();
+        readonly SubAssyService objSubAssyService = new SubAssyService();
+        readonly CeilingCutListService objCeilingCutListService = new CeilingCutListService();
+        readonly List<HoodCutList> hoodCutLists = new List<HoodCutList>();
+        readonly List<CeilingCutList> ceilingCutLists = new List<CeilingCutList>();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建下料图文件夹，默认在D盘MyProjects目录下（先判断文件夹是否存在）

@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class CJ330AutoDrawing : IAutoDrawing
     {
-        CJ330Service objCJ330Service = new CJ330Service();
+        readonly CJ330Service objCJ330Service = new CJ330Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

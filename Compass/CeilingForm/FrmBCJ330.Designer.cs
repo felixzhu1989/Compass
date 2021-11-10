@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmBCJ330
+    partial class FrmBcj330
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBCJ330));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBcj330));
             this.btnEditData = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.cobSuType = new System.Windows.Forms.ComboBox();
@@ -59,7 +59,7 @@
             this.btnEditData.TabIndex = 2;
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
-            this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
+            this.btnEditData.Click += new System.EventHandler(this.BtnEditData_Click);
             // 
             // groupBox6
             // 
@@ -189,7 +189,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmBCJ330";
+            this.Name = "FrmBcj330";
             this.Text = "BCJ330";
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();

@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmHWUVI650
+    partial class FrmHwuvi650
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHWUVI650));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHwuvi650));
             this.label9 = new System.Windows.Forms.Label();
             this.txtLightYDis = new System.Windows.Forms.TextBox();
             this.modelView = new Compass.ModelView();
@@ -977,7 +977,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmHWUVI650";
+            this.Name = "FrmHwuvi650";
             this.Text = "HWUVI650";
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();

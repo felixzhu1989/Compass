@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmKVIMR555
+    partial class FrmKvimr555
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmKVIMR555));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmKvimr555));
             this.label29 = new System.Windows.Forms.Label();
             this.btnEditData = new System.Windows.Forms.Button();
             this.cobMARVEL = new System.Windows.Forms.ComboBox();
@@ -869,7 +869,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmKVIMR555";
+            this.Name = "FrmKvimr555";
             this.Text = "KVIMR555";
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();

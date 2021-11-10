@@ -13,10 +13,10 @@ namespace SolidWorksHelper
 
         int warnings = 0;
         int errors = 0;
-        Dictionary<string, int> sheetMetaDic = new Dictionary<string, int>();
-        List<CeilingAccessory> ceilingAccessories=new List<CeilingAccessory>();
-        CeilingAccessoryService objCeilingAccessoryService=new CeilingAccessoryService();
-        DrawingPlanService objDrawingPlanService=new DrawingPlanService();
+        readonly Dictionary<string, int> sheetMetaDic = new Dictionary<string, int>();
+        readonly List<CeilingAccessory> ceilingAccessories=new List<CeilingAccessory>();
+        readonly CeilingAccessoryService objCeilingAccessoryService=new CeilingAccessoryService();
+        readonly DrawingPlanService objDrawingPlanService=new DrawingPlanService();
         
         public void CeilingAssyToPackingList(SldWorks swApp, string assyPath,Project objProject,int userId,string sbu)
         {

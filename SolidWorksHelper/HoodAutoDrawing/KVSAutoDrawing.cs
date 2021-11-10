@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class KVSAutoDrawing : IAutoDrawing
     {
-        KVSService objKVSService = new KVSService();
+        readonly KVSService objKVSService = new KVSService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

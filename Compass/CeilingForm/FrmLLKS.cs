@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLLKS : MetroFramework.Forms.MetroForm
+    public partial class FrmLlks : MetroFramework.Forms.MetroForm
     {
-        LLKSService objLLKSService = new LLKSService();
-        private LLKS objLLKS = null;
-        public FrmLLKS()
+        readonly LLKSService _objLlksService = new LLKSService();
+        private readonly LLKS _objLlks = null;
+        public FrmLlks()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLLKS(Drawing drawing, ModuleTree tree) : this()
+        public FrmLlks(Drawing drawing, ModuleTree tree) : this()
         {
-            objLLKS = (LLKS)objLLKSService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLLKS == null) return;
+            _objLlks = (LLKS)_objLlksService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLlks == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -80,11 +80,11 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objLLKS == null) return;
-            modelView.Tag = objLLKS.LLKSId;
-            cobLongGlassNo.Text = objLLKS.LongGlassNo.ToString();
-            cobShortGlassNo.Text = objLLKS.ShortGlassNo.ToString();
-            txtLength.Text = objLLKS.Length.ToString();
+            if (_objLlks == null) return;
+            modelView.Tag = _objLlks.LLKSId;
+            cobLongGlassNo.Text = _objLlks.LongGlassNo.ToString();
+            cobShortGlassNo.Text = _objLlks.ShortGlassNo.ToString();
+            txtLength.Text = _objLlks.Length.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -110,7 +110,7 @@ namespace Compass
                 return;
             }
             //封装对象
-            LLKS objLLKS = new LLKS()
+            LLKS objLlks = new LLKS()
             {
                 LLKSId = Convert.ToInt32(modelView.Tag),
 
@@ -121,7 +121,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLLKSService.EditModel(objLLKS) == 1)
+                if (_objLlksService.EditModel(objLlks) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

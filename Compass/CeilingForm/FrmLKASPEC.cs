@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLKASPEC : MetroFramework.Forms.MetroForm
+    public partial class FrmLkaspec : MetroFramework.Forms.MetroForm
     {
-        LKASPECService objLKASPECService = new LKASPECService();
-        private LKASPEC objLKASPEC = null;
-        public FrmLKASPEC()
+        readonly LKASPECService _objLkaspecService = new LKASPECService();
+        private readonly LKASPEC _objLkaspec = null;
+        public FrmLkaspec()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLKASPEC(Drawing drawing, ModuleTree tree) : this()
+        public FrmLkaspec(Drawing drawing, ModuleTree tree) : this()
         {
-            objLKASPEC = (LKASPEC)objLKASPECService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLKASPEC == null) return;
+            _objLkaspec = (LKASPEC)_objLkaspecService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLkaspec == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -47,15 +47,15 @@ namespace Compass
         }
         private void FillData()
         {
-            if (objLKASPEC == null) return;
-            modelView.Tag = objLKASPEC.LKASPECId;
+            if (_objLkaspec == null) return;
+            modelView.Tag = _objLkaspec.LKASPECId;
 
-            cobSidePanel.Text = objLKASPEC.SidePanel;
-            cobJapan.Text = objLKASPEC.Japan;
-            cobLightType.Text = objLKASPEC.LightType;
+            cobSidePanel.Text = _objLkaspec.SidePanel;
+            cobJapan.Text = _objLkaspec.Japan;
+            cobLightType.Text = _objLkaspec.LightType;
 
-            txtLength.Text = objLKASPEC.Length.ToString();
-            txtHeight.Text = objLKASPEC.Height.ToString();
+            txtLength.Text = _objLkaspec.Length.ToString();
+            txtHeight.Text = _objLkaspec.Height.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -101,7 +101,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            LKASPEC objLKASPEC = new LKASPEC()
+            LKASPEC objLkaspec = new LKASPEC()
             {
                 LKASPECId = Convert.ToInt32(modelView.Tag),
 
@@ -115,7 +115,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLKASPECService.EditModel(objLKASPEC) == 1)
+                if (_objLkaspecService.EditModel(objLkaspec) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

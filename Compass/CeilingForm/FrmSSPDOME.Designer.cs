@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmSSPDOME
+    partial class FrmSspdome
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSSPDOME));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSspdome));
             this.grbMARVEL = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cobLightType = new System.Windows.Forms.ComboBox();
@@ -259,7 +259,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmSSPDOME";
+            this.Name = "FrmSspdome";
             this.Text = "SSPDOME";
             this.grbMARVEL.ResumeLayout(false);
             this.grbMARVEL.PerformLayout();

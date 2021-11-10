@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmLLEDS
+    partial class FrmLleds
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLLEDS));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLleds));
             this.btnEditData = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -105,7 +105,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmLLEDS";
+            this.Name = "FrmLleds";
             this.Padding = new System.Windows.Forms.Padding(27, 88, 27, 29);
             this.Text = "LLEDS";
             this.groupBox1.ResumeLayout(false);

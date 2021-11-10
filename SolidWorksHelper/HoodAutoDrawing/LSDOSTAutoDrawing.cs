@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class LSDOSTAutoDrawing:IAutoDrawing
     {
-        LSDOSTService objLSDOSTService = new LSDOSTService();
+        readonly LSDOSTService objLSDOSTService = new LSDOSTService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

@@ -9,7 +9,7 @@ namespace SolidWorksHelper
 {
     public class UCWSB535AutoDrawing : IAutoDrawing
     {
-        UCWSB535Service objUCWSB535Service = new UCWSB535Service();
+        readonly UCWSB535Service objUCWSB535Service = new UCWSB535Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             #region 准备工作

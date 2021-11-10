@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class LKS270AutoDrawing : IAutoDrawing
     {
-        LKS270Service objLKS270Service = new LKS270Service();
+        readonly LKS270Service objLKS270Service = new LKS270Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmKVV555 : MetroFramework.Forms.MetroForm
+    public partial class FrmKvv555 : MetroFramework.Forms.MetroForm
     {
-        KVV555Service objKVV555Service = new KVV555Service();
-        private KVV555 objKVV555 = null;
-        public FrmKVV555()
+        readonly KVV555Service _objKvv555Service = new KVV555Service();
+        private readonly KVV555 _objKvv555 = null;
+        public FrmKvv555()
         {
             InitializeComponent();
             SetVisibleFalse();
@@ -19,10 +19,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmKVV555(Drawing drawing, ModuleTree tree) : this()
+        public FrmKvv555(Drawing drawing, ModuleTree tree) : this()
         {
-            objKVV555 = (KVV555)objKVV555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objKVV555 == null) return;
+            _objKvv555 = (KVV555)_objKvv555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objKvv555 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -55,20 +55,20 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objKVV555 == null) return;
-            modelView.Tag = objKVV555.KVV555Id;
+            if (_objKvv555 == null) return;
+            modelView.Tag = _objKvv555.KVV555Id;
             
             //默认ExNo为1
-            cobExNo.Text = objKVV555.ExNo == 0 ? "1" : objKVV555.ExNo.ToString();
-            cobLightType.Text = objKVV555.LightType;
+            cobExNo.Text = _objKvv555.ExNo == 0 ? "1" : _objKvv555.ExNo.ToString();
+            cobLightType.Text = _objKvv555.LightType;
             
-            txtLength.Text = objKVV555.Length.ToString();
-            txtDeepth.Text = objKVV555.Deepth.ToString();
-            txtExRightDis.Text = objKVV555.ExRightDis.ToString();
-            txtExDis.Text = objKVV555.ExDis.ToString();
-            txtExLength.Text = objKVV555.ExLength.ToString();
-            txtExWidth.Text = objKVV555.ExWidth.ToString();
-            txtExHeight.Text = objKVV555.ExHeight.ToString();
+            txtLength.Text = _objKvv555.Length.ToString();
+            txtDeepth.Text = _objKvv555.Deepth.ToString();
+            txtExRightDis.Text = _objKvv555.ExRightDis.ToString();
+            txtExDis.Text = _objKvv555.ExDis.ToString();
+            txtExLength.Text = _objKvv555.ExLength.ToString();
+            txtExWidth.Text = _objKvv555.ExWidth.ToString();
+            txtExHeight.Text = _objKvv555.ExHeight.ToString();
             
         }
         /// <summary>
@@ -144,7 +144,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            KVV555 objKVV555 = new KVV555()
+            KVV555 objKvv555 = new KVV555()
             {
                 KVV555Id = Convert.ToInt32(modelView.Tag),
                 ExNo = Convert.ToInt32(cobExNo.Text),
@@ -162,7 +162,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objKVV555Service.EditModel(objKVV555) == 1)
+                if (_objKvv555Service.EditModel(objKvv555) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

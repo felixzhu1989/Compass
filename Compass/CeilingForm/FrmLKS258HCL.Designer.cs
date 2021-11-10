@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmLKS258HCL
+    partial class FrmLks258Hcl
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLKS258HCL));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLks258Hcl));
             this.grbMARVEL = new System.Windows.Forms.GroupBox();
             this.lblHCLSide = new System.Windows.Forms.Label();
             this.txtHCLSideRight = new System.Windows.Forms.TextBox();
@@ -189,7 +189,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmLKS258HCL";
+            this.Name = "FrmLks258Hcl";
             this.Text = "LKS258HCL";
             this.grbMARVEL.ResumeLayout(false);
             this.grbMARVEL.PerformLayout();

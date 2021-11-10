@@ -5,17 +5,17 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmHME : MetroFramework.Forms.MetroForm
+    public partial class FrmHme : MetroFramework.Forms.MetroForm
     {
-        HMEService objHMEService = new HMEService();
-        private HME objHME;
-        private ModelView modelView;
-        public FrmHME()
+        readonly HMEService _objHmeService = new HMEService();
+        private readonly HME _objHme;
+        private readonly ModelView _modelView;
+        public FrmHme()
         {
             InitializeComponent();
-            modelView = new ModelView();
-            panel1.Controls.Add(modelView);
-            modelView.Dock = DockStyle.Fill;
+            _modelView = new ModelView();
+            panel1.Controls.Add(_modelView);
+            _modelView.Dock = DockStyle.Fill;
             IniCob();
 
             //管理员和技术部才能更新数据
@@ -23,13 +23,13 @@ namespace Compass
             else btnEditData.Visible = false;
 
         }
-        public FrmHME(Drawing drawing, ModuleTree tree) : this()
+        public FrmHme(Drawing drawing, ModuleTree tree) : this()
         {
-            objHME = (HME)objHMEService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objHME == null) return;
+            _objHme = (HME)_objHmeService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objHme == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            modelView.GetData(drawing, tree);
-            modelView.ShowImage();
+            _modelView.GetData(drawing, tree);
+            _modelView.ShowImage();
             FillData();
 
         }
@@ -83,24 +83,24 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objHME == null) return;
-            modelView.Tag = objHME.HMEId;
-            txtLength.Text = objHME.Length== 0 ? "600" : objHME.Length.ToString();
-            txtWidth.Text = objHME.Width== 0 ? "500" : objHME.Width.ToString();
-            txtHeight.Text = objHME.Height.ToString();
-            txtInletDia.Text = objHME.InletDia.ToString();
-            txtOutletDia.Text = objHME.OutletDia.ToString();
-            txtOutletHeight.Text = objHME.OutletHeight.ToString();
+            if (_objHme == null) return;
+            _modelView.Tag = _objHme.HMEId;
+            txtLength.Text = _objHme.Length== 0 ? "600" : _objHme.Length.ToString();
+            txtWidth.Text = _objHme.Width== 0 ? "500" : _objHme.Width.ToString();
+            txtHeight.Text = _objHme.Height.ToString();
+            txtInletDia.Text = _objHme.InletDia.ToString();
+            txtOutletDia.Text = _objHme.OutletDia.ToString();
+            txtOutletHeight.Text = _objHme.OutletHeight.ToString();
 
-            cobHeater.Text = objHME.Heater;
-            cobWindPressure.Text = objHME.WindPressure;
-            cobHangPosition.Text = objHME.HangPosition;
-            cobNamePlate.Text = objHME.NamePlate;
-            cobTemperatureSwitch.Text = objHME.TemperatureSwitch;
-            cobPlugPosition.Text = objHME.PlugPosition;
-            cobPowerPlug.Text = objHME.PowerPlug;
-            cobNetPlug.Text = objHME.NetPlug;
-            txtPowerPlugDis.Text = objHME.PowerPlugDis.ToString();
+            cobHeater.Text = _objHme.Heater;
+            cobWindPressure.Text = _objHme.WindPressure;
+            cobHangPosition.Text = _objHme.HangPosition;
+            cobNamePlate.Text = _objHme.NamePlate;
+            cobTemperatureSwitch.Text = _objHme.TemperatureSwitch;
+            cobPlugPosition.Text = _objHme.PlugPosition;
+            cobPowerPlug.Text = _objHme.PowerPlug;
+            cobNetPlug.Text = _objHme.NetPlug;
+            txtPowerPlugDis.Text = _objHme.PowerPlugDis.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -111,13 +111,13 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (modelView.Tag.ToString().Length == 0) return;
+            if (_modelView.Tag.ToString().Length == 0) return;
 
             #endregion
             //封装对象
-            HME objHME = new HME()
+            HME objHme = new HME()
             {
-                HMEId = Convert.ToInt32(modelView.Tag),
+                HMEId = Convert.ToInt32(_modelView.Tag),
 
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),
                 Width = Convert.ToDecimal(txtWidth.Text.Trim()),
@@ -139,7 +139,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objHMEService.EditModel(objHME) == 1)
+                if (_objHmeService.EditModel(objHme) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

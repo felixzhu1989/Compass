@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class LFUSSAutoDrawing : IAutoDrawing
     {
-        LFUSSService objLFUSSService = new LFUSSService();
+        readonly LFUSSService objLFUSSService = new LFUSSService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

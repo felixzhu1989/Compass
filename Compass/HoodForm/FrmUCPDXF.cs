@@ -5,11 +5,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmUCPDXF : MetroFramework.Forms.MetroForm
+    public partial class FrmUcpdxf : MetroFramework.Forms.MetroForm
     {
-        UCPDXFService objUCPDXFService = new UCPDXFService();
-        private UCPDXF objUCPDXF = null;
-        public FrmUCPDXF()
+        readonly UCPDXFService _objUcpdxfService = new UCPDXFService();
+        private readonly UCPDXF _objUcpdxf = null;
+        public FrmUcpdxf()
         {
             InitializeComponent();
             IniCob();
@@ -17,10 +17,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmUCPDXF(Drawing drawing, ModuleTree tree) : this()
+        public FrmUcpdxf(Drawing drawing, ModuleTree tree) : this()
         {
-            objUCPDXF = (UCPDXF)objUCPDXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objUCPDXF == null) return;
+            _objUcpdxf = (UCPDXF)_objUcpdxfService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objUcpdxf == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -46,11 +46,11 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objUCPDXF == null) return;
-            modelView.Tag = objUCPDXF.UCPDXFId;
+            if (_objUcpdxf == null) return;
+            modelView.Tag = _objUcpdxf.UCPDXFId;
 
             //默认ExNo为1
-            cobQuantity.Text = objUCPDXF.Quantity == 0 ? "1" : objUCPDXF.Quantity.ToString();
+            cobQuantity.Text = _objUcpdxf.Quantity == 0 ? "1" : _objUcpdxf.Quantity.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -72,7 +72,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            UCPDXF objUCPDXF = new UCPDXF()
+            UCPDXF objUcpdxf = new UCPDXF()
             {
                 UCPDXFId = Convert.ToInt32(modelView.Tag),
                 Quantity = Convert.ToInt32(cobQuantity.Text)
@@ -81,7 +81,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objUCPDXFService.EditModel(objUCPDXF) == 1)
+                if (_objUcpdxfService.EditModel(objUcpdxf) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmKCJSB290
+    partial class FrmKcjsb290
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmKCJSB290));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmKcjsb290));
             this.btnEditData = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.cobSSPType = new System.Windows.Forms.ComboBox();
@@ -577,7 +577,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmKCJSB290";
+            this.Name = "FrmKcjsb290";
             this.Text = "KCJSB290";
             this.grbANSUL.ResumeLayout(false);
             this.grbANSUL.PerformLayout();

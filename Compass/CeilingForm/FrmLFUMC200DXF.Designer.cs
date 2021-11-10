@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmLFUMC200DXF
+    partial class FrmLfumc200Dxf
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLFUMC200DXF));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLfumc200Dxf));
             this.btnEditData = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txtQuantity = new System.Windows.Forms.TextBox();
@@ -107,7 +107,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmLFUMC200DXF";
+            this.Name = "FrmLfumc200Dxf";
             this.Text = "LFUMC200DXF";
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();

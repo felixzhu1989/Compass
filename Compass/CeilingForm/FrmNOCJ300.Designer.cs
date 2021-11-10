@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmNOCJ300
+    partial class FrmNocj300
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNOCJ300));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNocj300));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cobRightBeamType = new System.Windows.Forms.ComboBox();
             this.cobLeftBeamType = new System.Windows.Forms.ComboBox();
@@ -455,7 +455,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmNOCJ300";
+            this.Name = "FrmNocj300";
             this.Text = "NOCJ300";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmSSPTSD : MetroFramework.Forms.MetroForm
+    public partial class FrmSsptsd : MetroFramework.Forms.MetroForm
     {
-       SSPTSDService objSSPTSDService = new SSPTSDService();
-        private SSPTSD objSSPTSD = null;
-        public FrmSSPTSD()
+        readonly SSPTSDService _objSsptsdService = new SSPTSDService();
+        private readonly SSPTSD _objSsptsd = null;
+        public FrmSsptsd()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmSSPTSD(Drawing drawing, ModuleTree tree) : this()
+        public FrmSsptsd(Drawing drawing, ModuleTree tree) : this()
         {
-            objSSPTSD = (SSPTSD)objSSPTSDService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objSSPTSD == null) return;
+            _objSsptsd = (SSPTSD)_objSsptsdService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objSsptsd == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -73,17 +73,17 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objSSPTSD == null) return;
-            modelView.Tag = objSSPTSD.SSPTSDId;
-            cobLeftType.Text = objSSPTSD.LeftType;
-            cobRightType.Text = objSSPTSD.RightType;
+            if (_objSsptsd == null) return;
+            modelView.Tag = _objSsptsd.SSPTSDId;
+            cobLeftType.Text = _objSsptsd.LeftType;
+            cobRightType.Text = _objSsptsd.RightType;
 
-            txtLength.Text = objSSPTSD.Length.ToString();
-            txtLeftLength.Text = objSSPTSD.LeftLength.ToString();
-            txtRightLength.Text = objSSPTSD.RightLength.ToString();
+            txtLength.Text = _objSsptsd.Length.ToString();
+            txtLeftLength.Text = _objSsptsd.LeftLength.ToString();
+            txtRightLength.Text = _objSsptsd.RightLength.ToString();
 
-            cobMPanelNo.Text = objSSPTSD.MPanelNo.ToString();
-            cobLightType.Text = objSSPTSD.LightType;
+            cobMPanelNo.Text = _objSsptsd.MPanelNo.ToString();
+            cobLightType.Text = _objSsptsd.LightType;
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -135,7 +135,7 @@ namespace Compass
                 return;
             }
             //封装对象
-            SSPTSD objSSPTSD = new SSPTSD()
+            SSPTSD objSsptsd = new SSPTSD()
             {
                 SSPTSDId = Convert.ToInt32(modelView.Tag),
                 LeftType = cobLeftType.Text,
@@ -150,7 +150,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objSSPTSDService.EditModel(objSSPTSD) == 1)
+                if (_objSsptsdService.EditModel(objSsptsd) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

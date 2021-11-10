@@ -13,11 +13,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLKS270HCL : MetroFramework.Forms.MetroForm
+    public partial class FrmLks270Hcl : MetroFramework.Forms.MetroForm
     {
-        LKS270HCLService objLKS270HCLService = new LKS270HCLService();
-        private LKS270HCL objLKS270HCL = null;
-        public FrmLKS270HCL()
+        readonly LKS270HCLService _objLks270HclService = new LKS270HCLService();
+        private readonly LKS270HCL _objLks270Hcl = null;
+        public FrmLks270Hcl()
         {
             InitializeComponent();
             IniCob();
@@ -25,10 +25,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLKS270HCL(Drawing drawing, ModuleTree tree) : this()
+        public FrmLks270Hcl(Drawing drawing, ModuleTree tree) : this()
         {
-            objLKS270HCL = (LKS270HCL)objLKS270HCLService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLKS270HCL == null) return;
+            _objLks270Hcl = (LKS270HCL)_objLks270HclService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLks270Hcl == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -45,14 +45,14 @@ namespace Compass
         }
         private void FillData()
         {
-            if (objLKS270HCL == null) return;
-            modelView.Tag = objLKS270HCL.LKS270HCLId;
-            cobHCLSide.Text = objLKS270HCL.HCLSide;
+            if (_objLks270Hcl == null) return;
+            modelView.Tag = _objLks270Hcl.LKS270HCLId;
+            cobHCLSide.Text = _objLks270Hcl.HCLSide;
 
 
-            txtLength.Text = objLKS270HCL.Length.ToString();
-            txtHCLSideLeft.Text = objLKS270HCL.HCLSideLeft.ToString();
-            txtHCLSideRight.Text = objLKS270HCL.HCLSideRight.ToString();
+            txtLength.Text = _objLks270Hcl.Length.ToString();
+            txtHCLSideLeft.Text = _objLks270Hcl.HCLSideLeft.ToString();
+            txtHCLSideRight.Text = _objLks270Hcl.HCLSideRight.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -93,7 +93,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            LKS270HCL objLKS270HCL = new LKS270HCL()
+            LKS270HCL objLks270Hcl = new LKS270HCL()
             {
                 LKS270HCLId = Convert.ToInt32(modelView.Tag),
                 HCLSide = cobHCLSide.Text,
@@ -104,7 +104,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLKS270HCLService.EditModel(objLKS270HCL) == 1)
+                if (_objLks270HclService.EditModel(objLks270Hcl) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

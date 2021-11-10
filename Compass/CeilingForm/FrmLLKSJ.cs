@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLLKSJ : MetroFramework.Forms.MetroForm
+    public partial class FrmLlksj : MetroFramework.Forms.MetroForm
     {
-        LLKSJService objLLKSJService = new LLKSJService();
-        private LLKSJ objLLKSJ = null;
-        public FrmLLKSJ()
+        readonly LLKSJService _objLlksjService = new LLKSJService();
+        private readonly LLKSJ _objLlksj = null;
+        public FrmLlksj()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLLKSJ(Drawing drawing, ModuleTree tree) : this()
+        public FrmLlksj(Drawing drawing, ModuleTree tree) : this()
         {
-            objLLKSJ = (LLKSJ)objLLKSJService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLLKSJ == null) return;
+            _objLlksj = (LLKSJ)_objLlksjService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLlksj == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -80,13 +80,13 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objLLKSJ == null) return;
-            modelView.Tag = objLLKSJ.LLKSJId;
-            cobLongGlassNo.Text = objLLKSJ.LongGlassNo.ToString();
-            cobShortGlassNo.Text = objLLKSJ.ShortGlassNo.ToString();
-            txtLength.Text = objLLKSJ.Length.ToString();
-            txtLeftLength.Text = objLLKSJ.LeftLength.ToString();
-            txtRightLength.Text = objLLKSJ.RightLength.ToString();
+            if (_objLlksj == null) return;
+            modelView.Tag = _objLlksj.LLKSJId;
+            cobLongGlassNo.Text = _objLlksj.LongGlassNo.ToString();
+            cobShortGlassNo.Text = _objLlksj.ShortGlassNo.ToString();
+            txtLength.Text = _objLlksj.Length.ToString();
+            txtLeftLength.Text = _objLlksj.LeftLength.ToString();
+            txtRightLength.Text = _objLlksj.RightLength.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -126,7 +126,7 @@ namespace Compass
                 return;
             }
             //封装对象
-            LLKSJ objLLKSJ = new LLKSJ()
+            LLKSJ objLlksj = new LLKSJ()
             {
                 LLKSJId = Convert.ToInt32(modelView.Tag),
 
@@ -139,7 +139,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLLKSJService.EditModel(objLLKSJ) == 1)
+                if (_objLlksjService.EditModel(objLlksj) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

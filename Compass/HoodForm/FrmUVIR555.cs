@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmUVIR555 : MetroFramework.Forms.MetroForm
+    public partial class FrmUvir555 : MetroFramework.Forms.MetroForm
     {
-        UVIR555Service objUVIR555Service = new UVIR555Service();
-        private UVIR555 objUVIR555 = null;
-        public FrmUVIR555()
+        readonly UVIR555Service _objUvir555Service = new UVIR555Service();
+        private readonly UVIR555 _objUvir555 = null;
+        public FrmUvir555()
         {
             InitializeComponent();
             SetVisibleFalse();
@@ -19,10 +19,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmUVIR555(Drawing drawing, ModuleTree tree) : this()
+        public FrmUvir555(Drawing drawing, ModuleTree tree) : this()
         {
-            objUVIR555 = (UVIR555)objUVIR555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objUVIR555 == null) return;
+            _objUvir555 = (UVIR555)_objUvir555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objUvir555 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -109,42 +109,42 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objUVIR555 == null) return;
-            modelView.Tag = objUVIR555.UVIR555Id;
+            if (_objUvir555 == null) return;
+            modelView.Tag = _objUvir555.UVIR555Id;
             
             //默认ExNo为1
-            cobExNo.Text = objUVIR555.ExNo == 0 ? "1" : objUVIR555.ExNo.ToString();
-            cobLightType.Text = objUVIR555.LightType;
-            cobLEDSpotNo.Text = objUVIR555.LEDSpotNo.ToString();
-            cobANSUL.Text = objUVIR555.ANSUL;
-            cobANSide.Text = objUVIR555.ANSide;
-            cobANDetector.Text = objUVIR555.ANDetector;
-            cobANDropNo.Text = objUVIR555.ANDropNo.ToString();
-            cobMARVEL.Text = objUVIR555.MARVEL;
-            cobIRNo.Text = objUVIR555.IRNo.ToString();
-            cobUVType.Text = objUVIR555.UVType;
-            cobBluetooth.Text = objUVIR555.Bluetooth;
+            cobExNo.Text = _objUvir555.ExNo == 0 ? "1" : _objUvir555.ExNo.ToString();
+            cobLightType.Text = _objUvir555.LightType;
+            cobLEDSpotNo.Text = _objUvir555.LEDSpotNo.ToString();
+            cobANSUL.Text = _objUvir555.ANSUL;
+            cobANSide.Text = _objUvir555.ANSide;
+            cobANDetector.Text = _objUvir555.ANDetector;
+            cobANDropNo.Text = _objUvir555.ANDropNo.ToString();
+            cobMARVEL.Text = _objUvir555.MARVEL;
+            cobIRNo.Text = _objUvir555.IRNo.ToString();
+            cobUVType.Text = _objUvir555.UVType;
+            cobBluetooth.Text = _objUvir555.Bluetooth;
             
-            cobOutlet.Text = objUVIR555.Outlet;
+            cobOutlet.Text = _objUvir555.Outlet;
             
-            txtLength.Text = objUVIR555.ExBeamLength.ToString();
-            txtDeepth.Text = objUVIR555.Deepth.ToString();
-            txtExRightDis.Text = objUVIR555.ExRightDis.ToString();
-            txtExDis.Text = objUVIR555.ExDis.ToString();
-            txtExLength.Text = objUVIR555.ExLength.ToString();
-            txtExWidth.Text = objUVIR555.ExWidth.ToString();
-            txtExHeight.Text = objUVIR555.ExHeight.ToString();
+            txtLength.Text = _objUvir555.ExBeamLength.ToString();
+            txtDeepth.Text = _objUvir555.Deepth.ToString();
+            txtExRightDis.Text = _objUvir555.ExRightDis.ToString();
+            txtExDis.Text = _objUvir555.ExDis.ToString();
+            txtExLength.Text = _objUvir555.ExLength.ToString();
+            txtExWidth.Text = _objUvir555.ExWidth.ToString();
+            txtExHeight.Text = _objUvir555.ExHeight.ToString();
             //LEDSpotDis默认400
-            txtLEDSpotDis.Text = objUVIR555.LEDSpotDis == 0 ? "400" : objUVIR555.LEDSpotDis.ToString();
-            txtANYDis.Text = objUVIR555.ANYDis.ToString();
-            txtDropDis1.Text = objUVIR555.ANDropDis1.ToString();
-            txtDropDis2.Text = objUVIR555.ANDropDis2.ToString();
-            txtDropDis3.Text = objUVIR555.ANDropDis3.ToString();
-            txtDropDis4.Text = objUVIR555.ANDropDis4.ToString();
-            txtDropDis5.Text = objUVIR555.ANDropDis5.ToString();
-            txtIRDis1.Text = objUVIR555.IRDis1.ToString();
-            txtIRDis2.Text = objUVIR555.IRDis2.ToString();
-            txtIRDis3.Text = objUVIR555.IRDis3.ToString();
+            txtLEDSpotDis.Text = _objUvir555.LEDSpotDis == 0 ? "400" : _objUvir555.LEDSpotDis.ToString();
+            txtANYDis.Text = _objUvir555.ANYDis.ToString();
+            txtDropDis1.Text = _objUvir555.ANDropDis1.ToString();
+            txtDropDis2.Text = _objUvir555.ANDropDis2.ToString();
+            txtDropDis3.Text = _objUvir555.ANDropDis3.ToString();
+            txtDropDis4.Text = _objUvir555.ANDropDis4.ToString();
+            txtDropDis5.Text = _objUvir555.ANDropDis5.ToString();
+            txtIRDis1.Text = _objUvir555.IRDis1.ToString();
+            txtIRDis2.Text = _objUvir555.IRDis2.ToString();
+            txtIRDis3.Text = _objUvir555.IRDis3.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -381,7 +381,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            UVIR555 objUVIR555 = new UVIR555()
+            UVIR555 objUvir555 = new UVIR555()
             {
                 UVIR555Id = Convert.ToInt32(modelView.Tag),
                 
@@ -421,7 +421,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objUVIR555Service.EditModel(objUVIR555) == 1)
+                if (_objUvir555Service.EditModel(objUvir555) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

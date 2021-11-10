@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class UVIR555AutoDrawing : IAutoDrawing
     {
-        UVIR555Service objUVIR555Service = new UVIR555Service();
+        readonly UVIR555Service objUVIR555Service = new UVIR555Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

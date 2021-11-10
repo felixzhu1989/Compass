@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class KVI450300AutoDrawing : IAutoDrawing
     {
-        KVI450300Service objKVI450300Service = new KVI450300Service();
+        readonly KVI450300Service objKVI450300Service = new KVI450300Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

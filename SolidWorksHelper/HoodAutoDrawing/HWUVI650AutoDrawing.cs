@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class HWUVI650AutoDrawing : IAutoDrawing
     {
-        HWUVI650Service objHWUVI650Service = new HWUVI650Service();
+        readonly HWUVI650Service objHWUVI650Service = new HWUVI650Service();
 
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {

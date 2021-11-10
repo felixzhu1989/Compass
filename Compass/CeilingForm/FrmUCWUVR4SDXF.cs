@@ -6,21 +6,21 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmUCWUVR4SDXF : MetroFramework.Forms.MetroForm
+    public partial class FrmUcwuvr4Sdxf : MetroFramework.Forms.MetroForm
     {
-       UCWUVR4SDXFService objUCWUVR4SDXFService = new UCWUVR4SDXFService();
-        private UCWUVR4SDXF objUCWUVR4SDXF = null;
-        public FrmUCWUVR4SDXF()
+        readonly UCWUVR4SDXFService _objUcwuvr4SdxfService = new UCWUVR4SDXFService();
+        private readonly UCWUVR4SDXF _objUcwuvr4Sdxf = null;
+        public FrmUcwuvr4Sdxf()
         {
             InitializeComponent();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmUCWUVR4SDXF(Drawing drawing, ModuleTree tree) : this()
+        public FrmUcwuvr4Sdxf(Drawing drawing, ModuleTree tree) : this()
         {
-            objUCWUVR4SDXF = (UCWUVR4SDXF)objUCWUVR4SDXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objUCWUVR4SDXF == null) return;
+            _objUcwuvr4Sdxf = (UCWUVR4SDXF)_objUcwuvr4SdxfService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objUcwuvr4Sdxf == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -31,11 +31,11 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objUCWUVR4SDXF == null) return;
-            modelView.Tag = objUCWUVR4SDXF.UCWUVR4SDXFId;
+            if (_objUcwuvr4Sdxf == null) return;
+            modelView.Tag = _objUcwuvr4Sdxf.UCWUVR4SDXFId;
 
             //默认txtQuantity为1
-            txtQuantity.Text = objUCWUVR4SDXF.Quantity == 0 ? "1" : objUCWUVR4SDXF.Quantity.ToString();
+            txtQuantity.Text = _objUcwuvr4Sdxf.Quantity == 0 ? "1" : _objUcwuvr4Sdxf.Quantity.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -59,7 +59,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            UCWUVR4SDXF objUCWUVR4SDXF = new UCWUVR4SDXF()
+            UCWUVR4SDXF objUcwuvr4Sdxf = new UCWUVR4SDXF()
             {
                 UCWUVR4SDXFId = Convert.ToInt32(modelView.Tag),
                 Quantity = Convert.ToInt32(txtQuantity.Text)
@@ -68,7 +68,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objUCWUVR4SDXFService.EditModel(objUCWUVR4SDXF) == 1)
+                if (_objUcwuvr4SdxfService.EditModel(objUcwuvr4Sdxf) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

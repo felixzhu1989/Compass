@@ -11,28 +11,28 @@ namespace Compass
 {
     public partial class FrmProjectMeasure : MetroFramework.Forms.MetroForm
     {
-        private ProjectMeasureService objProjectMeasureService = new ProjectMeasureService();
-        private int currentYear;
-        private int currentMonth;
+        private readonly ProjectMeasureService _objProjectMeasureService = new ProjectMeasureService();
+        private int _currentYear;
+        private int _currentMonth;
         public FrmProjectMeasure()
         {
             InitializeComponent();
             //初始化年月下拉框
-            currentYear = DateTime.Now.Year;
-            cobYear.Items.Add(currentYear + 1);//先添加下一年
-            for (int i = 0; i <= currentYear - 2020; i++)
+            _currentYear = DateTime.Now.Year;
+            cobYear.Items.Add(_currentYear + 1);//先添加下一年
+            for (int i = 0; i <= _currentYear - 2020; i++)
             {
-                cobYear.Items.Add(currentYear - i);
+                cobYear.Items.Add(_currentYear - i);
             }
             cobYear.SelectedIndex = 1;//默认定位当前年份
 
-            currentMonth = DateTime.Now.Month;
+            _currentMonth = DateTime.Now.Month;
             for (int i = 0; i < 12; i++)
             {
                 cobMonth.Items.Add(i + 1);
             }
-            cobMonth.SelectedIndex = currentMonth - 1;//默认定位当前月份
-            cobMonth.SelectedIndex = currentMonth - 1;//默认定位当前月份
+            cobMonth.SelectedIndex = _currentMonth - 1;//默认定位当前月份
+            cobMonth.SelectedIndex = _currentMonth - 1;//默认定位当前月份
             this.cobMonth.SelectedIndexChanged += new System.EventHandler(this.CobMonth_SelectedIndexChanged);
             this.cobYear.SelectedIndexChanged += new System.EventHandler(this.CobYear_SelectedIndexChanged);
             IniAllData();
@@ -73,21 +73,21 @@ namespace Compass
         #region 初始化趋势图表
         private void IniTrendChart()
         {
-            currentYear = Convert.ToInt32(cobYear.Text);
-            currentMonth = Convert.ToInt32(cobMonth.Text);
-            DateTime startOpen = Convert.ToDateTime($"{currentYear}/{currentMonth - 1}/15");
-            DateTime endOpen = Convert.ToDateTime($"{currentYear}/{currentMonth}/15");
-            List<ChartData> projectOpenDatas =
-                objProjectMeasureService.GetProjectOpenTrend(startOpen.ToShortDateString(), endOpen.ToShortDateString());
-            TargetTrendChart(chartProjectOpen, projectOpenDatas, startOpen, endOpen, Color.DodgerBlue);
+            _currentYear = Convert.ToInt32(cobYear.Text);
+            _currentMonth = Convert.ToInt32(cobMonth.Text);
+            DateTime endDate = Convert.ToDateTime(_currentMonth == 12 ? $"{_currentYear + 1}/{1}/1" : $"{_currentYear}/{_currentMonth + 1}/1");
+            DateTime startOpen = Convert.ToDateTime(_currentMonth == 1 ? $"{_currentYear - 1}/{12}/15" : $"{_currentYear}/{_currentMonth - 1}/15");
+            DateTime endOpen = Convert.ToDateTime($"{_currentYear}/{_currentMonth}/15");
+            DateTime startDate = Convert.ToDateTime($"{_currentYear}/{_currentMonth}/1");
 
-            DateTime startDate = Convert.ToDateTime($"{currentYear}/{currentMonth}/1");
-            DateTime endDate = Convert.ToDateTime($"{currentYear}/{currentMonth+1}/1");
+            List<ChartData> projectOpenDatas =
+                _objProjectMeasureService.GetProjectOpenTrend(startOpen.ToShortDateString(), endOpen.ToShortDateString());
+            TargetTrendChart(chartProjectOpen, projectOpenDatas, startOpen, endOpen, Color.DodgerBlue);
             List<ChartData> productionCloseDatas =
-                objProjectMeasureService.GetProductionCloseTrend(startDate.ToShortDateString(), endDate.ToShortDateString());
+                _objProjectMeasureService.GetProductionCloseTrend(startDate.ToShortDateString(), endDate.ToShortDateString());
             TargetTrendChart(chartProductionClose, productionCloseDatas, startDate, endDate, Color.LimeGreen);
             List<ChartData> projectCloseDatas =
-                objProjectMeasureService.GetProjectCloseTrend(startDate.ToShortDateString(), endDate.ToShortDateString());
+                _objProjectMeasureService.GetProjectCloseTrend(startDate.ToShortDateString(), endDate.ToShortDateString());
             TargetTrendChart(chartProjectClose, projectCloseDatas, startDate, endDate, Color.DarkGreen);
         }
         private void TargetTrendChart(Chart chartTarget, List<ChartData> datas, DateTime startDate, DateTime endDate, Color color)
@@ -142,8 +142,8 @@ namespace Compass
         #region 初始化完工率图
         private void IniDeliveryReliabilityChart()
         {
-            List<ChartData> qtyDatas = objProjectMeasureService.GetOnTimeProjectsQtyRate(currentYear);
-            List<ChartData> workloadDatas = objProjectMeasureService.GetOnTimeProjectsWorkloadRate(currentYear);
+            List<ChartData> qtyDatas = _objProjectMeasureService.GetOnTimeProjectsQtyRate(_currentYear);
+            List<ChartData> workloadDatas = _objProjectMeasureService.GetOnTimeProjectsWorkloadRate(_currentYear);
 
             chartDeliveryReliability.Series.Clear();
             chartDeliveryReliability.ChartAreas[0].AxisY.Maximum = double.NaN;
@@ -186,15 +186,15 @@ namespace Compass
             chartDeliveryReliability.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
 
             //获取所有延迟的项目号
-            List<string> delayList = objProjectMeasureService.GetDelayODPNo(currentYear);
+            List<string> delayList = _objProjectMeasureService.GetDelayODPNo(_currentYear);
             string delayStr = "Delayed Projects:\r\n";
             foreach (string item in delayList)
             {
                 delayStr += item + "\r\n";
             }
             txtOdpNo.Text = delayStr;
-            string rateStr = "Rate YTD\r\nBase on Qty:\r\nOnTime / Total = " + objProjectMeasureService.GetOnTimeProjectsQtyRateYTD(currentYear) + " %\r\n";
-            rateStr += "--------------------\r\nBase on Workload:\r\nOnTime / Total = " + objProjectMeasureService.GetOnTimeProjectsWorkloadRateYTD(currentYear) + " %\r\n";
+            string rateStr = "Rate YTD\r\nBase on Qty:\r\nOnTime / Total = " + _objProjectMeasureService.GetOnTimeProjectsQtyRateYTD(_currentYear) + " %\r\n";
+            rateStr += "--------------------\r\nBase on Workload:\r\nOnTime / Total = " + _objProjectMeasureService.GetOnTimeProjectsWorkloadRateYTD(_currentYear) + " %\r\n";
             txtYTDDeliveryReliabilityNote.Text = rateStr;
         } 
         #endregion
@@ -202,9 +202,9 @@ namespace Compass
         #region 初始化循环周期图表
         private void IniCycleTimeChart()
         {
-            List<ChartData> cycleTimeA = objProjectMeasureService.GetCycleTimeA(currentYear);
-            List<ChartData> cycleTimeB = objProjectMeasureService.GetCycleTimeB(currentYear);
-            List<ChartData> cycleTimeC = objProjectMeasureService.GetCycleTimeC(currentYear);
+            List<ChartData> cycleTimeA = _objProjectMeasureService.GetCycleTimeA(_currentYear);
+            List<ChartData> cycleTimeB = _objProjectMeasureService.GetCycleTimeB(_currentYear);
+            List<ChartData> cycleTimeC = _objProjectMeasureService.GetCycleTimeC(_currentYear);
 
             chartCycleTime.Series.Clear();
             chartCycleTime.ChartAreas[0].AxisY.Maximum = double.NaN;
@@ -246,9 +246,9 @@ namespace Compass
             chartCycleTime.ChartAreas[0].AxisY.Interval = 10;//也可以设置成20
             chartCycleTime.ChartAreas[0].AxisX.Interval = 1;//一般情况设置成1
 
-            string cycleTimeNote = "Cycle Time YTD\r\nA : AVG(ProdCompleted - DrwRelease)\r\n= " + objProjectMeasureService.GetCycleTimeAYTD(currentYear) + " days\r\n";
-            cycleTimeNote += "--------------------\r\nB : AVG(ProdCompleted - ODPRelease)\r\n= " + objProjectMeasureService.GetCycleTimeBYTD(currentYear) + " days\r\n";
-            cycleTimeNote += "--------------------\r\nC : AVG(ProdDelivered - ODPRelease)\r\n= " + objProjectMeasureService.GetCycleTimeCYTD(currentYear) + " days\r\n";
+            string cycleTimeNote = "Cycle Time YTD\r\nA : AVG(ProdCompleted - DrwRelease)\r\n= " + _objProjectMeasureService.GetCycleTimeAYTD(_currentYear) + " days\r\n";
+            cycleTimeNote += "--------------------\r\nB : AVG(ProdCompleted - ODPRelease)\r\n= " + _objProjectMeasureService.GetCycleTimeBYTD(_currentYear) + " days\r\n";
+            cycleTimeNote += "--------------------\r\nC : AVG(ProdDelivered - ODPRelease)\r\n= " + _objProjectMeasureService.GetCycleTimeCYTD(_currentYear) + " days\r\n";
             //警告信息，后续数据准确可删除
             cycleTimeNote +=
                 "--------------------\r\nDue to the loss of data, the YTD result may be inaccurate.";

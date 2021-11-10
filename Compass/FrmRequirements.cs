@@ -8,15 +8,15 @@ namespace Compass
 {
     public partial class FrmRequirements : MetroFramework.Forms.MetroForm
     {
-        public ProjectTypeService objProjectTypeService=new ProjectTypeService();
-        public RequirementService objRequirementService=new RequirementService();
-        private string sbu = Program.ObjCurrentUser.SBU;
+        public ProjectTypeService ObjProjectTypeService=new ProjectTypeService();
+        public RequirementService ObjRequirementService=new RequirementService();
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
 
         public FrmRequirements()
         {
             InitializeComponent();
             //绑定项目类型下拉框
-            cobTypeName.DataSource = objProjectTypeService.GetAllProjectTypes(sbu);
+            cobTypeName.DataSource = ObjProjectTypeService.GetAllProjectTypes(_sbu);
             cobTypeName.DisplayMember = "TypeName";
             cobTypeName.ValueMember = "TypeId";
             cobTypeName.SelectedIndex = -1;//默认不要选中
@@ -51,7 +51,7 @@ namespace Compass
             txtODPNo.Tag = objProject.ProjectId;
             txtProjectName.Text = objProject.ProjectName;
             GeneralRequirement objGeneralRequirement =
-                objRequirementService.GetGeneralRequirementByODPNo(objProject.ODPNo,sbu);
+                ObjRequirementService.GetGeneralRequirementByODPNo(objProject.ODPNo,_sbu);
             if (objGeneralRequirement == null)
             {
                 btnGeneralRequirement.Text = "添加通用技术要求";
@@ -69,7 +69,7 @@ namespace Compass
             }
             btnSpecialRequirement.Text = "添加特殊技术要求";
             dgvSpecialRequirements.AutoGenerateColumns = false;
-            dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(objProject.ODPNo,sbu);
+            dgvSpecialRequirements.DataSource = ObjRequirementService.GetSpecialRequirementsByODPNo(objProject.ODPNo,_sbu);
         }
         /// <summary>
         /// 设置权限
@@ -158,15 +158,15 @@ namespace Compass
                 //提交添加
                 try
                 {
-                    int GeneralRequirementId =objRequirementService.AddGeneralRequirement(objGeneralRequirement,sbu);
-                    if (GeneralRequirementId > 1)
+                    int generalRequirementId =ObjRequirementService.AddGeneralRequirement(objGeneralRequirement,_sbu);
+                    if (generalRequirementId > 1)
                     {
                         SingletonObject.GetSingleton.FrmP?.BtnQueryByYear_Click(null, null);
                         //提示添加成功
                         MessageBox.Show("通用技术要求添加成功", "提示信息");
                         //刷新显示
                         btnGeneralRequirement.Text = "修改通用技术要求";
-                        txtGeneralRequirementId.Text = GeneralRequirementId.ToString();
+                        txtGeneralRequirementId.Text = generalRequirementId.ToString();
                     }
                 }
                 catch (Exception ex)
@@ -192,7 +192,7 @@ namespace Compass
                 //调用后台方法修改对象
                 try
                 {
-                    if (objRequirementService.EditGeneralRequirement(objGeneralRequirement,sbu) == 1)
+                    if (ObjRequirementService.EditGeneralRequirement(objGeneralRequirement,_sbu) == 1)
                     {
                         SingletonObject.GetSingleton.FrmP?.BtnQueryByYear_Click(null, null);
                         MessageBox.Show("修改通用技术要求成功！", "提示信息");
@@ -231,7 +231,7 @@ namespace Compass
                 //提交添加
                 try
                 {
-                    int specialRequirementId = objRequirementService.AddSpecialRequirement(objSpecialRequirement,sbu);
+                    int specialRequirementId = ObjRequirementService.AddSpecialRequirement(objSpecialRequirement,_sbu);
                     if (specialRequirementId > 1)
                     {
                         //提示添加成功
@@ -239,7 +239,7 @@ namespace Compass
                         //刷新显示
                         txtContant.Text = "";
                         txtSpecialRequirementId.Text = "";
-                        dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(txtODPNo.Text.Trim(),sbu);
+                        dgvSpecialRequirements.DataSource = ObjRequirementService.GetSpecialRequirementsByODPNo(txtODPNo.Text.Trim(),_sbu);
                     }
                 }
                 catch (Exception ex)
@@ -260,12 +260,12 @@ namespace Compass
                 //调用后台方法修改对象
                 try
                 {
-                    if (objRequirementService.EditSpecialRequirement(objSpecialRequirement,sbu) == 1)
+                    if (ObjRequirementService.EditSpecialRequirement(objSpecialRequirement,_sbu) == 1)
                     {
                         MessageBox.Show("修改特殊技术要求成功！", "提示信息");
                         txtContant.Text = "";
                         txtSpecialRequirementId.Text = "";
-                        dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(txtODPNo.Text.Trim(),sbu);
+                        dgvSpecialRequirements.DataSource = ObjRequirementService.GetSpecialRequirementsByODPNo(txtODPNo.Text.Trim(),_sbu);
                         btnSpecialRequirement.Text = "添加特殊技术要求";
                     }
                 }
@@ -301,7 +301,7 @@ namespace Compass
                 return;
             }
             string specialRequirementId = dgvSpecialRequirements.CurrentRow.Cells["SpecialRequirementId"].Value.ToString();
-            SpecialRequirement objSpecialRequirement = objRequirementService.GetSpecialRequirementById(specialRequirementId,sbu);
+            SpecialRequirement objSpecialRequirement = ObjRequirementService.GetSpecialRequirementById(specialRequirementId,_sbu);
             //初始化修改信息
             txtContant.Text = objSpecialRequirement.Content;
             txtSpecialRequirementId.Text = objSpecialRequirement.SpecialRequirementId.ToString();
@@ -330,9 +330,9 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objRequirementService.DeleteSpecialRequirement(specialRequirementId,sbu) == 1)
+                if (ObjRequirementService.DeleteSpecialRequirement(specialRequirementId,_sbu) == 1)
                 {
-                    dgvSpecialRequirements.DataSource = objRequirementService.GetSpecialRequirementsByODPNo(txtODPNo.Text.Trim(),sbu);
+                    dgvSpecialRequirements.DataSource = ObjRequirementService.GetSpecialRequirementsByODPNo(txtODPNo.Text.Trim(),_sbu);
                 }
             }
             catch (Exception ex)

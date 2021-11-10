@@ -12,7 +12,7 @@ namespace Compass
         /// <summary>
         /// 项目状态名称
         /// </summary>
-        private readonly Dictionary<string, string> projectStatusName = new Dictionary<string, string>()
+        private readonly Dictionary<string, string> _projectStatusName = new Dictionary<string, string>()
         {
             {"GettingODP", "收到ODP"},
             {"KickOff", "开工会议"},
@@ -25,16 +25,16 @@ namespace Compass
             {"Cancel", "取消"},
             {"Import", "引进"}
         };
-        public Dictionary<string, string> ProjectStatusNameKeyValue => this.projectStatusName;
+        public Dictionary<string, string> ProjectStatusNameKeyValue => this._projectStatusName;
         /// <summary>
         /// 烟罩类型
         /// </summary>
-        private readonly Dictionary<string, string> hoodType = new Dictionary<string, string>()
+        private readonly Dictionary<string, string> _hoodType = new Dictionary<string, string>()
         {
             {"Hood", "烟罩"},
             {"Ceiling", "天花"},
         };
-        public Dictionary<string, string> HoodTypeKeyValue => this.hoodType;
+        public Dictionary<string, string> HoodTypeKeyValue => this._hoodType;
 
         #endregion 中英文键值对
         
@@ -58,7 +58,7 @@ namespace Compass
         /// <summary>
         /// 项目状态Id-中文
         /// </summary>
-        private readonly Dictionary<string, string> projectStatusIdCN = new Dictionary<string, string>()
+        private readonly Dictionary<string, string> _projectStatusIdCn = new Dictionary<string, string>()
         {
             {"1", "收到ODP"},
             {"2", "开工会议"},
@@ -71,11 +71,11 @@ namespace Compass
             {"9", "取消"},
             {"10","引进"}
         };
-        public Dictionary<string, string> ProjectStatusIdCNKeyValue => this.projectStatusIdCN;
+        public Dictionary<string, string> ProjectStatusIdCnKeyValue => this._projectStatusIdCn;
         /// <summary>
         /// 项目状态中文-颜色
         /// </summary>
-        private readonly Dictionary<string, Color> projectStatusCNColor = new Dictionary<string, Color>()
+        private readonly Dictionary<string, Color> _projectStatusCnColor = new Dictionary<string, Color>()
         {
             {"收到ODP", Color.LightSkyBlue},
             {"开工会议", Color.DeepSkyBlue},
@@ -88,11 +88,11 @@ namespace Compass
             {"取消", Color.Silver},
             {"引进", Color.Magenta}
         };
-        public Dictionary<string, Color> ProjectStatusCNColorKeyValue => this.projectStatusCNColor;
+        public Dictionary<string, Color> ProjectStatusCnColorKeyValue => this._projectStatusCnColor;
         /// <summary>
         /// 项目状态颜色
         /// </summary>
-        private readonly Dictionary<string, Color> projectStatusColor = new Dictionary<string, Color>()
+        private readonly Dictionary<string, Color> _projectStatusColor = new Dictionary<string, Color>()
         {
             {"GettingODP", Color.LightSkyBlue},
             {"KickOff",Color.DeepSkyBlue},
@@ -105,11 +105,11 @@ namespace Compass
             {"Cancel",Color.Silver},
             {"Import", Color.Magenta}
         };
-        public Dictionary<string, Color> ProjectStatusColorKeyValue => this.projectStatusColor;
+        public Dictionary<string, Color> ProjectStatusColorKeyValue => this._projectStatusColor;
         /// <summary>
         /// 项目状态中文颜色
         /// </summary>
-        private readonly Dictionary<string, Color> projectStatusChineseColor = new Dictionary<string, Color>()
+        private readonly Dictionary<string, Color> _projectStatusChineseColor = new Dictionary<string, Color>()
         {
             {"收到ODP", Color.LightSkyBlue},
             {"开工会议",Color.DeepSkyBlue},
@@ -127,18 +127,18 @@ namespace Compass
 
 
 
-        public Dictionary<string, Color> ProjectStatusChineseColorKeyValue => this.projectStatusChineseColor;
+        public Dictionary<string, Color> ProjectStatusChineseColorKeyValue => this._projectStatusChineseColor;
         /// <summary>
         /// 风险等级颜色
         /// </summary>
-        private readonly Dictionary<string, Color> rislLevelColor = new Dictionary<string, Color>()
+        private readonly Dictionary<string, Color> _rislLevelColor = new Dictionary<string, Color>()
         {
             {"风险等级-1", Color.Yellow},
             {"风险等级-2", Color.Orange},
             {"风险等级-3", Color.DeepSkyBlue},
             {"风险等级-4", Color.LimeGreen},
         };
-        public Dictionary<string, Color> RislLevelColorKeyValue => this.rislLevelColor;
+        public Dictionary<string, Color> RislLevelColorKeyValue => this._rislLevelColor;
 
         /*
         1	国内项目
@@ -152,7 +152,7 @@ namespace Compass
         /// <summary>
         /// 项目类型Id-中文
         /// </summary>
-        private readonly Dictionary<string, string> projectTypeIdCN = new Dictionary<string, string>()
+        private readonly Dictionary<string, string> _projectTypeIdCn = new Dictionary<string, string>()
         {
             {"1", "国内项目"},
             {"3", "港澳台项目"},
@@ -162,11 +162,11 @@ namespace Compass
             {"8", "其他"}
             
         };
-        public Dictionary<string, string> ProjectTypeIdCNKeyValue => this.projectTypeIdCN;
+        public Dictionary<string, string> ProjectTypeIdCnKeyValue => this._projectTypeIdCn;
         /// <summary>
         /// 项目类型颜色
         /// </summary>
-        private readonly Dictionary<string, Color> projectTypeColor = new Dictionary<string, Color>()
+        private readonly Dictionary<string, Color> _projectTypeColor = new Dictionary<string, Color>()
         {
             {"国内项目", Color.LimeGreen},
             {"港澳台项目", Color.LightPink},
@@ -175,12 +175,12 @@ namespace Compass
             {"韩国项目", Color.Salmon},
             {"其他", Color.Silver}
         };
-        public Dictionary<string, Color> ProjectTypeColorKeyValue => this.projectTypeColor;
+        public Dictionary<string, Color> ProjectTypeColorKeyValue => this._projectTypeColor;
 
         /// <summary>
         /// 项目状态颜色
         /// </summary>
-        private readonly Dictionary<string, Color> userColor = new Dictionary<string, Color>()
+        private readonly Dictionary<string, Color> _userColor = new Dictionary<string, Color>()
         {
             {"jeff", Color.LightSkyBlue},
             {"july",Color.DeepSkyBlue},
@@ -194,7 +194,7 @@ namespace Compass
             {"sky",Color.Silver},
             {"cart", Color.Magenta}
         };
-        public Dictionary<string, Color> UserColorKeyValue => this.userColor;
+        public Dictionary<string, Color> UserColorKeyValue => this._userColor;
 
 
 
@@ -202,7 +202,7 @@ namespace Compass
         #endregion 颜色标识键值对
 
 
-        private readonly Dictionary<int, Color> defaultColor = new Dictionary<int, Color>()
+        private readonly Dictionary<int, Color> _defaultColor = new Dictionary<int, Color>()
         {
             {0,Color.DeepSkyBlue},
             {1, Color.Yellow},
@@ -247,6 +247,6 @@ namespace Compass
             {40, Color.MediumSlateBlue},
 
         };
-        public Dictionary<int, Color> DefaultColorKeyValue => this.defaultColor;
+        public Dictionary<int, Color> DefaultColorKeyValue => this._defaultColor;
     }
 }

@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmDP340 : MetroFramework.Forms.MetroForm
+    public partial class FrmDp340 : MetroFramework.Forms.MetroForm
     {
-        DP340Service objDP340Service = new DP340Service();
-        private DP340 objDP340 = null;
-        public FrmDP340()
+        readonly DP340Service _objDp340Service = new DP340Service();
+        private readonly DP340 _objDp340 = null;
+        public FrmDp340()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmDP340(Drawing drawing, ModuleTree tree) : this()
+        public FrmDp340(Drawing drawing, ModuleTree tree) : this()
         {
-            objDP340 = (DP340)objDP340Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objDP340 == null) return;
+            _objDp340 = (DP340)_objDp340Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objDp340 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -108,24 +108,24 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objDP340 == null) return;
-            modelView.Tag = objDP340.DP340Id;
+            if (_objDp340 == null) return;
+            modelView.Tag = _objDp340.DP340Id;
 
-            cobSidePanel.Text = objDP340.SidePanel;
-            cobOutlet.Text = objDP340.Outlet;
-            cobBackCJSide.Text = objDP340.BackCJSide;
-            cobDPSide.Text = objDP340.DPSide;
-            cobLeftBeamType.Text = objDP340.LeftBeamType;
-            cobRightBeamType.Text = objDP340.RightBeamType;
-            cobLKSide.Text = objDP340.LKSide;
-            cobGutterSide.Text = objDP340.GutterSide;
+            cobSidePanel.Text = _objDp340.SidePanel;
+            cobOutlet.Text = _objDp340.Outlet;
+            cobBackCJSide.Text = _objDp340.BackCJSide;
+            cobDPSide.Text = _objDp340.DPSide;
+            cobLeftBeamType.Text = _objDp340.LeftBeamType;
+            cobRightBeamType.Text = _objDp340.RightBeamType;
+            cobLKSide.Text = _objDp340.LKSide;
+            cobGutterSide.Text = _objDp340.GutterSide;
 
-            txtLength.Text = objDP340.Length.ToString();
-            txtLeftDis.Text = objDP340.LeftDis.ToString();
-            txtRightDis.Text = objDP340.RightDis.ToString();
-            txtLeftBeamDis.Text = objDP340.LeftBeamDis.ToString();
-            txtRightBeamDis.Text = objDP340.RightBeamDis.ToString();
-            txtGutterWidth.Text = objDP340.GutterWidth.ToString();
+            txtLength.Text = _objDp340.Length.ToString();
+            txtLeftDis.Text = _objDp340.LeftDis.ToString();
+            txtRightDis.Text = _objDp340.RightDis.ToString();
+            txtLeftBeamDis.Text = _objDp340.LeftBeamDis.ToString();
+            txtRightBeamDis.Text = _objDp340.RightBeamDis.ToString();
+            txtGutterWidth.Text = _objDp340.GutterWidth.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -201,7 +201,7 @@ namespace Compass
             }
             #endregion
             //封装对象
-            DP340 objDP340 = new DP340()
+            DP340 objDp340 = new DP340()
             {
                 DP340Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -223,7 +223,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objDP340Service.EditModel(objDP340) == 1)
+                if (_objDp340Service.EditModel(objDp340) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

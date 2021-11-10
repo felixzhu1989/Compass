@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmSSPDOME : MetroFramework.Forms.MetroForm
+    public partial class FrmSspdome : MetroFramework.Forms.MetroForm
     {
-        SSPDOMEService objSSPDOMEService = new SSPDOMEService();
-        private SSPDOME objSSPDOME = null;
-        public FrmSSPDOME()
+        readonly SSPDOMEService _objSspdomeService = new SSPDOMEService();
+        private readonly SSPDOME _objSspdome = null;
+        public FrmSspdome()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmSSPDOME(Drawing drawing, ModuleTree tree) : this()
+        public FrmSspdome(Drawing drawing, ModuleTree tree) : this()
         {
-            objSSPDOME = (SSPDOME)objSSPDOMEService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objSSPDOME == null) return;
+            _objSspdome = (SSPDOME)_objSspdomeService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objSspdome == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -73,17 +73,17 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objSSPDOME == null) return;
-            modelView.Tag = objSSPDOME.SSPDOMEId;
-            cobLeftType.Text = objSSPDOME.LeftType;
-            cobRightType.Text = objSSPDOME.RightType;
+            if (_objSspdome == null) return;
+            modelView.Tag = _objSspdome.SSPDOMEId;
+            cobLeftType.Text = _objSspdome.LeftType;
+            cobRightType.Text = _objSspdome.RightType;
 
-            txtLength.Text = objSSPDOME.Length.ToString();
-            txtLeftLength.Text = objSSPDOME.LeftLength.ToString();
-            txtRightLength.Text = objSSPDOME.RightLength.ToString();
+            txtLength.Text = _objSspdome.Length.ToString();
+            txtLeftLength.Text = _objSspdome.LeftLength.ToString();
+            txtRightLength.Text = _objSspdome.RightLength.ToString();
 
-            cobMPanelNo.Text = objSSPDOME.MPanelNo.ToString();
-            cobLightType.Text = objSSPDOME.LightType;
+            cobMPanelNo.Text = _objSspdome.MPanelNo.ToString();
+            cobLightType.Text = _objSspdome.LightType;
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -135,7 +135,7 @@ namespace Compass
                 return;
             }
             //封装对象
-            SSPDOME objSSPDOME = new SSPDOME()
+            SSPDOME objSspdome = new SSPDOME()
             {
                 SSPDOMEId = Convert.ToInt32(modelView.Tag),
                 LeftType = cobLeftType.Text,
@@ -150,7 +150,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objSSPDOMEService.EditModel(objSSPDOME) == 1)
+                if (_objSspdomeService.EditModel(objSspdome) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

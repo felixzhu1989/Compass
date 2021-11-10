@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmHWUVI650 : MetroFramework.Forms.MetroForm
+    public partial class FrmHwuvi650 : MetroFramework.Forms.MetroForm
     {
-        HWUVI650Service objHWUVI650Service = new HWUVI650Service();
-        private HWUVI650 objHWUVI650 = null;
-        public FrmHWUVI650()
+        readonly HWUVI650Service _objHwuvi650Service = new HWUVI650Service();
+        private readonly HWUVI650 _objHwuvi650 = null;
+        public FrmHwuvi650()
         {
             InitializeComponent();
             SetVisibleFalse();
@@ -19,10 +19,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmHWUVI650(Drawing drawing, ModuleTree tree) : this()
+        public FrmHwuvi650(Drawing drawing, ModuleTree tree) : this()
         {
-            objHWUVI650 = (HWUVI650)objHWUVI650Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objHWUVI650 == null) return;
+            _objHwuvi650 = (HWUVI650)_objHwuvi650Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objHwuvi650 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -123,46 +123,46 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objHWUVI650 == null) return;
-            modelView.Tag = objHWUVI650.HWUVI650Id;
+            if (_objHwuvi650 == null) return;
+            modelView.Tag = _objHwuvi650.HWUVI650Id;
 
-            cobSidePanel.Text = objHWUVI650.SidePanel;
+            cobSidePanel.Text = _objHwuvi650.SidePanel;
             //默认ExNo为1
-            cobExNo.Text = objHWUVI650.ExNo == 0 ? "1" : objHWUVI650.ExNo.ToString();
-            cobLightType.Text = objHWUVI650.LightType;
-            cobLEDSpotNo.Text = objHWUVI650.LEDSpotNo.ToString();
-            cobANSUL.Text = objHWUVI650.ANSUL;
-            cobANSide.Text = objHWUVI650.ANSide;
-            cobANDetector.Text = objHWUVI650.ANDetector;
-            cobANDropNo.Text = objHWUVI650.ANDropNo.ToString();
-            cobMARVEL.Text = objHWUVI650.MARVEL;
-            cobIRNo.Text = objHWUVI650.IRNo.ToString();
-            cobUVType.Text = objHWUVI650.UVType;
-            cobBluetooth.Text = objHWUVI650.Bluetooth;
-            cobLEDLogo.Text = objHWUVI650.LEDlogo;
-            cobOutlet.Text = objHWUVI650.Outlet;
-            cobWaterCollection.Text = objHWUVI650.WaterCollection;
-            cobBackToBack.Text = objHWUVI650.BackToBack;
+            cobExNo.Text = _objHwuvi650.ExNo == 0 ? "1" : _objHwuvi650.ExNo.ToString();
+            cobLightType.Text = _objHwuvi650.LightType;
+            cobLEDSpotNo.Text = _objHwuvi650.LEDSpotNo.ToString();
+            cobANSUL.Text = _objHwuvi650.ANSUL;
+            cobANSide.Text = _objHwuvi650.ANSide;
+            cobANDetector.Text = _objHwuvi650.ANDetector;
+            cobANDropNo.Text = _objHwuvi650.ANDropNo.ToString();
+            cobMARVEL.Text = _objHwuvi650.MARVEL;
+            cobIRNo.Text = _objHwuvi650.IRNo.ToString();
+            cobUVType.Text = _objHwuvi650.UVType;
+            cobBluetooth.Text = _objHwuvi650.Bluetooth;
+            cobLEDLogo.Text = _objHwuvi650.LEDlogo;
+            cobOutlet.Text = _objHwuvi650.Outlet;
+            cobWaterCollection.Text = _objHwuvi650.WaterCollection;
+            cobBackToBack.Text = _objHwuvi650.BackToBack;
 
-            txtLength.Text = objHWUVI650.Length.ToString();
-            txtDeepth.Text = objHWUVI650.Deepth.ToString();
-            txtExRightDis.Text = objHWUVI650.ExRightDis.ToString();
-            txtExDis.Text = objHWUVI650.ExDis.ToString();
-            txtExLength.Text = objHWUVI650.ExLength.ToString();
-            txtExWidth.Text = objHWUVI650.ExWidth.ToString();
-            txtExHeight.Text = objHWUVI650.ExHeight.ToString();
-            txtLightYDis.Text = objHWUVI650.LightYDis.ToString();
+            txtLength.Text = _objHwuvi650.Length.ToString();
+            txtDeepth.Text = _objHwuvi650.Deepth.ToString();
+            txtExRightDis.Text = _objHwuvi650.ExRightDis.ToString();
+            txtExDis.Text = _objHwuvi650.ExDis.ToString();
+            txtExLength.Text = _objHwuvi650.ExLength.ToString();
+            txtExWidth.Text = _objHwuvi650.ExWidth.ToString();
+            txtExHeight.Text = _objHwuvi650.ExHeight.ToString();
+            txtLightYDis.Text = _objHwuvi650.LightYDis.ToString();
             //LEDSpotDis默认400
-            txtLEDSpotDis.Text = objHWUVI650.LEDSpotDis == 0 ? "400" : objHWUVI650.LEDSpotDis.ToString();
-            txtANYDis.Text = objHWUVI650.ANYDis.ToString();
-            txtDropDis1.Text = objHWUVI650.ANDropDis1.ToString();
-            txtDropDis2.Text = objHWUVI650.ANDropDis2.ToString();
-            txtDropDis3.Text = objHWUVI650.ANDropDis3.ToString();
-            txtDropDis4.Text = objHWUVI650.ANDropDis4.ToString();
-            txtDropDis5.Text = objHWUVI650.ANDropDis5.ToString();
-            txtIRDis1.Text = objHWUVI650.IRDis1.ToString();
-            txtIRDis2.Text = objHWUVI650.IRDis2.ToString();
-            txtIRDis3.Text = objHWUVI650.IRDis3.ToString();
+            txtLEDSpotDis.Text = _objHwuvi650.LEDSpotDis == 0 ? "400" : _objHwuvi650.LEDSpotDis.ToString();
+            txtANYDis.Text = _objHwuvi650.ANYDis.ToString();
+            txtDropDis1.Text = _objHwuvi650.ANDropDis1.ToString();
+            txtDropDis2.Text = _objHwuvi650.ANDropDis2.ToString();
+            txtDropDis3.Text = _objHwuvi650.ANDropDis3.ToString();
+            txtDropDis4.Text = _objHwuvi650.ANDropDis4.ToString();
+            txtDropDis5.Text = _objHwuvi650.ANDropDis5.ToString();
+            txtIRDis1.Text = _objHwuvi650.IRDis1.ToString();
+            txtIRDis2.Text = _objHwuvi650.IRDis2.ToString();
+            txtIRDis3.Text = _objHwuvi650.IRDis3.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -428,7 +428,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            HWUVI650 objHWUVI650 = new HWUVI650()
+            HWUVI650 objHwuvi650 = new HWUVI650()
             {
                 HWUVI650Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -470,7 +470,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objHWUVI650Service.EditModel(objHWUVI650) == 1)
+                if (_objHwuvi650Service.EditModel(objHwuvi650) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

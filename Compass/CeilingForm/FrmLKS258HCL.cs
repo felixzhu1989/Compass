@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLKS258HCL : MetroFramework.Forms.MetroForm
+    public partial class FrmLks258Hcl : MetroFramework.Forms.MetroForm
     {
-        LKS258HCLService objLKS258HCLService = new LKS258HCLService();
-        private LKS258HCL objLKS258HCL = null;
-        public FrmLKS258HCL()
+        readonly LKS258HCLService _objLks258HclService = new LKS258HCLService();
+        private readonly LKS258HCL _objLks258Hcl = null;
+        public FrmLks258Hcl()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLKS258HCL(Drawing drawing, ModuleTree tree) : this()
+        public FrmLks258Hcl(Drawing drawing, ModuleTree tree) : this()
         {
-            objLKS258HCL = (LKS258HCL)objLKS258HCLService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLKS258HCL == null) return;
+            _objLks258Hcl = (LKS258HCL)_objLks258HclService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLks258Hcl == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -38,14 +38,14 @@ namespace Compass
         }
         private void FillData()
         {
-            if (objLKS258HCL == null) return;
-            modelView.Tag = objLKS258HCL.LKS258HCLId;
-            cobHCLSide.Text = objLKS258HCL.HCLSide;
+            if (_objLks258Hcl == null) return;
+            modelView.Tag = _objLks258Hcl.LKS258HCLId;
+            cobHCLSide.Text = _objLks258Hcl.HCLSide;
 
 
-            txtLength.Text = objLKS258HCL.Length.ToString();
-            txtHCLSideLeft.Text = objLKS258HCL.HCLSideLeft.ToString();
-            txtHCLSideRight.Text = objLKS258HCL.HCLSideRight.ToString();
+            txtLength.Text = _objLks258Hcl.Length.ToString();
+            txtHCLSideLeft.Text = _objLks258Hcl.HCLSideLeft.ToString();
+            txtHCLSideRight.Text = _objLks258Hcl.HCLSideRight.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -86,7 +86,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            LKS258HCL objLKS258HCL = new LKS258HCL()
+            LKS258HCL objLks258Hcl = new LKS258HCL()
             {
                 LKS258HCLId = Convert.ToInt32(modelView.Tag),
                 HCLSide = cobHCLSide.Text,
@@ -97,7 +97,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLKS258HCLService.EditModel(objLKS258HCL) == 1)
+                if (_objLks258HclService.EditModel(objLks258Hcl) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

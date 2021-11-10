@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmUWF555400 :MetroFramework.Forms.MetroForm
+    public partial class FrmUwf555400 :MetroFramework.Forms.MetroForm
     {
-        UWF555400Service objUWF555400Service = new UWF555400Service();
-        private UWF555400 objUWF555400 = null;
-        public FrmUWF555400()
+        readonly UWF555400Service _objUwf555400Service = new UWF555400Service();
+        private readonly UWF555400 _objUwf555400 = null;
+        public FrmUwf555400()
         {
             InitializeComponent();
             SetVisibleFalse();
@@ -19,10 +19,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmUWF555400(Drawing drawing, ModuleTree tree) : this()
+        public FrmUwf555400(Drawing drawing, ModuleTree tree) : this()
         {
-            objUWF555400 = (UWF555400)objUWF555400Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objUWF555400 == null) return;
+            _objUwf555400 = (UWF555400)_objUwf555400Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objUwf555400 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -132,54 +132,54 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objUWF555400 == null) return;
-            modelView.Tag = objUWF555400.UWF555400Id;
+            if (_objUwf555400 == null) return;
+            modelView.Tag = _objUwf555400.UWF555400Id;
 
-            cobSidePanel.Text = objUWF555400.SidePanel;
+            cobSidePanel.Text = _objUwf555400.SidePanel;
             //默认ExNo为1
-            cobExNo.Text = objUWF555400.ExNo == 0 ? "1" : objUWF555400.ExNo.ToString();
-            cobSuNo.Text = objUWF555400.ExNo == 0 ? "2" : objUWF555400.SuNo.ToString();
-            cobLightType.Text = objUWF555400.LightType;
-            cobLEDSpotNo.Text = objUWF555400.LEDSpotNo.ToString();
-            cobANSUL.Text = objUWF555400.ANSUL;
-            cobANSide.Text = objUWF555400.ANSide;
-            cobANDetectorEnd.Text = objUWF555400.ANDetectorEnd;
-            cobANDropNo.Text = objUWF555400.ANDropNo.ToString();
-            cobANDetectorNo.Text = objUWF555400.ANDetectorNo.ToString();
-            cobMARVEL.Text = objUWF555400.MARVEL;
-            cobIRNo.Text = objUWF555400.IRNo.ToString();
-            cobUVType.Text = objUWF555400.UVType;
-            cobBluetooth.Text = objUWF555400.Bluetooth;
-            cobLEDLogo.Text = objUWF555400.LEDlogo;
-            cobOutlet.Text = objUWF555400.Outlet;
-            cobInlet.Text = objUWF555400.Inlet;
-            cobWaterCollection.Text = objUWF555400.WaterCollection;
-            cobBackToBack.Text = objUWF555400.BackToBack;
+            cobExNo.Text = _objUwf555400.ExNo == 0 ? "1" : _objUwf555400.ExNo.ToString();
+            cobSuNo.Text = _objUwf555400.ExNo == 0 ? "2" : _objUwf555400.SuNo.ToString();
+            cobLightType.Text = _objUwf555400.LightType;
+            cobLEDSpotNo.Text = _objUwf555400.LEDSpotNo.ToString();
+            cobANSUL.Text = _objUwf555400.ANSUL;
+            cobANSide.Text = _objUwf555400.ANSide;
+            cobANDetectorEnd.Text = _objUwf555400.ANDetectorEnd;
+            cobANDropNo.Text = _objUwf555400.ANDropNo.ToString();
+            cobANDetectorNo.Text = _objUwf555400.ANDetectorNo.ToString();
+            cobMARVEL.Text = _objUwf555400.MARVEL;
+            cobIRNo.Text = _objUwf555400.IRNo.ToString();
+            cobUVType.Text = _objUwf555400.UVType;
+            cobBluetooth.Text = _objUwf555400.Bluetooth;
+            cobLEDLogo.Text = _objUwf555400.LEDlogo;
+            cobOutlet.Text = _objUwf555400.Outlet;
+            cobInlet.Text = _objUwf555400.Inlet;
+            cobWaterCollection.Text = _objUwf555400.WaterCollection;
+            cobBackToBack.Text = _objUwf555400.BackToBack;
 
-            txtLength.Text = objUWF555400.Length.ToString();
-            txtDeepth.Text = objUWF555400.Deepth.ToString();
-            txtExRightDis.Text = objUWF555400.ExRightDis.ToString();
-            txtExDis.Text = objUWF555400.ExDis.ToString();
-            txtSuDis.Text = objUWF555400.SuDis.ToString();
-            txtExLength.Text = objUWF555400.ExLength.ToString();
-            txtExWidth.Text = objUWF555400.ExWidth.ToString();
-            txtExHeight.Text = objUWF555400.ExHeight.ToString();
+            txtLength.Text = _objUwf555400.Length.ToString();
+            txtDeepth.Text = _objUwf555400.Deepth.ToString();
+            txtExRightDis.Text = _objUwf555400.ExRightDis.ToString();
+            txtExDis.Text = _objUwf555400.ExDis.ToString();
+            txtSuDis.Text = _objUwf555400.SuDis.ToString();
+            txtExLength.Text = _objUwf555400.ExLength.ToString();
+            txtExWidth.Text = _objUwf555400.ExWidth.ToString();
+            txtExHeight.Text = _objUwf555400.ExHeight.ToString();
             //LEDSpotDis默认400
-            txtLEDSpotDis.Text = objUWF555400.LEDSpotDis == 0 ? "400" : objUWF555400.LEDSpotDis.ToString();
-            txtANYDis.Text = objUWF555400.ANYDis.ToString();
-            txtANDropDis1.Text = objUWF555400.ANDropDis1.ToString();
-            txtANDropDis2.Text = objUWF555400.ANDropDis2.ToString();
-            txtANDropDis3.Text = objUWF555400.ANDropDis3.ToString();
-            txtANDropDis4.Text = objUWF555400.ANDropDis4.ToString();
-            txtANDropDis5.Text = objUWF555400.ANDropDis5.ToString();
-            txtANDetectorDis1.Text = objUWF555400.ANDetectorDis1.ToString();
-            txtANDetectorDis2.Text = objUWF555400.ANDetectorDis2.ToString();
-            txtANDetectorDis3.Text = objUWF555400.ANDetectorDis3.ToString();
-            txtANDetectorDis4.Text = objUWF555400.ANDetectorDis4.ToString();
-            txtANDetectorDis5.Text = objUWF555400.ANDetectorDis5.ToString();
-            txtIRDis1.Text = objUWF555400.IRDis1.ToString();
-            txtIRDis2.Text = objUWF555400.IRDis2.ToString();
-            txtIRDis3.Text = objUWF555400.IRDis3.ToString();
+            txtLEDSpotDis.Text = _objUwf555400.LEDSpotDis == 0 ? "400" : _objUwf555400.LEDSpotDis.ToString();
+            txtANYDis.Text = _objUwf555400.ANYDis.ToString();
+            txtANDropDis1.Text = _objUwf555400.ANDropDis1.ToString();
+            txtANDropDis2.Text = _objUwf555400.ANDropDis2.ToString();
+            txtANDropDis3.Text = _objUwf555400.ANDropDis3.ToString();
+            txtANDropDis4.Text = _objUwf555400.ANDropDis4.ToString();
+            txtANDropDis5.Text = _objUwf555400.ANDropDis5.ToString();
+            txtANDetectorDis1.Text = _objUwf555400.ANDetectorDis1.ToString();
+            txtANDetectorDis2.Text = _objUwf555400.ANDetectorDis2.ToString();
+            txtANDetectorDis3.Text = _objUwf555400.ANDetectorDis3.ToString();
+            txtANDetectorDis4.Text = _objUwf555400.ANDetectorDis4.ToString();
+            txtANDetectorDis5.Text = _objUwf555400.ANDetectorDis5.ToString();
+            txtIRDis1.Text = _objUwf555400.IRDis1.ToString();
+            txtIRDis2.Text = _objUwf555400.IRDis2.ToString();
+            txtIRDis3.Text = _objUwf555400.IRDis3.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -512,7 +512,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            UWF555400 objUWF555400 = new UWF555400()
+            UWF555400 objUwf555400 = new UWF555400()
             {
                 UWF555400Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -562,7 +562,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objUWF555400Service.EditModel(objUWF555400) == 1)
+                if (_objUwf555400Service.EditModel(objUwf555400) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

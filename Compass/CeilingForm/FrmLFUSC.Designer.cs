@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmLFUSC
+    partial class FrmLfusc
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLFUSC));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLfusc));
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.cobJapan = new System.Windows.Forms.ComboBox();
@@ -229,7 +229,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmLFUSC";
+            this.Name = "FrmLfusc";
             this.Text = "LFUSC";
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();

@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmUWF555400
+    partial class FrmUwf555400
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUWF555400));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUwf555400));
             this.cobANSUL = new System.Windows.Forms.ComboBox();
             this.cobLightType = new System.Windows.Forms.ComboBox();
             this.btnEditData = new System.Windows.Forms.Button();
@@ -1140,7 +1140,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmUWF555400";
+            this.Name = "FrmUwf555400";
             this.Text = "UWF555400";
             this.grbLEDSpot.ResumeLayout(false);
             this.grbLEDSpot.PerformLayout();

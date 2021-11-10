@@ -5,11 +5,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmMCPDXF : MetroFramework.Forms.MetroForm
+    public partial class FrmMcpdxf : MetroFramework.Forms.MetroForm
     {
-        MCPDXFService objMCPDXFService = new MCPDXFService();
-        private MCPDXF objMCPDXF = null;
-        public FrmMCPDXF()
+        readonly MCPDXFService _objMcpdxfService = new MCPDXFService();
+        private readonly MCPDXF _objMcpdxf = null;
+        public FrmMcpdxf()
         {
             InitializeComponent();
             IniCob();
@@ -17,10 +17,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmMCPDXF(Drawing drawing, ModuleTree tree) : this()
+        public FrmMcpdxf(Drawing drawing, ModuleTree tree) : this()
         {
-            objMCPDXF = (MCPDXF)objMCPDXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objMCPDXF == null) return;
+            _objMcpdxf = (MCPDXF)_objMcpdxfService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objMcpdxf == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -46,11 +46,11 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objMCPDXF == null) return;
-            modelView.Tag = objMCPDXF.MCPDXFId;
+            if (_objMcpdxf == null) return;
+            modelView.Tag = _objMcpdxf.MCPDXFId;
 
             //默认ExNo为1
-            cobQuantity.Text = objMCPDXF.Quantity == 0 ? "1" : objMCPDXF.Quantity.ToString();
+            cobQuantity.Text = _objMcpdxf.Quantity == 0 ? "1" : _objMcpdxf.Quantity.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -72,7 +72,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            MCPDXF objMCPDXF = new MCPDXF()
+            MCPDXF objMcpdxf = new MCPDXF()
             {
                 MCPDXFId = Convert.ToInt32(modelView.Tag),
                 Quantity = Convert.ToInt32(cobQuantity.Text)
@@ -81,7 +81,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objMCPDXFService.EditModel(objMCPDXF) == 1)
+                if (_objMcpdxfService.EditModel(objMcpdxf) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

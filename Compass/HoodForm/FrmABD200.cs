@@ -6,21 +6,21 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmABD200 : MetroFramework.Forms.MetroForm
+    public partial class FrmAbd200 : MetroFramework.Forms.MetroForm
     {
-        ABD200Service objABD200Service =new ABD200Service();
-        private ABD200 objABD200 = null;
-        public FrmABD200()
+        readonly ABD200Service _objAbd200Service =new ABD200Service();
+        private readonly ABD200 _objAbd200 = null;
+        public FrmAbd200()
         {
             InitializeComponent();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmABD200(Drawing drawing, ModuleTree tree) : this()
+        public FrmAbd200(Drawing drawing, ModuleTree tree) : this()
         {
-            objABD200 = (ABD200)objABD200Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objABD200 == null) return;
+            _objAbd200 = (ABD200)_objAbd200Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objAbd200 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
 
             modelView.GetData(drawing, tree);
@@ -34,9 +34,9 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objABD200 == null) return;
-            modelView.Tag = objABD200.ABD200Id;
-            txtLength.Text = objABD200.Length.ToString();
+            if (_objAbd200 == null) return;
+            modelView.Tag = _objAbd200.ABD200Id;
+            txtLength.Text = _objAbd200.Length.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace Compass
             #endregion
 
             //封装对象
-            ABD200 objABD200 = new ABD200()
+            ABD200 objAbd200 = new ABD200()
             {
                 ABD200Id = Convert.ToInt32(modelView.Tag),
                 Length = Convert.ToDecimal(txtLength.Text.Trim())
@@ -62,7 +62,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objABD200Service.EditModel(objABD200) == 1)
+                if (_objAbd200Service.EditModel(objAbd200) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

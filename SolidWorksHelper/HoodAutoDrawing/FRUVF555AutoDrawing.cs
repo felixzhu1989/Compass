@@ -10,7 +10,7 @@ namespace SolidWorksHelper
     //2.实现接口具体方法
     public class FRUVF555AutoDrawing : IAutoDrawing
     {
-        FRUVF555Service objFRUVF555Service = new FRUVF555Service();
+        readonly FRUVF555Service objFRUVF555Service = new FRUVF555Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             #region 准备工作

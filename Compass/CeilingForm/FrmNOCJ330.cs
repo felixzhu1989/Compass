@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmNOCJ330 : MetroFramework.Forms.MetroForm
+    public partial class FrmNocj330 : MetroFramework.Forms.MetroForm
     {
-        NOCJ330Service objNOCJ330Service = new NOCJ330Service();
-        private NOCJ330 objNOCJ330 = null;
-        public FrmNOCJ330()
+        readonly NOCJ330Service _objNocj330Service = new NOCJ330Service();
+        private readonly NOCJ330 _objNocj330 = null;
+        public FrmNocj330()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmNOCJ330(Drawing drawing, ModuleTree tree) : this()
+        public FrmNocj330(Drawing drawing, ModuleTree tree) : this()
         {
-            objNOCJ330 = (NOCJ330)objNOCJ330Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objNOCJ330 == null) return;
+            _objNocj330 = (NOCJ330)_objNocj330Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objNocj330 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -98,24 +98,24 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objNOCJ330 == null) return;
-            modelView.Tag = objNOCJ330.NOCJ330Id;
+            if (_objNocj330 == null) return;
+            modelView.Tag = _objNocj330.NOCJ330Id;
 
-            cobSidePanel.Text = objNOCJ330.SidePanel;
+            cobSidePanel.Text = _objNocj330.SidePanel;
 
-            cobBackCJSide.Text = objNOCJ330.BackCJSide;
-            cobLeftBeamType.Text = objNOCJ330.LeftBeamType;
-            cobRightBeamType.Text = objNOCJ330.RightBeamType;
-            cobLKSide.Text = objNOCJ330.LKSide;
-            cobGutterSide.Text = objNOCJ330.GutterSide;
+            cobBackCJSide.Text = _objNocj330.BackCJSide;
+            cobLeftBeamType.Text = _objNocj330.LeftBeamType;
+            cobRightBeamType.Text = _objNocj330.RightBeamType;
+            cobLKSide.Text = _objNocj330.LKSide;
+            cobGutterSide.Text = _objNocj330.GutterSide;
 
-            txtLength.Text = objNOCJ330.Length.ToString();
-            txtWidth.Text = objNOCJ330.Width.ToString();
-            txtLeftDis.Text = objNOCJ330.LeftDis.ToString();
-            txtRightDis.Text = objNOCJ330.RightDis.ToString();
-            txtLeftBeamDis.Text = objNOCJ330.LeftBeamDis.ToString();
-            txtRightBeamDis.Text = objNOCJ330.RightBeamDis.ToString();
-            txtGutterWidth.Text = objNOCJ330.GutterWidth.ToString();
+            txtLength.Text = _objNocj330.Length.ToString();
+            txtWidth.Text = _objNocj330.Width.ToString();
+            txtLeftDis.Text = _objNocj330.LeftDis.ToString();
+            txtRightDis.Text = _objNocj330.RightDis.ToString();
+            txtLeftBeamDis.Text = _objNocj330.LeftBeamDis.ToString();
+            txtRightBeamDis.Text = _objNocj330.RightBeamDis.ToString();
+            txtGutterWidth.Text = _objNocj330.GutterWidth.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -188,7 +188,7 @@ namespace Compass
             }
             #endregion
             //封装对象
-            NOCJ330 objNOCJ330 = new NOCJ330()
+            NOCJ330 objNocj330 = new NOCJ330()
             {
                 NOCJ330Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -209,7 +209,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objNOCJ330Service.EditModel(objNOCJ330) == 1)
+                if (_objNocj330Service.EditModel(objNocj330) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

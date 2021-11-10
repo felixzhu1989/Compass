@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmCH610
+    partial class FrmCh610
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCH610));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCh610));
             this.btnEditData = new System.Windows.Forms.Button();
             this.cobLightType = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -300,7 +300,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmCH610";
+            this.Name = "FrmCh610";
             this.Text = "CH610";
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();

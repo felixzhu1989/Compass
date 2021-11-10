@@ -6,21 +6,21 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLLEDA : MetroFramework.Forms.MetroForm
+    public partial class FrmLleda : MetroFramework.Forms.MetroForm
     {
-        LLEDAService objLLEDAService = new LLEDAService();
-        private LLEDA objLLEDA = null;
-        public FrmLLEDA()
+        readonly LLEDAService _objLledaService = new LLEDAService();
+        private readonly LLEDA _objLleda = null;
+        public FrmLleda()
         {
             InitializeComponent();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLLEDA(Drawing drawing, ModuleTree tree) : this()
+        public FrmLleda(Drawing drawing, ModuleTree tree) : this()
         {
-            objLLEDA = (LLEDA)objLLEDAService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLLEDA == null) return;
+            _objLleda = (LLEDA)_objLledaService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLleda == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -31,10 +31,10 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objLLEDA == null) return;
-            modelView.Tag = objLLEDA.LLEDAId;
+            if (_objLleda == null) return;
+            modelView.Tag = _objLleda.LLEDAId;
 
-            txtLength.Text = objLLEDA.Length.ToString();
+            txtLength.Text = _objLleda.Length.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -49,7 +49,7 @@ namespace Compass
             }
 
             //封装对象
-            LLEDA objLLEDA = new LLEDA()
+            LLEDA objLleda = new LLEDA()
             {
                 LLEDAId = Convert.ToInt32(modelView.Tag),
 
@@ -58,7 +58,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLLEDAService.EditModel(objLLEDA) == 1)
+                if (_objLledaService.EditModel(objLleda) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

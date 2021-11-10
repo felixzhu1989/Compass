@@ -10,9 +10,9 @@ namespace Compass
 {
     public partial class FrmModelView : MetroFramework.Forms.MetroForm
     {
-        private EModelViewControl m_EDrawingsCtrl;
-        private EModelMarkupControl m_EDrawingsMarkupCtrl;
-        private ModelViewData modelViewData = new ModelViewData();
+        private EModelViewControl _mEDrawingsCtrl;
+        private EModelMarkupControl _mEDrawingsMarkupCtrl;
+        private readonly ModelViewData _modelViewData = new ModelViewData();
         public FrmModelView()
         {
             InitializeComponent();
@@ -22,8 +22,8 @@ namespace Compass
             RequirementService objRequirementService = new RequirementService();
             GeneralRequirement objGeneralRequirement = objRequirementService.GetGeneralRequirementByODPNo(project.ODPNo, Program.ObjCurrentUser.SBU);
             this.Text = "天花总装：" + project.ODPNo + " - " + project.ProjectName + "("+ objGeneralRequirement.TypeName+ ")";
-            modelViewData.LocalPath= objGeneralRequirement.MainAssyPath;
-            modelViewData.PublicPath= @"Z:\1-Project operation\20" + project.ODPNo.Substring(3, 2) + @" project\" + project.ODPNo+@"\"+System.IO.Path.GetFileName(modelViewData.LocalPath);
+            _modelViewData.LocalPath= objGeneralRequirement.MainAssyPath;
+            _modelViewData.PublicPath= @"Z:\1-Project operation\20" + project.ODPNo.Substring(3, 2) + @" project\" + project.ODPNo+@"\"+System.IO.Path.GetFileName(_modelViewData.LocalPath);
         }
         protected override void OnShown(EventArgs e)
         {
@@ -32,10 +32,10 @@ namespace Compass
         }
         private void OnControlLoaded(EModelViewControl ctrl)
         {
-            m_EDrawingsCtrl = ctrl;
-            m_EDrawingsCtrl.OnFinishedLoadingDocument += OnFinishedLoadingDocument;
-            m_EDrawingsCtrl.OnFailedLoadingDocument += OnFailedLoadingDocument;
-            m_EDrawingsMarkupCtrl = m_EDrawingsCtrl.CoCreateInstance("EModelViewMarkup.EModelMarkupControl") as EModelMarkupControl;
+            _mEDrawingsCtrl = ctrl;
+            _mEDrawingsCtrl.OnFinishedLoadingDocument += OnFinishedLoadingDocument;
+            _mEDrawingsCtrl.OnFailedLoadingDocument += OnFailedLoadingDocument;
+            _mEDrawingsMarkupCtrl = _mEDrawingsCtrl.CoCreateInstance("EModelViewMarkup.EModelMarkupControl") as EModelMarkupControl;
         }
         private void OnFailedLoadingDocument(string fileName, int errorCode, string errorString)
         {
@@ -44,19 +44,19 @@ namespace Compass
         private void OnFinishedLoadingDocument(string fileName)
         {
             Trace.WriteLine($"{fileName} loaded");
-            m_EDrawingsMarkupCtrl.ViewOperator = EMVMarkupOperators.eMVOperatorMeasure;
+            _mEDrawingsMarkupCtrl.ViewOperator = EMVMarkupOperators.eMVOperatorMeasure;
         }
         private void OnOpen(object sender, EventArgs e)
         {
             string filePath = "";
             if (((Button)sender).Tag.ToString() == "0")
             {
-                filePath = modelViewData.LocalPath;
+                filePath = _modelViewData.LocalPath;
                 btnOpenFolder.Tag = "0";
             }
             else
             {
-                filePath = modelViewData.PublicPath;
+                filePath = _modelViewData.PublicPath;
                 btnOpenFolder.Tag = "1";
             }
             if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(filePath)))
@@ -65,14 +65,14 @@ namespace Compass
             }
             if (System.IO.File.Exists(filePath))
             {
-                if (m_EDrawingsCtrl == null)
+                if (_mEDrawingsCtrl == null)
                 {
                     throw new NullReferenceException("eDrawings control is not loaded");
                 }
                 //txtMeasurements.Clear();
                 txtMeasurements.Text = "选择线可直接显示结果，如果选择的是面则点击记录测量结果按钮。";
-                m_EDrawingsCtrl.CloseActiveDoc("");
-                m_EDrawingsCtrl.OpenDoc(filePath, false, false, false, "");
+                _mEDrawingsCtrl.CloseActiveDoc("");
+                _mEDrawingsCtrl.OpenDoc(filePath, false, false, false, "");
             }
             else
             {
@@ -81,15 +81,15 @@ namespace Compass
         }
         private void OnCaptureMeasurement(object sender, EventArgs e)
         {
-            txtMeasurements.Text += (!string.IsNullOrEmpty(txtMeasurements.Text) ? Environment.NewLine : "")+ m_EDrawingsMarkupCtrl.MeasureResultString;
+            txtMeasurements.Text += (!string.IsNullOrEmpty(txtMeasurements.Text) ? Environment.NewLine : "")+ _mEDrawingsMarkupCtrl.MeasureResultString;
         }
 
         private void BtnOpenFolder_Click(object sender, EventArgs e)
         {
             btnOpenFolder.Enabled = false;
             string filePath = "";
-            if (((Button)sender).Tag.ToString() == "0") filePath = modelViewData.LocalPath;
-            else filePath = modelViewData.PublicPath;
+            if (((Button)sender).Tag.ToString() == "0") filePath = _modelViewData.LocalPath;
+            else filePath = _modelViewData.PublicPath;
 
             if (System.IO.File.Exists(filePath))
             {

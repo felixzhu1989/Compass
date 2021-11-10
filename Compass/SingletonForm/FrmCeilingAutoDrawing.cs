@@ -15,26 +15,26 @@ namespace Compass
 {
     public partial class FrmCeilingAutoDrawing : MetroFramework.Forms.MetroForm
     {
-        private ProjectService objProjectService = new ProjectService();
-        private ModuleTreeService objModuleTreeService = new ModuleTreeService();
-        private SubAssyService objSubAssyService = new SubAssyService();
-        private CeilingCutListService objCeilingCutListService = new CeilingCutListService();
-        private RequirementService objRequirementService = new RequirementService();
-        private CeilingAccessoryService objCeilingAccessoryService = new CeilingAccessoryService();
-        private DrawingPlanService objDrawingPlanService = new DrawingPlanService();
-        private GeneralRequirement objGeneralRequirement = null;
-        private Project objProject = null;
-        private List<SubAssy> subAssyTreeList = new List<SubAssy>();
-        private List<SubAssy> subAssyAddList = new List<SubAssy>();//拖动文件到窗口中执行添加
+        private readonly ProjectService _objProjectService = new ProjectService();
+        private readonly ModuleTreeService _objModuleTreeService = new ModuleTreeService();
+        private readonly SubAssyService _objSubAssyService = new SubAssyService();
+        private readonly CeilingCutListService _objCeilingCutListService = new CeilingCutListService();
+        private readonly RequirementService _objRequirementService = new RequirementService();
+        private readonly CeilingAccessoryService _objCeilingAccessoryService = new CeilingAccessoryService();
+        private readonly DrawingPlanService _objDrawingPlanService = new DrawingPlanService();
+        private GeneralRequirement _objGeneralRequirement = null;
+        private Project _objProject = null;
+        private readonly List<SubAssy> _subAssyTreeList = new List<SubAssy>();
+        private readonly List<SubAssy> _subAssyAddList = new List<SubAssy>();//拖动文件到窗口中执行添加
         //使用BindingList动态绑定Dgv
-        BindingList<ModuleTree> waitingList = null;//待执行list，从项目中查询出来的
-        BindingList<ModuleTree> execList = new BindingList<ModuleTree>();//执行list，手动添加的
-        BindingList<SubAssy> subAssyWaitingList = null;////待执行list，从项目中查询出来的,拖拽进dgv中的文件列表
-        BindingList<SubAssy> subAssyExecList = new BindingList<SubAssy>();//执行list，手动添加的
-        private string sbu = Program.ObjCurrentUser.SBU;
+        BindingList<ModuleTree> _waitingList = null;//待执行list，从项目中查询出来的
+        readonly BindingList<ModuleTree> _execList = new BindingList<ModuleTree>();//执行list，手动添加的
+        BindingList<SubAssy> _subAssyWaitingList = null;////待执行list，从项目中查询出来的,拖拽进dgv中的文件列表
+        readonly BindingList<SubAssy> _subAssyExecList = new BindingList<SubAssy>();//执行list，手动添加的
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
 
         //solidWorks程序
-        private SldWorks swApp;
+        private SldWorks _swApp;
 
         public FrmCeilingAutoDrawing()
         {
@@ -44,7 +44,7 @@ namespace Compass
             dgvSubAssyWaitingList.AutoGenerateColumns = false;
             dgvSubAssyExecList.AutoGenerateColumns = false;
             //dgvCutList.AutoGenerateColumns = false;
-            IniCobODPNo();
+            IniCobOdpNo();
             this.tvSubAssyTree.AllowDrop = true;//允许文件拖拽
             this.txtMainAssyPath.AllowDrop = true;
             btnEditCeilingAccessory.Enabled = false;
@@ -53,11 +53,11 @@ namespace Compass
             SetPermissions();
         }
 
-        public void IniCobODPNo()
+        public void IniCobOdpNo()
         {
             this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
             //项目编号下拉框
-            cobODPNo.DataSource = objProjectService.GetProjectsByHoodType("Ceiling", sbu);
+            cobODPNo.DataSource = _objProjectService.GetProjectsByHoodType("Ceiling", _sbu);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;
@@ -131,13 +131,13 @@ namespace Compass
         private void CobODPNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
-            objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text,sbu);
-            objGeneralRequirement = objRequirementService.GetGeneralRequirementByODPNo(cobODPNo.Text,sbu);
-            txtBPONo.Text = objProject.BPONo;
-            txtProjectName.Text = objProject.ProjectName;
+            _objProject = _objProjectService.GetProjectByODPNo(cobODPNo.Text,_sbu);
+            _objGeneralRequirement = _objRequirementService.GetGeneralRequirementByODPNo(cobODPNo.Text,_sbu);
+            txtBPONo.Text = _objProject.BPONo;
+            txtProjectName.Text = _objProject.ProjectName;
             RefreshTree();
             RefreshDgv();
-            if (objGeneralRequirement == null)
+            if (_objGeneralRequirement == null)
             {
                 MessageBox.Show("请注意，项目通用技术要求没有添加，可能导致发货清单无法正常输出", "提示信息");
                 btnCeilingPackingList.Enabled = false;
@@ -146,9 +146,9 @@ namespace Compass
             }
             else
             {
-                txtTypeName.Text = objGeneralRequirement.TypeName;
-                txtMainAssyPath.Text = objGeneralRequirement.MainAssyPath;
-                if (objGeneralRequirement.MainAssyPath.Length > 0 && Program.ObjCurrentUser.UserGroupId < 3) btnCeilingPackingList.Enabled = true;
+                txtTypeName.Text = _objGeneralRequirement.TypeName;
+                txtMainAssyPath.Text = _objGeneralRequirement.MainAssyPath;
+                if (_objGeneralRequirement.MainAssyPath.Length > 0 && Program.ObjCurrentUser.UserGroupId < 3) btnCeilingPackingList.Enabled = true;
                 if (dgvCeilingPackingList.RowCount > 0)
                 {
                     btnPrintCeilingPackingList.Enabled = true;
@@ -161,19 +161,19 @@ namespace Compass
         /// </summary>
         private void RefreshTree()
         {
-            if (objProject == null) return;
+            if (_objProject == null) return;
             //创建第一个节点
             this.tvSubAssyTree.Nodes.Clear();//清空所有节点
-            subAssyTreeList.Clear();//清空节点集合，否则修改一次重复添加一次
+            _subAssyTreeList.Clear();//清空节点集合，否则修改一次重复添加一次
             TreeNode rootNode = new TreeNode()
             {
-                Text = objProject.ODPNo,
-                Tag = objProject.ProjectId,//默认值,作为id使用
+                Text = _objProject.ODPNo,
+                Tag = _objProject.ProjectId,//默认值,作为id使用
                 ImageIndex = 4//添加图标
             };
             this.tvSubAssyTree.Nodes.Add(rootNode);//将根节点添加到treeView控件中
             //创建子节点
-            List<SubAssy> subAssyList = objSubAssyService.GetSubAssysByProjectId(objProject.ProjectId.ToString());
+            List<SubAssy> subAssyList = _objSubAssyService.GetSubAssysByProjectId(_objProject.ProjectId.ToString());
             foreach (var item in subAssyList)
             {
                 TreeNode node = new TreeNode()
@@ -191,17 +191,17 @@ namespace Compass
         /// </summary>
         private void RefreshDgv()
         {
-            if (objProject == null) return;
-            execList.Clear();
-            waitingList = new BindingList<ModuleTree>(objModuleTreeService.GetModuleTreesByProjectId(cobODPNo.SelectedValue.ToString(),sbu));
-            subAssyExecList.Clear();
-            subAssyWaitingList = new BindingList<SubAssy>(objSubAssyService.GetSubAssysByProjectId(cobODPNo.SelectedValue.ToString()));
-            dgvWaitingList.DataSource = waitingList;
-            dgvExecList.DataSource = execList;
-            dgvSubAssyWaitingList.DataSource = subAssyWaitingList;
-            dgvSubAssyExecList.DataSource = subAssyExecList;
+            if (_objProject == null) return;
+            _execList.Clear();
+            _waitingList = new BindingList<ModuleTree>(_objModuleTreeService.GetModuleTreesByProjectId(cobODPNo.SelectedValue.ToString(),_sbu));
+            _subAssyExecList.Clear();
+            _subAssyWaitingList = new BindingList<SubAssy>(_objSubAssyService.GetSubAssysByProjectId(cobODPNo.SelectedValue.ToString()));
+            dgvWaitingList.DataSource = _waitingList;
+            dgvExecList.DataSource = _execList;
+            dgvSubAssyWaitingList.DataSource = _subAssyWaitingList;
+            dgvSubAssyExecList.DataSource = _subAssyExecList;
             dgvCeilingPackingList.DataSource =
-                objCeilingAccessoryService.GetCeilingPackingListByProjectId(objProject.ProjectId.ToString());
+                _objCeilingAccessoryService.GetCeilingPackingListByProjectId(_objProject.ProjectId.ToString());
         }
 
 
@@ -215,12 +215,12 @@ namespace Compass
         {
             if (dgvWaitingList.CurrentRow == null) return;
             int moduleTreeId = Convert.ToInt32(dgvWaitingList.CurrentRow.Cells["ModuleTreeId"].Value);
-            foreach (var item in waitingList)
+            foreach (var item in _waitingList)
             {
                 if (item.ModuleTreeId == moduleTreeId)
                 {
-                    execList.Add(item);
-                    waitingList.Remove(item);
+                    _execList.Add(item);
+                    _waitingList.Remove(item);
                     return;
                 }
             }
@@ -234,12 +234,12 @@ namespace Compass
         {
             if (dgvExecList.CurrentRow == null) return;
             int moduleTreeId = Convert.ToInt32(dgvExecList.CurrentRow.Cells["ModuleTreeId2"].Value);
-            foreach (var item in execList)
+            foreach (var item in _execList)
             {
                 if (item.ModuleTreeId == moduleTreeId)
                 {
-                    waitingList.Add(item);
-                    execList.Remove(item);
+                    _waitingList.Add(item);
+                    _execList.Remove(item);
                     //及时跳出，防止foreach时list变化
                     return;
                 }
@@ -253,12 +253,12 @@ namespace Compass
         private void BtnAddAll_Click(object sender, EventArgs e)
         {
             if (dgvWaitingList.CurrentRow == null) return;
-            foreach (var item in waitingList)
+            foreach (var item in _waitingList)
             {
-                execList.Add(item);
+                _execList.Add(item);
             }
             //最后清空，防止foreach时list变化
-            waitingList.Clear();
+            _waitingList.Clear();
         }
         /// <summary>
         /// 执行->待执行/所有
@@ -268,11 +268,11 @@ namespace Compass
         private void BtnSubAll_Click(object sender, EventArgs e)
         {
             if (dgvExecList.CurrentRow == null) return;
-            foreach (var item in execList)
+            foreach (var item in _execList)
             {
-                waitingList.Add(item);
+                _waitingList.Add(item);
             }
-            execList.Clear();
+            _execList.Clear();
         }
         /// <summary>
         /// 执行SolidWorks作图程序
@@ -281,13 +281,13 @@ namespace Compass
         /// <param name="e"></param>
         private async void BtnExec_Click(object sender, EventArgs e)
         {
-            if (execList.Count == 0) return;
+            if (_execList.Count == 0) return;
             btnExec.Enabled = false;
             //计算时间
             DateTime startTime = DateTime.Now;
             tspbStatus.Value = 0;
             tspbStatus.Step = 1;
-            tspbStatus.Maximum = execList.Count;
+            tspbStatus.Maximum = _execList.Count;
             //创建项目文件夹，默认再D盘MyProjects目录下（先判断文件夹是否存在）
             string projectPath = @"D:\MyProjects\" + cobODPNo.Text;
             if (!Directory.Exists(projectPath))
@@ -298,9 +298,9 @@ namespace Compass
             try
             {
                 tsslStatus.Text = "正在打开(/连接)SolidWorks程序...";
-                swApp = await SolidWorksSingleton.GetApplicationAsync();
+                _swApp = await SolidWorksSingleton.GetApplicationAsync();
                 //遍历execList，创建项目模型存放地址，判断模型类型，查询参数，执行SolidWorks
-                foreach (var item in execList)
+                foreach (var item in _execList)
                 {
                     tsslStatus.Text = item.Item + "(" + item.Module + ")正在作图...";
                     //6.根据工厂提供的选择，执行具体的接口实现方式
@@ -315,12 +315,12 @@ namespace Compass
             }
             finally
             {
-                swApp.CommandInProgress = false;//及时关闭外部命令调用，否则影响SolidWorks的使用
+                _swApp.CommandInProgress = false;//及时关闭外部命令调用，否则影响SolidWorks的使用
             }
 
             TimeSpan timeSpan = DateTime.Now - startTime;
             tsslStatus.Text = "作图完成,总共耗时：" + timeSpan.TotalSeconds + "秒";
-            tspbStatus.Value = execList.Count;
+            tspbStatus.Value = _execList.Count;
             BtnSubAll_Click(null, null);//清除执行数据
             btnExec.Enabled = true;
         }
@@ -337,8 +337,8 @@ namespace Compass
                 try
                 {
                     IAutoDrawing objAutoDrawing = AutoDrawingFactory.ChooseDrawingType(item);
-                    item.SBU = sbu;
-                    objAutoDrawing.AutoDrawing(swApp, item, projectPath);
+                    item.SBU = _sbu;
+                    objAutoDrawing.AutoDrawing(_swApp, item, projectPath);
                 }
                 catch (Exception ex)
                 {
@@ -354,12 +354,12 @@ namespace Compass
         /// <param name="e"></param>
         private void BtnJobCard_Click(object sender, EventArgs e)
         {
-            if (objProject == null) return;//未选中项目则终止
+            if (_objProject == null) return;//未选中项目则终止
             btnJobCard.Enabled = false;
             tspbStatus.Value = 0;
             tspbStatus.Step = 1;
             tspbStatus.Maximum = 1;
-            FrmJobCardCeiling objFrmJobCardCeiling = new FrmJobCardCeiling(objProject);
+            FrmJobCardCeiling objFrmJobCardCeiling = new FrmJobCardCeiling(_objProject);
             DialogResult result = objFrmJobCardCeiling.ShowDialog();
             //判断打印是否成功
             if (result == DialogResult.OK)
@@ -385,7 +385,7 @@ namespace Compass
         private void TvSubAssy_DragDrop(object sender, DragEventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
-            subAssyAddList.Clear();
+            _subAssyAddList.Clear();
             //获取拖放数据
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -395,7 +395,7 @@ namespace Compass
                     if (Path.GetExtension(content[i]) == ".sldasm" || Path.GetExtension(content[i]) == ".SLDASM") //获取路径文件的后缀)
                     {
                         string fileName = content[i].Substring(content[i].LastIndexOf("\\") + 1);
-                        subAssyAddList.Add(new SubAssy
+                        _subAssyAddList.Add(new SubAssy
                         {
                             ProjectId = Convert.ToInt32(cobODPNo.SelectedValue),
                             SubAssyName = fileName.Substring(0, fileName.LastIndexOf(".")),
@@ -404,11 +404,11 @@ namespace Compass
                     }
                 }
                 //基于事务将subAssyFilePathList提交SQLServer
-                if (subAssyAddList.Count == 0) return;
+                if (_subAssyAddList.Count == 0) return;
                 try
                 {
-                    if (objSubAssyService.ImportSubAssy(subAssyAddList))
-                        subAssyAddList.Clear() /*MessageBox.Show("添加成功！","提示信息")*/;
+                    if (_objSubAssyService.ImportSubAssy(_subAssyAddList))
+                        _subAssyAddList.Clear() /*MessageBox.Show("添加成功！","提示信息")*/;
                 }
                 catch (Exception ex)
                 {
@@ -416,7 +416,7 @@ namespace Compass
                 }
                 finally
                 {
-                    subAssyAddList.Clear();
+                    _subAssyAddList.Clear();
                 }
                 RefreshTree();
                 RefreshDgv();
@@ -448,7 +448,7 @@ namespace Compass
                 //执行删除
                 try
                 {
-                    if (objSubAssyService.DeleteSubAssy(tvSubAssyTree.SelectedNode.Tag.ToString()) == 1)
+                    if (_objSubAssyService.DeleteSubAssy(tvSubAssyTree.SelectedNode.Tag.ToString()) == 1)
                     {
                         RefreshTree();
                         RefreshDgv();
@@ -474,12 +474,12 @@ namespace Compass
         {
             if (dgvSubAssyWaitingList.CurrentRow == null) return;
             int subAssyId = Convert.ToInt32(dgvSubAssyWaitingList.CurrentRow.Cells["SubAssyId"].Value);
-            foreach (var item in subAssyWaitingList)
+            foreach (var item in _subAssyWaitingList)
             {
                 if (item.SubAssyId == subAssyId)
                 {
-                    subAssyExecList.Add(item);
-                    subAssyWaitingList.Remove(item);
+                    _subAssyExecList.Add(item);
+                    _subAssyWaitingList.Remove(item);
                     //及时跳出，防止foreach时list变化
                     return;
                 }
@@ -494,12 +494,12 @@ namespace Compass
         {
             if (dgvSubAssyExecList.CurrentRow == null) return;
             int subAssyId = Convert.ToInt32(dgvSubAssyExecList.CurrentRow.Cells["SubAssyId2"].Value);
-            foreach (var item in subAssyExecList)
+            foreach (var item in _subAssyExecList)
             {
                 if (item.SubAssyId == subAssyId)
                 {
-                    subAssyWaitingList.Add(item);
-                    subAssyExecList.Remove(item);
+                    _subAssyWaitingList.Add(item);
+                    _subAssyExecList.Remove(item);
                     //及时跳出，防止foreach时list变化
                     return;
                 }
@@ -512,13 +512,13 @@ namespace Compass
         /// <param name="e"></param>
         private async void BtnExportDxf_Click(object sender, EventArgs e)
         {
-            if (subAssyExecList.Count == 0) return;
+            if (_subAssyExecList.Count == 0) return;
             btnExportDxf.Enabled = false;
             //计算时间
             DateTime startTime = DateTime.Now;
             tspbStatus.Value = 0;
             tspbStatus.Step = 1;
-            tspbStatus.Maximum = subAssyExecList.Count;
+            tspbStatus.Maximum = _subAssyExecList.Count;
             //创建下料图文件夹，默认再D盘MyProjects目录下（先判断文件夹是否存在）
             string dxfPath = @"D:\MyProjects\" + cobODPNo.Text + @"\DXF-CUTLIST";
             if (!Directory.Exists(dxfPath)) Directory.CreateDirectory(dxfPath);
@@ -526,9 +526,9 @@ namespace Compass
             try
             {
                 tsslStatus.Text = "正在打开(/连接)SolidWorks程序...";
-                swApp = await SolidWorksSingleton.GetApplicationAsync();
+                _swApp = await SolidWorksSingleton.GetApplicationAsync();
                 //遍历execList，创建项目模型存放地址，判断模型类型，查询参数，执行SolidWorks
-                foreach (var item in subAssyExecList)
+                foreach (var item in _subAssyExecList)
                 {
                     tsslStatus.Text = "子装配体(" + item.SubAssyName + ")正在导图...";
                     //以异步的方式执行，让窗口可操作并且进度条更新
@@ -542,17 +542,17 @@ namespace Compass
             }
             finally
             {
-                swApp.CommandInProgress = false;//及时关闭外部命令调用，否则影响SolidWorks的使用
+                _swApp.CommandInProgress = false;//及时关闭外部命令调用，否则影响SolidWorks的使用
             }
             TimeSpan timeSpan = DateTime.Now - startTime;
             tsslStatus.Text = "导出DXF图完成,总共耗时：" + timeSpan.TotalSeconds + "秒";
-            tspbStatus.Value = subAssyExecList.Count;
+            tspbStatus.Value = _subAssyExecList.Count;
             //btnSubAll_Click(null, null);//清除执行数据
-            foreach (var item in subAssyExecList)
+            foreach (var item in _subAssyExecList)
             {
-                subAssyWaitingList.Add(item);
+                _subAssyWaitingList.Add(item);
             }
-            subAssyExecList.Clear();
+            _subAssyExecList.Clear();
             btnExportDxf.Enabled = true;
         }
         /// <summary>
@@ -567,7 +567,7 @@ namespace Compass
             {
                 try
                 {
-                    new ExprotDxf().CeilingAssyToDxf(swApp, item, dxfPath, userId);
+                    new ExprotDxf().CeilingAssyToDxf(_swApp, item, dxfPath, userId);
                 }
                 catch (Exception ex)
                 {
@@ -588,7 +588,7 @@ namespace Compass
             {
                 //更新Cutlist显示
                 lblModule.Text = "子装配 (" + tvSubAssyTree.SelectedNode.Text + ") Cutlist";//标题
-                dgvCutList.DataSource = objCeilingCutListService.GetCeilingCutListsBySubAssyId(tvSubAssyTree.SelectedNode.Tag.ToString());
+                dgvCutList.DataSource = _objCeilingCutListService.GetCeilingCutListsBySubAssyId(tvSubAssyTree.SelectedNode.Tag.ToString());
             }
         }
 
@@ -603,7 +603,7 @@ namespace Compass
             btnPrintCutList.Enabled = false;
             btnPrintCutList.Text = "打印中...";
             SubAssy objSubAssy =
-                objSubAssyService.GetSubAssyId(dgvCutList.Rows[0].Cells["SubAssyId"].Value.ToString());
+                _objSubAssyService.GetSubAssyId(dgvCutList.Rows[0].Cells["SubAssyId"].Value.ToString());
             if (new PrintReports().ExecPrintCeilingCutList(objSubAssy, dgvCutList)) MessageBox.Show("CutList打印完成", "打印完成");
             btnPrintCutList.Enabled = true;
             btnPrintCutList.Text = "打印CustList";
@@ -626,8 +626,8 @@ namespace Compass
             }
             try
             {
-                if (objCeilingCutListService.DeleteCutlistByTran(idList))
-                    dgvCutList.DataSource = objCeilingCutListService.GetCeilingCutListsBySubAssyId(subAssyId); ;
+                if (_objCeilingCutListService.DeleteCutlistByTran(idList))
+                    dgvCutList.DataSource = _objCeilingCutListService.GetCeilingCutListsBySubAssyId(subAssyId); ;
             }
             catch (Exception ex)
             {
@@ -691,10 +691,10 @@ namespace Compass
                 ) //获取路径文件的后缀)
                 {
                     txtMainAssyPath.Text = content[0];
-                    objGeneralRequirement.MainAssyPath = content[0];
+                    _objGeneralRequirement.MainAssyPath = content[0];
                     try
                     {
-                        if (objRequirementService.UpdateMainAssyPath(objGeneralRequirement,sbu) > 0)
+                        if (_objRequirementService.UpdateMainAssyPath(_objGeneralRequirement,_sbu) > 0)
                             btnCeilingPackingList.Enabled = true;
                     }
                     catch (Exception ex)
@@ -741,16 +741,16 @@ namespace Compass
             {
                 //【1】查询项目的所有配件部分
                 List<CeilingAccessory> ceilingAccessoriesList = txtTypeName.Text == "日本项目"
-                    ? objCeilingAccessoryService.GetCeilingAccessoriesForJapan()
-                    : objCeilingAccessoryService.GetCeilingAccessoriesForNotJapan();
+                    ? _objCeilingAccessoryService.GetCeilingAccessoriesForJapan()
+                    : _objCeilingAccessoryService.GetCeilingAccessoriesForNotJapan();
                 foreach (var item in ceilingAccessoriesList)
                 {
-                    item.ProjectId = objProject.ProjectId;
+                    item.ProjectId = _objProject.ProjectId;
                     item.UserId = Program.ObjCurrentUser.UserId;
-                    item.Location = objDrawingPlanService.GetDrawingPlanByProjectId(objProject.ProjectId.ToString(),sbu)[0].Item;
+                    item.Location = _objDrawingPlanService.GetDrawingPlanByProjectId(_objProject.ProjectId.ToString(),_sbu)[0].Item;
                 }
                 //将查询到的标准配件统一提交到SQL服务器
-                objCeilingAccessoryService.ImportCeilingPackingListByTran(ceilingAccessoriesList);
+                _objCeilingAccessoryService.ImportCeilingPackingListByTran(ceilingAccessoriesList);
             }
             tspbStatus.Value = 1;
             //【2】打开装配体，获得所有零件名，查询配件和数量导入SQL
@@ -759,12 +759,12 @@ namespace Compass
             try
             {
                 tsslStatus.Text = "正在打开(/连接)SolidWorks程序...";
-                swApp = await SolidWorksSingleton.GetApplicationAsync();
+                _swApp = await SolidWorksSingleton.GetApplicationAsync();
                 //执行SolidWorks,打开总装并执行导出发货清单程序
 
                 tsslStatus.Text = "正在导出发货清单...";
                 //以异步的方式执行，让窗口可操作并且进度条更新
-                await ExportCeilingPackingListAsync(txtMainAssyPath.Text, objProject);
+                await ExportCeilingPackingListAsync(txtMainAssyPath.Text, _objProject);
             }
             catch (Exception ex)
             {
@@ -772,10 +772,10 @@ namespace Compass
             }
             finally
             {
-                swApp.CommandInProgress = false;//及时关闭外部命令调用，否则影响SolidWorks的使用
+                _swApp.CommandInProgress = false;//及时关闭外部命令调用，否则影响SolidWorks的使用
             }
             //更新发货清单显示
-            dgvCeilingPackingList.DataSource = objCeilingAccessoryService.GetCeilingPackingListByProjectId(objProject.ProjectId.ToString());
+            dgvCeilingPackingList.DataSource = _objCeilingAccessoryService.GetCeilingPackingListByProjectId(_objProject.ProjectId.ToString());
             //MessageBox.Show("发货清单导出成功！", "提示信息");
             TimeSpan timeSpan = DateTime.Now - startTime;
             tsslStatus.Text = "导出发货清单完成,总共耗时：" + timeSpan.TotalSeconds + "秒";
@@ -788,7 +788,7 @@ namespace Compass
             {
                 try
                 {
-                    new ExportCeilingPackingList().CeilingAssyToPackingList(swApp, mainAssyPath, objProject, Program.ObjCurrentUser.UserId,sbu);
+                    new ExportCeilingPackingList().CeilingAssyToPackingList(_swApp, mainAssyPath, objProject, Program.ObjCurrentUser.UserId,_sbu);
                 }
                 catch (Exception ex)
                 {
@@ -808,7 +808,7 @@ namespace Compass
             tspbStatus.Value = 0;
             tspbStatus.Maximum = 1;
             tsslStatus.Text = "发货清单打印中...";
-            if (new PrintReports().ExecPrintCeilingPackingList(objProject, dgvCeilingPackingList)) MessageBox.Show("发货清单打印完成", "打印完成");
+            if (new PrintReports().ExecPrintCeilingPackingList(_objProject, dgvCeilingPackingList)) MessageBox.Show("发货清单打印完成", "打印完成");
             tsslStatus.Text = "发货清单打印完成！";
             tspbStatus.Value = 1;
             btnPrintCeilingPackingList.Enabled = true;
@@ -825,7 +825,7 @@ namespace Compass
             tspbStatus.Value = 0;
             tspbStatus.Maximum = 1;
             tsslStatus.Text = "发货清单Excel文件正在保存中...";
-            if (new PrintReports().ExecSaveCeilingPackingList(objProject, dgvCeilingPackingList)) MessageBox.Show("发货清单Excel文件保存完成", "保存完成");
+            if (new PrintReports().ExecSaveCeilingPackingList(_objProject, dgvCeilingPackingList)) MessageBox.Show("发货清单Excel文件保存完成", "保存完成");
             tsslStatus.Text = "发货清单Excel文件保存完成，请至D盘MyProjects中项目文件夹下查看！";
             tspbStatus.Value = 1;
             btnSaveToExcel.Enabled = true;
@@ -847,7 +847,7 @@ namespace Compass
             {
                 //循环选中的行，并根据ID查询对象，判断ClassNo==4，将对象填入List
                 CeilingAccessory objCeilingAccessory =
-                    objCeilingAccessoryService.GetCeilingPackingItemById(row.Cells["CeilingPackingListId"].Value
+                    _objCeilingAccessoryService.GetCeilingPackingItemById(row.Cells["CeilingPackingListId"].Value
                         .ToString());
 
                 //编号为4的打印多个，其余编号打印一个标签
@@ -864,7 +864,7 @@ namespace Compass
                 }
             }
             //调用打印程序
-            if (new PrintReports().ExecPrintCeilingLabel(objProject, ceilingAccessories)) MessageBox.Show("标签打印完成", "打印完成");
+            if (new PrintReports().ExecPrintCeilingLabel(_objProject, ceilingAccessories)) MessageBox.Show("标签打印完成", "打印完成");
         }
         /// <summary>
         /// 删除没用的发货清单条目
@@ -884,8 +884,8 @@ namespace Compass
             }
             try
             {
-                if (objCeilingAccessoryService.DeleteCeilingPackingListByTran(idList))
-                    dgvCeilingPackingList.DataSource = objCeilingAccessoryService.GetCeilingPackingListByProjectId(objProject.ProjectId.ToString());
+                if (_objCeilingAccessoryService.DeleteCeilingPackingListByTran(idList))
+                    dgvCeilingPackingList.DataSource = _objCeilingAccessoryService.GetCeilingPackingListByProjectId(_objProject.ProjectId.ToString());
             }
             catch (Exception ex)
             {
@@ -906,7 +906,7 @@ namespace Compass
             if (dgvCeilingPackingList.RowCount == 0) return;
             if (dgvCeilingPackingList.CurrentRow == null) return;
             string packingId = dgvCeilingPackingList.CurrentRow.Cells["CeilingPackingListId"].Value.ToString();
-            CeilingAccessory objCeilingPackingItem = objCeilingAccessoryService.GetCeilingPackingItemById(packingId);
+            CeilingAccessory objCeilingPackingItem = _objCeilingAccessoryService.GetCeilingPackingItemById(packingId);
             //初始化修改信息
             txtPartDescription.Text = objCeilingPackingItem.PartDescription;
             txtPartDescription.ReadOnly = false;
@@ -954,10 +954,10 @@ namespace Compass
             //调用后台方法修改对象
             try
             {
-                if (objCeilingAccessoryService.EditCeilingPackingList(objCeilingPackingItem) == 1)
+                if (_objCeilingAccessoryService.EditCeilingPackingList(objCeilingPackingItem) == 1)
                 {
                     MessageBox.Show("发货清单条目信息成功！", "提示信息");
-                    dgvCeilingPackingList.DataSource = objCeilingAccessoryService.GetCeilingPackingListByProjectId(objProject.ProjectId.ToString());
+                    dgvCeilingPackingList.DataSource = _objCeilingAccessoryService.GetCeilingPackingListByProjectId(_objProject.ProjectId.ToString());
                     //清空内容
                     txtPartDescription.Text = "";
                     txtPartDescription.ReadOnly = true;
@@ -992,11 +992,11 @@ namespace Compass
         private void TsmiAddCeilingPackingList_Click(object sender, EventArgs e)
         {
             if (dgvCeilingPackingList.RowCount == 0) return;
-            FrmAddCeilingPackingList objFrmAddCeilingPackingList = new FrmAddCeilingPackingList(objProject);
+            FrmAddCeilingPackingList objFrmAddCeilingPackingList = new FrmAddCeilingPackingList(_objProject);
             DialogResult result = objFrmAddCeilingPackingList.ShowDialog();
             if (result == DialogResult.OK)
             {
-                dgvCeilingPackingList.DataSource = objCeilingAccessoryService.GetCeilingPackingListByProjectId(objProject.ProjectId.ToString());
+                dgvCeilingPackingList.DataSource = _objCeilingAccessoryService.GetCeilingPackingListByProjectId(_objProject.ProjectId.ToString());
             }
         }
         /// <summary>
@@ -1015,7 +1015,7 @@ namespace Compass
             List<CeilingAccessory> oldCeilingAccessories = new List<CeilingAccessory>();
             foreach (DataGridViewRow row in dgvCeilingPackingList.SelectedRows)
             {
-                oldCeilingAccessories.Add(objCeilingAccessoryService.GetCeilingPackingItemById(row.Cells["CeilingPackingListId"].Value.ToString()));
+                oldCeilingAccessories.Add(_objCeilingAccessoryService.GetCeilingPackingItemById(row.Cells["CeilingPackingListId"].Value.ToString()));
             }
             //新建新集合，循环旧集合将对象添加到新集合并赋值数量为1，区域为新值
             //判断对象数量 >1时减1（最后用于修改），否则将id添加到新的idList中（删除）
@@ -1055,15 +1055,15 @@ namespace Compass
             //将新集合添加到SQL,修改对象,删除对象
             try
             {
-                if (objCeilingAccessoryService.ImportCeilingPackingListByTran(addCeilingAccessories))
+                if (_objCeilingAccessoryService.ImportCeilingPackingListByTran(addCeilingAccessories))
                 {
                     foreach (var item in editCeilingAccessories)
                     {
-                        objCeilingAccessoryService.EditCeilingPackingList(item);
+                        _objCeilingAccessoryService.EditCeilingPackingList(item);
                     }
-                    if(deleteIdList.Count!=0) objCeilingAccessoryService.DeleteCeilingPackingListByTran(deleteIdList); 
+                    if(deleteIdList.Count!=0) _objCeilingAccessoryService.DeleteCeilingPackingListByTran(deleteIdList); 
                 }
-                dgvCeilingPackingList.DataSource = objCeilingAccessoryService.GetCeilingPackingListByProjectId(objProject.ProjectId.ToString());
+                dgvCeilingPackingList.DataSource = _objCeilingAccessoryService.GetCeilingPackingListByProjectId(_objProject.ProjectId.ToString());
             }
             catch (Exception ex)
             {

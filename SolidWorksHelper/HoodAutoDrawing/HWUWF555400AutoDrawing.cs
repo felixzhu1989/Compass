@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class HWUWF555400AutoDrawing : IAutoDrawing
     {
-        HWUWF555400Service objHWUWF555400Service = new HWUWF555400Service();
+        readonly HWUWF555400Service objHWUWF555400Service = new HWUWF555400Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

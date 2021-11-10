@@ -9,14 +9,14 @@ namespace Compass
 {
     public partial class FrmCustomer : MetroFramework.Forms.MetroForm
     {
-        private List<Customer> customerList=null;//用来保存导入的Customer对象
-        private ImportDataFormExcel objImportDataFormExcel=new ImportDataFormExcel();
-        private CustomerService objCustomerService = new CustomerService();
+        private List<Customer> _customerList=null;//用来保存导入的Customer对象
+        private readonly ImportDataFormExcel _objImportDataFormExcel=new ImportDataFormExcel();
+        private readonly CustomerService _objCustomerService = new CustomerService();
         public FrmCustomer()
         {
             InitializeComponent();
             dgvCustomers.AutoGenerateColumns = false;
-            dgvCustomers.DataSource = objCustomerService.GetAllCustomers();
+            dgvCustomers.DataSource = _objCustomerService.GetAllCustomers();
             btnCustomer.Text = "添加客户名称";
             dgvImportFromExcel.AutoGenerateColumns = false;
         }
@@ -46,13 +46,13 @@ namespace Compass
                 //提交添加
                 try
                 {
-                    int CustomerId = objCustomerService.AddCustomer(objCustomer);
-                    if (CustomerId > 1)
+                    int customerId = _objCustomerService.AddCustomer(objCustomer);
+                    if (customerId > 1)
                     {
                         //提示添加成功
                         MessageBox.Show("客户名称添加成功", "提示信息");
                         //刷新显示
-                        dgvCustomers.DataSource = objCustomerService.GetAllCustomers();
+                        dgvCustomers.DataSource = _objCustomerService.GetAllCustomers();
                         //清空内容
                         txtCustomerName.Text = "";
                     }
@@ -73,11 +73,11 @@ namespace Compass
                 //调用后台方法修改对象
                 try
                 {
-                    if (objCustomerService.EditProjectValult(objCustomer) == 1)
+                    if (_objCustomerService.EditProjectValult(objCustomer) == 1)
                     {
                         MessageBox.Show("修改客户名称成功！", "提示信息");
                         //刷新内容
-                        dgvCustomers.DataSource = objCustomerService.GetAllCustomers();
+                        dgvCustomers.DataSource = _objCustomerService.GetAllCustomers();
                         //清空内容
                         txtCustomerId.Text = "";
                         txtCustomerName.Text = "";
@@ -107,7 +107,7 @@ namespace Compass
                 return;
             }
             string customerId = dgvCustomers.CurrentRow.Cells["CustomerId"].Value.ToString();
-            Customer objCustomer = objCustomerService.GetCustomerById(customerId);
+            Customer objCustomer = _objCustomerService.GetCustomerById(customerId);
             //初始化修改信息
             txtCustomerId.Text = objCustomer.CustomerId.ToString();
             txtCustomerName.Text = objCustomer.CustomerName;
@@ -129,17 +129,17 @@ namespace Compass
                 MessageBox.Show("请选中需要删除的见客户名称", "验证信息");
                 return;
             }
-            string CustomerId = dgvCustomers.CurrentRow.Cells["CustomerId"].Value.ToString();
-            string CustomerName = dgvCustomers.CurrentRow.Cells["CustomerName"].Value.ToString();
+            string customerId = dgvCustomers.CurrentRow.Cells["CustomerId"].Value.ToString();
+            string customerName = dgvCustomers.CurrentRow.Cells["CustomerName"].Value.ToString();
             //删除询问
-            DialogResult result = MessageBox.Show("确定要删除（ " + CustomerName + " ）这个客户名称吗？", "删除询问", MessageBoxButtons.YesNo,
+            DialogResult result = MessageBox.Show("确定要删除（ " + customerName + " ）这个客户名称吗？", "删除询问", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
             if (result == DialogResult.No) return;
             try
             {
-                if (objCustomerService.DeleteCustomer(CustomerId) == 1)
+                if (_objCustomerService.DeleteCustomer(customerId) == 1)
                 {
-                    dgvCustomers.DataSource = objCustomerService.GetAllCustomers();//同步刷新显示数据
+                    dgvCustomers.DataSource = _objCustomerService.GetAllCustomers();//同步刷新显示数据
                 }
             }
             catch (Exception ex)
@@ -191,9 +191,9 @@ namespace Compass
             if (result == DialogResult.OK)
             {
                 string path = openFile.FileName;//获取Excel文件路径
-                customerList = objImportDataFormExcel.GetCustomersByExcel(path);
+                _customerList = _objImportDataFormExcel.GetCustomersByExcel(path);
                 //显示数据
-                dgvImportFromExcel.DataSource = customerList;
+                dgvImportFromExcel.DataSource = _customerList;
             }
         }
         /// <summary>
@@ -204,7 +204,7 @@ namespace Compass
         private void BtnSaveToDB_Click(object sender, EventArgs e)
         {
             //验证数据
-            if (customerList == null || customerList.Count == 0)
+            if (_customerList == null || _customerList.Count == 0)
             {
                 MessageBox.Show("目前没有要导入的数据", "提示信息");
                 return;
@@ -218,12 +218,12 @@ namespace Compass
             //应该把循环遍历的方式写在数据访问类中，写到ImportDataFromExcel中
             try
             {
-                if (objImportDataFormExcel.ImportCustomer(customerList))
+                if (_objImportDataFormExcel.ImportCustomer(_customerList))
                 {
                     MessageBox.Show("数据导入成功","提示信息");
                     dgvImportFromExcel.DataSource = null;
-                    dgvCustomers.DataSource = objCustomerService.GetAllCustomers();
-                    customerList.Clear();
+                    dgvCustomers.DataSource = _objCustomerService.GetAllCustomers();
+                    _customerList.Clear();
                 }
                 else
                 {

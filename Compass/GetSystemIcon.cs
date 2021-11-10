@@ -15,9 +15,9 @@ namespace Compass
             if (fileName == null || fileName.Equals(string.Empty)) return null;
             if (!File.Exists(fileName)) return null;
 
-            SHFILEINFO shinfo = new SHFILEINFO();
+            Shfileinfo shinfo = new Shfileinfo();
             //Use this to get the small Icon
-            Win32.SHGetFileInfo(fileName, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.SHGFI_ICON | Win32.SHGFI_LARGEICON);
+            Win32.SHGetFileInfo(fileName, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.ShgfiIcon | Win32.ShgfiLargeicon);
             //The icon is returned in the hIcon member of the shinfo struct
             System.Drawing.Icon myIcon = System.Drawing.Icon.FromHandle(shinfo.hIcon);
             return myIcon;
@@ -73,8 +73,8 @@ namespace Compass
                 int[] phiconLarge = new int[1];
                 int[] phiconSmall = new int[1];
                 uint count = Win32.ExtractIconEx(fileIcon[0], Int32.Parse(fileIcon[1]), phiconLarge, phiconSmall, 1);
-                IntPtr IconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
-                resultIcon = Icon.FromHandle(IconHnd);
+                IntPtr iconHnd = new IntPtr(isLarge ? phiconLarge[0] : phiconSmall[0]);
+                resultIcon = Icon.FromHandle(iconHnd);
             }
             catch { }
             return resultIcon;
@@ -82,7 +82,7 @@ namespace Compass
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct SHFILEINFO
+    public struct Shfileinfo
     {
         public IntPtr hIcon;
         public IntPtr iIcon;
@@ -97,12 +97,12 @@ namespace Compass
     //定义调用的API方法
     class Win32
     {
-        public const uint SHGFI_ICON = 0x100;
-        public const uint SHGFI_LARGEICON = 0x0; // Large icon
-        public const uint SHGFI_SMALLICON = 0x1; // Small icon
+        public const uint ShgfiIcon = 0x100;
+        public const uint ShgfiLargeicon = 0x0; // Large icon
+        public const uint ShgfiSmallicon = 0x1; // Small icon
 
         [DllImport("shell32.dll")]
-        public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbSizeFileInfo, uint uFlags);
+        public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref Shfileinfo psfi, uint cbSizeFileInfo, uint uFlags);
         [DllImport("shell32.dll")]
         public static extern uint ExtractIconEx(string lpszFile, int nIconIndex, int[] phiconLarge, int[] phiconSmall, uint nIcons);
 

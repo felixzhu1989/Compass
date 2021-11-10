@@ -512,24 +512,24 @@ namespace Compass
         /// <summary>
         /// 引用Windows句柄，获取程序PID
         /// </summary>
-        /// <param name="Hwnd"></param>
-        /// <param name="PID"></param>
+        /// <param name="hwnd"></param>
+        /// <param name="pid"></param>
         /// <returns></returns>
         [DllImport("User32.dll")]
-        public static extern int GetWindowThreadProcessId(IntPtr Hwnd, out int PID);
+        public static extern int GetWindowThreadProcessId(IntPtr hwnd, out int pid);
         /// <summary>
         /// 杀掉生成的进程
         /// </summary>
-        /// <param name="AppObject">进程程对象</param>
-        private static void KillProcess(Microsoft.Office.Interop.Excel.Application AppObject)
+        /// <param name="appObject">进程程对象</param>
+        private static void KillProcess(Microsoft.Office.Interop.Excel.Application appObject)
         {
-            int Pid = 0;
-            IntPtr Hwnd = new IntPtr(AppObject.Hwnd);
+            int pid = 0;
+            IntPtr hwnd = new IntPtr(appObject.Hwnd);
             System.Diagnostics.Process p = null;
             try
             {
-                GetWindowThreadProcessId(Hwnd, out Pid);
-                p = System.Diagnostics.Process.GetProcessById(Pid);
+                GetWindowThreadProcessId(hwnd, out pid);
+                p = System.Diagnostics.Process.GetProcessById(pid);
                 if (p != null)
                 {
                     p.Kill();

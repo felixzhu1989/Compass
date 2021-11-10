@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmUCWDB800 : MetroFramework.Forms.MetroForm
+    public partial class FrmUcwdb800 : MetroFramework.Forms.MetroForm
     {
-       UCWDB800Service objUCWDB800Service = new UCWDB800Service();
-        private UCWDB800 objUCWDB800 = null;
-        public FrmUCWDB800()
+        readonly UCWDB800Service _objUcwdb800Service = new UCWDB800Service();
+        private readonly UCWDB800 _objUcwdb800 = null;
+        public FrmUcwdb800()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmUCWDB800(Drawing drawing, ModuleTree tree) : this()
+        public FrmUcwdb800(Drawing drawing, ModuleTree tree) : this()
         {
-            objUCWDB800 = (UCWDB800)objUCWDB800Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objUCWDB800 == null) return;
+            _objUcwdb800 = (UCWDB800)_objUcwdb800Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objUcwdb800 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -96,33 +96,33 @@ namespace Compass
 
         private void FillData()
         {
-            if (objUCWDB800 == null) return;
-            modelView.Tag = objUCWDB800.UCWDB800Id;
+            if (_objUcwdb800 == null) return;
+            modelView.Tag = _objUcwdb800.UCWDB800Id;
 
-            cobSidePanel.Text = objUCWDB800.SidePanel;
-            cobGutter.Text = objUCWDB800.Gutter;
-            cobANSUL.Text = objUCWDB800.ANSUL;
-            cobANSide.Text = objUCWDB800.ANSide;
-            cobMARVEL.Text = objUCWDB800.MARVEL;
-            cobLightType.Text = objUCWDB800.LightType;
-            cobDPSide.Text = objUCWDB800.DPSide;
-            cobSSPType.Text = objUCWDB800.SSPType;
-            cobJapan.Text = objUCWDB800.Japan;
-            cobFCSide.Text = objUCWDB800.FCSide;
-            cobFCBlindNo.Text = objUCWDB800.FCBlindNo.ToString();
-            cobUVType.Text = objUCWDB800.UVType.ToString();
-            cobSensorNo.Text = objUCWDB800.SensorNo.ToString();
+            cobSidePanel.Text = _objUcwdb800.SidePanel;
+            cobGutter.Text = _objUcwdb800.Gutter;
+            cobANSUL.Text = _objUcwdb800.ANSUL;
+            cobANSide.Text = _objUcwdb800.ANSide;
+            cobMARVEL.Text = _objUcwdb800.MARVEL;
+            cobLightType.Text = _objUcwdb800.LightType;
+            cobDPSide.Text = _objUcwdb800.DPSide;
+            cobSSPType.Text = _objUcwdb800.SSPType;
+            cobJapan.Text = _objUcwdb800.Japan;
+            cobFCSide.Text = _objUcwdb800.FCSide;
+            cobFCBlindNo.Text = _objUcwdb800.FCBlindNo.ToString();
+            cobUVType.Text = _objUcwdb800.UVType.ToString();
+            cobSensorNo.Text = _objUcwdb800.SensorNo.ToString();
 
-            txtLength.Text = objUCWDB800.Length.ToString();
-            txtExRightDis.Text = objUCWDB800.ExRightDis.ToString();
-            txtExLength.Text = objUCWDB800.ExLength.ToString();
-            txtExWidth.Text = objUCWDB800.ExWidth.ToString();
-            txtExHeight.Text = objUCWDB800.ExHeight.ToString();
-            txtGutterWidth.Text = objUCWDB800.GutterWidth.ToString();
-            txtFCSideLeft.Text = objUCWDB800.FCSideLeft.ToString();
-            txtFCSideRight.Text = objUCWDB800.FCSideRight.ToString();
-            txtSensorDis1.Text = objUCWDB800.SensorDis1.ToString();
-            txtSensorDis2.Text = objUCWDB800.SensorDis2.ToString();
+            txtLength.Text = _objUcwdb800.Length.ToString();
+            txtExRightDis.Text = _objUcwdb800.ExRightDis.ToString();
+            txtExLength.Text = _objUcwdb800.ExLength.ToString();
+            txtExWidth.Text = _objUcwdb800.ExWidth.ToString();
+            txtExHeight.Text = _objUcwdb800.ExHeight.ToString();
+            txtGutterWidth.Text = _objUcwdb800.GutterWidth.ToString();
+            txtFCSideLeft.Text = _objUcwdb800.FCSideLeft.ToString();
+            txtFCSideRight.Text = _objUcwdb800.FCSideRight.ToString();
+            txtSensorDis1.Text = _objUcwdb800.SensorDis1.ToString();
+            txtSensorDis2.Text = _objUcwdb800.SensorDis2.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -281,7 +281,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            UCWDB800 objUCWDB800 = new UCWDB800()
+            UCWDB800 objUcwdb800 = new UCWDB800()
             {
                 UCWDB800Id = Convert.ToInt32(modelView.Tag),
                 ANSUL = cobANSUL.Text,
@@ -312,7 +312,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objUCWDB800Service.EditModel(objUCWDB800) == 1)
+                if (_objUcwdb800Service.EditModel(objUcwdb800) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

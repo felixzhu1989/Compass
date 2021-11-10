@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmDP330 : MetroFramework.Forms.MetroForm
+    public partial class FrmDp330 : MetroFramework.Forms.MetroForm
     {
-        DP330Service objDP330Service = new DP330Service();
-        private DP330 objDP330 = null;
-        public FrmDP330()
+        readonly DP330Service _objDp330Service = new DP330Service();
+        private readonly DP330 _objDp330 = null;
+        public FrmDp330()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmDP330(Drawing drawing, ModuleTree tree) : this()
+        public FrmDp330(Drawing drawing, ModuleTree tree) : this()
         {
-            objDP330 = (DP330)objDP330Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objDP330 == null) return;
+            _objDp330 = (DP330)_objDp330Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objDp330 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -108,24 +108,24 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objDP330 == null) return;
-            modelView.Tag = objDP330.DP330Id;
+            if (_objDp330 == null) return;
+            modelView.Tag = _objDp330.DP330Id;
 
-            cobSidePanel.Text = objDP330.SidePanel;
-            cobOutlet.Text = objDP330.Outlet;
-            cobBackCJSide.Text = objDP330.BackCJSide;
-            cobDPSide.Text = objDP330.DPSide;
-            cobLeftBeamType.Text = objDP330.LeftBeamType;
-            cobRightBeamType.Text = objDP330.RightBeamType;
-            cobLKSide.Text = objDP330.LKSide;
-            cobGutterSide.Text = objDP330.GutterSide;
+            cobSidePanel.Text = _objDp330.SidePanel;
+            cobOutlet.Text = _objDp330.Outlet;
+            cobBackCJSide.Text = _objDp330.BackCJSide;
+            cobDPSide.Text = _objDp330.DPSide;
+            cobLeftBeamType.Text = _objDp330.LeftBeamType;
+            cobRightBeamType.Text = _objDp330.RightBeamType;
+            cobLKSide.Text = _objDp330.LKSide;
+            cobGutterSide.Text = _objDp330.GutterSide;
 
-            txtLength.Text = objDP330.Length.ToString();
-            txtLeftDis.Text = objDP330.LeftDis.ToString();
-            txtRightDis.Text = objDP330.RightDis.ToString();
-            txtLeftBeamDis.Text = objDP330.LeftBeamDis.ToString();
-            txtRightBeamDis.Text = objDP330.RightBeamDis.ToString();
-            txtGutterWidth.Text = objDP330.GutterWidth.ToString();
+            txtLength.Text = _objDp330.Length.ToString();
+            txtLeftDis.Text = _objDp330.LeftDis.ToString();
+            txtRightDis.Text = _objDp330.RightDis.ToString();
+            txtLeftBeamDis.Text = _objDp330.LeftBeamDis.ToString();
+            txtRightBeamDis.Text = _objDp330.RightBeamDis.ToString();
+            txtGutterWidth.Text = _objDp330.GutterWidth.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -201,7 +201,7 @@ namespace Compass
             }
             #endregion
             //封装对象
-            DP330 objDP330 = new DP330()
+            DP330 objDp330 = new DP330()
             {
                 DP330Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -223,7 +223,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objDP330Service.EditModel(objDP330) == 1)
+                if (_objDp330Service.EditModel(objDp330) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

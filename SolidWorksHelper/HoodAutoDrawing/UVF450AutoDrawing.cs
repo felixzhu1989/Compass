@@ -12,7 +12,7 @@ namespace SolidWorksHelper
     //2.实现接口具体方法
     public class UVF450AutoDrawing : IAutoDrawing
     {
-        UVF450Service objUVF450Service = new UVF450Service();
+        readonly UVF450Service objUVF450Service = new UVF450Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             #region 准备工作

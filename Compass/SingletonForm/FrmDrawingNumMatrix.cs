@@ -20,22 +20,22 @@ namespace Compass
 {
     public partial class FrmDrawingNumMatrix : MetroFramework.Forms.MetroForm
     {
-        private DrawingNumMatrixService objDrawingNumMatrixService = new DrawingNumMatrixService();
-        private ImportDataFormExcel objImportDataFormExcel = new ImportDataFormExcel();
-        private List<DrawingNumMatrix> drawingNumFromExcel;
-        private List<DrawingNumCodeRule> objCodeRules;
-        private List<DrawingNumMatrix> objDrawingNumMatrices;
-        private SubCode subCode;
-        private EModelViewControl m_EDrawingsCtrl;
-        private EModelMarkupControl m_EDrawingsMarkupCtrl;
-        private string filePath;
-        private string imageDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + @"\\Compass\\DrawingNumImage\\";//获取我的文档地址，将缓存图片存在我的文档中
+        private readonly DrawingNumMatrixService _objDrawingNumMatrixService = new DrawingNumMatrixService();
+        private readonly ImportDataFormExcel _objImportDataFormExcel = new ImportDataFormExcel();
+        private List<DrawingNumMatrix> _drawingNumFromExcel;
+        private readonly List<DrawingNumCodeRule> _objCodeRules;
+        private List<DrawingNumMatrix> _objDrawingNumMatrices;
+        private readonly SubCode _subCode;
+        private EModelViewControl _mEDrawingsCtrl;
+        private EModelMarkupControl _mEDrawingsMarkupCtrl;
+        private string _filePath;
+        private readonly string _imageDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + @"\\Compass\\DrawingNumImage\\";//获取我的文档地址，将缓存图片存在我的文档中
 
         public FrmDrawingNumMatrix()
         {
             InitializeComponent();
-            objCodeRules = objDrawingNumMatrixService.GetCodeRules();//获取编号规则
-            objDrawingNumMatrices = objDrawingNumMatrixService.GetAllDrawingNum();//获取所有图号
+            _objCodeRules = _objDrawingNumMatrixService.GetCodeRules();//获取编号规则
+            _objDrawingNumMatrices = _objDrawingNumMatrixService.GetAllDrawingNum();//获取所有图号
 
             IniGrbSbu();//初始化单选框
 
@@ -45,15 +45,15 @@ namespace Compass
             cobDrawingType.Items.Add("Purchasing");
             cobDrawingType.SelectedIndex = -1;
 
-            subCode = new SubCode();
+            _subCode = new SubCode();
             dgvDrawingNumMatrix.AutoGenerateColumns = false;
-            dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;//初始化图号表格
+            dgvDrawingNumMatrix.DataSource = _objDrawingNumMatrices;//初始化图号表格
             SetPermissions();
             btnImportFromExcel.Visible=true;
             btnImport.Visible = true;
             this.dgvDrawingNumMatrix.SelectionChanged += new System.EventHandler(this.DgvDrawingNumMatrix_SelectionChanged);
             
-            if (!Directory.Exists(imageDir)) Directory.CreateDirectory(imageDir);
+            if (!Directory.Exists(_imageDir)) Directory.CreateDirectory(_imageDir);
         }
         #region 单例模式，重写关闭方法
         protected override void OnClosing(CancelEventArgs e)
@@ -114,15 +114,15 @@ namespace Compass
         private void IniGrbSbu()
         {
             List<DrawingNumCodeRule> sbuCodeRules =
-                objCodeRules.Where(rule => rule.ParentId == 0 && rule.CodeId != 0).ToList();
-            Panel pnlSBU = new Panel()
+                _objCodeRules.Where(rule => rule.ParentId == 0 && rule.CodeId != 0).ToList();
+            Panel pnlSbu = new Panel()
             {
                 Name = "pnlSBU",
                 Location = new Point(10, 60)
             };
-            this.Controls.Add(pnlSBU);
-            AddRadioButtonAndGroupBox(pnlSBU, sbuCodeRules, "SBU");
-            IniProductType(pnlSBU);
+            this.Controls.Add(pnlSbu);
+            AddRadioButtonAndGroupBox(pnlSbu, sbuCodeRules, "SBU");
+            IniProductType(pnlSbu);
         }
 
         private void IniProductType(Panel lastPanel)
@@ -144,7 +144,7 @@ namespace Compass
         private void IniProductName(Panel lastPanel, string codeId)
         {
             List<DrawingNumCodeRule> productNameCodeRules =
-                objCodeRules.Where(rule => rule.ParentId == Convert.ToInt32(codeId) && rule.CodeId != 0).ToList();
+                _objCodeRules.Where(rule => rule.ParentId == Convert.ToInt32(codeId) && rule.CodeId != 0).ToList();
             Panel pnlProductName = new Panel()
             {
                 Name = "pnlProductName",
@@ -157,7 +157,7 @@ namespace Compass
         private void IniSubAssembly(Panel lastPanel, string codeId)
         {
             List<DrawingNumCodeRule> subAssemblyCodeRules =
-                objCodeRules.Where(rule => rule.ParentId == Convert.ToInt32(codeId) && rule.CodeId != 0).ToList();
+                _objCodeRules.Where(rule => rule.ParentId == Convert.ToInt32(codeId) && rule.CodeId != 0).ToList();
             Panel pnlSubAssembly = new Panel()
             {
                 Name = "pnlSubAssembly",
@@ -276,14 +276,14 @@ namespace Compass
         {
             txtDrawingNum.Text = "";//清空
             List<DrawingNumMatrix> currentList = GetAllSubCode();
-            if (subCode.SuffixCode.Length != 4)
+            if (_subCode.SuffixCode.Length != 4)
             {
                 MessageBox.Show("请保证每一项都选中！");
                 return;
             }
             if (currentList == null || currentList.Count == 0)
             {
-                subCode.FinalCode = "0001";
+                _subCode.FinalCode = "0001";
             }
             else
             {
@@ -295,11 +295,11 @@ namespace Compass
                 for (int j = 1; j < intCode.Max() + 2; j++)
                 {
                     if (intCode.Contains(j)) continue;
-                    subCode.FinalCode = j.ToString("0000");
+                    _subCode.FinalCode = j.ToString("0000");
                     break;
                 }
             }
-            string drawingNum = subCode.SuffixCode + subCode.FinalCode;
+            string drawingNum = _subCode.SuffixCode + _subCode.FinalCode;
             txtDrawingNum.Text = drawingNum.ToUpper();
         }
         /// <summary>
@@ -315,25 +315,25 @@ namespace Compass
                     switch (panel.Name)
                     {
                         case "pnlSBU":
-                            subCode.SbuCode = GetCode(panel);
+                            _subCode.SbuCode = GetCode(panel);
                             break;
                         case "pnlProductType":
-                            subCode.ProdTypeCode = GetCode(panel);
+                            _subCode.ProdTypeCode = GetCode(panel);
                             break;
                         case "pnlProductName":
-                            subCode.ProdNameCode = GetCode(panel);
+                            _subCode.ProdNameCode = GetCode(panel);
                             break;
                         case "pnlSubAssembly":
-                            subCode.SubAssyCode = GetCode(panel);
+                            _subCode.SubAssyCode = GetCode(panel);
                             break;
                         default:
                             break;
                     }
                 }
             }
-            subCode.SuffixCode = subCode.SbuCode + subCode.ProdTypeCode + subCode.ProdNameCode + subCode.SubAssyCode;
+            _subCode.SuffixCode = _subCode.SbuCode + _subCode.ProdTypeCode + _subCode.ProdNameCode + _subCode.SubAssyCode;
             List<DrawingNumMatrix> currentList =
-                objDrawingNumMatrices.Where(d => d.DrawingNum.StartsWith(subCode.SuffixCode)).ToList();
+                _objDrawingNumMatrices.Where(d => d.DrawingNum.StartsWith(_subCode.SuffixCode)).ToList();
             dgvDrawingNumMatrix.DataSource = currentList;
             return currentList;
             //内部方法
@@ -394,7 +394,7 @@ namespace Compass
             {
                 try
                 {
-                    string result = objDrawingNumMatrixService.AddDrawingNum(objDrawingNum);
+                    string result = _objDrawingNumMatrixService.AddDrawingNum(objDrawingNum);
                     if (result == "success")
                     {
                         MessageBox.Show("图号添加成功！", "提示信息");
@@ -411,7 +411,7 @@ namespace Compass
                 try
                 {
                     objDrawingNum.DrawingId = Convert.ToInt32(btnCommit.Tag);
-                    if (objDrawingNumMatrixService.EditDrawingNum(objDrawingNum) == 1)
+                    if (_objDrawingNumMatrixService.EditDrawingNum(objDrawingNum) == 1)
                     {
                         MessageBox.Show("图号修改成功", "提示信息");
                     }
@@ -430,7 +430,7 @@ namespace Compass
             void RefreshData()
             {
                 //刷新列表和dgv显示（组内）
-                objDrawingNumMatrices = objDrawingNumMatrixService.GetAllDrawingNum();
+                _objDrawingNumMatrices = _objDrawingNumMatrixService.GetAllDrawingNum();
                 dgvDrawingNumMatrix.DataSource = null;
                 GetAllSubCode();
                 //清除txt
@@ -458,7 +458,7 @@ namespace Compass
                 return;
             }
             string drawingId = dgvDrawingNumMatrix.CurrentRow.Cells["DrawingId"].Value.ToString();
-            DrawingNumMatrix objDrawingNum = objDrawingNumMatrixService.GetDrawingNumById(drawingId);
+            DrawingNumMatrix objDrawingNum = _objDrawingNumMatrixService.GetDrawingNumById(drawingId);
             //解析对象，显示在界面上
             txtDrawingNum.Text = objDrawingNum.DrawingNum;
             txtDrawingDesc.Text = objDrawingNum.DrawingDesc;
@@ -507,10 +507,10 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objDrawingNumMatrixService.DeleteDrawingNum(drawingId) == 1)
+                if (_objDrawingNumMatrixService.DeleteDrawingNum(drawingId) == 1)
                 {
                     //刷新列表和dgv显示（组内）
-                    objDrawingNumMatrices = objDrawingNumMatrixService.GetAllDrawingNum();
+                    _objDrawingNumMatrices = _objDrawingNumMatrixService.GetAllDrawingNum();
                     dgvDrawingNumMatrix.DataSource = null;
                     GetAllSubCode();
                 }
@@ -530,14 +530,14 @@ namespace Compass
             DrawingNumMatrix currentDrawingNum = GetCurrentDrawingNum();
             if (currentDrawingNum == null) return;
             //改成图片缓存本地
-            string imagePath = imageDir + currentDrawingNum.DrawingNum + ".png";
+            string imagePath = _imageDir + currentDrawingNum.DrawingNum + ".png";
             if (File.Exists(imagePath))
             {
                 pbImage.Image = Image.FromFile(imagePath);
             }
             else
             {
-                string drawingImage = objDrawingNumMatrixService.GetDrawingImage(currentDrawingNum.DrawingId.ToString());
+                string drawingImage = _objDrawingNumMatrixService.GetDrawingImage(currentDrawingNum.DrawingId.ToString());
                 if (drawingImage.Length != 0)
                 {
                     ((Image)new SerializeObjectToString().DeserializeObject(drawingImage)).Save(imagePath);
@@ -564,7 +564,7 @@ namespace Compass
                 return null;
             }
             int drawingId = Convert.ToInt32(dgvDrawingNumMatrix.CurrentRow.Cells["DrawingId"].Value.ToString());
-            List<DrawingNumMatrix> drawingNum = objDrawingNumMatrices.Where(d => d.DrawingId == drawingId).ToList();
+            List<DrawingNumMatrix> drawingNum = _objDrawingNumMatrices.Where(d => d.DrawingId == drawingId).ToList();
             return drawingNum[0];
         }
         /// <summary>
@@ -612,12 +612,12 @@ namespace Compass
             string image = pbImage.Image != null ? new SerializeObjectToString().SerializeObject(pbImage.Image) : null;
             try
             {
-                if (objDrawingNumMatrixService.RefreshImage(image, drawingId) == 1)
+                if (_objDrawingNumMatrixService.RefreshImage(image, drawingId) == 1)
                 {
-                    objDrawingNumMatrices = objDrawingNumMatrixService.GetAllDrawingNum();
-                    dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;
+                    _objDrawingNumMatrices = _objDrawingNumMatrixService.GetAllDrawingNum();
+                    dgvDrawingNumMatrix.DataSource = _objDrawingNumMatrices;
                     //改成图片缓存本地
-                    string saveImagePath = imageDir + dgvDrawingNumMatrix.CurrentRow.Cells["DrawingNum"].Value.ToString() +".png";
+                    string saveImagePath = _imageDir + dgvDrawingNumMatrix.CurrentRow.Cells["DrawingNum"].Value.ToString() +".png";
                     if (File.Exists(saveImagePath)) File.Delete(saveImagePath);//先删除本地，然后在将图片保存下来
                     pbImage.Image.Save(saveImagePath);
                     MessageBox.Show("图片更新成功成功", "提示信息");
@@ -648,29 +648,29 @@ namespace Compass
             if (result == DialogResult.OK)
             {
                 string path = openFile.FileName;//获取Excel文件路径
-                drawingNumFromExcel = objImportDataFormExcel.GetDrawingNumByExcel(path);
+                _drawingNumFromExcel = _objImportDataFormExcel.GetDrawingNumByExcel(path);
                 //显示数据
-                dgvDrawingNumMatrix.DataSource = drawingNumFromExcel;
+                dgvDrawingNumMatrix.DataSource = _drawingNumFromExcel;
             }
         }
         private void BtnImport_Click(object sender, EventArgs e)
         {
             dgvDrawingNumMatrix.DataSource = null;
-            if (drawingNumFromExcel == null || drawingNumFromExcel.Count == 0)
+            if (_drawingNumFromExcel == null || _drawingNumFromExcel.Count == 0)
             {
                 MessageBox.Show("目前没有要导入的数据", "提示信息");
-                dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;
+                dgvDrawingNumMatrix.DataSource = _objDrawingNumMatrices;
                 return;
             }
             try
             {
-                if (objImportDataFormExcel.ImportDrawingNum(drawingNumFromExcel))
+                if (_objImportDataFormExcel.ImportDrawingNum(_drawingNumFromExcel))
                 {
                     MessageBox.Show("数据导入成功", "提示信息");
                     dgvDrawingNumMatrix.DataSource = null;
-                    objDrawingNumMatrices = objDrawingNumMatrixService.GetAllDrawingNum();
-                    dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;
-                    drawingNumFromExcel.Clear();
+                    _objDrawingNumMatrices = _objDrawingNumMatrixService.GetAllDrawingNum();
+                    dgvDrawingNumMatrix.DataSource = _objDrawingNumMatrices;
+                    _drawingNumFromExcel.Clear();
                 }
                 else
                 {
@@ -697,7 +697,7 @@ namespace Compass
         {
             dgvDrawingNumMatrix.DataSource = null;
 
-            List<DrawingNumMatrix> objDrawingNumQuery = objDrawingNumMatrices.Where(
+            List<DrawingNumMatrix> objDrawingNumQuery = _objDrawingNumMatrices.Where(
                 d => d.DrawingNum.Contains(txtDrawingNum.Text.Trim().ToUpper())
                 && d.DrawingDesc.Contains(txtDrawingDesc.Text.Trim())
                 && d.DrawingType.Contains(cobDrawingType.Text.Trim())).ToList();
@@ -742,19 +742,19 @@ namespace Compass
             switch (drawingNum.Substring(0, 1))
             {
                 case "2":
-                    filePath = purchPath + drawingNum + extension;
+                    _filePath = purchPath + drawingNum + extension;
                     break;
                 case "5":
-                    filePath = fsPath + @"01 Standard\" + drawingNum + extension;
+                    _filePath = fsPath + @"01 Standard\" + drawingNum + extension;
                     break;
                 case "F":
                     if (currentDrawingNum.DrawingType == "ETO")
                     {
-                        filePath = fsPath + @"03 ETO\" + drawingNum + extension;
+                        _filePath = fsPath + @"03 ETO\" + drawingNum + extension;
                     }
                     else
                     {
-                        filePath = fsPath + @"02 Common\" + drawingNum + extension;
+                        _filePath = fsPath + @"02 Common\" + drawingNum + extension;
                     }
                     break;
                 case "M":
@@ -781,7 +781,7 @@ namespace Compass
         private void BtnOpenFile_Click(object sender, EventArgs e)
         {
             GetFilePath(".SLDPRT");
-            if (System.IO.File.Exists(filePath)) Process.Start(filePath);
+            if (System.IO.File.Exists(_filePath)) Process.Start(_filePath);
             else MessageBox.Show("未找到该路径!");
         }
 
@@ -793,15 +793,15 @@ namespace Compass
         private void BtnOpenFolder_Click(object sender, EventArgs e)
         {
             GetFilePath(".SLDPRT");
-            if (System.IO.File.Exists(filePath))
+            if (System.IO.File.Exists(_filePath))
             {
-                System.Diagnostics.Process.Start("Explorer.exe", "/select," + System.IO.Path.GetDirectoryName(filePath) + "\\" + System.IO.Path.GetFileName(filePath));
+                System.Diagnostics.Process.Start("Explorer.exe", "/select," + System.IO.Path.GetDirectoryName(_filePath) + "\\" + System.IO.Path.GetFileName(_filePath));
             }
             else
             {
-                if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(filePath)))
+                if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(_filePath)))
                 {
-                    System.Diagnostics.Process.Start("Explorer.exe", System.IO.Path.GetDirectoryName(filePath));
+                    System.Diagnostics.Process.Start("Explorer.exe", System.IO.Path.GetDirectoryName(_filePath));
                 }
                 else
                 {
@@ -816,10 +816,10 @@ namespace Compass
         }
         private void OnControlLoaded(EModelViewControl ctrl)
         {
-            m_EDrawingsCtrl = ctrl;
-            m_EDrawingsCtrl.OnFinishedLoadingDocument += OnFinishedLoadingDocument;
-            m_EDrawingsCtrl.OnFailedLoadingDocument += OnFailedLoadingDocument;
-            m_EDrawingsMarkupCtrl = m_EDrawingsCtrl.CoCreateInstance("EModelViewMarkup.EModelMarkupControl") as EModelMarkupControl;
+            _mEDrawingsCtrl = ctrl;
+            _mEDrawingsCtrl.OnFinishedLoadingDocument += OnFinishedLoadingDocument;
+            _mEDrawingsCtrl.OnFailedLoadingDocument += OnFailedLoadingDocument;
+            _mEDrawingsMarkupCtrl = _mEDrawingsCtrl.CoCreateInstance("EModelViewMarkup.EModelMarkupControl") as EModelMarkupControl;
         }
         private void OnFailedLoadingDocument(string fileName, int errorCode, string errorString)
         {
@@ -828,25 +828,25 @@ namespace Compass
         private void OnFinishedLoadingDocument(string fileName)
         {
             Trace.WriteLine($"{fileName} loaded");
-            m_EDrawingsMarkupCtrl.ViewOperator = EMVMarkupOperators.eMVOperatorMeasure;
+            _mEDrawingsMarkupCtrl.ViewOperator = EMVMarkupOperators.eMVOperatorMeasure;
         }
         private void OnOpen(object sender, EventArgs e)
         {
-            if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(filePath)))
+            if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(_filePath)))
             {
                 btnOpenFolder.Enabled = true;
                 btnAddCustomInfo.Enabled = true;
             }
-            if (System.IO.File.Exists(filePath))
+            if (System.IO.File.Exists(_filePath))
             {
-                if (m_EDrawingsCtrl == null)
+                if (_mEDrawingsCtrl == null)
                 {
                     throw new NullReferenceException("eDrawings control is not loaded");
                 }
                 //txtMeasurements.Clear();
                 txtMeasurements.Text = "选择线可直接显示结果，如果选择的是面则点击记录测量结果按钮。";
-                m_EDrawingsCtrl.CloseActiveDoc("");
-                m_EDrawingsCtrl.OpenDoc(filePath, false, false, false, "");
+                _mEDrawingsCtrl.CloseActiveDoc("");
+                _mEDrawingsCtrl.OpenDoc(_filePath, false, false, false, "");
             }
             else
             {
@@ -854,7 +854,7 @@ namespace Compass
             }
         }
         private void OnCaptureMeasurement(object sender, EventArgs e) => txtMeasurements.Text += (!string.IsNullOrEmpty(txtMeasurements.Text) ? System.Environment.NewLine : "")
-+ m_EDrawingsMarkupCtrl.MeasureResultString;
++ _mEDrawingsMarkupCtrl.MeasureResultString;
 
         #endregion
 
@@ -890,18 +890,18 @@ namespace Compass
                 imageList.Add(Path.GetFileNameWithoutExtension(imageFile),Image.FromFile(imageFile));
             }
             //提交数据库
-            if (objDrawingNumMatrixService.BathImportDrawingImage(imagesDic))
+            if (_objDrawingNumMatrixService.BathImportDrawingImage(imagesDic))
             {
                 dgvDrawingNumMatrix.DataSource = null;
-                objDrawingNumMatrices = objDrawingNumMatrixService.GetAllDrawingNum();
-                dgvDrawingNumMatrix.DataSource = objDrawingNumMatrices;
+                _objDrawingNumMatrices = _objDrawingNumMatrixService.GetAllDrawingNum();
+                dgvDrawingNumMatrix.DataSource = _objDrawingNumMatrices;
                 imagesDic.Clear();
 
                 //改成图片缓存本地
                 
                 foreach (var item in imageList)
                 {
-                    string saveImagePath = imageDir + item.Key +".png";
+                    string saveImagePath = _imageDir + item.Key +".png";
                     if (File.Exists(saveImagePath)) File.Delete(saveImagePath);//先删除本地，然后在将图片保存下来
                     item.Value.Save(saveImagePath);
                 }

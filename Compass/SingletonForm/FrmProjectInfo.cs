@@ -17,19 +17,19 @@ namespace Compass
 {
     public partial class FrmProjectInfo : MetroFramework.Forms.MetroForm
     {
-        private ProjectService objProjectService = new ProjectService();
-        private RequirementService objRequirementService = new RequirementService();
-        private DrawingPlanService objDrawingPlanService = new DrawingPlanService();
-        private ProjectTrackingService objProjectTrackingService = new ProjectTrackingService();
-        private FinancialDataService objFinancialDataService = new FinancialDataService();
-        private MonthlyReportService objMonthlyReportService = new MonthlyReportService();
-        private readonly string sbu = Program.ObjCurrentUser.SBU;
-        private List<string> odpNoList = new List<string>();
-        private int scrollNum;
-        private DateTime scrollStart;
-        private KeyValuePair pair = new KeyValuePair();
-        private DataTable dt;
-        private StringBuilder showText = new StringBuilder();
+        private readonly ProjectService _objProjectService = new ProjectService();
+        private readonly RequirementService _objRequirementService = new RequirementService();
+        private readonly DrawingPlanService _objDrawingPlanService = new DrawingPlanService();
+        private readonly ProjectTrackingService _objProjectTrackingService = new ProjectTrackingService();
+        private readonly FinancialDataService _objFinancialDataService = new FinancialDataService();
+        private readonly MonthlyReportService _objMonthlyReportService = new MonthlyReportService();
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
+        private List<string> _odpNoList = new List<string>();
+        private int _scrollNum;
+        private DateTime _scrollStart;
+        private readonly KeyValuePair _pair = new KeyValuePair();
+        private DataTable _dt;
+        private readonly StringBuilder _showText = new StringBuilder();
         public FrmProjectInfo()
         {
             InitializeComponent();
@@ -51,30 +51,30 @@ namespace Compass
             this.cobYear.SelectedIndexChanged += new System.EventHandler(this.CobYear_SelectedIndexChanged);
             this.cobMonth.SelectedIndexChanged += new System.EventHandler(this.CobMonth_SelectedIndexChanged);
             ReportMonthly();//初始化月度统计数据
-            IniCobODPNo();
+            IniCobOdpNo();
             SetPermissions();
             //初始化项目列表
             dgvProjects.AutoGenerateColumns = false;
-            dt = objMonthlyReportService.GetDisplayProjects(sbu, DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString());
-            dgvProjects.DataSource = AddChineseToDataTable(dt);
+            _dt = _objMonthlyReportService.GetDisplayProjects(_sbu, DateTime.Now.Year.ToString(), DateTime.Now.Month.ToString());
+            dgvProjects.DataSource = AddChineseToDataTable(_dt);
             tabControl.SelectTab(1);//选中第二张tab选项卡
 
             //开启计时器
             timerScroll.Enabled = true;
-            odpNoList = objMonthlyReportService.GetScrollODPNoList();//获取循环ODP列表
-            scrollNum = odpNoList.Count;
-            scrollStart = DateTime.Now;
+            _odpNoList = _objMonthlyReportService.GetScrollODPNoList();//获取循环ODP列表
+            _scrollNum = _odpNoList.Count;
+            _scrollStart = DateTime.Now;
             lblTime.Text = DateTime.Now.ToString("yyyy年MM月dd日 hh:mm:ss");
-            cobODPNo.Text = odpNoList[odpNoList.Count - 1];
+            cobODPNo.Text = _odpNoList[_odpNoList.Count - 1];
             cobODPNo.SelectAll();
             ShowWeather();
         }
 
-        public void IniCobODPNo()
+        public void IniCobOdpNo()
         {
             this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
             //绑定ODPNo下拉框
-            cobODPNo.DataSource = objProjectService.GetProjectsByWhereSql("", Program.ObjCurrentUser.SBU);
+            cobODPNo.DataSource = _objProjectService.GetProjectsByWhereSql("", Program.ObjCurrentUser.SBU);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             //初始化后关联事件委托
@@ -150,7 +150,7 @@ namespace Compass
         {
             string odpNo = cobODPNo.Text.Trim();
             if (odpNo.Length == 0) return;
-            Project objProject = objProjectService.GetProjectByODPNo(odpNo, Program.ObjCurrentUser.SBU);
+            Project objProject = _objProjectService.GetProjectByODPNo(odpNo, Program.ObjCurrentUser.SBU);
             if (objProject == null) return;
             FrmRequirements objFrmRequirements = new FrmRequirements(objProject);
             objFrmRequirements.ShowDialog();
@@ -175,12 +175,12 @@ namespace Compass
             {
                 //获取原来每行ProjectStatusName数据
                 string oldStatus = table.Rows[i]["ProjectStatusName"].ToString();
-                string newStatus = pair.ProjectStatusNameKeyValue.First(q => q.Key == oldStatus).Value;
+                string newStatus = _pair.ProjectStatusNameKeyValue.First(q => q.Key == oldStatus).Value;
                 //给当前行的地ProjectStatusName赋值
                 table.Rows[i]["ProjectStatusName"] = newStatus;
                 //获取原来每行ProjectStatusName数据
                 string oldHood = table.Rows[i]["HoodType"].ToString();
-                string newHood = pair.HoodTypeKeyValue.First(q => q.Key == oldHood).Value;
+                string newHood = _pair.HoodTypeKeyValue.First(q => q.Key == oldHood).Value;
                 //给当前行的地ProjectStatusName赋值
                 table.Rows[i]["HoodType"] = newHood;
             }
@@ -220,20 +220,20 @@ namespace Compass
         /// </summary>
         private void InitData()
         {
-            showText.Clear();
+            _showText.Clear();
             InitProjectInfo();
             InitGeneralRequirement();
             InitSpecialRequirement();
             InitFinancialData();
             InitTracking();
-            lblShowInfo.Text = showText.ToString();
+            lblShowInfo.Text = _showText.ToString();
         }
         /// <summary>
         /// 1.初始化项目基本信息
         /// </summary>
         private void InitProjectInfo()
         {
-            Project objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text, Program.ObjCurrentUser.SBU);
+            Project objProject = _objProjectService.GetProjectByODPNo(cobODPNo.Text, Program.ObjCurrentUser.SBU);
             if (objProject == null) return;
 
             string proInfo = "1. 项目编号：" + objProject.ODPNo + "\r\n";
@@ -244,8 +244,8 @@ namespace Compass
             proInfo += "6. 制图人员：" + objProject.UserAccount + "\r\n";
             proInfo += "7. 完工日期：" + objProject.ShippingTime.ToShortDateString();
             txtProjectInfo.Text = proInfo;
-            dgvScope.DataSource = objDrawingPlanService.GetScopeByDataSet(objProject.ProjectId.ToString(), sbu).Tables[0];
-            showText.Append(objProject.ODPNo + " ★完工日期：" + objProject.ShippingTime.ToShortDateString());
+            dgvScope.DataSource = _objDrawingPlanService.GetScopeByDataSet(objProject.ProjectId.ToString(), _sbu).Tables[0];
+            _showText.Append(objProject.ODPNo + " ★完工日期：" + objProject.ShippingTime.ToShortDateString());
         }
         /// <summary>
         /// 2.初始化通用技术要求
@@ -253,7 +253,7 @@ namespace Compass
         private void InitGeneralRequirement()
         {
             GeneralRequirement objGeneralRequirement =
-                objRequirementService.GetGeneralRequirementByODPNo(cobODPNo.Text, sbu);
+                _objRequirementService.GetGeneralRequirementByODPNo(cobODPNo.Text, _sbu);
             if (objGeneralRequirement == null)
             {
                 txtGeneralRequirements.Text = "未填写通用技术要求";
@@ -269,7 +269,7 @@ namespace Compass
                 gReq += "6. ANSUL系统：" + objGeneralRequirement.ANSULSystem;
                 txtGeneralRequirements.Text = gReq;
                 txtGeneralRequirements.Tag = objGeneralRequirement.GeneralRequirementId;
-                showText.Append(" ★项目类型：" + objGeneralRequirement.TypeName);
+                _showText.Append(" ★项目类型：" + objGeneralRequirement.TypeName);
             }
         }
         /// <summary>
@@ -278,7 +278,7 @@ namespace Compass
         private void InitSpecialRequirement()
         {
             List<string> specialRequirementList =
-                  objRequirementService.GetSpecialRequirementList(cobODPNo.Text, sbu);
+                  _objRequirementService.GetSpecialRequirementList(cobODPNo.Text, _sbu);
 
             if (specialRequirementList.Count == 0)
             {
@@ -287,14 +287,14 @@ namespace Compass
             else
             {
                 StringBuilder sReq = new StringBuilder();
-                showText.Append(" ★特殊要求：");
+                _showText.Append(" ★特殊要求：");
                 for (int i = 0; i < specialRequirementList.Count; i++)
                 {
                     sReq.Append((i + 1) + ". " + specialRequirementList[i] + "\r\n");
-                    showText.Append(" ☆" + (i + 1) + ". " + specialRequirementList[i]);
+                    _showText.Append(" ☆" + (i + 1) + ". " + specialRequirementList[i]);
                 }
                 txtSpecialRequirements.Text = sReq.ToString();
-                showText.Append(" ）");
+                _showText.Append(" ）");
             }
 
         }
@@ -303,7 +303,7 @@ namespace Compass
         /// </summary>
         private void InitFinancialData()
         {
-            FinancialData objFinancialData = objFinancialDataService.GetFinancialDataByProjectId(cobODPNo.SelectedValue.ToString(), sbu);
+            FinancialData objFinancialData = _objFinancialDataService.GetFinancialDataByProjectId(cobODPNo.SelectedValue.ToString(), _sbu);
             if (objFinancialData == null)
             {
                 txtSalesValue.Text = "";
@@ -332,7 +332,7 @@ namespace Compass
             };
             chartTracking.Series.Add(seriesTracking);
             ProjectTracking projectTracking =
-                objProjectTrackingService.GetProjectTrackingByODPNo(cobODPNo.Text, Program.ObjCurrentUser.SBU);
+                _objProjectTrackingService.GetProjectTrackingByODPNo(cobODPNo.Text, Program.ObjCurrentUser.SBU);
 
             DateTime dateDeliver = projectTracking.DeliverActual;
             DateTime datePrdFish = projectTracking.ProdFinishActual;
@@ -340,14 +340,14 @@ namespace Compass
             DateTime dateDrwRels = projectTracking.DrReleaseActual;
             DateTime dateDrwPlan = projectTracking.DrReleaseTarget;
             DateTime dateKickOff = projectTracking.KickOffDate;
-            DateTime dateODPRecv = projectTracking.ODPReceiveDate;
+            DateTime dateOdpRecv = projectTracking.ODPReceiveDate;
 
-            int daysDeliver = dateDeliver.Subtract(dateODPRecv).Days < 0 ? 0 : dateDeliver.Subtract(dateODPRecv).Days;//实际出货
-            int daysPrdFish = datePrdFish.Subtract(dateODPRecv).Days < 0 ? 0 : datePrdFish.Subtract(dateODPRecv).Days;//实际完工
-            int daysShiping = dateShiping.Subtract(dateODPRecv).Days < 0 ? 0 : dateShiping.Subtract(dateODPRecv).Days;//计划完工
-            int daysDrwRels = dateDrwRels.Subtract(dateODPRecv).Days < 0 ? 0 : dateDrwRels.Subtract(dateODPRecv).Days;//实际发图
-            int daysDrwPlan = dateDrwPlan.Subtract(dateODPRecv).Days < 0 ? 0 : dateDrwPlan.Subtract(dateODPRecv).Days;//计划发图
-            int daysKickOff = dateKickOff.Subtract(dateODPRecv).Days < 0 ? 0 : dateKickOff.Subtract(dateODPRecv).Days;//Kick-Off
+            int daysDeliver = dateDeliver.Subtract(dateOdpRecv).Days < 0 ? 0 : dateDeliver.Subtract(dateOdpRecv).Days;//实际出货
+            int daysPrdFish = datePrdFish.Subtract(dateOdpRecv).Days < 0 ? 0 : datePrdFish.Subtract(dateOdpRecv).Days;//实际完工
+            int daysShiping = dateShiping.Subtract(dateOdpRecv).Days < 0 ? 0 : dateShiping.Subtract(dateOdpRecv).Days;//计划完工
+            int daysDrwRels = dateDrwRels.Subtract(dateOdpRecv).Days < 0 ? 0 : dateDrwRels.Subtract(dateOdpRecv).Days;//实际发图
+            int daysDrwPlan = dateDrwPlan.Subtract(dateOdpRecv).Days < 0 ? 0 : dateDrwPlan.Subtract(dateOdpRecv).Days;//计划发图
+            int daysKickOff = dateKickOff.Subtract(dateOdpRecv).Days < 0 ? 0 : dateKickOff.Subtract(dateOdpRecv).Days;//Kick-Off
 
             //seriesTracking.Points.AddXY("Deliver: " + dateDeliver.ToShortDateString(), daysDeliver);
             //seriesTracking.Points.AddXY("PrdFish: " + datePrdFish.ToShortDateString(), daysPrdFish);
@@ -363,7 +363,7 @@ namespace Compass
             seriesTracking.Points.AddXY("实际发图/DrwRels: " + dateDrwRels.ToShortDateString(), daysDrwRels);
             seriesTracking.Points.AddXY("计划发图/DrwPlan: " + dateDrwPlan.ToShortDateString(), daysDrwPlan);
             seriesTracking.Points.AddXY("开工会议/Kick-Off: " + dateKickOff.ToShortDateString(), daysKickOff);
-            seriesTracking.Points.AddXY("收到ODP/ODPRcv: " + dateODPRecv.ToShortDateString(), 0);
+            seriesTracking.Points.AddXY("收到ODP/ODPRcv: " + dateOdpRecv.ToShortDateString(), 0);
 
             seriesTracking.Points[0].Color = Color.LimeGreen;//项目完成
             seriesTracking.Points[1].Color = Color.GreenYellow;//实际完工
@@ -379,7 +379,7 @@ namespace Compass
             seriesTracking.IsValueShownAsLabel = true;//显示数字
             seriesTracking.IsVisibleInLegend = true;
             //seriesTracking.LegendText = "ProjectStatus: " + projectTracking.ProjectStatusName + " Unit:Days";
-            seriesTracking.LegendText = "项目状态: " + pair.ProjectStatusNameKeyValue.Where(q => q.Key == projectTracking.ProjectStatusName).First().Value + " 单位:天";
+            seriesTracking.LegendText = "项目状态: " + _pair.ProjectStatusNameKeyValue.Where(q => q.Key == projectTracking.ProjectStatusName).First().Value + " 单位:天";
 
 
             int[] nums = { daysDeliver, daysPrdFish, daysShiping, daysDrwRels, daysDrwPlan, daysKickOff };
@@ -435,85 +435,85 @@ namespace Compass
         private void ReportMonthly()
         {
             //统计项目总数：
-            lblProjectNum.Text = "统计项目总数：" + objMonthlyReportService.GetProjectNum(cobYear.Text, cobMonth.Text);
+            lblProjectNum.Text = "统计项目总数：" + _objMonthlyReportService.GetProjectNum(cobYear.Text, cobMonth.Text);
             //ProjectStatus
-            List<ChartData> chartProjectStatusDatas = objMonthlyReportService.GetProjectStatus(cobYear.Text, cobMonth.Text);
+            List<ChartData> chartProjectStatusDatas = _objMonthlyReportService.GetProjectStatus(cobYear.Text, cobMonth.Text);
             foreach (var item in chartProjectStatusDatas)
             {
-                item.Text = pair.ProjectStatusIdCNKeyValue.First(q => q.Key == item.Text).Value;
+                item.Text = _pair.ProjectStatusIdCnKeyValue.First(q => q.Key == item.Text).Value;
             }
             SuperChart superChartProjectStatus = new SuperChart(chartProjectStatus);
             superChartProjectStatus.ShowChart(SeriesChartType.Pie, chartProjectStatusDatas);
             for (int i = 0; i < chartProjectStatus.Series[0].Points.Count; i++)
             {
                 string text = chartProjectStatusDatas[i].Text;
-                chartProjectStatus.Series[0].Points[i].Color = pair.ProjectStatusCNColorKeyValue.First(q => q.Key == text).Value;
+                chartProjectStatus.Series[0].Points[i].Color = _pair.ProjectStatusCnColorKeyValue.First(q => q.Key == text).Value;
             }
 
             //RiskLevel
-            List<ChartData> chartRiskLevelDatas = objMonthlyReportService.GetRiskLevel(cobYear.Text, cobMonth.Text);
+            List<ChartData> chartRiskLevelDatas = _objMonthlyReportService.GetRiskLevel(cobYear.Text, cobMonth.Text);
             SuperChart superChartRiskLevel = new SuperChart(chartRiskLevel);
             superChartRiskLevel.ShowChart(SeriesChartType.Pie, chartRiskLevelDatas);
             for (int i = 0; i < chartRiskLevel.Series[0].Points.Count; i++)
             {
                 string text = chartRiskLevelDatas[i].Text;
-                chartRiskLevel.Series[0].Points[i].Color = pair.RislLevelColorKeyValue.First(q => q.Key == text).Value;
+                chartRiskLevel.Series[0].Points[i].Color = _pair.RislLevelColorKeyValue.First(q => q.Key == text).Value;
             }
 
             //ProjectType
-            List<ChartData> chartProjectTypeDatas = objMonthlyReportService.GetProjectType(cobYear.Text, cobMonth.Text);
+            List<ChartData> chartProjectTypeDatas = _objMonthlyReportService.GetProjectType(cobYear.Text, cobMonth.Text);
             foreach (var item in chartProjectTypeDatas)
             {
-                item.Text = pair.ProjectTypeIdCNKeyValue.First(q => q.Key == item.Text).Value;
+                item.Text = _pair.ProjectTypeIdCnKeyValue.First(q => q.Key == item.Text).Value;
             }
             SuperChart superChartProjectType = new SuperChart(chartProjectType);
             superChartProjectType.ShowChart(SeriesChartType.Pie, chartProjectTypeDatas);
             for (int i = 0; i < chartProjectType.Series[0].Points.Count; i++)
             {
                 string text = chartProjectTypeDatas[i].Text;
-                chartProjectType.Series[0].Points[i].Color = pair.ProjectTypeColorKeyValue.First(q => q.Key == text).Value;
+                chartProjectType.Series[0].Points[i].Color = _pair.ProjectTypeColorKeyValue.First(q => q.Key == text).Value;
             }
             RefreshProject();
         }
         private void ReportYearly()
         {
             //统计区间项目总数：
-            lblProjectNum.Text = "统计项目总数：" + objMonthlyReportService.GetProjectNum(cobYear.Text);
+            lblProjectNum.Text = "统计项目总数：" + _objMonthlyReportService.GetProjectNum(cobYear.Text);
             //ProjectStatus，不显示年度的状态信息
             //List<ChartData> chartProjectStatusDatas = objMonthlyReportService.GetProjectStatus(cobYear.Text);
             //SuperChart superChartProjectStatus = new SuperChart(chartProjectStatus);
             //superChartProjectStatus.ShowChart(SeriesChartType.Pie, chartProjectStatusDatas);
             //RiskLevel
-            List<ChartData> chartRiskLevelDatas = objMonthlyReportService.GetRiskLevel(cobYear.Text);
+            List<ChartData> chartRiskLevelDatas = _objMonthlyReportService.GetRiskLevel(cobYear.Text);
             SuperChart superChartRiskLevel = new SuperChart(chartRiskLevel);
             superChartRiskLevel.ShowChart(SeriesChartType.Pie, chartRiskLevelDatas);
             for (int i = 0; i < chartRiskLevel.Series[0].Points.Count; i++)
             {
                 string text = chartRiskLevelDatas[i].Text;
-                chartRiskLevel.Series[0].Points[i].Color = pair.RislLevelColorKeyValue.First(q => q.Key == text).Value;
+                chartRiskLevel.Series[0].Points[i].Color = _pair.RislLevelColorKeyValue.First(q => q.Key == text).Value;
             }
 
             //ProjectType
-            List<ChartData> chartProjectTypeDatas = objMonthlyReportService.GetProjectType(cobYear.Text);
+            List<ChartData> chartProjectTypeDatas = _objMonthlyReportService.GetProjectType(cobYear.Text);
             foreach (var item in chartProjectTypeDatas)
             {
-                item.Text = pair.ProjectTypeIdCNKeyValue.First(q => q.Key == item.Text).Value;
+                item.Text = _pair.ProjectTypeIdCnKeyValue.First(q => q.Key == item.Text).Value;
             }
             SuperChart superChartProjectType = new SuperChart(chartProjectType);
             superChartProjectType.ShowChart(SeriesChartType.Pie, chartProjectTypeDatas);
             for (int i = 0; i < chartProjectType.Series[0].Points.Count; i++)
             {
                 string text = chartProjectTypeDatas[i].Text;
-                chartProjectType.Series[0].Points[i].Color = pair.ProjectTypeColorKeyValue.First(q => q.Key == text).Value;
+                chartProjectType.Series[0].Points[i].Color = _pair.ProjectTypeColorKeyValue.First(q => q.Key == text).Value;
             }
             RefreshProject();
         }
         //同步更新项目列表
         void RefreshProject()
         {
-            dt = objMonthlyReportService.GetDisplayProjects(sbu, cobYear.Text, cobMonth.Text);
+            _dt = _objMonthlyReportService.GetDisplayProjects(_sbu, cobYear.Text, cobMonth.Text);
             dgvProjects.AutoGenerateColumns = false;
-            dgvProjects.DataSource = AddChineseToDataTable(dt);
+            dgvProjects.DataSource = AddChineseToDataTable(_dt);
         }
 
         #endregion 月度和年度统计
@@ -552,11 +552,11 @@ namespace Compass
             {
                 if (Convert.ToInt32(btnFinancialData.Tag) == 0)
                 {
-                    if (objFinancialDataService.AddFinancialData(objFinancialData, sbu) > 0) MessageBox.Show("财务数据添加成功", "提示信息");
+                    if (_objFinancialDataService.AddFinancialData(objFinancialData, _sbu) > 0) MessageBox.Show("财务数据添加成功", "提示信息");
                 }
                 else
                 {
-                    if (objFinancialDataService.EditFinancialData(objFinancialData, sbu) == 1) MessageBox.Show("财务数据更新成功！", "提示信息");
+                    if (_objFinancialDataService.EditFinancialData(objFinancialData, _sbu) == 1) MessageBox.Show("财务数据更新成功！", "提示信息");
                 }
                 InitData();
             }
@@ -579,7 +579,7 @@ namespace Compass
             if (e.RowIndex > -1)
             {
                 string projectStatus = this.dgvProjects.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
-                dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectStatusChineseColorKeyValue.First(q => q.Key == projectStatus).Value;
+                dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = _pair.ProjectStatusChineseColorKeyValue.First(q => q.Key == projectStatus).Value;
             }
         }
 
@@ -594,16 +594,16 @@ namespace Compass
         private void TimerScroll_Tick(object sender, EventArgs e)
         {
             //DateTime scrollEnd = scrollStart.AddSeconds(odpNoList.Count*2);//调试
-            DateTime scrollEnd = scrollStart.AddMinutes(odpNoList.Count * 2);
+            DateTime scrollEnd = _scrollStart.AddMinutes(_odpNoList.Count * 2);
             if (DateTime.Now < scrollEnd)
             {
                 //if (DateTime.Now.Second % 2 == 0)//调试
                 if (DateTime.Now.Minute % 2 == 0)
                 {
                     tabControl.SelectTab(0);
-                    if (scrollNum < 1) scrollNum = odpNoList.Count;
-                    cobODPNo.Text = odpNoList[scrollNum - 1];
-                    scrollNum--;
+                    if (_scrollNum < 1) _scrollNum = _odpNoList.Count;
+                    cobODPNo.Text = _odpNoList[_scrollNum - 1];
+                    _scrollNum--;
                 }
                 else
                 {
@@ -613,8 +613,8 @@ namespace Compass
             }
             else
             {
-                scrollStart = DateTime.Now;
-                odpNoList = objMonthlyReportService.GetScrollODPNoList();//获取循环ODP列表
+                _scrollStart = DateTime.Now;
+                _odpNoList = _objMonthlyReportService.GetScrollODPNoList();//获取循环ODP列表
             }
         }
         private void Timer_Tick(object sender, EventArgs e)

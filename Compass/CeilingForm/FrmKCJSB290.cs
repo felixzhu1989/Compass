@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmKCJSB290 : MetroFramework.Forms.MetroForm
+    public partial class FrmKcjsb290 : MetroFramework.Forms.MetroForm
     {
-       KCJSB290Service objKCJSB290Service = new KCJSB290Service();
-        private KCJSB290 objKCJSB290 = null;
-        public FrmKCJSB290()
+        readonly KCJSB290Service _objKcjsb290Service = new KCJSB290Service();
+        private readonly KCJSB290 _objKcjsb290 = null;
+        public FrmKcjsb290()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmKCJSB290(Drawing drawing, ModuleTree tree) : this()
+        public FrmKcjsb290(Drawing drawing, ModuleTree tree) : this()
         {
-            objKCJSB290 = (KCJSB290)objKCJSB290Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objKCJSB290 == null) return;
+            _objKcjsb290 = (KCJSB290)_objKcjsb290Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objKcjsb290 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -85,28 +85,28 @@ namespace Compass
 
         private void FillData()
         {
-            if (objKCJSB290 == null) return;
-            modelView.Tag = objKCJSB290.KCJSB290Id;
+            if (_objKcjsb290 == null) return;
+            modelView.Tag = _objKcjsb290.KCJSB290Id;
 
-            cobGutter.Text = objKCJSB290.Gutter;
-            cobANSUL.Text = objKCJSB290.ANSUL;
-            cobANSide.Text = objKCJSB290.ANSide;
-            cobANDetector.Text = objKCJSB290.ANDetector;
-            cobMARVEL.Text = objKCJSB290.MARVEL;
-            cobSSPType.Text = objKCJSB290.SSPType;
-            cobJapan.Text = objKCJSB290.Japan;
-            cobFCSide.Text = objKCJSB290.FCSide;
-            cobFCType.Text = objKCJSB290.FCType;
-            cobFCBlindNo.Text = objKCJSB290.FCBlindNo.ToString();
+            cobGutter.Text = _objKcjsb290.Gutter;
+            cobANSUL.Text = _objKcjsb290.ANSUL;
+            cobANSide.Text = _objKcjsb290.ANSide;
+            cobANDetector.Text = _objKcjsb290.ANDetector;
+            cobMARVEL.Text = _objKcjsb290.MARVEL;
+            cobSSPType.Text = _objKcjsb290.SSPType;
+            cobJapan.Text = _objKcjsb290.Japan;
+            cobFCSide.Text = _objKcjsb290.FCSide;
+            cobFCType.Text = _objKcjsb290.FCType;
+            cobFCBlindNo.Text = _objKcjsb290.FCBlindNo.ToString();
 
-            txtLength.Text = objKCJSB290.Length.ToString();
-            txtExRightDis.Text = objKCJSB290.ExRightDis.ToString();
-            txtExLength.Text = objKCJSB290.ExLength.ToString();
-            txtExWidth.Text = objKCJSB290.ExWidth.ToString();
-            txtExHeight.Text = objKCJSB290.ExHeight.ToString();
-            txtGutterWidth.Text = objKCJSB290.GutterWidth.ToString();
-            txtFCSideLeft.Text = objKCJSB290.FCSideLeft.ToString();
-            txtFCSideRight.Text = objKCJSB290.FCSideRight.ToString();
+            txtLength.Text = _objKcjsb290.Length.ToString();
+            txtExRightDis.Text = _objKcjsb290.ExRightDis.ToString();
+            txtExLength.Text = _objKcjsb290.ExLength.ToString();
+            txtExWidth.Text = _objKcjsb290.ExWidth.ToString();
+            txtExHeight.Text = _objKcjsb290.ExHeight.ToString();
+            txtGutterWidth.Text = _objKcjsb290.GutterWidth.ToString();
+            txtFCSideLeft.Text = _objKcjsb290.FCSideLeft.ToString();
+            txtFCSideRight.Text = _objKcjsb290.FCSideRight.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -228,7 +228,7 @@ namespace Compass
             }
             #endregion
             //封装对象
-            KCJSB290 objKCJSB290 = new KCJSB290()
+            KCJSB290 objKcjsb290 = new KCJSB290()
             {
                 KCJSB290Id = Convert.ToInt32(modelView.Tag),
                 ANSUL = cobANSUL.Text,
@@ -254,7 +254,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objKCJSB290Service.EditModel(objKCJSB290) == 1)
+                if (_objKcjsb290Service.EditModel(objKcjsb290) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

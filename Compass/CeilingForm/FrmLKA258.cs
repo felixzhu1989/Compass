@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLKA258 : MetroFramework.Forms.MetroForm
+    public partial class FrmLka258 : MetroFramework.Forms.MetroForm
     {
-       LKA258Service objLKA258Service = new LKA258Service();
-        private LKA258 objLKA258 = null;
-        public FrmLKA258()
+        readonly LKA258Service _objLka258Service = new LKA258Service();
+        private readonly LKA258 _objLka258 = null;
+        public FrmLka258()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLKA258(Drawing drawing, ModuleTree tree) : this()
+        public FrmLka258(Drawing drawing, ModuleTree tree) : this()
         {
-            objLKA258 = (LKA258)objLKA258Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLKA258 == null) return;
+            _objLka258 = (LKA258)_objLka258Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLka258 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -40,13 +40,13 @@ namespace Compass
         }
         private void FillData()
         {
-            if (objLKA258 == null) return;
-            modelView.Tag = objLKA258.LKA258Id;
+            if (_objLka258 == null) return;
+            modelView.Tag = _objLka258.LKA258Id;
 
-            cobJapan.Text = objLKA258.Japan;
-            cobLightType.Text = objLKA258.LightType;
+            cobJapan.Text = _objLka258.Japan;
+            cobLightType.Text = _objLka258.LightType;
 
-            txtLength.Text = objLKA258.Length.ToString();
+            txtLength.Text = _objLka258.Length.ToString();
 
         }
 
@@ -80,7 +80,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            LKA258 objLKA258 = new LKA258()
+            LKA258 objLka258 = new LKA258()
             {
                 LKA258Id = Convert.ToInt32(modelView.Tag),
 
@@ -91,7 +91,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLKA258Service.EditModel(objLKA258) == 1)
+                if (_objLka258Service.EditModel(objLka258) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmUCWSB535
+    partial class FrmUcwsb535
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUCWSB535));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUcwsb535));
             this.grbMARVEL = new System.Windows.Forms.GroupBox();
             this.lblHCLSide = new System.Windows.Forms.Label();
             this.txtHCLSideRight = new System.Windows.Forms.TextBox();
@@ -787,7 +787,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmUCWSB535";
+            this.Name = "FrmUcwsb535";
             this.Text = "UCWSB535";
             this.grbMARVEL.ResumeLayout(false);
             this.grbMARVEL.PerformLayout();

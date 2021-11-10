@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmUVF555 : MetroFramework.Forms.MetroForm
+    public partial class FrmUvf555 : MetroFramework.Forms.MetroForm
     {
-        UVF555Service objUvf555Service = new UVF555Service();
-        private UVF555 objUvf555 = null;
-        public FrmUVF555()
+        readonly UVF555Service _objUvf555Service = new UVF555Service();
+        private readonly UVF555 _objUvf555 = null;
+        public FrmUvf555()
         {
             InitializeComponent();
             SetVisibleFalse();
@@ -19,10 +19,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmUVF555(Drawing drawing, ModuleTree tree) : this()
+        public FrmUvf555(Drawing drawing, ModuleTree tree) : this()
         {
-            objUvf555 =(UVF555) objUvf555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objUvf555 == null) return;
+            _objUvf555 =(UVF555) _objUvf555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objUvf555 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -124,47 +124,47 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objUvf555 == null) return;
-            modelView.Tag = objUvf555.UVF555Id;
+            if (_objUvf555 == null) return;
+            modelView.Tag = _objUvf555.UVF555Id;
 
-            cobSidePanel.Text = objUvf555.SidePanel;
+            cobSidePanel.Text = _objUvf555.SidePanel;
             //默认ExNo为1
-            cobExNo.Text = objUvf555.ExNo == 0 ? "1" : objUvf555.ExNo.ToString();
-            cobSuNo.Text = objUvf555.ExNo == 0 ? "2" : objUvf555.SuNo.ToString();
-            cobLightType.Text = objUvf555.LightType;
-            cobLEDSpotNo.Text = objUvf555.LEDSpotNo.ToString();
-            cobANSUL.Text = objUvf555.ANSUL;
-            cobANSide.Text = objUvf555.ANSide;
-            cobANDetector.Text = objUvf555.ANDetector;
-            cobANDropNo.Text = objUvf555.ANDropNo.ToString();
-            cobMARVEL.Text = objUvf555.MARVEL;
-            cobIRNo.Text = objUvf555.IRNo.ToString();
-            cobUVType.Text = objUvf555.UVType;
-            cobBluetooth.Text = objUvf555.Bluetooth;
-            cobLEDLogo.Text = objUvf555.LEDlogo;
-            cobOutlet.Text = objUvf555.Outlet;
-            cobWaterCollection.Text = objUvf555.WaterCollection;
-            cobBackToBack.Text = objUvf555.BackToBack;
+            cobExNo.Text = _objUvf555.ExNo == 0 ? "1" : _objUvf555.ExNo.ToString();
+            cobSuNo.Text = _objUvf555.ExNo == 0 ? "2" : _objUvf555.SuNo.ToString();
+            cobLightType.Text = _objUvf555.LightType;
+            cobLEDSpotNo.Text = _objUvf555.LEDSpotNo.ToString();
+            cobANSUL.Text = _objUvf555.ANSUL;
+            cobANSide.Text = _objUvf555.ANSide;
+            cobANDetector.Text = _objUvf555.ANDetector;
+            cobANDropNo.Text = _objUvf555.ANDropNo.ToString();
+            cobMARVEL.Text = _objUvf555.MARVEL;
+            cobIRNo.Text = _objUvf555.IRNo.ToString();
+            cobUVType.Text = _objUvf555.UVType;
+            cobBluetooth.Text = _objUvf555.Bluetooth;
+            cobLEDLogo.Text = _objUvf555.LEDlogo;
+            cobOutlet.Text = _objUvf555.Outlet;
+            cobWaterCollection.Text = _objUvf555.WaterCollection;
+            cobBackToBack.Text = _objUvf555.BackToBack;
 
-            txtLength.Text = objUvf555.Length.ToString();
-            txtDeepth.Text = objUvf555.Deepth.ToString();
-            txtExRightDis.Text = objUvf555.ExRightDis.ToString();
-            txtExDis.Text = objUvf555.ExDis.ToString();
-            txtSuDis.Text= objUvf555.SuDis.ToString();
-            txtExLength.Text = objUvf555.ExLength.ToString();
-            txtExWidth.Text = objUvf555.ExWidth.ToString();
-            txtExHeight.Text = objUvf555.ExHeight.ToString();
+            txtLength.Text = _objUvf555.Length.ToString();
+            txtDeepth.Text = _objUvf555.Deepth.ToString();
+            txtExRightDis.Text = _objUvf555.ExRightDis.ToString();
+            txtExDis.Text = _objUvf555.ExDis.ToString();
+            txtSuDis.Text= _objUvf555.SuDis.ToString();
+            txtExLength.Text = _objUvf555.ExLength.ToString();
+            txtExWidth.Text = _objUvf555.ExWidth.ToString();
+            txtExHeight.Text = _objUvf555.ExHeight.ToString();
             //LEDSpotDis默认400
-            txtLEDSpotDis.Text = objUvf555.LEDSpotDis == 0 ? "400" : objUvf555.LEDSpotDis.ToString();
-            txtANYDis.Text = objUvf555.ANYDis.ToString();
-            txtDropDis1.Text = objUvf555.ANDropDis1.ToString();
-            txtDropDis2.Text = objUvf555.ANDropDis2.ToString();
-            txtDropDis3.Text = objUvf555.ANDropDis3.ToString();
-            txtDropDis4.Text = objUvf555.ANDropDis4.ToString();
-            txtDropDis5.Text = objUvf555.ANDropDis5.ToString();
-            txtIRDis1.Text = objUvf555.IRDis1.ToString();
-            txtIRDis2.Text = objUvf555.IRDis2.ToString();
-            txtIRDis3.Text = objUvf555.IRDis3.ToString();
+            txtLEDSpotDis.Text = _objUvf555.LEDSpotDis == 0 ? "400" : _objUvf555.LEDSpotDis.ToString();
+            txtANYDis.Text = _objUvf555.ANYDis.ToString();
+            txtDropDis1.Text = _objUvf555.ANDropDis1.ToString();
+            txtDropDis2.Text = _objUvf555.ANDropDis2.ToString();
+            txtDropDis3.Text = _objUvf555.ANDropDis3.ToString();
+            txtDropDis4.Text = _objUvf555.ANDropDis4.ToString();
+            txtDropDis5.Text = _objUvf555.ANDropDis5.ToString();
+            txtIRDis1.Text = _objUvf555.IRDis1.ToString();
+            txtIRDis2.Text = _objUvf555.IRDis2.ToString();
+            txtIRDis3.Text = _objUvf555.IRDis3.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -478,7 +478,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objUvf555Service.EditModel(objUvf555) == 1)
+                if (_objUvf555Service.EditModel(objUvf555) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

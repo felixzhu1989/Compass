@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmUCJSB535 : MetroFramework.Forms.MetroForm
+    public partial class FrmUcjsb535 : MetroFramework.Forms.MetroForm
     {
-        UCJSB535Service objUCJSB535Service = new UCJSB535Service();
-        private UCJSB535 objUCJSB535 = null;
-        public FrmUCJSB535()
+        readonly UCJSB535Service _objUcjsb535Service = new UCJSB535Service();
+        private readonly UCJSB535 _objUcjsb535 = null;
+        public FrmUcjsb535()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmUCJSB535(Drawing drawing, ModuleTree tree) : this()
+        public FrmUcjsb535(Drawing drawing, ModuleTree tree) : this()
         {
-            objUCJSB535 = (UCJSB535)objUCJSB535Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objUCJSB535 == null) return;
+            _objUcjsb535 = (UCJSB535)_objUcjsb535Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objUcjsb535 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -94,30 +94,30 @@ namespace Compass
 
         private void FillData()
         {
-            if (objUCJSB535 == null) return;
-            modelView.Tag = objUCJSB535.UCJSB535Id;
+            if (_objUcjsb535 == null) return;
+            modelView.Tag = _objUcjsb535.UCJSB535Id;
 
-            cobGutter.Text = objUCJSB535.Gutter;
-            cobANSUL.Text = objUCJSB535.ANSUL;
-            cobANSide.Text = objUCJSB535.ANSide;
-            cobANDetector.Text = objUCJSB535.ANDetector;
-            cobMARVEL.Text = objUCJSB535.MARVEL;
-            cobSSPType.Text = objUCJSB535.SSPType;
-            cobJapan.Text = objUCJSB535.Japan;
-            cobFCSide.Text = objUCJSB535.FCSide;
-            cobUVType.Text = objUCJSB535.UVType;
-            cobFCBlindNo.Text = objUCJSB535.FCBlindNo.ToString();
-            cobLightType.Text = objUCJSB535.LightType;
-            cobLightCable.Text = objUCJSB535.LightCable;
+            cobGutter.Text = _objUcjsb535.Gutter;
+            cobANSUL.Text = _objUcjsb535.ANSUL;
+            cobANSide.Text = _objUcjsb535.ANSide;
+            cobANDetector.Text = _objUcjsb535.ANDetector;
+            cobMARVEL.Text = _objUcjsb535.MARVEL;
+            cobSSPType.Text = _objUcjsb535.SSPType;
+            cobJapan.Text = _objUcjsb535.Japan;
+            cobFCSide.Text = _objUcjsb535.FCSide;
+            cobUVType.Text = _objUcjsb535.UVType;
+            cobFCBlindNo.Text = _objUcjsb535.FCBlindNo.ToString();
+            cobLightType.Text = _objUcjsb535.LightType;
+            cobLightCable.Text = _objUcjsb535.LightCable;
 
-            txtLength.Text = objUCJSB535.Length.ToString();
-            txtExRightDis.Text = objUCJSB535.ExRightDis.ToString();
-            txtExLength.Text = objUCJSB535.ExLength.ToString();
-            txtExWidth.Text = objUCJSB535.ExWidth.ToString();
-            txtExHeight.Text = objUCJSB535.ExHeight.ToString();
-            txtGutterWidth.Text = objUCJSB535.GutterWidth.ToString();
-            txtFCSideLeft.Text = objUCJSB535.FCSideLeft.ToString();
-            txtFCSideRight.Text = objUCJSB535.FCSideRight.ToString();
+            txtLength.Text = _objUcjsb535.Length.ToString();
+            txtExRightDis.Text = _objUcjsb535.ExRightDis.ToString();
+            txtExLength.Text = _objUcjsb535.ExLength.ToString();
+            txtExWidth.Text = _objUcjsb535.ExWidth.ToString();
+            txtExHeight.Text = _objUcjsb535.ExHeight.ToString();
+            txtGutterWidth.Text = _objUcjsb535.GutterWidth.ToString();
+            txtFCSideLeft.Text = _objUcjsb535.FCSideLeft.ToString();
+            txtFCSideRight.Text = _objUcjsb535.FCSideRight.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -251,7 +251,7 @@ namespace Compass
             }
             #endregion
             //封装对象
-            UCJSB535 objUCJSB535 = new UCJSB535()
+            UCJSB535 objUcjsb535 = new UCJSB535()
             {
                 UCJSB535Id = Convert.ToInt32(modelView.Tag),
                 ANSUL = cobANSUL.Text,
@@ -279,7 +279,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objUCJSB535Service.EditModel(objUCJSB535) == 1)
+                if (_objUcjsb535Service.EditModel(objUcjsb535) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

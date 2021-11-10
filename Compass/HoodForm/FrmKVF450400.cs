@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmKVF450400 : MetroFramework.Forms.MetroForm
+    public partial class FrmKvf450400 : MetroFramework.Forms.MetroForm
     {
-        KVF450400Service objKVF450400Service = new KVF450400Service();
-        private KVF450400 objKVF450400 = null;
-        public FrmKVF450400()
+        readonly KVF450400Service _objKvf450400Service = new KVF450400Service();
+        private readonly KVF450400 _objKvf450400 = null;
+        public FrmKvf450400()
         {
             InitializeComponent();
             SetVisibleFalse();
@@ -19,10 +19,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmKVF450400(Drawing drawing, ModuleTree tree) : this()
+        public FrmKvf450400(Drawing drawing, ModuleTree tree) : this()
         {
-            objKVF450400 = (KVF450400)objKVF450400Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objKVF450400 == null) return;
+            _objKvf450400 = (KVF450400)_objKvf450400Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objKvf450400 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -119,46 +119,46 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objKVF450400 == null) return;
-            modelView.Tag = objKVF450400.KVF450400Id;
+            if (_objKvf450400 == null) return;
+            modelView.Tag = _objKvf450400.KVF450400Id;
 
-            cobSidePanel.Text = objKVF450400.SidePanel;
+            cobSidePanel.Text = _objKvf450400.SidePanel;
             //默认ExNo为1
-            cobExNo.Text = objKVF450400.ExNo == 0 ? "1" : objKVF450400.ExNo.ToString();
-            cobSuNo.Text = objKVF450400.ExNo == 0 ? "2" : objKVF450400.SuNo.ToString();
-            cobLightType.Text = objKVF450400.LightType;
-            cobLEDSpotNo.Text = objKVF450400.LEDSpotNo.ToString();
-            cobANSUL.Text = objKVF450400.ANSUL;
-            cobANSide.Text = objKVF450400.ANSide;
-            cobANDetector.Text = objKVF450400.ANDetector;
-            cobANDropNo.Text = objKVF450400.ANDropNo.ToString();
-            cobMARVEL.Text = objKVF450400.MARVEL;
-            cobIRNo.Text = objKVF450400.IRNo.ToString();
+            cobExNo.Text = _objKvf450400.ExNo == 0 ? "1" : _objKvf450400.ExNo.ToString();
+            cobSuNo.Text = _objKvf450400.ExNo == 0 ? "2" : _objKvf450400.SuNo.ToString();
+            cobLightType.Text = _objKvf450400.LightType;
+            cobLEDSpotNo.Text = _objKvf450400.LEDSpotNo.ToString();
+            cobANSUL.Text = _objKvf450400.ANSUL;
+            cobANSide.Text = _objKvf450400.ANSide;
+            cobANDetector.Text = _objKvf450400.ANDetector;
+            cobANDropNo.Text = _objKvf450400.ANDropNo.ToString();
+            cobMARVEL.Text = _objKvf450400.MARVEL;
+            cobIRNo.Text = _objKvf450400.IRNo.ToString();
             
-            cobLEDLogo.Text = objKVF450400.LEDlogo;
-            cobOutlet.Text = objKVF450400.Outlet;
-            cobWaterCollection.Text = objKVF450400.WaterCollection;
-            cobBackToBack.Text = objKVF450400.BackToBack;
+            cobLEDLogo.Text = _objKvf450400.LEDlogo;
+            cobOutlet.Text = _objKvf450400.Outlet;
+            cobWaterCollection.Text = _objKvf450400.WaterCollection;
+            cobBackToBack.Text = _objKvf450400.BackToBack;
 
-            txtLength.Text = objKVF450400.Length.ToString();
-            txtDeepth.Text = objKVF450400.Deepth.ToString();
-            txtExRightDis.Text = objKVF450400.ExRightDis.ToString();
-            txtExDis.Text = objKVF450400.ExDis.ToString();
-            txtSuDis.Text = objKVF450400.SuDis.ToString();
-            txtExLength.Text = objKVF450400.ExLength.ToString();
-            txtExWidth.Text = objKVF450400.ExWidth.ToString();
-            txtExHeight.Text = objKVF450400.ExHeight.ToString();
+            txtLength.Text = _objKvf450400.Length.ToString();
+            txtDeepth.Text = _objKvf450400.Deepth.ToString();
+            txtExRightDis.Text = _objKvf450400.ExRightDis.ToString();
+            txtExDis.Text = _objKvf450400.ExDis.ToString();
+            txtSuDis.Text = _objKvf450400.SuDis.ToString();
+            txtExLength.Text = _objKvf450400.ExLength.ToString();
+            txtExWidth.Text = _objKvf450400.ExWidth.ToString();
+            txtExHeight.Text = _objKvf450400.ExHeight.ToString();
             //LEDSpotDis默认400
-            txtLEDSpotDis.Text = objKVF450400.LEDSpotDis == 0 ? "400" : objKVF450400.LEDSpotDis.ToString();
-            txtANYDis.Text = objKVF450400.ANYDis.ToString();
-            txtDropDis1.Text = objKVF450400.ANDropDis1.ToString();
-            txtDropDis2.Text = objKVF450400.ANDropDis2.ToString();
-            txtDropDis3.Text = objKVF450400.ANDropDis3.ToString();
-            txtDropDis4.Text = objKVF450400.ANDropDis4.ToString();
-            txtDropDis5.Text = objKVF450400.ANDropDis5.ToString();
-            txtIRDis1.Text = objKVF450400.IRDis1.ToString();
-            txtIRDis2.Text = objKVF450400.IRDis2.ToString();
-            txtIRDis3.Text = objKVF450400.IRDis3.ToString();
+            txtLEDSpotDis.Text = _objKvf450400.LEDSpotDis == 0 ? "400" : _objKvf450400.LEDSpotDis.ToString();
+            txtANYDis.Text = _objKvf450400.ANYDis.ToString();
+            txtDropDis1.Text = _objKvf450400.ANDropDis1.ToString();
+            txtDropDis2.Text = _objKvf450400.ANDropDis2.ToString();
+            txtDropDis3.Text = _objKvf450400.ANDropDis3.ToString();
+            txtDropDis4.Text = _objKvf450400.ANDropDis4.ToString();
+            txtDropDis5.Text = _objKvf450400.ANDropDis5.ToString();
+            txtIRDis1.Text = _objKvf450400.IRDis1.ToString();
+            txtIRDis2.Text = _objKvf450400.IRDis2.ToString();
+            txtIRDis3.Text = _objKvf450400.IRDis3.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -418,7 +418,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            KVF450400 objKVF450400 = new KVF450400()
+            KVF450400 objKvf450400 = new KVF450400()
             {
                 KVF450400Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -460,7 +460,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objKVF450400Service.EditModel(objKVF450400) == 1)
+                if (_objKvf450400Service.EditModel(objKvf450400) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

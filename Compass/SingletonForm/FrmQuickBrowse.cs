@@ -12,10 +12,10 @@ namespace Compass
     
     public partial class FrmQuickBrowse : Form
     {
-        private string sbu = Program.ObjCurrentUser.SBU;
-        private HoodCutListService objHoodCutListService = new HoodCutListService();
-        ModuleTreeService objModuleTreeService = new ModuleTreeService();
-        private Drawing objDrawing = null;
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
+        private readonly HoodCutListService _objHoodCutListService = new HoodCutListService();
+        readonly ModuleTreeService _objModuleTreeService = new ModuleTreeService();
+        private Drawing _objDrawing = null;
         
 
         public FrmQuickBrowse()
@@ -28,7 +28,7 @@ namespace Compass
         public void ShowWithItem(Drawing drawing, ModuleTree tree)
         {
             if (drawing == null || tree == null) return;
-            objDrawing = drawing;
+            _objDrawing = drawing;
             RefreshData(drawing, tree);
             RefreshCutlist(drawing, tree);
             ////天花烟罩不显示Cutlist
@@ -63,7 +63,7 @@ namespace Compass
         private void RefreshCutlist(Drawing drawing, ModuleTree tree)
         {
             lblModule.Text = drawing.Item + " (" + tree.Module + ")";//标题
-            dgvCutList.DataSource = objHoodCutListService.GetHoodCutListsByModuleTreeId(tree.ModuleTreeId.ToString());
+            dgvCutList.DataSource = _objHoodCutListService.GetHoodCutListsByModuleTreeId(tree.ModuleTreeId.ToString());
         }
         /// <summary>
         /// 封装更新表中的数据方法
@@ -90,17 +90,17 @@ namespace Compass
             if (dgvQuickBrowse.CurrentRow == null) return;
 
             string moduleTreeId = dgvQuickBrowse.CurrentRow.Cells["ModuleTreeId"].Value.ToString();
-            ModuleTree objModuleTree = objModuleTreeService.GetModuleTreeById(moduleTreeId,sbu);
+            ModuleTree objModuleTree = _objModuleTreeService.GetModuleTreeById(moduleTreeId,_sbu);
             DialogResult result = DialogResult.No;
             //利用反射，打开修改模型参数窗口，同时实现传递窗口参数
             object[] parameters = new object[2];
-            parameters[0] = objDrawing;
+            parameters[0] = _objDrawing;
             parameters[1] = objModuleTree;
             MetroForm objFrmModel = (MetroForm)Assembly.Load("Compass").CreateInstance("Compass.Frm" + objModuleTree.CategoryName, true, BindingFlags.Default, null, parameters, null, null);
             result = objFrmModel.ShowDialog();
             if (result == DialogResult.OK)
             {
-                RefreshData(objDrawing, objModuleTree);//更新数据表
+                RefreshData(_objDrawing, objModuleTree);//更新数据表
             }
         }
 
@@ -131,8 +131,8 @@ namespace Compass
             }
             try
             {
-                if (objHoodCutListService.DeleteCutlistByTran(idList))
-                    dgvCutList.DataSource = objHoodCutListService.GetHoodCutListsByModuleTreeId(moduleTreeId); ;
+                if (_objHoodCutListService.DeleteCutlistByTran(idList))
+                    dgvCutList.DataSource = _objHoodCutListService.GetHoodCutListsByModuleTreeId(moduleTreeId); ;
             }
             catch (Exception ex)
             {
@@ -159,8 +159,8 @@ namespace Compass
             btnPrintCutList.Enabled = false;
             btnPrintCutList.Text = "打印中...";
             ModuleTree tree =
-                objModuleTreeService.GetModuleTreeById(dgvCutList.Rows[0].Cells["ModuleTreeId"].Value.ToString(),sbu);
-            if (new PrintReports().ExecPrintHoodCutList(objDrawing, tree, dgvCutList)) MessageBox.Show("CutList打印完成", "打印完成");
+                _objModuleTreeService.GetModuleTreeById(dgvCutList.Rows[0].Cells["ModuleTreeId"].Value.ToString(),_sbu);
+            if (new PrintReports().ExecPrintHoodCutList(_objDrawing, tree, dgvCutList)) MessageBox.Show("CutList打印完成", "打印完成");
             btnPrintCutList.Enabled = true;
             btnPrintCutList.Text = "打印CustList";
         }

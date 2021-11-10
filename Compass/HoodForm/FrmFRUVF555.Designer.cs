@@ -1,7 +1,7 @@
 ﻿
 namespace Compass
 {
-    partial class FrmFRUVF555
+    partial class FrmFruvf555
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace Compass
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFRUVF555));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFruvf555));
             this.txtDropDis5 = new System.Windows.Forms.TextBox();
             this.txtDropDis4 = new System.Windows.Forms.TextBox();
             this.txtDropDis3 = new System.Windows.Forms.TextBox();
@@ -1007,7 +1007,7 @@ namespace Compass
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmFRUVF555";
+            this.Name = "FrmFruvf555";
             this.Text = "FRUVF555";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

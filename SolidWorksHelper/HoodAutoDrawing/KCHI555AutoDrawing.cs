@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class KCHI555AutoDrawing : IAutoDrawing
     {
-        KCHI555Service objKCHI555Service = new KCHI555Service();
+        readonly KCHI555Service objKCHI555Service = new KCHI555Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

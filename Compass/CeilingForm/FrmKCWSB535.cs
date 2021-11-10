@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmKCWSB535 : MetroFramework.Forms.MetroForm
+    public partial class FrmKcwsb535 : MetroFramework.Forms.MetroForm
     {
-        KCWSB535Service objKCWSB535Service = new KCWSB535Service();
-        private KCWSB535 objKCWSB535 = null;
-        public FrmKCWSB535()
+        readonly KCWSB535Service _objKcwsb535Service = new KCWSB535Service();
+        private readonly KCWSB535 _objKcwsb535 = null;
+        public FrmKcwsb535()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmKCWSB535(Drawing drawing, ModuleTree tree) : this()
+        public FrmKcwsb535(Drawing drawing, ModuleTree tree) : this()
         {
-            objKCWSB535 = (KCWSB535)objKCWSB535Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objKCWSB535 == null) return;
+            _objKcwsb535 = (KCWSB535)_objKcwsb535Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objKcwsb535 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -91,32 +91,32 @@ namespace Compass
 
         private void FillData()
         {
-            if (objKCWSB535 == null) return;
-            modelView.Tag = objKCWSB535.KCWSB535Id;
+            if (_objKcwsb535 == null) return;
+            modelView.Tag = _objKcwsb535.KCWSB535Id;
 
-            cobSidePanel.Text = objKCWSB535.SidePanel;
-            cobGutter.Text = objKCWSB535.Gutter;
-            cobANSUL.Text = objKCWSB535.ANSUL;
-            cobANSide.Text = objKCWSB535.ANSide;
-            cobMARVEL.Text = objKCWSB535.MARVEL;
-            cobLightType.Text = objKCWSB535.LightType;
-            cobDPSide.Text = objKCWSB535.DPSide;
-            cobSSPType.Text = objKCWSB535.SSPType;
-            cobJapan.Text = objKCWSB535.Japan;
-            cobFCSide.Text = objKCWSB535.FCSide;
-            cobFCBlindNo.Text = objKCWSB535.FCBlindNo.ToString();
-            cobHCLSide.Text = objKCWSB535.HCLSide;
+            cobSidePanel.Text = _objKcwsb535.SidePanel;
+            cobGutter.Text = _objKcwsb535.Gutter;
+            cobANSUL.Text = _objKcwsb535.ANSUL;
+            cobANSide.Text = _objKcwsb535.ANSide;
+            cobMARVEL.Text = _objKcwsb535.MARVEL;
+            cobLightType.Text = _objKcwsb535.LightType;
+            cobDPSide.Text = _objKcwsb535.DPSide;
+            cobSSPType.Text = _objKcwsb535.SSPType;
+            cobJapan.Text = _objKcwsb535.Japan;
+            cobFCSide.Text = _objKcwsb535.FCSide;
+            cobFCBlindNo.Text = _objKcwsb535.FCBlindNo.ToString();
+            cobHCLSide.Text = _objKcwsb535.HCLSide;
 
-            txtLength.Text = objKCWSB535.Length.ToString();
-            txtExRightDis.Text = objKCWSB535.ExRightDis.ToString();
-            txtExLength.Text = objKCWSB535.ExLength.ToString();
-            txtExWidth.Text = objKCWSB535.ExWidth.ToString();
-            txtExHeight.Text = objKCWSB535.ExHeight.ToString();
-            txtGutterWidth.Text = objKCWSB535.GutterWidth.ToString();
-            txtFCSideLeft.Text = objKCWSB535.FCSideLeft.ToString();
-            txtFCSideRight.Text = objKCWSB535.FCSideRight.ToString();
-            txtHCLSideLeft.Text = objKCWSB535.HCLSideLeft.ToString();
-            txtHCLSideRight.Text = objKCWSB535.HCLSideRight.ToString();
+            txtLength.Text = _objKcwsb535.Length.ToString();
+            txtExRightDis.Text = _objKcwsb535.ExRightDis.ToString();
+            txtExLength.Text = _objKcwsb535.ExLength.ToString();
+            txtExWidth.Text = _objKcwsb535.ExWidth.ToString();
+            txtExHeight.Text = _objKcwsb535.ExHeight.ToString();
+            txtGutterWidth.Text = _objKcwsb535.GutterWidth.ToString();
+            txtFCSideLeft.Text = _objKcwsb535.FCSideLeft.ToString();
+            txtFCSideRight.Text = _objKcwsb535.FCSideRight.ToString();
+            txtHCLSideLeft.Text = _objKcwsb535.HCLSideLeft.ToString();
+            txtHCLSideRight.Text = _objKcwsb535.HCLSideRight.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -247,7 +247,7 @@ namespace Compass
             }
             #endregion
             //封装对象
-            KCWSB535 objKCWSB535 = new KCWSB535()
+            KCWSB535 objKcwsb535 = new KCWSB535()
             {
                 KCWSB535Id = Convert.ToInt32(modelView.Tag),
                 ANSUL = cobANSUL.Text,
@@ -277,7 +277,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objKCWSB535Service.EditModel(objKCWSB535) == 1)
+                if (_objKcwsb535Service.EditModel(objKcwsb535) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

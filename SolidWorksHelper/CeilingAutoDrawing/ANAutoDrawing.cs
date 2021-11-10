@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class ANAutoDrawing : IAutoDrawing
     {
-        ANService objANService = new ANService();
+        readonly ANService objANService = new ANService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

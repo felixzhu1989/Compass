@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class UVF450400AutoDrawing : IAutoDrawing
     {
-        UVF450400Service objUVF450400Service = new UVF450400Service();
+        readonly UVF450400Service objUVF450400Service = new UVF450400Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             #region 准备工作

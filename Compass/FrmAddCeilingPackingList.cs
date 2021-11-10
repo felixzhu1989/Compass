@@ -8,12 +8,12 @@ namespace Compass
 {
     public partial class FrmAddCeilingPackingList :MetroFramework.Forms.MetroForm
     {
-        private Project objProject = null;
-        private CeilingAccessory objCeilingAccessory = null;
-        DrawingService objDrawingService = new DrawingService();
-        private List<Drawing> objDrawings = null;
-        CeilingAccessoryService objCeilingAccessoryService=new CeilingAccessoryService();
-        private string sbu = Program.ObjCurrentUser.SBU;
+        private readonly Project _objProject = null;
+        private CeilingAccessory _objCeilingAccessory = null;
+        readonly DrawingService _objDrawingService = new DrawingService();
+        private readonly List<Drawing> _objDrawings = null;
+        readonly CeilingAccessoryService _objCeilingAccessoryService=new CeilingAccessoryService();
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
 
         public FrmAddCeilingPackingList()
         {
@@ -21,19 +21,19 @@ namespace Compass
         }
         public FrmAddCeilingPackingList(Project project):this()
         {
-            objProject = project;
-            if (objProject == null) return;
+            _objProject = project;
+            if (_objProject == null) return;
             //创建第一个节点
             this.tvCeilingAccessories.Nodes.Clear();
             TreeNode rootNode=new TreeNode()
             {
                 Text = "配件目录",
                 ImageIndex = 4,
-                Tag = objProject.ProjectId
+                Tag = _objProject.ProjectId
             };
             this.tvCeilingAccessories.Nodes.Add(rootNode);
             List<CeilingAccessory> ceilingAccessoriesList =
-                objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
+                _objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
             foreach (var item in ceilingAccessoriesList)
             {
                 TreeNode node=new TreeNode()
@@ -45,7 +45,7 @@ namespace Compass
                 rootNode.Nodes.Add(node);
             }
             this.tvCeilingAccessories.ExpandAll();
-            objDrawings = objDrawingService.GetDrawingsByProjectId(objProject.ProjectId.ToString(),sbu);
+            _objDrawings = _objDrawingService.GetDrawingsByProjectId(_objProject.ProjectId.ToString(),_sbu);
         }
         /// <summary>
         /// 选中节点后复制给配件对象，并反填数据到txt中
@@ -58,18 +58,18 @@ namespace Compass
             if (e.Node.Level == 1)
             {
                 //需要执行的任务
-                objCeilingAccessory = objCeilingAccessoryService.GetCeilingAccessoryById(e.Node.Tag.ToString());
-                txtPartDescription.Text = objCeilingAccessory.PartDescription;
-                if (objCeilingAccessory.CeilingAccessoryId == "7001") txtPartDescription.ReadOnly = false;
+                _objCeilingAccessory = _objCeilingAccessoryService.GetCeilingAccessoryById(e.Node.Tag.ToString());
+                txtPartDescription.Text = _objCeilingAccessory.PartDescription;
+                if (_objCeilingAccessory.CeilingAccessoryId == "7001") txtPartDescription.ReadOnly = false;
                 else txtPartDescription.ReadOnly = true;
-                txtPartNo.Text = objCeilingAccessory.PartNo;
-                txtRemark.Text = objCeilingAccessory.Remark;
-                txtQuantity.Text = objCeilingAccessory.Quantity.ToString();
-                txtUnit.Text = objCeilingAccessory.Unit;
-                txtLength.Text = objCeilingAccessory.Length;
-                txtWidth.Text = objCeilingAccessory.Width;
-                txtHeight.Text = objCeilingAccessory.Height;
-                btnAddCeilingAccessory.Tag = objCeilingAccessory.CeilingAccessoryId;
+                txtPartNo.Text = _objCeilingAccessory.PartNo;
+                txtRemark.Text = _objCeilingAccessory.Remark;
+                txtQuantity.Text = _objCeilingAccessory.Quantity.ToString();
+                txtUnit.Text = _objCeilingAccessory.Unit;
+                txtLength.Text = _objCeilingAccessory.Length;
+                txtWidth.Text = _objCeilingAccessory.Width;
+                txtHeight.Text = _objCeilingAccessory.Height;
+                btnAddCeilingAccessory.Tag = _objCeilingAccessory.CeilingAccessoryId;
             }
         }
         /// <summary>
@@ -80,20 +80,20 @@ namespace Compass
         private void BtnAddCeilingAccessory_Click(object sender, EventArgs e)
         {
             //将配件对象添加项目编号，并提交SQL
-            if(objCeilingAccessory==null)return;
+            if(_objCeilingAccessory==null)return;
 
-            objCeilingAccessory.PartDescription = txtPartDescription.Text;
-            objCeilingAccessory.PartNo = txtPartNo.Text.Trim();
-            objCeilingAccessory.Remark = txtRemark.Text.Trim();
-            objCeilingAccessory.Quantity =Convert.ToInt32(txtQuantity.Text.Trim());
-            objCeilingAccessory.Length = txtLength.Text.Trim();
-            objCeilingAccessory.Width = txtWidth.Text.Trim();
-            objCeilingAccessory.Height = txtHeight.Text.Trim();
-            objCeilingAccessory.ProjectId = objProject.ProjectId;
-            objCeilingAccessory.UserId = Program.ObjCurrentUser.UserId;
-            objCeilingAccessory.Location = objDrawings[0].Item;//填写区域
-            List<CeilingAccessory> ceilingAccessoriesList = new List<CeilingAccessory>{objCeilingAccessory};
-            objCeilingAccessoryService.ImportCeilingPackingListByTran(ceilingAccessoriesList);
+            _objCeilingAccessory.PartDescription = txtPartDescription.Text;
+            _objCeilingAccessory.PartNo = txtPartNo.Text.Trim();
+            _objCeilingAccessory.Remark = txtRemark.Text.Trim();
+            _objCeilingAccessory.Quantity =Convert.ToInt32(txtQuantity.Text.Trim());
+            _objCeilingAccessory.Length = txtLength.Text.Trim();
+            _objCeilingAccessory.Width = txtWidth.Text.Trim();
+            _objCeilingAccessory.Height = txtHeight.Text.Trim();
+            _objCeilingAccessory.ProjectId = _objProject.ProjectId;
+            _objCeilingAccessory.UserId = Program.ObjCurrentUser.UserId;
+            _objCeilingAccessory.Location = _objDrawings[0].Item;//填写区域
+            List<CeilingAccessory> ceilingAccessoriesList = new List<CeilingAccessory>{_objCeilingAccessory};
+            _objCeilingAccessoryService.ImportCeilingPackingListByTran(ceilingAccessoriesList);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

@@ -9,9 +9,9 @@ namespace Compass
 {
     public partial class FrmDesignWorkload : Form
     {
-        private DesignWorkloadService objDesignWorkloadService=new DesignWorkloadService();
-        private List<DesignWorkload> designWorkloadList=new List<DesignWorkload>();
-        private string sbu = Program.ObjCurrentUser.SBU;
+        private readonly DesignWorkloadService _objDesignWorkloadService=new DesignWorkloadService();
+        private List<DesignWorkload> _designWorkloadList=new List<DesignWorkload>();
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
 
         public FrmDesignWorkload()
         {
@@ -22,8 +22,8 @@ namespace Compass
         }
         private void RefreshData()
         {
-            designWorkloadList = objDesignWorkloadService.GetAllDesignWorkload(sbu);
-            dgvDesignWorkload.DataSource = designWorkloadList;
+            _designWorkloadList = _objDesignWorkloadService.GetAllDesignWorkload(_sbu);
+            dgvDesignWorkload.DataSource = _designWorkloadList;
         }
         /// <summary>
         /// 添加行号
@@ -65,7 +65,7 @@ namespace Compass
             //提交添加
             try
             {
-                int userId = objDesignWorkloadService.AddDesignWorkload(objDesignWorkload,sbu);
+                int userId = _objDesignWorkloadService.AddDesignWorkload(objDesignWorkload,_sbu);
                 if (userId > 1)
                 {
                     //提示添加成功
@@ -117,7 +117,7 @@ namespace Compass
                 return;
             }
             string workloadId = dgvDesignWorkload.CurrentRow.Cells["WorkloadId"].Value.ToString();
-            DesignWorkload objDesignWorkload = objDesignWorkloadService.GetDesignWorkloadById(workloadId,sbu);
+            DesignWorkload objDesignWorkload = _objDesignWorkloadService.GetDesignWorkloadById(workloadId,_sbu);
             //初始化修改信息
             grbEditWorkload.Visible = true;//显示
             txtEditWorkloadId.Text = objDesignWorkload.WorkloadId.ToString();
@@ -168,7 +168,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objDesignWorkloadService.EditDesignWorkload(objDesignWorkload,sbu) == 1)
+                if (_objDesignWorkloadService.EditDesignWorkload(objDesignWorkload,_sbu) == 1)
                 {
                     MessageBox.Show("修改工作量成功！", "提示信息");
                     grbEditWorkload.Visible = false;
@@ -216,7 +216,7 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objDesignWorkloadService.DeleteDesignWorkload(workloadId,sbu) == 1)
+                if (_objDesignWorkloadService.DeleteDesignWorkload(workloadId,_sbu) == 1)
                 {
                     RefreshData();//同步刷新显示数据
                 }

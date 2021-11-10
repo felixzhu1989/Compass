@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLLKA : MetroFramework.Forms.MetroForm
+    public partial class FrmLlka : MetroFramework.Forms.MetroForm
     {
-        LLKAService objLLKAService = new LLKAService();
-        private LLKA objLLKA = null;
-        public FrmLLKA()
+        readonly LLKAService _objLlkaService = new LLKAService();
+        private readonly LLKA _objLlka = null;
+        public FrmLlka()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLLKA(Drawing drawing, ModuleTree tree) : this()
+        public FrmLlka(Drawing drawing, ModuleTree tree) : this()
         {
-            objLLKA = (LLKA)objLLKAService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLLKA == null) return;
+            _objLlka = (LLKA)_objLlkaService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLlka == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -80,11 +80,11 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objLLKA == null) return;
-            modelView.Tag = objLLKA.LLKAId;
-            cobLongGlassNo.Text = objLLKA.LongGlassNo.ToString();
-            cobShortGlassNo.Text = objLLKA.ShortGlassNo.ToString();
-            txtLength.Text = objLLKA.Length.ToString();
+            if (_objLlka == null) return;
+            modelView.Tag = _objLlka.LLKAId;
+            cobLongGlassNo.Text = _objLlka.LongGlassNo.ToString();
+            cobShortGlassNo.Text = _objLlka.ShortGlassNo.ToString();
+            txtLength.Text = _objLlka.Length.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -110,7 +110,7 @@ namespace Compass
                 return;
             }
             //封装对象
-            LLKA objLLKA = new LLKA()
+            LLKA objLlka = new LLKA()
             {
                 LLKAId = Convert.ToInt32(modelView.Tag),
 
@@ -121,7 +121,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLLKAService.EditModel(objLLKA) == 1)
+                if (_objLlkaService.EditModel(objLlka) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

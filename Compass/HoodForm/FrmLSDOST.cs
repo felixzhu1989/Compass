@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLSDOST : MetroFramework.Forms.MetroForm
+    public partial class FrmLsdost : MetroFramework.Forms.MetroForm
     {
-        LSDOSTService objLSDOSTService = new LSDOSTService();
-        private LSDOST objLSDOST = null;
-        public FrmLSDOST()
+        readonly LSDOSTService _objLsdostService = new LSDOSTService();
+        private readonly LSDOST _objLsdost = null;
+        public FrmLsdost()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLSDOST(Drawing drawing, ModuleTree tree) : this()
+        public FrmLsdost(Drawing drawing, ModuleTree tree) : this()
         {
-            objLSDOST = (LSDOST)objLSDOSTService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLSDOST == null) return;
+            _objLsdost = (LSDOST)_objLsdostService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLsdost == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -44,11 +44,11 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objLSDOST == null) return;
-            modelView.Tag = objLSDOST.LSDOSTId;
-            cobSuNo.Text = objLSDOST.SuNo == 0 ? "" : objLSDOST.SuNo.ToString();
-            txtLength.Text = objLSDOST.Length.ToString();
-            txtSuDis.Text = objLSDOST.SuDis.ToString();
+            if (_objLsdost == null) return;
+            modelView.Tag = _objLsdost.LSDOSTId;
+            cobSuNo.Text = _objLsdost.SuNo == 0 ? "" : _objLsdost.SuNo.ToString();
+            txtLength.Text = _objLsdost.Length.ToString();
+            txtSuDis.Text = _objLsdost.SuDis.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -80,7 +80,7 @@ namespace Compass
             
             #endregion
             //封装对象
-            LSDOST objLSDOST = new LSDOST()
+            LSDOST objLsdost = new LSDOST()
             {
                 LSDOSTId = Convert.ToInt32(modelView.Tag),
                 SuNo = Convert.ToInt32(cobSuNo.Text),
@@ -90,7 +90,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLSDOSTService.EditModel(objLSDOST) == 1)
+                if (_objLsdostService.EditModel(objLsdost) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

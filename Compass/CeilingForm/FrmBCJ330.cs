@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmBCJ330 : MetroFramework.Forms.MetroForm
+    public partial class FrmBcj330 : MetroFramework.Forms.MetroForm
     {
-        BCJ330Service objBCJ330Service = new BCJ330Service();
-        private BCJ330 objBCJ330 = null;
-        public FrmBCJ330()
+        readonly BCJ330Service _objBcj330Service = new BCJ330Service();
+        private readonly BCJ330 _objBcj330 = null;
+        public FrmBcj330()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmBCJ330(Drawing drawing, ModuleTree tree) : this()
+        public FrmBcj330(Drawing drawing, ModuleTree tree) : this()
         {
-            objBCJ330 = (BCJ330)objBCJ330Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objBCJ330 == null) return;
+            _objBcj330 = (BCJ330)_objBcj330Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objBcj330 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -48,18 +48,18 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objBCJ330 == null) return;
-            modelView.Tag = objBCJ330.BCJ330Id;
+            if (_objBcj330 == null) return;
+            modelView.Tag = _objBcj330.BCJ330Id;
 
-            cobSidePanel.Text = objBCJ330.SidePanel;
-            cobSuType.Text = objBCJ330.SuType;
+            cobSidePanel.Text = _objBcj330.SidePanel;
+            cobSuType.Text = _objBcj330.SuType;
 
 
-            txtLength.Text = objBCJ330.Length.ToString();
-            txtSuDis.Text = objBCJ330.SuDis.ToString();
+            txtLength.Text = _objBcj330.Length.ToString();
+            txtSuDis.Text = _objBcj330.SuDis.ToString();
         }
 
-        private void btnEditData_Click(object sender, EventArgs e)
+        private void BtnEditData_Click(object sender, EventArgs e)
         {
             #region 数据验证
             //必填项目
@@ -93,7 +93,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            BCJ330 objBCJ330 = new BCJ330()
+            BCJ330 objBcj330 = new BCJ330()
             {
                 BCJ330Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -107,7 +107,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objBCJ330Service.EditModel(objBCJ330) == 1)
+                if (_objBcj330Service.EditModel(objBcj330) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class LKA258AutoDrawing : IAutoDrawing
     {
-        LKA258Service objLKA258Service = new LKA258Service();
+        readonly LKA258Service objLKA258Service = new LKA258Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

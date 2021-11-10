@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmAN
+    partial class FrmAn
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAN));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAn));
             this.label19 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.cobMARVEL = new System.Windows.Forms.ComboBox();
@@ -117,7 +117,7 @@
             this.cobMARVEL.Name = "cobMARVEL";
             this.cobMARVEL.Size = new System.Drawing.Size(100, 27);
             this.cobMARVEL.TabIndex = 3;
-            this.cobMARVEL.SelectedIndexChanged += new System.EventHandler(this.cobMARVEL_SelectedIndexChanged);
+            this.cobMARVEL.SelectedIndexChanged += new System.EventHandler(this.CobMARVEL_SelectedIndexChanged);
             // 
             // cobANSUL
             // 
@@ -131,7 +131,7 @@
             this.cobANSUL.Name = "cobANSUL";
             this.cobANSUL.Size = new System.Drawing.Size(100, 27);
             this.cobANSUL.TabIndex = 1;
-            this.cobANSUL.SelectedIndexChanged += new System.EventHandler(this.cobANSUL_SelectedIndexChanged);
+            this.cobANSUL.SelectedIndexChanged += new System.EventHandler(this.CobANSUL_SelectedIndexChanged);
             // 
             // grbMARVEL
             // 
@@ -239,7 +239,7 @@
             this.btnEditData.TabIndex = 5;
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
-            this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
+            this.btnEditData.Click += new System.EventHandler(this.BtnEditData_Click);
             // 
             // grbANSUL
             // 
@@ -517,7 +517,7 @@
             this.cobANDropNo.Name = "cobANDropNo";
             this.cobANDropNo.Size = new System.Drawing.Size(100, 27);
             this.cobANDropNo.TabIndex = 7;
-            this.cobANDropNo.SelectedIndexChanged += new System.EventHandler(this.cobANDropNo_SelectedIndexChanged);
+            this.cobANDropNo.SelectedIndexChanged += new System.EventHandler(this.CobANDropNo_SelectedIndexChanged);
             // 
             // cobANDetectorEnd
             // 
@@ -607,7 +607,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmAN";
+            this.Name = "FrmAn";
             this.Text = "AN";
             this.grbMARVEL.ResumeLayout(false);
             this.grbMARVEL.PerformLayout();

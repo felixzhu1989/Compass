@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class SSPDOMEAutoDrawing : IAutoDrawing
     {
-        SSPDOMEService objSSPDOMEService = new SSPDOMEService();
+        readonly SSPDOMEService objSSPDOMEService = new SSPDOMEService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

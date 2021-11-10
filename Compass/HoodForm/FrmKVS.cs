@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmKVS : MetroFramework.Forms.MetroForm
+    public partial class FrmKvs : MetroFramework.Forms.MetroForm
     {
-        KVSService objKVSService = new KVSService();
-        private KVS objKVS = null;
-        public FrmKVS()
+        readonly KVSService _objKvsService = new KVSService();
+        private readonly KVS _objKvs = null;
+        public FrmKvs()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmKVS(Drawing drawing, ModuleTree tree) : this()
+        public FrmKvs(Drawing drawing, ModuleTree tree) : this()
         {
-            objKVS = (KVS)objKVSService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objKVS == null) return;
+            _objKvs = (KVS)_objKvsService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objKvs == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -45,18 +45,18 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objKVS == null) return;
-            modelView.Tag = objKVS.KVSId;
+            if (_objKvs == null) return;
+            modelView.Tag = _objKvs.KVSId;
 
             //默认ExNo为1
-            cobExNo.Text = objKVS.ExNo == 0 ? "1" : objKVS.ExNo.ToString();
-            cobLightType.Text = objKVS.LightType;
-            txtLength.Text = objKVS.Length.ToString();
-            txtDeepth.Text = objKVS.Deepth.ToString();
-            txtExDis.Text = objKVS.ExDis.ToString();
-            txtExLength.Text = objKVS.ExLength.ToString();
-            txtExWidth.Text = objKVS.ExWidth.ToString();
-            txtExHeight.Text = objKVS.ExHeight.ToString();
+            cobExNo.Text = _objKvs.ExNo == 0 ? "1" : _objKvs.ExNo.ToString();
+            cobLightType.Text = _objKvs.LightType;
+            txtLength.Text = _objKvs.Length.ToString();
+            txtDeepth.Text = _objKvs.Deepth.ToString();
+            txtExDis.Text = _objKvs.ExDis.ToString();
+            txtExLength.Text = _objKvs.ExLength.ToString();
+            txtExWidth.Text = _objKvs.ExWidth.ToString();
+            txtExHeight.Text = _objKvs.ExHeight.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -128,7 +128,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            KVS objKVS = new KVS()
+            KVS objKvs = new KVS()
             {
                 KVSId = Convert.ToInt32(modelView.Tag),
                 ExNo = Convert.ToInt32(cobExNo.Text),
@@ -145,7 +145,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objKVSService.EditModel(objKVS) == 1)
+                if (_objKvsService.EditModel(objKvs) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

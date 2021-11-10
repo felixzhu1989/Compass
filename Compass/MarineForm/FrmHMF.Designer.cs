@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmHMF
+    partial class FrmHmf
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHMF));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHmf));
             this.label7 = new System.Windows.Forms.Label();
             this.cobNetPlug = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -480,7 +480,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmHMF";
+            this.Name = "FrmHmf";
             this.Text = "HMF";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

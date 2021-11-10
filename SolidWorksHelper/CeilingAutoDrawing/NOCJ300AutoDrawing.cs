@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class NOCJ300AutoDrawing : IAutoDrawing
     {
-        NOCJ300Service objNOCJ300Service = new NOCJ300Service();
+        readonly NOCJ300Service objNOCJ300Service = new NOCJ300Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

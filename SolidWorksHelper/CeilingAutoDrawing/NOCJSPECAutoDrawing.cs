@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class NOCJSPECAutoDrawing:IAutoDrawing
     {
-        NOCJSPECService objNOCJSPECService = new NOCJSPECService();
+        readonly NOCJSPECService objNOCJSPECService = new NOCJSPECService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

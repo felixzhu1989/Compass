@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmLKASPEC
+    partial class FrmLkaspec
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLKASPEC));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLkaspec));
             this.grbMARVEL = new System.Windows.Forms.GroupBox();
             this.cobLightType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -215,7 +215,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmLKASPEC";
+            this.Name = "FrmLkaspec";
             this.Text = "LKASPEC";
             this.grbMARVEL.ResumeLayout(false);
             this.grbMARVEL.PerformLayout();

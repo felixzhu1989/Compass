@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLKSSPEC : MetroFramework.Forms.MetroForm
+    public partial class FrmLksspec : MetroFramework.Forms.MetroForm
     {
-        LKSSPECService objLKSSPECService = new LKSSPECService();
-        private LKSSPEC objLKSSPEC = null;
-        public FrmLKSSPEC()
+        readonly LKSSPECService _objLksspecService = new LKSSPECService();
+        private readonly LKSSPEC _objLksspec = null;
+        public FrmLksspec()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLKSSPEC(Drawing drawing, ModuleTree tree) : this()
+        public FrmLksspec(Drawing drawing, ModuleTree tree) : this()
         {
-            objLKSSPEC = (LKSSPEC)objLKSSPECService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLKSSPEC == null) return;
+            _objLksspec = (LKSSPEC)_objLksspecService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLksspec == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -50,16 +50,16 @@ namespace Compass
         }
         private void FillData()
         {
-            if (objLKSSPEC == null) return;
-            modelView.Tag = objLKSSPEC.LKSSPECId;
+            if (_objLksspec == null) return;
+            modelView.Tag = _objLksspec.LKSSPECId;
 
-            cobWBeam.Text = objLKSSPEC.WBeam;
-            cobSidePanel.Text = objLKSSPEC.SidePanel;
-            cobJapan.Text = objLKSSPEC.Japan;
-            cobLightType.Text = objLKSSPEC.LightType;
+            cobWBeam.Text = _objLksspec.WBeam;
+            cobSidePanel.Text = _objLksspec.SidePanel;
+            cobJapan.Text = _objLksspec.Japan;
+            cobLightType.Text = _objLksspec.LightType;
 
-            txtLength.Text = objLKSSPEC.Length.ToString();
-            txtHeight.Text = objLKSSPEC.Height.ToString();
+            txtLength.Text = _objLksspec.Length.ToString();
+            txtHeight.Text = _objLksspec.Height.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -111,7 +111,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            LKSSPEC objLKSSPEC = new LKSSPEC()
+            LKSSPEC objLksspec = new LKSSPEC()
             {
                 LKSSPECId = Convert.ToInt32(modelView.Tag),
 
@@ -126,7 +126,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLKSSPECService.EditModel(objLKSSPEC) == 1)
+                if (_objLksspecService.EditModel(objLksspec) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

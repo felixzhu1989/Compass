@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class LPZAutoDrawing : IAutoDrawing
     {
-        LPZService objLPZService = new LPZService();
+        readonly LPZService objLPZService = new LPZService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

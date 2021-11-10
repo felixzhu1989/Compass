@@ -11,9 +11,9 @@ namespace Compass
 {
     public partial class FrmCategoryTree : MetroFramework.Forms.MetroForm
     {
-        private string sbu = Program.ObjCurrentUser.SBU;
-        ModuleTreeService objModuleTreeService = new ModuleTreeService();
-        private Drawing objDrawing = null;
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
+        readonly ModuleTreeService _objModuleTreeService = new ModuleTreeService();
+        private Drawing _objDrawing = null;
         public FrmCategoryTree()
         {
             InitializeComponent();
@@ -28,9 +28,9 @@ namespace Compass
         }
         public void AddModule(Drawing drawing)
         {
-            objDrawing = drawing;
-            lblODPNo.Text = objDrawing.ODPNo;
-            lblItem.Text = objDrawing.Item;
+            _objDrawing = drawing;
+            lblODPNo.Text = _objDrawing.ODPNo;
+            lblItem.Text = _objDrawing.Item;
             tvCategory.Enabled = true;
             txtModule.Text ="";
             btnAddModule.Text = "添加：-";
@@ -41,9 +41,9 @@ namespace Compass
         }
         public void EditModule(Drawing drawing, ModuleTree tree)
         {
-            objDrawing = drawing;
-            lblODPNo.Text = objDrawing.ODPNo;
-            lblItem.Text = objDrawing.Item;
+            _objDrawing = drawing;
+            lblODPNo.Text = _objDrawing.ODPNo;
+            lblItem.Text = _objDrawing.Item;
             tvCategory.Enabled = false;
             txtModule.Text = tree.Module;
             btnAddModule.Text = "修改分段名称";
@@ -53,11 +53,11 @@ namespace Compass
             this.Focus();
         }
         #endregion
-        private List<Category> categoryList = null;
-        private CategoryService objCategoryService = new CategoryService();
+        private List<Category> _categoryList = null;
+        private readonly CategoryService _objCategoryService = new CategoryService();
         private void LoadTvCategory()
         {
-            this.categoryList = objCategoryService.GetAllCategories(sbu);//加载产品目录树的所有节点信息
+            this._categoryList = _objCategoryService.GetAllCategories(_sbu);//加载产品目录树的所有节点信息
             //创建第一个节点
             this.tvCategory.Nodes.Clear();//清空所有节点
             TreeNode rootNode = new TreeNode
@@ -77,7 +77,7 @@ namespace Compass
         private void CreateChildNode(TreeNode parentNode, int parentId)
         {
             //找到所有以该节点作为父节点的子节点，Linq的方式
-            var subCategoryList = from list in this.categoryList
+            var subCategoryList = from list in this._categoryList
                                   where list.ParentId.Equals(parentId)
                                   select list;
             //循环创建该节点的所有子节点
@@ -133,7 +133,7 @@ namespace Compass
         {
             if (tvCategory.Enabled == false)
             {
-                if (objDrawing == null) return;
+                if (_objDrawing == null) return;
                 if (txtModule.Text.Length == 0) return;
                 if (btnAddModule.Tag == null) return;
                 ModuleTree objModuleTree = new ModuleTree()
@@ -144,9 +144,9 @@ namespace Compass
                 //提交修改
                 try
                 {
-                    if (objModuleTreeService.EditModuleTree(objModuleTree,sbu) == 1)
+                    if (_objModuleTreeService.EditModuleTree(objModuleTree,_sbu) == 1)
                     {
-                        SingletonObject.GetSingleton.FrmMT?.RefreshTree();
+                        SingletonObject.GetSingleton.FrmMt?.RefreshTree();
                         MessageBox.Show("修改分段名称成功！", "提示信息");
                         this.Close();
                     }
@@ -158,24 +158,24 @@ namespace Compass
             }
             else
             {
-                if (objDrawing == null) return;
+                if (_objDrawing == null) return;
                 //验证数据
                 if (txtModule.Text.Length == 0) return;
                 if (btnAddModule.Tag == null) return;
                 //封装对象
                 ModuleTree objModuleTree = new ModuleTree()
                 {
-                    DrawingPlanId = objDrawing.DrawingPlanId,
+                    DrawingPlanId = _objDrawing.DrawingPlanId,
                     CategoryId = Convert.ToInt32(btnAddModule.Tag),
                     Module = txtModule.Text.ToUpper()
                 };
                 //提交添加
                 try
                 {
-                    bool result = objModuleTreeService.AddModuleAndData(objModuleTree,sbu);
+                    bool result = _objModuleTreeService.AddModuleAndData(objModuleTree,_sbu);
                     if (result)
                     {
-                        SingletonObject.GetSingleton.FrmMT?.RefreshTree();
+                        SingletonObject.GetSingleton.FrmMt?.RefreshTree();
                         MessageBox.Show("烟罩分段添加成功"); //this.Close();不关闭窗口
                     }
                 }

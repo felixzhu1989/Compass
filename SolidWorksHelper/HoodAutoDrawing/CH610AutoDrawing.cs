@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class CH610AutoDrawing : IAutoDrawing
     {
-        CH610Service objCH610Service = new CH610Service();
+        readonly CH610Service objCH610Service = new CH610Service();
 
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {

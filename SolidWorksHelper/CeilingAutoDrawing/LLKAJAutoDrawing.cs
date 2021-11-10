@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class LLKAJAutoDrawing:IAutoDrawing
     {
-        LLKAJService objLLKAJService = new LLKAJService();
+        readonly LLKAJService objLLKAJService = new LLKAJService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

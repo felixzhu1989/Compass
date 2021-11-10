@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmUCWSB535 : MetroFramework.Forms.MetroForm
+    public partial class FrmUcwsb535 : MetroFramework.Forms.MetroForm
     {
-        UCWSB535Service objUCWSB535Service = new UCWSB535Service();
-        private UCWSB535 objUCWSB535 = null;
-        public FrmUCWSB535()
+        readonly UCWSB535Service _objUcwsb535Service = new UCWSB535Service();
+        private readonly UCWSB535 _objUcwsb535 = null;
+        public FrmUcwsb535()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmUCWSB535(Drawing drawing, ModuleTree tree) : this()
+        public FrmUcwsb535(Drawing drawing, ModuleTree tree) : this()
         {
-            objUCWSB535 = (UCWSB535)objUCWSB535Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objUCWSB535 == null) return;
+            _objUcwsb535 = (UCWSB535)_objUcwsb535Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objUcwsb535 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -101,36 +101,36 @@ namespace Compass
 
         private void FillData()
         {
-            if (objUCWSB535 == null) return;
-            modelView.Tag = objUCWSB535.UCWSB535Id;
+            if (_objUcwsb535 == null) return;
+            modelView.Tag = _objUcwsb535.UCWSB535Id;
 
-            cobSidePanel.Text = objUCWSB535.SidePanel;
-            cobGutter.Text = objUCWSB535.Gutter;
-            cobANSUL.Text = objUCWSB535.ANSUL;
-            cobANSide.Text = objUCWSB535.ANSide;
-            cobMARVEL.Text = objUCWSB535.MARVEL;
-            cobLightType.Text = objUCWSB535.LightType;
-            cobDPSide.Text = objUCWSB535.DPSide;
-            cobSSPType.Text = objUCWSB535.SSPType;
-            cobJapan.Text = objUCWSB535.Japan;
-            cobFCSide.Text = objUCWSB535.FCSide;
-            cobFCBlindNo.Text = objUCWSB535.FCBlindNo.ToString();
-            cobUVType.Text = objUCWSB535.UVType;
-            cobSensorNo.Text = objUCWSB535.SensorNo.ToString();
-            cobHCLSide.Text = objUCWSB535.HCLSide;
+            cobSidePanel.Text = _objUcwsb535.SidePanel;
+            cobGutter.Text = _objUcwsb535.Gutter;
+            cobANSUL.Text = _objUcwsb535.ANSUL;
+            cobANSide.Text = _objUcwsb535.ANSide;
+            cobMARVEL.Text = _objUcwsb535.MARVEL;
+            cobLightType.Text = _objUcwsb535.LightType;
+            cobDPSide.Text = _objUcwsb535.DPSide;
+            cobSSPType.Text = _objUcwsb535.SSPType;
+            cobJapan.Text = _objUcwsb535.Japan;
+            cobFCSide.Text = _objUcwsb535.FCSide;
+            cobFCBlindNo.Text = _objUcwsb535.FCBlindNo.ToString();
+            cobUVType.Text = _objUcwsb535.UVType;
+            cobSensorNo.Text = _objUcwsb535.SensorNo.ToString();
+            cobHCLSide.Text = _objUcwsb535.HCLSide;
 
-            txtLength.Text = objUCWSB535.Length.ToString();
-            txtExRightDis.Text = objUCWSB535.ExRightDis.ToString();
-            txtExLength.Text = objUCWSB535.ExLength.ToString();
-            txtExWidth.Text = objUCWSB535.ExWidth.ToString();
-            txtExHeight.Text = objUCWSB535.ExHeight.ToString();
-            txtGutterWidth.Text = objUCWSB535.GutterWidth.ToString();
-            txtFCSideLeft.Text = objUCWSB535.FCSideLeft.ToString();
-            txtFCSideRight.Text = objUCWSB535.FCSideRight.ToString();
-            txtSensorDis1.Text = objUCWSB535.SensorDis1.ToString();
-            txtSensorDis2.Text = objUCWSB535.SensorDis2.ToString();
-            txtHCLSideLeft.Text = objUCWSB535.HCLSideLeft.ToString();
-            txtHCLSideRight.Text = objUCWSB535.HCLSideRight.ToString();
+            txtLength.Text = _objUcwsb535.Length.ToString();
+            txtExRightDis.Text = _objUcwsb535.ExRightDis.ToString();
+            txtExLength.Text = _objUcwsb535.ExLength.ToString();
+            txtExWidth.Text = _objUcwsb535.ExWidth.ToString();
+            txtExHeight.Text = _objUcwsb535.ExHeight.ToString();
+            txtGutterWidth.Text = _objUcwsb535.GutterWidth.ToString();
+            txtFCSideLeft.Text = _objUcwsb535.FCSideLeft.ToString();
+            txtFCSideRight.Text = _objUcwsb535.FCSideRight.ToString();
+            txtSensorDis1.Text = _objUcwsb535.SensorDis1.ToString();
+            txtSensorDis2.Text = _objUcwsb535.SensorDis2.ToString();
+            txtHCLSideLeft.Text = _objUcwsb535.HCLSideLeft.ToString();
+            txtHCLSideRight.Text = _objUcwsb535.HCLSideRight.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -313,7 +313,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            UCWSB535 objUCWSB535 = new UCWSB535()
+            UCWSB535 objUcwsb535 = new UCWSB535()
             {
                 UCWSB535Id = Convert.ToInt32(modelView.Tag),
                 ANSUL = cobANSUL.Text,
@@ -347,7 +347,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objUCWSB535Service.EditModel(objUCWSB535) == 1)
+                if (_objUcwsb535Service.EditModel(objUcwsb535) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

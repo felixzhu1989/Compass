@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmDPCJ330 : MetroFramework.Forms.MetroForm
+    public partial class FrmDpcj330 : MetroFramework.Forms.MetroForm
     {
-        DPCJ330Service objDPCJ330Service = new DPCJ330Service();
-        private DPCJ330 objDPCJ330 = null;
-        public FrmDPCJ330()
+        readonly DPCJ330Service _objDpcj330Service = new DPCJ330Service();
+        private readonly DPCJ330 _objDpcj330 = null;
+        public FrmDpcj330()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmDPCJ330(Drawing drawing, ModuleTree tree) : this()
+        public FrmDpcj330(Drawing drawing, ModuleTree tree) : this()
         {
-            objDPCJ330 = (DPCJ330)objDPCJ330Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objDPCJ330 == null) return;
+            _objDpcj330 = (DPCJ330)_objDpcj330Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objDpcj330 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -112,26 +112,26 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objDPCJ330 == null) return;
-            modelView.Tag = objDPCJ330.DPCJ330Id;
+            if (_objDpcj330 == null) return;
+            modelView.Tag = _objDpcj330.DPCJ330Id;
 
-            cobSidePanel.Text = objDPCJ330.SidePanel;
-            cobSuType.Text = objDPCJ330.SuType;
-            cobOutlet.Text = objDPCJ330.Outlet;
-            cobBackCJSide.Text = objDPCJ330.BackCJSide;
-            cobDPSide.Text = objDPCJ330.DPSide;
-            cobLeftBeamType.Text = objDPCJ330.LeftBeamType;
-            cobRightBeamType.Text = objDPCJ330.RightBeamType;
-            cobLKSide.Text = objDPCJ330.LKSide;
-            cobGutterSide.Text = objDPCJ330.GutterSide;
+            cobSidePanel.Text = _objDpcj330.SidePanel;
+            cobSuType.Text = _objDpcj330.SuType;
+            cobOutlet.Text = _objDpcj330.Outlet;
+            cobBackCJSide.Text = _objDpcj330.BackCJSide;
+            cobDPSide.Text = _objDpcj330.DPSide;
+            cobLeftBeamType.Text = _objDpcj330.LeftBeamType;
+            cobRightBeamType.Text = _objDpcj330.RightBeamType;
+            cobLKSide.Text = _objDpcj330.LKSide;
+            cobGutterSide.Text = _objDpcj330.GutterSide;
 
-            txtLength.Text = objDPCJ330.Length.ToString();
-            txtSuDis.Text = objDPCJ330.SuDis.ToString();
-            txtLeftDis.Text = objDPCJ330.LeftDis.ToString();
-            txtRightDis.Text = objDPCJ330.RightDis.ToString();
-            txtLeftBeamDis.Text = objDPCJ330.LeftBeamDis.ToString();
-            txtRightBeamDis.Text = objDPCJ330.RightBeamDis.ToString();
-            txtGutterWidth.Text = objDPCJ330.GutterWidth.ToString();
+            txtLength.Text = _objDpcj330.Length.ToString();
+            txtSuDis.Text = _objDpcj330.SuDis.ToString();
+            txtLeftDis.Text = _objDpcj330.LeftDis.ToString();
+            txtRightDis.Text = _objDpcj330.RightDis.ToString();
+            txtLeftBeamDis.Text = _objDpcj330.LeftBeamDis.ToString();
+            txtRightBeamDis.Text = _objDpcj330.RightBeamDis.ToString();
+            txtGutterWidth.Text = _objDpcj330.GutterWidth.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -220,7 +220,7 @@ namespace Compass
             }
             #endregion
             //封装对象
-            DPCJ330 objDPCJ330 = new DPCJ330()
+            DPCJ330 objDpcj330 = new DPCJ330()
             {
                 DPCJ330Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -244,7 +244,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objDPCJ330Service.EditModel(objDPCJ330) == 1)
+                if (_objDpcj330Service.EditModel(objDpcj330) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

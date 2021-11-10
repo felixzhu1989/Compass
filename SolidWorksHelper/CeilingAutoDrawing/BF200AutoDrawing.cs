@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class BF200AutoDrawing : IAutoDrawing
     {
-        BF200Service objBF200Service = new BF200Service();
+        readonly BF200Service objBF200Service = new BF200Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

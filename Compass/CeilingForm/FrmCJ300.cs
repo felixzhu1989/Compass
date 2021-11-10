@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmCJ300 : MetroFramework.Forms.MetroForm
+    public partial class FrmCj300 : MetroFramework.Forms.MetroForm
     {
-        CJ300Service objCJ300Service = new CJ300Service();
-        private CJ300 objCJ300 = null;
-        public FrmCJ300()
+        readonly CJ300Service _objCj300Service = new CJ300Service();
+        private readonly CJ300 _objCj300 = null;
+        public FrmCj300()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmCJ300(Drawing drawing, ModuleTree tree) : this()
+        public FrmCj300(Drawing drawing, ModuleTree tree) : this()
         {
-            objCJ300 = (CJ300)objCJ300Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objCJ300 == null) return;
+            _objCj300 = (CJ300)_objCj300Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objCj300 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -98,24 +98,24 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objCJ300 == null) return;
-            modelView.Tag = objCJ300.CJ300Id;
+            if (_objCj300 == null) return;
+            modelView.Tag = _objCj300.CJ300Id;
 
-            cobSidePanel.Text = objCJ300.SidePanel;
-            cobSuType.Text = objCJ300.SuType;
-            cobBackCJSide.Text = objCJ300.BackCJSide;
-            cobLeftBeamType.Text = objCJ300.LeftBeamType;
-            cobRightBeamType.Text = objCJ300.RightBeamType;
-            cobLKSide.Text = objCJ300.LKSide;
-            cobGutterSide.Text = objCJ300.GutterSide;
+            cobSidePanel.Text = _objCj300.SidePanel;
+            cobSuType.Text = _objCj300.SuType;
+            cobBackCJSide.Text = _objCj300.BackCJSide;
+            cobLeftBeamType.Text = _objCj300.LeftBeamType;
+            cobRightBeamType.Text = _objCj300.RightBeamType;
+            cobLKSide.Text = _objCj300.LKSide;
+            cobGutterSide.Text = _objCj300.GutterSide;
 
-            txtLength.Text = objCJ300.Length.ToString();
-            txtSuDis.Text = objCJ300.SuDis.ToString();
-            txtLeftDis.Text = objCJ300.LeftDis.ToString();
-            txtRightDis.Text = objCJ300.RightDis.ToString();
-            txtLeftBeamDis.Text = objCJ300.LeftBeamDis.ToString();
-            txtRightBeamDis.Text = objCJ300.RightBeamDis.ToString();
-            txtGutterWidth.Text = objCJ300.GutterWidth.ToString();
+            txtLength.Text = _objCj300.Length.ToString();
+            txtSuDis.Text = _objCj300.SuDis.ToString();
+            txtLeftDis.Text = _objCj300.LeftDis.ToString();
+            txtRightDis.Text = _objCj300.RightDis.ToString();
+            txtLeftBeamDis.Text = _objCj300.LeftBeamDis.ToString();
+            txtRightBeamDis.Text = _objCj300.RightBeamDis.ToString();
+            txtGutterWidth.Text = _objCj300.GutterWidth.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -193,7 +193,7 @@ namespace Compass
             }
             #endregion
             //封装对象
-            CJ300 objCJ300 = new CJ300()
+            CJ300 objCj300 = new CJ300()
             {
                 CJ300Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -215,7 +215,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objCJ300Service.EditModel(objCJ300) == 1)
+                if (_objCj300Service.EditModel(objCj300) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

@@ -7,15 +7,15 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmDXFCutList : Form
+    public partial class FrmDxfCutList : Form
     {
-        private List<DXFCutList> dxfCutList = null;//用来保存导入的cutlist对象
-        private ImportDataFormExcel objImportDataFormExcel = new ImportDataFormExcel();
-        private DXFCutListService objDxfCutListService = new DXFCutListService();
-        private CategoryService objCategoryService = new CategoryService();
-        private string sbu = Program.ObjCurrentUser.SBU;
+        private List<DXFCutList> _dxfCutList = null;//用来保存导入的cutlist对象
+        private readonly ImportDataFormExcel _objImportDataFormExcel = new ImportDataFormExcel();
+        private readonly DXFCutListService _objDxfCutListService = new DXFCutListService();
+        private readonly CategoryService _objCategoryService = new CategoryService();
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
 
-        public FrmDXFCutList()
+        public FrmDxfCutList()
         {
             InitializeComponent();
             dgvDXFCutList.AutoGenerateColumns = false;
@@ -31,7 +31,7 @@ namespace Compass
         {
             //断开事件委托
             this.cobCategoryId.SelectedIndexChanged -= new System.EventHandler(this.CobCategoryId_SelectedIndexChanged);
-            cobItem.DataSource = objCategoryService.GetAllCategories(sbu);
+            cobItem.DataSource = _objCategoryService.GetAllCategories(_sbu);
             cobItem.DisplayMember = "CategoryId";
             cobItem.ValueMember = "CategoryDesc";
             cobItem.SelectedIndex = -1;
@@ -48,7 +48,7 @@ namespace Compass
         private void CobCategoryId_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblDesc.Text = cobCategoryId.SelectedValue.ToString();
-            dgvDXFCutList.DataSource = objDxfCutListService.GetDXFCutListsByCategoryId(cobCategoryId.Text);
+            dgvDXFCutList.DataSource = _objDxfCutListService.GetDXFCutListsByCategoryId(cobCategoryId.Text);
         }
 
         /// <summary>
@@ -76,13 +76,13 @@ namespace Compass
             if (result == DialogResult.OK)
             {
                 string path = openFile.FileName;//获取Excel文件路径
-                dxfCutList = objImportDataFormExcel.GetDXFCutListByExcel(path);
-                foreach (var item in dxfCutList)
+                _dxfCutList = _objImportDataFormExcel.GetDXFCutListByExcel(path);
+                foreach (var item in _dxfCutList)
                 {
                     item.CategoryId = Convert.ToInt32(cobCategoryId.Text);
                 }
                 //显示数据
-                dgvDXFCutListFromExcel.DataSource = dxfCutList;
+                dgvDXFCutListFromExcel.DataSource = _dxfCutList;
             }
         }
         /// <summary>
@@ -93,7 +93,7 @@ namespace Compass
         private void BtnSaveToDB_Click(object sender, EventArgs e)
         {
             //验证数据
-            if (dxfCutList == null || dxfCutList.Count == 0)
+            if (_dxfCutList == null || _dxfCutList.Count == 0)
             {
                 MessageBox.Show("目前没有要导入的数据", "提示信息");
                 return;
@@ -108,12 +108,12 @@ namespace Compass
             //应该把循环遍历的方式写在数据访问类中，写到ImportDataFromExcel中
             try
             {
-                if (objImportDataFormExcel.ImportDXFCutList(dxfCutList))
+                if (_objImportDataFormExcel.ImportDXFCutList(_dxfCutList))
                 {
                     MessageBox.Show("数据导入成功", "提示信息");
                     dgvDXFCutListFromExcel.DataSource = null;
-                    dgvDXFCutList.DataSource = objDxfCutListService.GetDXFCutListsByCategoryId(cobCategoryId.Text);
-                    dxfCutList.Clear();
+                    dgvDXFCutList.DataSource = _objDxfCutListService.GetDXFCutListsByCategoryId(cobCategoryId.Text);
+                    _dxfCutList.Clear();
                 }
                 else
                 {
@@ -203,12 +203,12 @@ namespace Compass
                 //提交添加
                 try
                 {
-                    if (objDxfCutListService.AddDXFCutList(objDxfCutList))
+                    if (_objDxfCutListService.AddDXFCutList(objDxfCutList))
                     {
                         //提示添加成功
                         MessageBox.Show("配件信息添加成功", "提示信息");
                         //刷新显示
-                        dgvDXFCutList.DataSource = objDxfCutListService.GetDXFCutListsByCategoryId(cobCategoryId.Text);
+                        dgvDXFCutList.DataSource = _objDxfCutListService.GetDXFCutListsByCategoryId(cobCategoryId.Text);
                         //清空内容
                         foreach (Control item in Controls)
                         {
@@ -243,12 +243,12 @@ namespace Compass
                 //调用后台方法修改对象
                 try
                 {
-                    if (objDxfCutListService.EditDXFCutList(objDxfCutList) == 1)
+                    if (_objDxfCutListService.EditDXFCutList(objDxfCutList) == 1)
                     {
                         //提示添加成功
                         MessageBox.Show("配件信息修改成功", "提示信息");
                         //刷新显示
-                        dgvDXFCutList.DataSource = objDxfCutListService.GetDXFCutListsByCategoryId(cobCategoryId.Text);
+                        dgvDXFCutList.DataSource = _objDxfCutListService.GetDXFCutListsByCategoryId(cobCategoryId.Text);
                         //清空内容
                         foreach (Control item in Controls)
                         {
@@ -273,7 +273,7 @@ namespace Compass
             if (dgvDXFCutList.RowCount == 0) return;
             if (dgvDXFCutList.CurrentRow == null) return;
             string id = dgvDXFCutList.CurrentRow.Cells["CutListId"].Value.ToString();
-            DXFCutList objDxfCutList = objDxfCutListService.GetDXFCutListById(id);
+            DXFCutList objDxfCutList = _objDxfCutListService.GetDXFCutListById(id);
             cobCategoryId.Text = objDxfCutList.CategoryId.ToString();
             txtPartDescription.Text = objDxfCutList.PartDescription;
             txtLength.Text = objDxfCutList.Length.ToString();
@@ -299,8 +299,8 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objDxfCutListService.DeleteDXFCutList(id) == 1)
-                    dgvDXFCutList.DataSource = objDxfCutListService.GetDXFCutListsByCategoryId(cobCategoryId.Text);
+                if (_objDxfCutListService.DeleteDXFCutList(id) == 1)
+                    dgvDXFCutList.DataSource = _objDxfCutListService.GetDXFCutListsByCategoryId(cobCategoryId.Text);
                 else MessageBox.Show("删除CutList信息出错，项目是否被其他数据关联，请联系管理员查看后台数据。");
             }
             catch (Exception ex)

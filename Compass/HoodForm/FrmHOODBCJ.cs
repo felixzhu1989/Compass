@@ -6,21 +6,21 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmHOODBCJ : MetroFramework.Forms.MetroForm
+    public partial class FrmHoodbcj : MetroFramework.Forms.MetroForm
     {
-        HOODBCJService objHOODBCJService = new HOODBCJService();
-        private HOODBCJ objHOODBCJ = null;
-        public FrmHOODBCJ()
+        readonly HOODBCJService _objHoodbcjService = new HOODBCJService();
+        private readonly HOODBCJ _objHoodbcj = null;
+        public FrmHoodbcj()
         {
             InitializeComponent();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmHOODBCJ(Drawing drawing, ModuleTree tree) : this()
+        public FrmHoodbcj(Drawing drawing, ModuleTree tree) : this()
         {
-            objHOODBCJ = (HOODBCJ)objHOODBCJService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objHOODBCJ == null) return;
+            _objHoodbcj = (HOODBCJ)_objHoodbcjService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objHoodbcj == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -32,12 +32,12 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objHOODBCJ == null) return;
-            modelView.Tag = objHOODBCJ.HOODBCJId;
+            if (_objHoodbcj == null) return;
+            modelView.Tag = _objHoodbcj.HOODBCJId;
             
-            txtLength.Text = objHOODBCJ.Length.ToString();
-            txtHeight.Text = objHOODBCJ.Height.ToString();
-            txtSuDis.Text = objHOODBCJ.SuDis.ToString();
+            txtLength.Text = _objHoodbcj.Length.ToString();
+            txtHeight.Text = _objHoodbcj.Height.ToString();
+            txtSuDis.Text = _objHoodbcj.SuDis.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            HOODBCJ objHOODBCJ = new HOODBCJ()
+            HOODBCJ objHoodbcj = new HOODBCJ()
             {
                 HOODBCJId = Convert.ToInt32(modelView.Tag),
 
@@ -81,7 +81,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objHOODBCJService.EditModel(objHOODBCJ) == 1)
+                if (_objHoodbcjService.EditModel(objHoodbcj) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

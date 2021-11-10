@@ -12,7 +12,7 @@ namespace SolidWorksHelper
 {
     public class ABD200AutoDrawing:IAutoDrawing
     {
-        ABD200Service objABD200Service = new ABD200Service();
+      private readonly ABD200Service objABD200Service = new ABD200Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址
@@ -33,11 +33,11 @@ namespace SolidWorksHelper
             int warnings = 0;
             int errors = 0;
             suffix = "_" + suffix;//后缀
-            ModelDoc2 swModel = default(ModelDoc2);
-            ModelDoc2 swPart = default(ModelDoc2);
-            AssemblyDoc swAssy = default(AssemblyDoc);
+            ModelDoc2 swModel;
+            ModelDoc2 swPart;
+            AssemblyDoc swAssy;
             Component2 swComp;
-            Feature swFeat = default(Feature);
+            Feature swFeat;
             object configNames = null;
 
             //打开Pack后的模型

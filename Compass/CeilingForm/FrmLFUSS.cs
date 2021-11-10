@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLFUSS : MetroFramework.Forms.MetroForm
+    public partial class FrmLfuss : MetroFramework.Forms.MetroForm
     {
-        LFUSSService objLFUSSService = new LFUSSService();
-        private LFUSS objLFUSS = null;
-        public FrmLFUSS()
+        readonly LFUSSService _objLfussService = new LFUSSService();
+        private readonly LFUSS _objLfuss = null;
+        public FrmLfuss()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLFUSS(Drawing drawing, ModuleTree tree) : this()
+        public FrmLfuss(Drawing drawing, ModuleTree tree) : this()
         {
-            objLFUSS = (LFUSS)objLFUSSService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLFUSS == null) return;
+            _objLfuss = (LFUSS)_objLfussService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLfuss == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -60,17 +60,17 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objLFUSS == null) return;
-            modelView.Tag = objLFUSS.LFUSSId;
+            if (_objLfuss == null) return;
+            modelView.Tag = _objLfuss.LFUSSId;
 
-            cobSidePanel.Text = objLFUSS.SidePanel;
-            cobSuNo.Text = objLFUSS.SuNo == 0 ? "" : objLFUSS.SuNo.ToString();
-            cobSuDia.Text = objLFUSS.SuDia == 0 ? "" : ((int)objLFUSS.SuDia).ToString();
-            cobJapan.Text = objLFUSS.Japan;
+            cobSidePanel.Text = _objLfuss.SidePanel;
+            cobSuNo.Text = _objLfuss.SuNo == 0 ? "" : _objLfuss.SuNo.ToString();
+            cobSuDia.Text = _objLfuss.SuDia == 0 ? "" : ((int)_objLfuss.SuDia).ToString();
+            cobJapan.Text = _objLfuss.Japan;
 
-            txtLength.Text = objLFUSS.Length.ToString();
-            txtWidth.Text = objLFUSS.Width.ToString();
-            txtSuDis.Text = objLFUSS.SuDis.ToString();
+            txtLength.Text = _objLfuss.Length.ToString();
+            txtWidth.Text = _objLfuss.Width.ToString();
+            txtSuDis.Text = _objLfuss.SuDis.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -125,7 +125,7 @@ namespace Compass
             }
             #endregion
             //封装对象
-            LFUSS objLFUSS = new LFUSS()
+            LFUSS objLfuss = new LFUSS()
             {
                 LFUSSId = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -141,7 +141,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLFUSSService.EditModel(objLFUSS) == 1)
+                if (_objLfussService.EditModel(objLfuss) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

@@ -15,19 +15,19 @@ namespace Compass
     {
         public event Action<EModelViewControl> ControlLoaded;
 
-        private bool m_IsLoaded;
+        private bool _mIsLoaded;
         
         public EDrawingsHost() : base("22945A69-1191-4DCF-9E6F-409BDE94D101")
         {
-            m_IsLoaded = false;
+            _mIsLoaded = false;
         }
 
         protected override void OnCreateControl()
         {
             base.OnCreateControl();
-            if (!m_IsLoaded)
+            if (!_mIsLoaded)
             {
-                m_IsLoaded = true;
+                _mIsLoaded = true;
                 var ctrl = this.GetOcx() as EModelViewControl;
                 ControlLoaded?.Invoke(this.GetOcx() as EModelViewControl);
                 ctrl.EnableFeatures = (int)EMVEnableFeatures.eMVFullUI;

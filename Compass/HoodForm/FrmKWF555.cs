@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmKWF555 : MetroFramework.Forms.MetroForm
+    public partial class FrmKwf555 : MetroFramework.Forms.MetroForm
     {
-        KWF555Service objKwf555Service = new KWF555Service();
-        private KWF555 objKwf555 = null;
-        public FrmKWF555()
+        readonly KWF555Service _objKwf555Service = new KWF555Service();
+        private readonly KWF555 _objKwf555 = null;
+        public FrmKwf555()
         {
             InitializeComponent();
             SetVisibleFalse();
@@ -19,10 +19,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmKWF555(Drawing drawing, ModuleTree tree) : this()
+        public FrmKwf555(Drawing drawing, ModuleTree tree) : this()
         {
-            objKwf555 =(KWF555) objKwf555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objKwf555 == null) return;
+            _objKwf555 =(KWF555) _objKwf555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objKwf555 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -126,52 +126,52 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objKwf555 == null) return;
-            modelView.Tag = objKwf555.KWF555Id;
+            if (_objKwf555 == null) return;
+            modelView.Tag = _objKwf555.KWF555Id;
 
-            cobSidePanel.Text = objKwf555.SidePanel;
+            cobSidePanel.Text = _objKwf555.SidePanel;
             //默认ExNo为1
-            cobExNo.Text = objKwf555.ExNo == 0 ? "1" : objKwf555.ExNo.ToString();
-            cobSuNo.Text = objKwf555.ExNo == 0 ? "2" : objKwf555.SuNo.ToString();
-            cobLightType.Text = objKwf555.LightType;
-            cobLEDSpotNo.Text = objKwf555.LEDSpotNo.ToString();
-            cobANSUL.Text = objKwf555.ANSUL;
-            cobANSide.Text = objKwf555.ANSide;
-            cobANDetectorEnd.Text = objKwf555.ANDetectorEnd;
-            cobANDropNo.Text = objKwf555.ANDropNo.ToString();
-            cobANDetectorNo.Text = objKwf555.ANDetectorNo.ToString();
-            cobMARVEL.Text = objKwf555.MARVEL;
-            cobIRNo.Text = objKwf555.IRNo.ToString();
-            cobLEDLogo.Text = objKwf555.LEDlogo;
-            cobOutlet.Text = objKwf555.Outlet;
-            cobInlet.Text = objKwf555.Inlet;
-            cobWaterCollection.Text = objKwf555.WaterCollection;
-            cobBackToBack.Text = objKwf555.BackToBack;
+            cobExNo.Text = _objKwf555.ExNo == 0 ? "1" : _objKwf555.ExNo.ToString();
+            cobSuNo.Text = _objKwf555.ExNo == 0 ? "2" : _objKwf555.SuNo.ToString();
+            cobLightType.Text = _objKwf555.LightType;
+            cobLEDSpotNo.Text = _objKwf555.LEDSpotNo.ToString();
+            cobANSUL.Text = _objKwf555.ANSUL;
+            cobANSide.Text = _objKwf555.ANSide;
+            cobANDetectorEnd.Text = _objKwf555.ANDetectorEnd;
+            cobANDropNo.Text = _objKwf555.ANDropNo.ToString();
+            cobANDetectorNo.Text = _objKwf555.ANDetectorNo.ToString();
+            cobMARVEL.Text = _objKwf555.MARVEL;
+            cobIRNo.Text = _objKwf555.IRNo.ToString();
+            cobLEDLogo.Text = _objKwf555.LEDlogo;
+            cobOutlet.Text = _objKwf555.Outlet;
+            cobInlet.Text = _objKwf555.Inlet;
+            cobWaterCollection.Text = _objKwf555.WaterCollection;
+            cobBackToBack.Text = _objKwf555.BackToBack;
 
-            txtLength.Text = objKwf555.Length.ToString();
-            txtDeepth.Text = objKwf555.Deepth.ToString();
-            txtExRightDis.Text = objKwf555.ExRightDis.ToString();
-            txtExDis.Text = objKwf555.ExDis.ToString();
-            txtSuDis.Text = objKwf555.SuDis.ToString();
-            txtExLength.Text = objKwf555.ExLength.ToString();
-            txtExWidth.Text = objKwf555.ExWidth.ToString();
-            txtExHeight.Text = objKwf555.ExHeight.ToString();
+            txtLength.Text = _objKwf555.Length.ToString();
+            txtDeepth.Text = _objKwf555.Deepth.ToString();
+            txtExRightDis.Text = _objKwf555.ExRightDis.ToString();
+            txtExDis.Text = _objKwf555.ExDis.ToString();
+            txtSuDis.Text = _objKwf555.SuDis.ToString();
+            txtExLength.Text = _objKwf555.ExLength.ToString();
+            txtExWidth.Text = _objKwf555.ExWidth.ToString();
+            txtExHeight.Text = _objKwf555.ExHeight.ToString();
             //LEDSpotDis默认400
-            txtLEDSpotDis.Text = objKwf555.LEDSpotDis == 0 ? "400" : objKwf555.LEDSpotDis.ToString();
-            txtANYDis.Text = objKwf555.ANYDis.ToString();
-            txtANDropDis1.Text = objKwf555.ANDropDis1.ToString();
-            txtANDropDis2.Text = objKwf555.ANDropDis2.ToString();
-            txtANDropDis3.Text = objKwf555.ANDropDis3.ToString();
-            txtANDropDis4.Text = objKwf555.ANDropDis4.ToString();
-            txtANDropDis5.Text = objKwf555.ANDropDis5.ToString();
-            txtANDetectorDis1.Text = objKwf555.ANDetectorDis1.ToString();
-            txtANDetectorDis2.Text = objKwf555.ANDetectorDis2.ToString();
-            txtANDetectorDis3.Text = objKwf555.ANDetectorDis3.ToString();
-            txtANDetectorDis4.Text = objKwf555.ANDetectorDis4.ToString();
-            txtANDetectorDis5.Text = objKwf555.ANDetectorDis5.ToString();
-            txtIRDis1.Text = objKwf555.IRDis1.ToString();
-            txtIRDis2.Text = objKwf555.IRDis2.ToString();
-            txtIRDis3.Text = objKwf555.IRDis3.ToString();
+            txtLEDSpotDis.Text = _objKwf555.LEDSpotDis == 0 ? "400" : _objKwf555.LEDSpotDis.ToString();
+            txtANYDis.Text = _objKwf555.ANYDis.ToString();
+            txtANDropDis1.Text = _objKwf555.ANDropDis1.ToString();
+            txtANDropDis2.Text = _objKwf555.ANDropDis2.ToString();
+            txtANDropDis3.Text = _objKwf555.ANDropDis3.ToString();
+            txtANDropDis4.Text = _objKwf555.ANDropDis4.ToString();
+            txtANDropDis5.Text = _objKwf555.ANDropDis5.ToString();
+            txtANDetectorDis1.Text = _objKwf555.ANDetectorDis1.ToString();
+            txtANDetectorDis2.Text = _objKwf555.ANDetectorDis2.ToString();
+            txtANDetectorDis3.Text = _objKwf555.ANDetectorDis3.ToString();
+            txtANDetectorDis4.Text = _objKwf555.ANDetectorDis4.ToString();
+            txtANDetectorDis5.Text = _objKwf555.ANDetectorDis5.ToString();
+            txtIRDis1.Text = _objKwf555.IRDis1.ToString();
+            txtIRDis2.Text = _objKwf555.IRDis2.ToString();
+            txtIRDis3.Text = _objKwf555.IRDis3.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -540,7 +540,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objKwf555Service.EditModel(objKwf555) == 1)
+                if (_objKwf555Service.EditModel(objKwf555) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

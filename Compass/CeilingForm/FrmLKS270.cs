@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLKS270 : MetroFramework.Forms.MetroForm
+    public partial class FrmLks270 : MetroFramework.Forms.MetroForm
     {
-        LKS270Service objLKS270Service = new LKS270Service();
-        private LKS270 objLKS270 = null;
-        public FrmLKS270()
+        readonly LKS270Service _objLks270Service = new LKS270Service();
+        private readonly LKS270 _objLks270 = null;
+        public FrmLks270()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLKS270(Drawing drawing, ModuleTree tree) : this()
+        public FrmLks270(Drawing drawing, ModuleTree tree) : this()
         {
-            objLKS270 = (LKS270)objLKS270Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLKS270 == null) return;
+            _objLks270 = (LKS270)_objLks270Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLks270 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -51,15 +51,15 @@ namespace Compass
         }
         private void FillData()
         {
-            if (objLKS270 == null) return;
-            modelView.Tag = objLKS270.LKS270Id;
+            if (_objLks270 == null) return;
+            modelView.Tag = _objLks270.LKS270Id;
 
-            cobWBeam.Text = objLKS270.WBeam;
-            cobSidePanel.Text = objLKS270.SidePanel;
-            cobJapan.Text = objLKS270.Japan;
-            cobLightType.Text = objLKS270.LightType;
+            cobWBeam.Text = _objLks270.WBeam;
+            cobSidePanel.Text = _objLks270.SidePanel;
+            cobJapan.Text = _objLks270.Japan;
+            cobLightType.Text = _objLks270.LightType;
             
-            txtLength.Text = objLKS270.Length.ToString();
+            txtLength.Text = _objLks270.Length.ToString();
             
         }
 
@@ -105,7 +105,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            LKS270 objLKS270 = new LKS270()
+            LKS270 objLks270 = new LKS270()
             {
                 LKS270Id = Convert.ToInt32(modelView.Tag),
 
@@ -118,7 +118,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLKS270Service.EditModel(objLKS270) == 1)
+                if (_objLks270Service.EditModel(objLks270) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

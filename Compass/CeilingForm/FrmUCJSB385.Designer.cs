@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmUCJSB385
+    partial class FrmUcjsb385
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUCJSB385));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUcjsb385));
             this.grbMARVEL = new System.Windows.Forms.GroupBox();
             this.cobLightType = new System.Windows.Forms.ComboBox();
             this.cobSSPType = new System.Windows.Forms.ComboBox();
@@ -602,7 +602,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmUCJSB385";
+            this.Name = "FrmUcjsb385";
             this.Text = "UCJSB385";
             this.grbMARVEL.ResumeLayout(false);
             this.grbMARVEL.PerformLayout();

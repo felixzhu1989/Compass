@@ -8,7 +8,7 @@ namespace Compass
     public partial class FrmUserLogin : MetroFramework.Forms.MetroForm
     {
         //创建数据访问类对象
-        private UserService objUserService=new UserService();
+        private readonly UserService _objUserService=new UserService();
         public FrmUserLogin()
         {
             InitializeComponent();
@@ -46,7 +46,7 @@ namespace Compass
             try
             {
                 //执行查询并保存登陆信息
-                Program.ObjCurrentUser = objUserService.UserLogin(objUser);
+                Program.ObjCurrentUser = _objUserService.UserLogin(objUser);
                 if (Program.ObjCurrentUser != null)
                 {
                     this.DialogResult = DialogResult.OK;

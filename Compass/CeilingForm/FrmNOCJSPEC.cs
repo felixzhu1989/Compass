@@ -6,12 +6,12 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmNOCJSPEC : MetroFramework.Forms.MetroForm
+    public partial class FrmNocjspec : MetroFramework.Forms.MetroForm
     {
-        CategoryService objCategoryService = new CategoryService();
-        NOCJSPECService objNOCJSPECService = new NOCJSPECService();
-        private NOCJSPEC objNOCJSPEC = null;
-        public FrmNOCJSPEC()
+        CategoryService _objCategoryService = new CategoryService();
+        readonly NOCJSPECService _objNocjspecService = new NOCJSPECService();
+        private readonly NOCJSPEC _objNocjspec = null;
+        public FrmNocjspec()
         {
             InitializeComponent();
             IniCob();
@@ -19,10 +19,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmNOCJSPEC(Drawing drawing, ModuleTree tree) : this()
+        public FrmNocjspec(Drawing drawing, ModuleTree tree) : this()
         {
-            objNOCJSPEC = (NOCJSPEC)objNOCJSPECService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objNOCJSPEC == null) return;
+            _objNocjspec = (NOCJSPEC)_objNocjspecService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objNocjspec == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -99,27 +99,27 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objNOCJSPEC == null) return;
-            modelView.Tag = objNOCJSPEC.NOCJSPECId;
+            if (_objNocjspec == null) return;
+            modelView.Tag = _objNocjspec.NOCJSPECId;
 
-            cobSidePanel.Text = objNOCJSPEC.SidePanel;
+            cobSidePanel.Text = _objNocjspec.SidePanel;
 
-            cobBackCJSide.Text = objNOCJSPEC.BackCJSide;
-            cobLeftBeamType.Text = objNOCJSPEC.LeftBeamType;
-            cobRightBeamType.Text = objNOCJSPEC.RightBeamType;
-            cobLKSide.Text = objNOCJSPEC.LKSide;
-            cobGutterSide.Text = objNOCJSPEC.GutterSide;
+            cobBackCJSide.Text = _objNocjspec.BackCJSide;
+            cobLeftBeamType.Text = _objNocjspec.LeftBeamType;
+            cobRightBeamType.Text = _objNocjspec.RightBeamType;
+            cobLKSide.Text = _objNocjspec.LKSide;
+            cobGutterSide.Text = _objNocjspec.GutterSide;
 
-            txtLength.Text = objNOCJSPEC.Length.ToString();
-            txtWidth.Text = objNOCJSPEC.Width.ToString();
-            txtHeight.Text = objNOCJSPEC.Height.ToString();
-            txtTopBend.Text = objNOCJSPEC.TopBend.ToString();
-            txtBackBend.Text = objNOCJSPEC.BackBend.ToString();
-            txtLeftDis.Text = objNOCJSPEC.LeftDis.ToString();
-            txtRightDis.Text = objNOCJSPEC.RightDis.ToString();
-            txtLeftBeamDis.Text = objNOCJSPEC.LeftBeamDis.ToString();
-            txtRightBeamDis.Text = objNOCJSPEC.RightBeamDis.ToString();
-            txtGutterWidth.Text = objNOCJSPEC.GutterWidth.ToString();
+            txtLength.Text = _objNocjspec.Length.ToString();
+            txtWidth.Text = _objNocjspec.Width.ToString();
+            txtHeight.Text = _objNocjspec.Height.ToString();
+            txtTopBend.Text = _objNocjspec.TopBend.ToString();
+            txtBackBend.Text = _objNocjspec.BackBend.ToString();
+            txtLeftDis.Text = _objNocjspec.LeftDis.ToString();
+            txtRightDis.Text = _objNocjspec.RightDis.ToString();
+            txtLeftBeamDis.Text = _objNocjspec.LeftBeamDis.ToString();
+            txtRightBeamDis.Text = _objNocjspec.RightBeamDis.ToString();
+            txtGutterWidth.Text = _objNocjspec.GutterWidth.ToString();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
@@ -213,7 +213,7 @@ namespace Compass
             }
             #endregion
             //封装对象
-            NOCJSPEC objNOCJSPEC = new NOCJSPEC()
+            NOCJSPEC objNocjspec = new NOCJSPEC()
             {
                 NOCJSPECId = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -237,7 +237,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objNOCJSPECService.EditModel(objNOCJSPEC) == 1)
+                if (_objNocjspecService.EditModel(objNocjspec) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

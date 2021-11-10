@@ -12,7 +12,7 @@ namespace SolidWorksHelper
     //2.实现接口具体方法
     public class KWI555AutoDrawing : IAutoDrawing
     {
-        KWI555Service objKwi555Service = new KWI555Service();
+        readonly KWI555Service objKwi555Service = new KWI555Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

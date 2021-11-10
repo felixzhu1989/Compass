@@ -12,14 +12,14 @@ namespace Compass
 {
     public partial class FrmSyncFiles : MetroFramework.Forms.MetroForm
     {
-        private ProjectService objProjectService = new ProjectService();
-        private string sbu = Program.ObjCurrentUser.SBU;
-        string localPath;
-        string publicPath;
+        private readonly ProjectService _objProjectService = new ProjectService();
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
+        string _localPath;
+        string _publicPath;
         public FrmSyncFiles()
         {
             InitializeComponent();
-            IniCobODPNo();
+            IniCobOdpNo();
         }
         internal void ShowAndFocus()
         {
@@ -27,11 +27,11 @@ namespace Compass
             this.WindowState = FormWindowState.Normal;
             this.Focus();
         }
-        public void IniCobODPNo()
+        public void IniCobOdpNo()
         {
             this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
             //项目编号下拉框
-            cobODPNo.DataSource = objProjectService.GetProjectsByWhereSql("", sbu);
+            cobODPNo.DataSource = _objProjectService.GetProjectsByWhereSql("", _sbu);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;
@@ -46,7 +46,7 @@ namespace Compass
         }
         public void ShowWithOdpNo(string odpNo)
         {
-            IniCobODPNo();
+            IniCobOdpNo();
             if (odpNo.Length != 0) cobODPNo.Text = odpNo; 
             this.Show();
             this.WindowState = FormWindowState.Normal;
@@ -57,15 +57,15 @@ namespace Compass
         private void CobODPNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
-            Project objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text, Program.ObjCurrentUser.SBU);
+            Project objProject = _objProjectService.GetProjectByODPNo(cobODPNo.Text, Program.ObjCurrentUser.SBU);
             txtBPONo.Text = objProject.BPONo;
             txtProjectName.Text = objProject.ProjectName;
-            localPath = @"D:\MyProjects\" + objProject.ODPNo;
+            _localPath = @"D:\MyProjects\" + objProject.ODPNo;
             string year = objProject.ODPNo.StartsWith("S") ? objProject.ODPNo.Substring(4, 2) : objProject.ODPNo.Substring(3, 2);
             string curYearPath = @"Z:\1-Project operation\20" + year + @" project\";
             if (!Directory.Exists(curYearPath))Directory.CreateDirectory(curYearPath);
-            publicPath = curYearPath + objProject.ODPNo;
-            if (!Directory.Exists(publicPath))
+            _publicPath = curYearPath + objProject.ODPNo;
+            if (!Directory.Exists(_publicPath))
             {
                 //获取文件夹列表，如果发现项目文件夹存在，但是被重命名了，则更改为默认规则（不带任何备注）
                 string[] directorieStrings = Directory.GetDirectories(curYearPath);
@@ -73,7 +73,7 @@ namespace Compass
                 if (oldPath != null)
                 {
                     DirectoryInfo di=new DirectoryInfo(oldPath);
-                    di.MoveTo(publicPath);
+                    di.MoveTo(_publicPath);
                 }
             }
             IniShow();
@@ -85,11 +85,11 @@ namespace Compass
             lvwLocal.Items.Clear();
             lvwPublic.Items.Clear();
             //更新地址栏
-            txtLocalPath.Text = localPath;
-            txtPublicPath.Text = publicPath;
+            txtLocalPath.Text = _localPath;
+            txtPublicPath.Text = _publicPath;
 
-            if (Directory.Exists(localPath))ShowFilesList(lvwLocal, lblLocalCount, txtLocalPath, localPath);
-            if (Directory.Exists(publicPath))ShowFilesList(lvwPublic, lblPublicCount, txtPublicPath, publicPath);
+            if (Directory.Exists(_localPath))ShowFilesList(lvwLocal, lblLocalCount, txtLocalPath, _localPath);
+            if (Directory.Exists(_publicPath))ShowFilesList(lvwPublic, lblPublicCount, txtPublicPath, _publicPath);
         }
         
         //在右窗体中显示指定路径下的所有文件/文件夹
@@ -175,10 +175,10 @@ namespace Compass
             btnLocalToPublic.Enabled = false;
             
             //判断文件夹是否存在，不存在则创建
-            if (!Directory.Exists(publicPath))Directory.CreateDirectory(publicPath);
+            if (!Directory.Exists(_publicPath))Directory.CreateDirectory(_publicPath);
             
             //拷贝文件/文件夹
-            if (CopyDirectory(localPath, publicPath, true)) MessageBox.Show("同步完成");
+            if (CopyDirectory(_localPath, _publicPath, true)) MessageBox.Show("同步完成");
             //更新显示
             IniShow();
             btnLocalToPublic.Enabled = true;
@@ -194,8 +194,8 @@ namespace Compass
             btnPublicToLocal.Text = "正在同步...";
             btnPublicToLocal.Enabled = false;
             
-            if (!Directory.Exists(localPath))Directory.CreateDirectory(localPath);
-            if(CopyDirectory(publicPath, localPath,true)) MessageBox.Show("同步完成");
+            if (!Directory.Exists(_localPath))Directory.CreateDirectory(_localPath);
+            if(CopyDirectory(_publicPath, _localPath,true)) MessageBox.Show("同步完成");
             IniShow();
             btnPublicToLocal.Enabled = true;
             btnPublicToLocal.Text = "<<---- 同步到本地盘 <<----";

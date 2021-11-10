@@ -6,21 +6,21 @@ using System.Windows.Forms;
 
 namespace Compass
 {
-    public partial class FrmLFUMC150SUSDXF : MetroFramework.Forms.MetroForm
+    public partial class FrmLfumc150Susdxf : MetroFramework.Forms.MetroForm
     {
-        LFUMC150SUSDXFService objLFUMC150SUSDXFService = new LFUMC150SUSDXFService();
-        private LFUMC150SUSDXF objLFUMC150SUSDXF = null;
-        public FrmLFUMC150SUSDXF()
+        readonly LFUMC150SUSDXFService _objLfumc150SusdxfService = new LFUMC150SUSDXFService();
+        private readonly LFUMC150SUSDXF _objLfumc150Susdxf = null;
+        public FrmLfumc150Susdxf()
         {
             InitializeComponent();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLFUMC150SUSDXF(Drawing drawing, ModuleTree tree) : this()
+        public FrmLfumc150Susdxf(Drawing drawing, ModuleTree tree) : this()
         {
-            objLFUMC150SUSDXF = (LFUMC150SUSDXF)objLFUMC150SUSDXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLFUMC150SUSDXF == null) return;
+            _objLfumc150Susdxf = (LFUMC150SUSDXF)_objLfumc150SusdxfService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLfumc150Susdxf == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -31,11 +31,11 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objLFUMC150SUSDXF == null) return;
-            modelView.Tag = objLFUMC150SUSDXF.LFUMC150SUSDXFId;
+            if (_objLfumc150Susdxf == null) return;
+            modelView.Tag = _objLfumc150Susdxf.LFUMC150SUSDXFId;
 
             //默认txtQuantity为1
-            txtQuantity.Text = objLFUMC150SUSDXF.Quantity == 0 ? "1" : objLFUMC150SUSDXF.Quantity.ToString();
+            txtQuantity.Text = _objLfumc150Susdxf.Quantity == 0 ? "1" : _objLfumc150Susdxf.Quantity.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -59,7 +59,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            LFUMC150SUSDXF objLFUMC150SUSDXF = new LFUMC150SUSDXF()
+            LFUMC150SUSDXF objLfumc150Susdxf = new LFUMC150SUSDXF()
             {
                 LFUMC150SUSDXFId = Convert.ToInt32(modelView.Tag),
                 Quantity = Convert.ToInt32(txtQuantity.Text)
@@ -68,7 +68,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLFUMC150SUSDXFService.EditModel(objLFUMC150SUSDXF) == 1)
+                if (_objLfumc150SusdxfService.EditModel(objLfumc150Susdxf) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

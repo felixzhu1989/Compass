@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmLKS270
+    partial class FrmLks270
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLKS270));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLks270));
             this.grbMARVEL = new System.Windows.Forms.GroupBox();
             this.cobWBeam = new System.Windows.Forms.ComboBox();
             this.cobLightType = new System.Windows.Forms.ComboBox();
@@ -229,7 +229,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmLKS270";
+            this.Name = "FrmLks270";
             this.Text = "LKS270";
             this.grbMARVEL.ResumeLayout(false);
             this.grbMARVEL.PerformLayout();

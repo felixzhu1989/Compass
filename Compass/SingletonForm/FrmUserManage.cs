@@ -8,8 +8,8 @@ namespace Compass
 {
     public partial class FrmUserManage : Form
     {
-        private UserService objUserService = new UserService();
-        private User currentUser = null;
+        private readonly UserService _objUserService = new UserService();
+        private readonly User _currentUser = null;
         public FrmUserManage()
         {
             InitializeComponent();
@@ -21,8 +21,8 @@ namespace Compass
 
         public FrmUserManage(User user) : this()
         {
-            currentUser = user;
-            switch (currentUser.UserId)
+            _currentUser = user;
+            switch (_currentUser.UserId)
             {
                 case 1:
                     break;
@@ -37,13 +37,13 @@ namespace Compass
         }
         private void RefreshData()
         {
-            switch (currentUser.UserId)
+            switch (_currentUser.UserId)
             {
                 case 1:
-                    this.dgvUser.DataSource = objUserService.GetUserByWhereSql("");
+                    this.dgvUser.DataSource = _objUserService.GetUserByWhereSql("");
                     break;
                 default:
-                    this.dgvUser.DataSource = objUserService.GetUserById(currentUser.UserId.ToString());
+                    this.dgvUser.DataSource = _objUserService.GetUserById(_currentUser.UserId.ToString());
                     break;
             }
         }
@@ -62,7 +62,7 @@ namespace Compass
         /// <param name="cobItem"></param>
         private void IniGroupName(ComboBox cobItem)
         {
-            cobItem.DataSource = objUserService.GetAllGroups();
+            cobItem.DataSource = _objUserService.GetAllGroups();
             cobItem.DisplayMember = "GroupName";
             cobItem.ValueMember = "UserGroupId";
             cobItem.SelectedIndex = -1;//默认不要选中
@@ -108,7 +108,7 @@ namespace Compass
             //提交添加
             try
             {
-                int userId = objUserService.AddUser(objUser);
+                int userId = _objUserService.AddUser(objUser);
                 if (userId > 1)
                 {
                     //提示添加成功
@@ -153,7 +153,7 @@ namespace Compass
             };
             try
             {
-                int userGroupId = objUserService.AddUserGoup(objUserGroup);
+                int userGroupId = _objUserService.AddUserGoup(objUserGroup);
                 if (userGroupId > 1)
                 {
                     //提示添加成功并询问是否继续添加
@@ -206,7 +206,7 @@ namespace Compass
                 return;
             }
             string userId = dgvUser.CurrentRow.Cells["UserId"].Value.ToString();
-            User objUser = objUserService.GetUserByUserId(userId);
+            User objUser = _objUserService.GetUserByUserId(userId);
             //初始化修改信息
             grbEditUser.Visible = true;//显示
             //不显示用户分组，不支持修改分组
@@ -272,7 +272,7 @@ namespace Compass
             //调用后台方法修改用户对象
             try
             {
-                if (objUserService.EditUser(objUser) == 1)
+                if (_objUserService.EditUser(objUser) == 1)
                 {
                     MessageBox.Show("修改用户成功！", "提示信息");
                     grbEditUser.Visible = false;
@@ -309,7 +309,7 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objUserService.DeleteUser(userId) == 1)
+                if (_objUserService.DeleteUser(userId) == 1)
                 {
                     RefreshData();//同步刷新显示数据
                 }

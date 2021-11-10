@@ -9,7 +9,7 @@ namespace SolidWorksHelper
 {
     public class LKS270HCLAutoDrawing : IAutoDrawing
     {
-        LKS270HCLService objLKS270HCLService = new LKS270HCLService();
+        readonly LKS270HCLService objLKS270HCLService = new LKS270HCLService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

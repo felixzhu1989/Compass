@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class KCWSB265AutoDrawing : IAutoDrawing
     {
-        KCWSB265Service objKCWSB265Service = new KCWSB265Service();
+        readonly KCWSB265Service objKCWSB265Service = new KCWSB265Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

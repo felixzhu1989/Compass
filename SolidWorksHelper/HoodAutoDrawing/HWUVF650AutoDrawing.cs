@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class HWUVF650AutoDrawing : IAutoDrawing
     {
-        HWUVF650Service objHWUVF650Service = new HWUVF650Service();
+        readonly HWUVF650Service objHWUVF650Service = new HWUVF650Service();
 
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {

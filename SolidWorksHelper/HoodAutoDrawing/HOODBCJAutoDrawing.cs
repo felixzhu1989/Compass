@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class HOODBCJAutoDrawing : IAutoDrawing
     {
-        HOODBCJService objHOODBCJService = new HOODBCJService();
+        readonly HOODBCJService objHOODBCJService = new HOODBCJService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

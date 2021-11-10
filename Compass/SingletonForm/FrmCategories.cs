@@ -11,8 +11,8 @@ namespace Compass
     public partial class FrmCategories : Form
     {
         private readonly CategoryService _objCategoryService = new CategoryService();
-        private List<Category> categoryList = new List<Category>();
-        private readonly string sbu = Program.ObjCurrentUser.SBU;
+        private List<Category> _categoryList = new List<Category>();
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
 
         public FrmCategories()
         {
@@ -27,7 +27,7 @@ namespace Compass
         {
             //断开事件委托
             cobItem.SelectedIndexChanged -= new System.EventHandler(this.CobParentId_SelectedIndexChanged);
-            cobItem.DataSource = _objCategoryService.GetCategoryId(sbu);
+            cobItem.DataSource = _objCategoryService.GetCategoryId(_sbu);
             cobItem.DisplayMember = "CategoryId";
             cobItem.ValueMember = "CategoryDesc";
             cobItem.SelectedIndex = -1;
@@ -39,8 +39,8 @@ namespace Compass
         /// </summary>
         private void RefreshData(string parentId)
         {
-            categoryList = _objCategoryService.GetCategoriesByParentId(parentId,sbu);
-            dgvCategory.DataSource = categoryList;
+            _categoryList = _objCategoryService.GetCategoriesByParentId(parentId,_sbu);
+            dgvCategory.DataSource = _categoryList;
         }
         /// <summary>
         /// 选择编号时显示描述,并更新dgv
@@ -141,7 +141,7 @@ namespace Compass
 
             try
             {
-                string result = _objCategoryService.AddCategory(objCategory,sbu);
+                string result = _objCategoryService.AddCategory(objCategory,_sbu);
                 if (result == "success")
                 {
                     //提示添加成功
@@ -186,7 +186,7 @@ namespace Compass
                 return;
             }
             string categoryId = dgvCategory.CurrentRow.Cells["CategoryId"].Value.ToString();
-            Category objCategory = _objCategoryService.GetCategoryByCategoryId(categoryId,sbu);
+            Category objCategory = _objCategoryService.GetCategoryByCategoryId(categoryId,_sbu);
             FrmEditCategory objFrmEditCategory = new FrmEditCategory(objCategory);
             DialogResult result = objFrmEditCategory.ShowDialog();
             if (result == DialogResult.OK)
@@ -228,7 +228,7 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (_objCategoryService.DeleteCategory(categoryId,sbu) == 1)
+                if (_objCategoryService.DeleteCategory(categoryId,_sbu) == 1)
                 {
                     RefreshData(cobParentId.Text);//同步刷新显示数据
                 }

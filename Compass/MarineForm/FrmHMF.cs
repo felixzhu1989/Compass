@@ -12,17 +12,17 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmHMF : MetroFramework.Forms.MetroForm
+    public partial class FrmHmf : MetroFramework.Forms.MetroForm
     {
-        HMFService objHMFService = new HMFService();
-        private HMF objHMF;
-        private ModelView modelView;
-        public FrmHMF()
+        readonly HMFService _objHmfService = new HMFService();
+        private readonly HMF _objHmf;
+        private readonly ModelView _modelView;
+        public FrmHmf()
         {
             InitializeComponent();
-            modelView = new ModelView();
-            panel1.Controls.Add(modelView);
-            modelView.Dock = DockStyle.Fill;
+            _modelView = new ModelView();
+            panel1.Controls.Add(_modelView);
+            _modelView.Dock = DockStyle.Fill;
             IniCob();
 
             //管理员和技术部才能更新数据
@@ -30,13 +30,13 @@ namespace Compass
             else btnEditData.Visible = false;
 
         }
-        public FrmHMF(Drawing drawing, ModuleTree tree) : this()
+        public FrmHmf(Drawing drawing, ModuleTree tree) : this()
         {
-            objHMF = (HMF)objHMFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objHMF == null) return;
+            _objHmf = (HMF)_objHmfService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objHmf == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            modelView.GetData(drawing, tree);
-            modelView.ShowImage();
+            _modelView.GetData(drawing, tree);
+            _modelView.ShowImage();
             FillData();
 
         }
@@ -90,24 +90,24 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objHMF == null) return;
-            modelView.Tag = objHMF.HMFId;
-            txtLength.Text = objHMF.Length == 0 ? "600" : objHMF.Length.ToString();
-            txtWidth.Text = objHMF.Width == 0 ? "500" : objHMF.Width.ToString();
-            txtHeight.Text = objHMF.Height.ToString();
-            txtInletDia.Text = objHMF.InletDia.ToString();
-            txtOutletDia.Text = objHMF.OutletDia.ToString();
-            txtOutletHeight.Text = objHMF.OutletHeight.ToString();
+            if (_objHmf == null) return;
+            _modelView.Tag = _objHmf.HMFId;
+            txtLength.Text = _objHmf.Length == 0 ? "600" : _objHmf.Length.ToString();
+            txtWidth.Text = _objHmf.Width == 0 ? "500" : _objHmf.Width.ToString();
+            txtHeight.Text = _objHmf.Height.ToString();
+            txtInletDia.Text = _objHmf.InletDia.ToString();
+            txtOutletDia.Text = _objHmf.OutletDia.ToString();
+            txtOutletHeight.Text = _objHmf.OutletHeight.ToString();
 
-            cobHeater.Text = objHMF.Heater;
-            cobWindPressure.Text = objHMF.WindPressure;
-            cobHangPosition.Text = objHMF.HangPosition;
-            cobNamePlate.Text = objHMF.NamePlate;
-            cobTemperatureSwitch.Text = objHMF.TemperatureSwitch;
-            cobPlugPosition.Text = objHMF.PlugPosition;
-            cobPowerPlug.Text = objHMF.PowerPlug;
-            cobNetPlug.Text = objHMF.NetPlug;
-            txtPowerPlugDis.Text = objHMF.PowerPlugDis.ToString();
+            cobHeater.Text = _objHmf.Heater;
+            cobWindPressure.Text = _objHmf.WindPressure;
+            cobHangPosition.Text = _objHmf.HangPosition;
+            cobNamePlate.Text = _objHmf.NamePlate;
+            cobTemperatureSwitch.Text = _objHmf.TemperatureSwitch;
+            cobPlugPosition.Text = _objHmf.PlugPosition;
+            cobPowerPlug.Text = _objHmf.PowerPlug;
+            cobNetPlug.Text = _objHmf.NetPlug;
+            txtPowerPlugDis.Text = _objHmf.PowerPlugDis.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -118,13 +118,13 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (modelView.Tag.ToString().Length == 0) return;
+            if (_modelView.Tag.ToString().Length == 0) return;
 
             #endregion
             //封装对象
-            HMF objHMF = new HMF()
+            HMF objHmf = new HMF()
             {
-                HMFId = Convert.ToInt32(modelView.Tag),
+                HMFId = Convert.ToInt32(_modelView.Tag),
 
                 Length = Convert.ToDecimal(txtLength.Text.Trim()),
                 Width = Convert.ToDecimal(txtWidth.Text.Trim()),
@@ -146,7 +146,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objHMFService.EditModel(objHMF) == 1)
+                if (_objHmfService.EditModel(objHmf) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

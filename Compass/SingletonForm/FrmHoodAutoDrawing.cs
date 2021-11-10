@@ -16,29 +16,30 @@ namespace Compass
 {
     public partial class FrmHoodAutoDrawing : MetroFramework.Forms.MetroForm
     {
-        private ProjectService objProjectService = new ProjectService();
-        ModuleTreeService objModuleTreeService = new ModuleTreeService();
-        private Project objProject = null;
+        private readonly ProjectService _objProjectService = new ProjectService();
+        readonly ModuleTreeService _objModuleTreeService = new ModuleTreeService();
+        private Project _objProject = null;
         //使用BindingList动态绑定Dgv
-        BindingList<ModuleTree> waitingList = null;//待执行list，从项目中查询出来的
-        BindingList<ModuleTree> execList = new BindingList<ModuleTree>();//执行list，手动添加的
+        BindingList<ModuleTree> _waitingList = null;//待执行list，从项目中查询出来的
+
+        readonly BindingList<ModuleTree> _execList = new BindingList<ModuleTree>();//执行list，手动添加的
         //solidWorks程序
-        private SldWorks swApp;
-        private string sbu = Program.ObjCurrentUser.SBU;
+        private SldWorks _swApp;
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;
         
         public FrmHoodAutoDrawing()
         {
             InitializeComponent();
             dgvWaitingList.AutoGenerateColumns = false;
             dgvExecList.AutoGenerateColumns = false;
-            IniCobODPNo();
+            IniCobOdpNo();
         }
 
-        public void IniCobODPNo()
+        public void IniCobOdpNo()
         {
             this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
             //项目编号下拉框
-            cobODPNo.DataSource = objProjectService.GetProjectsByHoodType("Hood", sbu);
+            cobODPNo.DataSource = _objProjectService.GetProjectsByHoodType("Hood", _sbu);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;
@@ -82,11 +83,11 @@ namespace Compass
         private void CobODPNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobODPNo.SelectedIndex == -1) return;
-            objProject = objProjectService.GetProjectByODPNo(cobODPNo.Text,Program.ObjCurrentUser.SBU);
-            txtBPONo.Text = objProject.BPONo;
-            txtProjectName.Text = objProject.ProjectName;
-            execList.Clear();
-            waitingList = new BindingList<ModuleTree>(objModuleTreeService.GetModuleTreesByProjectId(cobODPNo.SelectedValue.ToString(),sbu));
+            _objProject = _objProjectService.GetProjectByODPNo(cobODPNo.Text,Program.ObjCurrentUser.SBU);
+            txtBPONo.Text = _objProject.BPONo;
+            txtProjectName.Text = _objProject.ProjectName;
+            _execList.Clear();
+            _waitingList = new BindingList<ModuleTree>(_objModuleTreeService.GetModuleTreesByProjectId(cobODPNo.SelectedValue.ToString(),_sbu));
             RefreshDgv();
         }
         /// <summary>
@@ -94,8 +95,8 @@ namespace Compass
         /// </summary>
         private void RefreshDgv()
         {
-            dgvWaitingList.DataSource = waitingList;
-            dgvExecList.DataSource = execList;
+            dgvWaitingList.DataSource = _waitingList;
+            dgvExecList.DataSource = _execList;
         }
         /// <summary>
         /// 添加行号
@@ -124,12 +125,12 @@ namespace Compass
         {
             if (dgvWaitingList.CurrentRow == null) return;
             int moduleTreeId = Convert.ToInt32(dgvWaitingList.CurrentRow.Cells["ModuleTreeId"].Value);
-            foreach (var item in waitingList)
+            foreach (var item in _waitingList)
             {
                 if (item.ModuleTreeId == moduleTreeId)
                 {
-                    execList.Add(item);
-                    waitingList.Remove(item);
+                    _execList.Add(item);
+                    _waitingList.Remove(item);
                     return;
                 }
             }
@@ -143,12 +144,12 @@ namespace Compass
         {
             if (dgvExecList.CurrentRow == null) return;
             int moduleTreeId = Convert.ToInt32(dgvExecList.CurrentRow.Cells["ModuleTreeId2"].Value);
-            foreach (var item in execList)
+            foreach (var item in _execList)
             {
                 if (item.ModuleTreeId == moduleTreeId)
                 {
-                    waitingList.Add(item);
-                    execList.Remove(item);
+                    _waitingList.Add(item);
+                    _execList.Remove(item);
                     //及时跳出，防止foreach时list变化
                     return;
                 }
@@ -162,12 +163,12 @@ namespace Compass
         private void BtnAddAll_Click(object sender, EventArgs e)
         {
             if (dgvWaitingList.CurrentRow == null) return;
-            foreach (var item in waitingList)
+            foreach (var item in _waitingList)
             {
-                execList.Add(item);
+                _execList.Add(item);
             }
             //最后清空，防止foreach时list变化
-            waitingList.Clear();
+            _waitingList.Clear();
         }
         /// <summary>
         /// 执行->待执行/所有
@@ -177,11 +178,11 @@ namespace Compass
         private void BtnSubAll_Click(object sender, EventArgs e)
         {
             if (dgvExecList.CurrentRow == null) return;
-            foreach (var item in execList)
+            foreach (var item in _execList)
             {
-                waitingList.Add(item);
+                _waitingList.Add(item);
             }
-            execList.Clear();
+            _execList.Clear();
         }
         /// <summary>
         /// 执行SolidWorks作图程序
@@ -190,13 +191,13 @@ namespace Compass
         /// <param name="e"></param>
         private async void BtnExec_Click(object sender, EventArgs e)
         {
-            if (execList.Count == 0) return;
+            if (_execList.Count == 0) return;
             btnExec.Enabled = false;
             //计算时间
             DateTime startTime=DateTime.Now;
             tspbStatus.Value = 0;
             tspbStatus.Step = 1;
-            tspbStatus.Maximum = execList.Count;
+            tspbStatus.Maximum = _execList.Count;
             //创建项目文件夹，默认再D盘MyProjects目录下（先判断文件夹是否存在）
             string projectPath = @"D:\MyProjects\" + cobODPNo.Text;
             if (!Directory.Exists(projectPath))
@@ -207,9 +208,9 @@ namespace Compass
             try
             {
                 tsslStatus.Text = "正在打开(/连接)SolidWorks程序...";
-                swApp = await SolidWorksSingleton.GetApplicationAsync();
+                _swApp = await SolidWorksSingleton.GetApplicationAsync();
                 //遍历execList，创建项目模型存放地址，判断模型类型，查询参数，执行SolidWorks
-                foreach (var item in execList)
+                foreach (var item in _execList)
                 {
                     tsslStatus.Text = item.Item +"("+ item.Module + ")正在作图...";
                     //6.根据工厂提供的选择，执行具体的接口实现方式
@@ -224,12 +225,12 @@ namespace Compass
             }
             finally
             {
-                swApp.CommandInProgress = false;//及时关闭外部命令调用，否则影响SolidWorks的使用
+                _swApp.CommandInProgress = false;//及时关闭外部命令调用，否则影响SolidWorks的使用
             }
 
             TimeSpan timeSpan = DateTime.Now - startTime;
             tsslStatus.Text = "作图完成,总共耗时：" + timeSpan.TotalSeconds + "秒";
-            tspbStatus.Value = execList.Count;
+            tspbStatus.Value = _execList.Count;
             BtnSubAll_Click(null, null);//清除执行数据
             btnExec.Enabled = true;
         }
@@ -247,7 +248,7 @@ namespace Compass
                 {
                     IAutoDrawing objAutoDrawing = AutoDrawingFactory.ChooseDrawingType(item);
                     item.SBU = Program.ObjCurrentUser.SBU;
-                    objAutoDrawing.AutoDrawing(swApp, item, projectPath);
+                    objAutoDrawing.AutoDrawing(_swApp, item, projectPath);
                 }
                 catch (Exception ex)
                 {
@@ -260,19 +261,19 @@ namespace Compass
         /// </summary>
         private async void BtnJobCard_Click(object sender, EventArgs e)
         {
-            if (execList.Count == 0) return;
+            if (_execList.Count == 0) return;
             btnJobCard.Enabled = false;
             tspbStatus.Value = 0;
             tspbStatus.Step = 1;
-            tspbStatus.Maximum = execList.Count;
-            foreach (var item in execList)
+            tspbStatus.Maximum = _execList.Count;
+            foreach (var item in _execList)
             {
                 tsslStatus.Text = item.Item + "(" + item.Module + ")正在打印...";
                 await PrintJobCardAsync(item);
                 tspbStatus.Value += 1;
             }
             tsslStatus.Text = "JobCard打印完成！";
-            tspbStatus.Value = execList.Count;
+            tspbStatus.Value = _execList.Count;
             BtnSubAll_Click(null, null);//清除执行数据
             btnJobCard.Enabled = true;
         }
@@ -302,13 +303,13 @@ namespace Compass
         /// <param name="e"></param>
         private async void BtnExportDxf_Click(object sender, EventArgs e)
         {
-            if (execList.Count == 0) return;
+            if (_execList.Count == 0) return;
             btnExportDxf.Enabled = false;
             //计算时间
             DateTime startTime = DateTime.Now;
             tspbStatus.Value = 0;
             tspbStatus.Step = 1;
-            tspbStatus.Maximum = execList.Count;
+            tspbStatus.Maximum = _execList.Count;
             
             //创建下料图文件夹，默认再D盘MyProjects目录下（先判断文件夹是否存在）
             string dxfPath = @"D:\MyProjects\" + cobODPNo.Text+ @"\DXF-CUTLIST";
@@ -317,9 +318,9 @@ namespace Compass
             try
             {
                 tsslStatus.Text = "正在打开(/连接)SolidWorks程序...";
-                swApp = await SolidWorksSingleton.GetApplicationAsync();
+                _swApp = await SolidWorksSingleton.GetApplicationAsync();
                 //遍历execList，创建项目模型存放地址，判断模型类型，查询参数，执行SolidWorks
-                foreach (var item in execList)
+                foreach (var item in _execList)
                 {
                     tsslStatus.Text = item.Item + "(" + item.Module + ")正在导图...";
                     //以异步的方式执行，让窗口可操作并且进度条更新
@@ -333,11 +334,11 @@ namespace Compass
             }
             finally
             {
-                swApp.CommandInProgress = false;//及时关闭外部命令调用，否则影响SolidWorks的使用
+                _swApp.CommandInProgress = false;//及时关闭外部命令调用，否则影响SolidWorks的使用
             }
             TimeSpan timeSpan = DateTime.Now - startTime;
             tsslStatus.Text = "导出DXF图完成,总共耗时：" + timeSpan.TotalSeconds + "秒";
-            tspbStatus.Value = execList.Count;
+            tspbStatus.Value = _execList.Count;
             BtnSubAll_Click(null, null);//清除执行数据
             btnExportDxf.Enabled = true;
         }
@@ -353,7 +354,7 @@ namespace Compass
             {
                 try
                 {
-                    new ExprotDxf().HoodAssyToDxf(swApp, item, dxfPath,userId);
+                    new ExprotDxf().HoodAssyToDxf(_swApp, item, dxfPath,userId);
                 }
                 catch (Exception ex)
                 {
@@ -368,13 +369,13 @@ namespace Compass
         /// <param name="e"></param>
         private async void BtnHoodPackingList_Click(object sender, EventArgs e)
         {
-            if (execList.Count == 0) return;
+            if (_execList.Count == 0) return;
             btnHoodPackingList.Enabled = false;
             tspbStatus.Value = 0;
             tspbStatus.Step = 1;
-            tspbStatus.Maximum = execList.Count;
+            tspbStatus.Maximum = _execList.Count;
             List<JobCard> jobCardList=new List<JobCard>();
-            foreach (var item in execList)
+            foreach (var item in _execList)
             {
                 tsslStatus.Text = item.Item + "(" + item.Module + ")正在导出数据...";
                 JobCard objJobCard = new JobCardService().GetJobCard(item);
@@ -390,7 +391,7 @@ namespace Compass
             tsslStatus.Text = "正在将数据写入excel文件...";
             await ExportHoodPackingListAsync(jobCardList);
             tsslStatus.Text = "装箱清单导出完成，请在项目文件夹中查看！";
-            tspbStatus.Value = execList.Count;
+            tspbStatus.Value = _execList.Count;
             btnHoodPackingList.Enabled = true;
         }
         /// <summary>

@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class KCJDB800AutoDrawing : IAutoDrawing
     {
-        KCJDB800Service objKCJDB800Service = new KCJDB800Service();
+        readonly KCJDB800Service objKCJDB800Service = new KCJDB800Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

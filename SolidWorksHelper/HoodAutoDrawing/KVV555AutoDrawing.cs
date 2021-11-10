@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class KVV555AutoDrawing : IAutoDrawing
     {
-        KVV555Service objKVV555Service = new KVV555Service();
+        readonly KVV555Service objKVV555Service = new KVV555Service();
 
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {

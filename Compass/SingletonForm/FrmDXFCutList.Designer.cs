@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmDXFCutList
+    partial class FrmDxfCutList
     {
         /// <summary>
         /// Required designer variable.
@@ -550,7 +550,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmDXFCutList";
+            this.Name = "FrmDxfCutList";
             this.Text = "FrmDXFCutList";
             ((System.ComponentModel.ISupportInitialize)(this.dgvDXFCutList)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);

@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmBF200 : MetroFramework.Forms.MetroForm
+    public partial class FrmBf200 : MetroFramework.Forms.MetroForm
     {
-        BF200Service objBF200Service = new BF200Service();
-        private BF200 objBF200 = null;
-        public FrmBF200()
+        readonly BF200Service _objBf200Service = new BF200Service();
+        private readonly BF200 _objBf200 = null;
+        public FrmBf200()
         {
             InitializeComponent();
             IniCob();
@@ -19,10 +19,10 @@ namespace Compass
             else btnEditData.Visible = false;
         }
 
-        public FrmBF200(Drawing drawing, ModuleTree tree) : this()
+        public FrmBf200(Drawing drawing, ModuleTree tree) : this()
         {
-            objBF200 = (BF200)objBF200Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objBF200 == null) return;
+            _objBf200 = (BF200)_objBf200Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objBf200 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -55,17 +55,17 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objBF200 == null) return;
-            modelView.Tag = objBF200.BF200Id;
+            if (_objBf200 == null) return;
+            modelView.Tag = _objBf200.BF200Id;
 
-            txtLength.Text = objBF200.Length.ToString();
-            txtLeftLength.Text = objBF200.LeftLength.ToString();
-            txtRightLength.Text = objBF200.RightLength.ToString();
-            txtMPanelLength.Text = objBF200.MPanelLength.ToString();
-            txtWPanelLength.Text = objBF200.WPanelLength.ToString();
+            txtLength.Text = _objBf200.Length.ToString();
+            txtLeftLength.Text = _objBf200.LeftLength.ToString();
+            txtRightLength.Text = _objBf200.RightLength.ToString();
+            txtMPanelLength.Text = _objBf200.MPanelLength.ToString();
+            txtWPanelLength.Text = _objBf200.WPanelLength.ToString();
 
-            cobMPanelNo.Text = objBF200.MPanelNo.ToString();
-            cobUVType.Text = objBF200.UVType;
+            cobMPanelNo.Text = _objBf200.MPanelNo.ToString();
+            cobUVType.Text = _objBf200.UVType;
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -119,7 +119,7 @@ namespace Compass
                 return;
             }
             //封装对象
-            BF200 objBF200 = new BF200()
+            BF200 objBf200 = new BF200()
             {
                 BF200Id = Convert.ToInt32(modelView.Tag),
 
@@ -135,7 +135,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objBF200Service.EditModel(objBF200) == 1)
+                if (_objBf200Service.EditModel(objBf200) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

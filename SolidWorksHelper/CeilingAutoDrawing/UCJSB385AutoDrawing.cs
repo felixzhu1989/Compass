@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class UCJSB385AutoDrawing : IAutoDrawing
     {
-        UCJSB385Service objUCJSB385Service = new UCJSB385Service();
+        readonly UCJSB385Service objUCJSB385Service = new UCJSB385Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址

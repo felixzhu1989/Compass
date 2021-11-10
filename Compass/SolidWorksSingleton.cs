@@ -6,20 +6,20 @@ namespace SolidWorksHelper
 {
     public class SolidWorksSingleton
     {
-        private static SldWorks swApp;
+        private static SldWorks _swApp;
         /// <summary>
         /// 连接SW，已经不使用了
         /// </summary>
         /// <returns></returns>
         public static SldWorks GetApplication()
         {
-            if (swApp == null)
+            if (_swApp == null)
             {
-                swApp = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application")) as SldWorks;
-                swApp.Visible = true;
-                return swApp;
+                _swApp = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application")) as SldWorks;
+                _swApp.Visible = true;
+                return _swApp;
             }
-            return swApp;
+            return _swApp;
         }
         /// <summary>
         /// 以异步的方式连接SW
@@ -27,26 +27,26 @@ namespace SolidWorksHelper
         /// <returns></returns>
         public async static Task<SldWorks> GetApplicationAsync()
         {
-            if (swApp == null)
+            if (_swApp == null)
             {
                 return await Task<SldWorks>.Run(() =>
                 {
-                    swApp = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application")) as SldWorks;
-                    swApp.Visible = true;
-                    return swApp;
+                    _swApp = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application")) as SldWorks;
+                    _swApp.Visible = true;
+                    return _swApp;
                 });
             }
-            return swApp;
+            return _swApp;
         }
         /// <summary>
         /// 释放SW
         /// </summary>
         public static void Dipose()
         {
-            if (swApp != null)
+            if (_swApp != null)
             {
-                swApp.ExitApp();
-                swApp = null;
+                _swApp.ExitApp();
+                _swApp = null;
             }
         }
     }

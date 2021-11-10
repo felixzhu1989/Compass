@@ -6,21 +6,21 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmINF : MetroFramework.Forms.MetroForm
+    public partial class FrmInf : MetroFramework.Forms.MetroForm
     {
-       INFService objINFService = new INFService();
-        private INF objINF = null;
-        public FrmINF()
+        readonly INFService _objInfService = new INFService();
+        private readonly INF _objInf = null;
+        public FrmInf()
         {
             InitializeComponent();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmINF(Drawing drawing, ModuleTree tree) : this()
+        public FrmInf(Drawing drawing, ModuleTree tree) : this()
         {
-            objINF = (INF)objINFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objINF == null) return;
+            _objInf = (INF)_objInfService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objInf == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -32,11 +32,11 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objINF == null) return;
-            modelView.Tag = objINF.INFId;
+            if (_objInf == null) return;
+            modelView.Tag = _objInf.INFId;
 
-            txtLength.Text = objINF.Length.ToString();
-            txtWidth.Text = objINF.Width.ToString();
+            txtLength.Text = _objInf.Length.ToString();
+            txtWidth.Text = _objInf.Width.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -59,7 +59,7 @@ namespace Compass
 
 
             //封装对象
-            INF objINF = new INF()
+            INF objInf = new INF()
             {
                 INFId = Convert.ToInt32(modelView.Tag),
 
@@ -70,7 +70,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objINFService.EditModel(objINF) == 1)
+                if (_objInfService.EditModel(objInf) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

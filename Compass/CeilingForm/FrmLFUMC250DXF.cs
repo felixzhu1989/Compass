@@ -6,21 +6,21 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLFUMC250DXF : MetroFramework.Forms.MetroForm
+    public partial class FrmLfumc250Dxf : MetroFramework.Forms.MetroForm
     {
-        LFUMC250DXFService objLFUMC250DXFService = new LFUMC250DXFService();
-        private LFUMC250DXF objLFUMC250DXF = null;
-        public FrmLFUMC250DXF()
+        readonly LFUMC250DXFService _objLfumc250DxfService = new LFUMC250DXFService();
+        private readonly LFUMC250DXF _objLfumc250Dxf = null;
+        public FrmLfumc250Dxf()
         {
             InitializeComponent();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLFUMC250DXF(Drawing drawing, ModuleTree tree) : this()
+        public FrmLfumc250Dxf(Drawing drawing, ModuleTree tree) : this()
         {
-            objLFUMC250DXF = (LFUMC250DXF)objLFUMC250DXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLFUMC250DXF == null) return;
+            _objLfumc250Dxf = (LFUMC250DXF)_objLfumc250DxfService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLfumc250Dxf == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -31,11 +31,11 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objLFUMC250DXF == null) return;
-            modelView.Tag = objLFUMC250DXF.LFUMC250DXFId;
+            if (_objLfumc250Dxf == null) return;
+            modelView.Tag = _objLfumc250Dxf.LFUMC250DXFId;
 
             //默认txtQuantity为1
-            txtQuantity.Text = objLFUMC250DXF.Quantity == 0 ? "1" : objLFUMC250DXF.Quantity.ToString();
+            txtQuantity.Text = _objLfumc250Dxf.Quantity == 0 ? "1" : _objLfumc250Dxf.Quantity.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -59,7 +59,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            LFUMC250DXF objLFUMC250DXF = new LFUMC250DXF()
+            LFUMC250DXF objLfumc250Dxf = new LFUMC250DXF()
             {
                 LFUMC250DXFId = Convert.ToInt32(modelView.Tag),
                 Quantity = Convert.ToInt32(txtQuantity.Text)
@@ -68,7 +68,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLFUMC250DXFService.EditModel(objLFUMC250DXF) == 1)
+                if (_objLfumc250DxfService.EditModel(objLfumc250Dxf) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

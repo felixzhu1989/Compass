@@ -10,21 +10,21 @@ namespace Compass
 {
     public partial class FrmStatusTypes : Form
     {
-        private ProjectStatusService objProjectStatusService =new ProjectStatusService();
-        private ProjectTypeService objProjectTypeService=new ProjectTypeService();
-        private string sbu = Program.ObjCurrentUser.SBU;//当前事业部
-        private KeyValuePair pair=new KeyValuePair();
+        private readonly ProjectStatusService _objProjectStatusService =new ProjectStatusService();
+        private readonly ProjectTypeService _objProjectTypeService=new ProjectTypeService();
+        private readonly string _sbu = Program.ObjCurrentUser.SBU;//当前事业部
+        private readonly KeyValuePair _pair=new KeyValuePair();
         public FrmStatusTypes()
         {
             InitializeComponent();
 
             dgvProjectStatus.AutoGenerateColumns = false;
-            dgvProjectStatus.DataSource = objProjectStatusService.GetAllProjectStatus();
+            dgvProjectStatus.DataSource = _objProjectStatusService.GetAllProjectStatus();
             btnEditProjectStatus.Visible = false;
             btnAddProjectStatus.Visible = true;
 
             dgvProjectTypes.AutoGenerateColumns = false;
-            dgvProjectTypes.DataSource = objProjectTypeService.GetAllProjectTypes(sbu);
+            dgvProjectTypes.DataSource = _objProjectTypeService.GetAllProjectTypes(_sbu);
             btnEditProjectType.Visible = false;
             btnAddProjectType.Visible = true;
         }
@@ -39,7 +39,7 @@ namespace Compass
             if (e.RowIndex > -1)
             {
                 string projectStatus = this.dgvProjectStatus.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
-                dgvProjectStatus.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectStatusColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
+                dgvProjectStatus.Rows[e.RowIndex].DefaultCellStyle.BackColor = _pair.ProjectStatusColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
             }
         }
         private void dgvProjectTypes_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -48,7 +48,7 @@ namespace Compass
             if (e.RowIndex > -1)
             {
                 string projectStatus = this.dgvProjectTypes.Rows[e.RowIndex].Cells["TypeName"].Value.ToString();
-                dgvProjectTypes.Rows[e.RowIndex].DefaultCellStyle.BackColor = pair.ProjectTypeColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
+                dgvProjectTypes.Rows[e.RowIndex].DefaultCellStyle.BackColor = _pair.ProjectTypeColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
             }
         }
 
@@ -114,13 +114,13 @@ namespace Compass
             //提交添加
             try
             {
-                int projectStatusId = objProjectStatusService.AddProjectStatus(objProjectStatus);
+                int projectStatusId = _objProjectStatusService.AddProjectStatus(objProjectStatus);
                 if (projectStatusId > 1)
                 {
                     //提示添加成功
                     MessageBox.Show("项目状态添加成功", "提示信息");
                     //刷新显示
-                    dgvProjectStatus.DataSource = objProjectStatusService.GetAllProjectStatus();
+                    dgvProjectStatus.DataSource = _objProjectStatusService.GetAllProjectStatus();
                     //清空内容
                     txtProjectStatusName.Text = "";
                     txtStatusDesc.Text = "";
@@ -155,13 +155,13 @@ namespace Compass
             //提交添加
             try
             {
-                int typeId = objProjectTypeService.AddProjectType(objProjectType,sbu);
+                int typeId = _objProjectTypeService.AddProjectType(objProjectType,_sbu);
                 if (typeId > 1)
                 {
                     //提示添加成功
                     MessageBox.Show("项目类型添加成功", "提示信息");
                     //刷新显示
-                    dgvProjectTypes.DataSource = objProjectTypeService.GetAllProjectTypes(sbu);
+                    dgvProjectTypes.DataSource = _objProjectTypeService.GetAllProjectTypes(_sbu);
                     //清空内容
                     txtTypeName.Text = "";
                     txtKMLink.Text = "";
@@ -197,7 +197,7 @@ namespace Compass
                 return;
             }
             string projectStatusId = dgvProjectStatus.CurrentRow.Cells["ProjectStatusId"].Value.ToString();
-            ProjectStatus objProjectStatus = objProjectStatusService.GetProjectStatusById(projectStatusId);
+            ProjectStatus objProjectStatus = _objProjectStatusService.GetProjectStatusById(projectStatusId);
             //初始化修改信息
             txtProjectStatusId.Text = objProjectStatus.ProjectStatusId.ToString();
             txtProjectStatusName.Text = objProjectStatus.ProjectStatusName;
@@ -232,11 +232,11 @@ namespace Compass
             //调用后台方法修改对象
             try
             {
-                if (objProjectStatusService.EditProjectStatus(objProjectStatus) == 1)
+                if (_objProjectStatusService.EditProjectStatus(objProjectStatus) == 1)
                 {
                     MessageBox.Show("修改项目状态名称成功！", "提示信息");
                     //刷新内容
-                    dgvProjectStatus.DataSource = objProjectStatusService.GetAllProjectStatus();
+                    dgvProjectStatus.DataSource = _objProjectStatusService.GetAllProjectStatus();
                     //清空内容
                     txtProjectStatusId.Text = "";
                     txtProjectStatusName.Text = "";
@@ -270,7 +270,7 @@ namespace Compass
                 return;
             }
             string typeId = dgvProjectTypes.CurrentRow.Cells["TypeId"].Value.ToString();
-            ProjectType objProjectType = objProjectTypeService.GetProjectTypeById(typeId,sbu);
+            ProjectType objProjectType = _objProjectTypeService.GetProjectTypeById(typeId,_sbu);
             //初始化修改信息
             txtTypeId.Text = objProjectType.TypeId.ToString();
             txtTypeName.Text = objProjectType.TypeName;
@@ -305,11 +305,11 @@ namespace Compass
             //调用后台方法修改对象
             try
             {
-                if (objProjectTypeService.EditProjectType(objProjectType,sbu) == 1)
+                if (_objProjectTypeService.EditProjectType(objProjectType,_sbu) == 1)
                 {
                     MessageBox.Show("修改项目类型名称成功！", "提示信息");
                     //刷新内容
-                    dgvProjectTypes.DataSource = objProjectTypeService.GetAllProjectTypes(sbu);
+                    dgvProjectTypes.DataSource = _objProjectTypeService.GetAllProjectTypes(_sbu);
                     //清空内容
                     txtTypeId.Text = "";
                     txtTypeName.Text = "";
@@ -350,9 +350,9 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objProjectStatusService.DeleteProjectStatus(projectStatusId) == 1)
+                if (_objProjectStatusService.DeleteProjectStatus(projectStatusId) == 1)
                 {
-                    dgvProjectStatus.DataSource = objProjectStatusService.GetAllProjectStatus();//同步刷新显示数据
+                    dgvProjectStatus.DataSource = _objProjectStatusService.GetAllProjectStatus();//同步刷新显示数据
                 }
             }
             catch (Exception ex)
@@ -384,9 +384,9 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (objProjectTypeService.DeleteProjectType(typeId,sbu) == 1)
+                if (_objProjectTypeService.DeleteProjectType(typeId,_sbu) == 1)
                 {
-                    dgvProjectTypes.DataSource = objProjectTypeService.GetAllProjectTypes(sbu);//同步刷新显示数据
+                    dgvProjectTypes.DataSource = _objProjectTypeService.GetAllProjectTypes(_sbu);//同步刷新显示数据
                 }
             }
             catch (Exception ex)

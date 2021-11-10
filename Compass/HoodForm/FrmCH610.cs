@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmCH610 : MetroFramework.Forms.MetroForm
+    public partial class FrmCh610 : MetroFramework.Forms.MetroForm
     {
-       CH610Service objCH610Service = new CH610Service();
-        private CH610 objCH610 = null;
-        public FrmCH610()
+        readonly CH610Service _objCh610Service = new CH610Service();
+        private readonly CH610 _objCh610 = null;
+        public FrmCh610()
         {
             InitializeComponent();
             SetVisibleFalse();
@@ -19,10 +19,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmCH610(Drawing drawing, ModuleTree tree) : this()
+        public FrmCh610(Drawing drawing, ModuleTree tree) : this()
         {
-            objCH610 = (CH610)objCH610Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objCH610 == null) return;
+            _objCh610 = (CH610)_objCh610Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objCh610 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -55,20 +55,20 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objCH610 == null) return;
-            modelView.Tag = objCH610.CH610Id;
+            if (_objCh610 == null) return;
+            modelView.Tag = _objCh610.CH610Id;
 
             //默认ExNo为1
-            cobExNo.Text = objCH610.ExNo == 0 ? "1" : objCH610.ExNo.ToString();
-            cobLightType.Text = objCH610.LightType;
+            cobExNo.Text = _objCh610.ExNo == 0 ? "1" : _objCh610.ExNo.ToString();
+            cobLightType.Text = _objCh610.LightType;
 
-            txtLength.Text = objCH610.Length.ToString();
-            txtDeepth.Text = objCH610.Deepth.ToString();
-            txtExRightDis.Text = objCH610.ExRightDis.ToString();
-            txtExDis.Text = objCH610.ExDis.ToString();
-            txtExLength.Text = objCH610.ExLength.ToString();
-            txtExWidth.Text = objCH610.ExWidth.ToString();
-            txtExHeight.Text = objCH610.ExHeight.ToString();
+            txtLength.Text = _objCh610.Length.ToString();
+            txtDeepth.Text = _objCh610.Deepth.ToString();
+            txtExRightDis.Text = _objCh610.ExRightDis.ToString();
+            txtExDis.Text = _objCh610.ExDis.ToString();
+            txtExLength.Text = _objCh610.ExLength.ToString();
+            txtExWidth.Text = _objCh610.ExWidth.ToString();
+            txtExHeight.Text = _objCh610.ExHeight.ToString();
 
         }
         /// <summary>
@@ -144,7 +144,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            CH610 objCH610 = new CH610()
+            CH610 objCh610 = new CH610()
             {
                 CH610Id = Convert.ToInt32(modelView.Tag),
                 ExNo = Convert.ToInt32(cobExNo.Text),
@@ -162,7 +162,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objCH610Service.EditModel(objCH610) == 1)
+                if (_objCh610Service.EditModel(objCh610) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

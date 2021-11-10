@@ -6,21 +6,21 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmLFUP : MetroFramework.Forms.MetroForm
+    public partial class FrmLfup : MetroFramework.Forms.MetroForm
     {
-       LFUPService objLFUPService = new LFUPService();
-        private LFUP objLFUP = null;
-        public FrmLFUP()
+        readonly LFUPService _objLfupService = new LFUPService();
+        private readonly LFUP _objLfup = null;
+        public FrmLfup()
         {
             InitializeComponent();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmLFUP(Drawing drawing, ModuleTree tree) : this()
+        public FrmLfup(Drawing drawing, ModuleTree tree) : this()
         {
-            objLFUP = (LFUP)objLFUPService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objLFUP == null) return;
+            _objLfup = (LFUP)_objLfupService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objLfup == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -31,11 +31,11 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objLFUP == null) return;
-            modelView.Tag = objLFUP.LFUPId;
+            if (_objLfup == null) return;
+            modelView.Tag = _objLfup.LFUPId;
 
-            txtLength.Text = objLFUP.Length.ToString();
-            txtWidth.Text = objLFUP.Width.ToString();
+            txtLength.Text = _objLfup.Length.ToString();
+            txtWidth.Text = _objLfup.Width.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -56,7 +56,7 @@ namespace Compass
                 return;
             }
             //封装对象
-            LFUP objLFUP = new LFUP()
+            LFUP objLfup = new LFUP()
             {
                 LFUPId = Convert.ToInt32(modelView.Tag),
 
@@ -67,7 +67,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objLFUPService.EditModel(objLFUP) == 1)
+                if (_objLfupService.EditModel(objLfup) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

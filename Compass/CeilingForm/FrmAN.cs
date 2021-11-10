@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmAN :MetroFramework.Forms.MetroForm
+    public partial class FrmAn :MetroFramework.Forms.MetroForm
     {
-        ANService objANService = new ANService();
-        private AN objAN = null;
-        public FrmAN()
+        readonly ANService _objAnService = new ANService();
+        private readonly AN _objAn = null;
+        public FrmAn()
         {
             InitializeComponent();
             SetVisibleFalse();
@@ -19,10 +19,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmAN(Drawing drawing, ModuleTree tree) : this()
+        public FrmAn(Drawing drawing, ModuleTree tree) : this()
         {
-            objAN = (AN)objANService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objAN == null) return;
+            _objAn = (AN)_objAnService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objAn == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -81,40 +81,40 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objAN == null) return;
-            modelView.Tag = objAN.ANId;
+            if (_objAn == null) return;
+            modelView.Tag = _objAn.ANId;
             
-            cobANSUL.Text = objAN.ANSUL;
+            cobANSUL.Text = _objAn.ANSUL;
             
-            cobANDetectorEnd.Text = objAN.ANDetectorEnd;
-            cobANDropNo.Text = objAN.ANDropNo.ToString();
-            cobANDetectorNo.Text = objAN.ANDetectorNo.ToString();
-            cobMARVEL.Text = objAN.MARVEL;
-            cobIRNo.Text = objAN.IRNo.ToString();
+            cobANDetectorEnd.Text = _objAn.ANDetectorEnd;
+            cobANDropNo.Text = _objAn.ANDropNo.ToString();
+            cobANDetectorNo.Text = _objAn.ANDetectorNo.ToString();
+            cobMARVEL.Text = _objAn.MARVEL;
+            cobIRNo.Text = _objAn.IRNo.ToString();
             
-            txtLength.Text = objAN.Length.ToString();
-            txtWidth.Text= objAN.Width.ToString();
-            txtANYDis.Text = objAN.ANYDis.ToString();
-            txtANDropDis1.Text = objAN.ANDropDis1.ToString();
-            txtANDropDis2.Text = objAN.ANDropDis2.ToString();
-            txtANDropDis3.Text = objAN.ANDropDis3.ToString();
-            txtANDropDis4.Text = objAN.ANDropDis4.ToString();
-            txtANDropDis5.Text = objAN.ANDropDis5.ToString();
-            txtANDetectorDis1.Text = objAN.ANDetectorDis1.ToString();
-            txtANDetectorDis2.Text = objAN.ANDetectorDis2.ToString();
-            txtANDetectorDis3.Text = objAN.ANDetectorDis3.ToString();
-            txtANDetectorDis4.Text = objAN.ANDetectorDis4.ToString();
-            txtANDetectorDis5.Text = objAN.ANDetectorDis5.ToString();
-            txtIRDis1.Text = objAN.IRDis1.ToString();
-            txtIRDis2.Text = objAN.IRDis2.ToString();
-            txtIRDis3.Text = objAN.IRDis3.ToString();
+            txtLength.Text = _objAn.Length.ToString();
+            txtWidth.Text= _objAn.Width.ToString();
+            txtANYDis.Text = _objAn.ANYDis.ToString();
+            txtANDropDis1.Text = _objAn.ANDropDis1.ToString();
+            txtANDropDis2.Text = _objAn.ANDropDis2.ToString();
+            txtANDropDis3.Text = _objAn.ANDropDis3.ToString();
+            txtANDropDis4.Text = _objAn.ANDropDis4.ToString();
+            txtANDropDis5.Text = _objAn.ANDropDis5.ToString();
+            txtANDetectorDis1.Text = _objAn.ANDetectorDis1.ToString();
+            txtANDetectorDis2.Text = _objAn.ANDetectorDis2.ToString();
+            txtANDetectorDis3.Text = _objAn.ANDetectorDis3.ToString();
+            txtANDetectorDis4.Text = _objAn.ANDetectorDis4.ToString();
+            txtANDetectorDis5.Text = _objAn.ANDetectorDis5.ToString();
+            txtIRDis1.Text = _objAn.IRDis1.ToString();
+            txtIRDis2.Text = _objAn.IRDis2.ToString();
+            txtIRDis3.Text = _objAn.IRDis3.ToString();
         }
         /// <summary>
         /// 修改参数
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEditData_Click(object sender, EventArgs e)
+        private void BtnEditData_Click(object sender, EventArgs e)
         {
             #region 数据验证
             //必填项目
@@ -317,7 +317,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            AN objAN = new AN()
+            AN objAn = new AN()
             {
                 ANId = Convert.ToInt32(modelView.Tag),
                 
@@ -349,7 +349,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objANService.EditModel(objAN) == 1)
+                if (_objAnService.EditModel(objAn) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;
@@ -366,7 +366,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobANSUL_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobANSUL_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobANSUL.SelectedIndex == 0) grbANSUL.Visible = true;
             else grbANSUL.Visible = false;
@@ -376,7 +376,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobMARVEL_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobMARVEL_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobMARVEL.SelectedIndex == 0) grbMARVEL.Visible = true;
             else grbMARVEL.Visible = false;
@@ -387,7 +387,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobANDropNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobANDropNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobANDropNo.SelectedIndex == 0)
             {

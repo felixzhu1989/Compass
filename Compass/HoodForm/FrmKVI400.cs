@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmKVI400 :  MetroFramework.Forms.MetroForm
+    public partial class FrmKvi400 :  MetroFramework.Forms.MetroForm
     {
-        KVI400Service objKVI400Service = new KVI400Service();
-        private KVI400 objKVI400 = null;
-        public FrmKVI400()
+        readonly KVI400Service _objKvi400Service = new KVI400Service();
+        private readonly KVI400 _objKvi400 = null;
+        public FrmKvi400()
         {
             InitializeComponent();
             SetVisibleFalse();
@@ -19,10 +19,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmKVI400(Drawing drawing, ModuleTree tree) : this()
+        public FrmKvi400(Drawing drawing, ModuleTree tree) : this()
         {
-            objKVI400 = (KVI400)objKVI400Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objKVI400 == null) return;
+            _objKvi400 = (KVI400)_objKvi400Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objKvi400 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -116,43 +116,43 @@ namespace Compass
         /// </summary>
         private void FillData()
         {
-            if (objKVI400 == null) return;
-            modelView.Tag = objKVI400.KVI400Id;
+            if (_objKvi400 == null) return;
+            modelView.Tag = _objKvi400.KVI400Id;
 
-            cobSidePanel.Text = objKVI400.SidePanel;
+            cobSidePanel.Text = _objKvi400.SidePanel;
             //默认ExNo为1
-            cobExNo.Text = objKVI400.ExNo == 0 ? "1" : objKVI400.ExNo.ToString();
-            cobLightType.Text = objKVI400.LightType;
-            cobLEDSpotNo.Text = objKVI400.LEDSpotNo.ToString();
-            cobANSUL.Text = objKVI400.ANSUL;
-            cobANSide.Text = objKVI400.ANSide;
-            cobANDetector.Text = objKVI400.ANDetector;
-            cobANDropNo.Text = objKVI400.ANDropNo.ToString();
-            cobMARVEL.Text = objKVI400.MARVEL;
-            cobIRNo.Text = objKVI400.IRNo.ToString();
-            cobLEDLogo.Text = objKVI400.LEDlogo;
-            cobOutlet.Text = objKVI400.Outlet;
-            cobWaterCollection.Text = objKVI400.WaterCollection;
-            cobBackToBack.Text = objKVI400.BackToBack;
+            cobExNo.Text = _objKvi400.ExNo == 0 ? "1" : _objKvi400.ExNo.ToString();
+            cobLightType.Text = _objKvi400.LightType;
+            cobLEDSpotNo.Text = _objKvi400.LEDSpotNo.ToString();
+            cobANSUL.Text = _objKvi400.ANSUL;
+            cobANSide.Text = _objKvi400.ANSide;
+            cobANDetector.Text = _objKvi400.ANDetector;
+            cobANDropNo.Text = _objKvi400.ANDropNo.ToString();
+            cobMARVEL.Text = _objKvi400.MARVEL;
+            cobIRNo.Text = _objKvi400.IRNo.ToString();
+            cobLEDLogo.Text = _objKvi400.LEDlogo;
+            cobOutlet.Text = _objKvi400.Outlet;
+            cobWaterCollection.Text = _objKvi400.WaterCollection;
+            cobBackToBack.Text = _objKvi400.BackToBack;
 
-            txtLength.Text = objKVI400.Length.ToString();
-            txtDeepth.Text = objKVI400.Deepth.ToString();
-            txtExRightDis.Text = objKVI400.ExRightDis.ToString();
-            txtExDis.Text = objKVI400.ExDis.ToString();
-            txtExLength.Text = objKVI400.ExLength.ToString();
-            txtExWidth.Text = objKVI400.ExWidth.ToString();
-            txtExHeight.Text = objKVI400.ExHeight.ToString();
+            txtLength.Text = _objKvi400.Length.ToString();
+            txtDeepth.Text = _objKvi400.Deepth.ToString();
+            txtExRightDis.Text = _objKvi400.ExRightDis.ToString();
+            txtExDis.Text = _objKvi400.ExDis.ToString();
+            txtExLength.Text = _objKvi400.ExLength.ToString();
+            txtExWidth.Text = _objKvi400.ExWidth.ToString();
+            txtExHeight.Text = _objKvi400.ExHeight.ToString();
             //LEDSpotDis默认400
-            txtLEDSpotDis.Text = objKVI400.LEDSpotDis == 0 ? "400" : objKVI400.LEDSpotDis.ToString();
-            txtANYDis.Text = objKVI400.ANYDis.ToString();
-            txtDropDis1.Text = objKVI400.ANDropDis1.ToString();
-            txtDropDis2.Text = objKVI400.ANDropDis2.ToString();
-            txtDropDis3.Text = objKVI400.ANDropDis3.ToString();
-            txtDropDis4.Text = objKVI400.ANDropDis4.ToString();
-            txtDropDis5.Text = objKVI400.ANDropDis5.ToString();
-            txtIRDis1.Text = objKVI400.IRDis1.ToString();
-            txtIRDis2.Text = objKVI400.IRDis2.ToString();
-            txtIRDis3.Text = objKVI400.IRDis3.ToString();
+            txtLEDSpotDis.Text = _objKvi400.LEDSpotDis == 0 ? "400" : _objKvi400.LEDSpotDis.ToString();
+            txtANYDis.Text = _objKvi400.ANYDis.ToString();
+            txtDropDis1.Text = _objKvi400.ANDropDis1.ToString();
+            txtDropDis2.Text = _objKvi400.ANDropDis2.ToString();
+            txtDropDis3.Text = _objKvi400.ANDropDis3.ToString();
+            txtDropDis4.Text = _objKvi400.ANDropDis4.ToString();
+            txtDropDis5.Text = _objKvi400.ANDropDis5.ToString();
+            txtIRDis1.Text = _objKvi400.IRDis1.ToString();
+            txtIRDis2.Text = _objKvi400.IRDis2.ToString();
+            txtIRDis3.Text = _objKvi400.IRDis3.ToString();
         }
         /// <summary>
         /// 修改参数
@@ -400,7 +400,7 @@ namespace Compass
 
             #endregion
             //封装对象
-            KVI400 objKVI400 = new KVI400()
+            KVI400 objKvi400 = new KVI400()
             {
                 KVI400Id = Convert.ToInt32(modelView.Tag),
                 SidePanel = cobSidePanel.Text,
@@ -439,7 +439,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objKVI400Service.EditModel(objKVI400) == 1)
+                if (_objKvi400Service.EditModel(objKvi400) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;

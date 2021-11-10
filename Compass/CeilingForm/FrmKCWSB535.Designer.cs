@@ -1,6 +1,6 @@
 ﻿namespace Compass
 {
-    partial class FrmKCWSB535
+    partial class FrmKcwsb535
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmKCWSB535));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmKcwsb535));
             this.grbMARVEL = new System.Windows.Forms.GroupBox();
             this.lblLightType = new System.Windows.Forms.Label();
             this.cobLightType = new System.Windows.Forms.ComboBox();
@@ -679,7 +679,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1200, 675);
-            this.Name = "FrmKCWSB535";
+            this.Name = "FrmKcwsb535";
             this.Text = "KCWSB535";
             this.grbMARVEL.ResumeLayout(false);
             this.grbMARVEL.PerformLayout();

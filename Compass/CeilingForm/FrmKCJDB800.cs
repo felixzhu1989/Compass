@@ -6,11 +6,11 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmKCJDB800 : MetroFramework.Forms.MetroForm
+    public partial class FrmKcjdb800 : MetroFramework.Forms.MetroForm
     {
-        KCJDB800Service objKCJDB800Service = new KCJDB800Service();
-        private KCJDB800 objKCJDB800 = null;
-        public FrmKCJDB800()
+        readonly KCJDB800Service _objKcjdb800Service = new KCJDB800Service();
+        private readonly KCJDB800 _objKcjdb800 = null;
+        public FrmKcjdb800()
         {
             InitializeComponent();
             IniCob();
@@ -18,10 +18,10 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
         }
-        public FrmKCJDB800(Drawing drawing, ModuleTree tree) : this()
+        public FrmKcjdb800(Drawing drawing, ModuleTree tree) : this()
         {
-            objKCJDB800 = (KCJDB800)objKCJDB800Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-            if (objKCJDB800 == null) return;
+            _objKcjdb800 = (KCJDB800)_objKcjdb800Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            if (_objKcjdb800 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
@@ -100,36 +100,36 @@ namespace Compass
 
         private void FillData()
         {
-            if (objKCJDB800 == null) return;
-            modelView.Tag = objKCJDB800.KCJDB800Id;
+            if (_objKcjdb800 == null) return;
+            modelView.Tag = _objKcjdb800.KCJDB800Id;
 
-            cobGutter.Text = objKCJDB800.Gutter;
-            cobANSUL.Text = objKCJDB800.ANSUL;
-            cobANSide.Text = objKCJDB800.ANSide;
-            cobANDetectorEnd.Text = objKCJDB800.ANDetectorEnd;
-            cobANDetectorNo.Text = objKCJDB800.ANDetectorNo.ToString();
-            cobMARVEL.Text = objKCJDB800.MARVEL;
-            cobSSPType.Text = objKCJDB800.SSPType;
-            cobJapan.Text = objKCJDB800.Japan;
-            cobFCSide.Text = objKCJDB800.FCSide;
-            cobFCType.Text = objKCJDB800.FCType;
-            cobFCBlindNo.Text = objKCJDB800.FCBlindNo.ToString();
-            cobLightType.Text = objKCJDB800.LightType;
-            cobLightCable.Text = objKCJDB800.LightCable;
+            cobGutter.Text = _objKcjdb800.Gutter;
+            cobANSUL.Text = _objKcjdb800.ANSUL;
+            cobANSide.Text = _objKcjdb800.ANSide;
+            cobANDetectorEnd.Text = _objKcjdb800.ANDetectorEnd;
+            cobANDetectorNo.Text = _objKcjdb800.ANDetectorNo.ToString();
+            cobMARVEL.Text = _objKcjdb800.MARVEL;
+            cobSSPType.Text = _objKcjdb800.SSPType;
+            cobJapan.Text = _objKcjdb800.Japan;
+            cobFCSide.Text = _objKcjdb800.FCSide;
+            cobFCType.Text = _objKcjdb800.FCType;
+            cobFCBlindNo.Text = _objKcjdb800.FCBlindNo.ToString();
+            cobLightType.Text = _objKcjdb800.LightType;
+            cobLightCable.Text = _objKcjdb800.LightCable;
 
-            txtLength.Text = objKCJDB800.Length.ToString();
-            txtExRightDis.Text = objKCJDB800.ExRightDis.ToString();
-            txtExLength.Text = objKCJDB800.ExLength.ToString();
-            txtExWidth.Text = objKCJDB800.ExWidth.ToString();
-            txtExHeight.Text = objKCJDB800.ExHeight.ToString();
-            txtGutterWidth.Text = objKCJDB800.GutterWidth.ToString();
-            txtFCSideLeft.Text = objKCJDB800.FCSideLeft.ToString();
-            txtFCSideRight.Text = objKCJDB800.FCSideRight.ToString();
-            txtANDetectorDis1.Text = objKCJDB800.ANDetectorDis1.ToString();
-            txtANDetectorDis2.Text = objKCJDB800.ANDetectorDis2.ToString();
-            txtANDetectorDis3.Text = objKCJDB800.ANDetectorDis3.ToString();
-            txtANDetectorDis4.Text = objKCJDB800.ANDetectorDis4.ToString();
-            txtANDetectorDis5.Text = objKCJDB800.ANDetectorDis5.ToString();
+            txtLength.Text = _objKcjdb800.Length.ToString();
+            txtExRightDis.Text = _objKcjdb800.ExRightDis.ToString();
+            txtExLength.Text = _objKcjdb800.ExLength.ToString();
+            txtExWidth.Text = _objKcjdb800.ExWidth.ToString();
+            txtExHeight.Text = _objKcjdb800.ExHeight.ToString();
+            txtGutterWidth.Text = _objKcjdb800.GutterWidth.ToString();
+            txtFCSideLeft.Text = _objKcjdb800.FCSideLeft.ToString();
+            txtFCSideRight.Text = _objKcjdb800.FCSideRight.ToString();
+            txtANDetectorDis1.Text = _objKcjdb800.ANDetectorDis1.ToString();
+            txtANDetectorDis2.Text = _objKcjdb800.ANDetectorDis2.ToString();
+            txtANDetectorDis3.Text = _objKcjdb800.ANDetectorDis3.ToString();
+            txtANDetectorDis4.Text = _objKcjdb800.ANDetectorDis4.ToString();
+            txtANDetectorDis5.Text = _objKcjdb800.ANDetectorDis5.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -321,7 +321,7 @@ namespace Compass
             }
             #endregion
             //封装对象
-            KCJDB800 objKCJDB800 = new KCJDB800()
+            KCJDB800 objKcjdb800 = new KCJDB800()
             {
                 KCJDB800Id = Convert.ToInt32(modelView.Tag),
                 ANSUL = cobANSUL.Text,
@@ -355,7 +355,7 @@ namespace Compass
             //提交修改
             try
             {
-                if (objKCJDB800Service.EditModel(objKCJDB800) == 1)
+                if (_objKcjdb800Service.EditModel(objKcjdb800) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
                     this.DialogResult = DialogResult.OK;
