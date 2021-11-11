@@ -338,6 +338,9 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Location = new System.Drawing.Point(25, 49);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(750, 460);
@@ -468,7 +471,7 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "宽度";
             // 
-            // FrmHMF
+            // FrmHmf
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);

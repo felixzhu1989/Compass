@@ -67,7 +67,7 @@ namespace SolidWorksHelper
             int longGlassNo = item.LongGlassNo;
             while (sideLength < 29m)
             {
-                sideLength = sideLength + 1175m / 2m;//如果侧板太短，则减一块玻璃
+                sideLength += 1175m / 2m;//如果侧板太短，则减一块玻璃
                 longGlassNo--;
             }
 

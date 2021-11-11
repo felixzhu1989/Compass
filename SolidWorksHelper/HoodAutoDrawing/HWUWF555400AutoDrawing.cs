@@ -558,7 +558,7 @@ namespace SolidWorksHelper
                 //----------MESH油网侧板----------
                 if ((item.Inlet == "LEFT" && item.ANSide == "RIGHT") || (item.ANSide == "LEFT" && item.Inlet == "RIGHT"))//不同一侧
                 {
-                    if ((meshSideLength - 20m / 1000m) < 57m / 1000m) meshSideLength = meshSideLength + 249m / 1000m;
+                    if ((meshSideLength - 20m / 1000m) < 57m / 1000m) meshSideLength += 249m / 1000m;
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0162-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();
@@ -584,7 +584,7 @@ namespace SolidWorksHelper
                 }
                 else
                 {
-                    if (meshSideLength * 2 < 57m / 1000m) meshSideLength = meshSideLength + 249m / 1000m;
+                    if (meshSideLength * 2 < 57m / 1000m) meshSideLength += 249m / 1000m;
                     if ((meshSideLength - 20m / 1000m) > 57m / 1000m)
                     {
                         if (item.Inlet == "LEFT")

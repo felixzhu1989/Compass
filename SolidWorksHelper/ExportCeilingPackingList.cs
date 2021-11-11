@@ -10,16 +10,15 @@ namespace SolidWorksHelper
 {
     public class ExportCeilingPackingList
     {
-
-        int warnings = 0;
-        int errors = 0;
-        readonly Dictionary<string, int> sheetMetaDic = new Dictionary<string, int>();
-        readonly List<CeilingAccessory> ceilingAccessories=new List<CeilingAccessory>();
-        readonly CeilingAccessoryService objCeilingAccessoryService=new CeilingAccessoryService();
-        readonly DrawingPlanService objDrawingPlanService=new DrawingPlanService();
+        readonly Dictionary<string, int> _sheetMetaDic = new Dictionary<string, int>();
+        readonly List<CeilingAccessory> _ceilingAccessories=new List<CeilingAccessory>();
+        readonly CeilingAccessoryService _objCeilingAccessoryService=new CeilingAccessoryService();
+        readonly DrawingPlanService _objDrawingPlanService=new DrawingPlanService();
         
         public void CeilingAssyToPackingList(SldWorks swApp, string assyPath,Project objProject,int userId,string sbu)
         {
+            int warnings = 0;
+            int errors = 0;
             swApp.CommandInProgress = true;
             List<CeilingAccessory> celingAccessories = new List<CeilingAccessory>();
             try
@@ -76,15 +75,15 @@ namespace SolidWorksHelper
                                     keyWord = keyWord.Substring(keyWord.IndexOf("[")).ToUpper();
                                 }
 
-                                if (sheetMetaDic.ContainsKey(keyWord)) sheetMetaDic[keyWord] += 1;
-                                else sheetMetaDic.Add(keyWord, 1);
+                                if (_sheetMetaDic.ContainsKey(keyWord)) _sheetMetaDic[keyWord] += 1;
+                                else _sheetMetaDic.Add(keyWord, 1);
                             }
                         }
                     }
                 }
                 //关闭装配体零件
                 //swApp.CloseDoc(assyPath);
-                foreach (var item in sheetMetaDic)
+                foreach (var item in _sheetMetaDic)
                 {
                     //获取关键字，查找对象
                     string partNo = "";
@@ -92,14 +91,14 @@ namespace SolidWorksHelper
                     string width = "";
                     if (item.Key.Contains("-")) partNo = item.Key.Substring(1, item.Key.IndexOf("-")-1);
                     else partNo = item.Key.Substring(1, item.Key.IndexOf("]")-1);
-                    CeilingAccessory objCeilingAccessory = objCeilingAccessoryService.GetCeilingAccessoryByPartNo(partNo);
+                    CeilingAccessory objCeilingAccessory = _objCeilingAccessoryService.GetCeilingAccessoryByPartNo(partNo);
                     if(objCeilingAccessory==null)continue;
                     //给对象赋值
                     objCeilingAccessory.PartNo = item.Key.Substring(1, item.Key.IndexOf("]")-1);
                     objCeilingAccessory.Quantity = item.Value;
                     objCeilingAccessory.ProjectId = objProject.ProjectId;
                     objCeilingAccessory.UserId = userId;
-                    objCeilingAccessory.Location = objDrawingPlanService.GetDrawingPlanByProjectId(objProject.ProjectId.ToString(),sbu)[0].Item;
+                    objCeilingAccessory.Location = _objDrawingPlanService.GetDrawingPlanByProjectId(objProject.ProjectId.ToString(),sbu)[0].Item;
 
                     if (item.Key.Contains(")"))
                     {
@@ -114,7 +113,7 @@ namespace SolidWorksHelper
                         objCeilingAccessory.Length = length;
                     }
                     //添加list
-                    ceilingAccessories.Add(objCeilingAccessory);
+                    _ceilingAccessories.Add(objCeilingAccessory);
                 }
             }
             catch (Exception ex)
@@ -123,15 +122,15 @@ namespace SolidWorksHelper
             }
             finally
             {
-                sheetMetaDic.Clear();
+                _sheetMetaDic.Clear();
                 swApp.CloseDoc(assyPath);//关闭，很快
                 swApp.CommandInProgress = false; //及时关闭外部命令调用，否则影响SolidWorks的使用
             }
             //基于事务ceilingCutLists提交SQLServer
-            if (ceilingAccessories.Count == 0) return;
+            if (_ceilingAccessories.Count == 0) return;
             try
             {
-                if (objCeilingAccessoryService.ImportCeilingPackingListByTran(ceilingAccessories)) ceilingAccessories.Clear();
+                if (_objCeilingAccessoryService.ImportCeilingPackingListByTran(_ceilingAccessories)) _ceilingAccessories.Clear();
             }
             catch (Exception ex)
             {

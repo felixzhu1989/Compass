@@ -320,3 +320,7 @@ D:\Compass\Compass\obj\Debug\Compass.exe
 D:\Compass\Compass\obj\Debug\Compass.pdb
 D:\Compass\Compass\obj\Debug\Compass.csproj.AssemblyReference.cache
 D:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
+E:\Compass\Compass\obj\Debug\Compass.FrmHme.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmHmf.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmMarineAutoDrawing.resources
+E:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete

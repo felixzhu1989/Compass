@@ -570,8 +570,6 @@ namespace SolidWorksHelper
                 swPart.Parameter("D2@Base-Flange1").SystemValue = item.Length / 1000m;
                 swPart.Parameter("D3@Sketch1").SystemValue = (item.Deepth - 360m - 482m) / 1000m;
                 swPart.Parameter("D1@Sketch32").SystemValue = midRoofSecondHoleDis;
-                swFeat = swComp.FeatureByName("NAMEPLATE");
-                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("LPattern1");
                 if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
                 else

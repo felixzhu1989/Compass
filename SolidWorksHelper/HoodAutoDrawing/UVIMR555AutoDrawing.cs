@@ -523,7 +523,7 @@ namespace SolidWorksHelper
                 //----------MESH油网侧板----------
                 if (item.ANSUL == "YES")
                 {
-                    if (meshSideLength * 2 < 57m / 1000m) meshSideLength = meshSideLength + 249m / 1000m;
+                    if (meshSideLength * 2 < 57m / 1000m) meshSideLength += 249m / 1000m;
                     if ((meshSideLength - 20m / 1000m) > 57m / 1000m)
                     {
                         if (item.ANSide == "LEFT")
@@ -679,7 +679,7 @@ namespace SolidWorksHelper
                 else
                 {
                     if (2 * meshSideLength < 15m / 1000m && meshSideLength > 1.5m / 1000m)
-                        meshSideLength = meshSideLength + 249m / 1000m;
+                        meshSideLength += 249m / 1000m;
                     if (meshSideLength > 40m / 1000m)
                     {
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0012-2"));
@@ -792,8 +792,6 @@ namespace SolidWorksHelper
                 else
                     swPart.Parameter("D2@草图26").SystemValue = ((item.Deepth - 800m - 260m) / 2m + 55m) / 3000m;
                 swPart.Parameter("D1@Sketch3").SystemValue = midRoofSecondHoleDis - 2m / 1000m;
-                swFeat = swComp.FeatureByName("NAMEPLATE");
-                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("LPattern1");
                 if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
                 else

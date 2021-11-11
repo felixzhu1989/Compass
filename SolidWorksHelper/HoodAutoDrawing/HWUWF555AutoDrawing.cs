@@ -558,7 +558,7 @@ namespace SolidWorksHelper
                 //----------MESH油网侧板----------
                 if ((item.Inlet == "LEFT" && item.ANSide == "RIGHT") || (item.ANSide == "LEFT" && item.Inlet == "RIGHT"))//不同一侧
                 {
-                    if ((meshSideLength - 20m / 1000m) < 57m / 1000m) meshSideLength = meshSideLength + 249m / 1000m;
+                    if ((meshSideLength - 20m / 1000m) < 57m / 1000m) meshSideLength += 249m / 1000m;
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0162-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();
@@ -584,7 +584,7 @@ namespace SolidWorksHelper
                 }
                 else
                 {
-                    if (meshSideLength * 2 < 57m / 1000m) meshSideLength = meshSideLength + 249m / 1000m;
+                    if (meshSideLength * 2 < 57m / 1000m) meshSideLength += 249m / 1000m;
                     if ((meshSideLength - 20m / 1000m) > 57m / 1000m)
                     {
                         if (item.Inlet == "LEFT")
@@ -750,8 +750,8 @@ namespace SolidWorksHelper
                 //}
                 //----------MiddleRoof灯板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0031-1"));
-                swEdit.FNHM0031(swComp,"UW",item.Length,item.Deepth,"555",item.ExRightDis,midRoofTopHoleDis,midRoofSecondHoleDis,midRoofHoleNo,item.LightType,item.LightYDis,item.LEDSpotNo,item.LEDSpotDis,item.ANSUL,item.ANDropNo,item.ANYDis,item.ANDropDis1,item.ANDropDis2,item.ANDropDis3,item.ANDropDis4,item.ANDropDis5,item.ANDetectorEnd,item.ANDetectorNo,item.ANDetectorDis1,item.ANDetectorDis2,item.ANDetectorDis3,item.ANDetectorDis4,item.ANDetectorDis5,item.Bluetooth,item.UVType,item.MARVEL,item.IRNo,item.IRDis1,item.IRDis2,item.IRDis3);
-                
+                swEdit.FNHM0031(swComp, "UW", item.Length, item.Deepth, "555", item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, item.LightYDis, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, item.ANDetectorEnd, item.ANDetectorNo, item.ANDetectorDis1, item.ANDetectorDis2, item.ANDetectorDis3, item.ANDetectorDis4, item.ANDetectorDis5, item.Bluetooth, item.UVType, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
+
                 //华为灯板左右加高
                 if (item.Length >= 2200m && item.Length <= 2400m)
                 {
@@ -775,26 +775,27 @@ namespace SolidWorksHelper
                 if (item.ANSUL == "YES") swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 250) / 1000m;
                 else swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 100m) / 1000m;
 
-                //----------大侧板----------
+
+                #region 大侧板
                 if (item.SidePanel == "BOTH")
                 {
                     //LEFT
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0067-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0001(swComp, item.Deepth, 555m, sidePanelSideCjNo, sidePanelDownCjNo);
+                    swEdit.FNHS0067(swComp, item.Deepth, 555m, sidePanelSideCjNo, sidePanelDownCjNo);
 
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0068-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0002(swComp, item.Deepth, 555m);
+                    swEdit.FNHS0068(swComp, item.Deepth, 555m);
 
                     //RIGHT
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0069-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0003(swComp, item.Deepth, 555m, sidePanelSideCjNo, sidePanelDownCjNo);
+                    swEdit.FNHS0069(swComp, item.Deepth, 555m, sidePanelSideCjNo, sidePanelDownCjNo);
 
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0070-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0004(swComp, item.Deepth, 555m);
+                    swEdit.FNHS0070(swComp, item.Deepth, 555m);
 
                     if (item.WaterCollection == "YES")
                     {
@@ -829,11 +830,11 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0067-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0001(swComp, item.Deepth, 555m, sidePanelSideCjNo, sidePanelDownCjNo);
+                    swEdit.FNHS0067(swComp, item.Deepth, 555m, sidePanelSideCjNo, sidePanelDownCjNo);
 
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0068-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0002(swComp, item.Deepth, 555m);
+                    swEdit.FNHS0068(swComp, item.Deepth, 555m);
 
                     if (item.WaterCollection == "YES")
                     {
@@ -863,11 +864,11 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0069-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0003(swComp, item.Deepth, 555m, sidePanelSideCjNo, sidePanelDownCjNo);
+                    swEdit.FNHS0069(swComp, item.Deepth, 555m, sidePanelSideCjNo, sidePanelDownCjNo);
 
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0070-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0004(swComp, item.Deepth, 555m);
+                    swEdit.FNHS0070(swComp, item.Deepth, 555m);
 
                     if (item.WaterCollection == "YES")
                     {
@@ -903,9 +904,8 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0072-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                }
-
-
+                } 
+                #endregion
 
                 //------------F型新风腔主体----------
 

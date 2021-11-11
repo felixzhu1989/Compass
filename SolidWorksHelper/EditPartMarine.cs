@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SolidWorks.Interop.sldworks;
+﻿using SolidWorks.Interop.sldworks;
 
 namespace SolidWorksHelper
 {
     class EditPartMarine
     {
-        ModelDoc2 swPart = default(ModelDoc2);
-        Feature swFeat = default(Feature);
+        ModelDoc2 swPart;
+        Feature swFeat;
 
         public void MNCC0006(Component2 swComp, string model, decimal height, string powerPlug, decimal powerPlugDis, string netPlug, string plugPosition, string heater, string temperatureSwitch)
         {

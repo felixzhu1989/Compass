@@ -67,7 +67,7 @@ namespace SolidWorksHelper
             if (firstCjDis < 15m)
             {
                 cjNo--;
-                firstCjDis = firstCjDis + 15m;
+                firstCjDis += 15m;
             }
 
 

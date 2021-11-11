@@ -10,9 +10,13 @@ namespace Compass
     {
         readonly KCWSB265Service _objKcwsb265Service = new KCWSB265Service();
         private readonly KCWSB265 _objKcwsb265 = null;
+        private readonly ModelView _modelView;
         public FrmKcwsb265()
         {
             InitializeComponent();
+            _modelView = new ModelView();
+            panel1.Controls.Add(_modelView);
+            _modelView.Dock = DockStyle.Fill;
             IniCob();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
@@ -23,8 +27,8 @@ namespace Compass
             _objKcwsb265 = (KCWSB265)_objKcwsb265Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (_objKcwsb265 == null) return;
             this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            modelView.GetData(drawing, tree);
-            modelView.ShowImage();
+            _modelView.GetData(drawing, tree);
+            _modelView.ShowImage();
             FillData();
         }
         private void IniCob()
@@ -52,7 +56,6 @@ namespace Compass
             cobMARVEL.Items.Add("NO");
             cobMARVEL.SelectedIndex = 1;
             //入水口
-            cobInlet.Items.Add("FRONT");
             cobInlet.Items.Add("UP");
             cobInlet.SelectedIndex = 0;
             //排水槽位置
@@ -87,7 +90,7 @@ namespace Compass
         private void FillData()
         {
             if (_objKcwsb265 == null) return;
-            modelView.Tag = _objKcwsb265.KCWSB265Id;
+            _modelView.Tag = _objKcwsb265.KCWSB265Id;
 
             cobSidePanel.Text = _objKcwsb265.SidePanel;
             cobGutter.Text = _objKcwsb265.Gutter;
@@ -114,7 +117,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (modelView.Tag.ToString().Length == 0) return;
+            if (_modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 100m)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -241,7 +244,7 @@ namespace Compass
             //封装对象
             KCWSB265 objKcwsb265 = new KCWSB265()
             {
-                KCWSB265Id = Convert.ToInt32(modelView.Tag),
+                KCWSB265Id = Convert.ToInt32(_modelView.Tag),
                 ANSUL = cobANSUL.Text,
                 ANSide = cobANSide.Text.Trim().Length == 0 ? "NO" : cobANSide.Text,
                 MARVEL = cobMARVEL.Text,

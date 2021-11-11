@@ -256,7 +256,7 @@ namespace SolidWorksHelper
                         swFeat = swComp.FeatureByName("BCJ-LEFT");
                         swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                         swPart.Parameter("D11@Sketch19").SystemValue = (item.LeftDis + 1m) / 1000m;
-                        leftSBDis = leftSBDis + 90m;
+                        leftSBDis += 90m;
                     }
                     else
                     {
@@ -268,7 +268,7 @@ namespace SolidWorksHelper
                         swFeat = swComp.FeatureByName("BCJ-RIGHT");
                         swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                         swPart.Parameter("D11@Sketch20").SystemValue = (item.RightDis + 1m) / 1000m;
-                        rightSBDis = rightSBDis + 90m;
+                        rightSBDis += 90m;
                     }
                     else
                     {

@@ -1044,7 +1044,7 @@ namespace Compass
                 });
                 if (item.Quantity > 1)
                 {
-                    item.Quantity = item.Quantity - 1;
+                    item.Quantity -= 1;
                     editCeilingAccessories.Add(item);
                 }
                 else
