@@ -1,28 +1,33 @@
 # Compass
+
+<div align="center">
+ <img src="https://raw.githubusercontent.com/felixzhu1989/Compass/main/Compass/images/COMPASS.png" alt="compass">
+</div>
+
+<br/>
+
 <div align="center">  
+  
   <a href="https://github.com/felixzhu1989/Compass/releases">
     <img src="https://img.shields.io/github/release/iawia002/annie.svg?style=flat-square" alt="GitHub release">
   </a> 
 </div>
-<div>
- <img src="https://raw.githubusercontent.com/felixzhu1989/Compass/main/Compass/images/COMPASS.png" alt="compass">
-</div>
 
+“ComPass”是Halton（上海）项目管理及钣金SolidWorks自动作图程序，使用C#开发。
 
-Halton项目管理及钣金SolidWorks自动作图程序.
+# 搭建数据库
 
-# 数据库
-
-SQLServerDB文件夹中有aql脚本文件，用于新建数据库：
+...\SQLServerDB 文件夹中有sql脚本文件，用于新建数据库：
 
 1. 在SQL数据库中打开CompassDB.sql文件，建立数据库；
 2. 打开CompassDB_Table.sql添加表；
 3. 打开CompassDB_Constraint.sql建立表间关系；
-4. CompassDB_Model.sql里边是公司的模型数据。
+4. CompassDB_Model.sql里边是Halton的模型数据。
 
+修改数据库连接
 手动添加用户以登陆。
 
-在公司外可以调试，但是没法实际作图，因为SW模型文件在公司的电脑的PDM上，这个无法外网共享。
+注意：在Halton局域网以外可以调试，但是没法实际作图，因为SW模型文件存储在Halton的PDM中。
 
 
 # 过程记录
