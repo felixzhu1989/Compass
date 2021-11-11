@@ -1,6 +1,13 @@
 # Compass
+<div align="center">  
+  <a href="https://github.com/felixzhu1989/Compass/releases">
+    <img src="https://img.shields.io/github/release/iawia002/annie.svg?style=flat-square" alt="GitHub release">
+  </a> 
+</div>
+<div>
+ <img src="https://raw.githubusercontent.com/felixzhu1989/Compass/main/Compass/images/COMPASS.png" alt="compass">
+</div>
 
-![image](https://raw.githubusercontent.com/felixzhu1989/Compass/main/Compass/images/COMPASS.png)
 
 Halton项目管理及钣金SolidWorks自动作图程序.
 
