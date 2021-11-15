@@ -7,7 +7,8 @@
 <br/>
 
 <div align="center">  
-  
+  ![lang](https://img.shields.io/badge/language-csharp-green.svg)
+  ![Github](https://img.shields.io/badge/Github-build-blue.svg?style=flat-square)
   <a href="https://github.com/felixzhu1989/Compass/releases">
     <img src="https://img.shields.io/github/release/iawia002/annie.svg?style=flat-square" alt="GitHub release">
   </a> 
