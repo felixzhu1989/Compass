@@ -165,6 +165,12 @@
     <Compile Include="CeilingForm\FrmLKS270HCL.Designer.cs">
       <DependentUpon>FrmLKS270HCL.cs</DependentUpon>
     </Compile>
+    <Compile Include="MarineForm\FrmHMM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MarineForm\FrmHMM.Designer.cs">
+      <DependentUpon>FrmHMM.cs</DependentUpon>
+    </Compile>
     <Compile Include="MarineForm\FrmHMF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1066,6 +1072,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MarineForm\FrmHMF.resx">
       <DependentUpon>FrmHMF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MarineForm\FrmHMM.resx">
+      <DependentUpon>FrmHMM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SingletonForm\FrmCategories.resx">
       <DependentUpon>FrmCategories.cs</DependentUpon>

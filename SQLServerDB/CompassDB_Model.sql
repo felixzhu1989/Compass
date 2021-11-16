@@ -2921,3 +2921,27 @@ create table HMF
 	NamePlate varchar(3),
 	WindPressure varchar(3)
 )
+-----------------------------------------------------------HMM-----------------------------------------------------------------------------
+if exists (select * from sysobjects where name='HMM')
+drop table HMM
+go
+create table HMM
+(
+	HMMId int identity(1,1),
+	ModuleTreeId int,
+	Length decimal(6,2),
+	Width decimal(6,2),
+	Height decimal(6,2),
+	InletDia decimal(6,2),
+	OutletDia decimal(6,2),
+	OutletHeight decimal(6,2),
+	HangPosition varchar(4),
+	PowerPlug varchar(5),
+	PowerPlugDis decimal(6,2),
+	NetPlug varchar(6),
+	PlugPosition varchar(5),
+	Heater varchar(3),
+	TemperatureSwitch varchar(3),
+	NamePlate varchar(3),
+	WindPressure varchar(3)
+)

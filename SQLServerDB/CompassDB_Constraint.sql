@@ -2325,3 +2325,14 @@ if exists (select * from sysobjects where name='fk_ModuleTreeId_HMF')
 GO
 alter table HMF add constraint fk_ModuleTreeId_HMF foreign key(ModuleTreeId) references ModuleTreeMarine (ModuleTreeId)
 GO
+-------------------------------------HMM-----------------------------------------------------------
+if exists (select * from sysobjects where name='pk_HMMId')
+    alter table HMM drop constraint pk_HMMId
+GO
+alter table HMM add constraint pk_HMMId primary key (HMMId)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_HMM')
+    alter table HMM drop constraint fk_ModuleTreeId_HMM
+GO
+alter table HMM add constraint fk_ModuleTreeId_HMM foreign key(ModuleTreeId) references ModuleTreeMarine (ModuleTreeId)
+GO
