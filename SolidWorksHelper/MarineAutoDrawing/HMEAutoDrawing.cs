@@ -372,7 +372,7 @@ namespace SolidWorksHelper
                 //----------内胆---------------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0006-2");
 
-                swEdit.MNCC0006(swComp, "HME", item.Height, item.PowerPlug, item.PowerPlugDis, item.NetPlug, item.PlugPosition, item.Heater, item.TemperatureSwitch);
+                swEdit.MNCC0006(swComp, "HME", item.Height, item.PowerPlug, item.PowerPlugDis, item.NetPlug, item.PlugPosition, item.Heater, item.TemperatureSwitch, item.WindPressure);
 
 
                 //----------外壳-底板(后)------------------------MNCC0003
@@ -612,10 +612,16 @@ namespace SolidWorksHelper
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0006-1");
                 swPart = swComp.GetModelDoc2();
+                
+
+                swPart.Parameter("D3@Sketch12").SystemValue = 90m / 1000m;
+                swPart.Parameter("D2@Sketch13").SystemValue = 90m / 1000m;
+                swPart.Parameter("D1@Sketch14").SystemValue = 90m / 1000m;
+                swPart.Parameter("D2@Sketch15").SystemValue = 90m / 1000m;
 
 
 
-                if (item.Height < 220m || item.Height == 220m)
+                if (item.Height < 220m )
                 {
                     swPart.Parameter("Korkeus@Sketch1").SystemValue = 134.5m / 1000m;
                 }

@@ -376,7 +376,7 @@ namespace SolidWorksHelper
                 //----------内胆---------------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0006-2");
 
-                swEdit.MNCC0006(swComp, "HMF", item.Height, item.PowerPlug, item.PowerPlugDis, item.NetPlug, item.PlugPosition, item.Heater, item.TemperatureSwitch);
+                swEdit.MNCC0006(swComp, "HMF", item.Height, item.PowerPlug, item.PowerPlugDis, item.NetPlug, item.PlugPosition, item.Heater, item.TemperatureSwitch, item.WindPressure);
 
 
                
@@ -617,6 +617,13 @@ namespace SolidWorksHelper
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0006-1");
                 swPart = swComp.GetModelDoc2();
+                
+
+
+                swPart.Parameter("D3@Sketch12").SystemValue = 90m / 1000m;
+                swPart.Parameter("D2@Sketch13").SystemValue = 90m / 1000m;
+                swPart.Parameter("D1@Sketch14").SystemValue = 90m / 1000m;
+                swPart.Parameter("D2@Sketch15").SystemValue = 90m / 1000m;
 
 
 

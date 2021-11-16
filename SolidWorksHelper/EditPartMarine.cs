@@ -7,7 +7,7 @@ namespace SolidWorksHelper
         ModelDoc2 swPart;
         Feature swFeat;
 
-        public void MNCC0006(Component2 swComp, string model, decimal height, string powerPlug, decimal powerPlugDis, string netPlug, string plugPosition, string heater, string temperatureSwitch)
+        public void MNCC0006(Component2 swComp, string model, decimal height, string powerPlug, decimal powerPlugDis, string netPlug, string plugPosition, string heater, string temperatureSwitch, string windPressure)
         {
             swPart = swComp.GetModelDoc2();
             if (height < 220m)
@@ -212,7 +212,18 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(0, 2, null);
 
             }
+            //测压管
+            if (windPressure == "Yes")
+            {
+                swFeat = swComp.FeatureByName("Cut-Extrude44");
+                swFeat.SetSuppression2(1, 2, null);
+            }
+            else
+            {
+                swFeat = swComp.FeatureByName("Cut-Extrude44");
+                swFeat.SetSuppression2(0, 2, null);
 
+            }
         }
         
         public void MNCI0006(Component2 swComp, string model)
@@ -237,7 +248,16 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(0, 2, null);
 
             }
+            else if (model == "HMM")
+            {
+                swFeat = swComp.FeatureByName("HME");
+                swFeat.SetSuppression2(0, 2, null);
+                swFeat = swComp.FeatureByName("HMF");
+                swFeat.SetSuppression2(0, 2, null);
+                swFeat = swComp.FeatureByName("HMM");
+                swFeat.SetSuppression2(1, 2, null);
 
+            }
         }
 
 
