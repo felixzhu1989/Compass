@@ -178,6 +178,24 @@ namespace SolidWorksHelper
 
                 #endregion
 
+
+                #region 测压管
+                //测压管//YES/NO
+                if (item.WindPressure == "Yes")
+                {
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "测风压管^HMM-2");
+                    swComp.SetSuppression2(2); //2解压缩，0压缩
+
+                }
+                else if (item.WindPressure == "No")
+                {
+
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "测风压管^HMM-2");
+                    swComp.SetSuppression2(0); //2解压缩，0压缩
+
+                }
+
+                #endregion
                 //-------------分块（一组）--------------------
 
                 //----------------外壳-大底板--------------------------
@@ -593,7 +611,7 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(1, 2, null);
                         swFeat = swComp.FeatureByName("NAC21");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D3@Sketch5").SystemValue = 55m / 1000m;
+                        swPart.Parameter("D3@Sketch5").SystemValue = 28m / 1000m;
                     }
                     else
                     {

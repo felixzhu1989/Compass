@@ -323,6 +323,4 @@ E:\Compass\Compass\obj\Debug\Compass.FrmHme.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmHmf.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmMarineAutoDrawing.resources
 E:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
-D:\Compass\Compass\bin\Debug\eDrawings.Interop.EModelMarkupControl.dll
-D:\Compass\Compass\bin\Debug\eDrawings.Interop.EModelViewControl.dll
 D:\Compass\Compass\obj\Debug\Compass.csprojAssemblyReference.cache
