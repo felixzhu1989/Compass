@@ -99,9 +99,10 @@
             this.btnEditData.Location = new System.Drawing.Point(651, 615);
             this.btnEditData.Name = "btnEditData";
             this.btnEditData.Size = new System.Drawing.Size(122, 36);
-            this.btnEditData.TabIndex = 31;
+            this.btnEditData.TabIndex = 3;
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
+            this.btnEditData.Click += new System.EventHandler(this.BtnEditData_Click);
             // 
             // groupBox1
             // 
@@ -121,7 +122,7 @@
             this.groupBox1.Location = new System.Drawing.Point(24, 516);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(274, 135);
-            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "暖箱外框尺寸";
             // 
@@ -357,7 +358,7 @@
             this.groupBox4.Location = new System.Drawing.Point(325, 520);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(320, 132);
-            this.groupBox4.TabIndex = 29;
+            this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "辅件配置";
             // 
@@ -388,7 +389,7 @@
             this.groupBox2.Location = new System.Drawing.Point(818, 75);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(359, 208);
-            this.groupBox2.TabIndex = 30;
+            this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "电源、网线插口配置";
             // 

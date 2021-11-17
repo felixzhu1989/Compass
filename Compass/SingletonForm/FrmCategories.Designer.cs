@@ -34,6 +34,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCategories));
             this.label1 = new System.Windows.Forms.Label();
             this.dgvCategory = new System.Windows.Forms.DataGridView();
+            this.CategoryId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ParentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModelPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditCategory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteCategory = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,13 +66,6 @@
             this.txtModelPath = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnCategoryTree = new System.Windows.Forms.Button();
-            this.CategoryId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ParentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModelPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategory)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbModelImage)).BeginInit();
@@ -118,9 +118,65 @@
             this.dgvCategory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCategory.Size = new System.Drawing.Size(926, 358);
             this.dgvCategory.TabIndex = 9;
-            this.dgvCategory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvCategory_CellDoubleClick);
             this.dgvCategory.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvCategory_RowPostPaint);
             this.dgvCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvCategory_KeyDown);
+            // 
+            // CategoryId
+            // 
+            this.CategoryId.DataPropertyName = "CategoryId";
+            this.CategoryId.HeaderText = "分类编号";
+            this.CategoryId.Name = "CategoryId";
+            this.CategoryId.ReadOnly = true;
+            this.CategoryId.Width = 90;
+            // 
+            // ParentId
+            // 
+            this.ParentId.DataPropertyName = "ParentId";
+            this.ParentId.HeaderText = "父类编号";
+            this.ParentId.Name = "ParentId";
+            this.ParentId.ReadOnly = true;
+            this.ParentId.Width = 90;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "CategoryName";
+            this.CategoryName.HeaderText = "分类名称";
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.ReadOnly = true;
+            this.CategoryName.Width = 130;
+            // 
+            // CategoryDesc
+            // 
+            this.CategoryDesc.DataPropertyName = "CategoryDesc";
+            this.CategoryDesc.HeaderText = "分类描述";
+            this.CategoryDesc.Name = "CategoryDesc";
+            this.CategoryDesc.ReadOnly = true;
+            this.CategoryDesc.Width = 220;
+            // 
+            // Model
+            // 
+            this.Model.DataPropertyName = "Model";
+            this.Model.HeaderText = "所属模型";
+            this.Model.Name = "Model";
+            this.Model.ReadOnly = true;
+            this.Model.Width = 90;
+            // 
+            // SubType
+            // 
+            this.SubType.DataPropertyName = "SubType";
+            this.SubType.HeaderText = "子类型号";
+            this.SubType.Name = "SubType";
+            this.SubType.ReadOnly = true;
+            this.SubType.Width = 90;
+            // 
+            // ModelPath
+            // 
+            this.ModelPath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ModelPath.DataPropertyName = "ModelPath";
+            this.ModelPath.HeaderText = "模型地址";
+            this.ModelPath.Name = "ModelPath";
+            this.ModelPath.ReadOnly = true;
+            this.ModelPath.Width = 86;
             // 
             // contextMenuStrip
             // 
@@ -356,63 +412,6 @@
             this.btnCategoryTree.UseVisualStyleBackColor = false;
             this.btnCategoryTree.Visible = false;
             this.btnCategoryTree.Click += new System.EventHandler(this.BtnCategoryTree_Click);
-            // 
-            // CategoryId
-            // 
-            this.CategoryId.DataPropertyName = "CategoryId";
-            this.CategoryId.HeaderText = "分类编号";
-            this.CategoryId.Name = "CategoryId";
-            this.CategoryId.ReadOnly = true;
-            this.CategoryId.Width = 90;
-            // 
-            // ParentId
-            // 
-            this.ParentId.DataPropertyName = "ParentId";
-            this.ParentId.HeaderText = "父类编号";
-            this.ParentId.Name = "ParentId";
-            this.ParentId.ReadOnly = true;
-            this.ParentId.Width = 90;
-            // 
-            // CategoryName
-            // 
-            this.CategoryName.DataPropertyName = "CategoryName";
-            this.CategoryName.HeaderText = "分类名称";
-            this.CategoryName.Name = "CategoryName";
-            this.CategoryName.ReadOnly = true;
-            this.CategoryName.Width = 130;
-            // 
-            // CategoryDesc
-            // 
-            this.CategoryDesc.DataPropertyName = "CategoryDesc";
-            this.CategoryDesc.HeaderText = "分类描述";
-            this.CategoryDesc.Name = "CategoryDesc";
-            this.CategoryDesc.ReadOnly = true;
-            this.CategoryDesc.Width = 220;
-            // 
-            // Model
-            // 
-            this.Model.DataPropertyName = "Model";
-            this.Model.HeaderText = "所属模型";
-            this.Model.Name = "Model";
-            this.Model.ReadOnly = true;
-            this.Model.Width = 90;
-            // 
-            // SubType
-            // 
-            this.SubType.DataPropertyName = "SubType";
-            this.SubType.HeaderText = "子类型号";
-            this.SubType.Name = "SubType";
-            this.SubType.ReadOnly = true;
-            this.SubType.Width = 90;
-            // 
-            // ModelPath
-            // 
-            this.ModelPath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ModelPath.DataPropertyName = "ModelPath";
-            this.ModelPath.HeaderText = "模型地址";
-            this.ModelPath.Name = "ModelPath";
-            this.ModelPath.ReadOnly = true;
-            this.ModelPath.Width = 86;
             // 
             // FrmCategories
             // 

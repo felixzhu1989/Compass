@@ -245,11 +245,5 @@ namespace Compass
         {
             if (e.KeyValue == 46) TsmiDeleteCeilingAccessory_Click(null, null);
         }
-        /// <summary>
-        /// 双击
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DgvCeilingAccessories_DoubleClick(object sender, EventArgs e) => TsmiEditCeilingAccessory_Click(null, null);
     }
 }

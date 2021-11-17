@@ -196,15 +196,6 @@ namespace Compass
             }
         }
         /// <summary>
-        /// 双击修改分类
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DgvCategory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            TsmiEditCategory_Click(null, null);
-        }
-        /// <summary>
         /// 删除分类
         /// </summary>
         /// <param name="sender"></param>

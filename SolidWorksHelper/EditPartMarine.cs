@@ -22,7 +22,7 @@ namespace SolidWorksHelper
                 swPart.Parameter("D3@Sketch16").SystemValue = 22.5m / 1000m;
             }
             
-            else
+            if (height > 220m)
             {
                 swPart.Parameter("Korkeus2@Sketch1").SystemValue = 129.75m / 1000m;
                 swPart.Parameter("D3@Sketch16").SystemValue = 14.5m / 1000m;
@@ -56,6 +56,19 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(0, 2, null);
                 swFeat = swComp.FeatureByName("HMM");
                 swFeat.SetSuppression2(1, 2, null);
+                if(heater == "No")
+                {
+                    swFeat = swComp.FeatureByName("Relay_HMM");
+                    swFeat.SetSuppression2(0, 2, null);
+
+                }
+                else
+                {
+                    swFeat = swComp.FeatureByName("Relay_HMM");
+                    swFeat.SetSuppression2(1, 2, null);
+
+                }
+
             }
             #endregion
 
@@ -72,7 +85,7 @@ namespace SolidWorksHelper
                 {
                     swFeat = swComp.FeatureByName("2xRJ12-R");
                     swFeat.SetSuppression2(1, 2, null);
-                    swPart.Parameter("D3@Sketch67").SystemValue = (powerPlugDis - 140m - 53m) / 1000m;
+                    swPart.Parameter("D3@Sketch67").SystemValue = (powerPlugDis - 140m - 51m) / 1000m;
                 }
                 //电源插口
                 if (powerPlug == "NAC21" || powerPlug == "NAC31")

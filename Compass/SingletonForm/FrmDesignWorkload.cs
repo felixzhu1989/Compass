@@ -128,15 +128,6 @@ namespace Compass
             txtEditWorkloadValue.SelectAll();//全选，直接编辑
         }
         /// <summary>
-        /// 双击弹出修改
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void dgvDesignWorkload_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            tsmiEditWorkload_Click(null, null);
-        }
-        /// <summary>
         /// 提交修改工作量
         /// </summary>
         /// <param name="sender"></param>

@@ -392,7 +392,6 @@
             this.dgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProjects.Size = new System.Drawing.Size(928, 396);
             this.dgvProjects.TabIndex = 35;
-            this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjects_CellDoubleClick);
             this.dgvProjects.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvProjects_RowPostPaint);
             this.dgvProjects.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvProjects_KeyDown);
             // 

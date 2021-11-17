@@ -203,7 +203,6 @@
             this.dgvDrawingNumMatrix.Size = new System.Drawing.Size(637, 373);
             this.dgvDrawingNumMatrix.TabIndex = 1;
             this.dgvDrawingNumMatrix.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvProjects_RowPostPaint);
-            this.dgvDrawingNumMatrix.DoubleClick += new System.EventHandler(this.DgvDrawingNumMatrix_DoubleClick);
             // 
             // DrawingNum
             // 

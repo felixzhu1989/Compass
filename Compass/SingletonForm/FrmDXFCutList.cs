@@ -309,11 +309,6 @@ namespace Compass
             }
         }
 
-        private void DgvDXFCutList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            TsmiEditDXFCutList_Click(null, null);
-        }
-
         private void DgvDXFCutList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 46) TsmiDeleteDXFCutList_Click(null, null);

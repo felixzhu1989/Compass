@@ -14,12 +14,10 @@ namespace Compass
         static void Main()
         {
             #region 只能运行一个程序
-            bool canOpen;
-            Mutex mutex = new Mutex(true, Application.ProductName, out canOpen);
+            new Mutex(true, Application.ProductName, out bool canOpen);
             if (!canOpen)
             {
                 MessageBox.Show(null, "请不要同时运行多个本程序！", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //   提示信息，可以删除。
                 return;//退出程序
             } 
             #endregion
@@ -38,7 +36,6 @@ namespace Compass
             {
                 Application.Exit();
             }
-
         }
         //定义一个全局变量，用来保存登陆对象
         public static User ObjCurrentUser = null;

@@ -1441,9 +1441,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="compass_64px.ico" />
+    <Content Include="images\background.png" />
     <Content Include="images\Categories.png" />
     <Content Include="images\CategoryItem.png" />
+    <Content Include="images\COMPASS.png" />
     <Content Include="images\compass_64px.ico" />
+    <Content Include="images\contributors.png" />
+    <Content Include="images\folder.png" />
     <Content Include="images\FolderClosed.png" />
     <Content Include="images\FolderOpen.png" />
     <None Include="Web References\cn.com.webxml.www\WeatherWebService.disco" />

@@ -87,7 +87,7 @@ namespace Compass
                 tsmiAddCustomer.Visible = true;
                 tsmiEditProject.Visible = true;
                 tsmiDeleteProject.Visible = true;
-                this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjects_CellDoubleClick);
+                //this.dgvProjects.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjects_CellDoubleClick);
                 this.dgvProjects.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvProjects_KeyDown);
                 this.dgvProjects.Columns["SalesValue"].Visible = true;
             }
@@ -97,7 +97,7 @@ namespace Compass
                 tsmiAddCustomer.Visible = false;
                 tsmiEditProject.Visible = false;
                 tsmiDeleteProject.Visible = false;
-                this.dgvProjects.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjects_CellDoubleClick);
+                //this.dgvProjects.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjects_CellDoubleClick);
                 this.dgvProjects.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.DgvProjects_KeyDown);
                 this.dgvProjects.Columns["SalesValue"].Visible = false;
             }
@@ -379,15 +379,7 @@ namespace Compass
             btnProject.Text = "修改项目信息";
             cobHoodType.Text = objProject.HoodType;
         }
-        /// <summary>
-        /// 双击修改项目信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DgvProjects_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            TsmiEditProject_Click(null, null);
-        }
+        
 
         /// <summary>
         /// 删除菜单

@@ -182,7 +182,6 @@
             this.dgvCeilingAccessories.Size = new System.Drawing.Size(928, 454);
             this.dgvCeilingAccessories.TabIndex = 26;
             this.dgvCeilingAccessories.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvCeilingAccessories_RowPostPaint);
-            this.dgvCeilingAccessories.DoubleClick += new System.EventHandler(this.DgvCeilingAccessories_DoubleClick);
             this.dgvCeilingAccessories.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvCeilingAccessories_KeyDown);
             // 
             // CeilingAccessoryId

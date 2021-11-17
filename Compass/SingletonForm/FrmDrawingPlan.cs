@@ -84,7 +84,7 @@ namespace Compass
                 btnAddDrawingPlan.Visible = true;
                 tsmiEditDrawingPlan.Visible = true;
                 tsmiDeleteDrawingPlan.Visible = true;
-                this.dgvDrawingPlan.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDrawingPlan_CellDoubleClick);
+                //this.dgvDrawingPlan.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDrawingPlan_CellDoubleClick);
                 this.dgvDrawingPlan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvDrawingPlan_KeyDown);
             }
             else
@@ -92,7 +92,7 @@ namespace Compass
                 btnAddDrawingPlan.Visible = false;
                 tsmiEditDrawingPlan.Visible = false;
                 tsmiDeleteDrawingPlan.Visible = false;
-                this.dgvDrawingPlan.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDrawingPlan_CellDoubleClick);
+                //this.dgvDrawingPlan.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvDrawingPlan_CellDoubleClick);
                 this.dgvDrawingPlan.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.DgvDrawingPlan_KeyDown);
             }
         }
@@ -353,15 +353,7 @@ namespace Compass
             dtpEditDrReleaseTarget.Text = objDrawingPlan.DrReleaseTarget.ToShortDateString();
             dtpEditAddedDate.Text = objDrawingPlan.AddedDate.ToShortDateString();
         }
-        /// <summary>
-        /// 双击修改
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DgvDrawingPlan_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            TsmiEditDrawingPlan_Click(null, null);
-        }
+        
         /// <summary>
         /// 同步计算工作量
         /// </summary>

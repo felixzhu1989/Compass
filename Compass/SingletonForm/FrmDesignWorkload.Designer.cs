@@ -29,10 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvDesignWorkload = new System.Windows.Forms.DataGridView();
+            this.WorkloadId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkloadValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModelDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditWorkload = new System.Windows.Forms.ToolStripMenuItem();
             this.tsimDeleteWorkload = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,10 +57,6 @@
             this.txtEditWorkloadId = new System.Windows.Forms.TextBox();
             this.txtEditWorkloadValue = new System.Windows.Forms.TextBox();
             this.txtEditModelDesc = new System.Windows.Forms.TextBox();
-            this.WorkloadId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WorkloadValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ModelDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDesignWorkload)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.grbEditWorkload.SuspendLayout();
@@ -77,21 +77,21 @@
             // 
             this.dgvDesignWorkload.AllowUserToAddRows = false;
             this.dgvDesignWorkload.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Azure;
-            this.dgvDesignWorkload.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
+            this.dgvDesignWorkload.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDesignWorkload.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDesignWorkload.BackgroundColor = System.Drawing.Color.White;
             this.dgvDesignWorkload.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDesignWorkload.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDesignWorkload.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvDesignWorkload.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDesignWorkload.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.WorkloadId,
@@ -106,9 +106,39 @@
             this.dgvDesignWorkload.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDesignWorkload.Size = new System.Drawing.Size(928, 451);
             this.dgvDesignWorkload.TabIndex = 10;
-            this.dgvDesignWorkload.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDesignWorkload_CellDoubleClick);
             this.dgvDesignWorkload.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvDesignWorkload_RowPostPaint);
             this.dgvDesignWorkload.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvDesignWorkload_KeyDown);
+            // 
+            // WorkloadId
+            // 
+            this.WorkloadId.DataPropertyName = "WorkloadId";
+            this.WorkloadId.HeaderText = "ID";
+            this.WorkloadId.Name = "WorkloadId";
+            this.WorkloadId.ReadOnly = true;
+            this.WorkloadId.Width = 60;
+            // 
+            // Model
+            // 
+            this.Model.DataPropertyName = "Model";
+            this.Model.HeaderText = "模型名称";
+            this.Model.Name = "Model";
+            this.Model.ReadOnly = true;
+            // 
+            // WorkloadValue
+            // 
+            this.WorkloadValue.DataPropertyName = "WorkloadValue";
+            this.WorkloadValue.HeaderText = "工作量值";
+            this.WorkloadValue.Name = "WorkloadValue";
+            this.WorkloadValue.ReadOnly = true;
+            this.WorkloadValue.Width = 90;
+            // 
+            // ModelDesc
+            // 
+            this.ModelDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ModelDesc.DataPropertyName = "ModelDesc";
+            this.ModelDesc.HeaderText = "模型描述";
+            this.ModelDesc.Name = "ModelDesc";
+            this.ModelDesc.ReadOnly = true;
             // 
             // contextMenuStrip
             // 
@@ -116,19 +146,19 @@
             this.tsmiEditWorkload,
             this.tsimDeleteWorkload});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(140, 48);
+            this.contextMenuStrip.Size = new System.Drawing.Size(137, 48);
             // 
             // tsmiEditWorkload
             // 
             this.tsmiEditWorkload.Name = "tsmiEditWorkload";
-            this.tsmiEditWorkload.Size = new System.Drawing.Size(139, 22);
+            this.tsmiEditWorkload.Size = new System.Drawing.Size(136, 22);
             this.tsmiEditWorkload.Text = "修改工作量";
             this.tsmiEditWorkload.Click += new System.EventHandler(this.tsmiEditWorkload_Click);
             // 
             // tsimDeleteWorkload
             // 
             this.tsimDeleteWorkload.Name = "tsimDeleteWorkload";
-            this.tsimDeleteWorkload.Size = new System.Drawing.Size(139, 22);
+            this.tsimDeleteWorkload.Size = new System.Drawing.Size(136, 22);
             this.tsimDeleteWorkload.Text = "删除工作量";
             this.tsimDeleteWorkload.Click += new System.EventHandler(this.tsimDeleteWorkload_Click);
             // 
@@ -294,37 +324,6 @@
             this.txtEditModelDesc.Name = "txtEditModelDesc";
             this.txtEditModelDesc.Size = new System.Drawing.Size(150, 25);
             this.txtEditModelDesc.TabIndex = 1;
-            // 
-            // WorkloadId
-            // 
-            this.WorkloadId.DataPropertyName = "WorkloadId";
-            this.WorkloadId.HeaderText = "ID";
-            this.WorkloadId.Name = "WorkloadId";
-            this.WorkloadId.ReadOnly = true;
-            this.WorkloadId.Width = 60;
-            // 
-            // Model
-            // 
-            this.Model.DataPropertyName = "Model";
-            this.Model.HeaderText = "模型名称";
-            this.Model.Name = "Model";
-            this.Model.ReadOnly = true;
-            // 
-            // WorkloadValue
-            // 
-            this.WorkloadValue.DataPropertyName = "WorkloadValue";
-            this.WorkloadValue.HeaderText = "工作量值";
-            this.WorkloadValue.Name = "WorkloadValue";
-            this.WorkloadValue.ReadOnly = true;
-            this.WorkloadValue.Width = 90;
-            // 
-            // ModelDesc
-            // 
-            this.ModelDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ModelDesc.DataPropertyName = "ModelDesc";
-            this.ModelDesc.HeaderText = "模型描述";
-            this.ModelDesc.Name = "ModelDesc";
-            this.ModelDesc.ReadOnly = true;
             // 
             // FrmDesignWorkload
             // 

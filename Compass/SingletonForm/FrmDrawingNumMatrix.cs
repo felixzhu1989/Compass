@@ -469,15 +469,7 @@ namespace Compass
             btnCommit.Text = "更新图号";
 
         }
-        /// <summary>
-        /// 双击行修改图号信息
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DgvDrawingNumMatrix_DoubleClick(object sender, EventArgs e)
-        {
-            TsmiEditDrawingNum_Click(null, null);
-        }
+        
         /// <summary>
         /// 删除图号菜单
         /// </summary>

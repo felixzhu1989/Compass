@@ -81,12 +81,12 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1)
             {
                 tsmiEditProjectTracking.Visible = true;
-                this.dgvProjectTracking.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjectTracking_CellDoubleClick);
+                //this.dgvProjectTracking.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjectTracking_CellDoubleClick);
             }
             else
             {
                 tsmiEditProjectTracking.Visible = false;
-                this.dgvProjectTracking.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjectTracking_CellDoubleClick);
+                //this.dgvProjectTracking.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjectTracking_CellDoubleClick);
             }
         }
         /// <summary>
@@ -254,17 +254,6 @@ namespace Compass
 
             dtpEditODPReceiveDate.Text = objProjectTracking.ODPReceiveDate == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.ODPReceiveDate.ToShortDateString();
             dtpEditKickOffDate.Text = objProjectTracking.KickOffDate == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.KickOffDate.ToShortDateString();
-
-
-        }
-        /// <summary>
-        /// 双击单元格修改记录
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DgvProjectTracking_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            TsmiEditProjectTracking_Click(null, null);
         }
         /// <summary>
         /// 提交修改

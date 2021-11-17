@@ -166,6 +166,23 @@ namespace SolidWorksHelper
                                                //swComp = swAssy.GetComponentByNameWithSuffix(suffix,"LH-9156-1");//加热管组件
                                                //swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
+                #region 测压管
+                //测压管//YES/NO
+                if (item.WindPressure == "Yes")
+                {
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "测风压管^HMM-2");
+                    swComp.SetSuppression2(2); //2解压缩，0压缩
+
+                }
+                else if (item.WindPressure == "No")
+                {
+
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "测风压管^HMM-2");
+                    swComp.SetSuppression2(0); //2解压缩，0压缩
+
+                }
+
+                #endregion
 
 
                 //手动复位开关

@@ -69,6 +69,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.cobODPNo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -91,7 +92,6 @@
             this.btnToPage = new System.Windows.Forms.Button();
             this.btnQueryByYear = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTracking)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.grbEditProjectTracking.SuspendLayout();
@@ -141,7 +141,6 @@
             this.dgvProjectTracking.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvProjectTracking.Size = new System.Drawing.Size(926, 392);
             this.dgvProjectTracking.TabIndex = 11;
-            this.dgvProjectTracking.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvProjectTracking_CellDoubleClick);
             this.dgvProjectTracking.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvProjectTracking_RowPostPaint);
             this.dgvProjectTracking.SelectionChanged += new System.EventHandler(this.DgvProjectTracking_SelectionChanged);
             // 
@@ -494,6 +493,16 @@
             this.label19.TabIndex = 21;
             this.label19.Text = "KickOff Date";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(592, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(329, 19);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "提示：将日期修改为【2020/1/1】退回上一个项目状态";
+            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.Red;
@@ -744,16 +753,6 @@
             this.btnQueryByYear.Text = "查询";
             this.btnQueryByYear.UseVisualStyleBackColor = false;
             this.btnQueryByYear.Click += new System.EventHandler(this.BtnQueryByYear_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(592, 14);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(329, 19);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "提示：将日期修改为【2020/1/1】退回上一个项目状态";
             // 
             // FrmProjectTracking
             // 

@@ -67,10 +67,10 @@
             this.tsmiUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSolidWorksSetting = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmieSolidWorksTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSetStartUp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiTestCode = new System.Windows.Forms.ToolStripMenuItem();
             this.timerRefreshData = new System.Windows.Forms.Timer(this.components);
-            this.tsmiSetStartUp = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -376,65 +376,72 @@
             // tsmiUsersManage
             // 
             this.tsmiUsersManage.Name = "tsmiUsersManage";
-            this.tsmiUsersManage.Size = new System.Drawing.Size(180, 22);
+            this.tsmiUsersManage.Size = new System.Drawing.Size(153, 22);
             this.tsmiUsersManage.Text = "用户信息";
             this.tsmiUsersManage.Click += new System.EventHandler(this.TsmiUsersManage_Click);
             // 
             // tsmiCategories
             // 
             this.tsmiCategories.Name = "tsmiCategories";
-            this.tsmiCategories.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCategories.Size = new System.Drawing.Size(153, 22);
             this.tsmiCategories.Text = "模型分类";
             this.tsmiCategories.Click += new System.EventHandler(this.TsmiCategories_Click);
             // 
             // tsmiDXFCutList
             // 
             this.tsmiDXFCutList.Name = "tsmiDXFCutList";
-            this.tsmiDXFCutList.Size = new System.Drawing.Size(180, 22);
+            this.tsmiDXFCutList.Size = new System.Drawing.Size(153, 22);
             this.tsmiDXFCutList.Text = "Cutlist模版";
             this.tsmiDXFCutList.Click += new System.EventHandler(this.TsmiDXFCutList_Click);
             // 
             // tsmiCeilingAccessories
             // 
             this.tsmiCeilingAccessories.Name = "tsmiCeilingAccessories";
-            this.tsmiCeilingAccessories.Size = new System.Drawing.Size(180, 22);
+            this.tsmiCeilingAccessories.Size = new System.Drawing.Size(153, 22);
             this.tsmiCeilingAccessories.Text = "天花配件";
             this.tsmiCeilingAccessories.Click += new System.EventHandler(this.TsmiCeilingAccessories_Click);
             // 
             // tsmiWorkLoad
             // 
             this.tsmiWorkLoad.Name = "tsmiWorkLoad";
-            this.tsmiWorkLoad.Size = new System.Drawing.Size(180, 22);
+            this.tsmiWorkLoad.Size = new System.Drawing.Size(153, 22);
             this.tsmiWorkLoad.Text = "设计工作量";
             this.tsmiWorkLoad.Click += new System.EventHandler(this.TsmiWorkLoad_Click);
             // 
             // tsmiStatusTypes
             // 
             this.tsmiStatusTypes.Name = "tsmiStatusTypes";
-            this.tsmiStatusTypes.Size = new System.Drawing.Size(180, 22);
+            this.tsmiStatusTypes.Size = new System.Drawing.Size(153, 22);
             this.tsmiStatusTypes.Text = "项目状态/类型";
             this.tsmiStatusTypes.Click += new System.EventHandler(this.TsmiStatusTypes_Click);
             // 
             // tsmiUpdate
             // 
             this.tsmiUpdate.Name = "tsmiUpdate";
-            this.tsmiUpdate.Size = new System.Drawing.Size(180, 22);
+            this.tsmiUpdate.Size = new System.Drawing.Size(153, 22);
             this.tsmiUpdate.Text = "系统升级";
             this.tsmiUpdate.Click += new System.EventHandler(this.TsmiUpdate_Click);
             // 
             // tsmiSolidWorksSetting
             // 
             this.tsmiSolidWorksSetting.Name = "tsmiSolidWorksSetting";
-            this.tsmiSolidWorksSetting.Size = new System.Drawing.Size(180, 22);
+            this.tsmiSolidWorksSetting.Size = new System.Drawing.Size(153, 22);
             this.tsmiSolidWorksSetting.Text = "SW一键设置";
             this.tsmiSolidWorksSetting.Click += new System.EventHandler(this.TsmiSolidWorksSetting_Click);
             // 
             // tsmieSolidWorksTools
             // 
             this.tsmieSolidWorksTools.Name = "tsmieSolidWorksTools";
-            this.tsmieSolidWorksTools.Size = new System.Drawing.Size(180, 22);
+            this.tsmieSolidWorksTools.Size = new System.Drawing.Size(153, 22);
             this.tsmieSolidWorksTools.Text = "SW实用工具";
             this.tsmieSolidWorksTools.Click += new System.EventHandler(this.TsmieSolidWorksTools_Click);
+            // 
+            // tsmiSetStartUp
+            // 
+            this.tsmiSetStartUp.Name = "tsmiSetStartUp";
+            this.tsmiSetStartUp.Size = new System.Drawing.Size(153, 22);
+            this.tsmiSetStartUp.Text = "设置开机自启";
+            this.tsmiSetStartUp.Click += new System.EventHandler(this.TsmiSetStartUp_Click);
             // 
             // toolStripMenuItem5
             // 
@@ -455,13 +462,6 @@
             this.timerRefreshData.Interval = 600000;
             this.timerRefreshData.Tick += new System.EventHandler(this.TimerRefreshData_Tick);
             // 
-            // tsmiSetStartUp
-            // 
-            this.tsmiSetStartUp.Name = "tsmiSetStartUp";
-            this.tsmiSetStartUp.Size = new System.Drawing.Size(180, 22);
-            this.tsmiSetStartUp.Text = "设置开机自启";
-            this.tsmiSetStartUp.Click += new System.EventHandler(this.TsmiSetStartUp_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -480,8 +480,7 @@
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "COMPASS";
-            
-            
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -490,7 +489,7 @@
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
+
         }
 
         #endregion

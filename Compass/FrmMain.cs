@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using Models;
@@ -36,12 +36,12 @@ namespace Compass
             string currentSbu = Program.ObjCurrentUser.SBU == "" ? "FoodService" : Program.ObjCurrentUser.SBU;
             this.lblCurrentSBU.Text = "当前事业部：" + currentSbu;
             this.Text = "COMPASS." + currentSbu;
+            
             SetPermissions();
-            InitialForm();
             //隐藏测试代码
             tsmiTestCode.Visible = false;
-            TsmiProjectList_Click(null, null);
-            
+
+            InitialForm();
         }
         /// <summary>
         /// 设置权限
@@ -104,7 +104,7 @@ namespace Compass
         {
             System.Diagnostics.Process.Start("explorer.exe", "https://github.com/felixzhu1989/Compass/commits/main");
         }
-       
+
         /// <summary>
         /// 退出询问
         /// </summary>
@@ -143,9 +143,9 @@ namespace Compass
         //每10分钟更新数据
         private void TimerRefreshData_Tick(object sender, EventArgs e)
         {
-            SingletonObject.GetSingleton.FrmP?.BtnQueryByYear_Click(null,null);
-            SingletonObject.GetSingleton.FrmDp?.BtnQueryByYear_Click(null,null);
-            SingletonObject.GetSingleton.FrmPt?.BtnQueryByYear_Click(null,null);
+            SingletonObject.GetSingleton.FrmP?.BtnQueryByYear_Click(null, null);
+            SingletonObject.GetSingleton.FrmDp?.BtnQueryByYear_Click(null, null);
+            SingletonObject.GetSingleton.FrmPt?.BtnQueryByYear_Click(null, null);
         }
         //开机自启动
         private void TsmiSetStartUp_Click(object sender, EventArgs e)
@@ -153,7 +153,7 @@ namespace Compass
             Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser;
             Microsoft.Win32.RegistryKey run = key.CreateSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run");
             string exePath = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-            DialogResult result = MessageBox.Show("设置Compass程序开机自启动，确定请按“是”，不要开机自启请按“否”，不想设置请按“取消”","设置开机自启",MessageBoxButtons.YesNoCancel);
+            DialogResult result = MessageBox.Show("设置Compass程序开机自启动，确定请按“是”，不要开机自启请按“否”，不想设置请按“取消”", "设置开机自启", MessageBoxButtons.YesNoCancel);
             try
             {
                 if (result == DialogResult.Yes)
@@ -189,22 +189,24 @@ namespace Compass
         #region 初始化单例窗体
         private void InitialForm()
         {
-            SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmProjectInfo>(()=>new FrmProjectInfo()).Value );
             
-            SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmCeilingAutoDrawing>(() => new FrmCeilingAutoDrawing()).Value);
-            SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmHoodAutoDrawing>(() => new FrmHoodAutoDrawing()).Value);
-            SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmMarineAutoDrawing>(() => new FrmMarineAutoDrawing()).Value);
+                //嵌入
+                SingletonObject.GetSingleton.AddForm(new Lazy<FrmProject>(() => new FrmProject()).Value);
+                SingletonObject.GetSingleton.AddForm(new FrmModuleTree(QuickBrowse));
+                SingletonObject.GetSingleton.AddForm(new FrmQuickBrowse());
+                ShowForm(SingletonObject.GetSingleton.FrmMt, splitContainer.Panel1);
 
-
-            SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmCategoryTree>(() => new FrmCategoryTree()).Value);
+                //独立
+                SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmProjectInfo>(() => new FrmProjectInfo()).Value);
+                SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmCeilingAutoDrawing>(() => new FrmCeilingAutoDrawing()).Value);
+                SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmHoodAutoDrawing>(() => new FrmHoodAutoDrawing()).Value);
+                SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmMarineAutoDrawing>(() => new FrmMarineAutoDrawing()).Value);
+                SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmCategoryTree>(() => new FrmCategoryTree()).Value);
+                TsmiProjectList_Click(null, null);
             
-            //嵌入
-            SingletonObject.GetSingleton.AddForm(new Lazy<FrmProject>(() => new FrmProject()).Value);
-            SingletonObject.GetSingleton.AddForm(new FrmModuleTree(QuickBrowse));
-            SingletonObject.GetSingleton.AddForm(new FrmQuickBrowse() );
-            ShowForm(SingletonObject.GetSingleton.FrmMt, splitContainer.Panel1);
-
         }
+
+
         #endregion
 
         #region 显示嵌入的窗体
@@ -223,7 +225,7 @@ namespace Compass
         //嵌入
         private void TsmiProjectList_Click(object sender, EventArgs e)
         {
-            if (splitContainer.Panel2.Controls.Count==0||!(splitContainer.Panel2.Controls[0] is FrmProject))
+            if (splitContainer.Panel2.Controls.Count == 0 || !(splitContainer.Panel2.Controls[0] is FrmProject))
             {
                 ShowForm(SingletonObject.GetSingleton.FrmP, splitContainer.Panel2);
             }
@@ -233,7 +235,7 @@ namespace Compass
         {
             if (!(splitContainer.Panel2.Controls[0] is FrmDrawingPlan))
             {
-               if(SingletonObject.GetSingleton.FrmDp==null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmDrawingPlan>(() => new FrmDrawingPlan()).Value);
+                if (SingletonObject.GetSingleton.FrmDp == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmDrawingPlan>(() => new FrmDrawingPlan()).Value);
                 ShowForm(SingletonObject.GetSingleton.FrmDp, splitContainer.Panel2);
             }
         }
@@ -242,7 +244,7 @@ namespace Compass
         {
             if (!(splitContainer.Panel2.Controls[0] is FrmProjectTracking))
             {
-                if(SingletonObject.GetSingleton.FrmPt==null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmProjectTracking>(() => new FrmProjectTracking()).Value);
+                if (SingletonObject.GetSingleton.FrmPt == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmProjectTracking>(() => new FrmProjectTracking()).Value);
                 ShowForm(SingletonObject.GetSingleton.FrmPt, splitContainer.Panel2);
             }
         }
@@ -284,7 +286,7 @@ namespace Compass
         #region 统计菜单
         private void TsmiProjectMeasure_Click(object sender, EventArgs e)
         {
-           if(SingletonObject.GetSingleton.FrmPm==null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmProjectMeasure>(() => new FrmProjectMeasure()).Value);
+            if (SingletonObject.GetSingleton.FrmPm == null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmProjectMeasure>(() => new FrmProjectMeasure()).Value);
             SingletonObject.GetSingleton.FrmPm?.ShowAndFocus();
         }
         /// <summary>
@@ -294,7 +296,7 @@ namespace Compass
         /// <param name="e"></param>
         private void TsmiDrawingPlanQuery_Click(object sender, EventArgs e)
         {
-           if(SingletonObject.GetSingleton.FrmDpq==null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmDrawingPlanQuery>(() => new FrmDrawingPlanQuery()).Value);
+            if (SingletonObject.GetSingleton.FrmDpq == null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmDrawingPlanQuery>(() => new FrmDrawingPlanQuery()).Value);
             SingletonObject.GetSingleton.FrmDpq?.ShowAndFocus();
         }
 
@@ -306,7 +308,7 @@ namespace Compass
         {
             if (!(splitContainer.Panel2.Controls[0] is FrmUserManage))
             {
-                if(SingletonObject.GetSingleton.FrmUm==null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmUserManage>(() => new FrmUserManage(Program.ObjCurrentUser)).Value);
+                if (SingletonObject.GetSingleton.FrmUm == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmUserManage>(() => new FrmUserManage(Program.ObjCurrentUser)).Value);
                 ShowForm(SingletonObject.GetSingleton.FrmUm, splitContainer.Panel2);
             }
         }
@@ -314,7 +316,7 @@ namespace Compass
         {
             if (!(splitContainer.Panel2.Controls[0] is FrmCategories))
             {
-               if(SingletonObject.GetSingleton.FrmC==null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmCategories>(() => new FrmCategories()).Value);
+                if (SingletonObject.GetSingleton.FrmC == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmCategories>(() => new FrmCategories()).Value);
                 ShowForm(SingletonObject.GetSingleton.FrmC, splitContainer.Panel2);
             }
         }
@@ -322,7 +324,7 @@ namespace Compass
         {
             if (!(splitContainer.Panel2.Controls[0] is FrmDxfCutList))
             {
-                if(SingletonObject.GetSingleton.FrmDc == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmDxfCutList>(() => new FrmDxfCutList()).Value);
+                if (SingletonObject.GetSingleton.FrmDc == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmDxfCutList>(() => new FrmDxfCutList()).Value);
                 ShowForm(SingletonObject.GetSingleton.FrmDc, splitContainer.Panel2);
             }
         }
@@ -330,7 +332,7 @@ namespace Compass
         {
             if (!(splitContainer.Panel2.Controls[0] is FrmDesignWorkload))
             {
-               if(SingletonObject.GetSingleton.FrmDw==null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmDesignWorkload>(() => new FrmDesignWorkload()).Value);
+                if (SingletonObject.GetSingleton.FrmDw == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmDesignWorkload>(() => new FrmDesignWorkload()).Value);
                 ShowForm(SingletonObject.GetSingleton.FrmDw, splitContainer.Panel2);
             }
         }
@@ -338,7 +340,7 @@ namespace Compass
         {
             if (!(splitContainer.Panel2.Controls[0] is FrmStatusTypes))
             {
-               if(SingletonObject.GetSingleton.FrmSt==null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmStatusTypes>(() => new FrmStatusTypes()).Value);
+                if (SingletonObject.GetSingleton.FrmSt == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmStatusTypes>(() => new FrmStatusTypes()).Value);
                 ShowForm(SingletonObject.GetSingleton.FrmSt, splitContainer.Panel2);
             }
         }
@@ -346,14 +348,14 @@ namespace Compass
         {
             if (!(splitContainer.Panel2.Controls[0] is FrmCeilingAccessories))
             {
-               if(SingletonObject.GetSingleton.FrmCa==null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmCeilingAccessories>(() => new FrmCeilingAccessories()).Value);
+                if (SingletonObject.GetSingleton.FrmCa == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmCeilingAccessories>(() => new FrmCeilingAccessories()).Value);
                 ShowForm(SingletonObject.GetSingleton.FrmCa, splitContainer.Panel2);
             }
         }
         //非嵌入
         private void TsmieSolidWorksTools_Click(object sender, EventArgs e)
         {
-           if(SingletonObject.GetSingleton.FrmSwt==null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmSolidWorksTools>(() => new FrmSolidWorksTools()).Value);
+            if (SingletonObject.GetSingleton.FrmSwt == null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmSolidWorksTools>(() => new FrmSolidWorksTools()).Value);
             SingletonObject.GetSingleton.FrmSwt?.ShowAndFocus();
         }
 
@@ -393,13 +395,13 @@ namespace Compass
         #region 其他菜单
         private void TsmiSyncFiles_Click(object sender, EventArgs e)
         {
-           if(SingletonObject.GetSingleton.FrmSf==null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmSyncFiles>(() => new FrmSyncFiles()).Value);
-            
+            if (SingletonObject.GetSingleton.FrmSf == null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmSyncFiles>(() => new FrmSyncFiles()).Value);
+
             SingletonObject.GetSingleton.FrmSf?.ShowAndFocus();
         }
         private void TsmiDrawingNumMatrix_Click(object sender, EventArgs e)
         {
-           if(SingletonObject.GetSingleton.FrmDnm==null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmDrawingNumMatrix>(() => new FrmDrawingNumMatrix()).Value);
+            if (SingletonObject.GetSingleton.FrmDnm == null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmDrawingNumMatrix>(() => new FrmDrawingNumMatrix()).Value);
             SingletonObject.GetSingleton.FrmDnm?.ShowAndFocus();
         }
         private void TsmiTestCode_Click(object sender, EventArgs e)
@@ -407,6 +409,7 @@ namespace Compass
             //MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
             MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms));
         }
+
 
 
         #endregion
