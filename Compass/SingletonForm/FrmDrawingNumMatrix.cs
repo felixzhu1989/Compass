@@ -49,10 +49,8 @@ namespace Compass
             dgvDrawingNumMatrix.AutoGenerateColumns = false;
             dgvDrawingNumMatrix.DataSource = _objDrawingNumMatrices;//初始化图号表格
             SetPermissions();
-            btnImportFromExcel.Visible=true;
-            btnImport.Visible = true;
             this.dgvDrawingNumMatrix.SelectionChanged += new System.EventHandler(this.DgvDrawingNumMatrix_SelectionChanged);
-            
+
             if (!Directory.Exists(_imageDir)) Directory.CreateDirectory(_imageDir);
         }
         #region 单例模式，重写关闭方法
@@ -73,9 +71,8 @@ namespace Compass
         {
             DataGridViewStyle.DgvRowPostPaint(this.dgvDrawingNumMatrix, e);
         }
-        /// <summary>
-        /// 设置权限
-        /// </summary>
+
+        #region 设置权限
         private void SetPermissions()
         {
             btnImportFromExcel.Visible = false;
@@ -83,9 +80,8 @@ namespace Compass
 
             if (Program.ObjCurrentUser.UserGroupId == 1)
             {
-                //管理员才能导入清单,删除图号
-                btnImportFromExcel.Enabled = true;
-                btnImport.Enabled = true;
+                //管理员才能删除图号
+                
                 tsmiDeleteDrawingNum.Visible = true;
                 tsmiEditDrawingNum.Visible = true;
                 btnCommit.Enabled = true;
@@ -93,21 +89,18 @@ namespace Compass
             else if (Program.ObjCurrentUser.UserGroupId == 2)
             {
                 //技术部能添加图号，更改图号
-                btnImportFromExcel.Enabled = false;
-                btnImport.Enabled = false;
                 tsmiDeleteDrawingNum.Visible = false;
                 tsmiEditDrawingNum.Visible = true;
                 btnCommit.Enabled = true;
             }
             else
             {
-                btnImportFromExcel.Enabled = false;
-                btnImport.Enabled = false;
                 tsmiDeleteDrawingNum.Visible = false;
                 tsmiEditDrawingNum.Visible = false;
                 btnCommit.Enabled = false;
             }
         }
+        #endregion
 
 
         #region 生成单选框
@@ -469,7 +462,7 @@ namespace Compass
             btnCommit.Text = "更新图号";
 
         }
-        
+
         /// <summary>
         /// 删除图号菜单
         /// </summary>
@@ -488,7 +481,7 @@ namespace Compass
             }
             string drawingId = dgvDrawingNumMatrix.CurrentRow.Cells["DrawingId"].Value.ToString();
             string drawingNum = dgvDrawingNumMatrix.CurrentRow.Cells["DrawingNum"].Value.ToString();
-            if (Common.DataValidate.IsInteger(drawingNum.Substring(0,1)))
+            if (Common.DataValidate.IsInteger(drawingNum.Substring(0, 1)))
             {
                 MessageBox.Show("不允许删除标准件和采购件，删除请联系管理员", "删除询问");
                 return;
@@ -589,7 +582,7 @@ namespace Compass
         /// <param name="e"></param>
         private void BtnRefreshImage_Click(object sender, EventArgs e)
         {
-            
+
 
             if (dgvDrawingNumMatrix.RowCount == 0)
             {
@@ -609,7 +602,7 @@ namespace Compass
                     _objDrawingNumMatrices = _objDrawingNumMatrixService.GetAllDrawingNum();
                     dgvDrawingNumMatrix.DataSource = _objDrawingNumMatrices;
                     //改成图片缓存本地
-                    string saveImagePath = _imageDir + dgvDrawingNumMatrix.CurrentRow.Cells["DrawingNum"].Value.ToString() +".png";
+                    string saveImagePath = _imageDir + dgvDrawingNumMatrix.CurrentRow.Cells["DrawingNum"].Value.ToString() + ".png";
                     if (File.Exists(saveImagePath)) File.Delete(saveImagePath);//先删除本地，然后在将图片保存下来
                     pbImage.Image.Save(saveImagePath);
                     MessageBox.Show("图片更新成功成功", "提示信息");
@@ -751,19 +744,21 @@ namespace Compass
                     break;
                 case "M":
                     //Marine项目将来完善
+                    if (currentDrawingNum.DrawingType == "ETO")
+                    {
 
-
-
-
-
-
-
+                        _filePath = @"D:\Marine\01 Parts\03 ETO\" + drawingNum + extension;
+                    }
+                    else
+                    {
+                        _filePath = @"D:\Marine\01 Parts\02 Common\" + drawingNum + extension;
+                    }
                     break;
                 default:
                     break;
             }
         }
-        
+
 
         /// <summary>
         /// 直接打开模型
@@ -872,14 +867,14 @@ namespace Compass
             //获取文件列表
             string[] imageFiles = Directory.GetFiles(imagePath);
             Dictionary<string, string> imagesDic = new Dictionary<string, string>();
-            Dictionary<string, Image> imageList =new Dictionary<string, Image>();
+            Dictionary<string, Image> imageList = new Dictionary<string, Image>();
             foreach (string imageFile in imageFiles)
             {
                 //序列化
                 string image = Image.FromFile(imageFile) != null ? new SerializeObjectToString().SerializeObject(Image.FromFile(imageFile)) : null;
                 //添加键值对
                 imagesDic.Add(Path.GetFileNameWithoutExtension(imageFile), image);
-                imageList.Add(Path.GetFileNameWithoutExtension(imageFile),Image.FromFile(imageFile));
+                imageList.Add(Path.GetFileNameWithoutExtension(imageFile), Image.FromFile(imageFile));
             }
             //提交数据库
             if (_objDrawingNumMatrixService.BathImportDrawingImage(imagesDic))
@@ -890,10 +885,10 @@ namespace Compass
                 imagesDic.Clear();
 
                 //改成图片缓存本地
-                
+
                 foreach (var item in imageList)
                 {
-                    string saveImagePath = _imageDir + item.Key +".png";
+                    string saveImagePath = _imageDir + item.Key + ".png";
                     if (File.Exists(saveImagePath)) File.Delete(saveImagePath);//先删除本地，然后在将图片保存下来
                     item.Value.Save(saveImagePath);
                 }
@@ -945,6 +940,6 @@ namespace Compass
             swApp.CommandInProgress = false;
         }
 
-        
+
     }
 }
