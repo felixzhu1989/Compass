@@ -68,6 +68,7 @@
     <Compile Include="DrawingNumCodeRule.cs" />
     <Compile Include="DrawingNumMatrix.cs" />
     <Compile Include="FinancialData.cs" />
+    <Compile Include="Hood\HWUVF555400.cs" />
     <Compile Include="Marine\HMM.cs" />
     <Compile Include="Marine\HMF.cs" />
     <Compile Include="Hood\FRUVF555.cs" />

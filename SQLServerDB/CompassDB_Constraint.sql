@@ -928,7 +928,22 @@ if exists (select * from sysobjects where name='df_Height_HWUVF650')
 GO
 alter table HWUVF650 add constraint df_Height_HWUVF650 default ('650') for Height
 GO
-
+--HWUVF555400，华为1.2mm板材
+if exists (select * from sysobjects where name='pk_HWUVF555400Id')
+    alter table HWUVF555400 drop constraint pk_HWUVF555400Id
+GO
+alter table HWUVF555400 add constraint pk_HWUVF555400Id primary key (HWUVF555400Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_HWUVF555400')
+    alter table HWUVF555400 drop constraint fk_ModuleTreeId_HWUVF555400
+GO
+alter table HWUVF555400 add constraint fk_ModuleTreeId_HWUVF555400 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_HWUVF555400')
+    alter table HWUVF555400 drop constraint df_Height_HWUVF555400
+GO
+alter table HWUVF555400 add constraint df_Height_HWUVF555400 default ('555') for Height
+GO
 
 
 
