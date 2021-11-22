@@ -84,7 +84,6 @@ namespace SolidWorksHelper
             int sidePanelSideCjNo = sidePanelDownCjNo - 3;
             #endregion
 
-
             try
             {
                 #region Top Level
@@ -129,11 +128,6 @@ namespace SolidWorksHelper
                     swModel.Parameter("D1@LocalLPattern3").SystemValue = item.SuNo; //D1阵列数量,D3阵列距离
                     swModel.Parameter("D3@LocalLPattern3").SystemValue = item.SuDis / 1000m; //D1阵列数量,D3阵列距离
                 }
-                //----------新风前面板中间加强筋----------
-                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0105-1");
-                if (item.Length > 1599m) swComp.SetSuppression2(2); //2解压缩，0压缩
-                else swComp.SetSuppression2(0); //2解压缩，0压缩
-
                 #endregion
 
                 #region 排风腔
@@ -655,57 +649,29 @@ namespace SolidWorksHelper
                     //LEFT
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0059-1");
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D1@草图1").SystemValue = item.Deepth / 1000m;
-                    swPart.Parameter("D4@草图1").SystemValue = 150m / 1000m;
-                    swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
-                    swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo - 2;//与排风腔干涉，减少一个孔
-
+                    swEdit.FNHS0059(swComp, item.Deepth, 555m, 400m, "W", sidePanelSideCjNo, sidePanelDownCjNo);//普通烟罩"V"，水洗"W"
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0061-1");
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D8@草图1").SystemValue = item.Deepth / 1000m;
-                    swPart.Parameter("D9@草图1").SystemValue = 150m / 1000m;
+                    swEdit.FNHS0061(swComp, item.Deepth, 555m, 400m, "W");//普通烟罩"V"，水洗"W"
 
                     //RIGHT
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0060-1");
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D1@草图1").SystemValue = item.Deepth / 1000m;
-                    swPart.Parameter("D4@草图1").SystemValue = 150m / 1000m;
-                    swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
-                    swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo - 2;//与排风腔干涉，减少一个孔
+                    swEdit.FNHS0059(swComp, item.Deepth, 555m, 400m, "W", sidePanelSideCjNo, sidePanelDownCjNo);//普通烟罩"V"，水洗"W"
 
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0062-1");
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D8@草图1").SystemValue = item.Deepth / 1000m;
-                    swPart.Parameter("D9@草图1").SystemValue = 150m / 1000m;
+                    swEdit.FNHS0061(swComp, item.Deepth, 555m, 400m, "W");//普通烟罩"V"，水洗"W"
 
                     if (item.WaterCollection == "YES")
                     {
                         swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0063-1");
                         swComp.SetSuppression2(2); //2解压缩，0压缩
-                        swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue =
-                            (decimal)(Math.Sqrt(Math.Pow((double)item.Deepth - 365d, 2) + Math.Pow(555d - 400d, 2))) / 1000m;
-                        //标准烟罩(item.Deepth - 275m) / 1000m; //水洗烟罩(item.Deepth - 368) / 1000m;
-                        //swPart.Parameter("D5@Sketch7").SystemValue = 25m / 1000m;
-                        //swPart.Parameter("D4@Sketch7").SystemValue = 28m / 1000m;
-                        //UV555400,18.5m,UV450400，15m，标准烟罩13.68m,水洗烟罩19.87m / 1000m
-                        //swPart.Parameter("D3@Sketch14").SystemValue = 30m / 1000m;
-                        //UV555400，22m,标准烟罩27.3
+                        swEdit.FNHS0063(swComp, item.Deepth, 555m, 400m, "W");//普通烟罩"V"，水洗"W"
+
                         swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0064-1");
                         swComp.SetSuppression2(2); //2解压缩，0压缩
-                        swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue =
-                            (decimal)(Math.Sqrt(Math.Pow((double)item.Deepth - 365d, 2) + Math.Pow(555d - 400d, 2))) / 1000m;
-                        //标准烟罩(item.Deepth - 275m) / 1000m; //水洗烟罩(item.Deepth - 368) / 1000m;
-                        //swPart.Parameter("D5@Sketch7").SystemValue = 25m / 1000m;
-                        //swPart.Parameter("D6@Sketch7").SystemValue = 28m / 1000m;
-                        //UV555400,18.5m,UV450400，15m，标准烟罩13.68m,水洗烟罩19.87m / 1000m
-                        //swPart.Parameter("D5@Sketch8").SystemValue = 22m / 1000m;
-                        //UV555400，22m,标准烟罩27.3
+                        swEdit.FNHS0063(swComp, item.Deepth, 555m, 400m, "W");//普通烟罩"V"，水洗"W"
                     }
                     else
                     {
@@ -721,20 +687,13 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0062-1");
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                                               //LEFT
+
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0059-1");
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D1@草图1").SystemValue = item.Deepth / 1000m;
-                    swPart.Parameter("D4@草图1").SystemValue = 150m / 1000m;
-
-                    swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
-                    swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo;
+                    swEdit.FNHS0059(swComp, item.Deepth, 555m, 400m, "W", sidePanelSideCjNo, sidePanelDownCjNo);//普通烟罩"V"，水洗"W"
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0061-1");
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D8@草图1").SystemValue = item.Deepth / 1000m;
-                    swPart.Parameter("D9@草图1").SystemValue = 150m / 1000m;
+                    swEdit.FNHS0061(swComp, item.Deepth, 555m, 400m, "W");//普通烟罩"V"，水洗"W"
 
                     if (item.WaterCollection == "YES")
                     {
@@ -742,15 +701,7 @@ namespace SolidWorksHelper
                         swComp.SetSuppression2(0); //2解压缩，0压缩
                         swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0063-1");
                         swComp.SetSuppression2(2); //2解压缩，0压缩
-                        swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue =
-                            (decimal)(Math.Sqrt(Math.Pow((double)item.Deepth - 365d, 2) + Math.Pow(555d - 400d, 2))) / 1000m;
-                        //标准烟罩(item.Deepth - 275m) / 1000m; //水洗烟罩(item.Deepth - 368) / 1000m;
-                        //swPart.Parameter("D5@Sketch7").SystemValue = 25m / 1000m;
-                        //swPart.Parameter("D4@Sketch7").SystemValue = 28m / 1000m;
-                        //UV555400,18.5m,UV450400，15m，标准烟罩13.68m,水洗烟罩19.87m / 1000m
-                        //swPart.Parameter("D5@Sketch10").SystemValue = 22m / 1000m;
-                        //UV555400，22m,标准烟罩27.3
+                        swEdit.FNHS0063(swComp, item.Deepth, 555m, 400m, "W");//普通烟罩"V"，水洗"W"
                     }
                     else
                     {
@@ -766,19 +717,14 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0061-1");
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                                               //RIGHT
+
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0060-1");
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D1@草图1").SystemValue = item.Deepth / 1000m;
-                    swPart.Parameter("D4@草图1").SystemValue = 150m / 1000m;
-                    swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
-                    swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo;
+                    swEdit.FNHS0059(swComp, item.Deepth, 555m, 400m, "W", sidePanelSideCjNo, sidePanelDownCjNo);//普通烟罩"V"，水洗"W"
+
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0062-1");
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swPart = swComp.GetModelDoc2();
-                    swPart.Parameter("D8@草图1").SystemValue = item.Deepth / 1000m;
-                    swPart.Parameter("D9@草图1").SystemValue = 150m / 1000m;
+                    swEdit.FNHS0061(swComp, item.Deepth, 555m, 400m, "W");//普通烟罩"V"，水洗"W"
 
                     if (item.WaterCollection == "YES")
                     {
@@ -786,15 +732,7 @@ namespace SolidWorksHelper
                         swComp.SetSuppression2(0); //2解压缩，0压缩
                         swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0064-1");
                         swComp.SetSuppression2(2); //2解压缩，0压缩
-                        swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue =
-                            (decimal)(Math.Sqrt(Math.Pow((double)item.Deepth - 365d, 2) + Math.Pow(555d - 400d, 2))) / 1000m;
-                        //标准烟罩(item.Deepth - 275m) / 1000m; //水洗烟罩(item.Deepth - 368) / 1000m;
-                        //swPart.Parameter("D5@Sketch7").SystemValue = 25m / 1000m;
-                        //swPart.Parameter("D6@Sketch7").SystemValue = 28m / 1000m;
-                        //UV555400,18.5m,UV450400，15m，标准烟罩13.68m,水洗烟罩19.87m / 1000m
-                        //swPart.Parameter("D5@Sketch8").SystemValue = 22m / 1000m;
-                        //UV555400，22m,标准烟罩27.3
+                        swEdit.FNHS0063(swComp, item.Deepth, 555m, 400m, "W");//普通烟罩"V"，水洗"W"
                     }
                     else
                     {
@@ -865,15 +803,7 @@ namespace SolidWorksHelper
                 swPart.Parameter("D1@LPattern1").SystemValue = frontPanelHoleNo;
                 swPart.Parameter("D3@LPattern1").SystemValue = frontPanelHoleDis;
                 #endregion
-
-                #region 蜂窝板压条
-                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0095-2");
-                swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D1@草图1").SystemValue = (item.Length - 6m) / 1000m;
-                swPart.Parameter("D1@LPattern1").SystemValue = frontPanelHoleNo;
-                swPart.Parameter("D3@LPattern1").SystemValue = frontPanelHoleDis;
-                #endregion
-
+                
                 #region 镀锌隔板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0099-1");
                 swPart = swComp.GetModelDoc2();
@@ -890,7 +820,7 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0093-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D2@基体-法兰1").SystemValue = item.Length / 1000m;
-                swPart.Parameter("D1@阵列(线性)5").SystemValue = frontCjNo;
+                swPart.Parameter("D1@CJHOLES").SystemValue = frontCjNo;
                 swPart.Parameter("D10@草图8").SystemValue = frontCjFirstDis;
                 swPart.Parameter("D1@LPattern1").SystemValue = frontPanelHoleNo;
                 swPart.Parameter("D3@LPattern1").SystemValue = frontPanelHoleDis;

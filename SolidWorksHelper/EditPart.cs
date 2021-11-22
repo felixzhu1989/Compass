@@ -1346,5 +1346,97 @@ namespace SolidWorksHelper
         }
 
         #endregion
+
+        #region 华为斜烟罩大侧板
+        /// <summary>
+        /// 左边大侧板外板
+        /// </summary>
+        /// <param name="swComp"></param>
+        /// <param name="deepth">烟罩深度</param>
+        /// <param name="height">烟罩高度</param>
+        /// <param name="sidePanelSideCjNo">侧板侧向CJ孔数量</param>
+        /// <param name="sidePanelDownCjNo">侧板垂直CJ孔数量</param>
+        public void FNHS0059(Component2 swComp, decimal deepth, decimal exHeight, decimal suHeight, string exType, int sidePanelSideCjNo, int sidePanelDownCjNo)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D1@草图1").SystemValue = deepth / 1000m;
+            swPart.Parameter("D2@草图1").SystemValue = exHeight / 1000m;
+            swPart.Parameter("D3@草图1").SystemValue = suHeight / 1000m;
+            if (exType == "W")  swPart.Parameter("D4@草图1").SystemValue = 150m / 1000m;
+            else swPart.Parameter("D4@草图1").SystemValue = 76m / 1000m;
+
+            swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
+            swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo - 1;
+        }
+
+        /// <summary>
+        /// 左边大侧板内板
+        /// </summary>
+        /// <param name="swComp"></param>
+        /// <param name="deepth">烟罩深度</param>
+        /// <param name="height">烟罩高度</param>
+        public void FNHS0061(Component2 swComp, decimal deepth, decimal exHeight, decimal suHeight, string exType)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D8@草图1").SystemValue = deepth / 1000m;//D3@Sketch1
+            swPart.Parameter("D6@草图1").SystemValue = exHeight / 1000m;
+            swPart.Parameter("D7@草图1").SystemValue = suHeight / 1000m;
+            if (exType == "W") swPart.Parameter("D9@草图1").SystemValue = 150m / 1000m;
+            else swPart.Parameter("D9@草图1").SystemValue = 76m / 1000m;
+
+            if (suHeight == 400m)
+            {
+                swFeat = swComp.FeatureByName("I400");
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+            }
+            else
+            {
+                swFeat = swComp.FeatureByName("I400");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+        }
+        /// <summary>
+        /// 左集水翻边
+        /// </summary>
+        /// <param name="swComp"></param>
+        /// <param name="deepth">烟罩深度</param>
+        /// <param name="suHeight">新风高度</param>
+        /// <param name="exHeight">排风高度</param>
+        /// <param name="exType">排风腔类型，"V"还是"W"</param>
+        public void FNHS0063(Component2 swComp, decimal deepth, decimal exHeight, decimal suHeight, string exType)
+        {
+            swPart = swComp.GetModelDoc2();
+            if (exType == "W") swPart.Parameter("D2@Base-Flange1").SystemValue = (decimal)(Math.Sqrt(Math.Pow((double)deepth - 365d, 2) + Math.Pow((double)exHeight - (double)suHeight, 2))) / 1000m;
+            else swPart.Parameter("D2@Base-Flange1").SystemValue = (decimal)(Math.Sqrt(Math.Pow((double)deepth - 291d, 2) + Math.Pow((double)exHeight - (double)suHeight, 2))) / 1000m;
+
+            //swPart.Parameter("D3@Sketch11").SystemValue = deepth / 1000m;
+
+            //swPart.Parameter("D2@Sketch11").SystemValue = suHeight / 1000m;//新风
+            //swPart.Parameter("D8@Sketch11").SystemValue = exHeight / 1000m;//排风
+            //if (exHeight == 450m)
+            //{
+            //    swPart.Parameter("D6@Sketch11").SystemValue = 105m / 1000m;//EX450,105
+            //    swPart.Parameter("D11@Sketch11").SystemValue = 50m / 1000m;//EX450,50
+            //    swPart.Parameter("D9@Sketch11").SystemValue = 135d / 180d * Math.PI;//EX450,135
+            //}
+            //else
+            //{
+            //    if (exType == "W")
+            //    {
+            //        swPart.Parameter("D6@Sketch11").SystemValue = 150m / 1000m;//普通76.5水洗150
+            //        swPart.Parameter("D11@Sketch11").SystemValue = 101m / 1000m;//普通85水洗101
+            //        swPart.Parameter("D9@Sketch11").SystemValue = 145d / 180d * Math.PI;//普通135水洗145
+            //    }
+            //    else
+            //    {
+            //        swPart.Parameter("D6@Sketch11").SystemValue = 76.5m / 1000m;//普通76.5水洗150
+            //        swPart.Parameter("D11@Sketch11").SystemValue = 85m / 1000m;//普通85水洗101
+            //        swPart.Parameter("D9@Sketch11").SystemValue = 135d / 180d * Math.PI;//普通135水洗145
+            //    }
+            //}
+        }
+
+        #endregion
+
     }
 }

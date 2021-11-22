@@ -10,9 +10,13 @@ namespace Compass
     {
         readonly HWUVF650Service _objHwuvf650Service = new HWUVF650Service();
         private readonly HWUVF650 _objHwuvf650 = null;
+        private ModelView modelView;
         public FrmHwuvf650()
         {
             InitializeComponent();
+            modelView = new ModelView();
+            panel1.Controls.Add(modelView);
+            modelView.Dock = DockStyle.Fill;
             SetVisibleFalse();
             IniCob();
             //管理员和技术部才能更新数据
