@@ -25,7 +25,7 @@ namespace Compass
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             string excelBookPath = Environment.CurrentDirectory + "\\JobCard_Ceiling.xlsx";
             excelApp.Workbooks.Add(excelBookPath);
-            Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
+            Worksheet workSheet = excelApp.Worksheets[1];
 
             //通用信息
             workSheet.Cells[3, 3] = objProject.ODPNo;
@@ -80,7 +80,7 @@ namespace Compass
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             string excelBookPath = Environment.CurrentDirectory + "\\JobCard.xlsx";
             excelApp.Workbooks.Add(excelBookPath);
-            Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
+            Worksheet workSheet = excelApp.Worksheets[1];
             //插入Item图片
             if (objJobCard.LabelImage.Length != 0)
             {
@@ -184,7 +184,7 @@ namespace Compass
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             string excelBookPath = Environment.CurrentDirectory + "\\CeilingPackingList.xlsx";
             excelApp.Workbooks.Add(excelBookPath);
-            Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
+            Worksheet workSheet = excelApp.Worksheets[1];
 
             //将区域添加到字典中并计数
             Dictionary<string, int> locationList = new Dictionary<string, int>();
@@ -210,8 +210,8 @@ namespace Compass
                 //打印
                 workSheet.PrintOutEx();
 
-                Microsoft.Office.Interop.Excel.Range range = workSheet.Rows["7:" + (item.Value + 7), Missing.Value];
-                range.Delete(Microsoft.Office.Interop.Excel.XlDirection.xlDown);
+                Range range = workSheet.Rows["7:" + (item.Value + 7), Missing.Value];
+                range.Delete(XlDirection.xlDown);
                 startRow = endRow;
             }
 
@@ -230,8 +230,8 @@ namespace Compass
         {
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             string excelBookPath = Environment.CurrentDirectory + "\\CeilingPackingList.xlsx";
-            Microsoft.Office.Interop.Excel.Workbook workBook = excelApp.Workbooks.Add(excelBookPath);
-            Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
+            Workbook workBook = excelApp.Workbooks.Add(excelBookPath);
+            Worksheet workSheet = excelApp.Worksheets[1];
 
             //将区域添加到字典中并计数
             Dictionary<string, int> locationList = new Dictionary<string, int>();
@@ -261,8 +261,8 @@ namespace Compass
                 if (!Directory.Exists(excelPath)) Directory.CreateDirectory(excelPath);
                 workBook.SaveAs(excelPath + @"\" + objProject.ODPNo + "-"+ item.Key + "天花烟罩发货清单.xlsx", XlFileFormat.xlOpenXMLWorkbook);
                 
-                Microsoft.Office.Interop.Excel.Range range = workSheet.Rows["7:" + (item.Value + 7), Missing.Value];
-                range.Delete(Microsoft.Office.Interop.Excel.XlDirection.xlDown);
+                Range range = workSheet.Rows["7:" + (item.Value + 7), Missing.Value];
+                range.Delete(XlDirection.xlDown);
                 startRow = endRow;
             }
             
@@ -281,7 +281,7 @@ namespace Compass
         /// </summary>
         /// <param name="workSheet"></param>
         /// <param name="dgv"></param>
-        private void FillCeilingPackingListDate(Microsoft.Office.Interop.Excel.Worksheet workSheet, DataGridView dgv, int startRow, int endRow)
+        private void FillCeilingPackingListDate(Worksheet workSheet, DataGridView dgv, int startRow, int endRow)
         {
             int j = 0;
             for (int i = startRow; i < endRow; i++)
@@ -299,7 +299,7 @@ namespace Compass
                 j++;
             }
             //设置边框
-            Microsoft.Office.Interop.Excel.Range range = workSheet.get_Range("A7", "K" + (endRow - startRow + 6));
+            Range range = workSheet.get_Range("A7", "K" + (endRow - startRow + 6));
             range.Borders.Value = 1;
             //设置列宽
             workSheet.Columns.AutoFit();
@@ -316,7 +316,7 @@ namespace Compass
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             string excelBookPath = Environment.CurrentDirectory + "\\CeilingLabel.xlsx";
             excelApp.Workbooks.Add(excelBookPath);
-            Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
+            Worksheet workSheet = excelApp.Worksheets[1];
             foreach (var item in itemList)
             {
                 workSheet.Cells[1, 1] = objProject.ODPNo;
@@ -346,8 +346,8 @@ namespace Compass
         {
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             string excelBookPath = Environment.CurrentDirectory + "\\HoodPackingList.xlsm";
-            Microsoft.Office.Interop.Excel.Workbook workBook = excelApp.Workbooks.Add(excelBookPath);
-            Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets["OrigData"];
+            Workbook workBook = excelApp.Workbooks.Add(excelBookPath);
+            Worksheet workSheet = excelApp.Worksheets["OrigData"];
             //预览
             //excelApp.Visible = true;
             //填写项目号
@@ -355,8 +355,8 @@ namespace Compass
             //超过12台烟罩则插入行
             if (jobCardList.Count > 12)
             {
-                Microsoft.Office.Interop.Excel.Range range = workSheet.get_Range("A5", "AB" + (jobCardList.Count - 8));
-                range.Insert(Microsoft.Office.Interop.Excel.XlInsertShiftDirection.xlShiftDown, null);
+                Range range = workSheet.get_Range("A5", "AB" + (jobCardList.Count - 8));
+                range.Insert(XlInsertShiftDirection.xlShiftDown, null);
             }
             for (int i = 0; i < jobCardList.Count; i++)
             {
@@ -404,7 +404,7 @@ namespace Compass
             Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
             string excelBookPath = Environment.CurrentDirectory + "\\CutList.xlsx";
             excelApp.Workbooks.Add(excelBookPath);
-            Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
+            Worksheet workSheet = excelApp.Worksheets[1];
             workSheet.Cells[1, 2] = subAssy.ProjectName;
             workSheet.Cells[2, 2] = subAssy.ODPNo;
             workSheet.Cells[3, 2] = subAssy.SubAssyName;
@@ -435,7 +435,7 @@ namespace Compass
             string excelBookPath = Environment.CurrentDirectory + "\\CutList.xlsx";
             excelApp.Workbooks.Add(excelBookPath);
 
-            Microsoft.Office.Interop.Excel.Worksheet workSheet = excelApp.Worksheets[1];
+            Worksheet workSheet = excelApp.Worksheets[1];
             workSheet.Cells[1, 2] = drawing.ProjectName;
             workSheet.Cells[2, 2] = drawing.ODPNo;
             workSheet.Cells[3, 2] = drawing.Item;
@@ -461,7 +461,7 @@ namespace Compass
         /// </summary>
         /// <param name="workSheet"></param>
         /// <param name="dgv"></param>
-        public void FillCutListDate(Microsoft.Office.Interop.Excel.Worksheet workSheet, DataGridView dgv)
+        public void FillCutListDate(Worksheet workSheet, DataGridView dgv)
         {
             string partNo = string.Empty;
             for (int i = 0; i < dgv.RowCount; i++)
@@ -491,7 +491,7 @@ namespace Compass
                 workSheet.Cells[i + 11, 11] = i + 1;
             }
             //设置边框
-            Microsoft.Office.Interop.Excel.Range range = workSheet.get_Range("A11", "K" + (dgv.RowCount + 10));
+            Range range = workSheet.get_Range("A11", "K" + (dgv.RowCount + 10));
             range.Borders.Value = 1;
             //设置列宽
             workSheet.Cells[1, 1].ColumnWidth = 30;

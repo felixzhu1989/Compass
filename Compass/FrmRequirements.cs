@@ -82,16 +82,16 @@ namespace Compass
                 btnGeneralRequirement.Visible = true;
                 tsmiEditSpecialRequirement.Visible = true;
                 tsmiDeleteSpecialRequirement.Visible = true;
-                this.dgvSpecialRequirements.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpecialRequirements_CellDoubleClick);
-                this.dgvSpecialRequirements.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvSpecialRequirements_KeyDown);
+                dgvSpecialRequirements.CellDoubleClick += new DataGridViewCellEventHandler(dgvSpecialRequirements_CellDoubleClick);
+                dgvSpecialRequirements.KeyDown += new KeyEventHandler(dgvSpecialRequirements_KeyDown);
             }
             else
             {
                 btnGeneralRequirement.Visible = false;
                 tsmiEditSpecialRequirement.Visible = false;
                 tsmiDeleteSpecialRequirement.Visible = false;
-                this.dgvSpecialRequirements.CellDoubleClick -= new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSpecialRequirements_CellDoubleClick);
-                this.dgvSpecialRequirements.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.dgvSpecialRequirements_KeyDown);
+                dgvSpecialRequirements.CellDoubleClick -= new DataGridViewCellEventHandler(dgvSpecialRequirements_CellDoubleClick);
+                dgvSpecialRequirements.KeyDown -= new KeyEventHandler(dgvSpecialRequirements_KeyDown);
             }
         }
         /// <summary>
@@ -282,7 +282,7 @@ namespace Compass
         /// <param name="e"></param>
         private void dgvSpecialRequirements_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvSpecialRequirements, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvSpecialRequirements, e);
         }
         /// <summary>
         /// 编辑特殊技术要求菜单

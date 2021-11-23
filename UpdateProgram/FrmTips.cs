@@ -72,7 +72,7 @@ namespace UpdateProgram
         /// <param name="e"></param>
         private void btnStartUpdate_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
             if(MessageBox.Show("为了更新文件，将退出当前程序，请确保数据已经保存，确认退出吗？", "取消询问", MessageBoxButtons.OKCancel,
                    MessageBoxIcon.Question) == DialogResult.Cancel)return;
             Application.Exit();
@@ -86,7 +86,7 @@ namespace UpdateProgram
         /// <param name="e"></param>
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Compass
         {
             _objBcj330 = (BCJ330)_objBcj330Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (_objBcj330 == null) return;
-            this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
+            Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
             FillData();
@@ -110,8 +110,8 @@ namespace Compass
                 if (_objBcj330Service.EditModel(objBcj330) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
             }
             catch (Exception ex)

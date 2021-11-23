@@ -33,22 +33,22 @@ namespace Compass
             }
             cobMonth.SelectedIndex = _currentMonth - 1;//默认定位当前月份
             cobMonth.SelectedIndex = _currentMonth - 1;//默认定位当前月份
-            this.cobMonth.SelectedIndexChanged += new System.EventHandler(this.CobMonth_SelectedIndexChanged);
-            this.cobYear.SelectedIndexChanged += new System.EventHandler(this.CobYear_SelectedIndexChanged);
+            cobMonth.SelectedIndexChanged += new EventHandler(CobMonth_SelectedIndexChanged);
+            cobYear.SelectedIndexChanged += new EventHandler(CobYear_SelectedIndexChanged);
             IniAllData();
         }
         #region 单例模式，重写关闭方法
         protected override void OnClosing(CancelEventArgs e)
         {
-            this.Hide();
+            Hide();
             e.Cancel = true;
         }
         internal void ShowAndFocus()
         {
             IniAllData();
-            this.Show();
-            this.WindowState = FormWindowState.Maximized;
-            this.Focus();
+            Show();
+            WindowState = FormWindowState.Maximized;
+            Focus();
         }
         //对外更新所有数据
         public void IniAllData()

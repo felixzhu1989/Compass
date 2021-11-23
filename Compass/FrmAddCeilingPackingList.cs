@@ -24,14 +24,14 @@ namespace Compass
             _objProject = project;
             if (_objProject == null) return;
             //创建第一个节点
-            this.tvCeilingAccessories.Nodes.Clear();
+            tvCeilingAccessories.Nodes.Clear();
             TreeNode rootNode=new TreeNode()
             {
                 Text = "配件目录",
                 ImageIndex = 4,
                 Tag = _objProject.ProjectId
             };
-            this.tvCeilingAccessories.Nodes.Add(rootNode);
+            tvCeilingAccessories.Nodes.Add(rootNode);
             List<CeilingAccessory> ceilingAccessoriesList =
                 _objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
             foreach (var item in ceilingAccessoriesList)
@@ -44,7 +44,7 @@ namespace Compass
                 };
                 rootNode.Nodes.Add(node);
             }
-            this.tvCeilingAccessories.ExpandAll();
+            tvCeilingAccessories.ExpandAll();
             _objDrawings = _objDrawingService.GetDrawingsByProjectId(_objProject.ProjectId.ToString(),_sbu);
         }
         /// <summary>
@@ -94,8 +94,8 @@ namespace Compass
             _objCeilingAccessory.Location = _objDrawings[0].Item;//填写区域
             List<CeilingAccessory> ceilingAccessoriesList = new List<CeilingAccessory>{_objCeilingAccessory};
             _objCeilingAccessoryService.ImportCeilingPackingListByTran(ceilingAccessoriesList);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

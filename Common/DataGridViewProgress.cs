@@ -10,7 +10,7 @@ namespace Common
     {
         public DataGridViewProgressColumn()
         {
-            this.CellTemplate = new DataGridViewProgressCell();
+            CellTemplate = new DataGridViewProgressCell();
         }
     }
 
@@ -24,7 +24,7 @@ namespace Common
         }
         public DataGridViewProgressCell()
         {
-            this.ValueType = typeof(int);
+            ValueType = typeof(int);
         }
         public string ShowText { get; set; } //如果要显示独立的文字而不是百分比，设置此属性。
         protected override object GetFormattedValue(object value,
@@ -35,7 +35,7 @@ namespace Common
         {
             return emptyImage;
         }
-        protected override void Paint(System.Drawing.Graphics g, System.Drawing.Rectangle clipBounds, System.Drawing.Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
+        protected override void Paint(Graphics g, Rectangle clipBounds, Rectangle cellBounds, int rowIndex, DataGridViewElementStates cellState, object value, object formattedValue, string errorText, DataGridViewCellStyle cellStyle, DataGridViewAdvancedBorderStyle advancedBorderStyle, DataGridViewPaintParts paintParts)
         {
             string tValue = value.ToString();
             if (tValue == "") tValue = "0";
@@ -65,7 +65,7 @@ namespace Common
             }
             else
             {
-                if (this.DataGridView.CurrentRow.Index == rowIndex)
+                if (DataGridView.CurrentRow.Index == rowIndex)
                     g.DrawString(DrawStringStr, cellStyle.Font, new SolidBrush(cellStyle.SelectionForeColor), cellBounds.X + 30, cellBounds.Y + 5);
                 else
                     g.DrawString(DrawStringStr, cellStyle.Font, foreColorBrush, cellBounds.X + 30, cellBounds.Y + 5);

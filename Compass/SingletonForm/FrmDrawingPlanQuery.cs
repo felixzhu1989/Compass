@@ -26,8 +26,8 @@ namespace Compass
             toolTip.SetToolTip(cobQueryYear, "按照项目完工日期年度查询");
             dgvDrawingPlan.AutoGenerateColumns = false;
             //初始化自定义图表对象
-            _superChartPlan = new SuperChart(this.chartPlan);
-            _superChartPercent = new SuperChart(this.chartHoodTypePercent);
+            _superChartPlan = new SuperChart(chartPlan);
+            _superChartPercent = new SuperChart(chartHoodTypePercent);
             //查询年度初始化
             int currentYear = DateTime.Now.Year;
             cobQueryYear.Items.Add("ALL");//添加所有
@@ -57,34 +57,34 @@ namespace Compass
         #region 单例模式，重写关闭方法
         protected override void OnClosing(CancelEventArgs e)
         {
-            this.Hide();
+            Hide();
             e.Cancel = true;
         }
         internal void ShowAndFocus()
         {
             BtnQueryByYear_Click(null, null);
-            this.Show();
-            this.WindowState = FormWindowState.Maximized;
-            this.Focus();
+            Show();
+            WindowState = FormWindowState.Maximized;
+            Focus();
         }
         #endregion
 
         private void Query()
         {
-            this.dgvDrawingPlan.DataSource = _objSqlDataPager.GetPagedData();
+            dgvDrawingPlan.DataSource = _objSqlDataPager.GetPagedData();
         }
         /// <summary>
         /// 查询制图计划到表格
         /// </summary>
         private void QueryByYear()
         {
-            if (this.cobQueryYear.Text == "ALL")
+            if (cobQueryYear.Text == "ALL")
             {
                 _objSqlDataPager.Condition = "DrawingPlan.DrReleasetarget>='2020/01/01'";
             }
             else
             {
-                _objSqlDataPager.Condition = string.Format("DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", this.cobQueryYear.Text);
+                _objSqlDataPager.Condition = string.Format("DrawingPlan.DrReleasetarget>='{0}/01/01' and DrawingPlan.DrReleasetarget<='{0}/12/31'", cobQueryYear.Text);
             }
             _objSqlDataPager.PageSize = 10000;
             Query();
@@ -97,7 +97,7 @@ namespace Compass
         /// <param name="e"></param>
         public void BtnQueryByYear_Click(object sender, EventArgs e)
         {
-            if (this.cobQueryYear.SelectedIndex == -1)
+            if (cobQueryYear.SelectedIndex == -1)
             {
                 MessageBox.Show("请选择要查询的年度", "提示信息");
                 return;
@@ -118,7 +118,7 @@ namespace Compass
                 new ChartData("Hood", _objDrawingPlanService.GetTotalHoodWorkloadByYear(cobQueryYear.Text)),
                 new ChartData("Ceiling", _objDrawingPlanService.GetTotalCeilingWorkloadByYear(cobQueryYear.Text))
             };
-            this._superChartPercent.ShowChart(SeriesChartType.Pie, chartPercentChartDatas);
+            _superChartPercent.ShowChart(SeriesChartType.Pie, chartPercentChartDatas);
             //年度各人员工作量占比
             //chartUserPercent
             List<ChartData> userPercentChartDatas = _objDrawingPlanService.GetAllWorkloadByUser(cobQueryYear.Text);
@@ -156,19 +156,19 @@ namespace Compass
             chartPlan.ChartAreas[0].AxisY2.Maximum = double.NaN;
             //重新设置轴最大值
             chartPlan.ChartAreas[0].RecalculateAxesScale();
-            this._superChartPlan.ShowChart(SeriesChartType.Column, _dataList);
+            _superChartPlan.ShowChart(SeriesChartType.Column, _dataList);
 
             chartPlan.Series[0].LegendText = cobQueryYear.Text + "年烟罩数量统计 | 总数量：" + _objDrawingPlanService.GetTotalHoodModuleNoByYear(cobQueryYear.Text);
             //chartPlan.Series[0].LegendText+=" | "+ cobQueryYear.Text + " | Annual statistics | Total for the year:" + objDrawingPlanService.GetTotalHoodModuleNoByYear(cobQueryYear.Text);
             //初始化型号选择框
             List<ChartData> cobModelDataList = _dataList;
-            this.cobModel.SelectedIndexChanged -= new System.EventHandler(this.CobModel_SelectedIndexChanged);
+            cobModel.SelectedIndexChanged -= new EventHandler(CobModel_SelectedIndexChanged);
             lblModel.Text = "型号：";
             cobModel.DataSource = cobModelDataList;
             cobModel.DisplayMember = "Text";
             cobModel.ValueMember = "Value";
             cobModel.SelectedIndex = -1;
-            this.cobModel.SelectedIndexChanged += new System.EventHandler(this.CobModel_SelectedIndexChanged);
+            cobModel.SelectedIndexChanged += new EventHandler(CobModel_SelectedIndexChanged);
             cobModel.SelectedIndex = 0;
             chartPlan.ChartAreas[0].AxisX.Title = "普通烟罩型号 | Hood Model";
             chartPlan.ChartAreas[0].AxisY.Title = "烟罩数量 | Number of Hoods";
@@ -230,7 +230,7 @@ namespace Compass
             chartPlan.ChartAreas[0].AxisY2.Maximum = double.NaN;
             //重新设置轴最大值
             chartPlan.ChartAreas[0].RecalculateAxesScale();
-            this._superChartPlan.ShowChart(SeriesChartType.Column, _dataList);
+            _superChartPlan.ShowChart(SeriesChartType.Column, _dataList);
             chartPlan.Series[0].LegendText = cobQueryYear.Text + "年天花烟罩工作量统计 | 总工作量：" + _objDrawingPlanService.GetTotalCeilingWorkloadByYear(cobQueryYear.Text);
             chartPlan.ChartAreas[0].AxisX.Title = "天花烟罩型号 | Ceiling Model";
             chartPlan.ChartAreas[0].AxisY.Title = "天花烟罩工作量 | Workload of Ceiling";

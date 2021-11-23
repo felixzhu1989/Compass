@@ -17,27 +17,30 @@ namespace DAL
         {
             StringBuilder innerJoin = new StringBuilder($"inner join Users on Projects{sbu}.UserId=Users.UserId");
             innerJoin.Append($" inner join Customers on Projects{sbu}.CustomerId=Customers.CustomerId");
-            innerJoin.Append(string.Format(" inner join ProjectTracking{0} on Projects{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu));
+            innerJoin.Append($" inner join ProjectTracking{sbu} on Projects{sbu}.ProjectId=ProjectTracking{sbu}.ProjectId");
             innerJoin.Append(
                 $" inner join ProjectStatus on ProjectTracking{sbu}.ProjectStatusId=ProjectStatus.ProjectStatusId");
-            innerJoin.Append(string.Format(" left join GeneralRequirements{0} on Projects{0}.ProjectId=GeneralRequirements{0}.ProjectId", sbu));
-            innerJoin.Append(string.Format(" left join FinancialData{0} on Projects{0}.ProjectId=FinancialData{0}.ProjectId", sbu));
-            innerJoin.Append(string.Format(" left join ProjectTypes{0} on ProjectTypes{0}.TypeId=GeneralRequirements{0}.TypeId", sbu));
+            innerJoin.Append($" left join GeneralRequirements{sbu} on Projects{sbu}.ProjectId=GeneralRequirements{sbu}.ProjectId");
+            innerJoin.Append($" left join FinancialData{sbu} on Projects{sbu}.ProjectId=FinancialData{sbu}.ProjectId");
+            innerJoin.Append($" left join ProjectTypes{sbu} on ProjectTypes{sbu}.TypeId=GeneralRequirements{sbu}.TypeId");
+            innerJoin.Append($" left join (select ProjectId,SUM(SubTotalWorkload) as TotalWorkload from DrawingPlan{sbu} group by ProjectId)workload on workload.ProjectId = Projects{sbu}.ProjectId");
+
 
             //初始化分页对象
-            SqlDataPager objSqlDataPager = new SqlDataPager()
+            SqlDataPager objSqlDataPager = new SqlDataPager
             {
                 PrimaryKey = $"Projects{sbu}.ProjectId",
                 TableName = "Projects" + sbu,
                 InnerJoin1 = innerJoin.ToString(),
                 FiledName =
-                    $"Projects{sbu}.ProjectId,ODPNo,BPONo,ProjectName,CustomerName,ShippingTime,UserAccount,TypeName,RiskLevel,ProjectStatusName,HoodType,SalesValue",
+                    $"Projects{sbu}.ProjectId,ODPNo,BPONo,ProjectName,CustomerName,ShippingTime,UserAccount,TypeName,RiskLevel,ProjectStatusName,HoodType,SalesValue,TotalWorkload",
                 CurrentPage = 1,
                 Sort = "ShippingTime desc",
             };
             return objSqlDataPager;
         }
-        
+
+        #region 项目集合
 
         /// <summary>
         /// 根据烟罩类型返回项目集合
@@ -74,15 +77,16 @@ namespace DAL
         /// <returns></returns>
         public List<Project> GetProjectsByWhereSql(string whereSql, string sbu)
         {
-            StringBuilder sql = new StringBuilder(string.Format("select Projects{0}.ProjectId,ODPNo,BPONo,ProjectName,Projects{0}.CustomerId,CustomerName,ShippingTime,Projects{0}.UserId,UserAccount,TypeName,RiskLevel,ProjectStatusName,HoodType,SalesValue from Projects{0}", sbu));
+            StringBuilder sql = new StringBuilder($"select Projects{sbu}.ProjectId,ODPNo,BPONo,ProjectName,Projects{sbu}.CustomerId,CustomerName,ShippingTime,Projects{sbu}.UserId,UserAccount,TypeName,RiskLevel,ProjectStatusName,HoodType,SalesValue,TotalWorkload from Projects{sbu}");
             sql.Append($" inner join Users on Projects{sbu}.UserId=Users.UserId");
             sql.Append($" inner join Customers on Projects{sbu}.CustomerId=Customers.CustomerId");
-            sql.Append(string.Format(" inner join ProjectTracking{0} on Projects{0}.ProjectId=ProjectTracking{0}.ProjectId", sbu));
+            sql.Append($" inner join ProjectTracking{sbu} on Projects{sbu}.ProjectId=ProjectTracking{sbu}.ProjectId");
             sql.Append(
                 $" inner join ProjectStatus on ProjectTracking{sbu}.ProjectStatusId=ProjectStatus.ProjectStatusId");
-            sql.Append(string.Format(" left join GeneralRequirements{0} on Projects{0}.ProjectId=GeneralRequirements{0}.ProjectId", sbu));
-            sql.Append(string.Format(" left join FinancialData{0} on Projects{0}.ProjectId=FinancialData{0}.ProjectId", sbu));
-            sql.Append(string.Format(" left join ProjectTypes{0} on ProjectTypes{0}.TypeId=GeneralRequirements{0}.TypeId", sbu));
+            sql.Append($" left join GeneralRequirements{sbu} on Projects{sbu}.ProjectId=GeneralRequirements{sbu}.ProjectId");
+            sql.Append($" left join FinancialData{sbu} on Projects{sbu}.ProjectId=FinancialData{sbu}.ProjectId");
+            sql.Append($" left join ProjectTypes{sbu} on ProjectTypes{sbu}.TypeId=GeneralRequirements{sbu}.TypeId");
+            sql.Append($" left join (select ProjectId,SUM(SubTotalWorkload) as TotalWorkload from DrawingPlan{sbu} group by ProjectId)workload on workload.ProjectId = Projects{sbu}.ProjectId");
             sql.Append(whereSql);
             sql.Append(" order by ShippingTime desc");//按照发货日期，倒序排列
 
@@ -90,7 +94,7 @@ namespace DAL
             List<Project> list = new List<Project>();
             while (objReader.Read())
             {
-                list.Add(new Project()
+                list.Add(new Project
                 {
                     ProjectId = Convert.ToInt32(objReader["ProjectId"]),
                     ODPNo = objReader["ODPNo"].ToString(),
@@ -101,15 +105,20 @@ namespace DAL
                     ShippingTime = Convert.ToDateTime(objReader["ShippingTime"]),
                     UserId = Convert.ToInt32(objReader["UserId"]),
                     UserAccount = objReader["UserAccount"].ToString(),
-                    RiskLevel = objReader["RiskLevel"].ToString().Length == 0 ? 3 : Convert.ToInt32(objReader["RiskLevel"]),
+                    RiskLevel = objReader["RiskLevel"] == DBNull.Value ? 3 : Convert.ToInt32(objReader["RiskLevel"]),
                     ProjectStatusName = objReader["ProjectStatusName"].ToString(),
                     HoodType = objReader["HoodType"].ToString(),
-                    SalesValue = objReader["SalesValue"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["SalesValue"])
+                    SalesValue = objReader["SalesValue"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["SalesValue"]),
+                    TotalWorkload = objReader["TotalWorkload"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["TotalWorkload"])
                 });
             }
             objReader.Close();
             return list;
         }
+        #endregion
+
+        #region 单个项目
+
         /// <summary>
         /// 根据ODPNo返回单个项目信息
         /// </summary>
@@ -135,17 +144,19 @@ namespace DAL
         /// <returns></returns>
         public Project GetProjectByWhereSql(string whereSql, string sbu)
         {
-            string sql = string.Format("select Projects{0}.ProjectId,ODPNo,BPONo,ProjectName,Projects{0}.CustomerId,CustomerName,ShippingTime,Projects{0}.UserId,UserAccount,RiskLevel,HoodType,SalesValue from Projects{0}", sbu);
-            sql += $" inner join Users on Projects{sbu}.UserId=Users.UserId";
-            sql += $" inner join Customers on Projects{sbu}.CustomerId=Customers.CustomerId";
-            sql += string.Format(" left join GeneralRequirements{0} on Projects{0}.ProjectId=GeneralRequirements{0}.ProjectId", sbu);
-            sql += string.Format(" left join FinancialData{0} on Projects{0}.ProjectId=FinancialData{0}.ProjectId", sbu);
-            sql += whereSql;
-            SqlDataReader objReader = SQLHelper.GetReader(sql);
+            StringBuilder sql = new StringBuilder($"select Projects{sbu}.ProjectId,ODPNo,BPONo,ProjectName,Projects{sbu}.CustomerId,CustomerName,ShippingTime,Projects{sbu}.UserId,UserAccount,RiskLevel,HoodType,SalesValue,TotalWorkload from Projects{sbu}");
+            sql.Append($" inner join Users on Projects{sbu}.UserId=Users.UserId");
+            sql.Append($" inner join Customers on Projects{sbu}.CustomerId=Customers.CustomerId");
+            sql.Append($" left join GeneralRequirements{sbu} on Projects{sbu}.ProjectId=GeneralRequirements{sbu}.ProjectId");
+            sql.Append($" left join FinancialData{sbu} on Projects{sbu}.ProjectId=FinancialData{sbu}.ProjectId");
+            sql.Append($" left join (select ProjectId,SUM(SubTotalWorkload) as TotalWorkload from DrawingPlan{sbu} group by ProjectId)workload on workload.ProjectId = Projects{sbu}.ProjectId");
+
+            sql.Append(whereSql);
+            SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             Project objProject = null;
             if (objReader.Read())
             {
-                objProject = new Project()
+                objProject = new Project
                 {
                     ProjectId = Convert.ToInt32(objReader["ProjectId"]),
                     ODPNo = objReader["ODPNo"].ToString(),
@@ -156,14 +167,17 @@ namespace DAL
                     ShippingTime = Convert.ToDateTime(objReader["ShippingTime"]),
                     UserId = Convert.ToInt32(objReader["UserId"]),
                     UserAccount = objReader["UserAccount"].ToString(),
-                    RiskLevel = objReader["RiskLevel"].ToString().Length == 0 ? 3 : Convert.ToInt32(objReader["RiskLevel"]),
+                    RiskLevel = objReader["RiskLevel"] == DBNull.Value ? 3 : Convert.ToInt32(objReader["RiskLevel"]),
                     HoodType = objReader["HoodType"].ToString(),
-                    SalesValue = objReader["SalesValue"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["SalesValue"])
+                    SalesValue = objReader["SalesValue"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["SalesValue"]),
+                    TotalWorkload = objReader["TotalWorkload"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["TotalWorkload"])
                 };
             }
             objReader.Close();
             return objProject;
-        }
+        } 
+        #endregion
+
         /// <summary>
         /// 添加项目信息
         /// </summary>

@@ -21,7 +21,7 @@ namespace Compass
         {
             RequirementService objRequirementService = new RequirementService();
             GeneralRequirement objGeneralRequirement = objRequirementService.GetGeneralRequirementByODPNo(project.ODPNo, Program.ObjCurrentUser.SBU);
-            this.Text = "天花总装：" + project.ODPNo + " - " + project.ProjectName + "("+ objGeneralRequirement.TypeName+ ")";
+            Text = "天花总装：" + project.ODPNo + " - " + project.ProjectName + "("+ objGeneralRequirement.TypeName+ ")";
             _modelViewData.LocalPath= objGeneralRequirement.MainAssyPath;
             _modelViewData.PublicPath= @"Z:\1-Project operation\20" + project.ODPNo.Substring(3, 2) + @" project\" + project.ODPNo+@"\"+System.IO.Path.GetFileName(_modelViewData.LocalPath);
         }
@@ -93,13 +93,13 @@ namespace Compass
 
             if (System.IO.File.Exists(filePath))
             {
-                System.Diagnostics.Process.Start("Explorer.exe", "/select," + System.IO.Path.GetDirectoryName(filePath) + "\\" + System.IO.Path.GetFileName(filePath));
+                Process.Start("Explorer.exe", "/select," + System.IO.Path.GetDirectoryName(filePath) + "\\" + System.IO.Path.GetFileName(filePath));
             }
             else
             {
                 if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(filePath)))
                 {
-                    System.Diagnostics.Process.Start("Explorer.exe", System.IO.Path.GetDirectoryName(filePath));
+                    Process.Start("Explorer.exe", System.IO.Path.GetDirectoryName(filePath));
                 }
                 else
                 {

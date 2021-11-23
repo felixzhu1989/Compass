@@ -22,8 +22,8 @@ namespace Models
         /// <param name="value"></param>
         public ChartData(string text, double value)
         {
-            this.Text = text;
-            this.Value = value;
+            Text = text;
+            Value = value;
         }
 
         /// <summary>

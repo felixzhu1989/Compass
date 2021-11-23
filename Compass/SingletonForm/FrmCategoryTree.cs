@@ -23,7 +23,7 @@ namespace Compass
         #region 单例模式，重写关闭方法
         protected override void OnClosing(CancelEventArgs e)
         {
-            this.Hide();
+            Hide();
             e.Cancel = true;
         }
         public void AddModule(Drawing drawing)
@@ -35,9 +35,9 @@ namespace Compass
             txtModule.Text ="";
             btnAddModule.Text = "添加：-";
             btnAddModule.Tag = null;
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-            this.Focus();
+            Show();
+            WindowState = FormWindowState.Normal;
+            Focus();
         }
         public void EditModule(Drawing drawing, ModuleTree tree)
         {
@@ -48,36 +48,36 @@ namespace Compass
             txtModule.Text = tree.Module;
             btnAddModule.Text = "修改分段名称";
             btnAddModule.Tag = tree.ModuleTreeId.ToString();
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-            this.Focus();
+            Show();
+            WindowState = FormWindowState.Normal;
+            Focus();
         }
         #endregion
         private List<Category> _categoryList = null;
         private readonly CategoryService _objCategoryService = new CategoryService();
         private void LoadTvCategory()
         {
-            this._categoryList = _objCategoryService.GetAllCategories(_sbu);//加载产品目录树的所有节点信息
+            _categoryList = _objCategoryService.GetAllCategories(_sbu);//加载产品目录树的所有节点信息
             //创建第一个节点
-            this.tvCategory.Nodes.Clear();//清空所有节点
+            tvCategory.Nodes.Clear();//清空所有节点
             TreeNode rootNode = new TreeNode
             {
                 Text = "Halton产品目录",
                 Tag = "1000",//默认值,作为id使用
                 ImageIndex = 4//添加图标
             };
-            this.tvCategory.Nodes.Add(rootNode);//将根节点添加到treeView控件中
+            tvCategory.Nodes.Add(rootNode);//将根节点添加到treeView控件中
             //基于递归方式添加所有子节点
             CreateChildNode(rootNode, 1000);
             //将递归出来的产品目录树节点展开
-            this.tvCategory.Nodes[0].Expand();//只展开第一级目录
+            tvCategory.Nodes[0].Expand();//只展开第一级目录
             //this.tvCategory.ExpandAll();//全部展开，不太好
         }
 
         private void CreateChildNode(TreeNode parentNode, int parentId)
         {
             //找到所有以该节点作为父节点的子节点，Linq的方式
-            var subCategoryList = from list in this._categoryList
+            var subCategoryList = from list in _categoryList
                                   where list.ParentId.Equals(parentId)
                                   select list;
             //循环创建该节点的所有子节点
@@ -148,7 +148,7 @@ namespace Compass
                     {
                         SingletonObject.GetSingleton.FrmMt?.RefreshTree();
                         MessageBox.Show("修改分段名称成功！", "提示信息");
-                        this.Close();
+                        Close();
                     }
                 }
                 catch (Exception ex)

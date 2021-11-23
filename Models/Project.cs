@@ -23,5 +23,6 @@ namespace Models
         public int RiskLevel { get; set; }
         public string ProjectStatusName { get; set; }
         public decimal SalesValue { get; set; }
+        public decimal TotalWorkload { get; set; }
     }
 }

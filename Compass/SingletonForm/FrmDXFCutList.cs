@@ -30,13 +30,13 @@ namespace Compass
         private void IniCategoryId(ComboBox cobItem)
         {
             //断开事件委托
-            this.cobCategoryId.SelectedIndexChanged -= new System.EventHandler(this.CobCategoryId_SelectedIndexChanged);
+            cobCategoryId.SelectedIndexChanged -= new EventHandler(CobCategoryId_SelectedIndexChanged);
             cobItem.DataSource = _objCategoryService.GetAllCategories(_sbu);
             cobItem.DisplayMember = "CategoryId";
             cobItem.ValueMember = "CategoryDesc";
             cobItem.SelectedIndex = -1;
             //重新关联委托
-            this.cobCategoryId.SelectedIndexChanged += new System.EventHandler(this.CobCategoryId_SelectedIndexChanged);
+            cobCategoryId.SelectedIndexChanged += new EventHandler(CobCategoryId_SelectedIndexChanged);
             
         }
         
@@ -321,12 +321,12 @@ namespace Compass
         /// <param name="e"></param>
         private void DgvDXFCutList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvDXFCutList, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvDXFCutList, e);
         }
 
         private void DgvDXFCutListFromExcel_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvDXFCutListFromExcel, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvDXFCutListFromExcel, e);
         }
 
     }

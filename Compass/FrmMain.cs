@@ -21,10 +21,10 @@ namespace Compass
                 switch (xmlReader.Name)
                 {
                     case "Version":
-                        this.lblVersion.Text = "当前版本：" + xmlReader.GetAttribute("Num");
+                        lblVersion.Text = "当前版本：" + xmlReader.GetAttribute("Num");
                         break;
                     case "UpdateTime":
-                        this.lblUpdateTime.Text = "更新日期：" + xmlReader.GetAttribute("Date");
+                        lblUpdateTime.Text = "更新日期：" + xmlReader.GetAttribute("Date");
                         break;
                     default:
                         break;
@@ -32,10 +32,10 @@ namespace Compass
             }
             xmlReader.Close();
             myFile.Close();
-            this.lblCurrentUser.Text = "登陆用户：" + Program.ObjCurrentUser.UserAccount;
+            lblCurrentUser.Text = "登陆用户：" + Program.ObjCurrentUser.UserAccount;
             string currentSbu = Program.ObjCurrentUser.SBU == "" ? "FoodService" : Program.ObjCurrentUser.SBU;
-            this.lblCurrentSBU.Text = "当前事业部：" + currentSbu;
-            this.Text = "COMPASS." + currentSbu;
+            lblCurrentSBU.Text = "当前事业部：" + currentSbu;
+            Text = "COMPASS." + currentSbu;
             
             SetPermissions();
             //隐藏测试代码
@@ -138,7 +138,7 @@ namespace Compass
                 FrmTips objFrmTips = new FrmTips();
                 objFrmTips.Show();
             }
-            this.timerUpdate.Enabled = false;//停止定时器，防止频繁弹出
+            timerUpdate.Enabled = false;//停止定时器，防止频繁弹出
         }
         //每10分钟更新数据
         private void TimerRefreshData_Tick(object sender, EventArgs e)
@@ -191,19 +191,27 @@ namespace Compass
         {
             
                 //嵌入
-                SingletonObject.GetSingleton.AddForm(new Lazy<FrmProject>(() => new FrmProject()).Value);
-                SingletonObject.GetSingleton.AddForm(new FrmModuleTree(QuickBrowse));
+                SingletonObject.GetSingleton.AddForm(new FrmProject());
+
+                SingletonObject.GetSingleton.AddForm(new FrmModuleTree((drawing, tree) =>
+                {
+                    if (!(splitContainer.Panel2.Controls[0] is FrmQuickBrowse))
+                    {
+                        ShowForm(SingletonObject.GetSingleton.FrmQb, splitContainer.Panel2);
+                    }
+                    SingletonObject.GetSingleton.FrmQb?.ShowWithItem(drawing, tree);
+                }));
+
                 SingletonObject.GetSingleton.AddForm(new FrmQuickBrowse());
                 ShowForm(SingletonObject.GetSingleton.FrmMt, splitContainer.Panel1);
 
                 //独立
-                SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmProjectInfo>(() => new FrmProjectInfo()).Value);
-                SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmCeilingAutoDrawing>(() => new FrmCeilingAutoDrawing()).Value);
-                SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmHoodAutoDrawing>(() => new FrmHoodAutoDrawing()).Value);
-                SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmMarineAutoDrawing>(() => new FrmMarineAutoDrawing()).Value);
-                SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmCategoryTree>(() => new FrmCategoryTree()).Value);
+                SingletonObject.GetSingleton.AddMetroForm(new FrmProjectInfo());
+                SingletonObject.GetSingleton.AddMetroForm(new FrmCeilingAutoDrawing());
+                SingletonObject.GetSingleton.AddMetroForm(new FrmHoodAutoDrawing());
+                SingletonObject.GetSingleton.AddMetroForm(new FrmMarineAutoDrawing());
+                SingletonObject.GetSingleton.AddMetroForm(new FrmCategoryTree());
                 TsmiProjectList_Click(null, null);
-            
         }
 
 
@@ -254,17 +262,7 @@ namespace Compass
         {
             SingletonObject.GetSingleton.FrmPi?.ShowAndFocus();
         }
-        #region 【2】根据委托创建方法
-
-        private void QuickBrowse(Drawing drawing, ModuleTree tree)
-        {
-            if (!(splitContainer.Panel2.Controls[0] is FrmQuickBrowse))
-            {
-                ShowForm(SingletonObject.GetSingleton.FrmQb, splitContainer.Panel2);
-            }
-            SingletonObject.GetSingleton.FrmQb?.ShowWithItem(drawing, tree);
-        }
-        #endregion
+        
         #endregion 项目信息菜单
 
         #region SolidWorks自动绘图

@@ -49,27 +49,27 @@ namespace Compass
             dgvDrawingNumMatrix.AutoGenerateColumns = false;
             dgvDrawingNumMatrix.DataSource = _objDrawingNumMatrices;//初始化图号表格
             SetPermissions();
-            this.dgvDrawingNumMatrix.SelectionChanged += new System.EventHandler(this.DgvDrawingNumMatrix_SelectionChanged);
+            dgvDrawingNumMatrix.SelectionChanged += new EventHandler(DgvDrawingNumMatrix_SelectionChanged);
 
             if (!Directory.Exists(_imageDir)) Directory.CreateDirectory(_imageDir);
         }
         #region 单例模式，重写关闭方法
         protected override void OnClosing(CancelEventArgs e)
         {
-            this.Hide();
+            Hide();
             e.Cancel = true;
         }
         #endregion
         internal void ShowAndFocus()
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-            this.Focus();
+            Show();
+            WindowState = FormWindowState.Normal;
+            Focus();
         }
 
         private void DgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvDrawingNumMatrix, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvDrawingNumMatrix, e);
         }
 
         #region 设置权限
@@ -113,7 +113,7 @@ namespace Compass
                 Name = "pnlSBU",
                 Location = new Point(10, 60)
             };
-            this.Controls.Add(pnlSbu);
+            Controls.Add(pnlSbu);
             AddRadioButtonAndGroupBox(pnlSbu, sbuCodeRules, "SBU");
             IniProductType(pnlSbu);
         }
@@ -130,7 +130,7 @@ namespace Compass
                 Name = "pnlProductType",
                 Location = new Point(lastPanel.Location.X + lastPanel.Width + 8, lastPanel.Location.Y)
             };
-            this.Controls.Add(pnlProductType);
+            Controls.Add(pnlProductType);
             AddRadioButtonAndGroupBox(pnlProductType, productTypeCodeRules, "Product Type");
         }
 
@@ -143,7 +143,7 @@ namespace Compass
                 Name = "pnlProductName",
                 Location = new Point(lastPanel.Location.X + lastPanel.Width + 8, lastPanel.Location.Y)
             };
-            this.Controls.Add(pnlProductName);
+            Controls.Add(pnlProductName);
             AddRadioButtonAndGroupBox(pnlProductName, productNameCodeRules, "Product Name");
         }
 
@@ -156,7 +156,7 @@ namespace Compass
                 Name = "pnlSubAssembly",
                 Location = new Point(lastPanel.Location.X + lastPanel.Width + 8, lastPanel.Location.Y)
             };
-            this.Controls.Add(pnlSubAssembly);
+            Controls.Add(pnlSubAssembly);
             AddRadioButtonAndGroupBox(pnlSubAssembly, subAssemblyCodeRules, "Sub Assembly");
         }
 
@@ -230,11 +230,11 @@ namespace Compass
                 {
                     if (item is Panel && (item.Name.Contains("ProductName") || item.Name.Contains("SubAssembly")))
                     {
-                        this.Controls.Remove(item);
+                        Controls.Remove(item);
                     }
                 }
                 if (!rbt.Checked) return;
-                Panel pnlProdType = (Panel)this.Controls.Find("pnlProductType", false).First();
+                Panel pnlProdType = (Panel)Controls.Find("pnlProductType", false).First();
                 IniProductName(pnlProdType, rbt.Name);
             }
             else if (rbt.Name.Substring(3, 2) == "00")
@@ -243,7 +243,7 @@ namespace Compass
                 {
                     if (item is Panel && item.Name.Contains("SubAssembly"))
                     {
-                        this.Controls.Remove(item);
+                        Controls.Remove(item);
                     }
                 }
                 if (!rbt.Checked) return;
@@ -481,7 +481,7 @@ namespace Compass
             }
             string drawingId = dgvDrawingNumMatrix.CurrentRow.Cells["DrawingId"].Value.ToString();
             string drawingNum = dgvDrawingNumMatrix.CurrentRow.Cells["DrawingNum"].Value.ToString();
-            if (Common.DataValidate.IsInteger(drawingNum.Substring(0, 1)))
+            if (DataValidate.IsInteger(drawingNum.Substring(0, 1)))
             {
                 MessageBox.Show("不允许删除标准件和采购件，删除请联系管理员", "删除询问");
                 return;
@@ -625,7 +625,7 @@ namespace Compass
         /// <param name="e"></param>
         private void BtnImportFromExcel_Click(object sender, EventArgs e)
         {
-            this.dgvDrawingNumMatrix.SelectionChanged -= new System.EventHandler(this.DgvDrawingNumMatrix_SelectionChanged);
+            dgvDrawingNumMatrix.SelectionChanged -= new EventHandler(DgvDrawingNumMatrix_SelectionChanged);
             dgvDrawingNumMatrix.DataSource = null;
             //打开文件
             OpenFileDialog openFile = new OpenFileDialog();
@@ -668,7 +668,7 @@ namespace Compass
                 MessageBox.Show("数据导入失败" + ex.Message, "错误提示");
                 dgvDrawingNumMatrix.DataSource = null;
             }
-            this.dgvDrawingNumMatrix.SelectionChanged += new System.EventHandler(this.DgvDrawingNumMatrix_SelectionChanged);
+            dgvDrawingNumMatrix.SelectionChanged += new EventHandler(DgvDrawingNumMatrix_SelectionChanged);
         }
 
         #endregion
@@ -768,7 +768,7 @@ namespace Compass
         private void BtnOpenFile_Click(object sender, EventArgs e)
         {
             GetFilePath(".SLDPRT");
-            if (System.IO.File.Exists(_filePath)) Process.Start(_filePath);
+            if (File.Exists(_filePath)) Process.Start(_filePath);
             else MessageBox.Show("未找到该路径!");
         }
 
@@ -780,15 +780,15 @@ namespace Compass
         private void BtnOpenFolder_Click(object sender, EventArgs e)
         {
             GetFilePath(".SLDPRT");
-            if (System.IO.File.Exists(_filePath))
+            if (File.Exists(_filePath))
             {
-                System.Diagnostics.Process.Start("Explorer.exe", "/select," + System.IO.Path.GetDirectoryName(_filePath) + "\\" + System.IO.Path.GetFileName(_filePath));
+                Process.Start("Explorer.exe", "/select," + Path.GetDirectoryName(_filePath) + "\\" + Path.GetFileName(_filePath));
             }
             else
             {
-                if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(_filePath)))
+                if (Directory.Exists(Path.GetDirectoryName(_filePath)))
                 {
-                    System.Diagnostics.Process.Start("Explorer.exe", System.IO.Path.GetDirectoryName(_filePath));
+                    Process.Start("Explorer.exe", Path.GetDirectoryName(_filePath));
                 }
                 else
                 {
@@ -819,12 +819,12 @@ namespace Compass
         }
         private void OnOpen(object sender, EventArgs e)
         {
-            if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(_filePath)))
+            if (Directory.Exists(Path.GetDirectoryName(_filePath)))
             {
                 btnOpenFolder.Enabled = true;
                 btnAddCustomInfo.Enabled = true;
             }
-            if (System.IO.File.Exists(_filePath))
+            if (File.Exists(_filePath))
             {
                 if (_mEDrawingsCtrl == null)
                 {

@@ -98,7 +98,7 @@ namespace DAL
                 }
                 else
                 {
-                    this.CurrentPage = 1;//查询结果为0时，当前页码需要复位。
+                    CurrentPage = 1;//查询结果为0时，当前页码需要复位。
                     return 0;
                 }
             }
@@ -132,7 +132,7 @@ namespace DAL
             //【1】执行查询，返回分页后的结果
             DataSet ds = SQLHelper.GetDataSet(GetPagedsql());
             //【2】获取返回记录的总数
-            this.recordCount = Convert.ToInt32(ds.Tables[1].Rows[0][0]);
+            recordCount = Convert.ToInt32(ds.Tables[1].Rows[0][0]);
             return ds.Tables[0];
         }
     }

@@ -20,7 +20,7 @@ namespace Compass
             cobParentId.DisplayMember = "CategoryId";
             cobParentId.ValueMember = "CategoryDesc";
             cobParentId.SelectedIndex = -1;
-            this.cobParentId.SelectedIndexChanged += new System.EventHandler(this.CobParentId_SelectedIndexChanged);
+            cobParentId.SelectedIndexChanged += new EventHandler(CobParentId_SelectedIndexChanged);
         }
         /// <summary>
         /// 重载构造方法，传递分类模型对象参数
@@ -125,8 +125,8 @@ namespace Compass
                 if (_objCategoryService.EditCategory(objCategory,_sbu) == 1)
                 {
                     MessageBox.Show("分类信息修改成功", "提示信息");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
             }
             catch (Exception ex)

@@ -26,13 +26,13 @@ namespace Compass
         private void IniCategoryId(ComboBox cobItem)
         {
             //断开事件委托
-            cobItem.SelectedIndexChanged -= new System.EventHandler(this.CobParentId_SelectedIndexChanged);
+            cobItem.SelectedIndexChanged -= new EventHandler(CobParentId_SelectedIndexChanged);
             cobItem.DataSource = _objCategoryService.GetCategoryId(_sbu);
             cobItem.DisplayMember = "CategoryId";
             cobItem.ValueMember = "CategoryDesc";
             cobItem.SelectedIndex = -1;
             //重新关联委托
-            cobItem.SelectedIndexChanged += new System.EventHandler(this.CobParentId_SelectedIndexChanged);
+            cobItem.SelectedIndexChanged += new EventHandler(CobParentId_SelectedIndexChanged);
         }
         /// <summary>
         /// 刷新dgv显示数据，因为数据量比较小，这种就刷新可以了
@@ -112,7 +112,7 @@ namespace Compass
                 return;
             }
             //验证编号是数字
-            if (!DataValidate.IsInteger(this.txtCategoryId.Text.Trim()))
+            if (!DataValidate.IsInteger(txtCategoryId.Text.Trim()))
             {
                 MessageBox.Show("分类编号必须是数字", "验证信息");
                 txtCategoryId.Focus();

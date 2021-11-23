@@ -34,13 +34,13 @@ namespace Compass
             }
             cobQueryYear.SelectedIndex = 1;//默认定位当前年份
             //设置默认的显示条数
-            this.cobRecordList.SelectedIndex = 0;
+            cobRecordList.SelectedIndex = 0;
             //初始无数据禁用相关按钮,考虑用户体验
-            this.btnToPage.Enabled = false;
-            this.btnFirst.Enabled = false;
-            this.btnPre.Enabled = false;
-            this.btnNext.Enabled = false;
-            this.btnLast.Enabled = false;
+            btnToPage.Enabled = false;
+            btnFirst.Enabled = false;
+            btnPre.Enabled = false;
+            btnNext.Enabled = false;
+            btnLast.Enabled = false;
             //分页查询
             _objSqlDataPager = _objProjectTrackingService.GetSqlDataPager(_sbu);
             BtnQueryByYear_Click(null, null);
@@ -65,12 +65,12 @@ namespace Compass
         /// <param name="cobItem"></param>
         private void IniProjectStatus(ComboBox cobItem)
         {
-            this.cobProjectStatus.SelectedIndexChanged -= new System.EventHandler(this.CobProjectStatus_SelectedIndexChanged);
+            cobProjectStatus.SelectedIndexChanged -= new EventHandler(CobProjectStatus_SelectedIndexChanged);
             cobItem.DataSource = _objProjectStatusService.GetAllProjectStatus();
             cobItem.DisplayMember = "ProjectStatusName";
             cobItem.ValueMember = "ProjectStatusId";
             cobItem.SelectedIndex = -1;//默认不要选中
-            this.cobProjectStatus.SelectedIndexChanged += new System.EventHandler(this.CobProjectStatus_SelectedIndexChanged);
+            cobProjectStatus.SelectedIndexChanged += new EventHandler(CobProjectStatus_SelectedIndexChanged);
         }
         /// <summary>
         /// 设置权限
@@ -95,47 +95,47 @@ namespace Compass
         private void Query()
         {
             //开启所有的按钮
-            this.btnToPage.Enabled = true;
-            this.btnFirst.Enabled = true;
-            this.btnPre.Enabled = true;
-            this.btnNext.Enabled = true;
-            this.btnLast.Enabled = true;
+            btnToPage.Enabled = true;
+            btnFirst.Enabled = true;
+            btnPre.Enabled = true;
+            btnNext.Enabled = true;
+            btnLast.Enabled = true;
             //【1】设置分页查询的条件
             //objSqlDataPager.Condition = string.Format("ShippingTime>='{0}/01/01' and ShippingTime<='{0}/12/31'", this.cobQueryYear.Text);
             //【2】设置每页显示的条数
             //objSqlDataPager.PageSize = Convert.ToInt32(this.cobRecordList.Text.Trim());
             //【3】执行查询
-            this.dgvProjectTracking.DataSource = _objSqlDataPager.GetPagedData();
+            dgvProjectTracking.DataSource = _objSqlDataPager.GetPagedData();
             //【4】显示记录总数，显示总页数，显示当前页码
-            this.lblRecordsCound.Text = _objSqlDataPager.RecordCount.ToString();
-            this.lblPageCount.Text = _objSqlDataPager.TotalPages.ToString();
+            lblRecordsCound.Text = _objSqlDataPager.RecordCount.ToString();
+            lblPageCount.Text = _objSqlDataPager.TotalPages.ToString();
             if (_objSqlDataPager.RecordCount == 0)
             {
-                this.lblCurrentPage.Text = "0";
+                lblCurrentPage.Text = "0";
             }
             else
             {
-                this.lblCurrentPage.Text = _objSqlDataPager.CurrentPage.ToString();
+                lblCurrentPage.Text = _objSqlDataPager.CurrentPage.ToString();
             }
             //禁用按钮的情况
-            if (this.lblPageCount.Text == "0" || this.lblPageCount.Text == "1")
+            if (lblPageCount.Text == "0" || lblPageCount.Text == "1")
             {
-                this.btnToPage.Enabled = false;
-                this.btnFirst.Enabled = false;
-                this.btnPre.Enabled = false;
-                this.btnNext.Enabled = false;
-                this.btnLast.Enabled = false;
+                btnToPage.Enabled = false;
+                btnFirst.Enabled = false;
+                btnPre.Enabled = false;
+                btnNext.Enabled = false;
+                btnLast.Enabled = false;
             }
             else
             {
-                this.btnToPage.Enabled = true;
+                btnToPage.Enabled = true;
             }
         }
 
         private void QueryByYear()
         {
-            _objSqlDataPager.Condition = string.Format("ShippingTime>='{0}/01/01' and ShippingTime<='{0}/12/31'", this.cobQueryYear.Text);
-            _objSqlDataPager.PageSize = Convert.ToInt32(this.cobRecordList.Text.Trim());
+            _objSqlDataPager.Condition = string.Format("ShippingTime>='{0}/01/01' and ShippingTime<='{0}/12/31'", cobQueryYear.Text);
+            _objSqlDataPager.PageSize = Convert.ToInt32(cobRecordList.Text.Trim());
             Query();
         }
 
@@ -155,10 +155,10 @@ namespace Compass
         /// <param name="e"></param>
         private void DgvProjectTracking_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvProjectTracking, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvProjectTracking, e);
             if (e.RowIndex > -1)
             {
-                string projectStatus = this.dgvProjectTracking.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
+                string projectStatus = dgvProjectTracking.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
                 dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = _pair.ProjectStatusColorKeyValue.First(q => q.Key == projectStatus).Value;
             }
         }
@@ -206,7 +206,7 @@ namespace Compass
         {
             if (dgvProjectTracking.RowCount == 0) return;
             if (dgvProjectTracking.CurrentRow == null) return;
-            cobODPNo.Text = this.dgvProjectTracking.CurrentRow.Cells["ODPNo"].Value.ToString();
+            cobODPNo.Text = dgvProjectTracking.CurrentRow.Cells["ODPNo"].Value.ToString();
         }
 
         /// <summary>
@@ -239,18 +239,18 @@ namespace Compass
             cobEditProjectStatus.Text = objProjectTracking.ProjectStatusName;
 
             //断开事件委托
-            this.dtpEditDrReleaseActual.ValueChanged -= new System.EventHandler(this.DtpEditDrReleaseActual_ValueChanged);
-            this.dtpEditProdFinishActual.ValueChanged -= new System.EventHandler(this.DtpEditProdFinishActual_ValueChanged);
-            this.dtpEditDeliverActual.ValueChanged -= new System.EventHandler(this.DtpEditDeliverActual_ValueChanged);
+            dtpEditDrReleaseActual.ValueChanged -= new EventHandler(DtpEditDrReleaseActual_ValueChanged);
+            dtpEditProdFinishActual.ValueChanged -= new EventHandler(DtpEditProdFinishActual_ValueChanged);
+            dtpEditDeliverActual.ValueChanged -= new EventHandler(DtpEditDeliverActual_ValueChanged);
 
             dtpEditDrReleaseActual.Text = objProjectTracking.DrReleaseActual == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.DrReleaseActual.ToShortDateString();
             dtpEditProdFinishActual.Text = objProjectTracking.ProdFinishActual == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.ProdFinishActual.ToShortDateString();
             dtpEditDeliverActual.Text = objProjectTracking.DeliverActual == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.DeliverActual.ToShortDateString();
 
             //重新建立事件委托
-            this.dtpEditDrReleaseActual.ValueChanged += new System.EventHandler(this.DtpEditDrReleaseActual_ValueChanged);
-            this.dtpEditProdFinishActual.ValueChanged += new System.EventHandler(this.DtpEditProdFinishActual_ValueChanged);
-            this.dtpEditDeliverActual.ValueChanged += new System.EventHandler(this.DtpEditDeliverActual_ValueChanged);
+            dtpEditDrReleaseActual.ValueChanged += new EventHandler(DtpEditDrReleaseActual_ValueChanged);
+            dtpEditProdFinishActual.ValueChanged += new EventHandler(DtpEditProdFinishActual_ValueChanged);
+            dtpEditDeliverActual.ValueChanged += new EventHandler(DtpEditDeliverActual_ValueChanged);
 
             dtpEditODPReceiveDate.Text = objProjectTracking.ODPReceiveDate == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.ODPReceiveDate.ToShortDateString();
             dtpEditKickOffDate.Text = objProjectTracking.KickOffDate == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.KickOffDate.ToShortDateString();
@@ -379,7 +379,7 @@ namespace Compass
         /// <param name="e"></param>
         public void BtnQueryByYear_Click(object sender, EventArgs e)
         {
-            if (this.cobQueryYear.SelectedIndex == -1)
+            if (cobQueryYear.SelectedIndex == -1)
             {
                 MessageBox.Show("请选择要查询的年度", "提示信息");
                 return;
@@ -387,8 +387,8 @@ namespace Compass
             _objSqlDataPager.CurrentPage = 1;//每次执行查询都必须设置为第一页
             QueryByYear();
             //禁用上一页按钮
-            this.btnFirst.Enabled = false;
-            this.btnPre.Enabled = false;
+            btnFirst.Enabled = false;
+            btnPre.Enabled = false;
         }
         /// <summary>
         /// 第一页
@@ -400,8 +400,8 @@ namespace Compass
             _objSqlDataPager.CurrentPage = 1;//每次执行查询都必须设置为第一页
             QueryByYear();
             //禁用上一页按钮和第一页
-            this.btnFirst.Enabled = false;
-            this.btnPre.Enabled = false;
+            btnFirst.Enabled = false;
+            btnPre.Enabled = false;
         }
         /// <summary>
         /// 上一页
@@ -415,8 +415,8 @@ namespace Compass
             //禁用下一页和最后一页按钮
             if (_objSqlDataPager.CurrentPage == 1)
             {
-                this.btnFirst.Enabled = false;
-                this.btnPre.Enabled = false;
+                btnFirst.Enabled = false;
+                btnPre.Enabled = false;
             }
         }
         /// <summary>
@@ -431,8 +431,8 @@ namespace Compass
             //禁用下一页和最后一页按钮
             if (_objSqlDataPager.CurrentPage == _objSqlDataPager.TotalPages)
             {
-                this.btnLast.Enabled = false;
-                this.btnNext.Enabled = false;
+                btnLast.Enabled = false;
+                btnNext.Enabled = false;
             }
         }
         /// <summary>
@@ -445,8 +445,8 @@ namespace Compass
             _objSqlDataPager.CurrentPage = _objSqlDataPager.TotalPages;//在当前页码上加一
             QueryByYear();
             //禁用下一页和最后一页按钮
-            this.btnLast.Enabled = false;
-            this.btnNext.Enabled = false;
+            btnLast.Enabled = false;
+            btnNext.Enabled = false;
         }
         /// <summary>
         /// 跳转到
@@ -455,10 +455,10 @@ namespace Compass
         /// <param name="e"></param>
         private void BtnToPage_Click(object sender, EventArgs e)
         {
-            int a = this.txtToPage.IsInteger("跳转的页码");
+            int a = txtToPage.IsInteger("跳转的页码");
             if (a != 0)
             {
-                int toPage = Convert.ToInt32(this.txtToPage.Text.Trim());
+                int toPage = Convert.ToInt32(txtToPage.Text.Trim());
                 if (toPage > _objSqlDataPager.TotalPages)
                 {
                     BtnLast_Click(null, null);//直接为最后一页
@@ -474,14 +474,14 @@ namespace Compass
                     if (_objSqlDataPager.CurrentPage == 1)
                     {
                         //禁用上一页按钮和第一页
-                        this.btnFirst.Enabled = false;
-                        this.btnPre.Enabled = false;
+                        btnFirst.Enabled = false;
+                        btnPre.Enabled = false;
                     }
                     else if (_objSqlDataPager.CurrentPage == _objSqlDataPager.TotalPages)
                     {
                         //禁用下一页和最后一页按钮
-                        this.btnLast.Enabled = false;
-                        this.btnNext.Enabled = false;
+                        btnLast.Enabled = false;
+                        btnNext.Enabled = false;
                     }
                 }
             }

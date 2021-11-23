@@ -45,8 +45,8 @@ namespace Compass
             dgvSubAssyExecList.AutoGenerateColumns = false;
             //dgvCutList.AutoGenerateColumns = false;
             IniCobOdpNo();
-            this.tvSubAssyTree.AllowDrop = true;//允许文件拖拽
-            this.txtMainAssyPath.AllowDrop = true;
+            tvSubAssyTree.AllowDrop = true;//允许文件拖拽
+            txtMainAssyPath.AllowDrop = true;
             btnEditCeilingAccessory.Enabled = false;
             
             dgvCeilingPackingList.AutoGenerateColumns = false;
@@ -55,19 +55,19 @@ namespace Compass
 
         public void IniCobOdpNo()
         {
-            this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+            cobODPNo.SelectedIndexChanged -= new EventHandler(CobODPNo_SelectedIndexChanged);
             //项目编号下拉框
             cobODPNo.DataSource = _objProjectService.GetProjectsByHoodType("Ceiling", _sbu);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;
-            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+            cobODPNo.SelectedIndexChanged += new EventHandler(CobODPNo_SelectedIndexChanged);
         }
         
         #region 单例模式，重写关闭方法，显示时选择ODP号
         protected override void OnClosing(CancelEventArgs e)
         {
-            this.Hide();
+            Hide();
             e.Cancel = true;
         }
         public void ShowWithOdpNo(string odpNo)
@@ -77,9 +77,9 @@ namespace Compass
         }
         internal void ShowAndFocus()
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-            this.Focus();
+            Show();
+            WindowState = FormWindowState.Normal;
+            Focus();
         }
         #endregion
 
@@ -100,9 +100,9 @@ namespace Compass
                 tsmiDeleteCeilingPackingList.Visible = true;
                 btnEditCeilingAccessory.Visible = true;
                 btnCeilingPackingList.Enabled = true;//只有技术部能够生成发货清单
-                this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvCutList_KeyDown);
-                this.tvSubAssyTree.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TvSubAssyTree_KeyDown);
-                this.dgvCeilingPackingList.DoubleClick += new System.EventHandler(this.DgvCeilingPackingList_DoubleClick);
+                dgvCutList.KeyDown += new KeyEventHandler(DgvCutList_KeyDown);
+                tvSubAssyTree.KeyDown += new KeyEventHandler(TvSubAssyTree_KeyDown);
+                dgvCeilingPackingList.DoubleClick += new EventHandler(DgvCeilingPackingList_DoubleClick);
             }
             else
             {
@@ -115,9 +115,9 @@ namespace Compass
                 btnCeilingPackingList.Enabled = false;
                 btnEditCeilingAccessory.Visible = false;
 
-                this.dgvCutList.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.DgvCutList_KeyDown);
-                this.tvSubAssyTree.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.TvSubAssyTree_KeyDown);
-                this.dgvCeilingPackingList.DoubleClick -= new System.EventHandler(this.DgvCeilingPackingList_DoubleClick);
+                dgvCutList.KeyDown -= new KeyEventHandler(DgvCutList_KeyDown);
+                tvSubAssyTree.KeyDown -= new KeyEventHandler(TvSubAssyTree_KeyDown);
+                dgvCeilingPackingList.DoubleClick -= new EventHandler(DgvCeilingPackingList_DoubleClick);
             }
 
             //按钮权限，如果是fsprod则为true
@@ -163,7 +163,7 @@ namespace Compass
         {
             if (_objProject == null) return;
             //创建第一个节点
-            this.tvSubAssyTree.Nodes.Clear();//清空所有节点
+            tvSubAssyTree.Nodes.Clear();//清空所有节点
             _subAssyTreeList.Clear();//清空节点集合，否则修改一次重复添加一次
             TreeNode rootNode = new TreeNode()
             {
@@ -171,7 +171,7 @@ namespace Compass
                 Tag = _objProject.ProjectId,//默认值,作为id使用
                 ImageIndex = 4//添加图标
             };
-            this.tvSubAssyTree.Nodes.Add(rootNode);//将根节点添加到treeView控件中
+            tvSubAssyTree.Nodes.Add(rootNode);//将根节点添加到treeView控件中
             //创建子节点
             List<SubAssy> subAssyList = _objSubAssyService.GetSubAssysByProjectId(_objProject.ProjectId.ToString());
             foreach (var item in subAssyList)
@@ -184,7 +184,7 @@ namespace Compass
                 };
                 rootNode.Nodes.Add(node);
             }
-            this.tvSubAssyTree.ExpandAll();
+            tvSubAssyTree.ExpandAll();
         }
         /// <summary>
         /// 绑定数据
@@ -650,27 +650,27 @@ namespace Compass
         #region dgv添加行号
         private void DgvWaitingList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvWaitingList, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvWaitingList, e);
         }
         private void DgvExecList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvExecList, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvExecList, e);
         }
         private void DgvSubAssyWaitingList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvSubAssyWaitingList, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvSubAssyWaitingList, e);
         }
         private void DgvSubAssyExecList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvSubAssyExecList, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvSubAssyExecList, e);
         }
         private void DgvCutList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvCutList, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvCutList, e);
         }
         private void CeilingPackingList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvCeilingPackingList, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvCeilingPackingList, e);
         }
         #endregion
 

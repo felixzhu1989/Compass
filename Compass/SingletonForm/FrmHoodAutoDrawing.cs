@@ -37,18 +37,18 @@ namespace Compass
 
         public void IniCobOdpNo()
         {
-            this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+            cobODPNo.SelectedIndexChanged -= new EventHandler(CobODPNo_SelectedIndexChanged);
             //项目编号下拉框
             cobODPNo.DataSource = _objProjectService.GetProjectsByHoodType("Hood", _sbu);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;
-            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+            cobODPNo.SelectedIndexChanged += new EventHandler(CobODPNo_SelectedIndexChanged);
         }
         #region 单例模式，重写关闭方法，显示时选择ODP号
         protected override void OnClosing(CancelEventArgs e)
         {
-            this.Hide();
+            Hide();
             e.Cancel = true;
         }
         public void ShowWithOdpNo(string odpNo)
@@ -58,9 +58,9 @@ namespace Compass
         }
         internal void ShowAndFocus()
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-            this.Focus();
+            Show();
+            WindowState = FormWindowState.Normal;
+            Focus();
         }
         #endregion
 
@@ -105,7 +105,7 @@ namespace Compass
         /// <param name="e"></param>
         private void DgvWaitingList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvWaitingList, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvWaitingList, e);
         }
         /// <summary>
         /// 添加行号
@@ -114,7 +114,7 @@ namespace Compass
         /// <param name="e"></param>
         private void DgvExecList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvExecList, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvExecList, e);
         }
         /// <summary>
         /// 待执行->执行

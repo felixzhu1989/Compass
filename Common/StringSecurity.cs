@@ -12,8 +12,8 @@ namespace Common
     {
         private StringSecurity() { }
         #region DES加密/解密
-        private static byte[] key = ASCIIEncoding.ASCII.GetBytes("uiertysd");//密钥
-        private static byte[] iv = ASCIIEncoding.ASCII.GetBytes("99008855");//向量
+        private static byte[] key = Encoding.ASCII.GetBytes("uiertysd");//密钥
+        private static byte[] iv = Encoding.ASCII.GetBytes("99008855");//向量
         /// <summary>
         /// DES加密
         /// </summary>

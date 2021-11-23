@@ -22,7 +22,7 @@ namespace Compass
         {
             _objLfusa = (LFUSA)_objLfusaService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (_objLfusa == null) return;
-            this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
+            Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
             FillData();
@@ -144,8 +144,8 @@ namespace Compass
                 if (_objLfusaService.EditModel(objLfusa) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
             }
             catch (Exception ex)

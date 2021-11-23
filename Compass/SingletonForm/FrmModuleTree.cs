@@ -13,40 +13,37 @@ using MetroFramework.Forms;
 
 namespace Compass
 {
-    //【1】定义委托，快速浏览制图参数委托
-    public delegate void QuickBrowseDelegate(Drawing drawing, ModuleTree tree);
+    
     public partial class FrmModuleTree : Form
     {
         readonly ProjectService _objProjectService = new ProjectService();
         readonly DrawingService _objDrawingService = new DrawingService();
         readonly ModuleTreeService _objModuleTreeService = new ModuleTreeService();
         private readonly string _sbu = Program.ObjCurrentUser.SBU;
-
-        //【3】创建委托变量
-        public QuickBrowseDelegate QuickBrowseDeg;
+        readonly Action<Drawing, ModuleTree> _quickBrowseDeg;
 
         private readonly List<ModuleTree> _moduleTreesList = new List<ModuleTree>();
-        private Project _objProject = null;
+        private Project _objProject;
         public FrmModuleTree()
         {
             InitializeComponent();
             pbLabelImage.Visible = false;
             SetPermissions();
         }
-        public FrmModuleTree(QuickBrowseDelegate del) :this()
+        public FrmModuleTree(Action<Drawing, ModuleTree> del) :this()
         {
-            this.QuickBrowseDeg = del;
+            _quickBrowseDeg = del;
         }
 
         #region 单例模式
         public void ShowWithOdpNo(string odpNo)
         {
-            this.tvModule.AfterSelect -= new System.Windows.Forms.TreeViewEventHandler(this.TvModule_AfterSelect);
+            tvModule.AfterSelect -= TvModule_AfterSelect;
             _objProject = _objProjectService.GetProjectByODPNo(odpNo, _sbu);
             RefreshTree();
             if (_objProject.HoodType == "Ceiling") tsmiCeilingAssy.Visible = true;
             else tsmiCeilingAssy.Visible = false;
-            this.tvModule.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TvModule_AfterSelect);
+            tvModule.AfterSelect += TvModule_AfterSelect;
         } 
         #endregion
 
@@ -77,7 +74,7 @@ namespace Compass
         {
             if (_objProject == null) return;
             //创建第一个节点
-            this.tvModule.Nodes.Clear();//清空所有节点
+            tvModule.Nodes.Clear();//清空所有节点
             _moduleTreesList.Clear();//清空节点集合，否则修改一次重复添加一次
             TreeNode rootNode = new TreeNode()
             {
@@ -85,10 +82,10 @@ namespace Compass
                 Tag = _objProject.ProjectId,//默认值,作为id使用
                 ImageIndex = 4//添加图标
             };
-            this.tvModule.Nodes.Add(rootNode);//将根节点添加到treeView控件中
+            tvModule.Nodes.Add(rootNode);//将根节点添加到treeView控件中
             GetAllNodes();
             CreateChildNode(rootNode, _objProject.ProjectId.ToString());
-            this.tvModule.ExpandAll();
+            tvModule.ExpandAll();
             tvModule.SelectedNode = rootNode;
         }
         /// <summary>
@@ -126,7 +123,7 @@ namespace Compass
         private void CreateChildNode(TreeNode parentNode, string parentCode)
         {
             if (_moduleTreesList == null) return;
-            var subNodeList = from list in this._moduleTreesList
+            var subNodeList = from list in _moduleTreesList
                               where list.ParentCode.Equals(parentCode)
                               select list;
             foreach (var item in subNodeList)
@@ -268,10 +265,7 @@ namespace Compass
         private void TvModule_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if(tvModule.SelectedNode==null)return;
-            //if ((sender as TreeView) != null)
-            //{
-            //    tvModule.SelectedNode = tvModule.GetNodeAt(e.X, e.Y);
-            //}
+            
             if (e.Node.Level == 1)//选择了Item
             {
                 string drawingPlanId = e.Node.Tag.ToString();
@@ -291,8 +285,8 @@ namespace Compass
                 Drawing objDrawing = _objDrawingService.GetDrawingById(drawingPlanId,_sbu);
                 string moduleTreeId = tvModule.SelectedNode.Tag.ToString();
                 ModuleTree objModuleTree = _objModuleTreeService.GetModuleTreeById(moduleTreeId,_sbu);
-                //【5】调用委托
-                QuickBrowseDeg(objDrawing, objModuleTree);
+                //调用委托
+                _quickBrowseDeg(objDrawing, objModuleTree);
             }
         }
 
@@ -355,7 +349,6 @@ namespace Compass
             FrmModelView frmModelView=new FrmModelView(_objProject);
             frmModelView.Show();
         }
-
 
         private void TvModule_AfterExpand(object sender, TreeViewEventArgs e)
         {

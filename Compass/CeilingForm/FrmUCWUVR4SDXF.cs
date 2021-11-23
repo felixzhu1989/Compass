@@ -21,7 +21,7 @@ namespace Compass
         {
             _objUcwuvr4Sdxf = (UCWUVR4SDXF)_objUcwuvr4SdxfService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (_objUcwuvr4Sdxf == null) return;
-            this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
+            Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
             FillData();
@@ -71,8 +71,8 @@ namespace Compass
                 if (_objUcwuvr4SdxfService.EditModel(objUcwuvr4Sdxf) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
             }
             catch (Exception ex)

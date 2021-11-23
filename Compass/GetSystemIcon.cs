@@ -19,7 +19,7 @@ namespace Compass
             //Use this to get the small Icon
             Win32.SHGetFileInfo(fileName, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), Win32.ShgfiIcon | Win32.ShgfiLargeicon);
             //The icon is returned in the hIcon member of the shinfo struct
-            System.Drawing.Icon myIcon = System.Drawing.Icon.FromHandle(shinfo.hIcon);
+            Icon myIcon = Icon.FromHandle(shinfo.hIcon);
             return myIcon;
         }
 

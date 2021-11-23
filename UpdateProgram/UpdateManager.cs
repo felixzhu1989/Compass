@@ -18,8 +18,8 @@ namespace UpdateProgram
         public UpdateManager()
         {
             //1.初始化对象属性
-            this.LastUpdateInfo = new UpdateInfo();
-            this.NowUpdateInfo = new UpdateInfo();
+            LastUpdateInfo = new UpdateInfo();
+            NowUpdateInfo = new UpdateInfo();
             //2.给属性赋值
             GetLastUpdateInfo();
             GetNewUpdateInfo();
@@ -31,8 +31,8 @@ namespace UpdateProgram
         {
             get
             {
-                DateTime dt1 = Convert.ToDateTime(this.LastUpdateInfo.UpdateTime);
-                DateTime dt2 = Convert.ToDateTime(this.NowUpdateInfo.UpdateTime);
+                DateTime dt1 = Convert.ToDateTime(LastUpdateInfo.UpdateTime);
+                DateTime dt2 = Convert.ToDateTime(NowUpdateInfo.UpdateTime);
                 return dt2 > dt1;
             }
         }
@@ -59,13 +59,13 @@ namespace UpdateProgram
                 switch (xmlReader.Name)
                 {
                     case "URLAddress":
-                        this.LastUpdateInfo.UpdateFileUrl = xmlReader.GetAttribute("URL");
+                        LastUpdateInfo.UpdateFileUrl = xmlReader.GetAttribute("URL");
                         break;
                     case "Version":
-                        this.LastUpdateInfo.Version = xmlReader.GetAttribute("Num");
+                        LastUpdateInfo.Version = xmlReader.GetAttribute("Num");
                         break;
                     case "UpdateTime":
-                        this.LastUpdateInfo.UpdateTime = Convert.ToDateTime(xmlReader.GetAttribute("Date"));
+                        LastUpdateInfo.UpdateTime = Convert.ToDateTime(xmlReader.GetAttribute("Date"));
                         break;
                     default:
                         break;
@@ -87,25 +87,25 @@ namespace UpdateProgram
             //封装当前更新的信息
             FileStream myFile = new FileStream(newXmlTempPath, FileMode.Open);
             XmlTextReader xmlReader = new XmlTextReader(myFile);
-            this.NowUpdateInfo.FileList = new List<string[]>();//因为这个是集合对象，使用前必须初始化
+            NowUpdateInfo.FileList = new List<string[]>();//因为这个是集合对象，使用前必须初始化
             while (xmlReader.Read())
             {
                 switch (xmlReader.Name)
                 {
                     case "URLAddress":
-                        this.NowUpdateInfo.UpdateFileUrl = xmlReader.GetAttribute("URL");
+                        NowUpdateInfo.UpdateFileUrl = xmlReader.GetAttribute("URL");
                         break;
                     case "Version":
-                        this.NowUpdateInfo.Version = xmlReader.GetAttribute("Num");
+                        NowUpdateInfo.Version = xmlReader.GetAttribute("Num");
                         break;
                     case "UpdateTime":
-                        this.NowUpdateInfo.UpdateTime =Convert.ToDateTime(xmlReader.GetAttribute("Date"));
+                        NowUpdateInfo.UpdateTime =Convert.ToDateTime(xmlReader.GetAttribute("Date"));
                         break;
                     case "UpdateFile":
                         string ver = xmlReader.GetAttribute("Ver");
                         string fileName = xmlReader.GetAttribute("FileName");
                         string contentLength = xmlReader.GetAttribute("ContentLength");
-                        this.NowUpdateInfo.FileList.Add(new string[] { fileName, contentLength, ver, "0" });
+                        NowUpdateInfo.FileList.Add(new string[] { fileName, contentLength, ver, "0" });
                         break;
                     default:
                         break;
@@ -124,12 +124,12 @@ namespace UpdateProgram
         /// </summary>
         public void DownloadFiles()
         {
-            List<string[]> fileList = this.NowUpdateInfo.FileList;//文件列表，为了使用方便，用变量代替属性
+            List<string[]> fileList = NowUpdateInfo.FileList;//文件列表，为了使用方便，用变量代替属性
             for (int i = 0; i < fileList.Count; i++)
             {
                 //连接远程服务器中的指定文件，并准备读取
                 string fileName = fileList[i][0];//当前需要下载的文件名
-                string fileUrl = this.NowUpdateInfo.UpdateFileUrl + fileName;//当前需要下载的文件的URL
+                string fileUrl = NowUpdateInfo.UpdateFileUrl + fileName;//当前需要下载的文件的URL
                 //Web服务器
                 WebRequest objWebRequest = WebRequest.Create(fileUrl);//根据文件的url连接服务器创建请求对象
                 WebResponse objResponse = objWebRequest.GetResponse();//根据请求对象创建响应对象
@@ -165,7 +165,7 @@ namespace UpdateProgram
                     ShowUpdateProgressDelegate(i, percent);
                 }
                 //保存读取完成的文件
-                string newFileName = this.TempFilePath + "\\" + fileName;
+                string newFileName = TempFilePath + "\\" + fileName;
                 FileStream fs=new FileStream(newFileName,FileMode.OpenOrCreate,FileAccess.Write);
                 fs.Write(bufferbyte,0,bufferbyte.Length);
                 objStream.Close();

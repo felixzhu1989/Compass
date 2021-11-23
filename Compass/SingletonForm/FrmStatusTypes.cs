@@ -35,19 +35,19 @@ namespace Compass
         /// <param name="e"></param>
         private void dgvProjectStatus_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvProjectStatus, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvProjectStatus, e);
             if (e.RowIndex > -1)
             {
-                string projectStatus = this.dgvProjectStatus.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
+                string projectStatus = dgvProjectStatus.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
                 dgvProjectStatus.Rows[e.RowIndex].DefaultCellStyle.BackColor = _pair.ProjectStatusColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
             }
         }
         private void dgvProjectTypes_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvProjectTypes, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvProjectTypes, e);
             if (e.RowIndex > -1)
             {
-                string projectStatus = this.dgvProjectTypes.Rows[e.RowIndex].Cells["TypeName"].Value.ToString();
+                string projectStatus = dgvProjectTypes.Rows[e.RowIndex].Cells["TypeName"].Value.ToString();
                 dgvProjectTypes.Rows[e.RowIndex].DefaultCellStyle.BackColor = _pair.ProjectTypeColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
             }
         }

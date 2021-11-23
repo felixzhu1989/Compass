@@ -32,7 +32,7 @@ namespace Compass
         /// <param name="e"></param>
         private void dgvDesignWorkload_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvDesignWorkload, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvDesignWorkload, e);
         }
         /// <summary>
         /// 添加工作量
@@ -95,7 +95,7 @@ namespace Compass
         /// <param name="e"></param>
         private void txtWorkloadValue_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13 && this.txtWorkloadValue.Text.Trim().Length != 0)
+            if (e.KeyValue == 13 && txtWorkloadValue.Text.Trim().Length != 0)
             {
                 btnAddWorkload_Click(null, null);
             }
@@ -178,7 +178,7 @@ namespace Compass
         /// <param name="e"></param>
         private void txtEditWorkloadValue_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13 && this.txtEditWorkloadValue.Text.Trim().Length != 0)
+            if (e.KeyValue == 13 && txtEditWorkloadValue.Text.Trim().Length != 0)
             {
                 btnEditWorkload_Click(null, null);
             }

@@ -24,7 +24,7 @@ namespace Compass
         {
             var host = new EDrawingsHost();
             host.ControlLoaded += OnControlLoaded;
-            this.Controls.Add(host);
+            Controls.Add(host);
             host.Dock = DockStyle.Fill;
         }
         

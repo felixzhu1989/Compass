@@ -22,7 +22,7 @@ namespace SolidWorksHelper
             }
             else
             {
-                Common.ShowMsg show = new ShowMsg();
+                ShowMsg show = new ShowMsg();
                 DialogResult result = show.ShowMessageBoxTimeout("模型文件夹" + itemPath + "存在，如果之前pack已经执行过，将不执行pack过程而是直接修改模型，如果要中断作图点击YES，继续作图请点击No或者3s后窗口会自动消失", "提示信息", MessageBoxButtons.YesNo, 3000);
                 if (result == DialogResult.Yes) return false;
             }

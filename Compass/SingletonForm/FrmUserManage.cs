@@ -13,7 +13,7 @@ namespace Compass
         public FrmUserManage()
         {
             InitializeComponent();
-            this.dgvUser.AutoGenerateColumns = false;
+            dgvUser.AutoGenerateColumns = false;
             IniGroupName(cobGroupName);
             grbAddUserGroup.Visible = false;
             grbEditUser.Visible = false;
@@ -40,10 +40,10 @@ namespace Compass
             switch (_currentUser.UserId)
             {
                 case 1:
-                    this.dgvUser.DataSource = _objUserService.GetUserByWhereSql("");
+                    dgvUser.DataSource = _objUserService.GetUserByWhereSql("");
                     break;
                 default:
-                    this.dgvUser.DataSource = _objUserService.GetUserById(_currentUser.UserId.ToString());
+                    dgvUser.DataSource = _objUserService.GetUserById(_currentUser.UserId.ToString());
                     break;
             }
         }
@@ -54,7 +54,7 @@ namespace Compass
         /// <param name="e"></param>
         private void DgvUser_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvUser, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvUser, e);
         }
         /// <summary>
         /// 初始化用户分组下拉框

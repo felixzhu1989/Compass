@@ -23,34 +23,34 @@ namespace Compass
         }
         internal void ShowAndFocus()
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-            this.Focus();
+            Show();
+            WindowState = FormWindowState.Normal;
+            Focus();
         }
         public void IniCobOdpNo()
         {
-            this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+            cobODPNo.SelectedIndexChanged -= new EventHandler(CobODPNo_SelectedIndexChanged);
             //项目编号下拉框
             cobODPNo.DataSource = _objProjectService.GetProjectsByWhereSql("", _sbu);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             cobODPNo.SelectedIndex = -1;
-            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+            cobODPNo.SelectedIndexChanged += new EventHandler(CobODPNo_SelectedIndexChanged);
         }
 
         #region 单例模式，重写关闭方法，显示时选择ODP号
         protected override void OnClosing(CancelEventArgs e)
         {
-            this.Hide();
+            Hide();
             e.Cancel = true;
         }
         public void ShowWithOdpNo(string odpNo)
         {
             IniCobOdpNo();
             if (odpNo.Length != 0) cobODPNo.Text = odpNo; 
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-            this.Focus();
+            Show();
+            WindowState = FormWindowState.Normal;
+            Focus();
         }
         #endregion
 

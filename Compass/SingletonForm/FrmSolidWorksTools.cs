@@ -14,14 +14,14 @@ namespace Compass
         #region 单例模式，重写关闭方法
         protected override void OnClosing(CancelEventArgs e)
         {
-            this.Hide();
+            Hide();
             e.Cancel = true;
         }
         internal void ShowAndFocus()
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-            this.Focus();
+            Show();
+            WindowState = FormWindowState.Normal;
+            Focus();
         }
         #endregion
         private void BtnSearch_Click(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace Compass
         {
             Properties.Settings.Default.eDrawings = txteDrawingsPath.Text;
             MessageBox.Show("eDrawing路径更新成功！");
-            this.Close();
+            Close();
         }
 
        

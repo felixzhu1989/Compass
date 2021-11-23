@@ -32,13 +32,13 @@ namespace Compass
             try
             {
                 await PrintJobCardAsync(_item, txtItemNo.Text.Trim() ,txtModel.Text.Trim());
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            this.Close();
+            Close();
         }
         /// <summary>
         /// 以异步的方式打印JobCard

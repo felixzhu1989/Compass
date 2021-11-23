@@ -38,9 +38,9 @@ namespace Compass
             //封装用户实体信息
             User objUser=new User()
             {
-                UserAccount = this.txtUserAccount.Text.Trim(),
-                UserPwd = this.txtUserPwd.Text.Trim(),
-                SBU = this.cobSBU.Text.Trim()== "FoodService" ? "": this.cobSBU.Text.Trim()
+                UserAccount = txtUserAccount.Text.Trim(),
+                UserPwd = txtUserPwd.Text.Trim(),
+                SBU = cobSBU.Text.Trim()== "FoodService" ? "": cobSBU.Text.Trim()
             };
             //和后台交互判断信息是否正确
             try
@@ -49,7 +49,7 @@ namespace Compass
                 Program.ObjCurrentUser = _objUserService.UserLogin(objUser);
                 if (Program.ObjCurrentUser != null)
                 {
-                    this.DialogResult = DialogResult.OK;
+                    DialogResult = DialogResult.OK;
                     //记住密码
                     if (ckbRememberMe.Checked)
                     {
@@ -66,7 +66,7 @@ namespace Compass
                         Properties.Settings.Default.Save();
                     }
                     //以后再封装权限信息
-                    this.Close();
+                    Close();
                 }
                 else
                 {
@@ -87,10 +87,10 @@ namespace Compass
         }
         private void TxtUserAccount_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13 && this.txtUserAccount.Text.Trim().Length != 0)
+            if (e.KeyValue == 13 && txtUserAccount.Text.Trim().Length != 0)
             {
-                this.txtUserPwd.Focus();
-                this.txtUserPwd.SelectAll();
+                txtUserPwd.Focus();
+                txtUserPwd.SelectAll();
             }
             else
             {
@@ -99,7 +99,7 @@ namespace Compass
         }
         private void TxtUserPwd_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13 && this.txtUserPwd.Text.Trim().Length != 0)
+            if (e.KeyValue == 13 && txtUserPwd.Text.Trim().Length != 0)
             {
                 BtnLogin_Click(null, null);
             }

@@ -29,7 +29,7 @@ namespace SolidWorksHelper
         {
             if (_swApp == null)
             {
-                return await Task<SldWorks>.Run(() =>
+                return await Task.Run(() =>
                 {
                     _swApp = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application")) as SldWorks;
                     _swApp.Visible = true;

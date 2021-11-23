@@ -169,7 +169,7 @@ namespace Compass
         /// <param name="e"></param>
         private void DgvCustomers_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvCustomers, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvCustomers, e);
         }
         /// <summary>
         /// 从外部Excel文件导入客户名称

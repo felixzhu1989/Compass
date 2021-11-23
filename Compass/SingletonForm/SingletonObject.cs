@@ -50,32 +50,32 @@ namespace Compass
         //2.对单例对象赋值
         public void AddMetroForm(MetroForm frmObj)
         {
-            if (frmObj is FrmHoodAutoDrawing) this.FrmHad = frmObj as FrmHoodAutoDrawing;
-            if (frmObj is FrmCeilingAutoDrawing) this.FrmCad =frmObj as FrmCeilingAutoDrawing;
-            if (frmObj is FrmMarineAutoDrawing) this.FrmMad =frmObj as FrmMarineAutoDrawing;
-            if (frmObj is FrmProjectInfo) this.FrmPi = frmObj as FrmProjectInfo;
-            if (frmObj is FrmSyncFiles) this.FrmSf = frmObj as FrmSyncFiles;
-            if (frmObj is FrmDrawingNumMatrix) this.FrmDnm = frmObj as FrmDrawingNumMatrix;
-            if (frmObj is FrmProjectMeasure) this.FrmPm = frmObj as FrmProjectMeasure;
-            if (frmObj is FrmDrawingPlanQuery) this.FrmDpq = frmObj as FrmDrawingPlanQuery;
-            if (frmObj is FrmSolidWorksTools) this.FrmSwt = frmObj as FrmSolidWorksTools;
-            if (frmObj is FrmCategoryTree) this.FrmCt = frmObj as FrmCategoryTree;
+            if (frmObj is FrmHoodAutoDrawing) FrmHad = frmObj as FrmHoodAutoDrawing;
+            if (frmObj is FrmCeilingAutoDrawing) FrmCad =frmObj as FrmCeilingAutoDrawing;
+            if (frmObj is FrmMarineAutoDrawing) FrmMad =frmObj as FrmMarineAutoDrawing;
+            if (frmObj is FrmProjectInfo) FrmPi = frmObj as FrmProjectInfo;
+            if (frmObj is FrmSyncFiles) FrmSf = frmObj as FrmSyncFiles;
+            if (frmObj is FrmDrawingNumMatrix) FrmDnm = frmObj as FrmDrawingNumMatrix;
+            if (frmObj is FrmProjectMeasure) FrmPm = frmObj as FrmProjectMeasure;
+            if (frmObj is FrmDrawingPlanQuery) FrmDpq = frmObj as FrmDrawingPlanQuery;
+            if (frmObj is FrmSolidWorksTools) FrmSwt = frmObj as FrmSolidWorksTools;
+            if (frmObj is FrmCategoryTree) FrmCt = frmObj as FrmCategoryTree;
         }
 
         public void AddForm(Form frmObj)
         {
             //嵌入
-            if (frmObj is FrmProject) this.FrmP = frmObj as FrmProject;
-            if (frmObj is FrmModuleTree) this.FrmMt = frmObj as FrmModuleTree;
-            if (frmObj is FrmQuickBrowse) this.FrmQb = frmObj as FrmQuickBrowse;
-            if (frmObj is FrmDrawingPlan) this.FrmDp = frmObj as FrmDrawingPlan;
-            if (frmObj is FrmProjectTracking) this.FrmPt = frmObj as FrmProjectTracking;
-            if (frmObj is FrmUserManage) this.FrmUm = frmObj as FrmUserManage;
-            if (frmObj is FrmCategories) this.FrmC = frmObj as FrmCategories;
-            if (frmObj is FrmDxfCutList) this.FrmDc = frmObj as FrmDxfCutList;
-            if (frmObj is FrmDesignWorkload) this.FrmDw = frmObj as FrmDesignWorkload;
-            if (frmObj is FrmStatusTypes) this.FrmSt = frmObj as FrmStatusTypes;
-            if (frmObj is FrmCeilingAccessories) this.FrmCa = frmObj as FrmCeilingAccessories;
+            if (frmObj is FrmProject) FrmP = frmObj as FrmProject;
+            if (frmObj is FrmModuleTree) FrmMt = frmObj as FrmModuleTree;
+            if (frmObj is FrmQuickBrowse) FrmQb = frmObj as FrmQuickBrowse;
+            if (frmObj is FrmDrawingPlan) FrmDp = frmObj as FrmDrawingPlan;
+            if (frmObj is FrmProjectTracking) FrmPt = frmObj as FrmProjectTracking;
+            if (frmObj is FrmUserManage) FrmUm = frmObj as FrmUserManage;
+            if (frmObj is FrmCategories) FrmC = frmObj as FrmCategories;
+            if (frmObj is FrmDxfCutList) FrmDc = frmObj as FrmDxfCutList;
+            if (frmObj is FrmDesignWorkload) FrmDw = frmObj as FrmDesignWorkload;
+            if (frmObj is FrmStatusTypes) FrmSt = frmObj as FrmStatusTypes;
+            if (frmObj is FrmCeilingAccessories) FrmCa = frmObj as FrmCeilingAccessories;
         }
 
     }

@@ -707,3 +707,14 @@ select HMEId,ModuleTreeId,Length,Width,Height,InletDia,OutletDia,OutletHeight,Ha
 
 select * from hme
 
+select * from DrawingPlan
+
+select ODPNo,ProjectName,TotalWorkload from Projects
+left join (select ProjectId,SUM(SubTotalWorkload) as TotalWorkload from DrawingPlan
+group by ProjectId)workload on workload.ProjectId=Projects.ProjectId
+where ShippingTime>'2021.11.01'
+
+
+
+select projectId,SUM(SubTotalWorkload) as TotalWorkload from DrawingPlan
+group by projectId

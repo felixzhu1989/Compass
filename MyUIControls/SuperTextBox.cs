@@ -22,14 +22,14 @@ namespace MyUIControls
         //非空验证
         public int BeginCheckEmpty()
         {
-            if (this.Text.Trim() == "")
+            if (Text.Trim() == "")
             {
-                this.errorProvider.SetError(this, "必填项不能为空！");
+                errorProvider.SetError(this, "必填项不能为空！");
                 return 0;
             }
             else
             {
-                this.errorProvider.SetError(this, string.Empty);//清楚错误提示
+                errorProvider.SetError(this, string.Empty);//清楚错误提示
                 return 1;
             }
         }
@@ -45,14 +45,14 @@ namespace MyUIControls
             if (BeginCheckEmpty() == 0) return 0;//如果为空，则直接返回。
             //正则表达式验证（忽略大小写）
             Regex objRegex = new Regex(regularExpress, RegexOptions.IgnoreCase);
-            if (!objRegex.IsMatch(this.Text.Trim()))
+            if (!objRegex.IsMatch(Text.Trim()))
             {
-                this.errorProvider.SetError(this, errorMsg);
+                errorProvider.SetError(this, errorMsg);
                 return 0;
             }
             else
             {
-                this.errorProvider.SetError(this, string.Empty);//清楚错误提示
+                errorProvider.SetError(this, string.Empty);//清楚错误提示
                 return 1;
             }
         }

@@ -25,7 +25,7 @@ namespace Compass
             {"Cancel", "取消"},
             {"Import", "引进"}
         };
-        public Dictionary<string, string> ProjectStatusNameKeyValue => this._projectStatusName;
+        public Dictionary<string, string> ProjectStatusNameKeyValue => _projectStatusName;
         /// <summary>
         /// 烟罩类型
         /// </summary>
@@ -34,7 +34,7 @@ namespace Compass
             {"Hood", "烟罩"},
             {"Ceiling", "天花"},
         };
-        public Dictionary<string, string> HoodTypeKeyValue => this._hoodType;
+        public Dictionary<string, string> HoodTypeKeyValue => _hoodType;
 
         #endregion 中英文键值对
         
@@ -71,7 +71,7 @@ namespace Compass
             {"9", "取消"},
             {"10","引进"}
         };
-        public Dictionary<string, string> ProjectStatusIdCnKeyValue => this._projectStatusIdCn;
+        public Dictionary<string, string> ProjectStatusIdCnKeyValue => _projectStatusIdCn;
         /// <summary>
         /// 项目状态中文-颜色
         /// </summary>
@@ -88,7 +88,7 @@ namespace Compass
             {"取消", Color.Silver},
             {"引进", Color.Magenta}
         };
-        public Dictionary<string, Color> ProjectStatusCnColorKeyValue => this._projectStatusCnColor;
+        public Dictionary<string, Color> ProjectStatusCnColorKeyValue => _projectStatusCnColor;
         /// <summary>
         /// 项目状态颜色
         /// </summary>
@@ -105,7 +105,7 @@ namespace Compass
             {"Cancel",Color.Silver},
             {"Import", Color.Magenta}
         };
-        public Dictionary<string, Color> ProjectStatusColorKeyValue => this._projectStatusColor;
+        public Dictionary<string, Color> ProjectStatusColorKeyValue => _projectStatusColor;
         /// <summary>
         /// 项目状态中文颜色
         /// </summary>
@@ -127,7 +127,7 @@ namespace Compass
 
 
 
-        public Dictionary<string, Color> ProjectStatusChineseColorKeyValue => this._projectStatusChineseColor;
+        public Dictionary<string, Color> ProjectStatusChineseColorKeyValue => _projectStatusChineseColor;
         /// <summary>
         /// 风险等级颜色
         /// </summary>
@@ -138,7 +138,7 @@ namespace Compass
             {"风险等级-3", Color.DeepSkyBlue},
             {"风险等级-4", Color.LimeGreen},
         };
-        public Dictionary<string, Color> RislLevelColorKeyValue => this._rislLevelColor;
+        public Dictionary<string, Color> RislLevelColorKeyValue => _rislLevelColor;
 
         /*
         1	国内项目
@@ -162,7 +162,7 @@ namespace Compass
             {"8", "其他"}
             
         };
-        public Dictionary<string, string> ProjectTypeIdCnKeyValue => this._projectTypeIdCn;
+        public Dictionary<string, string> ProjectTypeIdCnKeyValue => _projectTypeIdCn;
         /// <summary>
         /// 项目类型颜色
         /// </summary>
@@ -175,7 +175,7 @@ namespace Compass
             {"韩国项目", Color.Salmon},
             {"其他", Color.Silver}
         };
-        public Dictionary<string, Color> ProjectTypeColorKeyValue => this._projectTypeColor;
+        public Dictionary<string, Color> ProjectTypeColorKeyValue => _projectTypeColor;
 
         /// <summary>
         /// 项目状态颜色
@@ -194,7 +194,7 @@ namespace Compass
             {"sky",Color.Silver},
             {"cart", Color.Magenta}
         };
-        public Dictionary<string, Color> UserColorKeyValue => this._userColor;
+        public Dictionary<string, Color> UserColorKeyValue => _userColor;
 
 
 
@@ -247,6 +247,6 @@ namespace Compass
             {40, Color.MediumSlateBlue},
 
         };
-        public Dictionary<int, Color> DefaultColorKeyValue => this._defaultColor;
+        public Dictionary<int, Color> DefaultColorKeyValue => _defaultColor;
     }
 }

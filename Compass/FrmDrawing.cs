@@ -59,8 +59,8 @@ namespace Compass
                 if (_objDrawingService.EditDrawing(objDrawing,_sbu) == 1)
                 {
                     MessageBox.Show("图纸修改成功", "提示信息");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
             }
             catch (Exception ex)

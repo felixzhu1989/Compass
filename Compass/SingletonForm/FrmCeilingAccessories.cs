@@ -235,7 +235,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DgvCeilingAccessories_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e) => DataGridViewStyle.DgvRowPostPaint(this.dgvCeilingAccessories, e);
+        private void DgvCeilingAccessories_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e) => DataGridViewStyle.DgvRowPostPaint(dgvCeilingAccessories, e);
         /// <summary>
         /// 按键
         /// </summary>

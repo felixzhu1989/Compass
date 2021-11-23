@@ -48,8 +48,8 @@ namespace Compass
                 cobMonth.Items.Add(i + 1);
             }
             cobMonth.SelectedIndex = currentMonth - 1;//默认定位当前月份
-            this.cobYear.SelectedIndexChanged += new System.EventHandler(this.CobYear_SelectedIndexChanged);
-            this.cobMonth.SelectedIndexChanged += new System.EventHandler(this.CobMonth_SelectedIndexChanged);
+            cobYear.SelectedIndexChanged += new EventHandler(CobYear_SelectedIndexChanged);
+            cobMonth.SelectedIndexChanged += new EventHandler(CobMonth_SelectedIndexChanged);
             ReportMonthly();//初始化月度统计数据
             IniCobOdpNo();
             SetPermissions();
@@ -72,18 +72,18 @@ namespace Compass
 
         public void IniCobOdpNo()
         {
-            this.cobODPNo.SelectedIndexChanged -= new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+            cobODPNo.SelectedIndexChanged -= new EventHandler(CobODPNo_SelectedIndexChanged);
             //绑定ODPNo下拉框
             cobODPNo.DataSource = _objProjectService.GetProjectsByWhereSql("", Program.ObjCurrentUser.SBU);
             cobODPNo.DisplayMember = "ODPNo";
             cobODPNo.ValueMember = "ProjectId";
             //初始化后关联事件委托
-            this.cobODPNo.SelectedIndexChanged += new System.EventHandler(this.CobODPNo_SelectedIndexChanged);
+            cobODPNo.SelectedIndexChanged += new EventHandler(CobODPNo_SelectedIndexChanged);
         }
         #region 单例模式，重写关闭方法，显示时选择ODP号
         protected override void OnClosing(CancelEventArgs e)
         {
-            this.Hide();
+            Hide();
             e.Cancel = true;
         }
 
@@ -97,9 +97,9 @@ namespace Compass
         }
         internal void ShowAndFocus()
         {
-            this.Show();
-            this.WindowState = FormWindowState.Maximized;
-            this.Focus();
+            Show();
+            WindowState = FormWindowState.Maximized;
+            Focus();
         }
         #endregion
 
@@ -163,7 +163,7 @@ namespace Compass
         /// <param name="e"></param>
         private void DgvScope_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvScope, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvScope, e);
         }
         /// <summary>
         /// 项目状态，烟罩类型内容需要中英文
@@ -242,10 +242,12 @@ namespace Compass
             proInfo += "4. 客户名称：" + objProject.CustomerName + "\r\n";
             proInfo += "5. 烟罩类型：" + objProject.HoodType + "\r\n";
             proInfo += "6. 制图人员：" + objProject.UserAccount + "\r\n";
-            proInfo += "7. 完工日期：" + objProject.ShippingTime.ToShortDateString();
+            proInfo += "7. 完工日期：" + objProject.ShippingTime.ToShortDateString() + "\r\n";
+            proInfo += "8. 总工作量：" + objProject.TotalWorkload;
+
             txtProjectInfo.Text = proInfo;
             dgvScope.DataSource = _objDrawingPlanService.GetScopeByDataSet(objProject.ProjectId.ToString(), _sbu).Tables[0];
-            _showText.Append(objProject.ODPNo + " ★完工日期：" + objProject.ShippingTime.ToShortDateString());
+            _showText.Append($"{objProject.ODPNo} ★完工日期：{objProject.ShippingTime.ToShortDateString()}  ★总工作量：{objProject.TotalWorkload}");
         }
         /// <summary>
         /// 2.初始化通用技术要求
@@ -575,10 +577,10 @@ namespace Compass
         /// <param name="e"></param>
         private void DgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvProjects, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvProjects, e);
             if (e.RowIndex > -1)
             {
-                string projectStatus = this.dgvProjects.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
+                string projectStatus = dgvProjects.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
                 dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor = _pair.ProjectStatusChineseColorKeyValue.First(q => q.Key == projectStatus).Value;
             }
         }
@@ -642,7 +644,7 @@ namespace Compass
         private void TimerShowInfo_Tick(object sender, EventArgs e)
         {
             lblShowInfo.Left--;
-            if (lblShowInfo.Right < 0) lblShowInfo.Left = this.Right;
+            if (lblShowInfo.Right < 0) lblShowInfo.Left = Right;
         }
         #endregion
 

@@ -63,7 +63,7 @@ namespace Compass
         }
         public void ShowImage()
         {
-            this.pbModelImage.Image = _modelViewData.ModelImage;
+            pbModelImage.Image = _modelViewData.ModelImage;
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -94,7 +94,7 @@ namespace Compass
         /// <param name="e"></param>
         private void OnCaptureMeasurement(object sender, EventArgs e)
         {
-            txtMeasurements.Text += (!string.IsNullOrEmpty(txtMeasurements.Text) ? System.Environment.NewLine : "")
+            txtMeasurements.Text += (!string.IsNullOrEmpty(txtMeasurements.Text) ? Environment.NewLine : "")
                                     + _mEDrawingsMarkupCtrl.MeasureResultString;
         }
         /// <summary>
@@ -120,12 +120,12 @@ namespace Compass
                 btnOpenSolidWorks.Tag = "1";
 
             }
-            if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(filePath)))
+            if (Directory.Exists(Path.GetDirectoryName(filePath)))
             {
                 btnOpenFolder.Enabled = true;
             }
             //if (!string.IsNullOrEmpty(filePath))
-            if (System.IO.File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 btnOpeneDrawing.Enabled = true;
                 btnOpenSolidWorks.Enabled = true;
@@ -161,15 +161,15 @@ namespace Compass
             {
                 filePath = _modelViewData.PublicPath;
             }
-            if (System.IO.File.Exists(filePath))
+            if (File.Exists(filePath))
             {
-                System.Diagnostics.Process.Start("Explorer.exe", "/select," + System.IO.Path.GetDirectoryName(filePath) + "\\" + System.IO.Path.GetFileName(filePath));
+                Process.Start("Explorer.exe", "/select," + Path.GetDirectoryName(filePath) + "\\" + Path.GetFileName(filePath));
             }
             else
             {
-                if (System.IO.Directory.Exists(System.IO.Path.GetDirectoryName(filePath)))
+                if (Directory.Exists(Path.GetDirectoryName(filePath)))
                 {
-                    System.Diagnostics.Process.Start("Explorer.exe", System.IO.Path.GetDirectoryName(filePath));
+                    Process.Start("Explorer.exe", Path.GetDirectoryName(filePath));
                 }
                 else
                 {
@@ -198,13 +198,13 @@ namespace Compass
             //string linkPath =@"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\SOLIDWORKS 2021\eDrawings 2021 x64 Edition.lnk"; 
             //string exePath = @"C:\Program Files\SOLIDWORKS2021 Corp\eDrawings\eDrawings.exe";
             string exePath = _modelViewData.EDrawingPath;
-            if (System.IO.File.Exists(filePath))
+            if (File.Exists(filePath))
             {
-                if (System.IO.File.Exists(linkPath))
+                if (File.Exists(linkPath))
                 {
                     Process.Start(linkPath, filePath);
                 }
-                else if (System.IO.File.Exists(exePath))
+                else if (File.Exists(exePath))
                 {
                     Process.Start(exePath, filePath);
                 }
@@ -226,7 +226,7 @@ namespace Compass
             {
                 filePath = _modelViewData.PublicPath;
             }
-            if (System.IO.File.Exists(filePath))
+            if (File.Exists(filePath))
             {
                 //int errors = 0;
                 //int warnings = 0;
@@ -243,11 +243,11 @@ namespace Compass
         }
         private void BtnModelImage_Click(object sender, EventArgs e)
         {
-            this.pbModelImage.Image = _modelViewData.ModelImage;
+            pbModelImage.Image = _modelViewData.ModelImage;
         }
         private void BtnLabelImage_Click(object sender, EventArgs e)
         {
-            this.pbModelImage.Image = _modelViewData.LabelImage;
+            pbModelImage.Image = _modelViewData.LabelImage;
         }
     }
 }

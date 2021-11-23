@@ -23,7 +23,7 @@ namespace Compass
         {
             _objKvf450400 = (KVF450400)_objKvf450400Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (_objKvf450400 == null) return;
-            this.Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
+            Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
             modelView.GetData(drawing, tree);
             modelView.ShowImage();
             FillData();
@@ -463,8 +463,8 @@ namespace Compass
                 if (_objKvf450400Service.EditModel(objKvf450400) == 1)
                 {
                     MessageBox.Show("制图数据修改成功", "提示信息");
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
             }
             catch (Exception ex)

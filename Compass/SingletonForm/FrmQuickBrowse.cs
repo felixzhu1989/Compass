@@ -52,12 +52,12 @@ namespace Compass
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2)
             {
                 tsmiDeleteCutList.Visible = true;
-                this.dgvCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvCutList_KeyDown);
+                dgvCutList.KeyDown += new KeyEventHandler(DgvCutList_KeyDown);
             }
             else
             {
                 tsmiDeleteCutList.Visible = false;
-                this.dgvCutList.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.DgvCutList_KeyDown);
+                dgvCutList.KeyDown -= new KeyEventHandler(DgvCutList_KeyDown);
             }
         }
         private void RefreshCutlist(Drawing drawing, ModuleTree tree)
@@ -106,12 +106,12 @@ namespace Compass
 
         private void DgvQuickBrowse_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvQuickBrowse, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvQuickBrowse, e);
         }
 
         private void DgvCutList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridViewStyle.DgvRowPostPaint(this.dgvCutList, e);
+            DataGridViewStyle.DgvRowPostPaint(dgvCutList, e);
         }
         /// <summary>
         /// CutList删除多行数据
