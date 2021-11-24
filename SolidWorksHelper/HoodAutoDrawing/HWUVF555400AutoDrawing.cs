@@ -294,7 +294,7 @@ namespace SolidWorksHelper
                 {
                     swFeat = swComp.FeatureByName("UVDOUBLE");
                     swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D7@Sketch17").SystemValue = item.ExRightDis/ 1000m;
+                    //swPart.Parameter("D7@Sketch17").SystemValue = item.ExRightDis/ 1000m;
                     swFeat = swComp.FeatureByName("UVRACK");
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
@@ -773,6 +773,13 @@ namespace SolidWorksHelper
                 #region MiddleRoof灯板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0031-1");
                 swEdit.FNHM0031(swComp, "UV", item.Length, item.Deepth, "555", item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, item.LightYDis, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
+
+                //华为灯板左右加高
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0032-2");
+                swComp.SetSuppression2(2); //2解压缩，0压缩
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0032-1");
+                swComp.SetSuppression2(2); //2解压缩，0压缩
+                swEdit.FNHM0032(swComp, "UV", item.Deepth, "555", midRoofTopHoleDis);
 
                 //----------吊装槽钢----------
                 //swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2900100001-1");

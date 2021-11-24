@@ -1147,7 +1147,7 @@ namespace SolidWorksHelper
             {
                 swFeat = swComp.FeatureByName("UVCABLE-DOUBLE");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
-                swPart.Parameter("D1@Sketch41").SystemValue = (exRightDis - 6.5m) / 1000m;
+                swPart.Parameter("D1@Sketch41").SystemValue = (exRightDis - 3.25m) / 1000m;
                 swFeat = swComp.FeatureByName("UVCABLE");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
             }
@@ -1157,7 +1157,7 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 swFeat = swComp.FeatureByName("UVCABLE");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
-                swPart.Parameter("D4@草图28").SystemValue = (exRightDis - 6.5m) / 1000m;
+                swPart.Parameter("D4@草图28").SystemValue = (exRightDis - 3.25m) / 1000m;
                 swPart.Parameter("D3@草图28").SystemValue = 1500m / 1000m;
             }
             else if (uvType == "SHORT")
@@ -1166,7 +1166,7 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 swFeat = swComp.FeatureByName("UVCABLE");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
-                swPart.Parameter("D4@草图28").SystemValue = (exRightDis - 6.5m) / 1000m;
+                swPart.Parameter("D4@草图28").SystemValue = (exRightDis - 3.25m) / 1000m;
                 swPart.Parameter("D3@草图28").SystemValue = 790m / 1000m;
             }
             else
