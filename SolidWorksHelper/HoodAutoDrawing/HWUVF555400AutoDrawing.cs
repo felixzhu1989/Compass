@@ -952,7 +952,7 @@ namespace SolidWorksHelper
                 #region 镀锌隔板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0022-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 6m) / 1000m;
+                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 10m) / 1000m;
                 #endregion
 
                 #region 新风滑门导轨
