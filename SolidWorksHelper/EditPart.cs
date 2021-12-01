@@ -1347,6 +1347,122 @@ namespace SolidWorksHelper
 
         #endregion
 
+        #region 斜侧板CMOD烟罩大侧板555-400
+
+        /// <summary>
+        /// 左边大侧板外板
+        /// </summary>
+        /// <param name="swComp"></param>
+        /// <param name="deepth">烟罩深度</param>
+        /// <param name="height">烟罩高度</param>
+        /// <param name="sidePanelSideCjNo">侧板侧向CJ孔数量</param>
+        /// <param name="sidePanelDownCjNo">侧板垂直CJ孔数量</param>
+        public void FNHS0051(Component2 swComp, decimal deepth, decimal height, decimal suHeight, int sidePanelSideCjNo, int sidePanelDownCjNo)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D1@草图1").SystemValue = deepth / 1000m;
+            swPart.Parameter("D3@草图1").SystemValue = height / 1000m;
+            swPart.Parameter("D2@草图1").SystemValue = suHeight / 1000m;
+
+            swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
+            swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo - 1;
+        }
+
+        /// <summary>
+        /// 左边大侧板内板
+        /// </summary>
+        /// <param name="swComp"></param>
+        /// <param name="deepth">烟罩深度</param>
+        /// <param name="height">烟罩高度</param>
+        public void FNHS0052(Component2 swComp, decimal deepth, decimal height, decimal suHeight)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D1@Sketch1").SystemValue = deepth / 1000m;//D3@Sketch1
+            swPart.Parameter("D3@Sketch1").SystemValue = height / 1000m;
+            swPart.Parameter("D2@Sketch1").SystemValue = suHeight / 1000m;
+
+            //if (suHeight == 400m)
+            //{
+            //    swFeat = swComp.FeatureByName("I400");
+            //    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+            //    swFeat = swComp.FeatureByName("I300");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            //}
+            ////else if (suHeight == 300m)
+            //{
+            //    swFeat = swComp.FeatureByName("I400");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            //    swFeat = swComp.FeatureByName("I300");
+            //    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+            //}
+
+            //else
+            //{
+            //    swFeat = swComp.FeatureByName("I400");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            //    swFeat = swComp.FeatureByName("I300");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            //}
+        }
+
+        /// <summary>
+        /// 右边大侧板外板
+        /// </summary>
+        /// <param name="swComp"></param>
+        /// <param name="deepth">烟罩深度</param>
+        /// <param name="height">烟罩高度</param>
+        /// <param name="sidePanelSideCjNo">侧板侧向CJ孔数量</param>
+        /// <param name="sidePanelDownCjNo">侧板垂直CJ孔数量</param>
+        public void FNHS0053(Component2 swComp, decimal deepth, decimal height, decimal suHeight, int sidePanelSideCjNo, int sidePanelDownCjNo)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D1@草图1").SystemValue = deepth / 1000m;
+            swPart.Parameter("D3@草图1").SystemValue = height / 1000m;
+            swPart.Parameter("D2@草图1").SystemValue = suHeight / 1000m;
+
+            swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelDownCjNo;
+            swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelSideCjNo - 1;
+        }
+
+        /// <summary>
+        /// 右边大侧板内板
+        /// </summary>
+        /// <param name="swComp"></param>
+        /// <param name="deepth">烟罩深度</param>
+        /// <param name="height">烟罩高度</param>
+        public void FNHS0054(Component2 swComp, decimal deepth, decimal height, decimal suHeight)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D1@Sketch1").SystemValue = deepth / 1000m;//D3@Sketch1
+            swPart.Parameter("D3@Sketch1").SystemValue = height / 1000m;
+            swPart.Parameter("D2@Sketch1").SystemValue = suHeight / 1000m;
+
+            //if (suHeight == 400m)
+            //{
+            //    swFeat = swComp.FeatureByName("I400");
+            //    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+            //    swFeat = swComp.FeatureByName("I300");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            //}
+            //else if (suHeight == 300m)
+            //{
+            //    swFeat = swComp.FeatureByName("I400");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            //    swFeat = swComp.FeatureByName("I300");
+            //    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+            //}
+
+            //else
+            //{
+            //    swFeat = swComp.FeatureByName("I400");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            //    swFeat = swComp.FeatureByName("I300");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            //}
+        }
+
+        #endregion
+
         #region 华为斜烟罩大侧板
         /// <summary>
         /// 左边大侧板外板
@@ -1407,7 +1523,7 @@ namespace SolidWorksHelper
         {
             swPart = swComp.GetModelDoc2();
             if (exType == "W") swPart.Parameter("D2@Base-Flange1").SystemValue = (decimal)(Math.Sqrt(Math.Pow((double)deepth - 365d, 2) + Math.Pow((double)exHeight - (double)suHeight, 2))) / 1000m;
-            else swPart.Parameter("D2@Base-Flange1").SystemValue = (decimal)(Math.Sqrt(Math.Pow((double)deepth - 291d, 2) + Math.Pow((double)exHeight - (double)suHeight, 2))) / 1000m;
+            else swPart.Parameter("D2@Base-Flange1").SystemValue = (decimal)(Math.Sqrt(Math.Pow((double)deepth - 291d, 2) + Math.Pow((double)exHeight - (double)suHeight, 2))+20d) / 1000m;
 
             //swPart.Parameter("D3@Sketch11").SystemValue = deepth / 1000m;
 

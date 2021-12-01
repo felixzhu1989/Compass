@@ -606,63 +606,62 @@ namespace SolidWorksHelper
                 {
                     //LEFT
                     //LEFT
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0001-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0051-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0001(swComp, item.Deepth, 555m, sidePanelSideCjNo, sidePanelDownCjNo);
+                    swEdit.FNHS0051(swComp, item.Deepth, 555m,400m,sidePanelSideCjNo, sidePanelDownCjNo);
 
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0002-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0052-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0002(swComp, item.Deepth, 555m);
+                    swEdit.FNHS0052(swComp, item.Deepth, 555m, 400m);
 
                     //RIGHT
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0003-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0053-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0003(swComp, item.Deepth, 555m, sidePanelSideCjNo, sidePanelDownCjNo);
+                    swEdit.FNHS0053(swComp, item.Deepth, 555m, 400m, sidePanelSideCjNo, sidePanelDownCjNo);
 
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0004-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0054-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0004(swComp, item.Deepth, 555m);
+                    swEdit.FNHS0054(swComp, item.Deepth, 555m, 400m);
                     
                 }
                 else if (item.SidePanel == "LEFT")
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0003-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0053-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0004-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0054-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0001-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0051-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0001(swComp, item.Deepth, 555m, sidePanelSideCjNo, sidePanelDownCjNo);
+                    swEdit.FNHS0051(swComp, item.Deepth, 555m, 400m, sidePanelSideCjNo, sidePanelDownCjNo);
 
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0002-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0052-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0002(swComp, item.Deepth, 555m);
+                    swEdit.FNHS0052(swComp, item.Deepth, 555m, 400m);
 
                 }
                 else if (item.SidePanel == "RIGHT")
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0001-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0051-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0002-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0052-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0003-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0053-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0003(swComp, item.Deepth, 555m, sidePanelSideCjNo, sidePanelDownCjNo);
+                    swEdit.FNHS0053(swComp, item.Deepth, 555m, 400m, sidePanelSideCjNo, sidePanelDownCjNo);
 
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0004-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0054-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0004(swComp, item.Deepth, 555m);
-
+                    swEdit.FNHS0054(swComp, item.Deepth, 555m, 400m);
                 }
                 else
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0001-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0051-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0002-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0052-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0003-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0053-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0004-1"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0054-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
 

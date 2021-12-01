@@ -8,4 +8,3 @@ D:\Compass\Common\bin\Debug\Common.pdb
 D:\Compass\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 D:\Compass\Common\obj\Debug\Common.dll
 D:\Compass\Common\obj\Debug\Common.pdb
-D:\Compass\Common\obj\Debug\Common.csprojAssemblyReference.cache
