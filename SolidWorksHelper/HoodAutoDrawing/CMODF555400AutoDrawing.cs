@@ -169,6 +169,8 @@ namespace SolidWorksHelper
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("AUTODRAIN RIGHT");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat = swComp.FeatureByName("液位探测器孔");
+                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 }
                 else if (item.Outlet == "RIGHT")
                 {
@@ -179,6 +181,8 @@ namespace SolidWorksHelper
                     swFeat = swComp.FeatureByName("AUTODRAIN LEFT");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("AUTODRAIN RIGHT");
+                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat = swComp.FeatureByName("液位探测器孔");
                     swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
                 }
                 else if (item.Outlet == "UPLEFT")

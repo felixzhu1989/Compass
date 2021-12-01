@@ -496,8 +496,8 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0086-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
-
-
+                    swFeat = swAssy.FeatureByName("LocalLPattern6");
+                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
 
                     //排风腔
                     //重命名装配体内部
@@ -508,11 +508,11 @@ namespace SolidWorksHelper
                     {
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0111-2"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩.
+                        swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0111-2") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         swModelDocExt.RenameDocument(compReName);
                     }
                     swModel.ClearSelection2(true);
-                    status = swModelDocExt.SelectByID2(compReName + "-2" + "@" + assyName, "COMPONENT", 0, 0, 0, false,
-                        0, null, 0);
+                    status = swModelDocExt.SelectByID2(compReName + "-2" + "@" + assyName, "COMPONENT", 0, 0, 0, false,0, null, 0);
                     swModel.ClearSelection2(true);
                     if (status)
                     {
