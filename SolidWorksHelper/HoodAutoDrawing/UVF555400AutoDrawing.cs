@@ -39,7 +39,7 @@ namespace SolidWorksHelper
             Component2 swComp;
             Feature swFeat = default(Feature);
             object configNames = null;
-
+            EditPart swEdit=new EditPart();
             //打开Pack后的模型
             swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
                 (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
@@ -1043,24 +1043,11 @@ namespace SolidWorksHelper
                     {
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0005-1"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩
-                        swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue =
-                            (decimal)(Math.Sqrt(Math.Pow((double)item.Deepth - 273d, 2) + Math.Pow(555d - 400d, 2))) / 1000m;
-                        //标准烟罩(item.Deepth - 275m) / 1000m; //水洗烟罩(item.Deepth - 368) / 1000m;
-                        swPart.Parameter("D5@Sketch7").SystemValue = 18.5m / 1000m;
-                        //UV555400,18.5m,UV450400，15m，标准烟罩13.68m,水洗烟罩19.87m / 1000m
-                        swPart.Parameter("D5@Sketch10").SystemValue = 22m / 1000m;
-                        //UV555400，22m,标准烟罩27.3
+                        swEdit.FNHS0005(swComp, item.Deepth, 555m, 400m, "V");//普通烟罩"V"，水洗"W"
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0006-1"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩
-                        swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue =
-                            (decimal)(Math.Sqrt(Math.Pow((double)item.Deepth - 273d, 2) + Math.Pow(555d - 400d, 2))) / 1000m;
-                        //标准烟罩(item.Deepth - 275m) / 1000m; //水洗烟罩(item.Deepth - 368) / 1000m;
-                        swPart.Parameter("D5@Sketch7").SystemValue = 18.5m / 1000m;
-                        //UV555400,18.5m,UV450400，15m，标准烟罩13.68m,水洗烟罩19.87m / 1000m
-                        swPart.Parameter("D5@Sketch8").SystemValue = 22m / 1000m;
-                        //UV555400，22m,标准烟罩27.3
+                        swEdit.FNHS0006(swComp, item.Deepth, 555m, 400m, "V");//普通烟罩"V"，水洗"W"
+                        
                     }
                     else
                     {
@@ -1093,14 +1080,8 @@ namespace SolidWorksHelper
                         swComp.SetSuppression2(0); //2解压缩，0压缩
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0005-1"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩
-                        swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue =
-                            (decimal)(Math.Sqrt(Math.Pow((double)item.Deepth - 273d, 2) + Math.Pow(555d - 400d, 2))) / 1000m;
-                        //标准烟罩(item.Deepth - 275m) / 1000m; //水洗烟罩(item.Deepth - 368) / 1000m;
-                        swPart.Parameter("D5@Sketch7").SystemValue = 18.5m / 1000m;
-                        //UV555400,18.5m,UV450400，15m，标准烟罩13.68m,水洗烟罩19.87m / 1000m
-                        swPart.Parameter("D5@Sketch10").SystemValue = 22m / 1000m;
-                        //UV555400，22m,标准烟罩27.3
+                        swEdit.FNHS0005(swComp, item.Deepth, 555m, 400m, "V");//普通烟罩"V"，水洗"W"
+                        
                     }
                     else
                     {
@@ -1133,14 +1114,8 @@ namespace SolidWorksHelper
                         swComp.SetSuppression2(0); //2解压缩，0压缩
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0006-1"));
                         swComp.SetSuppression2(2); //2解压缩，0压缩
-                        swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue =
-                            (decimal)(Math.Sqrt(Math.Pow((double)item.Deepth - 273d, 2) + Math.Pow(555d - 400d, 2))) / 1000m;
-                        //标准烟罩(item.Deepth - 275m) / 1000m; //水洗烟罩(item.Deepth - 368) / 1000m;
-                        swPart.Parameter("D5@Sketch7").SystemValue = 18.5m / 1000m;
-                        //UV555400,18.5m,UV450400，15m，标准烟罩13.68m,水洗烟罩19.87m / 1000m
-                        swPart.Parameter("D5@Sketch8").SystemValue = 22m / 1000m;
-                        //UV555400，22m,标准烟罩27.3
+                        swEdit.FNHS0006(swComp, item.Deepth, 555m, 400m, "V");//普通烟罩"V"，水洗"W"
+                        
                     }
                     else
                     {
