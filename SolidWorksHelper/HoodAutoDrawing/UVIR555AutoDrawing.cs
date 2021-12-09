@@ -83,12 +83,14 @@ namespace SolidWorksHelper
             //int sidePanelDownCjNo = sidePanelSideCjNo + 6;
 
             //圆环新风
-            decimal innerRound = 3.14m * (item.Deepth / 2m - 90m) - 4m;
-            int innerCjNo = (int)((innerRound - 30m) / 32m) + 1;
-            decimal innerCjFirstDis = (innerRound - (innerCjNo - 1) * 32m) / 2m;
+            double innerRadius = (double)item.Deepth / 2d - 90d;//内半径
+            double beta = Math.PI - 2 * Math.Asin(400d / innerRadius);//圆心角弧度
+            double innerRound =innerRadius*beta - 4d;//弧长
+            int innerCjNo = (int)((innerRound - 30d) / 32d)+1;//CJ孔数量
+            double innerCjFirstDis = (innerRound - (innerCjNo-1)  * 32d) / 2d;
 
-            decimal downRound = 3.14m * (item.Deepth / 2m - 45m);
-            int downCjNo = (int)((downRound - 30m) / 32m) + 1;
+            double downRound = Math.PI * ((double)item.Deepth / 2d - 45d);
+            int downCjNo = (int)((downRound - 30d) / 32d) + 1;
 
             try
             {
@@ -1104,10 +1106,15 @@ namespace SolidWorksHelper
                 //swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
 
                 //----------MiddleRoof灯板/左右----------
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0020-1"));
+                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0020-2"));
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D1@Sketch1").SystemValue = (item.Deepth / 2m - 90m + 1m) / 1000m;
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.ExBeamLength / 2m + 1.5m) / 1000m;
+                swPart.Parameter("D2@Sketch9").SystemValue = item.Length / 1000m-2m;
+                swPart.Parameter("D4@Sketch9").SystemValue = (item.Length / 1000m - 2m )/ 2;
+                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0009-1"));
+                swPart = swComp.GetModelDoc2();
+                swPart.Parameter("D2@Sketch9").SystemValue = item.Length / 1000m - 2m;
+                swPart.Parameter("D4@Sketch9").SystemValue = (item.Length / 1000m - 2m) / 2;
+                
                 //----------MiddleRoof灯板/弯条----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0021-2"));
                 swPart = swComp.GetModelDoc2();
@@ -1131,8 +1138,8 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0049-1"));
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D1@Sketch1").SystemValue = (item.Deepth / 2m - 90m + 1m) / 1000m;
-                swPart.Parameter("D4@Sketch1").SystemValue = (item.Deepth / 2m - 90m + 1m) / 1000m;
-                swPart.Parameter("D3@Sketch6").SystemValue = innerCjFirstDis / 1000m;
+                swPart.Parameter("D3@Sketch1").SystemValue = (item.Deepth / 2m - 90m + 1m-400m) / 1000m;
+                swPart.Parameter("D3@Sketch6").SystemValue = innerCjFirstDis / 1000d;
                 swPart.Parameter("D1@LPattern1").SystemValue = innerCjNo;
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0050-1"));
