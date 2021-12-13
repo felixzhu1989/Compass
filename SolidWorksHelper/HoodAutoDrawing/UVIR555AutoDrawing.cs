@@ -716,12 +716,12 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0048-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D1@Sketch1").SystemValue = (item.Deepth / 2m - 1m) / 1000m;
-                swPart.Parameter("D3@Sketch1").SystemValue = (item.Deepth / 2m - 3m) / 1000m;
+                swPart.Parameter("D3@Sketch1").SystemValue = (item.Deepth / 2m - 2m) / 1000m;
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0049-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D1@Sketch1").SystemValue = (item.Deepth / 2m - 90m + 1m) / 1000m;
-                swPart.Parameter("D3@Sketch1").SystemValue = (item.Deepth / 2m - 90m + 1m - 400m) / 1000m;
+                swPart.Parameter("D1@Sketch1").SystemValue = (item.Deepth / 2m - 90m) / 1000m;
+                swPart.Parameter("D3@Sketch1").SystemValue = (item.Deepth / 2m - 90m+0.5m - 400m) / 1000m;
                 swPart.Parameter("D3@Sketch6").SystemValue = innerCjFirstDis / 1000d;
                 swPart.Parameter("D1@LPattern1").SystemValue = innerCjNo;
 
