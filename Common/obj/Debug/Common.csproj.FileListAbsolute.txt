@@ -9,3 +9,4 @@ D:\Compass\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 D:\Compass\Common\obj\Debug\Common.dll
 D:\Compass\Common\obj\Debug\Common.pdb
 E:\Compass\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+D:\Compass\Common\obj\Debug\Common.csprojAssemblyReference.cache

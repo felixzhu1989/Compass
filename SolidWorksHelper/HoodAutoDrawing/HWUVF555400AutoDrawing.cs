@@ -72,7 +72,7 @@ namespace SolidWorksHelper
             decimal ksaSideLength = Convert.ToDecimal((item.Length - ksaNo * 498m) / 2) / 1000m;
             //MESH侧板长度(除去排风三角板3mm计算)
             decimal meshSideLength =
-                Convert.ToDecimal((item.Length - 3m - (int)((item.Length - 2m) / 498m) * 498m) / 2m - 2m) / 1000m;
+                Convert.ToDecimal((item.Length - 3m - (int)((item.Length - 2m) / 497m) * 497m) / 2m - 2m) / 1000m;
             //HWUWF555400斜侧板CJ孔计算,150为排风底部长度,非水洗长度为76，555-400为高度差
             int sidePanelDownCjNo = (int)(((decimal)(Math.Sqrt(Math.Pow((double)item.Deepth - 76d, 2) + Math.Pow(555d - 400d, 2))) - 95m) / 32m);
             int sidePanelSideCjNo = sidePanelDownCjNo - 3;
