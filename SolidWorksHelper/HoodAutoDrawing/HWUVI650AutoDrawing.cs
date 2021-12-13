@@ -71,7 +71,7 @@ namespace SolidWorksHelper
             decimal ksaSideLength = Convert.ToDecimal((item.Length - ksaNo * 498m) / 2) / 1000m;
             //MESH侧板长度(除去排风三角板3mm计算),华为烟罩再减去2
             decimal meshSideLength =
-                Convert.ToDecimal((item.Length - 3m - (int)((item.Length - 2m) / 498m) * 498m) / 2m - 2m) / 1000m;
+                Convert.ToDecimal((item.Length - 3m - (int)((item.Length - 2m) / 497m) * 497m) / 2m - 2m) / 1000m;
             //侧板CJ孔整列到烟罩底部
             int sidePanelDownCjNo = (int)((item.Deepth - 95m) / 32m);
             //非水洗烟罩KV/UV
