@@ -797,7 +797,8 @@ namespace SolidWorksHelper
                 #region 新风前面板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0094-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D1@草图1").SystemValue = (item.Length - 3m) / 1000m;
+                //2021.12.14 更改成多减去1.5mm，实际折弯后过长
+                swPart.Parameter("D1@草图1").SystemValue = (item.Length - 3m-1.5m) / 1000m;
                 swPart.Parameter("D1@阵列(线性)7").SystemValue = frontPanelKaKouNo;
                 swPart.Parameter("D3@阵列(线性)7").SystemValue = frontPanelKaKouDis;
                 swPart.Parameter("D1@LPattern1").SystemValue = frontPanelHoleNo;

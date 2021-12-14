@@ -9,4 +9,3 @@ D:\Compass\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
 D:\Compass\Models\obj\Debug\Models.dll
 D:\Compass\Models\obj\Debug\Models.pdb
 D:\Compass\Models\obj\Debug\Models.csprojAssemblyReference.cache
-E:\Compass\Models\obj\Debug\Models.csproj.AssemblyReference.cache

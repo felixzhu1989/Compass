@@ -477,15 +477,19 @@ namespace Compass
                 if (dgv.Rows[i].Cells["PartNo"].Value.ToString().Length > 8)
                 {
                     partNo = dgv.Rows[i].Cells["PartNo"].Value.ToString().Substring(0, 8).ToUpper();
+                    //KSA小侧边
                     if (partNo == "FNHE0003" || partNo == "FNHE0004" || partNo == "FNHE0026" || partNo == "FNHE0027")
-                        workSheet.Cells[i + 11, 9] = Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) == 310.67m ?
-                            Convert.ToDecimal(dgv.Rows[i].Cells["Width"].Value) - 50.13m : Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) - 50.13m;
-                    else if (partNo == "FNHE0005" || partNo == "FNHE0028")
-                        workSheet.Cells[i + 11, 9] = Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) == 300m ?
-                            Convert.ToDecimal(dgv.Rows[i].Cells["Width"].Value) - 29.08m : Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) - 29.08m;
-                    else if (partNo == "FNHE0012" || partNo == "FNHE0013" || partNo == "FNHE0029" || partNo == "FNHE0030" || partNo == "FNHE0038" || partNo == "FNHE0039")
-                        workSheet.Cells[i + 11, 9] = Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) == 308m ?
-                            Convert.ToDecimal(dgv.Rows[i].Cells["Width"].Value) - 46.08m : Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) - 46.08m;
+                        workSheet.Cells[i + 11, 9] = Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) == 310.67m ? Convert.ToInt32(dgv.Rows[i].Cells["Width"].Value) - 50: Convert.ToInt32(dgv.Rows[i].Cells["Length"].Value) - 50;
+                    //KSA小侧边-华为
+                    else if (partNo == "FNHE0160" || partNo == "FNHE0161")
+                        workSheet.Cells[i + 11, 9] = Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) == 310.87m ? Convert.ToInt32(dgv.Rows[i].Cells["Width"].Value) - 50 : Convert.ToInt32(dgv.Rows[i].Cells["Length"].Value) - 50;
+
+                    //KSA小侧边特殊
+                    else if (partNo == "FNHE0005" || partNo == "FNHE0028" || partNo == "FNHE0170")
+                        workSheet.Cells[i + 11, 9] = Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) == 300m ? Convert.ToInt32(dgv.Rows[i].Cells["Width"].Value) - 29 : Convert.ToInt32(dgv.Rows[i].Cells["Length"].Value) - 29;
+                    //MESH油网侧边
+                    else if (partNo == "FNHE0012" || partNo == "FNHE0013" || partNo == "FNHE0029" || partNo == "FNHE0030" || partNo == "FNHE0038" || partNo == "FNHE0039" || partNo == "FNHE0162" || partNo == "FNHE0163")
+                        workSheet.Cells[i + 11, 9] = Convert.ToDecimal(dgv.Rows[i].Cells["Length"].Value) == 308m ? Convert.ToInt32(dgv.Rows[i].Cells["Width"].Value) - 46 : Convert.ToInt32(dgv.Rows[i].Cells["Length"].Value) - 46;
                 }
                 //计数
                 workSheet.Cells[i + 11, 11] = i + 1;
