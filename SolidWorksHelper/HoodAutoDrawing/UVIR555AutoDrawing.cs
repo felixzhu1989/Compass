@@ -698,11 +698,9 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0020-2");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D4@Sketch9").SystemValue = (item.Deepth - 2m) / 2000m;
-                swPart.Parameter("D2@Sketch9").SystemValue = (item.Deepth - 2m) / 1000m;
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0009-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D4@Sketch9").SystemValue = (item.Deepth  - 2m) / 2000m; 
-                swPart.Parameter("D2@Sketch9").SystemValue = (item.Deepth  - 2m) / 1000m; 
+                swPart.Parameter("D4@Sketch9").SystemValue = (item.Deepth  - 2m) / 2000m;
                 #endregion
                 
                 #region 吊装槽钢
@@ -741,7 +739,6 @@ namespace SolidWorksHelper
                 swPart.Parameter("D2@Sketch3").SystemValue = (item.Deepth - 90m) / 1000m;
                 swPart.Parameter("D1@Sketch3").SystemValue = (item.ExBeamLength - 50m) / 1000m;
                 #endregion
-
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
                 swModel.Save();//保存，很耗时间
