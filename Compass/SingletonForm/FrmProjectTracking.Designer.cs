@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvProjectTracking = new System.Windows.Forms.DataGridView();
             this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,7 +73,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.cobODPNo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtToPage = new MyUIControls.SuperTextBox(this.components);
             this.label17 = new System.Windows.Forms.Label();
             this.lblRecordsCound = new System.Windows.Forms.Label();
             this.lblCurrentPage = new System.Windows.Forms.Label();
@@ -92,6 +91,7 @@
             this.btnToPage = new System.Windows.Forms.Button();
             this.btnQueryByYear = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.txtToPage = new MyUIControls.SuperTextBox(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTracking)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
             this.grbEditProjectTracking.SuspendLayout();
@@ -102,22 +102,22 @@
             // 
             this.dgvProjectTracking.AllowUserToAddRows = false;
             this.dgvProjectTracking.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
-            this.dgvProjectTracking.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Azure;
+            this.dgvProjectTracking.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvProjectTracking.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProjectTracking.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvProjectTracking.BackgroundColor = System.Drawing.Color.White;
             this.dgvProjectTracking.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProjectTracking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProjectTracking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvProjectTracking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProjectTracking.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ODPNo,
@@ -382,10 +382,10 @@
             // 
             this.grbEditProjectTracking.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbEditProjectTracking.Controls.Add(this.dtpEditProdFinishActual);
             this.grbEditProjectTracking.Controls.Add(this.cobEditODPNo);
             this.grbEditProjectTracking.Controls.Add(this.dtpEditKickOffDate);
             this.grbEditProjectTracking.Controls.Add(this.dtpEditODPReceiveDate);
-            this.grbEditProjectTracking.Controls.Add(this.dtpEditProdFinishActual);
             this.grbEditProjectTracking.Controls.Add(this.label2);
             this.grbEditProjectTracking.Controls.Add(this.btnEditProjectTracking);
             this.grbEditProjectTracking.Controls.Add(this.label6);
@@ -553,13 +553,6 @@
             this.groupBox1.TabIndex = 40;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "分页显示";
-            // 
-            // txtToPage
-            // 
-            this.txtToPage.Location = new System.Drawing.Point(629, 25);
-            this.txtToPage.Name = "txtToPage";
-            this.txtToPage.Size = new System.Drawing.Size(34, 25);
-            this.txtToPage.TabIndex = 45;
             // 
             // label17
             // 
@@ -753,6 +746,13 @@
             this.btnQueryByYear.Text = "查询";
             this.btnQueryByYear.UseVisualStyleBackColor = false;
             this.btnQueryByYear.Click += new System.EventHandler(this.BtnQueryByYear_Click);
+            // 
+            // txtToPage
+            // 
+            this.txtToPage.Location = new System.Drawing.Point(629, 25);
+            this.txtToPage.Name = "txtToPage";
+            this.txtToPage.Size = new System.Drawing.Size(34, 25);
+            this.txtToPage.TabIndex = 45;
             // 
             // FrmProjectTracking
             // 

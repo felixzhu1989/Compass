@@ -254,6 +254,7 @@ namespace Compass
 
             dtpEditODPReceiveDate.Text = objProjectTracking.ODPReceiveDate == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.ODPReceiveDate.ToShortDateString();
             dtpEditKickOffDate.Text = objProjectTracking.KickOffDate == DateTime.MinValue ? Convert.ToDateTime("1/1/2020").ToShortDateString() : objProjectTracking.KickOffDate.ToShortDateString();
+            SetProjectStatus();
         }
         /// <summary>
         /// 提交修改
@@ -330,14 +331,7 @@ namespace Compass
         /// <param name="e"></param>
         private void DtpEditDrReleaseActual_ValueChanged(object sender, EventArgs e)
         {
-            if (Convert.ToDateTime(dtpEditDrReleaseActual.Text) == Convert.ToDateTime("1/1/2020"))
-            {
-                cobEditProjectStatus.SelectedValue = 3;
-            }
-            else
-            {
-                cobEditProjectStatus.SelectedValue = 4;
-            }
+            SetProjectStatus();
         }
         /// <summary>
         /// 更改实际完工日期后，项目状态自动切换成生产完工
@@ -346,14 +340,7 @@ namespace Compass
         /// <param name="e"></param>
         private void DtpEditProdFinishActual_ValueChanged(object sender, EventArgs e)
         {
-            if (Convert.ToDateTime(dtpEditProdFinishActual.Text) == Convert.ToDateTime("1/1/2020"))
-            {
-                cobEditProjectStatus.SelectedValue = 4;
-            }
-            else
-            {
-                cobEditProjectStatus.SelectedValue = 5;
-            }
+            SetProjectStatus();
         }
         /// <summary>
         /// 更改实际发货日期后，项目状态自动切换成项目完成
@@ -362,13 +349,25 @@ namespace Compass
         /// <param name="e"></param>
         private void DtpEditDeliverActual_ValueChanged(object sender, EventArgs e)
         {
-            if (Convert.ToDateTime(dtpEditDeliverActual.Text) == Convert.ToDateTime("1/1/2020"))
+            SetProjectStatus();
+        }
+
+        void SetProjectStatus()
+        {
+            if (Convert.ToDateTime(dtpEditDeliverActual.Text) != Convert.ToDateTime("1/1/2020"))
             {
-                cobEditProjectStatus.SelectedValue = 5;
+                cobEditProjectStatus.SelectedValue = 6;
             }
             else
             {
-                cobEditProjectStatus.SelectedValue = 6;
+                if (Convert.ToDateTime(dtpEditProdFinishActual.Text) != Convert.ToDateTime("1/1/2020"))
+                {
+                    cobEditProjectStatus.SelectedValue = 5;
+                }
+                else
+                {
+                    cobEditProjectStatus.SelectedValue = Convert.ToDateTime(dtpEditDrReleaseActual.Text) != Convert.ToDateTime("1/1/2020") ? 4 : 3;
+                }
             }
         }
 
