@@ -48,6 +48,7 @@
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -79,6 +80,12 @@
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ProjectsView.xaml.cs">
+      <DependentUpon>ProjectsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserLoginView.xaml.cs">
+      <DependentUpon>UserLoginView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -107,9 +114,34 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{c8373b8f-13e5-4dde-9903-6637bdd5fe1e}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{2479ec41-d7cb-47fa-a3f5-2a5080050fdd}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{e38420c8-b37c-4b26-a77e-ae60bc495395}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SolidWorksHelper\SolidWorksHelper.csproj">
+      <Project>{a99d5aeb-2fd5-430b-9d56-dbf20c5c873f}</Project>
+      <Name>SolidWorksHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="View\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProjectsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserLoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

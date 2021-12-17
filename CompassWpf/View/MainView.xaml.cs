@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace CompassWpf.View
 {
@@ -23,5 +11,17 @@ namespace CompassWpf.View
         {
             InitializeComponent();
         }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Title = $"COMPASS.{App.currentUser.SBU}";
+            tblCurrentSbu.Text = $"当前事业部：{App.currentUser.SBU}";
+            tblCurrentUser.Text = $"登陆用户：{App.currentUser.UserAccount}";
+        }
+        private void TsmiProjects_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        
     }
 }

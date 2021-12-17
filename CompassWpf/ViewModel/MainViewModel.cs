@@ -21,6 +21,7 @@ namespace CompassWpf.ViewModel
         /// </summary>
         public MainViewModel()
         {
+            #region MVVMLightµÄ´úÂë
             ////if (IsInDesignMode)
             ////{
             ////    // Code runs in Blend --> create design time data.
@@ -28,7 +29,11 @@ namespace CompassWpf.ViewModel
             ////else
             ////{
             ////    // Code runs "for real"
-            ////}
+            ////} 
+            #endregion
+
+
+
         }
     }
 }

@@ -14,7 +14,7 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using CommonServiceLocator;
+using CommonServiceLocator;//添加MVVMLight后报错修复
 
 namespace CompassWpf.ViewModel
 {
@@ -31,6 +31,7 @@ namespace CompassWpf.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            #region MVVMLight自己注释的代码
             ////if (ViewModelBase.IsInDesignModeStatic)
             ////{
             ////    // Create design time view services and models
@@ -40,19 +41,25 @@ namespace CompassWpf.ViewModel
             ////{
             ////    // Create run time view services and models
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
+            ////} 
+            #endregion
 
-            SimpleIoc.Default.Register<MainViewModel>();
+            #region 注册ViewModel
+            SimpleIoc.Default.Register<MainViewModel>(); 
+
+
+
+            #endregion
         }
 
-        public MainViewModel Main
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
-        }
-        
+        #region 实例化ViewModel
+        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+
+
+
+
+        #endregion
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels

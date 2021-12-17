@@ -5,8 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CompassWpf.View"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="COMPASS" Height="680" Width="1200"
+        WindowStartupLocation="CenterScreen" MinHeight="680" MinWidth="1200" Loaded="Window_Loaded">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Menu  Background="Transparent"  Margin="2">
+                <MenuItem Header="项目列表" 
+                          x:Name="tsmiProjects" Click="TsmiProjects_OnClick"></MenuItem>
+                <MenuItem Header="制图计划"></MenuItem>
+                <MenuItem Header="计划跟踪"></MenuItem>
+                <MenuItem Header="|"/>
+                <MenuItem Header="详细信息"></MenuItem>
+                <MenuItem Header="|"/>
+                <MenuItem Header="烟罩绘图"></MenuItem>
+                <MenuItem Header="天花绘图"></MenuItem>
+                <MenuItem Header="海工绘图"></MenuItem>
+                <MenuItem Header="|"/>
+                <MenuItem Header="同步文件"></MenuItem>
+                <MenuItem Header="图号生成器"></MenuItem>
+                <MenuItem Header="|"/>
+                <MenuItem Header="查询统计">
+                    <MenuItem Header="项目测量"/>
+                    <MenuItem Header="绘图统计"/>
+                </MenuItem>
+                <MenuItem Header="|"/>
+                <MenuItem Header="系统设置">
+                    <MenuItem Header="用户设置"/>
+                    <MenuItem Header="模型分类"/>
+                    <MenuItem Header="工作量表"/>
+                    <MenuItem Header="天花配件"/>
+                    <MenuItem Header="Cutlist模板"/>
+                    <MenuItem Header="项目状态"/>
+                    <MenuItem Header="项目类型"/>
+                    <MenuItem Header="系统升级"/>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+        <Grid  DockPanel.Dock="Bottom" Margin="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="tblState" Text="Ready..."/>
+            <TextBlock x:Name="tblCurrentSbu" Grid.Column="1" Margin="10,0,10,0" />
+            <TextBlock x:Name="tblCurrentUser" Grid.Column="2"/>
+            
+        </Grid>
+
+        <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="2">
+            <Image></Image>
+            <TreeView x:Name="treeProject" Width="194" BorderThickness="0">
+
+            </TreeView>
+        </StackPanel>
+        <StackPanel x:Name="stackContent" Margin="2"></StackPanel>
+    </DockPanel>
 </Window>

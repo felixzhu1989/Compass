@@ -13,6 +13,9 @@ namespace Compass
         public FrmMain()
         {
             InitializeComponent();
+        }
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
             //获取版本号
             FileStream myFile = new FileStream("UpdateList.xml", FileMode.Open);
             XmlTextReader xmlReader = new XmlTextReader(myFile);
@@ -32,11 +35,12 @@ namespace Compass
             }
             xmlReader.Close();
             myFile.Close();
+
             lblCurrentUser.Text = "登陆用户：" + Program.ObjCurrentUser.UserAccount;
             string currentSbu = Program.ObjCurrentUser.SBU == "" ? "FoodService" : Program.ObjCurrentUser.SBU;
             lblCurrentSBU.Text = "当前事业部：" + currentSbu;
             Text = "COMPASS." + currentSbu;
-            
+
             SetPermissions();
             //隐藏测试代码
             tsmiTestCode.Visible = false;
@@ -407,6 +411,7 @@ namespace Compass
             //MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
             MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms));
         }
+
 
 
 

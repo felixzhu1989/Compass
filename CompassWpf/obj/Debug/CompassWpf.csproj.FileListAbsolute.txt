@@ -26,4 +26,14 @@ E:\Compass\CompassWpf\obj\Debug\View\MainView.g.cs
 E:\Compass\CompassWpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
 E:\Compass\CompassWpf\obj\Debug\App.baml
 E:\Compass\CompassWpf\obj\Debug\View\MainView.baml
+E:\Compass\CompassWpf\bin\Debug\Common.dll
+E:\Compass\CompassWpf\bin\Debug\DAL.dll
+E:\Compass\CompassWpf\bin\Debug\Models.dll
+E:\Compass\CompassWpf\bin\Debug\SolidWorksHelper.dll
+E:\Compass\CompassWpf\bin\Debug\Common.pdb
+E:\Compass\CompassWpf\bin\Debug\DAL.pdb
+E:\Compass\CompassWpf\bin\Debug\Models.pdb
+E:\Compass\CompassWpf\bin\Debug\SolidWorksHelper.pdb
+E:\Compass\CompassWpf\obj\Debug\View\UserLoginView.g.cs
+E:\Compass\CompassWpf\obj\Debug\View\UserLoginView.baml
 E:\Compass\CompassWpf\obj\Debug\CompassWpf.csproj.CopyComplete
