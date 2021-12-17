@@ -143,9 +143,9 @@ namespace Compass
         //每10分钟更新数据
         private void TimerRefreshData_Tick(object sender, EventArgs e)
         {
-            SingletonObject.GetSingleton.FrmP?.BtnQueryByYear_Click(null, null);
-            SingletonObject.GetSingleton.FrmDp?.BtnQueryByYear_Click(null, null);
-            SingletonObject.GetSingleton.FrmPt?.BtnQueryByYear_Click(null, null);
+            //SingletonObject.GetSingleton.FrmP?.BtnQueryByYear_Click(null, null);
+            //SingletonObject.GetSingleton.FrmDp?.BtnQueryByYear_Click(null, null);
+            //SingletonObject.GetSingleton.FrmPt?.BtnQueryByYear_Click(null, null);
         }
         //开机自启动
         private void TsmiSetStartUp_Click(object sender, EventArgs e)

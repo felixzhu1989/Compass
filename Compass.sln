@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1082
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compass", "Compass\Compass.csproj", "{72C90539-B00C-47AC-933B-21FFF2D96BFA}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateProgram", "UpdateProgram\UpdateProgram.csproj", "{F37EDCC1-5A3F-4234-AED9-A4E6E02A1413}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyUIControls", "MyUIControls\MyUIControls.csproj", "{92C324D1-096A-497B-8E45-90A5279303F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompassWpf", "CompassWpf\CompassWpf.csproj", "{38CCA203-4DB6-4F70-AC1E-C67C78C3C464}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,14 @@ Global
 		{92C324D1-096A-497B-8E45-90A5279303F7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{92C324D1-096A-497B-8E45-90A5279303F7}.Release|x86.ActiveCfg = Release|Any CPU
 		{92C324D1-096A-497B-8E45-90A5279303F7}.Release|x86.Build.0 = Release|Any CPU
+		{38CCA203-4DB6-4F70-AC1E-C67C78C3C464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38CCA203-4DB6-4F70-AC1E-C67C78C3C464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38CCA203-4DB6-4F70-AC1E-C67C78C3C464}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{38CCA203-4DB6-4F70-AC1E-C67C78C3C464}.Debug|x86.Build.0 = Debug|Any CPU
+		{38CCA203-4DB6-4F70-AC1E-C67C78C3C464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38CCA203-4DB6-4F70-AC1E-C67C78C3C464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38CCA203-4DB6-4F70-AC1E-C67C78C3C464}.Release|x86.ActiveCfg = Release|Any CPU
+		{38CCA203-4DB6-4F70-AC1E-C67C78C3C464}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

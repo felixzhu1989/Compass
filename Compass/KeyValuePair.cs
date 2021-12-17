@@ -33,6 +33,7 @@ namespace Compass
         {
             {"Hood", "烟罩"},
             {"Ceiling", "天花"},
+            {"Marine", "海工"}
         };
         public Dictionary<string, string> HoodTypeKeyValue => _hoodType;
 

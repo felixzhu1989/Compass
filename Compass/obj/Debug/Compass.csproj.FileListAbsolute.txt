@@ -329,3 +329,4 @@ E:\Compass\Compass\obj\Debug\Compass.FrmHWUVF555400.resources
 D:\Compass\Compass\bin\Debug\eDrawings.Interop.EModelMarkupControl.dll
 D:\Compass\Compass\bin\Debug\eDrawings.Interop.EModelViewControl.dll
 D:\Compass\Compass\obj\Debug\Compass.FrmHWUVF555400.resources
+E:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
