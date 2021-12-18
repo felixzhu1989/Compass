@@ -1,8 +1,8 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Windows;
+﻿using System.Windows;
 using CompassWpf.View;
 using System.Threading;
+using CompassWpf.ViewModel;
+
 namespace CompassWpf
 {
     /// <summary>
@@ -10,14 +10,6 @@ namespace CompassWpf
     /// </summary>
     public partial class App : Application
     {
-        [DllImport("user32", CharSet = CharSet.Unicode)]
-        static extern IntPtr FindWindow(string cls, string win);
-        [DllImport("user32")]
-        static extern IntPtr SetForegroundWindow(IntPtr hWnd);
-        [DllImport("user32")]
-        static extern bool IsIconic(IntPtr hWnd);
-        [DllImport("user32")]
-        static extern bool OpenIcon(IntPtr hWnd);
         //应用程序启动执行的事件
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
@@ -25,32 +17,19 @@ namespace CompassWpf
             new Mutex(true, "Singleton Compass", out bool canOpen);
             if (!canOpen)
             {
-                ActivateOtherWindow();
+                MessageBox.Show("请不要运行多个COMPASS程序", "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
                 Shutdown();
-            }
-            void ActivateOtherWindow()
-            {
-                var other = FindWindow(null, "MainWindow");
-                if (other != IntPtr.Zero)
-                {
-                    SetForegroundWindow(other);
-                    if (IsIconic(other))
-                        OpenIcon(other);
-                }
             }
             #endregion
 
             #region 登陆逻辑
             MainView mainView = new MainView();
             UserLoginView userLoginView = new UserLoginView();
-            if (userLoginView.ShowDialog() == true)
-            {
-                mainView.Show();
-            }
-            else
-            {
-                mainView.Close();
-            } 
+            //关闭窗口委托
+            if (UserLoginViewModel.CloseAction == null) UserLoginViewModel.CloseAction = userLoginView.Close;
+            userLoginView.ShowDialog();
+            if (UserLoginViewModel.LoginResult) mainView.Show();
+            else mainView.Close();
             #endregion
         }
         //保存登陆对象

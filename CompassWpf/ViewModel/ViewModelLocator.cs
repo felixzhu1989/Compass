@@ -14,7 +14,9 @@
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using CommonServiceLocator;//添加MVVMLight后报错修复
+//添加MVVMLight后报错修复
+using CommonServiceLocator;
+
 
 namespace CompassWpf.ViewModel
 {
@@ -46,6 +48,7 @@ namespace CompassWpf.ViewModel
 
             #region 注册ViewModel
             SimpleIoc.Default.Register<MainViewModel>(); 
+            SimpleIoc.Default.Register<UserLoginViewModel>(); 
 
 
 
@@ -54,6 +57,7 @@ namespace CompassWpf.ViewModel
 
         #region 实例化ViewModel
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public UserLoginViewModel UserLogin => ServiceLocator.Current.GetInstance<UserLoginViewModel>();
 
 
 

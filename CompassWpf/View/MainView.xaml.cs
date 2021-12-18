@@ -19,7 +19,7 @@ namespace CompassWpf.View
         }
         private void TsmiProjects_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+           
         }
 
         

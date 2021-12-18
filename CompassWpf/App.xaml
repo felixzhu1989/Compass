@@ -7,7 +7,6 @@
              d1p1:Ignorable="d" 
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              Startup="App_OnStartup">
-
     <Application.Resources>
     <ResourceDictionary>
       <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>

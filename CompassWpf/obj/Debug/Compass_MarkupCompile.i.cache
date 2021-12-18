@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-E:\Compass\CompassWpf\obj\Debug\
+D:\Compass\CompassWpf\obj\Debug\
 CompassWpf
 none
 false
 DEBUG;TRACE
-E:\Compass\CompassWpf\App.xaml
+D:\Compass\CompassWpf\App.xaml
 3-1097729924
 
-101309512095
-74-1170476790
+11657616171
+74179299984
 View\MainView.xaml;View\ProjectsView.xaml;View\UserLoginView.xaml;
 
 True
