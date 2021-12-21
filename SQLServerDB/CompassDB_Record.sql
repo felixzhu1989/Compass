@@ -355,12 +355,14 @@ select * from Categories
 
 
 ---删除一个订单需要删除这些关联表格
-select * from projects where projectId=62
-select * from GeneralRequirements where projectId=62
-select * from FinancialData where projectId=62
-select * from ProjectTracking where  projectId=62
+select * from projects where projectId=324
+select * from GeneralRequirements where projectId=324
+select * from FinancialData where projectId=324
+select * from ProjectTracking where  projectId=324
 
-delete from projects where projectId=62
+delete from projects where projectId=324
+
+
 
 select ProjectStatusId from ProjectTracking
 select * from ProjectStatus

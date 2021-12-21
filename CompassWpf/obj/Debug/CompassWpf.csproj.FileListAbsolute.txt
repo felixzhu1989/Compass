@@ -36,7 +36,6 @@ E:\Compass\CompassWpf\bin\Debug\Models.pdb
 E:\Compass\CompassWpf\bin\Debug\SolidWorksHelper.pdb
 E:\Compass\CompassWpf\obj\Debug\View\UserLoginView.g.cs
 E:\Compass\CompassWpf\obj\Debug\View\UserLoginView.baml
-E:\Compass\CompassWpf\obj\Debug\CompassWpf.csproj.CopyComplete
 D:\Compass\CompassWpf\bin\Debug\Compass.exe.config
 D:\Compass\CompassWpf\bin\Debug\Compass.exe
 D:\Compass\CompassWpf\bin\Debug\Compass.pdb
@@ -77,3 +76,5 @@ D:\Compass\CompassWpf\obj\Debug\CompassWpf.csproj.GenerateResource.cache
 D:\Compass\CompassWpf\obj\Debug\CompassWpf.csproj.CoreCompileInputs.cache
 D:\Compass\CompassWpf\obj\Debug\Compass.exe
 D:\Compass\CompassWpf\obj\Debug\Compass.pdb
+E:\Compass\CompassWpf\obj\Debug\View\ProjectsView.g.cs
+E:\Compass\CompassWpf\obj\Debug\View\ProjectsView.baml

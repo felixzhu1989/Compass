@@ -7,8 +7,8 @@
         DataContext="{Binding Source={StaticResource Locator},Path=UserLogin}"
         mc:Ignorable="d"
         Title="用户登陆" Height="260" Width="380"
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
-       >
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
+        Icon="/Compass;component/Images/compass_64px.ico">
     <Grid Margin="50,10,50,10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:CompassWpf.View"
         mc:Ignorable="d"
         Title="COMPASS" Height="680" Width="1200"
-        WindowStartupLocation="CenterScreen" MinHeight="680" MinWidth="1200" Loaded="Window_Loaded">
+        WindowStartupLocation="CenterScreen" MinHeight="680" MinWidth="1200" Loaded="Window_Loaded"
+        Icon="/Compass;component/Images/compass_64px.ico">
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <Menu  Background="Transparent"  Margin="2">
@@ -34,7 +35,7 @@
                     <MenuItem Header="模型分类"/>
                     <MenuItem Header="工作量表"/>
                     <MenuItem Header="天花配件"/>
-                    <MenuItem Header="Cutlist模板"/>
+                    <MenuItem Header="下料清单"/>
                     <MenuItem Header="项目状态"/>
                     <MenuItem Header="项目类型"/>
                     <MenuItem Header="系统升级"/>

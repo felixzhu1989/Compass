@@ -12,10 +12,7 @@ namespace DAL
         //创建连接字符串(适合Excel)
         private static string connString =
             "Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=Excel 12.0;";
-
-
-
-
+        
         /// <summary>
         /// 删除修改
         /// </summary>
