@@ -52,18 +52,14 @@ namespace SolidWorksHelper
                  * (int)不进行四舍五入，Convert.ToInt32会四舍五入
                 */
             //-----------计算中间值，----------
-
             //Midroof灯板螺丝孔数量及第二个孔距离边缘距离,灯板顶面吊装槽钢螺丝孔位距离
             int midRoofHoleNo = (int)((item.ExBeamLength - 300m) / 400m);
             decimal midRoofSecondHoleDis = Convert.ToDecimal((item.ExBeamLength - (midRoofHoleNo - 1) * 400m) / 2) / 1000m;
-            decimal midRoofTopHoleDis =
-                Convert.ToDecimal(item.Deepth - 535m - 360m - 90m -
-                                  (int)((item.Deepth - 535m - 360m - 90m - 100m) / 50m) * 50m) / 1000m;
-            //KSA数量，KSA侧板长度(以全长计算)/M型侧板与MESH一样需要减去三角板厚度
-            int ksaNo = (int)((item.ExBeamLength - 2m) / 498m);
-            decimal ksaSideLength = Convert.ToDecimal((item.ExBeamLength - 3m - ksaNo * 498m) / 2) / 1000m;
+            //KSA数量，KSA侧板长度(以全长计算)/M型侧板与MESH一样需要减去三角板厚度,排风腔实际多减去2mm
+            int ksaNo = (int)((item.ExBeamLength - 4m) / 498m);
+            decimal ksaSideLength = Convert.ToDecimal((item.ExBeamLength - 5m - ksaNo * 498m) / 2) / 1000m;
             //MESH侧板长度(除去排风三角板3mm计算)
-            decimal meshSideLength = Convert.ToDecimal((item.ExBeamLength - 3m - (int)((item.ExBeamLength - 2m) / 498m) * 498m) / 2) / 1000m;
+            decimal meshSideLength = Convert.ToDecimal((item.ExBeamLength - 5m - (int)((item.ExBeamLength - 2m) / 498m) * 498m) / 2) / 1000m;
 
 
             //圆环新风
@@ -110,7 +106,7 @@ namespace SolidWorksHelper
                 #region 排风腔
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0042-1");
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@基体-法兰1").SystemValue = item.ExBeamLength / 1000m;
+                swPart.Parameter("D2@基体-法兰1").SystemValue = (item.ExBeamLength-2m) / 1000m;
                 swPart.Parameter("D1@Sketch16").SystemValue = midRoofSecondHoleDis;
                 if (midRoofHoleNo == 1)
                 {
