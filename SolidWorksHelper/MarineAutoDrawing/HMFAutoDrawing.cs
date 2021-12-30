@@ -51,8 +51,8 @@ namespace SolidWorksHelper
             swAssy = swModel as AssemblyDoc; //装配体
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true); //TopOnly参数设置成true，只重建顶层，不重建零件内部
-                                         /*注意SolidWorks单位是m，计算是应当/1000m
-                                          * 整形与整形运算得出的结果仍然时整形，1640 / 1000m结果为0，因此必须将其中一个转化成decimal型，使用后缀m就可以了
+                                         /*注意SolidWorks单位是m，计算是应当/1000d
+                                          * 整形与整形运算得出的结果仍然时整形，1640 / 1000d结果为0，因此必须将其中一个转化成decimal型，使用后缀m就可以了
                                           * (int)不进行四舍五入，Convert.ToInt32会四舍五入
                                            */
             #endregion
@@ -201,9 +201,9 @@ namespace SolidWorksHelper
                 //----------------外壳-大底板--------------------------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0001-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("Pituus@Base-Extrude-Thin").SystemValue = item.Length / 1000m - 4.5m / 1000m;
-                swPart.Parameter("Leveys@Sketch1").SystemValue = item.Width / 1000m - 1.5m / 1000m;
-                swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000m - 1.5m / 1000m;
+                swPart.Parameter("Pituus@Base-Extrude-Thin").SystemValue = item.Length / 1000d - 4.5d / 1000d;
+                swPart.Parameter("Leveys@Sketch1").SystemValue = item.Width / 1000d - 1.5d / 1000d;
+                swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000d - 1.5d / 1000d;
                 //获取对象的成员（属性(扳手图标)或者方法(立方体图标)）需要通过对象去获得item.HangLocation
                 //吊脚位置，Up\Mid\Down
                 if (item.HangPosition == "Up")
@@ -262,21 +262,21 @@ namespace SolidWorksHelper
                     {
                         swFeat = swComp.FeatureByName("2xRJ12-R");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D4@Sketch61").SystemValue = item.PowerPlugDis / 1000m - 53m / 1000m;
+                        swPart.Parameter("D4@Sketch61").SystemValue = item.PowerPlugDis / 1000d - 53d / 1000d;
                     }
                     //电源插口
                     if (item.PowerPlug == "NAC21" || item.PowerPlug == "NAC31")
                     {
                         swFeat = swComp.FeatureByName("PowerPlug-R");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D4@Sketch63").SystemValue = item.PowerPlugDis / 1000m;
+                        swPart.Parameter("D4@Sketch63").SystemValue = item.PowerPlugDis / 1000d;
                         if (item.PowerPlug == "NAC31")//D1@Sketch63=48
                         {
-                            swPart.Parameter("D1@Sketch63").SystemValue = 48m / 1000m;
+                            swPart.Parameter("D1@Sketch63").SystemValue = 48d / 1000d;
                         }
                         else//D1@Sketch63=39
                         {
-                            swPart.Parameter("D1@Sketch63").SystemValue = 39m / 1000m;
+                            swPart.Parameter("D1@Sketch63").SystemValue = 39d / 1000d;
                         }
                     }
                     else
@@ -304,16 +304,16 @@ namespace SolidWorksHelper
                 //----------外壳-进风口盖板(前)------------------------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0002-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("Leveys@Sketch1").SystemValue = item.Width / 1000m + 0.75m / 1000m;
-                swPart.Parameter("Korkeus@Base-Extrude-Thin").SystemValue = item.Height / 1000m - 2m / 1000m;
-                swPart.Parameter("Halkaisija@Sketch27").SystemValue = item.InletDia / 1000m + 3m / 1000m;
+                swPart.Parameter("Leveys@Sketch1").SystemValue = item.Width / 1000d + 0.75d / 1000d;
+                swPart.Parameter("Korkeus@Base-Extrude-Thin").SystemValue = item.Height / 1000d - 2d / 1000d;
+                swPart.Parameter("Halkaisija@Sketch27").SystemValue = item.InletDia / 1000d + 3d / 1000d;
                 if (item.PlugPosition == "Front")
                 {
                     if (item.NetPlug == "2xRJ12")
                     {
                         swFeat = swComp.FeatureByName("2xRJ12");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D2@Sketch21").SystemValue = 156.5m / 1000m;
+                        swPart.Parameter("D2@Sketch21").SystemValue = 156.5d / 1000d;
                         swFeat = swComp.FeatureByName("2xRJ45");
                         swFeat.SetSuppression2(0, 2, null);
                     }
@@ -323,16 +323,16 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(0, 2, null);
                         swFeat = swComp.FeatureByName("2xRJ45");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D11@Sketch38").SystemValue = 156.5m / 1000m;
+                        swPart.Parameter("D11@Sketch38").SystemValue = 156.5d / 1000d;
                     }
                     else if (item.NetPlug == "Both")
                     {
                         swFeat = swComp.FeatureByName("2xRJ12");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D2@Sketch21").SystemValue = 170m / 1000m;
+                        swPart.Parameter("D2@Sketch21").SystemValue = 170d / 1000d;
                         swFeat = swComp.FeatureByName("2xRJ45");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D11@Sketch38").SystemValue = 139.5m / 1000m;
+                        swPart.Parameter("D11@Sketch38").SystemValue = 139.5d / 1000d;
                     }
                     else
                     {
@@ -355,7 +355,7 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(0, 2, null);
                         swFeat = swComp.FeatureByName("NAC21");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D4@Sketch39").SystemValue = 101m / 1000m;
+                        swPart.Parameter("D4@Sketch39").SystemValue = 101d / 1000d;
                     }
                     else if (item.PowerPlug == "Both")
                     {
@@ -363,7 +363,7 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(1, 2, null);
                         swFeat = swComp.FeatureByName("NAC21");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D4@Sketch39").SystemValue = 28m / 1000m;
+                        swPart.Parameter("D4@Sketch39").SystemValue = 28d / 1000d;
                     }
                     else
                     {
@@ -401,13 +401,13 @@ namespace SolidWorksHelper
                 //----------外壳-底板(后)------------------------MNCC0003
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0003-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000m - 0.25m / 1000m;
+                swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000d - 0.25d / 1000d;
 
                 //----------外壳-出风口大盖板-----------------------MNCC0003
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCC0008-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D@Sketch3").SystemValue = item.OutletDia / 1000m + 9m / 1000m;
-                swPart.Parameter("D4@Sketch3").SystemValue = (item.OutletDia / 1000m + 9m / 1000m) / 2 - 4.2m / 1000m;
+                swPart.Parameter("D@Sketch3").SystemValue = item.OutletDia / 1000d + 9d / 1000d;
+                swPart.Parameter("D4@Sketch3").SystemValue = (item.OutletDia / 1000d + 9d / 1000d) / 2 - 4.2d / 1000d;
 
 
 
@@ -456,7 +456,7 @@ namespace SolidWorksHelper
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "HMS-S-In-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D3@Sketch1").SystemValue = (item.InletDia / 1000m - 2m / 1000m) / 2;
+                swPart.Parameter("D3@Sketch1").SystemValue = (item.InletDia / 1000d - 2d / 1000d) / 2;
 
 
 
@@ -464,7 +464,7 @@ namespace SolidWorksHelper
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "HMS-S-Out-2");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D3@Sketch1").SystemValue = (item.OutletDia / 1000m - 2m / 1000m) / 2;
+                swPart.Parameter("D3@Sketch1").SystemValue = (item.OutletDia / 1000d - 2d / 1000d) / 2;
 
 
 
@@ -481,19 +481,19 @@ namespace SolidWorksHelper
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0001-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000m - 4m / 1000m;
+                swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000d - 4d / 1000d;
 
                 ////MNCI0002 侧板棉
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0002-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000m - 28m / 1000m;
+                swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000d - 28d / 1000d;
 
                 ////MNCI0003 侧板棉
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0003-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000m - 28m / 1000m;
+                swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000d - 28d / 1000d;
 
 
                 if (item.PlugPosition == "Right")
@@ -508,21 +508,21 @@ namespace SolidWorksHelper
                     {
                         swFeat = swComp.FeatureByName("I/O conn");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D4@Sketch7").SystemValue = item.PowerPlugDis / 1000m - 53m / 1000m;
+                        swPart.Parameter("D4@Sketch7").SystemValue = item.PowerPlugDis / 1000d - 53d / 1000d;
                     }
                     //电源插口
                     if (item.PowerPlug == "NAC21" || item.PowerPlug == "NAC31")
                     {
                         swFeat = swComp.FeatureByName("NAC");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D4@Sketch9").SystemValue = item.PowerPlugDis / 1000m;
+                        swPart.Parameter("D4@Sketch9").SystemValue = item.PowerPlugDis / 1000d;
                         if (item.PowerPlug == "NAC31")//D1@Sketch63=48
                         {
-                            swPart.Parameter("D2@Sketch9").SystemValue = 52m / 1000m;
+                            swPart.Parameter("D2@Sketch9").SystemValue = 52d / 1000d;
                         }
                         else//D1@Sketch63=39
                         {
-                            swPart.Parameter("D2@Sketch9").SystemValue = 43m / 1000m;
+                            swPart.Parameter("D2@Sketch9").SystemValue = 43d / 1000d;
                         }
                     }
                     else
@@ -546,22 +546,22 @@ namespace SolidWorksHelper
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0009-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D3@Sketch2").SystemValue = item.OutletDia / 1000m + 4m / 1000m;
+                swPart.Parameter("D3@Sketch2").SystemValue = item.OutletDia / 1000d + 4d / 1000d;
 
 
                 // MNCI0007，进风口棉
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "MNCI0007-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D3@Sketch2").SystemValue = item.InletDia / 1000m + 4m / 1000m;
-                swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000m - 54m / 1000m;
+                swPart.Parameter("D3@Sketch2").SystemValue = item.InletDia / 1000d + 4d / 1000d;
+                swPart.Parameter("Korkeus@Sketch1").SystemValue = item.Height / 1000d - 54d / 1000d;
                 if (item.PlugPosition == "Front")
                 {
                     if (item.NetPlug == "2xRJ12")
                     {
                         swFeat = swComp.FeatureByName("2xRJ12");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D1@Sketch7").SystemValue = 156.5m / 1000m;
+                        swPart.Parameter("D1@Sketch7").SystemValue = 156.5d / 1000d;
                         swFeat = swComp.FeatureByName("2xRJ45");
                         swFeat.SetSuppression2(0, 2, null);
                     }
@@ -571,16 +571,16 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(0, 2, null);
                         swFeat = swComp.FeatureByName("2xRJ45");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D4@Sketch8").SystemValue = 156.5m / 1000m;
+                        swPart.Parameter("D4@Sketch8").SystemValue = 156.5d / 1000d;
                     }
                     else if (item.NetPlug == "Both")
                     {
                         swFeat = swComp.FeatureByName("2xRJ12");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D1@Sketch7").SystemValue = 170m / 1000m;
+                        swPart.Parameter("D1@Sketch7").SystemValue = 170d / 1000d;
                         swFeat = swComp.FeatureByName("2xRJ45");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D4@Sketch8").SystemValue = 139.5m / 1000m;
+                        swPart.Parameter("D4@Sketch8").SystemValue = 139.5d / 1000d;
                     }
                     else
                     {
@@ -603,7 +603,7 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(0, 2, null);
                         swFeat = swComp.FeatureByName("NAC21");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D3@Sketch5").SystemValue = 73m / 1000m;
+                        swPart.Parameter("D3@Sketch5").SystemValue = 73d / 1000d;
                     }
                     else if (item.PowerPlug == "Both")
                     {
@@ -611,7 +611,7 @@ namespace SolidWorksHelper
                         swFeat.SetSuppression2(1, 2, null);
                         swFeat = swComp.FeatureByName("NAC21");
                         swFeat.SetSuppression2(1, 2, null);
-                        swPart.Parameter("D3@Sketch5").SystemValue = 28m / 1000m;
+                        swPart.Parameter("D3@Sketch5").SystemValue = 28d / 1000d;
                     }
                     else
                     {
@@ -638,20 +638,20 @@ namespace SolidWorksHelper
                 
 
 
-                swPart.Parameter("D3@Sketch12").SystemValue = 90m / 1000m;
-                swPart.Parameter("D2@Sketch13").SystemValue = 90m / 1000m;
-                swPart.Parameter("D1@Sketch14").SystemValue = 90m / 1000m;
-                swPart.Parameter("D2@Sketch15").SystemValue = 90m / 1000m;
+                swPart.Parameter("D3@Sketch12").SystemValue = 90d / 1000d;
+                swPart.Parameter("D2@Sketch13").SystemValue = 90d / 1000d;
+                swPart.Parameter("D1@Sketch14").SystemValue = 90d / 1000d;
+                swPart.Parameter("D2@Sketch15").SystemValue = 90d / 1000d;
 
 
 
-                if (item.Height < 220m)
+                if (item.Height < 220d)
                 {
-                    swPart.Parameter("Korkeus@Sketch1").SystemValue = 134.5m / 1000m;
+                    swPart.Parameter("Korkeus@Sketch1").SystemValue = 134.5d / 1000d;
                 }
                 else
                 {
-                    swPart.Parameter("Korkeus@Sketch1").SystemValue = 155m / 1000m;
+                    swPart.Parameter("Korkeus@Sketch1").SystemValue = 155d / 1000d;
                 }
 
 

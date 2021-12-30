@@ -16,16 +16,16 @@ namespace Models
 
 
 
-        public decimal Length { get; set; }
-        public decimal Width { get; set; }
-        public decimal Height { get; set; }
-        public decimal InletDia { get; set; }
-        public decimal OutletDia { get; set; }
-        public decimal OutletHeight { get; set; }
+        public double Length { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
+        public double InletDia { get; set; }
+        public double OutletDia { get; set; }
+        public double OutletHeight { get; set; }
 
         public string HangPosition { get; set; }//吊脚位置
         public string PowerPlug { get; set; }//电源插口
-        public decimal PowerPlugDis { get; set; }//电源插口距离
+        public double PowerPlugDis { get; set; }//电源插口距离
         public string NetPlug { get; set; }//网线插口
         public string PlugPosition { get; set; }//插口位置
         public string Heater { get; set; }//加热

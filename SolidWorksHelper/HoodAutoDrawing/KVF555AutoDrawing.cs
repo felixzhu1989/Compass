@@ -12,9 +12,10 @@ namespace SolidWorksHelper
     //2.实现接口具体方法
     public class KVF555AutoDrawing : IAutoDrawing
     {
-       private readonly KVF555Service _objKvf555Service = new KVF555Service();
+        private readonly KVF555Service _objKvf555Service = new KVF555Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
+            #region 准备工作
             //创建项目模型存放地址
             string itemPath = $@"{projectPath}\{tree.Item}-{tree.Module}-{tree.CategoryName}";
             if (!CommonFunc.CreateProjectPath(itemPath)) return;
@@ -27,7 +28,7 @@ namespace SolidWorksHelper
             if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
 
             //查询参数
-            KVF555 item =(KVF555) _objKvf555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+            KVF555 item = (KVF555)_objKvf555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
 
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
             int warnings = 0;
@@ -45,11 +46,14 @@ namespace SolidWorksHelper
                 (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
             swAssy = swModel as AssemblyDoc;//装配体
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
-            swModel.ForceRebuild3(true);//TopOnly参数设置成true，只重建顶层，不重建零件内部
+            swModel.ForceRebuild3(true);//TopOnly参数设置成true，只重建顶层，不重建零件内部 
+            #endregion
+
+            #region 计算中间值
             /*注意SolidWorks单位是m，计算是应当/1000m
-             * 整形与整形运算得出的结果仍然时整形，1640 / 1000m结果为0，因此必须将其中一个转化成decimal型，使用后缀m就可以了
-             * (int)不进行四舍五入，Convert.ToInt32会四舍五入
-            */
+                 * 整形与整形运算得出的结果仍然时整形，1640 / 1000m结果为0，因此必须将其中一个转化成decimal型，使用后缀m就可以了
+                 * (int)不进行四舍五入，Convert.ToInt32会四舍五入
+                */
             //-----------计算中间值，----------
             //新风面板卡扣数量及间距
             int frontPanelKaKouNo = (int)((item.Length - 300m) / 450m) + 2;
@@ -75,13 +79,12 @@ namespace SolidWorksHelper
             int sidePanelDownCjNo = (int)((item.Deepth - 95m) / 32m);
             //非水洗烟罩KV/UV
             int sidePanelSideCjNo = (int)((item.Deepth - 305m) / 32m);
-            //水洗烟罩KW/UW
-            //int sidePanelSideCjNo = (int)((item.Deepth - 380) / 32);
-
+            #endregion
 
             try
             {
-                //----------Top Level----------
+
+                #region Top Level装配体顶层
                 //烟罩深度
                 swModel.Parameter("D1@Distance18").SystemValue = item.Deepth / 1000m;
                 //判断KSA数量，KSA侧板长度，如果太小，则使用特殊小侧板侧边
@@ -170,9 +173,10 @@ namespace SolidWorksHelper
                 //----------新风前面板中间加强筋----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0011-1");
                 if (item.Length > 1599m) swComp.SetSuppression2(2); //2解压缩，0压缩
-                else swComp.SetSuppression2(0); //2解压缩，0压缩
+                else swComp.SetSuppression2(0); //2解压缩，0压缩 
+                #endregion
 
-                //----------排风腔----------
+                #region 排风腔
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0001-1");
                 swPart = swComp.GetModelDoc2();//打开零件3
                 swPart.Parameter("D1@草图1").SystemValue = item.Length / 1000m;
@@ -309,13 +313,13 @@ namespace SolidWorksHelper
                     {
                         swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                        
+
                     }
                     if (item.ANDetector == "LEFT" || item.ANDetector == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("ANDTEC-LEFT");
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                        
+
                     }
                     else
                     {
@@ -339,8 +343,10 @@ namespace SolidWorksHelper
                 swFeat = swComp.FeatureByName("UVRACK");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("UVCABLE");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                //----------排风腔前面板----------
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+                #endregion
+
+                #region 排风腔前面板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0002-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D1@草图1").SystemValue = item.Length / 1000m;
@@ -356,8 +362,10 @@ namespace SolidWorksHelper
                 swFeat = swComp.FeatureByName("UVDOOR-SHORT");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("UVCABLE");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                //----------KSA侧边----------
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+                #endregion
+
+                #region KSA侧边
                 if (ksaSideLength < 12m / 1000m && ksaSideLength > 2m / 1000m)
                 {
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0003-1");
@@ -393,7 +401,9 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0005-1");
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
-                //----------排风滑门/导轨----------
+                #endregion
+
+                #region 排风滑门/导轨
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNCE0013-4");
                 if (item.ExWidth == 300m) swComp.SetSuppression2(0); //2解压缩，0压缩
                 else swComp.SetSuppression2(2); //2解压缩，0压缩
@@ -418,7 +428,9 @@ namespace SolidWorksHelper
                     if (item.ExNo == 1) swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength * 2 + 100m) / 1000m;
                     else swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength * 3 + item.ExDis + 100m) / 1000m;
                 }
-                //----------排风脖颈----------
+                #endregion
+
+                #region 排风脖颈
                 if (item.ANSUL != "YES" && (item.ExHeight == 100m || item.MARVEL == "YES"))
                 {
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0006-2");
@@ -456,7 +468,9 @@ namespace SolidWorksHelper
                     swPart.Parameter("D2@基体-法兰1").SystemValue = item.ExWidth / 1000m;
                     swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000m;
                 }
-                //----------排风三角板----------
+                #endregion
+
+                #region 排风三角板
                 if (item.ANSUL == "YES" && item.SidePanel == "MIDDLE")
                 {
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "5201030401-4");
@@ -491,7 +505,9 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "5201030401-5");
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
-                //----------灯具----------
+                #endregion
+
+                #region 灯具
                 //日光灯
                 if (item.LightType == "FSLONG")
                 {
@@ -514,16 +530,20 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "5201020409-1");
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
-                //----------MiddleRoof灯板----------
-                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0001-1");
-                swEdit.FNHM0001(swComp, "KV", item.Length, item.Deepth,555m, 555m, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, "NO", "NO", item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
+                #endregion
 
-                //----------吊装槽钢----------
+                #region MiddleRoof灯板
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0001-1");
+                swEdit.FNHM0001(swComp, "KV", item.Length, item.Deepth, 555m, 555m, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, "NO", "NO", item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
+                #endregion
+
+                #region 吊装槽钢
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2900100001-1");
                 swPart = swComp.GetModelDoc2();
                 if (item.ANSUL == "YES") swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 250) / 1000m;
                 else swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 100m) / 1000m;
-                
+                #endregion
+
                 #region 大侧板
                 if (item.SidePanel == "BOTH")
                 {
@@ -638,10 +658,10 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0006-1");
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                } 
+                }
                 #endregion
 
-                //------------F型新风腔主体----------
+                #region F型新风腔主体
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0004-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D2@基体-法兰1").SystemValue = item.Length / 1000m;
@@ -657,7 +677,7 @@ namespace SolidWorksHelper
                     swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
                 }
                 //新风脖颈
-                swPart.Parameter("D3@Sketch6").SystemValue = (item.SuDis * (item.SuNo / 2 - 1) + item.SuDis / 2m)/1000m;
+                swPart.Parameter("D3@Sketch6").SystemValue = (item.SuDis * (item.SuNo / 2 - 1) + item.SuDis / 2m) / 1000m;
                 swFeat = swComp.FeatureByName("LPattern2");
                 if (item.SuNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
                 else
@@ -720,11 +740,11 @@ namespace SolidWorksHelper
                 swFeat = swComp.FeatureByName("SUCABLE-LEFT");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
-                if (item.MARVEL=="YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                if (item.MARVEL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压 
+                #endregion，0压缩
 
-
-                //----------新风前面板----------
+                #region 新风前面板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0007-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D1@草图1").SystemValue = (item.Length - 3m) / 1000m;
@@ -732,14 +752,17 @@ namespace SolidWorksHelper
                 swPart.Parameter("D3@阵列(线性)7").SystemValue = frontPanelKaKouDis;
                 swPart.Parameter("D1@LPattern1").SystemValue = frontPanelHoleNo;
                 swPart.Parameter("D3@LPattern1").SystemValue = frontPanelHoleDis;
-                //----------蜂窝板压条----------
+                #endregion
+
+                #region 蜂窝板压条
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0008-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D1@草图1").SystemValue = (item.Length - 6m) / 1000m;
                 swPart.Parameter("D1@LPattern1").SystemValue = frontPanelHoleNo;
                 swPart.Parameter("D3@LPattern1").SystemValue = frontPanelHoleDis;
-                
-                //----------镀锌隔板----------
+                #endregion
+
+                #region 镀锌隔板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0006-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D1@草图1").SystemValue = (item.Length - 6m) / 1000m;
@@ -774,14 +797,18 @@ namespace SolidWorksHelper
                     swFeat = swComp.FeatureByName("MA3");
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
-                //----------新风滑门导轨----------
+                #endregion
+
+                #region 新风滑门导轨
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0010-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D2@草图1").SystemValue = (item.Length - 200m) / 1000m;
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0010-3");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D1@草图1").SystemValue = (item.Length - 200m) / 1000m;
-                //----------新风底部CJ孔板----------
+                #endregion
+
+                #region 新风底部CJ孔板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0005-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D2@基体-法兰1").SystemValue = item.Length / 1000m;
@@ -826,13 +853,16 @@ namespace SolidWorksHelper
                     swFeat = swComp.FeatureByName("DRAINCHANNEL-LEFT");
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
-                //----------LOGO----------
+                #endregion
+
+                #region LOGO
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2900300005-1");
                 if (item.LEDlogo == "YES") swComp.SetSuppression2(2); //2解压缩，0压缩
                 else swComp.SetSuppression2(0); //2解压缩，0压缩
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "5201010401-1");
                 if (item.LEDlogo == "YES") swComp.SetSuppression2(2); //2解压缩，0压缩
-                else swComp.SetSuppression2(0); //2解压缩，0压缩
+                else swComp.SetSuppression2(0); //2解压缩，0压缩 
+                #endregion
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
                 swModel.Save();//保存，很耗时间
@@ -840,7 +870,7 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath+"作图过程发生异常，详细：" + ex.Message);
+                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
             }
             finally
             {

@@ -119,16 +119,16 @@ namespace Compass
             {
                 HMFId = Convert.ToInt32(_modelView.Tag),
 
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
-                Width = Convert.ToDecimal(txtWidth.Text.Trim()),
-                Height = Convert.ToDecimal(txtHeight.Text.Trim()),
-                InletDia = Convert.ToDecimal(txtInletDia.Text.Trim()), //100,125,160
-                OutletDia = Convert.ToDecimal(txtOutletDia.Text.Trim()),
-                OutletHeight = Convert.ToDecimal(txtOutletHeight.Text.Trim()),
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
+                Width = Convert.ToDouble(txtWidth.Text.Trim()),
+                Height = Convert.ToDouble(txtHeight.Text.Trim()),
+                InletDia = Convert.ToDouble(txtInletDia.Text.Trim()), //100,125,160
+                OutletDia = Convert.ToDouble(txtOutletDia.Text.Trim()),
+                OutletHeight = Convert.ToDouble(txtOutletHeight.Text.Trim()),
                 HangPosition = cobHangPosition.Text, // 吊脚位置，Up\Mid\Down
                 PlugPosition = cobPlugPosition.Text,// 插口位置，Front\Left\Right
                 PowerPlug = cobPowerPlug.Text, // 电源插口， NAC21\NAC31\Both\Gland\No
-                PowerPlugDis = Convert.ToDecimal(txtPowerPlugDis.Text.Trim()),
+                PowerPlugDis = Convert.ToDouble(txtPowerPlugDis.Text.Trim()),
                 NetPlug = cobNetPlug.Text,// 网线插口，2xRJ12\2xRJ45\Both\No
 
                 Heater = cobHeater.Text, //Yes,No

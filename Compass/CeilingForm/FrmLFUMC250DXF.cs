@@ -42,7 +42,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEditData_Click(object sender, EventArgs e)
+        private void BtnEditData_Click(object sender, EventArgs e)
         {
 
             #region 数据验证

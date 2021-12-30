@@ -10,10 +10,14 @@ namespace Compass
     {
         readonly KVF555Service _objKvf555Service = new KVF555Service();
         private readonly KVF555 _objKvf555 = null;
+        private readonly ModelView _modelView;
         public FrmKvf555()
         {
             InitializeComponent();
             SetVisibleFalse();
+            _modelView = new ModelView();
+            panel1.Controls.Add(_modelView);
+            _modelView.Dock = DockStyle.Fill;
             IniCob();
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
@@ -24,8 +28,8 @@ namespace Compass
             _objKvf555 = (KVF555)_objKvf555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             if (_objKvf555 == null) return;
             Text = drawing.ODPNo + " / Item: " + drawing.Item + " / Module: " + tree.Module + " - " + tree.CategoryName;
-            modelView.GetData(drawing, tree);
-            modelView.ShowImage();
+            _modelView.GetData(drawing, tree);
+            _modelView.ShowImage();
             FillData();
         }
         /// <summary>
@@ -119,7 +123,7 @@ namespace Compass
         private void FillData()
         {
             if (_objKvf555 == null) return;
-            modelView.Tag = _objKvf555.KVF555Id;
+            _modelView.Tag = _objKvf555.KVF555Id;
 
             cobSidePanel.Text = _objKvf555.SidePanel;
             //默认ExNo为1
@@ -163,11 +167,11 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEditData_Click(object sender, EventArgs e)
+        private void BtnEditData_Click(object sender, EventArgs e)
         {
             #region 数据验证
             //必填项目
-            if (modelView.Tag.ToString().Length == 0) return;
+            if (_modelView.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 500m)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -417,7 +421,7 @@ namespace Compass
             //封装对象
             KVF555 objKvf555 = new KVF555()
             {
-                KVF555Id = Convert.ToInt32(modelView.Tag),
+                KVF555Id = Convert.ToInt32(_modelView.Tag),
                 SidePanel = cobSidePanel.Text,
                 ExNo = Convert.ToInt32(cobExNo.Text),
                 SuNo = Convert.ToInt32(cobSuNo.Text),
@@ -474,7 +478,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobLightType_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobLightType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobLightType.SelectedIndex == 2 || cobLightType.SelectedIndex == 3) grbLEDSpot.Visible = true;
             else grbLEDSpot.Visible = false;
@@ -484,7 +488,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobANSUL_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobANSUL_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobANSUL.SelectedIndex == 0) grbANSUL.Visible = true;
             else grbANSUL.Visible = false;
@@ -494,7 +498,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobMARVEL_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobMARVEL_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobMARVEL.SelectedIndex == 0) grbMARVEL.Visible = true;
             else grbMARVEL.Visible = false;
@@ -504,7 +508,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txtLength_TextChanged(object sender, EventArgs e)
+        private void TxtLength_TextChanged(object sender, EventArgs e)
         {
             if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || txtLength.Text.Trim().Length == 0) return;
             txtExRightDis.Text = (Convert.ToDecimal(txtLength.Text.Trim()) / 2).ToString();
@@ -514,7 +518,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobANDropNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobANDropNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobANDropNo.SelectedIndex == 0)
             {
@@ -612,7 +616,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobExNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobExNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobExNo.SelectedIndex > 0)
             {
@@ -630,7 +634,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobSuNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobSuNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobSuNo.SelectedIndex > 0)
             {
@@ -648,7 +652,7 @@ namespace Compass
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cobIRNo_SelectedIndexChanged(object sender, EventArgs e)
+        private void CobIRNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobIRNo.SelectedIndex == 0)
             {

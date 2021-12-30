@@ -3,7 +3,7 @@
 namespace Models
 {
     [Serializable]
-    public class CMODF555 :HoodParent, IModel,IHoodOptions,IHoodW,ISuF,IAnsul,IAnsulDetector,IMarvel
+    public class CMODF555 :HoodParent, IModel
     {
         public int CMODF555Id { get; set; }
         public int ModuleTreeId { get; set; }

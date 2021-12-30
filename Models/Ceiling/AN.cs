@@ -3,7 +3,7 @@
 namespace Models
 {
     [Serializable]
-   public class AN:IModel,IAnsul, IAnsulDetector,IMarvel
+   public class AN:IModel
     {
         public int ANId { get; set; }
         public int ModuleTreeId { get; set; }

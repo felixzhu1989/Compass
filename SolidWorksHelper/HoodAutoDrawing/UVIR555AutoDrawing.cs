@@ -612,12 +612,12 @@ namespace SolidWorksHelper
                 //弧形条子
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0021-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Deepth/2m - 90m) / 1000m;
+                swPart.Parameter("D2@Sketch1").SystemValue = (item.Deepth/2m - 90m-1m) / 1000m;
 
                 //内半径（Deepth/2m）=外半径（Deepth/2m）-90m
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0018-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D5@Sketch2").SystemValue = (item.Deepth / 2m - 90m + 1m) / 1000m;
+                swPart.Parameter("D5@Sketch2").SystemValue = (item.Deepth / 2m - 90m) / 1000m;
                 swPart.Parameter("D4@Sketch18").SystemValue = midRoofSecondHoleDis - 52.5m / 1000m;
                 swFeat = swComp.FeatureByName("LPattern1");
                 if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
@@ -653,7 +653,7 @@ namespace SolidWorksHelper
                 #region MiddleRoof灯板/后
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0019-1");
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D5@Sketch2").SystemValue = (item.Deepth / 2m - 90m + 1m) / 1000m;
+                swPart.Parameter("D5@Sketch2").SystemValue = (item.Deepth / 2m - 90m) / 1000m;
                 swPart.Parameter("D4@Sketch18").SystemValue = midRoofSecondHoleDis - 52.5m / 1000m;
                 //swFeat = swComp.FeatureByName("NAMEPLATE");
                 //swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩

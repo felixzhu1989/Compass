@@ -7,22 +7,22 @@ namespace SolidWorksHelper
         ModelDoc2 swPart;
         Feature swFeat;
 
-        public void MNCC0006(Component2 swComp, string model, decimal height, string powerPlug, decimal powerPlugDis, string netPlug, string plugPosition, string heater, string temperatureSwitch, string windPressure)
+        public void MNCC0006(Component2 swComp, string model, double height, string powerPlug, double powerPlugDis, string netPlug, string plugPosition, string heater, string temperatureSwitch, string windPressure)
         {
             swPart = swComp.GetModelDoc2();
-            if (height < 220m)
+            if (height < 220d)
             {
                 swPart.Parameter("Korkeus2@Sketch1").SystemValue = 109.75m / 1000m;
                 swPart.Parameter("D3@Sketch16").SystemValue = 14.5m / 1000m;
             }
 
-            if (height ==220m)
+            if (height ==220d)
             {
                 swPart.Parameter("Korkeus2@Sketch1").SystemValue = 129.75m / 1000m;
                 swPart.Parameter("D3@Sketch16").SystemValue = 22.5m / 1000m;
             }
             
-            if (height > 220m)
+            if (height > 220d)
             {
                 swPart.Parameter("Korkeus2@Sketch1").SystemValue = 129.75m / 1000m;
                 swPart.Parameter("D3@Sketch16").SystemValue = 14.5m / 1000m;
@@ -85,14 +85,14 @@ namespace SolidWorksHelper
                 {
                     swFeat = swComp.FeatureByName("2xRJ12-R");
                     swFeat.SetSuppression2(1, 2, null);
-                    swPart.Parameter("D3@Sketch67").SystemValue = (powerPlugDis - 140m - 51m) / 1000m;
+                    swPart.Parameter("D3@Sketch67").SystemValue = (powerPlugDis - 140d - 51d) / 1000d;
                 }
                 //电源插口
                 if (powerPlug == "NAC21" || powerPlug == "NAC31")
                 {
                     swFeat = swComp.FeatureByName("PowerPlug-R");
                     swFeat.SetSuppression2(1, 2, null);
-                    swPart.Parameter("D3@Sketch68").SystemValue = (powerPlugDis - 140m) / 1000m;
+                    swPart.Parameter("D3@Sketch68").SystemValue = (powerPlugDis - 140d) / 1000d;
                     if (powerPlug == "NAC31")//D1@Sketch63=48
                     {
                         swPart.Parameter("D1@Sketch68").SystemValue = 48m / 1000m;

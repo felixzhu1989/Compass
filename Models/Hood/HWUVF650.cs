@@ -3,7 +3,7 @@
 namespace Models
 {
     [Serializable]
-    public class HWUVF650 : HoodParent,IModel,IHoodOptions,IWaterCollection,IUV,ISuF,IAnsul,IMarvel
+    public class HWUVF650 : HoodParent,IModel
     {
         public int HWUVF650Id { get; set; }
         public decimal LightYDis { get; set; }//新增，灯具距离前端距离

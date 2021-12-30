@@ -3,7 +3,7 @@
 namespace Models
 {
     [Serializable]
-   public class CMODI555 : HoodParent, IModel, IHoodOptions, IHoodW, IAnsul, IAnsulDetector, IMarvel
+   public class CMODI555 : HoodParent, IModel
     {
         public int CMODI555Id { get; set; }
         public int ModuleTreeId { get; set; }

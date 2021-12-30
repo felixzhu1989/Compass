@@ -63,19 +63,19 @@ namespace DAL
                     HMFId = Convert.ToInt32(objReader["HMFId"]),
                     ModuleTreeId = Convert.ToInt32(objReader["ModuleTreeId"]),
                     //最好不要用=null去判断，提示类型转换错误
-                    Length = objReader["Length"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["Length"]),
-                    Width = objReader["Width"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["Width"]),
-                    Height = objReader["Height"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["Height"]),
-                    InletDia = objReader["InletDia"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["InletDia"]),
+                    Length = objReader["Length"] == DBNull.Value ? 0 : Convert.ToDouble(objReader["Length"]),
+                    Width = objReader["Width"] == DBNull.Value ? 0 : Convert.ToDouble(objReader["Width"]),
+                    Height = objReader["Height"] == DBNull.Value ? 0 : Convert.ToDouble(objReader["Height"]),
+                    InletDia = objReader["InletDia"] == DBNull.Value ? 0 : Convert.ToDouble(objReader["InletDia"]),
 
-                    OutletDia = objReader["OutletDia"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["OutletDia"]),
-                    OutletHeight = objReader["OutletHeight"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["OutletHeight"]),
+                    OutletDia = objReader["OutletDia"] == DBNull.Value ? 0 : Convert.ToDouble(objReader["OutletDia"]),
+                    OutletHeight = objReader["OutletHeight"] == DBNull.Value ? 0 : Convert.ToDouble(objReader["OutletHeight"]),
 
 
                     HangPosition = objReader["HangPosition"] == DBNull.Value ? "" : objReader["HangPosition"].ToString(),
                     PowerPlug = objReader["PowerPlug"] == DBNull.Value ? "" : objReader["PowerPlug"].ToString(),
 
-                    PowerPlugDis = objReader["PowerPlugDis"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["PowerPlugDis"]),
+                    PowerPlugDis = objReader["PowerPlugDis"] == DBNull.Value ? 0 : Convert.ToDouble(objReader["PowerPlugDis"]),
                     NetPlug = objReader["NetPlug"] == DBNull.Value ? "" : objReader["NetPlug"].ToString(),
                     PlugPosition = objReader["PlugPosition"] == DBNull.Value ? "" : objReader["PlugPosition"].ToString(),
                     Heater = objReader["Heater"] == DBNull.Value ? "" : objReader["Heater"].ToString(),

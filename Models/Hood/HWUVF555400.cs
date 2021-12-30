@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Models
 {
     [Serializable]
-    public class HWUVF555400 : HoodParent, IModel, IHoodOptions, IWaterCollection, IUV, ISuF, IAnsul, IMarvel
+    public class HWUVF555400 : HoodParent, IModel
     {
         public int HWUVF555400Id { get; set; }
         public decimal LightYDis { get; set; }//新增，灯具距离前端距离

@@ -3,7 +3,7 @@
 namespace Models
 {
     [Serializable]
-    public class KWF555:HoodParent,IModel,IHoodOptions,IWaterCollection,IHoodW,ISuF,IAnsul,IAnsulDetector,IMarvel
+    public class KWF555:HoodParent,IModel
     {
         public int KWF555Id { get; set; }
         public int ModuleTreeId { get; set; }

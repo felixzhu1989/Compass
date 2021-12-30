@@ -1020,6 +1020,25 @@ GO
 alter table KVF555 add constraint df_Height_KVF555 default ('555') for Height
 GO
 
+--法国烟罩FRKVF555
+if exists (select * from sysobjects where name='pk_FRKVF555Id')
+    alter table FRKVF555 drop constraint pk_FRKVF555Id
+GO
+alter table FRKVF555 add constraint pk_FRKVF555Id primary key (FRKVF555Id)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_FRKVF555')
+    alter table FRKVF555 drop constraint fk_ModuleTreeId_FRKVF555
+GO
+alter table FRKVF555 add constraint fk_ModuleTreeId_FRKVF555 foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_FRKVF555')
+    alter table FRKVF555 drop constraint df_Height_FRKVF555
+GO
+alter table FRKVF555 add constraint df_Height_FRKVF555 default ('555') for Height
+GO
+
+
+
 
 --KVF400
 if exists (select * from sysobjects where name='pk_KVF400Id')

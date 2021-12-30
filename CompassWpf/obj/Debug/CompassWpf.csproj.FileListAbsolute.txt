@@ -78,3 +78,4 @@ D:\Compass\CompassWpf\obj\Debug\Compass.exe
 D:\Compass\CompassWpf\obj\Debug\Compass.pdb
 E:\Compass\CompassWpf\obj\Debug\View\ProjectsView.g.cs
 E:\Compass\CompassWpf\obj\Debug\View\ProjectsView.baml
+E:\Compass\CompassWpf\obj\Debug\CompassWpf.csproj.CopyComplete

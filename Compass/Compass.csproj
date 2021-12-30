@@ -189,10 +189,10 @@
     <Compile Include="SingletonForm\FrmMarineAutoDrawing.Designer.cs">
       <DependentUpon>FrmMarineAutoDrawing.cs</DependentUpon>
     </Compile>
-    <Compile Include="HoodForm\FrmFRUVF555.cs">
+    <Compile Include="FrenchHoodForm\FrmFRUVF555.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HoodForm\FrmFRUVF555.Designer.cs">
+    <Compile Include="FrenchHoodForm\FrmFRUVF555.Designer.cs">
       <DependentUpon>FrmFRUVF555.cs</DependentUpon>
     </Compile>
     <Compile Include="MarineForm\FrmHME.cs">
@@ -948,6 +948,12 @@
     <Compile Include="SolidWorksSetting.cs" />
     <Compile Include="SolidWorksSingleton.cs" />
     <Compile Include="SuperChart.cs" />
+    <Compile Include="SuperTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SuperTextBox.Designer.cs">
+      <DependentUpon>SuperTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Web References\cn.com.webxml.www\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1070,7 +1076,7 @@
     <EmbeddedResource Include="CeilingForm\FrmLKS270HCL.resx">
       <DependentUpon>FrmLKS270HCL.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HoodForm\FrmFRUVF555.resx">
+    <EmbeddedResource Include="FrenchHoodForm\FrmFRUVF555.resx">
       <DependentUpon>FrmFRUVF555.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmHWUVF555400.resx">
@@ -1369,6 +1375,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="SuperTextBox.resx">
+      <DependentUpon>SuperTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1402,10 +1411,6 @@
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{e38420c8-b37c-4b26-a77e-ae60bc495395}</Project>
       <Name>Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyUIControls\MyUIControls.csproj">
-      <Project>{92c324d1-096a-497b-8e45-90a5279303f7}</Project>
-      <Name>MyUIControls</Name>
     </ProjectReference>
     <ProjectReference Include="..\SolidWorksHelper\SolidWorksHelper.csproj">
       <Project>{a99d5aeb-2fd5-430b-9d56-dbf20c5c873f}</Project>

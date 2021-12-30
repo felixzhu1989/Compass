@@ -3,7 +3,7 @@
 namespace Models
 {
     [Serializable]
-    public class UVF555:HoodParent,IModel,IHoodOptions,IWaterCollection,IUV,ISuF,IAnsul,IMarvel
+    public class UVF555:HoodParent,IModel
     {
         public int UVF555Id { get; set; }
         public int ModuleTreeId { get; set; }

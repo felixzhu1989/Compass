@@ -29,6 +29,17 @@ namespace Common
         }
 
         /// <summary>
+        /// 非零开头的最多带两位小数的数字
+        /// </summary>
+        /// <param name="txt"></param>
+        /// <returns></returns>
+        public static bool IsDouble(string txt)
+        {
+            Regex objRegex = new Regex(@"^([1-9][0-9]*)+(.[0-9]{1,2})?$");
+            return objRegex.IsMatch(txt);
+        }
+
+        /// <summary>
         /// 验证是否为邮箱
         /// </summary>
         /// <param name="txt"></param>

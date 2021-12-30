@@ -103,7 +103,7 @@
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
             this.txtDeepth = new System.Windows.Forms.TextBox();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.modelView = new Compass.ModelView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.grbLEDSpot.SuspendLayout();
@@ -149,7 +149,7 @@
             this.cobSuNo.Name = "cobSuNo";
             this.cobSuNo.Size = new System.Drawing.Size(100, 27);
             this.cobSuNo.TabIndex = 0;
-            this.cobSuNo.SelectedIndexChanged += new System.EventHandler(this.cobSuNo_SelectedIndexChanged);
+            this.cobSuNo.SelectedIndexChanged += new System.EventHandler(this.CobSuNo_SelectedIndexChanged);
             // 
             // txtSuDis
             // 
@@ -192,7 +192,7 @@
             this.cobMARVEL.Name = "cobMARVEL";
             this.cobMARVEL.Size = new System.Drawing.Size(100, 27);
             this.cobMARVEL.TabIndex = 7;
-            this.cobMARVEL.SelectedIndexChanged += new System.EventHandler(this.cobMARVEL_SelectedIndexChanged);
+            this.cobMARVEL.SelectedIndexChanged += new System.EventHandler(this.CobMARVEL_SelectedIndexChanged);
             // 
             // groupBox7
             // 
@@ -310,7 +310,7 @@
             this.btnEditData.TabIndex = 10;
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
-            this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
+            this.btnEditData.Click += new System.EventHandler(this.BtnEditData_Click);
             // 
             // grbLEDSpot
             // 
@@ -377,7 +377,7 @@
             this.cobLightType.Name = "cobLightType";
             this.cobLightType.Size = new System.Drawing.Size(100, 27);
             this.cobLightType.TabIndex = 3;
-            this.cobLightType.SelectedIndexChanged += new System.EventHandler(this.cobLightType_SelectedIndexChanged);
+            this.cobLightType.SelectedIndexChanged += new System.EventHandler(this.CobLightType_SelectedIndexChanged);
             // 
             // label11
             // 
@@ -448,7 +448,7 @@
             this.cobExNo.Name = "cobExNo";
             this.cobExNo.Size = new System.Drawing.Size(100, 27);
             this.cobExNo.TabIndex = 1;
-            this.cobExNo.SelectedIndexChanged += new System.EventHandler(this.cobExNo_SelectedIndexChanged);
+            this.cobExNo.SelectedIndexChanged += new System.EventHandler(this.CobExNo_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -544,7 +544,7 @@
             this.cobANSUL.Name = "cobANSUL";
             this.cobANSUL.Size = new System.Drawing.Size(100, 27);
             this.cobANSUL.TabIndex = 5;
-            this.cobANSUL.SelectedIndexChanged += new System.EventHandler(this.cobANSUL_SelectedIndexChanged);
+            this.cobANSUL.SelectedIndexChanged += new System.EventHandler(this.CobANSUL_SelectedIndexChanged);
             // 
             // grbANSUL
             // 
@@ -715,7 +715,7 @@
             this.cobANDropNo.Name = "cobANDropNo";
             this.cobANDropNo.Size = new System.Drawing.Size(100, 27);
             this.cobANDropNo.TabIndex = 2;
-            this.cobANDropNo.SelectedIndexChanged += new System.EventHandler(this.cobANDropNo_SelectedIndexChanged);
+            this.cobANDropNo.SelectedIndexChanged += new System.EventHandler(this.CobANDropNo_SelectedIndexChanged);
             // 
             // cobANDetector
             // 
@@ -772,7 +772,7 @@
             this.cobIRNo.Name = "cobIRNo";
             this.cobIRNo.Size = new System.Drawing.Size(100, 27);
             this.cobIRNo.TabIndex = 0;
-            this.cobIRNo.SelectedIndexChanged += new System.EventHandler(this.cobIRNo_SelectedIndexChanged);
+            this.cobIRNo.SelectedIndexChanged += new System.EventHandler(this.CobIRNo_SelectedIndexChanged);
             // 
             // txtIRDis3
             // 
@@ -911,25 +911,23 @@
             this.txtLength.Name = "txtLength";
             this.txtLength.Size = new System.Drawing.Size(100, 25);
             this.txtLength.TabIndex = 0;
-            this.txtLength.TextChanged += new System.EventHandler(this.txtLength_TextChanged);
+            this.txtLength.TextChanged += new System.EventHandler(this.TxtLength_TextChanged);
             // 
-            // modelView
+            // panel1
             // 
-            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modelView.Location = new System.Drawing.Point(25, 48);
-            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.modelView.Name = "modelView";
-            this.modelView.Size = new System.Drawing.Size(750, 460);
-            this.modelView.TabIndex = 35;
+            this.panel1.Location = new System.Drawing.Point(25, 50);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(750, 460);
+            this.panel1.TabIndex = 35;
             // 
-            // FrmKVF555
+            // FrmKvf555
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
-            this.Controls.Add(this.modelView);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.cobMARVEL);
@@ -1045,6 +1043,6 @@
         private System.Windows.Forms.TextBox txtLength;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtDeepth;
-        private ModelView modelView;
+        private System.Windows.Forms.Panel panel1;
     }
 }

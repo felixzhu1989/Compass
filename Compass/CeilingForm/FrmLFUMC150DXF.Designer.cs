@@ -51,7 +51,7 @@
             this.btnEditData.TabIndex = 14;
             this.btnEditData.Text = "修改参数";
             this.btnEditData.UseVisualStyleBackColor = false;
-            this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
+            this.btnEditData.Click += new System.EventHandler(this.BtnEditData_Click);
             // 
             // groupBox7
             // 

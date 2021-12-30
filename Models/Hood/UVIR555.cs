@@ -3,21 +3,13 @@
 namespace Models
 {
     [Serializable]
-   public class UVIR555 : IModel
+   public class UVIR555 : HoodParent, IModel
     {
         public int UVIR555Id { get; set; }
         public int ModuleTreeId { get; set; }
         //基本尺寸
         public decimal ExBeamLength { get; set; }
-        public decimal Length { get; set; }
-        public decimal Deepth { get; set; }
-        public decimal ExRightDis { get; set; }
-        public int ExNo { get; set; }
-        public decimal ExDis { get; set; }
-        public decimal ExLength { get; set; }
-        public decimal ExWidth { get; set; }
-        public decimal ExHeight { get; set; }
-        public string SidePanel { get; set; }
+       
         //配置
         public string Outlet { get; set; }
         public int LEDSpotNo { get; set; }
