@@ -165,6 +165,12 @@
     <Compile Include="CeilingForm\FrmLKS270HCL.Designer.cs">
       <DependentUpon>FrmLKS270HCL.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrenchHoodForm\FrmFRKVF555.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrenchHoodForm\FrmFRKVF555.Designer.cs">
+      <DependentUpon>FrmFRKVF555.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmHWUVF555400.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1069,6 +1075,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CeilingForm\FrmAN.resx">
       <DependentUpon>FrmAN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrenchHoodForm\FrmFRKVF555.resx">
+      <DependentUpon>FrmFRKVF555.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAddCeilingPackingList.resx">
       <DependentUpon>FrmAddCeilingPackingList.cs</DependentUpon>

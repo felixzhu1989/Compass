@@ -33,17 +33,14 @@ namespace SolidWorksHelper
             int warnings = 0;
             int errors = 0;
             suffix = "_" + suffix;//后缀
-            ModelDoc2 swModel;
             ModelDoc2 swPart;
-            AssemblyDoc swAssy;
             Component2 swComp;
-            Feature swFeat;
             FrenchHoodPart swEdit = new FrenchHoodPart();
 
             //打开Pack后的模型
-            swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
-                (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
-            swAssy = swModel as AssemblyDoc;//装配体
+            var swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
+                (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings);
+            var swAssy = swModel as AssemblyDoc;
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true);//TopOnly参数设置成true，只重建顶层，不重建零件内部 
             #endregion
@@ -81,8 +78,8 @@ namespace SolidWorksHelper
             //随着烟罩深度变化,除去排风，新风和灯板，剩下的距离等距居中处理
             double withoutExSuMiDis = (item.Deepth - 365d - 204d - 535d) / 2d;
             //随着烟罩长度的变化，MidRoof侧板根据灯具的不同发生变化，长灯1353，短灯753,多减去1dm
-            double midRoofSidePanel = (item.Length - 1354d) / 2d;//长
-            if (item.LightType == "SHORT") midRoofSidePanel = (item.Length - 754d) / 2d;//短
+            double midRoofSidePanel = (item.Length - 1335d) / 2d;//长
+            if (item.LightType == "FSSHORT") midRoofSidePanel = (item.Length - 735d) / 2d;//短
             //新风面板螺丝孔数量及间距（计算规则改变，距离边缘250，间隔>600）
             int frontPanelHoleNo = (int)((item.Length - 500d) / 600d) + 1;
             double frontPanelHoleDis = item.Length - 500d;
@@ -160,18 +157,18 @@ namespace SolidWorksHelper
                 #endregion
 
                 #region 排风腔背板
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0195-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0195-1");
                 swEdit.FNHE0195(swComp, item.Length, backRivetNum, backRivetSideDis, item.WaterCollection, item.SidePanel, item.Outlet, item.BackToBack);
                 #endregion
 
                 #region 排风腔顶板
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0196-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0196-1");
                 swEdit.FNHE0196(swComp, item.Length, backRivetNum, backRivetSideDis, item.ExRightDis, item.UVType,
                     item.ExNo, item.ExLength, item.ExWidth, item.ExDis);
                 #endregion
 
                 #region 排风腔前面板
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0197-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0197-1");
                 swEdit.FNHE0197(swComp, item.Length, item.UVType, item.ExRightDis, withoutExSuMiDis, item.LightType, midRoofSidePanel);
                 #endregion
 
@@ -179,43 +176,43 @@ namespace SolidWorksHelper
                 /*
                 if (item.ANSUL == "YES" && item.SidePanel == "MIDDLE")
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201030401-4"));
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "5201030401-4");
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201030401-5"));
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "5201030401-5");
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swFeat = swComp.FeatureByName("ANDTEC");
                     swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
                 }
                 else if (item.ANSUL == "YES" && item.SidePanel == "LEFT")
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201030401-4"));
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "5201030401-4");
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201030401-5"));
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "5201030401-5");
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swFeat = swComp.FeatureByName("ANDTEC");
                     swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
                 }
                 else if (item.ANSUL == "YES" && item.SidePanel == "RIGHT")
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201030401-5"));
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "5201030401-5");
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201030401-4"));
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "5201030401-4");
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swFeat = swComp.FeatureByName("ANDTEC");
                     swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
                 }
                 else
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201030401-4"));
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "5201030401-4");
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201030401-5"));
+                    swComp = swAssy.GetComponentByNameWithSuffix(suffix, "5201030401-5");
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 } 
                 */
                 #endregion
 
                 #region Mesh轨道支撑
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0198-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0198-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@Base-Flange1", item.Length - 9d);
                 //磁棒板位置,默认两边都有侧板，且对称，特殊情况以后处理
@@ -229,13 +226,13 @@ namespace SolidWorksHelper
                 #endregion
 
                 #region Mesh轨道前
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0199-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0199-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@Base-Flange1", item.Length - 7d);
                 #endregion
 
                 #region Mesh轨道后
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0200-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0200-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@Base-Flange1", item.Length - 9d);
                 //以后完善ANSUL选项，注意这个零件的拉丝面
@@ -286,19 +283,19 @@ namespace SolidWorksHelper
                 {
                     swAssy.UnSuppress(suffix, "5214050402-1");
                     swAssy.UnSuppress(suffix, "5201060409-1");
-                    swAssy.UnSuppress(suffix, "2200600040-1");
+                    swAssy.UnSuppress(suffix, "2200600040-2");
                     swAssy.Suppress(suffix, "5214050401-1");
                     swAssy.Suppress(suffix, "5201060410-1");
-                    swAssy.Suppress(suffix, "2200600040-2");
+                    swAssy.Suppress(suffix, "2200600040-1");
                 }
                 else
                 {
                     swAssy.Suppress(suffix, "5214050402-1");
                     swAssy.Suppress(suffix, "5201060409-1");
-                    swAssy.Suppress(suffix, "2200600040-1");
+                    swAssy.Suppress(suffix, "2200600040-2");
                     swAssy.UnSuppress(suffix, "5214050401-1");
                     swAssy.UnSuppress(suffix, "5201060410-1");
-                    swAssy.UnSuppress(suffix, "2200600040-2");
+                    swAssy.UnSuppress(suffix, "2200600040-1");
                 }
                 #endregion
 
@@ -326,9 +323,8 @@ namespace SolidWorksHelper
                 swEdit.Hanger(swAssy, suffix, item.Deepth, item.ANSUL, item.SidePanel);
                 #endregion
 
-
                 #region MidRoof侧板
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0041-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0041-1");
                 swEdit.FNHM0041(swComp, midRoofSidePanel);
                 #endregion
 
@@ -415,41 +411,41 @@ namespace SolidWorksHelper
                 #endregion
 
                 #region F型新风腔底部CJ孔板
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0115-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0115-1");
                 swEdit.FNHA0115(swComp, item.Length, frontCjNo, frontCjFirstDis, frontPanelHoleNo, frontPanelHoleDis,
                     item.Bluetooth, item.LEDlogo, item.WaterCollection, item.SidePanel);
                 #endregion
 
                 #region 新风斜面板
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0116-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0116-1");
                 swEdit.FNHA0116(swComp, item.Length, withoutExSuMiDis, item.LightType, midRoofSidePanel);
                 #endregion
 
                 #region 新风顶面板
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0117-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0117-1");
                 swEdit.FNHA0117(swComp, item.Length, backRivetNum, backRivetSideDis, item.SuNo, item.SuDis, item.Bluetooth, item.SidePanel);
                 #endregion
 
                 #region 新风导轨
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0123-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0123-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@Base-Flange1", item.Length - 180d);
                 #endregion
 
                 #region 新风顶包边
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0118-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0118-1");
                 swEdit.FNHA0118(swComp, item.Length, backRivetNum, backRivetSideDis, frontPanelHoleNo,
                     frontPanelHoleDis);
                 #endregion
 
                 #region 新风前网孔面板
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0111-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0111-1");
                 swEdit.FNHA0111(swComp, item.Length, frontPanelHoleNo, frontPanelHoleDis);
 
                 #endregion
 
                 #region 镀锌隔板
-                swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0112-1"));
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0112-1");
                 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@Base-Flange1", item.Length - 6d);
                 #endregion

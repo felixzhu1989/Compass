@@ -66,14 +66,11 @@ namespace SolidWorksHelper
             swApp.CommandInProgress = true;
             int warnings = 0;
             int errors = 0;
-            ModelDoc2 swModelDoc = default(ModelDoc2);
-            ModelDocExtension swModelDocExt = default(ModelDocExtension);
-            PackAndGo swPackAndGo = default(PackAndGo);
             //打开需要pack的模型
-            swModelDoc = (ModelDoc2)swApp.OpenDoc6(modelPath, (int)swDocumentTypes_e.swDocASSEMBLY,
+            var swModelDoc = swApp.OpenDoc6(modelPath, (int)swDocumentTypes_e.swDocASSEMBLY,
                 (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings);
-            swModelDocExt = (ModelDocExtension)swModelDoc.Extension;
-            swPackAndGo = (PackAndGo)swModelDocExt.GetPackAndGo();
+            var swModelDocExt = swModelDoc.Extension;
+            var swPackAndGo = swModelDocExt.GetPackAndGo();
             // Get number of documents in assembly
             //namesCount = swPackAndGo.GetDocumentNamesCount();
             //Debug.Print("  Number of model documents: " + namesCount);
@@ -104,7 +101,6 @@ namespace SolidWorksHelper
             finally
             {
                 swApp.CloseDoc(swModelDoc.GetTitle());
-                swModelDoc = null;
                 swApp.CommandInProgress = false;//及时关闭外部命令调用，否则影响SolidWorks的使用
             }
             string modelPathName = modelPath.Substring(modelPath.LastIndexOf(@"\") + 1);
