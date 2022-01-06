@@ -173,21 +173,6 @@ namespace Compass
             {
             }
         }
-        ////只能打开一次
-        //private void FrmMain_Load(object sender, EventArgs e)
-        //{
-        //    if (!CanOpen())
-        //    {
-        //        MessageBox.Show("程序已打开！");
-        //        Application.Exit();
-        //    }
-        //}
-        //bool CanOpen()
-        //{
-        //    bool isClosed;
-        //    var m = new Mutex(true, "Compass", out isClosed);
-        //    return isClosed;
-        //}
         #endregion
 
         #region 初始化单例窗体
@@ -211,6 +196,7 @@ namespace Compass
 
                 //独立
                 SingletonObject.GetSingleton.AddMetroForm(new FrmProjectInfo());
+
                 SingletonObject.GetSingleton.AddMetroForm(new FrmCeilingAutoDrawing());
                 SingletonObject.GetSingleton.AddMetroForm(new FrmHoodAutoDrawing());
                 SingletonObject.GetSingleton.AddMetroForm(new FrmMarineAutoDrawing());
@@ -308,19 +294,17 @@ namespace Compass
         //嵌入
         private void TsmiUsersManage_Click(object sender, EventArgs e)
         {
-            if (!(splitContainer.Panel2.Controls[0] is FrmUserManage))
-            {
-                if (SingletonObject.GetSingleton.FrmUm == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmUserManage>(() => new FrmUserManage(Program.ObjCurrentUser)).Value);
-                ShowForm(SingletonObject.GetSingleton.FrmUm, splitContainer.Panel2);
-            }
+            FrmUserManage form = FrmUserManage.GetInstance();
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
+            form.Focus();
         }
         private void TsmiCategories_Click(object sender, EventArgs e)
         {
-            if (!(splitContainer.Panel2.Controls[0] is FrmCategories))
-            {
-                if (SingletonObject.GetSingleton.FrmC == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmCategories>(() => new FrmCategories()).Value);
-                ShowForm(SingletonObject.GetSingleton.FrmC, splitContainer.Panel2);
-            }
+            FrmCategories form = FrmCategories.GetInstance();
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
+            form.Focus();
         }
         private void TsmiDXFCutList_Click(object sender, EventArgs e)
         {
@@ -397,24 +381,23 @@ namespace Compass
         #region 其他菜单
         private void TsmiSyncFiles_Click(object sender, EventArgs e)
         {
-            if (SingletonObject.GetSingleton.FrmSf == null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmSyncFiles>(() => new FrmSyncFiles()).Value);
-
-            SingletonObject.GetSingleton.FrmSf?.ShowAndFocus();
+            FrmSyncFiles form= FrmSyncFiles.GetInstance();
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
+            form.Focus();
         }
         private void TsmiDrawingNumMatrix_Click(object sender, EventArgs e)
         {
-            if (SingletonObject.GetSingleton.FrmDnm == null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmDrawingNumMatrix>(() => new FrmDrawingNumMatrix()).Value);
-            SingletonObject.GetSingleton.FrmDnm?.ShowAndFocus();
+            FrmDrawingNumMatrix form = FrmDrawingNumMatrix.GetInstance();
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
+            form.Focus();
         }
         private void TsmiTestCode_Click(object sender, EventArgs e)
         {
             //MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
             MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms));
         }
-
-
-
-
         #endregion
 
         

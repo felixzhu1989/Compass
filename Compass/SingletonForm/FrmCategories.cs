@@ -14,12 +14,26 @@ namespace Compass
         private List<Category> _categoryList = new List<Category>();
         private readonly string _sbu = Program.ObjCurrentUser.SBU;
 
-        public FrmCategories()
+        #region 单例模式
+        private FrmCategories()
         {
             InitializeComponent();
             dgvCategory.AutoGenerateColumns = false;
             IniCategoryId(cobParentId);
         }
+        private static FrmCategories instance;
+        public static FrmCategories GetInstance()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmCategories();
+            }
+            return instance;
+        }
+
+        #endregion
+
+
         /// <summary>
         /// 初始化parentId下拉框
         /// </summary>
@@ -39,7 +53,7 @@ namespace Compass
         /// </summary>
         private void RefreshData(string parentId)
         {
-            _categoryList = _objCategoryService.GetCategoriesByParentId(parentId,_sbu);
+            _categoryList = _objCategoryService.GetCategoriesByParentId(parentId, _sbu);
             dgvCategory.DataSource = _categoryList;
         }
         /// <summary>
@@ -141,7 +155,7 @@ namespace Compass
 
             try
             {
-                string result = _objCategoryService.AddCategory(objCategory,_sbu);
+                string result = _objCategoryService.AddCategory(objCategory, _sbu);
                 if (result == "success")
                 {
                     //提示添加成功
@@ -186,7 +200,7 @@ namespace Compass
                 return;
             }
             string categoryId = dgvCategory.CurrentRow.Cells["CategoryId"].Value.ToString();
-            Category objCategory = _objCategoryService.GetCategoryByCategoryId(categoryId,_sbu);
+            Category objCategory = _objCategoryService.GetCategoryByCategoryId(categoryId, _sbu);
             FrmEditCategory objFrmEditCategory = new FrmEditCategory(objCategory);
             DialogResult result = objFrmEditCategory.ShowDialog();
             if (result == DialogResult.OK)
@@ -219,7 +233,7 @@ namespace Compass
             if (result == DialogResult.No) return;
             try
             {
-                if (_objCategoryService.DeleteCategory(categoryId,_sbu) == 1)
+                if (_objCategoryService.DeleteCategory(categoryId, _sbu) == 1)
                 {
                     RefreshData(cobParentId.Text);//同步刷新显示数据
                 }
@@ -236,12 +250,12 @@ namespace Compass
         /// <param name="e"></param>
         private void DgvCategory_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 46)TsmiDeleteCategory_Click(null,null);
+            if (e.KeyValue == 46) TsmiDeleteCategory_Click(null, null);
         }
 
         private void BtnCategoryTree_Click(object sender, EventArgs e)
         {
-            FrmCategoryTree objCategoryTree=new FrmCategoryTree();
+            FrmCategoryTree objCategoryTree = new FrmCategoryTree();
             objCategoryTree.ShowDialog();
         }
     }

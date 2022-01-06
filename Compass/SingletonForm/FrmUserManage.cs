@@ -10,7 +10,9 @@ namespace Compass
     {
         private readonly UserService _objUserService = new UserService();
         private readonly User _currentUser = null;
-        public FrmUserManage()
+
+        #region 单例模式
+        private FrmUserManage()
         {
             InitializeComponent();
             dgvUser.AutoGenerateColumns = false;
@@ -18,6 +20,16 @@ namespace Compass
             grbAddUserGroup.Visible = false;
             grbEditUser.Visible = false;
         }
+        private static FrmUserManage instance;
+        public static FrmUserManage GetInstance()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmUserManage();
+            }
+            return instance;
+        }
+        #endregion
 
         public FrmUserManage(User user) : this()
         {

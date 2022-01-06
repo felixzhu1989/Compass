@@ -30,8 +30,8 @@ namespace Compass
         private EModelMarkupControl _mEDrawingsMarkupCtrl;
         private string _filePath;
         private readonly string _imageDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + @"\\Compass\\DrawingNumImage\\";//获取我的文档地址，将缓存图片存在我的文档中
-
-        public FrmDrawingNumMatrix()
+        #region 单例模式
+        private FrmDrawingNumMatrix()
         {
             InitializeComponent();
             _objCodeRules = _objDrawingNumMatrixService.GetCodeRules();//获取编号规则
@@ -53,19 +53,17 @@ namespace Compass
 
             if (!Directory.Exists(_imageDir)) Directory.CreateDirectory(_imageDir);
         }
-        #region 单例模式，重写关闭方法
-        protected override void OnClosing(CancelEventArgs e)
+        private static FrmDrawingNumMatrix instance;
+        public static FrmDrawingNumMatrix GetInstance()
         {
-            Hide();
-            e.Cancel = true;
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmDrawingNumMatrix();
+            }
+            return instance;
         }
+
         #endregion
-        internal void ShowAndFocus()
-        {
-            Show();
-            WindowState = FormWindowState.Normal;
-            Focus();
-        }
 
         private void DgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {

@@ -203,7 +203,7 @@ namespace Compass
             SingletonObject.GetSingleton.FrmHad?.IniCobOdpNo();
             SingletonObject.GetSingleton.FrmCad?.IniCobOdpNo();
             SingletonObject.GetSingleton.FrmPi?.IniCobOdpNo();
-            SingletonObject.GetSingleton.FrmSf?.IniCobOdpNo();
+            
         }
 
 

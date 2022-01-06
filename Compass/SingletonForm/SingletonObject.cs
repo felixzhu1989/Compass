@@ -26,7 +26,6 @@ namespace Compass
         public FrmCeilingAutoDrawing FrmCad { get; set; }
         public FrmMarineAutoDrawing FrmMad { get; set; }
         public FrmProjectInfo FrmPi { get; set; }
-        public FrmSyncFiles FrmSf { get; set; }
         public FrmDrawingNumMatrix FrmDnm { get; set; }
         public FrmProjectMeasure FrmPm { get; set; }
         public FrmDrawingPlanQuery FrmDpq { get; set; }
@@ -39,7 +38,6 @@ namespace Compass
         public FrmQuickBrowse FrmQb { get; set; }
         public FrmDrawingPlan FrmDp { get; set; }
         public FrmProjectTracking FrmPt { get; set; }
-        public FrmUserManage FrmUm { get; set; }
         public FrmCategories FrmC { get; set; }
         public FrmDxfCutList FrmDc { get; set; }
         public FrmDesignWorkload FrmDw { get; set; }
@@ -54,7 +52,6 @@ namespace Compass
             if (frmObj is FrmCeilingAutoDrawing) FrmCad =frmObj as FrmCeilingAutoDrawing;
             if (frmObj is FrmMarineAutoDrawing) FrmMad =frmObj as FrmMarineAutoDrawing;
             if (frmObj is FrmProjectInfo) FrmPi = frmObj as FrmProjectInfo;
-            if (frmObj is FrmSyncFiles) FrmSf = frmObj as FrmSyncFiles;
             if (frmObj is FrmDrawingNumMatrix) FrmDnm = frmObj as FrmDrawingNumMatrix;
             if (frmObj is FrmProjectMeasure) FrmPm = frmObj as FrmProjectMeasure;
             if (frmObj is FrmDrawingPlanQuery) FrmDpq = frmObj as FrmDrawingPlanQuery;
@@ -70,7 +67,6 @@ namespace Compass
             if (frmObj is FrmQuickBrowse) FrmQb = frmObj as FrmQuickBrowse;
             if (frmObj is FrmDrawingPlan) FrmDp = frmObj as FrmDrawingPlan;
             if (frmObj is FrmProjectTracking) FrmPt = frmObj as FrmProjectTracking;
-            if (frmObj is FrmUserManage) FrmUm = frmObj as FrmUserManage;
             if (frmObj is FrmCategories) FrmC = frmObj as FrmCategories;
             if (frmObj is FrmDxfCutList) FrmDc = frmObj as FrmDxfCutList;
             if (frmObj is FrmDesignWorkload) FrmDw = frmObj as FrmDesignWorkload;
