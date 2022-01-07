@@ -36,7 +36,7 @@ namespace Compass
         //solidWorks程序
         private SldWorks _swApp;
 
-        public FrmCeilingAutoDrawing()
+        private FrmCeilingAutoDrawing()
         {
             InitializeComponent();
             dgvWaitingList.AutoGenerateColumns = false;
@@ -53,6 +53,21 @@ namespace Compass
             SetPermissions();
         }
 
+        #region 单例模式
+        private static FrmCeilingAutoDrawing instance;
+        public static FrmCeilingAutoDrawing GetInstance()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmCeilingAutoDrawing();
+            }
+            return instance;
+        }
+        public void HandlerOdpNo(string odpNo)
+        {
+            if (odpNo.Length != 0) cobODPNo.Text = odpNo;
+        }
+        #endregion
         public void IniCobOdpNo()
         {
             cobODPNo.SelectedIndexChanged -= new EventHandler(CobODPNo_SelectedIndexChanged);
@@ -63,26 +78,10 @@ namespace Compass
             cobODPNo.SelectedIndex = -1;
             cobODPNo.SelectedIndexChanged += new EventHandler(CobODPNo_SelectedIndexChanged);
         }
-        
-        #region 单例模式，重写关闭方法，显示时选择ODP号
-        protected override void OnClosing(CancelEventArgs e)
+        private void BtnIniCobOdpNo_Click(object sender, EventArgs e)
         {
-            Hide();
-            e.Cancel = true;
+            IniCobOdpNo();
         }
-        public void ShowWithOdpNo(string odpNo)
-        {
-            if (odpNo.Length != 0) cobODPNo.Text = odpNo;
-            ShowAndFocus();
-        }
-        internal void ShowAndFocus()
-        {
-            Show();
-            WindowState = FormWindowState.Normal;
-            Focus();
-        }
-        #endregion
-
 
         /// <summary>
         /// 设置权限

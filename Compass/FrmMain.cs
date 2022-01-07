@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-using Models;
 using UpdateProgram;
 
 namespace Compass
@@ -144,13 +142,6 @@ namespace Compass
             }
             timerUpdate.Enabled = false;//停止定时器，防止频繁弹出
         }
-        //每10分钟更新数据
-        private void TimerRefreshData_Tick(object sender, EventArgs e)
-        {
-            //SingletonObject.GetSingleton.FrmP?.BtnQueryByYear_Click(null, null);
-            //SingletonObject.GetSingleton.FrmDp?.BtnQueryByYear_Click(null, null);
-            //SingletonObject.GetSingleton.FrmPt?.BtnQueryByYear_Click(null, null);
-        }
         //开机自启动
         private void TsmiSetStartUp_Click(object sender, EventArgs e)
         {
@@ -178,30 +169,25 @@ namespace Compass
         #region 初始化单例窗体
         private void InitialForm()
         {
-            
-                //嵌入
-                SingletonObject.GetSingleton.AddForm(new FrmProject());
 
-                SingletonObject.GetSingleton.AddForm(new FrmModuleTree((drawing, tree) =>
+            //嵌入
+            SingletonObject.GetSingleton.AddForm(new FrmProject());
+
+            SingletonObject.GetSingleton.AddForm(new FrmModuleTree((drawing, tree) =>
+            {
+                if (!(splitContainer.Panel2.Controls[0] is FrmQuickBrowse))
                 {
-                    if (!(splitContainer.Panel2.Controls[0] is FrmQuickBrowse))
-                    {
-                        ShowForm(SingletonObject.GetSingleton.FrmQb, splitContainer.Panel2);
-                    }
-                    SingletonObject.GetSingleton.FrmQb?.ShowWithItem(drawing, tree);
-                }));
+                    ShowForm(SingletonObject.GetSingleton.FrmQb, splitContainer.Panel2);
+                }
+                SingletonObject.GetSingleton.FrmQb?.ShowWithItem(drawing, tree);
+            }));
 
-                SingletonObject.GetSingleton.AddForm(new FrmQuickBrowse());
-                ShowForm(SingletonObject.GetSingleton.FrmMt, splitContainer.Panel1);
+            SingletonObject.GetSingleton.AddForm(new FrmQuickBrowse());
+            ShowForm(SingletonObject.GetSingleton.FrmMt, splitContainer.Panel1);
 
-                //独立
-                SingletonObject.GetSingleton.AddMetroForm(new FrmProjectInfo());
-
-                SingletonObject.GetSingleton.AddMetroForm(new FrmCeilingAutoDrawing());
-                SingletonObject.GetSingleton.AddMetroForm(new FrmHoodAutoDrawing());
-                SingletonObject.GetSingleton.AddMetroForm(new FrmMarineAutoDrawing());
-                SingletonObject.GetSingleton.AddMetroForm(new FrmCategoryTree());
-                TsmiProjectList_Click(null, null);
+            //独立
+            SingletonObject.GetSingleton.AddMetroForm(new FrmCategoryTree());
+            TsmiProjectList_Click(null, null);
         }
 
 
@@ -250,32 +236,46 @@ namespace Compass
         //非嵌入
         private void TsmiProjectInfo_Click(object sender, EventArgs e)
         {
-            SingletonObject.GetSingleton.FrmPi?.ShowAndFocus();
+            FrmProjectInfo form = FrmProjectInfo.GetInstance();
+            form.WindowState = FormWindowState.Maximized;
+            form.Show();
+            form.Focus();
         }
-        
+
         #endregion 项目信息菜单
 
         #region SolidWorks自动绘图
         private void TsmiHoodAutoDrawing_Click(object sender, EventArgs e)
         {
-            SingletonObject.GetSingleton.FrmHad?.ShowAndFocus();
+            FrmHoodAutoDrawing form = FrmHoodAutoDrawing.GetInstance();
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
+            form.Focus();
         }
 
         private void TsmiCeilingAutoDrawing_Click(object sender, EventArgs e)
         {
-            SingletonObject.GetSingleton.FrmCad?.ShowAndFocus();
+            FrmCeilingAutoDrawing form = FrmCeilingAutoDrawing.GetInstance();
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
+            form.Focus();
         }
         private void TsmiMarineAutoDrawing_Click(object sender, EventArgs e)
         {
-            SingletonObject.GetSingleton.FrmMad?.ShowAndFocus();
+            FrmMarineAutoDrawing form = FrmMarineAutoDrawing.GetInstance();
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
+            form.Focus();
         }
         #endregion  SolidWorks自动绘图
 
         #region 统计菜单
         private void TsmiProjectMeasure_Click(object sender, EventArgs e)
         {
-            if (SingletonObject.GetSingleton.FrmPm == null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmProjectMeasure>(() => new FrmProjectMeasure()).Value);
-            SingletonObject.GetSingleton.FrmPm?.ShowAndFocus();
+            FrmProjectMeasure form = FrmProjectMeasure.GetInstance();
+            form.WindowState = FormWindowState.Maximized;
+            form.Show();
+            form.Focus();
         }
         /// <summary>
         /// 制图计划统计
@@ -284,8 +284,10 @@ namespace Compass
         /// <param name="e"></param>
         private void TsmiDrawingPlanQuery_Click(object sender, EventArgs e)
         {
-            if (SingletonObject.GetSingleton.FrmDpq == null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmDrawingPlanQuery>(() => new FrmDrawingPlanQuery()).Value);
-            SingletonObject.GetSingleton.FrmDpq?.ShowAndFocus();
+            FrmDrawingPlanQuery form = FrmDrawingPlanQuery.GetInstance();
+            form.WindowState = FormWindowState.Maximized;
+            form.Show();
+            form.Focus();
         }
 
         #endregion
@@ -308,41 +310,39 @@ namespace Compass
         }
         private void TsmiDXFCutList_Click(object sender, EventArgs e)
         {
-            if (!(splitContainer.Panel2.Controls[0] is FrmDxfCutList))
-            {
-                if (SingletonObject.GetSingleton.FrmDc == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmDxfCutList>(() => new FrmDxfCutList()).Value);
-                ShowForm(SingletonObject.GetSingleton.FrmDc, splitContainer.Panel2);
-            }
+            FrmDxfCutList form = FrmDxfCutList.GetInstance();
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
+            form.Focus();
         }
         private void TsmiWorkLoad_Click(object sender, EventArgs e)
         {
-            if (!(splitContainer.Panel2.Controls[0] is FrmDesignWorkload))
-            {
-                if (SingletonObject.GetSingleton.FrmDw == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmDesignWorkload>(() => new FrmDesignWorkload()).Value);
-                ShowForm(SingletonObject.GetSingleton.FrmDw, splitContainer.Panel2);
-            }
+            FrmDesignWorkload form = FrmDesignWorkload.GetInstance();
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
+            form.Focus();
         }
         private void TsmiStatusTypes_Click(object sender, EventArgs e)
         {
-            if (!(splitContainer.Panel2.Controls[0] is FrmStatusTypes))
-            {
-                if (SingletonObject.GetSingleton.FrmSt == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmStatusTypes>(() => new FrmStatusTypes()).Value);
-                ShowForm(SingletonObject.GetSingleton.FrmSt, splitContainer.Panel2);
-            }
+            FrmStatusTypes form = FrmStatusTypes.GetInstance();
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
+            form.Focus();
         }
         private void TsmiCeilingAccessories_Click(object sender, EventArgs e)
         {
-            if (!(splitContainer.Panel2.Controls[0] is FrmCeilingAccessories))
-            {
-                if (SingletonObject.GetSingleton.FrmCa == null) SingletonObject.GetSingleton.AddForm(new Lazy<FrmCeilingAccessories>(() => new FrmCeilingAccessories()).Value);
-                ShowForm(SingletonObject.GetSingleton.FrmCa, splitContainer.Panel2);
-            }
+            FrmCeilingAccessories form = FrmCeilingAccessories.GetInstance();
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
+            form.Focus();
         }
         //非嵌入
         private void TsmieSolidWorksTools_Click(object sender, EventArgs e)
         {
-            if (SingletonObject.GetSingleton.FrmSwt == null) SingletonObject.GetSingleton.AddMetroForm(new Lazy<FrmSolidWorksTools>(() => new FrmSolidWorksTools()).Value);
-            SingletonObject.GetSingleton.FrmSwt?.ShowAndFocus();
+            FrmSolidWorksTools form = FrmSolidWorksTools.GetInstance();
+            form.WindowState = FormWindowState.Normal;
+            form.Show();
+            form.Focus();
         }
 
         //非窗体
@@ -381,7 +381,7 @@ namespace Compass
         #region 其他菜单
         private void TsmiSyncFiles_Click(object sender, EventArgs e)
         {
-            FrmSyncFiles form= FrmSyncFiles.GetInstance();
+            FrmSyncFiles form = FrmSyncFiles.GetInstance();
             form.WindowState = FormWindowState.Normal;
             form.Show();
             form.Focus();
@@ -400,6 +400,6 @@ namespace Compass
         }
         #endregion
 
-        
+
     }
 }

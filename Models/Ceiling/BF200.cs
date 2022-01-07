@@ -8,11 +8,11 @@ namespace Models
         public int BF200Id { get; set; }
         public int ModuleTreeId { get; set; }
         //基本尺寸
-        public decimal Length { get; set; }
-        public decimal LeftLength { get; set; }
-        public decimal RightLength { get; set; }
-        public decimal MPanelLength { get; set; }
-        public decimal WPanelLength { get; set; }
+        public double Length { get; set; }
+        public double LeftLength { get; set; }
+        public double RightLength { get; set; }
+        public double MPanelLength { get; set; }
+        public double WPanelLength { get; set; }
         public int MPanelNo { get; set; }
         public string UVType { get; set; }
     }

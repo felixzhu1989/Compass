@@ -30,14 +30,14 @@ namespace SolidWorksHelper
             int warnings = 0;
             int errors = 0;
             suffix = "_" + suffix;//后缀
-            ModelDoc2 swModel = default(ModelDoc2);
-            ModelDoc2 swPart = default(ModelDoc2);
-            AssemblyDoc swAssy = default(AssemblyDoc);
+            ModelDoc2 swModel;
+            ModelDoc2 swPart;
+            AssemblyDoc swAssy;
             Component2 swComp;
-            Feature swFeat = default(Feature);
-            ModelDocExtension swModelDocExt = default(ModelDocExtension);
-            bool status = false;
-            string compReName = string.Empty;
+            Feature swFeat;
+            ModelDocExtension swModelDocExt;
+            bool status;
+            string compReName;
             //打开Pack后的模型
             swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
                 (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
@@ -47,18 +47,18 @@ namespace SolidWorksHelper
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true);
             //TopOnly参数设置成true，只重建顶层，不重建零件内部
-            /*注意SolidWorks单位是m，计算是应当/1000m
-             * 整形与整形运算得出的结果仍然时整形，1640 / 1000m结果为0，因此必须将其中一个转化成decimal型，使用后缀m就可以了
+            /*注意SolidWorks单位是m，计算是应当/1000d
+             * 整形与整形运算得出的结果仍然时整形，1640 / 1000d结果为0，因此必须将其中一个转化成double型，使用后缀m就可以了
              * (int)不进行四舍五入，Convert.ToInt32会四舍五入
             */
             #endregion
 
             #region 计算中间值
-            int fcNo = (int)((item.Length - item.FCSideLeft - item.FCSideRight) / 499m) - item.FCBlindNo;
+            int fcNo = (int)((item.Length - item.FCSideLeft - item.FCSideRight) / 499d) - item.FCBlindNo;
             //水洗挡板挂钩数量与间距
             int bfSupportNo = 2;
             if (item.Length > 1400) bfSupportNo = 3;
-            decimal bfSupportDis = (item.Length - 300m) / ((bfSupportNo - 1) * 1000m); 
+            double bfSupportDis = (item.Length - 300d) / ((bfSupportNo - 1) * 1000d); 
             #endregion
 
             try
@@ -99,7 +99,7 @@ namespace SolidWorksHelper
                 {
                     swComp = swAssy.GetComponentByName(compReName + "-1");
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D1@Boss-Extrude1").SystemValue = (item.Length - 30m) / 1000m;
+                    swPart.Parameter("D1@Boss-Extrude1").SystemValue = (item.Length - 30d) / 1000d;
                 }
                 #endregion
 
@@ -232,7 +232,7 @@ namespace SolidWorksHelper
                         break;
 
                     default:
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-4"));//3mm板
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-4"));//3dm板
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0017-5"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
@@ -280,7 +280,7 @@ namespace SolidWorksHelper
                     swFeat = swAssy.FeatureByName("LocalLPattern4");
                     swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swModel.Parameter("D1@LocalLPattern4").SystemValue = item.FCBlindNo; //D1阵列数量,D3阵列距离
-                    swModel.Parameter("D1@Distance82").SystemValue = item.FCSideLeft / 1000m;
+                    swModel.Parameter("D1@Distance82").SystemValue = item.FCSideLeft / 1000d;
                 }
                 else
                 {
@@ -294,7 +294,7 @@ namespace SolidWorksHelper
                 swFeat = swAssy.FeatureByName("LocalLPattern5");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 swModel.Parameter("D1@LocalLPattern5").SystemValue = fcNo; //D1阵列数量,D3阵列距离
-                swModel.Parameter("D1@Distance80").SystemValue = (item.FCSideLeft + 500m * item.FCBlindNo) / 1000m;
+                swModel.Parameter("D1@Distance80").SystemValue = (item.FCSideLeft + 500d * item.FCBlindNo) / 1000d;
                 #endregion
 
                 #region 油网侧板
@@ -313,8 +313,8 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-1");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2();//打开零件
-                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideLeft - fcNo * 1m - 4m) / 1000m;
-                            if (item.FCSideLeft < 100m)
+                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideLeft - fcNo * 1d - 4d) / 1000d;
+                            if (item.FCSideLeft < 100d)
                             {
                                 swFeat = swComp.FeatureByName("Edge-Flange2");
                                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
@@ -347,8 +347,8 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-1");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2();//打开零件
-                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideRight - fcNo * 1m - 4m) / 1000m;
-                            if (item.FCSideLeft < 100m)
+                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideRight - fcNo * 1d - 4d) / 1000d;
+                            if (item.FCSideLeft < 100d)
                             {
                                 swFeat = swComp.FeatureByName("Edge-Flange2");
                                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
@@ -377,8 +377,8 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-1");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2();//打开零件
-                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideLeft - fcNo * 1m - 2m) / 1000m;
-                            if (item.FCSideLeft < 100m)
+                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideLeft - fcNo * 1d - 2d) / 1000d;
+                            if (item.FCSideLeft < 100d)
                             {
                                 swFeat = swComp.FeatureByName("Edge-Flange2");
                                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
@@ -405,8 +405,8 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-1");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2();//打开零件
-                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideRight - fcNo * 1m - 2m) / 1000m;
-                            if (item.FCSideLeft < 100m)
+                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideRight - fcNo * 1d - 2d) / 1000d;
+                            if (item.FCSideLeft < 100d)
                             {
                                 swFeat = swComp.FeatureByName("Edge-Flange2");
                                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
@@ -490,21 +490,21 @@ namespace SolidWorksHelper
                         swComp = swAssy.GetComponentByName(compReName + "-1");
                         swPart = swComp.GetModelDoc2(); //打开零件
                         //公共的
-                        swPart.Parameter("D1@Aufsatz-Linear austragen1").SystemValue = item.Length / 1000m;
+                        swPart.Parameter("D1@Aufsatz-Linear austragen1").SystemValue = item.Length / 1000d;
                         swFeat = swComp.FeatureByName("UV");
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                        swPart.Parameter("D5@Sketch20").SystemValue = item.ExRightDis / 1000m;
-                        if (item.UVType == "LONG") swPart.Parameter("D1@Sketch20").SystemValue = 1600m / 1000m;
-                        else swPart.Parameter("D1@Sketch20").SystemValue = 893m / 1000m;
+                        swPart.Parameter("D5@Sketch20").SystemValue = item.ExRightDis / 1000d;
+                        if (item.UVType == "LONG") swPart.Parameter("D1@Sketch20").SystemValue = 1600d / 1000d;
+                        else swPart.Parameter("D1@Sketch20").SystemValue = 893d / 1000d;
                         //水洗挡板磁感应
                         if (item.SensorNo == 1)
                         {
                             swFeat = swComp.FeatureByName("HALL SENSOR HOLE");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D3@Sketch23").SystemValue = item.SensorDis1 / 1000m;
+                            swPart.Parameter("D3@Sketch23").SystemValue = item.SensorDis1 / 1000d;
                             swFeat = swComp.FeatureByName("SENSOR CABLE HOLE");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D3@Sketch24").SystemValue = item.SensorDis1 / 1000m;
+                            swPart.Parameter("D3@Sketch24").SystemValue = item.SensorDis1 / 1000d;
                             swFeat = swComp.FeatureByName("LPattern2");
                             swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         }
@@ -512,14 +512,14 @@ namespace SolidWorksHelper
                         {
                             swFeat = swComp.FeatureByName("HALL SENSOR HOLE");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D3@Sketch23").SystemValue = item.SensorDis1 / 1000m;
+                            swPart.Parameter("D3@Sketch23").SystemValue = item.SensorDis1 / 1000d;
                             swFeat = swComp.FeatureByName("SENSOR CABLE HOLE");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D3@Sketch24").SystemValue = item.SensorDis1 / 1000m;
+                            swPart.Parameter("D3@Sketch24").SystemValue = item.SensorDis1 / 1000d;
                             swFeat = swComp.FeatureByName("LPattern2");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                             swPart.Parameter("D1@LPattern2").SystemValue = item.SensorNo;
-                            swPart.Parameter("D3@LPattern2").SystemValue = item.SensorDis2 / 1000m;
+                            swPart.Parameter("D3@LPattern2").SystemValue = item.SensorDis2 / 1000d;
                         }
                         else
                         {
@@ -567,7 +567,7 @@ namespace SolidWorksHelper
                             swFeat = swComp.FeatureByName("MA-NTC");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                             swPart.Parameter("D1@Sketch27").SystemValue =
-                                (item.ExRightDis + item.ExLength / 2m + 50m) / 1000m;
+                                (item.ExRightDis + item.ExLength / 2d + 50d) / 1000d;
                             swFeat = swComp.FeatureByName("MA-TAB");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         }
@@ -591,7 +591,7 @@ namespace SolidWorksHelper
                         {
                             swFeat = swComp.FeatureByName("Cut-Extrude7");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D6@Sketch42").SystemValue = (item.HCLSideLeft - 103) / 1000m;
+                            swPart.Parameter("D6@Sketch42").SystemValue = (item.HCLSideLeft - 103) / 1000d;
                         }
                         else
                         {
@@ -602,7 +602,7 @@ namespace SolidWorksHelper
                         {
                             swFeat = swComp.FeatureByName("Cut-Extrude8");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
-                            swPart.Parameter("D6@Sketch43").SystemValue = (item.HCLSideRight - 103) / 1000m;
+                            swPart.Parameter("D6@Sketch43").SystemValue = (item.HCLSideRight - 103) / 1000d;
                         }
                         else
                         {
@@ -623,9 +623,9 @@ namespace SolidWorksHelper
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                             swFeat = swComp.FeatureByName("Cut-Extrude4");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D1@Sketch14").SystemValue = item.ExRightDis / 1000m;
-                            swPart.Parameter("D5@Sketch14").SystemValue = item.ExLength / 1000m;
-                            swPart.Parameter("D6@Sketch14").SystemValue = item.ExWidth / 1000m;
+                            swPart.Parameter("D1@Sketch14").SystemValue = item.ExRightDis / 1000d;
+                            swPart.Parameter("D5@Sketch14").SystemValue = item.ExLength / 1000d;
+                            swPart.Parameter("D6@Sketch14").SystemValue = item.ExWidth / 1000d;
                         }
                     }
                 }
@@ -649,21 +649,21 @@ namespace SolidWorksHelper
                         swComp = swAssy.GetComponentByName(compReName + "-1");
                         swPart = swComp.GetModelDoc2(); //打开零件
                         //公共的
-                        swPart.Parameter("D1@Aufsatz-Linear austragen1").SystemValue = item.Length / 1000m;
+                        swPart.Parameter("D1@Aufsatz-Linear austragen1").SystemValue = item.Length / 1000d;
                         swFeat = swComp.FeatureByName("UV");
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                        swPart.Parameter("D5@Sketch20").SystemValue = item.ExRightDis / 1000m;
-                        if (item.UVType == "LONG") swPart.Parameter("D1@Sketch20").SystemValue = 1600m / 1000m;
-                        else swPart.Parameter("D1@Sketch20").SystemValue = 893m / 1000m;
+                        swPart.Parameter("D5@Sketch20").SystemValue = item.ExRightDis / 1000d;
+                        if (item.UVType == "LONG") swPart.Parameter("D1@Sketch20").SystemValue = 1600d / 1000d;
+                        else swPart.Parameter("D1@Sketch20").SystemValue = 893d / 1000d;
                         //水洗挡板磁感应
                         if (item.SensorNo == 1)
                         {
                             swFeat = swComp.FeatureByName("HALL SENSOR HOLE");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D3@Sketch23").SystemValue = item.SensorDis1 / 1000m;
+                            swPart.Parameter("D3@Sketch23").SystemValue = item.SensorDis1 / 1000d;
                             swFeat = swComp.FeatureByName("SENSOR CABLE HOLE");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D3@Sketch24").SystemValue = item.SensorDis1 / 1000m;
+                            swPart.Parameter("D3@Sketch24").SystemValue = item.SensorDis1 / 1000d;
                             swFeat = swComp.FeatureByName("LPattern2");
                             swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         }
@@ -671,14 +671,14 @@ namespace SolidWorksHelper
                         {
                             swFeat = swComp.FeatureByName("HALL SENSOR HOLE");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D3@Sketch23").SystemValue = item.SensorDis1 / 1000m;
+                            swPart.Parameter("D3@Sketch23").SystemValue = item.SensorDis1 / 1000d;
                             swFeat = swComp.FeatureByName("SENSOR CABLE HOLE");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D3@Sketch24").SystemValue = item.SensorDis1 / 1000m;
+                            swPart.Parameter("D3@Sketch24").SystemValue = item.SensorDis1 / 1000d;
                             swFeat = swComp.FeatureByName("LPattern2");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                             swPart.Parameter("D1@LPattern2").SystemValue = item.SensorNo;
-                            swPart.Parameter("D3@LPattern2").SystemValue = item.SensorDis2 / 1000m;
+                            swPart.Parameter("D3@LPattern2").SystemValue = item.SensorDis2 / 1000d;
                         }
                         else
                         {
@@ -726,7 +726,7 @@ namespace SolidWorksHelper
                             swFeat = swComp.FeatureByName("MA-NTC");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                             swPart.Parameter("D1@Sketch27").SystemValue =
-                                (item.ExRightDis + item.ExLength / 2m + 50m) / 1000m;
+                                (item.ExRightDis + item.ExLength / 2d + 50d) / 1000d;
                             swFeat = swComp.FeatureByName("MA-TAB");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         }
@@ -759,9 +759,9 @@ namespace SolidWorksHelper
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                             swFeat = swComp.FeatureByName("Cut-Extrude4");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D1@Sketch14").SystemValue = item.ExRightDis / 1000m;
-                            swPart.Parameter("D5@Sketch14").SystemValue = item.ExLength / 1000m;
-                            swPart.Parameter("D6@Sketch14").SystemValue = item.ExWidth / 1000m;
+                            swPart.Parameter("D1@Sketch14").SystemValue = item.ExRightDis / 1000d;
+                            swPart.Parameter("D5@Sketch14").SystemValue = item.ExLength / 1000d;
+                            swPart.Parameter("D6@Sketch14").SystemValue = item.ExWidth / 1000d;
                         }
                     }
                 }
@@ -772,13 +772,13 @@ namespace SolidWorksHelper
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0080-1"));
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D1@Skizze1").SystemValue = item.Length / 1000m;
+                    swPart.Parameter("D1@Skizze1").SystemValue = item.Length / 1000d;
                     //HCL侧板磁铁孔
                     if (item.HCLSide == "LEFT" || item.HCLSide == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("Cut-Extrude9");
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                        swPart.Parameter("D6@Sketch25").SystemValue = (item.HCLSideLeft - 103) / 1000m;
+                        swPart.Parameter("D6@Sketch25").SystemValue = (item.HCLSideLeft - 103) / 1000d;
                     }
                     else
                     {
@@ -789,7 +789,7 @@ namespace SolidWorksHelper
                     {
                         swFeat = swComp.FeatureByName("Cut-Extrude7");
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
-                        swPart.Parameter("D1@Sketch23").SystemValue = (item.HCLSideRight - 103) / 1000m;
+                        swPart.Parameter("D1@Sketch23").SystemValue = (item.HCLSideRight - 103) / 1000d;
                     }
                     else
                     {
@@ -801,20 +801,20 @@ namespace SolidWorksHelper
                     switch (item.HCLSide)
                     {
                         case "LEFT":
-                            swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideLeft) / 1000m;
-                            swModel.Parameter("D1@Distance85").SystemValue = item.HCLSideLeft / 1000m;
+                            swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideLeft) / 1000d;
+                            swModel.Parameter("D1@Distance85").SystemValue = item.HCLSideLeft / 1000d;
                             break;
                         case "RIGHT":
-                            swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideRight) / 1000m;
-                            swModel.Parameter("D1@Distance85").SystemValue = 0m;
+                            swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideRight) / 1000d;
+                            swModel.Parameter("D1@Distance85").SystemValue = 0d;
                             break;
                         case "BOTH":
-                            swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideLeft - item.HCLSideRight) / 1000m;
-                            swModel.Parameter("D1@Distance85").SystemValue = item.HCLSideLeft / 1000m;
+                            swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideLeft - item.HCLSideRight) / 1000d;
+                            swModel.Parameter("D1@Distance85").SystemValue = item.HCLSideLeft / 1000d;
                             break;
                         default:
-                            swPart.Parameter("D1@Skizze1").SystemValue = item.Length / 1000m;
-                            swModel.Parameter("D1@Distance85").SystemValue = 0m;
+                            swPart.Parameter("D1@Skizze1").SystemValue = item.Length / 1000d;
+                            swModel.Parameter("D1@Distance85").SystemValue = 0d;
                             break;
                     }
                 }
@@ -823,7 +823,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0034-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D1@Skizze1").SystemValue = item.Length / 1000m;
+                    swPart.Parameter("D1@Skizze1").SystemValue = item.Length / 1000d;
                 }
                 #endregion
 
@@ -833,7 +833,7 @@ namespace SolidWorksHelper
                     switch (item.HCLSide)
                     {
                         case "LEFT":
-                            swModel.Parameter("D1@Distance89").SystemValue = item.HCLSideLeft/1000m;
+                            swModel.Parameter("D1@Distance89").SystemValue = item.HCLSideLeft/1000d;
                             //重命名装配体内部
                             compReName = "FNCE0082[HCLSP-" + tree.Module + "]{" + ((int)item.HCLSideLeft - 3) + "}";
                             status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0082-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -852,13 +852,13 @@ namespace SolidWorksHelper
                                 swComp = swAssy.GetComponentByName(compReName + "-1");
                                 swComp.SetSuppression2(2); //2解压缩，0压缩.
                                 swPart = swComp.GetModelDoc2();//打开零件
-                                swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideLeft - 3m) / 1000m;
+                                swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideLeft - 3d) / 1000d;
                             }
                             swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0083-1"));
                             swComp.SetSuppression2(0); //2解压缩，0压缩.
                             break;
                         case "RIGHT":
-                            swModel.Parameter("D1@Distance89").SystemValue =0.5m / 1000m;
+                            swModel.Parameter("D1@Distance89").SystemValue =0.5d / 1000d;
                             swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0082-1"));
                             swComp.SetSuppression2(0); //2解压缩，0压缩.
                             //重命名装配体内部
@@ -879,11 +879,11 @@ namespace SolidWorksHelper
                                 swComp = swAssy.GetComponentByName(compReName + "-1");
                                 swComp.SetSuppression2(2); //2解压缩，0压缩.
                                 swPart = swComp.GetModelDoc2();//打开零件
-                                swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideRight - 3m) / 1000m;
+                                swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideRight - 3d) / 1000d;
                             }
                             break;
                         case "BOTH":
-                            swModel.Parameter("D1@Distance89").SystemValue = item.HCLSideLeft / 1000m;
+                            swModel.Parameter("D1@Distance89").SystemValue = item.HCLSideLeft / 1000d;
                             //重命名装配体内部
                             compReName = "FNCE0082[HCLSP-" + tree.Module + "]{" + ((int)item.HCLSideLeft - 3) + "}";
                             status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0082-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -903,7 +903,7 @@ namespace SolidWorksHelper
                                 swComp = swAssy.GetComponentByName(compReName + "-1");
                                 swComp.SetSuppression2(2); //2解压缩，0压缩.
                                 swPart = swComp.GetModelDoc2();//打开零件
-                                swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideLeft - 3m) / 1000m;
+                                swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideLeft - 3d) / 1000d;
                             }
                             //重命名装配体内部
                             compReName = "FNCE0083[HCLSP-" + tree.Module + "]{" + ((int)item.HCLSideRight - 3) + "}";
@@ -923,7 +923,7 @@ namespace SolidWorksHelper
                                 swComp = swAssy.GetComponentByName(compReName + "-1");
                                 swComp.SetSuppression2(2); //2解压缩，0压缩.
                                 swPart = swComp.GetModelDoc2();//打开零件
-                                swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideRight - 3m) / 1000m;
+                                swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideRight - 3d) / 1000d;
                             }
                             break;
                         default:
@@ -971,7 +971,7 @@ namespace SolidWorksHelper
                 #region 灯腔零件
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0031-1"));
                 swPart = swComp.GetModelDoc2();//打开零件
-                swPart.Parameter("D1@Aufsatz-Linear austragen1").SystemValue = item.Length / 1000m;
+                swPart.Parameter("D1@Aufsatz-Linear austragen1").SystemValue = item.Length / 1000d;
                 swPart.Parameter("D1@LPattern1").SystemValue = bfSupportNo;
                 swPart.Parameter("D3@LPattern1").SystemValue = bfSupportDis;
                 swFeat = swComp.FeatureByName("Cut-Extrude5");
@@ -990,7 +990,7 @@ namespace SolidWorksHelper
                         case "LEFT":
                             swFeat = swComp.FeatureByName("FC LEFT");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D6@Sketch10").SystemValue = (item.FCSideLeft - 50m) / 1000m;
+                            swPart.Parameter("D6@Sketch10").SystemValue = (item.FCSideLeft - 50d) / 1000d;
                             swFeat = swComp.FeatureByName("FC RIGHT");
                             swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                             break;
@@ -999,15 +999,15 @@ namespace SolidWorksHelper
                             swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                             swFeat = swComp.FeatureByName("FC RIGHT");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D6@Sketch11").SystemValue = (item.FCSideRight - 50m) / 1000m;
+                            swPart.Parameter("D6@Sketch11").SystemValue = (item.FCSideRight - 50d) / 1000d;
                             break;
                         case "BOTH":
                             swFeat = swComp.FeatureByName("FC LEFT");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D6@Sketch10").SystemValue = (item.FCSideLeft - 50m) / 1000m;
+                            swPart.Parameter("D6@Sketch10").SystemValue = (item.FCSideLeft - 50d) / 1000d;
                             swFeat = swComp.FeatureByName("FC RIGHT");
                             swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                            swPart.Parameter("D6@Sketch11").SystemValue = (item.FCSideRight - 50m) / 1000m;
+                            swPart.Parameter("D6@Sketch11").SystemValue = (item.FCSideRight - 50d) / 1000d;
                             break;
                         default:
                             swFeat = swComp.FeatureByName("FC LEFT");
@@ -1018,8 +1018,8 @@ namespace SolidWorksHelper
                     }
                     swFeat = swComp.FeatureByName("FC FIRST");
                     swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    if (item.FCSide == "RIGHT") swPart.Parameter("D3@Sketch12").SystemValue = 25m / 1000m;
-                    else swPart.Parameter("D3@Sketch12").SystemValue = (item.FCSideLeft + 25m) / 1000m;
+                    if (item.FCSide == "RIGHT") swPart.Parameter("D3@Sketch12").SystemValue = 25d / 1000d;
+                    else swPart.Parameter("D3@Sketch12").SystemValue = (item.FCSideLeft + 25d) / 1000d;
                     swFeat = swComp.FeatureByName("LPattern2");
                     swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D1@LPattern2").SystemValue = fcNo + item.FCBlindNo;
@@ -1071,32 +1071,32 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0019-1"));
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D2@基体-法兰1").SystemValue = (item.ExLength + 50m) / 1000m;
-                    swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000m;
+                    swPart.Parameter("D2@基体-法兰1").SystemValue = (item.ExLength + 50d) / 1000d;
+                    swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000d;
                     swFeat = swComp.FeatureByName("ANSUL");
                     if (item.ANSUL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0020-1"));
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D2@基体-法兰1").SystemValue = (item.ExLength + 50m) / 1000m;
-                    swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000m;
+                    swPart.Parameter("D2@基体-法兰1").SystemValue = (item.ExLength + 50d) / 1000d;
+                    swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000d;
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0047-1"));
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D2@基体-法兰1").SystemValue = item.ExWidth / 1000m;
-                    swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000m;
+                    swPart.Parameter("D2@基体-法兰1").SystemValue = item.ExWidth / 1000d;
+                    swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000d;
                     swFeat = swComp.FeatureByName("ANDTEC");
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0048-2"));
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D2@基体-法兰1").SystemValue = item.ExWidth / 1000m;
-                    swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000m;
+                    swPart.Parameter("D2@基体-法兰1").SystemValue = item.ExWidth / 1000d;
+                    swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000d;
                     swFeat = swComp.FeatureByName("ANDTEC");
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     //FC下导轨
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0009-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D1@Sketch2").SystemValue = (item.Length - 5m) / 1000m;
+                    swPart.Parameter("D1@Sketch2").SystemValue = (item.Length - 5d) / 1000d;
                 }
                 #endregion
 
@@ -1104,7 +1104,7 @@ namespace SolidWorksHelper
                 //----------FC上导轨----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0003-1"));
                 swPart = swComp.GetModelDoc2();//打开零件
-                swPart.Parameter("D1@Aufsatz-Linear austragen1").SystemValue = item.Length / 1000m;
+                swPart.Parameter("D1@Aufsatz-Linear austragen1").SystemValue = item.Length / 1000d;
                 swFeat = swComp.FeatureByName("L");
                 if (item.SidePanel == "LEFT" || item.SidePanel == "BOTH") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
@@ -1113,12 +1113,12 @@ namespace SolidWorksHelper
                 else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0007-1"));
                 swPart = swComp.GetModelDoc2();//打开零件
-                swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - 5m) / 1000m;
+                swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - 5d) / 1000d;
                 swFeat = swComp.FeatureByName("PIPE-UP");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0008-1"));
                 swPart = swComp.GetModelDoc2();//打开零件
-                swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - 5m) / 1000m;
+                swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - 5d) / 1000d;
                 swFeat = swComp.FeatureByName("PIPE-UP");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
 
@@ -1130,18 +1130,18 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0035-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D2@Sketch1").SystemValue = item.Length / 1000m;
-                    if (item.Gutter == "YES") swModel.Parameter("D1@Distance72").SystemValue = item.GutterWidth / 1000m;
-                    else swModel.Parameter("D1@Distance72").SystemValue = 0.5m / 1000m;
+                    swPart.Parameter("D2@Sketch1").SystemValue = item.Length / 1000d;
+                    if (item.Gutter == "YES") swModel.Parameter("D1@Distance72").SystemValue = item.GutterWidth / 1000d;
+                    else swModel.Parameter("D1@Distance72").SystemValue = 0.5d / 1000d;
                 }
                 else
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0036-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D2@Sketch1").SystemValue = item.Length / 1000m;
-                    if (item.Gutter == "YES") swModel.Parameter("D1@Distance75").SystemValue = item.GutterWidth / 1000m;
-                    else swModel.Parameter("D1@Distance75").SystemValue = 0.5m / 1000m;
+                    swPart.Parameter("D2@Sketch1").SystemValue = item.Length / 1000d;
+                    if (item.Gutter == "YES") swModel.Parameter("D1@Distance75").SystemValue = item.GutterWidth / 1000d;
+                    else swModel.Parameter("D1@Distance75").SystemValue = 0.5d / 1000d;
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0035-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                 } 

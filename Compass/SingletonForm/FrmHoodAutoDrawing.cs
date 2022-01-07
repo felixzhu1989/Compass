@@ -27,14 +27,33 @@ namespace Compass
         private SldWorks _swApp;
         private readonly string _sbu = Program.ObjCurrentUser.SBU;
         
-        public FrmHoodAutoDrawing()
+        private FrmHoodAutoDrawing()
         {
             InitializeComponent();
             dgvWaitingList.AutoGenerateColumns = false;
             dgvExecList.AutoGenerateColumns = false;
             IniCobOdpNo();
         }
+        #region 单例模式
+        private static FrmHoodAutoDrawing instance;
+        public static FrmHoodAutoDrawing GetInstance()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmHoodAutoDrawing();
+            }
+            return instance;
+        }
+        public void HandlerOdpNo(string odpNo)
+        {
+            if (odpNo.Length != 0) cobODPNo.Text = odpNo;
+        }
 
+        #endregion
+        private void BtnIniCobOdpNo_Click(object sender, EventArgs e)
+        {
+            IniCobOdpNo();
+        }
         public void IniCobOdpNo()
         {
             cobODPNo.SelectedIndexChanged -= new EventHandler(CobODPNo_SelectedIndexChanged);
@@ -45,24 +64,7 @@ namespace Compass
             cobODPNo.SelectedIndex = -1;
             cobODPNo.SelectedIndexChanged += new EventHandler(CobODPNo_SelectedIndexChanged);
         }
-        #region 单例模式，重写关闭方法，显示时选择ODP号
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            Hide();
-            e.Cancel = true;
-        }
-        public void ShowWithOdpNo(string odpNo)
-        {
-            if (odpNo.Length != 0) cobODPNo.Text = odpNo;
-            ShowAndFocus();
-        }
-        internal void ShowAndFocus()
-        {
-            Show();
-            WindowState = FormWindowState.Normal;
-            Focus();
-        }
-        #endregion
+
 
         //public static FrmHoodAutoDrawing GetSingle()
         //{

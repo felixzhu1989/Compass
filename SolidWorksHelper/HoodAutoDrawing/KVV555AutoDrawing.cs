@@ -34,11 +34,11 @@ namespace SolidWorksHelper
             int warnings = 0;
             int errors = 0;
             suffix = "_" + suffix; //后缀
-            ModelDoc2 swModel = default(ModelDoc2);
-            ModelDoc2 swPart = default(ModelDoc2);
-            AssemblyDoc swAssy = default(AssemblyDoc);
+            ModelDoc2 swModel;
+            ModelDoc2 swPart;
+            AssemblyDoc swAssy;
             Component2 swComp;
-            Feature swFeat = default(Feature);
+            Feature swFeat;
             object configNames = null;
             EditPart swEdit = new EditPart();
 
@@ -49,78 +49,78 @@ namespace SolidWorksHelper
             swAssy = swModel as AssemblyDoc; //装配体
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true); //TopOnly参数设置成true，只重建顶层，不重建零件内部
-            /*注意SolidWorks单位是m，计算是应当/1000m
-             * 整形与整形运算得出的结果仍然时整形，1640 / 1000m结果为0，因此必须将其中一个转化成decimal型，使用后缀m就可以了
+            /*注意SolidWorks单位是m，计算是应当/1000d
+             * 整形与整形运算得出的结果仍然时整形，1640 / 1000d结果为0，因此必须将其中一个转化成double型，使用后缀m就可以了
              * (int)不进行四舍五入，Convert.ToInt32会四舍五入
             */
             //-----------计算中间值，----------
 
             //内部灯板宽度
-            decimal insidePanelWidth = 155.2m;
-            if(item.Deepth%100m>45m) insidePanelWidth = 255.2m;
+            double insidePanelWidth = 155.2d;
+            if(item.Deepth%100d>45d) insidePanelWidth = 255.2d;
             //当烟罩宽度为100的整数倍时（如1000,1500），middleroof 取值155.2，冷凝板参考上表
             //当烟罩宽度为100的整数倍时+50（如1150,1550），middleroof 取值255.2，冷凝板参考整数档（如1550参考1500档）
 
             //冷凝板参数
-            decimal condensatePanelAngle = default(decimal);
-            decimal condensatePanelHeight = default(decimal);
+            double condensatePanelAngle = default(double);
+            double condensatePanelHeight = default(double);
 
 
-            switch ((int)(item.Deepth / 100m))//取百位以上整数
+            switch ((int)(item.Deepth / 100d))//取百位以上整数
             {
                 case 6:
-                    condensatePanelAngle = (160.2m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 357.1m;
+                    condensatePanelAngle = (160.2d * 3.1415926d) / 180d;
+                    condensatePanelHeight = 357.1d;
                     break;
                 case 7:
-                    condensatePanelAngle = (160.2m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 357.1m;
+                    condensatePanelAngle = (160.2d * 3.1415926d) / 180d;
+                    condensatePanelHeight = 357.1d;
                     break;
                 case 8:
-                    condensatePanelAngle = (146.7m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 402.3m;
+                    condensatePanelAngle = (146.7d * 3.1415926d) / 180d;
+                    condensatePanelHeight = 402.3d;
                     break;
                 case 9:
-                    condensatePanelAngle = (146.7m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 402.3m;
+                    condensatePanelAngle = (146.7d * 3.1415926d) / 180d;
+                    condensatePanelHeight = 402.3d;
                     break;
 
                 case 10://OK
-                    condensatePanelAngle = (136m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 465m;
+                    condensatePanelAngle = (136d * 3.1415926d) / 180d;
+                    condensatePanelHeight = 465d;
                     break;
                 case 11://OK
-                    condensatePanelAngle = (132m * 3.1415926m) / 180m;//132m
-                    condensatePanelHeight = 495m;//495m
+                    condensatePanelAngle = (132d * 3.1415926d) / 180d;//132d
+                    condensatePanelHeight = 495d;//495d
                     break;
                 case 12://OK
-                    condensatePanelAngle = (129m * 3.1415926m) / 180m;//129m
-                    condensatePanelHeight = 535m;//535m
+                    condensatePanelAngle = (129d * 3.1415926d) / 180d;//129d
+                    condensatePanelHeight = 535d;//535d
                     break;
                 case 13://OK
-                    condensatePanelAngle = (125m * 3.1415926m) / 180m;//125
-                    condensatePanelHeight = 575m;//575
+                    condensatePanelAngle = (125d * 3.1415926d) / 180d;//125
+                    condensatePanelHeight = 575d;//575
                     break;
                 case 14://OK
-                    condensatePanelAngle = (123m * 3.1415926m) / 180m;//123
-                    condensatePanelHeight = 616m;//616
+                    condensatePanelAngle = (123d * 3.1415926d) / 180d;//123
+                    condensatePanelHeight = 616d;//616
                     break;
                 case 15://OK
-                    condensatePanelAngle = (120m * 3.1415926m) / 180m;//120
-                    condensatePanelHeight = 658m;//658
+                    condensatePanelAngle = (120d * 3.1415926d) / 180d;//120
+                    condensatePanelHeight = 658d;//658
                     break;
 
                 case 16:
-                    condensatePanelAngle = (118.4m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 706.6m;
+                    condensatePanelAngle = (118.4d * 3.1415926d) / 180d;
+                    condensatePanelHeight = 706.6d;
                     break;
                 case 17:
-                    condensatePanelAngle = (118.4m * 3.1415926m) / 180m;
-                    condensatePanelHeight = 706.6m;
+                    condensatePanelAngle = (118.4d * 3.1415926d) / 180d;
+                    condensatePanelHeight = 706.6d;
                     break;
                 default://默认是标准模版中的值，放置模型报错
-                    condensatePanelAngle = (126m * 3.1415926m) / 180m;//126
-                    condensatePanelHeight = 574m;//574
+                    condensatePanelAngle = (126d * 3.1415926d) / 180d;//126
+                    condensatePanelHeight = 574d;//574
                     break;
             }
 
@@ -129,24 +129,24 @@ namespace SolidWorksHelper
             {
                 //----------Top Level----------
                 //烟罩深度
-                //swModel.Parameter("D1@Distance32").SystemValue = item.Deepth / 1000m;
+                //swModel.Parameter("D1@Distance32").SystemValue = item.Deepth / 1000d;
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0063-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 120m) / 1000m;
+                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 120d) / 1000d;
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0064-2"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 120m) / 1000m;
+                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 120d) / 1000d;
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0065-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Length - 147m) / 1000m;
+                swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Length - 147d) / 1000d;
                 swPart.Parameter("D1@Sketch1").SystemValue = condensatePanelAngle;
                 swPart.Parameter("D2@Sketch1").SystemValue = condensatePanelAngle;
-                swPart.Parameter("D3@Sketch1").SystemValue = condensatePanelHeight / 1000m;
-                //1.5m以下，两个把手HANDER2，其他HANDER4
-                if (item.Length > 1500m)
+                swPart.Parameter("D3@Sketch1").SystemValue = condensatePanelHeight / 1000d;
+                //1.5d以下，两个把手HANDER2，其他HANDER4
+                if (item.Length > 1500d)
                 {
                     swFeat = swComp.FeatureByName("HANDER2");
                     swFeat.SetSuppression2(0, 2, configNames);//参数1：1解压，0压缩 
@@ -164,12 +164,12 @@ namespace SolidWorksHelper
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0066-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Length - 147m) / 1000m;
+                swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Length - 147d) / 1000d;
                 swPart.Parameter("D1@Sketch1").SystemValue = condensatePanelAngle;
                 swPart.Parameter("D2@Sketch1").SystemValue = condensatePanelAngle;
-                swPart.Parameter("D3@Sketch1").SystemValue = condensatePanelHeight / 1000m;
-                //1.5m以下，两个把手HANDER2，其他HANDER4
-                if (item.Length > 1500m)
+                swPart.Parameter("D3@Sketch1").SystemValue = condensatePanelHeight / 1000d;
+                //1.5d以下，两个把手HANDER2，其他HANDER4
+                if (item.Length > 1500d)
                 {
                     swFeat = swComp.FeatureByName("HANDER2");
                     swFeat.SetSuppression2(0, 2, configNames);//参数1：1解压，0压缩 
@@ -188,19 +188,19 @@ namespace SolidWorksHelper
                 swPart = swComp.GetModelDoc2();//打开零件3
                 swPart.Parameter("D1@Sketch1").SystemValue = condensatePanelAngle;
                 swPart.Parameter("D2@Sketch1").SystemValue = condensatePanelAngle;
-                swPart.Parameter("D3@Sketch1").SystemValue = condensatePanelHeight / 1000m;
+                swPart.Parameter("D3@Sketch1").SystemValue = condensatePanelHeight / 1000d;
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0068-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
                 swPart.Parameter("D1@Sketch1").SystemValue = condensatePanelAngle;
                 swPart.Parameter("D2@Sketch1").SystemValue = condensatePanelAngle;
-                swPart.Parameter("D3@Sketch1").SystemValue = condensatePanelHeight / 1000m;
+                swPart.Parameter("D3@Sketch1").SystemValue = condensatePanelHeight / 1000d;
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHB0053-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 300m) / 1000m;
+                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 300d) / 1000d;
 
-                if (item.Deepth > 1400m)
+                if (item.Deepth > 1400d)
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0007-2"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
@@ -209,11 +209,11 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0017-2"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();//打开零件3
-                    swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 6m) / 1000m;
-                    swPart.Parameter("D1@Sketch1").SystemValue = (item.Deepth - 4m) / 1000m;
-                    swPart.Parameter("D1@Sketch26").SystemValue = item.ExLength / 1000m;
-                    swPart.Parameter("D2@Sketch26").SystemValue = item.ExWidth / 1000m;
-                    swPart.Parameter("D2@Sketch27").SystemValue = 50m * Convert.ToInt32((item.Deepth / 2m - 200m) / 50m) / 1000m;
+                    swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 6d) / 1000d;
+                    swPart.Parameter("D1@Sketch1").SystemValue = (item.Deepth - 4d) / 1000d;
+                    swPart.Parameter("D1@Sketch26").SystemValue = item.ExLength / 1000d;
+                    swPart.Parameter("D2@Sketch26").SystemValue = item.ExWidth / 1000d;
+                    swPart.Parameter("D2@Sketch27").SystemValue = 50d * Convert.ToInt32((item.Deepth / 2d - 200d) / 50d) / 1000d;
                     swFeat = swComp.FeatureByName("PHILIPS LAMP");
                     if (item.LightType == "PHILIPS") swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
                     else swFeat.SetSuppression2(0, 2, configNames);
@@ -227,11 +227,11 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0007-2"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();//打开零件3
-                    swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 6m) / 1000m;
-                    swPart.Parameter("D1@Sketch1").SystemValue = (item.Deepth - 4m) / 1000m;
-                    swPart.Parameter("D1@Sketch26").SystemValue = item.ExLength / 1000m;
-                    swPart.Parameter("D2@Sketch26").SystemValue = item.ExWidth / 1000m;
-                    swPart.Parameter("D2@Sketch27").SystemValue = 50m * Convert.ToInt32((item.Deepth / 2m - 150m) / 50m) / 1000m;
+                    swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 6d) / 1000d;
+                    swPart.Parameter("D1@Sketch1").SystemValue = (item.Deepth - 4d) / 1000d;
+                    swPart.Parameter("D1@Sketch26").SystemValue = item.ExLength / 1000d;
+                    swPart.Parameter("D2@Sketch26").SystemValue = item.ExWidth / 1000d;
+                    swPart.Parameter("D2@Sketch27").SystemValue = 50d * Convert.ToInt32((item.Deepth / 2d - 150d) / 50d) / 1000d;
                     swFeat = swComp.FeatureByName("PHILIPS LAMP");
                     if (item.LightType == "PHILIPS") swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
                     else swFeat.SetSuppression2(0, 2, configNames);
@@ -239,90 +239,90 @@ namespace SolidWorksHelper
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0008-3"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 6m) / 1000m;
-                swPart.Parameter("D1@Sketch1").SystemValue = insidePanelWidth / 1000m;
-                swPart.Parameter("D3@Sketch39").SystemValue = (insidePanelWidth - 55.2m) / 1000m;
+                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 6d) / 1000d;
+                swPart.Parameter("D1@Sketch1").SystemValue = insidePanelWidth / 1000d;
+                swPart.Parameter("D3@Sketch39").SystemValue = (insidePanelWidth - 55.2d) / 1000d;
                 swFeat = swComp.FeatureByName("PHILIPS LAMP");
                 if (item.LightType == "PHILIPS") swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
                 else swFeat.SetSuppression2(0, 2, configNames);
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0034-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Deepth - 3.5m) / 1000m;
+                swPart.Parameter("D2@Sketch1").SystemValue = (item.Deepth - 3.5d) / 1000d;
                 swPart.Parameter("D10@Sketch25").SystemValue = condensatePanelAngle;
-                swPart.Parameter("D11@Sketch25").SystemValue = condensatePanelHeight / 1000m;
-                swPart.Parameter("D1@Sketch47").SystemValue = insidePanelWidth / 1000m;
-                swPart.Parameter("D6@Sketch47").SystemValue = (insidePanelWidth - 55.2m) / 1000m;
+                swPart.Parameter("D11@Sketch25").SystemValue = condensatePanelHeight / 1000d;
+                swPart.Parameter("D1@Sketch47").SystemValue = insidePanelWidth / 1000d;
+                swPart.Parameter("D6@Sketch47").SystemValue = (insidePanelWidth - 55.2d) / 1000d;
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0035-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@Sketch1").SystemValue = item.Deepth / 1000m;
+                swPart.Parameter("D2@Sketch1").SystemValue = item.Deepth / 1000d;
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0013-3"));
-                if (item.ExWidth == 300m) swComp.SetSuppression2(0); //2解压缩，0压缩
+                if (item.ExWidth == 300d) swComp.SetSuppression2(0); //2解压缩，0压缩
                 else swComp.SetSuppression2(2); //2解压缩，0压缩
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0013-1"));
-                if (item.ExWidth == 300m) swComp.SetSuppression2(0); //2解压缩，0压缩
+                if (item.ExWidth == 300d) swComp.SetSuppression2(0); //2解压缩，0压缩
                 else
                 {
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();//打开零件3
-                    swPart.Parameter("D1@Sketch1").SystemValue = (item.ExLength / 2m + 10m) / 1000m;
-                    swPart.Parameter("D2@Sketch1").SystemValue = (item.ExWidth + 40m) / 1000m;
+                    swPart.Parameter("D1@Sketch1").SystemValue = (item.ExLength / 2d + 10d) / 1000d;
+                    swPart.Parameter("D2@Sketch1").SystemValue = (item.ExWidth + 40d) / 1000d;
                 }
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0018-1"));
                 swComp.SetSuppression2(2); //2解压缩，0压缩
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength * 2m + 100m) / 1000m;
+                swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength * 2d + 100d) / 1000d;
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0006-3"));
-                if (item.ExHeight == 100m)
+                if (item.ExHeight == 100d)
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 else
                 {
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2();//打开零件3
-                    swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength + 50m) / 1000m;
-                    swPart.Parameter("D2@Sketch1").SystemValue = item.ExHeight / 1000m;
+                    swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength + 50d) / 1000d;
+                    swPart.Parameter("D2@Sketch1").SystemValue = item.ExHeight / 1000d;
                     swFeat = swComp.FeatureByName("ANSUL");
                     swFeat.SetSuppression2(0, 2, configNames);
                 }
 
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0007-1"));
-                if (item.ExHeight == 100m)
+                if (item.ExHeight == 100d)
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 else
                 {
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2(); //打开零件3
-                    swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength + 50m) / 1000m;
-                    swPart.Parameter("D2@Sketch1").SystemValue = item.ExHeight / 1000m;
+                    swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength + 50d) / 1000d;
+                    swPart.Parameter("D2@Sketch1").SystemValue = item.ExHeight / 1000d;
                 }
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0008-1"));
-                if (item.ExHeight == 100m)
+                if (item.ExHeight == 100d)
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 else
                 {
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2(); //打开零件3
-                    swPart.Parameter("D2@基体-法兰1").SystemValue = item.ExWidth / 1000m;
-                    swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000m;
+                    swPart.Parameter("D2@基体-法兰1").SystemValue = item.ExWidth / 1000d;
+                    swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000d;
                 }
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0009-1"));
-                if (item.ExHeight == 100m)
+                if (item.ExHeight == 100d)
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 else
                 {
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swPart = swComp.GetModelDoc2(); //打开零件3
-                    swPart.Parameter("D2@基体-法兰1").SystemValue = item.ExWidth / 1000m;
-                    swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000m;
+                    swPart.Parameter("D2@基体-法兰1").SystemValue = item.ExWidth / 1000d;
+                    swPart.Parameter("D3@草图1").SystemValue = item.ExHeight / 1000d;
                 }
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900100001-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 100) / 1000m;
+                swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 100) / 1000d;
 
 
 

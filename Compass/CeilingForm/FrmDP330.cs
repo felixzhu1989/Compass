@@ -133,7 +133,7 @@ namespace Compass
             #region 数据验证
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 90m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 90d)
             {
                 MessageBox.Show("请认真检查DP腔长度", "提示信息");
                 txtLength.Focus();
@@ -191,7 +191,7 @@ namespace Compass
             }
             if (cobGutterSide.SelectedIndex != 2)
             {
-                if (!DataValidate.IsDecimal(txtGutterWidth.Text.Trim()) || Convert.ToDecimal(txtGutterWidth.Text.Trim()) < 30m)
+                if (!DataValidate.IsDouble(txtGutterWidth.Text.Trim()) || Convert.ToDouble(txtGutterWidth.Text.Trim()) < 30d)
                 {
                     MessageBox.Show("请认真检查ANSUL腔的宽度", "提示信息");
                     txtGutterWidth.Focus();
@@ -213,12 +213,12 @@ namespace Compass
                 LKSide = cobLKSide.Text,
                 GutterSide = cobGutterSide.Text,
 
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
-                LeftDis = Convert.ToDecimal(txtLeftDis.Text.Trim()),
-                RightDis = Convert.ToDecimal(txtRightDis.Text.Trim()),
-                LeftBeamDis = Convert.ToDecimal(txtLeftBeamDis.Text.Trim()),
-                RightBeamDis = Convert.ToDecimal(txtRightBeamDis.Text.Trim()),
-                GutterWidth = Convert.ToDecimal(txtGutterWidth.Text.Trim())
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
+                LeftDis = Convert.ToDouble(txtLeftDis.Text.Trim()),
+                RightDis = Convert.ToDouble(txtRightDis.Text.Trim()),
+                LeftBeamDis = Convert.ToDouble(txtLeftBeamDis.Text.Trim()),
+                RightBeamDis = Convert.ToDouble(txtRightBeamDis.Text.Trim()),
+                GutterWidth = Convert.ToDouble(txtGutterWidth.Text.Trim())
             };
             //提交修改
             try

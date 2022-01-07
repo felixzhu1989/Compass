@@ -59,11 +59,11 @@ namespace DAL
                     BF200Id = Convert.ToInt32(objReader["BF200Id"]),
                     ModuleTreeId = Convert.ToInt32(objReader["ModuleTreeId"]),
                     //最好不要用=null去判断，提示类型转换错误
-                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Length"]),
-                    LeftLength = objReader["LeftLength"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["LeftLength"]),
-                    RightLength = objReader["RightLength"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["RightLength"]),
-                    MPanelLength = objReader["MPanelLength"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["MPanelLength"]),
-                    WPanelLength = objReader["WPanelLength"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["WPanelLength"]),
+                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["Length"]),
+                    LeftLength = objReader["LeftLength"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["LeftLength"]),
+                    RightLength = objReader["RightLength"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["RightLength"]),
+                    MPanelLength = objReader["MPanelLength"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["MPanelLength"]),
+                    WPanelLength = objReader["WPanelLength"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["WPanelLength"]),
                     MPanelNo = objReader["MPanelNo"].ToString().Length == 0 ? 0 : Convert.ToInt32(objReader["MPanelNo"]),
                     UVType = objReader["UVType"].ToString().Length == 0 ? "" : objReader["UVType"].ToString()
                 };

@@ -491,7 +491,11 @@ namespace Compass
             if (dgvProjectTracking.RowCount == 0) return;
             if (dgvProjectTracking.CurrentRow == null) return;
             string odpNo = dgvProjectTracking.CurrentRow.Cells["ODPNo"].Value.ToString();
-            SingletonObject.GetSingleton.FrmPi?.ShowWithOdpNo(odpNo);
+            FrmProjectInfo form = FrmProjectInfo.GetInstance();
+            form.WindowState = FormWindowState.Maximized;
+            form.HandlerOdpNo(odpNo);
+            form.Show();
+            form.Focus();
         }
     }
 }

@@ -92,21 +92,21 @@ namespace Compass
         {
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 100m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 100d)
             {
                 MessageBox.Show("请认真检查灯腔侧板总长", "提示信息");
                 txtLength.Focus();
                 txtLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtLeftLength.Text.Trim()) || Convert.ToDecimal(txtLeftLength.Text.Trim()) < 20m)
+            if (!DataValidate.IsDouble(txtLeftLength.Text.Trim()) || Convert.ToDouble(txtLeftLength.Text.Trim()) < 20d)
             {
                 MessageBox.Show("请认真检查左灯腔侧板长度", "提示信息");
                 txtLeftLength.Focus();
                 txtLeftLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtRightLength.Text.Trim()) || Convert.ToDecimal(txtRightLength.Text.Trim()) < 20m)
+            if (!DataValidate.IsDouble(txtRightLength.Text.Trim()) || Convert.ToDouble(txtRightLength.Text.Trim()) < 20d)
             {
                 MessageBox.Show("请认真检查右灯腔侧板长度", "提示信息");
                 txtRightLength.Focus();
@@ -130,11 +130,11 @@ namespace Compass
             {
                 LLKSJId = Convert.ToInt32(modelView.Tag),
 
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
                 LongGlassNo = Convert.ToInt32(cobLongGlassNo.Text.Trim()),
                 ShortGlassNo = Convert.ToInt32(cobShortGlassNo.Text.Trim()),
-                LeftLength = Convert.ToDecimal(txtLeftLength.Text.Trim()),
-                RightLength = Convert.ToDecimal(txtRightLength.Text.Trim())
+                LeftLength = Convert.ToDouble(txtLeftLength.Text.Trim()),
+                RightLength = Convert.ToDouble(txtRightLength.Text.Trim())
             };
             //提交修改
             try

@@ -32,7 +32,7 @@ namespace Compass
         private SldWorks _swApp;
         private readonly string _sbu = Program.ObjCurrentUser.SBU;
 
-        public FrmMarineAutoDrawing()
+        private FrmMarineAutoDrawing()
         {
             InitializeComponent();
             dgvWaitingList.AutoGenerateColumns = false;
@@ -49,27 +49,25 @@ namespace Compass
             cobODPNo.SelectedIndex = -1;
             cobODPNo.SelectedIndexChanged += new EventHandler(CobODPNo_SelectedIndexChanged);
         }
-
-
-        #region 单例模式，重写关闭方法，显示时选择ODP号
-        protected override void OnClosing(CancelEventArgs e)
+        #region 单例模式
+        private static FrmMarineAutoDrawing instance;
+        public static FrmMarineAutoDrawing GetInstance()
         {
-            Hide();
-            e.Cancel = true;
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmMarineAutoDrawing();
+            }
+            return instance;
         }
-        public void ShowWithOdpNo(string odpNo)
+        public void HandlerOdpNo(string odpNo)
         {
             if (odpNo.Length != 0) cobODPNo.Text = odpNo;
-            ShowAndFocus();
-        }
-        internal void ShowAndFocus()
-        {
-            Show();
-            WindowState = FormWindowState.Normal;
-            Focus();
         }
         #endregion
-
+        private void BtnIniCobOdpNo_Click(object sender, EventArgs e)
+        {
+            IniCobOdpNo();
+        }
         //public static FrmHoodAutoDrawing GetSingle()
         //{
         //    if (FrmSingle == null || FrmSingle.IsDisposed) FrmSingle = new FrmHoodAutoDrawing();

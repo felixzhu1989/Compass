@@ -8,7 +8,7 @@ using Common;
 
 namespace Compass
 {
-    public partial class FrmCategories : Form
+    public partial class FrmCategories : MetroFramework.Forms.MetroForm
     {
         private readonly CategoryService _objCategoryService = new CategoryService();
         private List<Category> _categoryList = new List<Category>();
@@ -30,7 +30,6 @@ namespace Compass
             }
             return instance;
         }
-
         #endregion
 
 

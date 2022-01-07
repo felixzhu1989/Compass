@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCeilingAccessories));
             this.btnCeilingAccessory = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -53,7 +54,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditCeilingAccessory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteCeilingAccessory = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtCountingRule = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -83,7 +83,7 @@
             this.btnCeilingAccessory.FlatAppearance.BorderSize = 0;
             this.btnCeilingAccessory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCeilingAccessory.ForeColor = System.Drawing.Color.White;
-            this.btnCeilingAccessory.Location = new System.Drawing.Point(788, 37);
+            this.btnCeilingAccessory.Location = new System.Drawing.Point(872, 53);
             this.btnCeilingAccessory.Name = "btnCeilingAccessory";
             this.btnCeilingAccessory.Size = new System.Drawing.Size(150, 28);
             this.btnCeilingAccessory.TabIndex = 11;
@@ -94,7 +94,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 42);
+            this.label2.Location = new System.Drawing.Point(12, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 19);
             this.label2.TabIndex = 27;
@@ -103,7 +103,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(236, 42);
+            this.label7.Location = new System.Drawing.Point(320, 58);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 19);
             this.label7.TabIndex = 28;
@@ -112,7 +112,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 74);
+            this.label5.Location = new System.Drawing.Point(12, 90);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 19);
             this.label5.TabIndex = 29;
@@ -120,14 +120,14 @@
             // 
             // txtPartDescription
             // 
-            this.txtPartDescription.Location = new System.Drawing.Point(80, 39);
+            this.txtPartDescription.Location = new System.Drawing.Point(80, 55);
             this.txtPartDescription.Name = "txtPartDescription";
-            this.txtPartDescription.Size = new System.Drawing.Size(150, 25);
+            this.txtPartDescription.Size = new System.Drawing.Size(234, 25);
             this.txtPartDescription.TabIndex = 0;
             // 
             // txtPartNo
             // 
-            this.txtPartNo.Location = new System.Drawing.Point(304, 39);
+            this.txtPartNo.Location = new System.Drawing.Point(388, 55);
             this.txtPartNo.Name = "txtPartNo";
             this.txtPartNo.Size = new System.Drawing.Size(150, 25);
             this.txtPartNo.TabIndex = 1;
@@ -135,9 +135,9 @@
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(80, 71);
+            this.txtRemark.Location = new System.Drawing.Point(80, 87);
             this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(150, 25);
+            this.txtRemark.Size = new System.Drawing.Size(234, 25);
             this.txtRemark.TabIndex = 5;
             // 
             // dgvCeilingAccessories
@@ -175,11 +175,11 @@
             this.CountingRule});
             this.dgvCeilingAccessories.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvCeilingAccessories.EnableHeadersVisualStyles = false;
-            this.dgvCeilingAccessories.Location = new System.Drawing.Point(10, 102);
+            this.dgvCeilingAccessories.Location = new System.Drawing.Point(10, 118);
             this.dgvCeilingAccessories.Name = "dgvCeilingAccessories";
             this.dgvCeilingAccessories.ReadOnly = true;
             this.dgvCeilingAccessories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCeilingAccessories.Size = new System.Drawing.Size(928, 454);
+            this.dgvCeilingAccessories.Size = new System.Drawing.Size(1013, 419);
             this.dgvCeilingAccessories.TabIndex = 26;
             this.dgvCeilingAccessories.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvCeilingAccessories_RowPostPaint);
             this.dgvCeilingAccessories.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvCeilingAccessories_KeyDown);
@@ -302,21 +302,10 @@
             this.tsmiDeleteCeilingAccessory.Text = "删除配件信息";
             this.tsmiDeleteCeilingAccessory.Click += new System.EventHandler(this.TsmiDeleteCeilingAccessory_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.label1.Location = new System.Drawing.Point(5, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(240, 26);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "天花烟罩发货清单配件管理";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(466, 42);
+            this.label3.Location = new System.Drawing.Point(550, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 19);
             this.label3.TabIndex = 29;
@@ -324,7 +313,7 @@
             // 
             // txtCountingRule
             // 
-            this.txtCountingRule.Location = new System.Drawing.Point(304, 71);
+            this.txtCountingRule.Location = new System.Drawing.Point(388, 87);
             this.txtCountingRule.Name = "txtCountingRule";
             this.txtCountingRule.Size = new System.Drawing.Size(150, 25);
             this.txtCountingRule.TabIndex = 6;
@@ -332,7 +321,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(236, 74);
+            this.label4.Location = new System.Drawing.Point(320, 90);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 19);
             this.label4.TabIndex = 29;
@@ -340,7 +329,7 @@
             // 
             // txtCeilingAccessoryId
             // 
-            this.txtCeilingAccessoryId.Location = new System.Drawing.Point(616, 39);
+            this.txtCeilingAccessoryId.Location = new System.Drawing.Point(700, 55);
             this.txtCeilingAccessoryId.Name = "txtCeilingAccessoryId";
             this.txtCeilingAccessoryId.Size = new System.Drawing.Size(56, 25);
             this.txtCeilingAccessoryId.TabIndex = 3;
@@ -348,7 +337,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(589, 42);
+            this.label6.Location = new System.Drawing.Point(673, 58);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(23, 19);
             this.label6.TabIndex = 29;
@@ -357,7 +346,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(677, 42);
+            this.label8.Location = new System.Drawing.Point(761, 58);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(48, 19);
             this.label8.TabIndex = 29;
@@ -369,7 +358,7 @@
             this.cobClassNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cobClassNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobClassNo.FormattingEnabled = true;
-            this.cobClassNo.Location = new System.Drawing.Point(726, 38);
+            this.cobClassNo.Location = new System.Drawing.Point(810, 54);
             this.cobClassNo.Name = "cobClassNo";
             this.cobClassNo.Size = new System.Drawing.Size(55, 27);
             this.cobClassNo.TabIndex = 4;
@@ -380,14 +369,14 @@
             this.cobUnit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cobUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobUnit.FormattingEnabled = true;
-            this.cobUnit.Location = new System.Drawing.Point(507, 38);
+            this.cobUnit.Location = new System.Drawing.Point(591, 54);
             this.cobUnit.Name = "cobUnit";
             this.cobUnit.Size = new System.Drawing.Size(76, 27);
             this.cobUnit.TabIndex = 2;
             // 
             // txtLength
             // 
-            this.txtLength.Location = new System.Drawing.Point(507, 71);
+            this.txtLength.Location = new System.Drawing.Point(591, 87);
             this.txtLength.Name = "txtLength";
             this.txtLength.Size = new System.Drawing.Size(76, 25);
             this.txtLength.TabIndex = 7;
@@ -395,7 +384,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(466, 74);
+            this.label9.Location = new System.Drawing.Point(550, 90);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(22, 19);
             this.label9.TabIndex = 29;
@@ -403,7 +392,7 @@
             // 
             // txtWidth
             // 
-            this.txtWidth.Location = new System.Drawing.Point(616, 71);
+            this.txtWidth.Location = new System.Drawing.Point(700, 87);
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.Size = new System.Drawing.Size(56, 25);
             this.txtWidth.TabIndex = 8;
@@ -411,7 +400,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(589, 74);
+            this.label10.Location = new System.Drawing.Point(673, 90);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(22, 19);
             this.label10.TabIndex = 29;
@@ -419,7 +408,7 @@
             // 
             // txtHeight
             // 
-            this.txtHeight.Location = new System.Drawing.Point(725, 71);
+            this.txtHeight.Location = new System.Drawing.Point(809, 87);
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.Size = new System.Drawing.Size(56, 25);
             this.txtHeight.TabIndex = 9;
@@ -427,7 +416,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(683, 74);
+            this.label11.Location = new System.Drawing.Point(767, 90);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(22, 19);
             this.label11.TabIndex = 29;
@@ -435,7 +424,7 @@
             // 
             // txtMaterial
             // 
-            this.txtMaterial.Location = new System.Drawing.Point(825, 71);
+            this.txtMaterial.Location = new System.Drawing.Point(909, 87);
             this.txtMaterial.Name = "txtMaterial";
             this.txtMaterial.Size = new System.Drawing.Size(113, 25);
             this.txtMaterial.TabIndex = 10;
@@ -443,7 +432,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(784, 74);
+            this.label12.Location = new System.Drawing.Point(868, 90);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(35, 19);
             this.label12.TabIndex = 29;
@@ -453,7 +442,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(251, 4);
+            this.label13.Location = new System.Drawing.Point(335, 20);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(543, 19);
             this.label13.TabIndex = 29;
@@ -463,7 +452,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label14.Location = new System.Drawing.Point(251, 20);
+            this.label14.Location = new System.Drawing.Point(335, 36);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(634, 19);
             this.label14.TabIndex = 29;
@@ -473,7 +462,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.Color.ForestGreen;
-            this.label15.Location = new System.Drawing.Point(821, 4);
+            this.label15.Location = new System.Drawing.Point(905, 20);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(120, 19);
             this.label15.TabIndex = 29;
@@ -482,8 +471,7 @@
             // FrmCeilingAccessories
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(950, 568);
+            this.ClientSize = new System.Drawing.Size(1035, 568);
             this.Controls.Add(this.txtMaterial);
             this.Controls.Add(this.cobUnit);
             this.Controls.Add(this.cobClassNo);
@@ -511,11 +499,10 @@
             this.Controls.Add(this.txtCountingRule);
             this.Controls.Add(this.txtRemark);
             this.Controls.Add(this.dgvCeilingAccessories);
-            this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmCeilingAccessories";
-            this.Text = "FrmCeilingAccessories";
+            this.Text = "天花烟罩发货清单配件管理";
             ((System.ComponentModel.ISupportInitialize)(this.dgvCeilingAccessories)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -533,7 +520,6 @@
         private System.Windows.Forms.TextBox txtPartNo;
         private System.Windows.Forms.TextBox txtRemark;
         private System.Windows.Forms.DataGridView dgvCeilingAccessories;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtCountingRule;
         private System.Windows.Forms.Label label4;

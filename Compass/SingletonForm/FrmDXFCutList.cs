@@ -7,7 +7,7 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmDxfCutList : Form
+    public partial class FrmDxfCutList : MetroFramework.Forms.MetroForm
     {
         private List<DXFCutList> _dxfCutList = null;//用来保存导入的cutlist对象
         private readonly ImportDataFormExcel _objImportDataFormExcel = new ImportDataFormExcel();
@@ -15,7 +15,8 @@ namespace Compass
         private readonly CategoryService _objCategoryService = new CategoryService();
         private readonly string _sbu = Program.ObjCurrentUser.SBU;
 
-        public FrmDxfCutList()
+        #region 单例模式
+        private FrmDxfCutList()
         {
             InitializeComponent();
             dgvDXFCutList.AutoGenerateColumns = false;
@@ -24,6 +25,16 @@ namespace Compass
             btnDXFCutlist.Tag = 0;
             IniCategoryId(cobCategoryId);
         }
+        private static FrmDxfCutList instance;
+        public static FrmDxfCutList GetInstance()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmDxfCutList();
+            }
+            return instance;
+        }
+        #endregion
         /// <summary>
         /// 初始化parentId下拉框
         /// </summary>
@@ -193,9 +204,9 @@ namespace Compass
                 {
                     CategoryId = Convert.ToInt32(cobCategoryId.Text),
                     PartDescription = txtPartDescription.Text.Trim(),
-                    Length = Convert.ToDecimal(txtLength.Text),
-                    Width = Convert.ToDecimal(txtWidth.Text),
-                    Thickness = Convert.ToDecimal(txtThickness.Text),
+                    Length = Convert.ToDouble(txtLength.Text),
+                    Width = Convert.ToDouble(txtWidth.Text),
+                    Thickness = Convert.ToDouble(txtThickness.Text),
                     Quantity = Convert.ToInt32(txtQuantity.Text),
                     Materials = txtMaterials.Text.ToUpper(),
                     PartNo = txtPartNo.Text.ToUpper()
@@ -232,9 +243,9 @@ namespace Compass
                     CutListId = Convert.ToInt32(btnDXFCutlist.Tag),
                     CategoryId = Convert.ToInt32(cobCategoryId.Text),
                     PartDescription = txtPartDescription.Text.Trim(),
-                    Length = Convert.ToDecimal(txtLength.Text),
-                    Width = Convert.ToDecimal(txtWidth.Text),
-                    Thickness = Convert.ToDecimal(txtThickness.Text),
+                    Length = Convert.ToDouble(txtLength.Text),
+                    Width = Convert.ToDouble(txtWidth.Text),
+                    Thickness = Convert.ToDouble(txtThickness.Text),
                     Quantity = Convert.ToInt32(txtQuantity.Text),
                     Materials = txtMaterials.Text.ToUpper(),
                     PartNo = txtPartNo.Text.ToUpper()

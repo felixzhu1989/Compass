@@ -6,11 +6,12 @@ using Models;
 
 namespace Compass
 {
-    public partial class FrmCeilingAccessories : Form
+    public partial class FrmCeilingAccessories : MetroFramework.Forms.MetroForm
     {
         private readonly CeilingAccessoryService _objCeilingAccessoryService = new CeilingAccessoryService();
 
-        public FrmCeilingAccessories()
+        #region 单例模式
+        private FrmCeilingAccessories()
         {
             InitializeComponent();
             btnCeilingAccessory.Tag = 0;//0代表添加，1代表修改
@@ -27,6 +28,16 @@ namespace Compass
             dgvCeilingAccessories.AutoGenerateColumns = false;
             dgvCeilingAccessories.DataSource = _objCeilingAccessoryService.GetCeilingAccessoriesByWhereSql("");
         }
+        private static FrmCeilingAccessories instance;
+        public static FrmCeilingAccessories GetInstance()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmCeilingAccessories();
+            }
+            return instance;
+        }
+        #endregion
 
 
         /// <summary>

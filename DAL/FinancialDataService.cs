@@ -79,7 +79,7 @@ namespace DAL
                 {
                     FinancialDataId = Convert.ToInt32(objReader["FinancialDataId"]),
                     ProjectId = Convert.ToInt32(objReader["ProjectId"]),
-                    SalesValue = Convert.ToDecimal(objReader["SalesValue"])
+                    SalesValue = Convert.ToDouble(objReader["SalesValue"])
                 };
             }
             objReader.Close();

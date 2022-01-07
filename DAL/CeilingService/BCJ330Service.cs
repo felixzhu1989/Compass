@@ -71,8 +71,8 @@ namespace DAL
                     BCJ330Id = Convert.ToInt32(objReader["BCJ330Id"]),
                     ModuleTreeId = Convert.ToInt32(objReader["ModuleTreeId"]),
                     //最好不要用=null去判断，提示类型转换错误
-                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Length"]),
-                    SuDis = objReader["SuDis"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["SuDis"]),
+                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["Length"]),
+                    SuDis = objReader["SuDis"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["SuDis"]),
 
                     SidePanel = objReader["SidePanel"].ToString().Length == 0 ? "" : objReader["SidePanel"].ToString(),
                     SuType = objReader["SuType"].ToString().Length == 0 ? "" : objReader["SuType"].ToString(),

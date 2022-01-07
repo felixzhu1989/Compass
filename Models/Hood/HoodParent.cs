@@ -3,14 +3,14 @@
     public class HoodParent
     {
         //基本尺寸
-        public decimal Length { get; set; }
-        public decimal Deepth { get; set; }
-        public decimal ExRightDis { get; set; }
+        public double Length { get; set; }
+        public double Deepth { get; set; }
+        public double ExRightDis { get; set; }
         public int ExNo { get; set; }
-        public decimal ExDis { get; set; }
-        public decimal ExLength { get; set; }
-        public decimal ExWidth { get; set; }
-        public decimal ExHeight { get; set; }
+        public double ExDis { get; set; }
+        public double ExLength { get; set; }
+        public double ExWidth { get; set; }
+        public double ExHeight { get; set; }
         public string SidePanel { get; set; }
     }
 }

@@ -72,10 +72,10 @@ namespace DAL
                     LKS258HCLId = Convert.ToInt32(objReader["LKS258HCLId"]),
                     ModuleTreeId = Convert.ToInt32(objReader["ModuleTreeId"]),
                     //最好不要用=null去判断，提示类型转换错误
-                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Length"]),
+                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["Length"]),
                     HCLSide = objReader["HCLSide"].ToString().Length == 0 ? "" : objReader["HCLSide"].ToString(),
-                    HCLSideLeft = objReader["HCLSideLeft"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["HCLSideLeft"]),
-                    HCLSideRight = objReader["HCLSideRight"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["HCLSideRight"]),
+                    HCLSideLeft = objReader["HCLSideLeft"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["HCLSideLeft"]),
+                    HCLSideRight = objReader["HCLSideRight"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["HCLSideRight"]),
                 };
             }
             objReader.Close();

@@ -71,8 +71,8 @@ namespace DAL
                     LPZId = Convert.ToInt32(objReader["LPZId"]),
                     ModuleTreeId = Convert.ToInt32(objReader["ModuleTreeId"]),
                     //最好不要用=null去判断，提示类型转换错误
-                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Length"]),
-                    Width = objReader["Width"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Width"]),
+                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["Length"]),
+                    Width = objReader["Width"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["Width"]),
                     ZPanelNo = objReader["ZPanelNo"].ToString().Length == 0 ? 0 : Convert.ToInt32(objReader["ZPanelNo"]),
                     LightType = objReader["LightType"].ToString().Length == 0 ? "" : objReader["LightType"].ToString()
 

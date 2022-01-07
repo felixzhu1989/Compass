@@ -127,35 +127,35 @@ namespace Compass
             #region 数据验证
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 90m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 90d)
             {
                 MessageBox.Show("请认真检查CJ腔长度", "提示信息");
                 txtLength.Focus();
                 txtLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtWidth.Text.Trim()) || Convert.ToDecimal(txtWidth.Text.Trim()) < 30m)
+            if (!DataValidate.IsDouble(txtWidth.Text.Trim()) || Convert.ToDouble(txtWidth.Text.Trim()) < 30d)
             {
                 MessageBox.Show("请认真检查CJ腔宽度", "提示信息");
                 txtWidth.Focus();
                 txtWidth.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtHeight.Text.Trim()) || Convert.ToDecimal(txtHeight.Text.Trim()) < 30m)
+            if (!DataValidate.IsDouble(txtHeight.Text.Trim()) || Convert.ToDouble(txtHeight.Text.Trim()) < 30d)
             {
                 MessageBox.Show("请认真检查CJ腔高度", "提示信息");
                 txtHeight.Focus();
                 txtHeight.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtTopBend.Text.Trim()) || Convert.ToDecimal(txtTopBend.Text.Trim()) < 7m)
+            if (!DataValidate.IsDouble(txtTopBend.Text.Trim()) || Convert.ToDouble(txtTopBend.Text.Trim()) < 7d)
             {
                 MessageBox.Show("请认真检查CJ腔顶部翻边", "提示信息");
                 txtTopBend.Focus();
                 txtTopBend.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtBackBend.Text.Trim()) || Convert.ToDecimal(txtBackBend.Text.Trim()) < 20m)
+            if (!DataValidate.IsDouble(txtBackBend.Text.Trim()) || Convert.ToDouble(txtBackBend.Text.Trim()) < 20d)
             {
                 MessageBox.Show("请认真检查CJ腔背部翻边", "提示信息");
                 txtBackBend.Focus();
@@ -203,7 +203,7 @@ namespace Compass
             }
             if (cobGutterSide.SelectedIndex != 2)
             {
-                if (!DataValidate.IsDecimal(txtGutterWidth.Text.Trim()) || Convert.ToDecimal(txtGutterWidth.Text.Trim()) < 30m)
+                if (!DataValidate.IsDouble(txtGutterWidth.Text.Trim()) || Convert.ToDouble(txtGutterWidth.Text.Trim()) < 30d)
                 {
                     MessageBox.Show("请认真检查ANSUL腔的宽度", "提示信息");
                     txtGutterWidth.Focus();
@@ -223,16 +223,16 @@ namespace Compass
                 LKSide = cobLKSide.Text,
                 GutterSide = cobGutterSide.Text,
 
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
-                Width = Convert.ToDecimal(txtWidth.Text.Trim()),
-                Height = Convert.ToDecimal(txtHeight.Text.Trim()),
-                TopBend = Convert.ToDecimal(txtTopBend.Text.Trim()),
-                BackBend = Convert.ToDecimal(txtBackBend.Text.Trim()),
-                LeftDis = Convert.ToDecimal(txtLeftDis.Text.Trim()),
-                RightDis = Convert.ToDecimal(txtRightDis.Text.Trim()),
-                LeftBeamDis = Convert.ToDecimal(txtLeftBeamDis.Text.Trim()),
-                RightBeamDis = Convert.ToDecimal(txtRightBeamDis.Text.Trim()),
-                GutterWidth = Convert.ToDecimal(txtGutterWidth.Text.Trim())
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
+                Width = Convert.ToDouble(txtWidth.Text.Trim()),
+                Height = Convert.ToDouble(txtHeight.Text.Trim()),
+                TopBend = Convert.ToDouble(txtTopBend.Text.Trim()),
+                BackBend = Convert.ToDouble(txtBackBend.Text.Trim()),
+                LeftDis = Convert.ToDouble(txtLeftDis.Text.Trim()),
+                RightDis = Convert.ToDouble(txtRightDis.Text.Trim()),
+                LeftBeamDis = Convert.ToDouble(txtLeftBeamDis.Text.Trim()),
+                RightBeamDis = Convert.ToDouble(txtRightBeamDis.Text.Trim()),
+                GutterWidth = Convert.ToDouble(txtGutterWidth.Text.Trim())
             };
             //提交修改
             try

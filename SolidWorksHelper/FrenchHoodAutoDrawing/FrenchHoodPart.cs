@@ -62,7 +62,7 @@ namespace SolidWorksHelper
             ModelDoc2 swPart = swComp.GetModelDoc2();//打开零件3
             swPart.ChangeDim("D2@Base-Flange1", length - 1d);
             //铆钉孔
-            swPart.ChangeDim("D1@LPattern1", backRivetNum); //D1阵列数量,D3阵列距离
+            swPart.ChangeDim("D1@LPattern1", backRivetNum); 
             swPart.ChangeDim("D5@Sketch31", backRivetSideDis - 1d);
             //UVHood,UVRack-UV灯架孔和UV cable-UV灯线缆穿孔
             if (UVType == "NO")

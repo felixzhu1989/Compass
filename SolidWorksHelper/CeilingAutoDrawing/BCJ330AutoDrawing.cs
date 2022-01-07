@@ -40,14 +40,14 @@ namespace SolidWorksHelper
             int warnings = 0;
             int errors = 0;
             suffix = "_" + suffix;//后缀
-            ModelDoc2 swModel = default(ModelDoc2);
-            ModelDoc2 swPart = default(ModelDoc2);
-            AssemblyDoc swAssy = default(AssemblyDoc);
+            ModelDoc2 swModel;
+            ModelDoc2 swPart;
+            AssemblyDoc swAssy;
             Component2 swComp;
            
-           ModelDocExtension swModelDocExt = default(ModelDocExtension);
-            bool status = false;
-            string compReName = string.Empty;
+           ModelDocExtension swModelDocExt;
+            bool status;
+            string compReName;
             //打开Pack后的模型
             swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
                 (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
@@ -57,17 +57,17 @@ namespace SolidWorksHelper
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true);
             //TopOnly参数设置成true，只重建顶层，不重建零件内部
-            /*注意SolidWorks单位是m，计算是应当/1000m
-             * 整形与整形运算得出的结果仍然时整形，1640 / 1000m结果为0，因此必须将其中一个转化成decimal型，使用后缀m就可以了
+            /*注意SolidWorks单位是m，计算是应当/1000d
+             * 整形与整形运算得出的结果仍然时整形，1640 / 1000d结果为0，因此必须将其中一个转化成double型，使用后缀m就可以了
              * (int)不进行四舍五入，Convert.ToInt32会四舍五入
             */
             //-----------计算中间值，----------
-            int cjNo = (int)((item.Length - 40m) / 30m);//天花烟罩马蹄形CJ孔阵列距离为30
-            decimal firstCjDis = (item.Length - 30m * cjNo) / 2;
-            if (firstCjDis < 15m)
+            int cjNo = (int)((item.Length - 40d) / 30d);//天花烟罩马蹄形CJ孔阵列距离为30
+            double firstCjDis = (item.Length - 30d * cjNo) / 2;
+            if (firstCjDis < 15d)
             {
                 cjNo--;
-                firstCjDis += 15m;
+                firstCjDis += 15d;
             }
 
 
@@ -148,15 +148,15 @@ namespace SolidWorksHelper
                 {
                     swComp = swAssy.GetComponentByName(compReName + "-1");
                     swPart = swComp.GetModelDoc2(); //打开零件
-                    swPart.Parameter("D2@Skizze1").SystemValue = item.Length / 1000m;
+                    swPart.Parameter("D2@Skizze1").SystemValue = item.Length / 1000d;
                     swPart.Parameter("D1@LPattern1").SystemValue = cjNo + 1;
-                    swPart.Parameter("D3@Skizze17").SystemValue = firstCjDis / 1000m;
-                    swPart.Parameter("D4@Skizze16").SystemValue = item.SuDis / 1000m;
+                    swPart.Parameter("D3@Skizze17").SystemValue = firstCjDis / 1000d;
+                    swPart.Parameter("D4@Skizze16").SystemValue = item.SuDis / 1000d;
                 }
                 //----------其他零件----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCJ0016-1"));
                 swPart = swComp.GetModelDoc2();//打开零件
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 10m) / 1000m;
+                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 10d) / 1000d;
 
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢

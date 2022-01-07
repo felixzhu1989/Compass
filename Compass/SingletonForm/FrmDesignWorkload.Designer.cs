@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.label1 = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDesignWorkload));
             this.dgvDesignWorkload = new System.Windows.Forms.DataGridView();
             this.WorkloadId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Model = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,17 +62,6 @@
             this.grbEditWorkload.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.label1.Location = new System.Drawing.Point(5, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 26);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "设计工作量表";
-            // 
             // dgvDesignWorkload
             // 
             this.dgvDesignWorkload.AllowUserToAddRows = false;
@@ -100,11 +89,11 @@
             this.ModelDesc});
             this.dgvDesignWorkload.ContextMenuStrip = this.contextMenuStrip;
             this.dgvDesignWorkload.EnableHeadersVisualStyles = false;
-            this.dgvDesignWorkload.Location = new System.Drawing.Point(10, 105);
+            this.dgvDesignWorkload.Location = new System.Drawing.Point(10, 66);
             this.dgvDesignWorkload.Name = "dgvDesignWorkload";
             this.dgvDesignWorkload.ReadOnly = true;
             this.dgvDesignWorkload.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDesignWorkload.Size = new System.Drawing.Size(928, 451);
+            this.dgvDesignWorkload.Size = new System.Drawing.Size(928, 484);
             this.dgvDesignWorkload.TabIndex = 10;
             this.dgvDesignWorkload.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvDesignWorkload_RowPostPaint);
             this.dgvDesignWorkload.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvDesignWorkload_KeyDown);
@@ -165,7 +154,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 42);
+            this.label2.Location = new System.Drawing.Point(231, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 19);
             this.label2.TabIndex = 18;
@@ -174,7 +163,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(236, 43);
+            this.label7.Location = new System.Drawing.Point(455, 31);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 19);
             this.label7.TabIndex = 19;
@@ -183,7 +172,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 76);
+            this.label5.Location = new System.Drawing.Point(591, 31);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 19);
             this.label5.TabIndex = 20;
@@ -191,22 +180,22 @@
             // 
             // txtModel
             // 
-            this.txtModel.Location = new System.Drawing.Point(80, 40);
+            this.txtModel.Location = new System.Drawing.Point(299, 28);
             this.txtModel.Name = "txtModel";
             this.txtModel.Size = new System.Drawing.Size(150, 25);
             this.txtModel.TabIndex = 0;
             // 
             // txtWorkloadValue
             // 
-            this.txtWorkloadValue.Location = new System.Drawing.Point(304, 41);
+            this.txtWorkloadValue.Location = new System.Drawing.Point(523, 28);
             this.txtWorkloadValue.Name = "txtWorkloadValue";
-            this.txtWorkloadValue.Size = new System.Drawing.Size(150, 25);
+            this.txtWorkloadValue.Size = new System.Drawing.Size(62, 25);
             this.txtWorkloadValue.TabIndex = 2;
             this.txtWorkloadValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtWorkloadValue_KeyDown);
             // 
             // txtModelDesc
             // 
-            this.txtModelDesc.Location = new System.Drawing.Point(80, 74);
+            this.txtModelDesc.Location = new System.Drawing.Point(659, 28);
             this.txtModelDesc.Name = "txtModelDesc";
             this.txtModelDesc.Size = new System.Drawing.Size(150, 25);
             this.txtModelDesc.TabIndex = 1;
@@ -217,9 +206,9 @@
             this.btnAddWorkload.FlatAppearance.BorderSize = 0;
             this.btnAddWorkload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddWorkload.ForeColor = System.Drawing.Color.White;
-            this.btnAddWorkload.Location = new System.Drawing.Point(304, 72);
+            this.btnAddWorkload.Location = new System.Drawing.Point(829, 26);
             this.btnAddWorkload.Name = "btnAddWorkload";
-            this.btnAddWorkload.Size = new System.Drawing.Size(150, 28);
+            this.btnAddWorkload.Size = new System.Drawing.Size(109, 28);
             this.btnAddWorkload.TabIndex = 3;
             this.btnAddWorkload.Text = "添加工作量";
             this.btnAddWorkload.UseVisualStyleBackColor = false;
@@ -238,9 +227,9 @@
             this.grbEditWorkload.Controls.Add(this.txtEditWorkloadId);
             this.grbEditWorkload.Controls.Add(this.txtEditWorkloadValue);
             this.grbEditWorkload.Controls.Add(this.txtEditModelDesc);
-            this.grbEditWorkload.Location = new System.Drawing.Point(10, 465);
+            this.grbEditWorkload.Location = new System.Drawing.Point(10, 486);
             this.grbEditWorkload.Name = "grbEditWorkload";
-            this.grbEditWorkload.Size = new System.Drawing.Size(928, 91);
+            this.grbEditWorkload.Size = new System.Drawing.Size(928, 70);
             this.grbEditWorkload.TabIndex = 4;
             this.grbEditWorkload.TabStop = false;
             this.grbEditWorkload.Text = "修改工作量";
@@ -251,9 +240,9 @@
             this.btnEditWorkload.FlatAppearance.BorderSize = 0;
             this.btnEditWorkload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditWorkload.ForeColor = System.Drawing.Color.White;
-            this.btnEditWorkload.Location = new System.Drawing.Point(298, 56);
+            this.btnEditWorkload.Location = new System.Drawing.Point(809, 29);
             this.btnEditWorkload.Name = "btnEditWorkload";
-            this.btnEditWorkload.Size = new System.Drawing.Size(150, 28);
+            this.btnEditWorkload.Size = new System.Drawing.Size(94, 28);
             this.btnEditWorkload.TabIndex = 3;
             this.btnEditWorkload.Text = "修改工作量";
             this.btnEditWorkload.UseVisualStyleBackColor = false;
@@ -262,7 +251,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 26);
+            this.label3.Location = new System.Drawing.Point(107, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 19);
             this.label3.TabIndex = 25;
@@ -271,16 +260,16 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(471, 28);
+            this.label8.Location = new System.Drawing.Point(13, 34);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(62, 19);
+            this.label8.Size = new System.Drawing.Size(23, 19);
             this.label8.TabIndex = 26;
-            this.label8.Text = "工作量ID";
+            this.label8.Text = "ID";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(230, 27);
+            this.label4.Location = new System.Drawing.Point(331, 34);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 19);
             this.label4.TabIndex = 26;
@@ -289,7 +278,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 60);
+            this.label6.Location = new System.Drawing.Point(555, 34);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 19);
             this.label6.TabIndex = 27;
@@ -297,22 +286,22 @@
             // 
             // txtEditModel
             // 
-            this.txtEditModel.Location = new System.Drawing.Point(74, 24);
+            this.txtEditModel.Location = new System.Drawing.Point(175, 31);
             this.txtEditModel.Name = "txtEditModel";
             this.txtEditModel.Size = new System.Drawing.Size(150, 25);
             this.txtEditModel.TabIndex = 0;
             // 
             // txtEditWorkloadId
             // 
-            this.txtEditWorkloadId.Location = new System.Drawing.Point(548, 26);
+            this.txtEditWorkloadId.Location = new System.Drawing.Point(42, 31);
             this.txtEditWorkloadId.Name = "txtEditWorkloadId";
             this.txtEditWorkloadId.ReadOnly = true;
-            this.txtEditWorkloadId.Size = new System.Drawing.Size(150, 25);
+            this.txtEditWorkloadId.Size = new System.Drawing.Size(56, 25);
             this.txtEditWorkloadId.TabIndex = 2;
             // 
             // txtEditWorkloadValue
             // 
-            this.txtEditWorkloadValue.Location = new System.Drawing.Point(298, 25);
+            this.txtEditWorkloadValue.Location = new System.Drawing.Point(399, 31);
             this.txtEditWorkloadValue.Name = "txtEditWorkloadValue";
             this.txtEditWorkloadValue.Size = new System.Drawing.Size(150, 25);
             this.txtEditWorkloadValue.TabIndex = 2;
@@ -320,7 +309,7 @@
             // 
             // txtEditModelDesc
             // 
-            this.txtEditModelDesc.Location = new System.Drawing.Point(74, 58);
+            this.txtEditModelDesc.Location = new System.Drawing.Point(623, 31);
             this.txtEditModelDesc.Name = "txtEditModelDesc";
             this.txtEditModelDesc.Size = new System.Drawing.Size(150, 25);
             this.txtEditModelDesc.TabIndex = 1;
@@ -328,7 +317,6 @@
             // FrmDesignWorkload
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(950, 568);
             this.Controls.Add(this.grbEditWorkload);
             this.Controls.Add(this.btnAddWorkload);
@@ -339,11 +327,10 @@
             this.Controls.Add(this.txtWorkloadValue);
             this.Controls.Add(this.txtModelDesc);
             this.Controls.Add(this.dgvDesignWorkload);
-            this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmDesignWorkload";
-            this.Text = "FrmDesignWorkload";
+            this.Text = "设计工作量表管理";
             ((System.ComponentModel.ISupportInitialize)(this.dgvDesignWorkload)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
             this.grbEditWorkload.ResumeLayout(false);
@@ -354,8 +341,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvDesignWorkload;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;

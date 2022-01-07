@@ -56,7 +56,7 @@ namespace Compass
             #region 数据验证
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 200m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 200d)
             {
                 MessageBox.Show("请认真检查散流器长度", "提示信息");
                 txtLength.Focus();
@@ -70,7 +70,7 @@ namespace Compass
                 cobSuNo.Focus();
                 return;
             }
-            else if (cobSuNo.SelectedIndex > 0 && (!DataValidate.IsDecimal(txtSuDis.Text.Trim()) || Convert.ToDecimal(txtSuDis.Text.Trim()) < 250m))
+            else if (cobSuNo.SelectedIndex > 0 && (!DataValidate.IsDouble(txtSuDis.Text.Trim()) || Convert.ToDouble(txtSuDis.Text.Trim()) < 250d))
             {
                 MessageBox.Show("请认真检查均流桶间距", "提示信息");
                 txtSuDis.Focus();
@@ -84,8 +84,8 @@ namespace Compass
             {
                 LSDOSTId = Convert.ToInt32(modelView.Tag),
                 SuNo = Convert.ToInt32(cobSuNo.Text),
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
-                SuDis = Convert.ToDecimal(txtSuDis.Text.Trim())
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
+                SuDis = Convert.ToDouble(txtSuDis.Text.Trim())
             };
             //提交修改
             try

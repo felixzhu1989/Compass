@@ -69,9 +69,9 @@ namespace DAL
                 list.Add(new DXFCutList()
                 {
                     PartDescription = row["Part Description"].ToString(),
-                    Length =Convert.ToDecimal(row["Length"]),
-                    Width = Convert.ToDecimal(row["Width"]),
-                    Thickness = Convert.ToDecimal(row["Thickness MM"]),
+                    Length =Convert.ToDouble(row["Length"]),
+                    Width = Convert.ToDouble(row["Width"]),
+                    Thickness = Convert.ToDouble(row["Thickness MM"]),
                     Quantity = Convert.ToInt32(row["QUANTITY"]),
                     Materials = row["Material"].ToString(),
                     PartNo = row["Part No"].ToString()

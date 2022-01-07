@@ -90,7 +90,7 @@ namespace Compass
         {
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 200m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 200d)
             {
                 MessageBox.Show("请认真检查灯腔侧板总长", "提示信息");
                 txtLength.Focus();
@@ -114,7 +114,7 @@ namespace Compass
             {
                 LLKSId = Convert.ToInt32(modelView.Tag),
 
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
                 LongGlassNo = Convert.ToInt32(cobLongGlassNo.Text.Trim()),
                 ShortGlassNo = Convert.ToInt32(cobShortGlassNo.Text.Trim())
             };

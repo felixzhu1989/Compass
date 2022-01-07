@@ -67,6 +67,7 @@
             this.txtProjectName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.BtnIniCobOdpNo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWaitingList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExecList)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -77,7 +78,7 @@
             this.cobODPNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cobODPNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cobODPNo.FormattingEnabled = true;
-            this.cobODPNo.Location = new System.Drawing.Point(295, 17);
+            this.cobODPNo.Location = new System.Drawing.Point(398, 28);
             this.cobODPNo.Name = "cobODPNo";
             this.cobODPNo.Size = new System.Drawing.Size(108, 27);
             this.cobODPNo.TabIndex = 44;
@@ -99,7 +100,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(408, 21);
+            this.label2.Location = new System.Drawing.Point(511, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 19);
             this.label2.TabIndex = 41;
@@ -107,7 +108,7 @@
             // 
             // txtBPONo
             // 
-            this.txtBPONo.Location = new System.Drawing.Point(474, 18);
+            this.txtBPONo.Location = new System.Drawing.Point(577, 29);
             this.txtBPONo.Name = "txtBPONo";
             this.txtBPONo.ReadOnly = true;
             this.txtBPONo.Size = new System.Drawing.Size(108, 25);
@@ -116,7 +117,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(230, 21);
+            this.label3.Location = new System.Drawing.Point(333, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 19);
             this.label3.TabIndex = 42;
@@ -413,16 +414,16 @@
             // 
             // txtProjectName
             // 
-            this.txtProjectName.Location = new System.Drawing.Point(654, 18);
+            this.txtProjectName.Location = new System.Drawing.Point(757, 29);
             this.txtProjectName.Name = "txtProjectName";
             this.txtProjectName.ReadOnly = true;
-            this.txtProjectName.Size = new System.Drawing.Size(378, 25);
+            this.txtProjectName.Size = new System.Drawing.Size(420, 25);
             this.txtProjectName.TabIndex = 40;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(588, 21);
+            this.label5.Location = new System.Drawing.Point(691, 32);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 19);
             this.label5.TabIndex = 41;
@@ -432,16 +433,31 @@
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label6.Location = new System.Drawing.Point(230, 42);
+            this.label6.Location = new System.Drawing.Point(333, 8);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(204, 19);
             this.label6.TabIndex = 46;
             this.label6.Text = "请确保这里有数据后执行下列操作";
             // 
+            // BtnIniCobOdpNo
+            // 
+            this.BtnIniCobOdpNo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.BtnIniCobOdpNo.FlatAppearance.BorderSize = 0;
+            this.BtnIniCobOdpNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnIniCobOdpNo.ForeColor = System.Drawing.Color.White;
+            this.BtnIniCobOdpNo.Location = new System.Drawing.Point(247, 28);
+            this.BtnIniCobOdpNo.Name = "BtnIniCobOdpNo";
+            this.BtnIniCobOdpNo.Size = new System.Drawing.Size(80, 27);
+            this.BtnIniCobOdpNo.TabIndex = 57;
+            this.BtnIniCobOdpNo.Text = "更新编号";
+            this.BtnIniCobOdpNo.UseVisualStyleBackColor = false;
+            this.BtnIniCobOdpNo.Click += new System.EventHandler(this.BtnIniCobOdpNo_Click);
+            // 
             // FrmHoodAutoDrawing
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.BtnIniCobOdpNo);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
@@ -513,5 +529,6 @@
         private System.Windows.Forms.TextBox txtProjectName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button BtnIniCobOdpNo;
     }
 }

@@ -660,7 +660,7 @@ namespace DAL
                     ModuleNo = Convert.ToInt32(objReader["ModuleNo"]),
                     DrReleaseTarget = Convert.ToDateTime(objReader["DrReleaseTarget"]),
                     DrReleaseActual = objReader["DrReleaseActual"].ToString().Length == 0 ? Convert.ToDateTime("1/1/0001") : Convert.ToDateTime(objReader["DrReleaseActual"]),
-                    SubTotalWorkload = Convert.ToDecimal(objReader["SubTotalWorkload"]),
+                    SubTotalWorkload = Convert.ToDouble(objReader["SubTotalWorkload"]),
                     AddedDate = Convert.ToDateTime(objReader["AddedDate"]),
                     RemainingDays = (Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(DateTime.Now).Days) < 0 ?
                         0 : (int)Convert.ToDateTime(objReader["DrReleaseTarget"]).Subtract(DateTime.Today).Days,
@@ -701,7 +701,7 @@ namespace DAL
                     Model = objReader["Model"].ToString(),
                     ModuleNo = Convert.ToInt32(objReader["ModuleNo"]),
                     DrReleaseTarget = Convert.ToDateTime(objReader["DrReleaseTarget"]),
-                    SubTotalWorkload = Convert.ToDecimal(objReader["SubTotalWorkload"]),
+                    SubTotalWorkload = Convert.ToDouble(objReader["SubTotalWorkload"]),
                     AddedDate = Convert.ToDateTime(objReader["AddedDate"])
                 };
             }

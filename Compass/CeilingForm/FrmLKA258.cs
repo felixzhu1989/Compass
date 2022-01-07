@@ -55,7 +55,7 @@ namespace Compass
             #region 数据验证
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 100m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 100d)
             {
                 MessageBox.Show("请认真检查灯腔长度", "提示信息");
                 txtLength.Focus();
@@ -86,7 +86,7 @@ namespace Compass
 
                 LightType = cobLightType.Text,
                 Japan = cobJapan.Text,
-                Length = Convert.ToDecimal(txtLength.Text.Trim())
+                Length = Convert.ToDouble(txtLength.Text.Trim())
             };
             //提交修改
             try

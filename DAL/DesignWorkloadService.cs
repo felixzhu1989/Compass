@@ -22,7 +22,7 @@ namespace DAL
                 {
                     WorkloadId = Convert.ToInt32(objReader["WorkloadId"]),
                     Model = objReader["Model"].ToString(),
-                    WorkloadValue = Convert.ToDecimal(objReader["WorkloadValue"]),
+                    WorkloadValue = Convert.ToDouble(objReader["WorkloadValue"]),
                     ModelDesc = objReader["ModelDesc"].ToString()
                 });
             }
@@ -70,7 +70,7 @@ namespace DAL
                 {
                     WorkloadId = Convert.ToInt32(objReader["WorkloadId"]),
                     Model = objReader["Model"].ToString(),
-                    WorkloadValue = Convert.ToDecimal(objReader["WorkloadValue"]),
+                    WorkloadValue = Convert.ToDouble(objReader["WorkloadValue"]),
                     ModelDesc = objReader["ModelDesc"].ToString()
                 };
             }

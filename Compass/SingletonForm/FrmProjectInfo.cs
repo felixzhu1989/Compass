@@ -30,7 +30,7 @@ namespace Compass
         private readonly KeyValuePair _pair = new KeyValuePair();
         private DataTable _dt;
         private readonly StringBuilder _showText = new StringBuilder();
-        public FrmProjectInfo()
+        private FrmProjectInfo()
         {
             InitializeComponent();
             //初始化年月下拉框
@@ -80,28 +80,28 @@ namespace Compass
             //初始化后关联事件委托
             cobODPNo.SelectedIndexChanged += new EventHandler(CobODPNo_SelectedIndexChanged);
         }
-        #region 单例模式，重写关闭方法，显示时选择ODP号
-        protected override void OnClosing(CancelEventArgs e)
+        #region 单例模式
+        private static FrmProjectInfo instance;
+        public static FrmProjectInfo GetInstance()
         {
-            Hide();
-            e.Cancel = true;
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmProjectInfo();
+            }
+            return instance;
         }
-
-        public void ShowWithOdpNo(string odpNo)
+        public void HandlerOdpNo(string odpNo)
         {
             if (odpNo.Length != 0) cobODPNo.Text = odpNo;
             tabControl.SelectTab(0); //选中第一张tab选项卡
             timerScroll.Enabled = false; //关闭循环
             btnScroll.Text = "开始循环";
-            ShowAndFocus();
-        }
-        internal void ShowAndFocus()
-        {
-            Show();
-            WindowState = FormWindowState.Maximized;
-            Focus();
         }
         #endregion
+        private void BtnIniCobOdpNo_Click(object sender, EventArgs e)
+        {
+            IniCobOdpNo();
+        }
 
         /// <summary>
         /// 设置权限
@@ -547,7 +547,7 @@ namespace Compass
             FinancialData objFinancialData = new FinancialData()
             {
                 ProjectId = Convert.ToInt32(cobODPNo.SelectedValue),
-                SalesValue = Convert.ToDecimal(txtSalesValue.Text)
+                SalesValue = Convert.ToDouble(txtSalesValue.Text)
             };
 
             try

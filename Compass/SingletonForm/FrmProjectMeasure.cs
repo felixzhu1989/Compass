@@ -14,7 +14,7 @@ namespace Compass
         private readonly ProjectMeasureService _objProjectMeasureService = new ProjectMeasureService();
         private int _currentYear;
         private int _currentMonth;
-        public FrmProjectMeasure()
+        private FrmProjectMeasure()
         {
             InitializeComponent();
             //初始化年月下拉框
@@ -37,18 +37,15 @@ namespace Compass
             cobYear.SelectedIndexChanged += new EventHandler(CobYear_SelectedIndexChanged);
             IniAllData();
         }
-        #region 单例模式，重写关闭方法
-        protected override void OnClosing(CancelEventArgs e)
+        #region 单例模式
+        private static FrmProjectMeasure instance;
+        public static FrmProjectMeasure GetInstance()
         {
-            Hide();
-            e.Cancel = true;
-        }
-        internal void ShowAndFocus()
-        {
-            IniAllData();
-            Show();
-            WindowState = FormWindowState.Maximized;
-            Focus();
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmProjectMeasure();
+            }
+            return instance;
         }
         //对外更新所有数据
         public void IniAllData()
@@ -58,6 +55,7 @@ namespace Compass
             IniCycleTimeChart();
         }
         #endregion
+
 
         #region 下拉框动作
         private void CobYear_SelectedIndexChanged(object sender, EventArgs e)

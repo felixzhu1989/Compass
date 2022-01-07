@@ -60,7 +60,7 @@ namespace Compass
             #region 数据验证
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 100m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 100d)
             {
                 MessageBox.Show("请认真检查灯腔长度", "提示信息");
                 txtLength.Focus();
@@ -75,14 +75,14 @@ namespace Compass
                 cobHCLSide.Focus();
                 return;
             }
-            if ((cobHCLSide.SelectedIndex == 0 || cobHCLSide.SelectedIndex == 2) && (!DataValidate.IsDecimal(txtHCLSideLeft.Text.Trim()) || Convert.ToDecimal(txtHCLSideLeft.Text.Trim()) < 10m))
+            if ((cobHCLSide.SelectedIndex == 0 || cobHCLSide.SelectedIndex == 2) && (!DataValidate.IsDouble(txtHCLSideLeft.Text.Trim()) || Convert.ToDouble(txtHCLSideLeft.Text.Trim()) < 10d))
             {
                 MessageBox.Show("请认真检查左HCL侧板长度", "提示信息");
                 txtHCLSideLeft.Focus();
                 txtHCLSideLeft.SelectAll();
                 return;
             }
-            if ((cobHCLSide.SelectedIndex == 1 || cobHCLSide.SelectedIndex == 2) && (!DataValidate.IsDecimal(txtHCLSideRight.Text.Trim()) || Convert.ToDecimal(txtHCLSideRight.Text.Trim()) < 10m))
+            if ((cobHCLSide.SelectedIndex == 1 || cobHCLSide.SelectedIndex == 2) && (!DataValidate.IsDouble(txtHCLSideRight.Text.Trim()) || Convert.ToDouble(txtHCLSideRight.Text.Trim()) < 10d))
             {
                 MessageBox.Show("请认真检查右HCL侧板长度", "提示信息");
                 txtHCLSideRight.Focus();
@@ -97,9 +97,9 @@ namespace Compass
             {
                 LKS270HCLId = Convert.ToInt32(modelView.Tag),
                 HCLSide = cobHCLSide.Text,
-                HCLSideLeft = Convert.ToDecimal(txtHCLSideLeft.Text.Trim()),
-                HCLSideRight = Convert.ToDecimal(txtHCLSideRight.Text.Trim()),
-                Length = Convert.ToDecimal(txtLength.Text.Trim())
+                HCLSideLeft = Convert.ToDouble(txtHCLSideLeft.Text.Trim()),
+                HCLSideRight = Convert.ToDouble(txtHCLSideRight.Text.Trim()),
+                Length = Convert.ToDouble(txtLength.Text.Trim())
             };
             //提交修改
             try

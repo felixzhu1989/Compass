@@ -128,11 +128,11 @@ namespace SolidWorksHelper
                                 string val = string.Empty;
                                 string valout = string.Empty;
                                 SubFeat.CustomPropertyManager.Get4("Bounding Box Length", false, out val, out valout);
-                                cutRecord.Length = Convert.ToDecimal(valout);
+                                cutRecord.Length = Convert.ToDouble(valout);
                                 SubFeat.CustomPropertyManager.Get4("Bounding Box Width", false, out val, out valout);
-                                cutRecord.Width = Convert.ToDecimal(valout);
+                                cutRecord.Width = Convert.ToDouble(valout);
                                 SubFeat.CustomPropertyManager.Get4("Sheet Metal Thickness", false, out val, out valout);
-                                cutRecord.Thickness = Convert.ToDecimal(valout);
+                                cutRecord.Thickness = Convert.ToDouble(valout);
                                 SubFeat.CustomPropertyManager.Get4("Material", false, out val, out valout);
                                 cutRecord.Materials = valout;
                                 cutRecord.PartDescription = swPart.CustomInfo["Part Name"];//不用Description了

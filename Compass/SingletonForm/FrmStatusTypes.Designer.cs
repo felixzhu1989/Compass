@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.label1 = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStatusTypes));
             this.dgvProjectStatus = new System.Windows.Forms.DataGridView();
             this.ProjectStatusId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,17 +74,6 @@
             this.grbProjectType.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.label1.Location = new System.Drawing.Point(5, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 26);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "项目状态/类型";
-            // 
             // dgvProjectStatus
             // 
             this.dgvProjectStatus.AllowUserToAddRows = false;
@@ -110,11 +99,11 @@
             this.StatusDesc});
             this.dgvProjectStatus.ContextMenuStrip = this.cmsProjectStatus;
             this.dgvProjectStatus.EnableHeadersVisualStyles = false;
-            this.dgvProjectStatus.Location = new System.Drawing.Point(12, 160);
+            this.dgvProjectStatus.Location = new System.Drawing.Point(12, 185);
             this.dgvProjectStatus.Name = "dgvProjectStatus";
             this.dgvProjectStatus.ReadOnly = true;
             this.dgvProjectStatus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProjectStatus.Size = new System.Drawing.Size(348, 396);
+            this.dgvProjectStatus.Size = new System.Drawing.Size(348, 356);
             this.dgvProjectStatus.TabIndex = 12;
             this.dgvProjectStatus.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjectStatus_CellDoubleClick);
             this.dgvProjectStatus.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjectStatus_RowPostPaint);
@@ -191,11 +180,11 @@
             this.KMLink});
             this.dgvProjectTypes.ContextMenuStrip = this.cmsProjectTypes;
             this.dgvProjectTypes.EnableHeadersVisualStyles = false;
-            this.dgvProjectTypes.Location = new System.Drawing.Point(366, 160);
+            this.dgvProjectTypes.Location = new System.Drawing.Point(366, 185);
             this.dgvProjectTypes.Name = "dgvProjectTypes";
             this.dgvProjectTypes.ReadOnly = true;
             this.dgvProjectTypes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProjectTypes.Size = new System.Drawing.Size(327, 396);
+            this.dgvProjectTypes.Size = new System.Drawing.Size(327, 356);
             this.dgvProjectTypes.TabIndex = 12;
             this.dgvProjectTypes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjectTypes_CellDoubleClick);
             this.dgvProjectTypes.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvProjectTypes_RowPostPaint);
@@ -256,7 +245,7 @@
             this.grbProjectStatus.Controls.Add(this.txtProjectStatusId);
             this.grbProjectStatus.Controls.Add(this.label5);
             this.grbProjectStatus.Controls.Add(this.txtProjectStatusName);
-            this.grbProjectStatus.Location = new System.Drawing.Point(12, 34);
+            this.grbProjectStatus.Location = new System.Drawing.Point(12, 59);
             this.grbProjectStatus.Name = "grbProjectStatus";
             this.grbProjectStatus.Size = new System.Drawing.Size(348, 120);
             this.grbProjectStatus.TabIndex = 0;
@@ -269,7 +258,7 @@
             this.btnAddProjectStatus.FlatAppearance.BorderSize = 0;
             this.btnAddProjectStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddProjectStatus.ForeColor = System.Drawing.Color.White;
-            this.btnAddProjectStatus.Location = new System.Drawing.Point(93, 84);
+            this.btnAddProjectStatus.Location = new System.Drawing.Point(93, 109);
             this.btnAddProjectStatus.Name = "btnAddProjectStatus";
             this.btnAddProjectStatus.Size = new System.Drawing.Size(108, 28);
             this.btnAddProjectStatus.TabIndex = 2;
@@ -283,7 +272,7 @@
             this.btnEditProjectStatus.FlatAppearance.BorderSize = 0;
             this.btnEditProjectStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditProjectStatus.ForeColor = System.Drawing.Color.White;
-            this.btnEditProjectStatus.Location = new System.Drawing.Point(234, 84);
+            this.btnEditProjectStatus.Location = new System.Drawing.Point(234, 109);
             this.btnEditProjectStatus.Name = "btnEditProjectStatus";
             this.btnEditProjectStatus.Size = new System.Drawing.Size(108, 28);
             this.btnEditProjectStatus.TabIndex = 2;
@@ -294,7 +283,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 56);
+            this.label4.Location = new System.Drawing.Point(6, 81);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 19);
             this.label4.TabIndex = 24;
@@ -302,7 +291,7 @@
             // 
             // txtStatusDesc
             // 
-            this.txtStatusDesc.Location = new System.Drawing.Point(93, 53);
+            this.txtStatusDesc.Location = new System.Drawing.Point(93, 78);
             this.txtStatusDesc.Name = "txtStatusDesc";
             this.txtStatusDesc.Size = new System.Drawing.Size(108, 25);
             this.txtStatusDesc.TabIndex = 1;
@@ -310,7 +299,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(230, 26);
+            this.label8.Location = new System.Drawing.Point(230, 51);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(61, 19);
             this.label8.TabIndex = 24;
@@ -318,7 +307,7 @@
             // 
             // txtProjectStatusId
             // 
-            this.txtProjectStatusId.Location = new System.Drawing.Point(234, 53);
+            this.txtProjectStatusId.Location = new System.Drawing.Point(234, 78);
             this.txtProjectStatusId.Name = "txtProjectStatusId";
             this.txtProjectStatusId.ReadOnly = true;
             this.txtProjectStatusId.Size = new System.Drawing.Size(108, 25);
@@ -327,7 +316,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 26);
+            this.label5.Location = new System.Drawing.Point(6, 51);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 19);
             this.label5.TabIndex = 24;
@@ -335,7 +324,7 @@
             // 
             // txtProjectStatusName
             // 
-            this.txtProjectStatusName.Location = new System.Drawing.Point(93, 23);
+            this.txtProjectStatusName.Location = new System.Drawing.Point(93, 48);
             this.txtProjectStatusName.Name = "txtProjectStatusName";
             this.txtProjectStatusName.Size = new System.Drawing.Size(108, 25);
             this.txtProjectStatusName.TabIndex = 0;
@@ -351,7 +340,7 @@
             this.grbProjectType.Controls.Add(this.txtTypeName);
             this.grbProjectType.Controls.Add(this.label7);
             this.grbProjectType.Controls.Add(this.txtTypeId);
-            this.grbProjectType.Location = new System.Drawing.Point(366, 34);
+            this.grbProjectType.Location = new System.Drawing.Point(366, 59);
             this.grbProjectType.Name = "grbProjectType";
             this.grbProjectType.Size = new System.Drawing.Size(327, 120);
             this.grbProjectType.TabIndex = 0;
@@ -364,7 +353,7 @@
             this.btnAddProjectType.FlatAppearance.BorderSize = 0;
             this.btnAddProjectType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddProjectType.ForeColor = System.Drawing.Color.White;
-            this.btnAddProjectType.Location = new System.Drawing.Point(93, 84);
+            this.btnAddProjectType.Location = new System.Drawing.Point(93, 109);
             this.btnAddProjectType.Name = "btnAddProjectType";
             this.btnAddProjectType.Size = new System.Drawing.Size(108, 28);
             this.btnAddProjectType.TabIndex = 2;
@@ -378,7 +367,7 @@
             this.btnEditProjectType.FlatAppearance.BorderSize = 0;
             this.btnEditProjectType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditProjectType.ForeColor = System.Drawing.Color.White;
-            this.btnEditProjectType.Location = new System.Drawing.Point(212, 84);
+            this.btnEditProjectType.Location = new System.Drawing.Point(212, 109);
             this.btnEditProjectType.Name = "btnEditProjectType";
             this.btnEditProjectType.Size = new System.Drawing.Size(108, 28);
             this.btnEditProjectType.TabIndex = 2;
@@ -389,7 +378,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(5, 56);
+            this.label9.Location = new System.Drawing.Point(5, 81);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 19);
             this.label9.TabIndex = 24;
@@ -397,7 +386,7 @@
             // 
             // txtKMLink
             // 
-            this.txtKMLink.Location = new System.Drawing.Point(93, 53);
+            this.txtKMLink.Location = new System.Drawing.Point(93, 78);
             this.txtKMLink.Name = "txtKMLink";
             this.txtKMLink.Size = new System.Drawing.Size(108, 25);
             this.txtKMLink.TabIndex = 1;
@@ -405,7 +394,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(5, 26);
+            this.label6.Location = new System.Drawing.Point(5, 51);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 19);
             this.label6.TabIndex = 24;
@@ -413,7 +402,7 @@
             // 
             // txtTypeName
             // 
-            this.txtTypeName.Location = new System.Drawing.Point(93, 23);
+            this.txtTypeName.Location = new System.Drawing.Point(93, 48);
             this.txtTypeName.Name = "txtTypeName";
             this.txtTypeName.Size = new System.Drawing.Size(108, 25);
             this.txtTypeName.TabIndex = 0;
@@ -422,7 +411,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(208, 26);
+            this.label7.Location = new System.Drawing.Point(208, 51);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 19);
             this.label7.TabIndex = 24;
@@ -430,7 +419,7 @@
             // 
             // txtTypeId
             // 
-            this.txtTypeId.Location = new System.Drawing.Point(212, 53);
+            this.txtTypeId.Location = new System.Drawing.Point(212, 78);
             this.txtTypeId.Name = "txtTypeId";
             this.txtTypeId.ReadOnly = true;
             this.txtTypeId.Size = new System.Drawing.Size(108, 25);
@@ -439,17 +428,15 @@
             // FrmStatusTypes
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(950, 568);
             this.Controls.Add(this.dgvProjectTypes);
             this.Controls.Add(this.dgvProjectStatus);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.grbProjectStatus);
             this.Controls.Add(this.grbProjectType);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmStatusTypes";
-            this.Text = "FrmStatusTypes";
+            this.Text = "项目状态/类型管理";
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectStatus)).EndInit();
             this.cmsProjectStatus.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTypes)).EndInit();
@@ -459,13 +446,10 @@
             this.grbProjectType.ResumeLayout(false);
             this.grbProjectType.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvProjectStatus;
         private System.Windows.Forms.DataGridView dgvProjectTypes;
         private System.Windows.Forms.GroupBox grbProjectStatus;

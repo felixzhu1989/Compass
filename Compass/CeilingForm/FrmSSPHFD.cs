@@ -89,21 +89,21 @@ namespace Compass
         {
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 200m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 200d)
             {
                 MessageBox.Show("请认真检查总长", "提示信息");
                 txtLength.Focus();
                 txtLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtLeftLength.Text.Trim()) || Convert.ToDecimal(txtLeftLength.Text.Trim()) < 30m)
+            if (!DataValidate.IsDouble(txtLeftLength.Text.Trim()) || Convert.ToDouble(txtLeftLength.Text.Trim()) < 30d)
             {
                 MessageBox.Show("请认真检查UL长度", "提示信息");
                 txtLeftLength.Focus();
                 txtLeftLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtRightLength.Text.Trim()) || Convert.ToDecimal(txtRightLength.Text.Trim()) < 30m)
+            if (!DataValidate.IsDouble(txtRightLength.Text.Trim()) || Convert.ToDouble(txtRightLength.Text.Trim()) < 30d)
             {
                 MessageBox.Show("请认真检查UR长度", "提示信息");
                 txtRightLength.Focus();
@@ -140,9 +140,9 @@ namespace Compass
                 SSPHFDId = Convert.ToInt32(modelView.Tag),
                 LeftType = cobLeftType.Text,
                 RightType = cobRightType.Text,
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
-                LeftLength = Convert.ToDecimal(txtLeftLength.Text.Trim()),
-                RightLength = Convert.ToDecimal(txtRightLength.Text.Trim()),
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
+                LeftLength = Convert.ToDouble(txtLeftLength.Text.Trim()),
+                RightLength = Convert.ToDouble(txtRightLength.Text.Trim()),
 
                 MPanelNo = Convert.ToInt32(cobMPanelNo.Text),
                 LightType = cobLightType.Text

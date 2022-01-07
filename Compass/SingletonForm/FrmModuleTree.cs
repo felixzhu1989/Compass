@@ -299,18 +299,32 @@ namespace Compass
         {
            
             Project objProject = _objProjectService.GetProjectByODPNo(tvModule.Nodes[0].Text.Trim(),_sbu);
-            
+
             //工厂模式，选择使用单例模式方法创建自动绘图窗口
             switch (objProject.HoodType)
             {
                 case "Hood":
-                    SingletonObject.GetSingleton.FrmHad?.ShowWithOdpNo(objProject.ODPNo);
+                    FrmHoodAutoDrawing formH = FrmHoodAutoDrawing.GetInstance();
+                    formH.WindowState = FormWindowState.Normal;
+                    formH.HandlerOdpNo(objProject.ODPNo);
+                    formH.Show();
+                    formH.Focus();
                     break;
                 case "Ceiling":
-                    SingletonObject.GetSingleton.FrmCad?.ShowWithOdpNo(objProject.ODPNo);
+                    FrmCeilingAutoDrawing formC = FrmCeilingAutoDrawing.GetInstance();
+                    formC.WindowState = FormWindowState.Normal;
+                    formC.HandlerOdpNo(objProject.ODPNo);
+                    formC.Show();
+                    formC.Focus();
+
                     break;
                 case "Marine":
-                    SingletonObject.GetSingleton.FrmMad?.ShowWithOdpNo(objProject.ODPNo);
+                    FrmMarineAutoDrawing formM = FrmMarineAutoDrawing.GetInstance();
+                    formM.WindowState = FormWindowState.Normal;
+                    formM.HandlerOdpNo(objProject.ODPNo);
+                    formM.Show();
+                    formM.Focus();
+
                     break;
             }
         }
@@ -337,7 +351,11 @@ namespace Compass
             {
                 node = tvModule.SelectedNode.Parent.Parent;
             }
-            SingletonObject.GetSingleton.FrmPi?.ShowWithOdpNo(node.Text);
+            FrmProjectInfo form = FrmProjectInfo.GetInstance();
+            form.WindowState = FormWindowState.Maximized;
+            form.HandlerOdpNo(node.Text);
+            form.Show();
+            form.Focus();
         }
         /// <summary>
         /// 打开天花总装

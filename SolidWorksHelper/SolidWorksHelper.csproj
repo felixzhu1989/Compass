@@ -71,11 +71,12 @@
   <ItemGroup>
     <Compile Include="CeilingAutoDrawing\BCJ330AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\CJ330AutoDrawing.cs" />
-    <Compile Include="EditPartMarine.cs" />
+    <Compile Include="MarineAutoDrawing\MarinePart.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="FrenchHoodAutoDrawing\FrenchHoodPart.cs" />
     <Compile Include="FrenchHoodAutoDrawing\FRKVF555AutoDrawing.cs" />
-    <Compile Include="HoodAutoDrawing\HWUVF555400AutoDrawing.cs" />
+    <Compile Include="HuaWeiHoodAutoDrawing\HWUVF555400AutoDrawing.cs" />
+    <Compile Include="HuaWeiHoodAutoDrawing\HuaWeiHoodPart.cs" />
     <Compile Include="MarineAutoDrawing\HMMAutoDrawing.cs" />
     <Compile Include="MarineAutoDrawing\HMFAutoDrawing.cs" />
     <Compile Include="FrenchHoodAutoDrawing\FRUVF555AutoDrawing.cs" />
@@ -98,10 +99,10 @@
     <Compile Include="CommonFunc.cs" />
     <Compile Include="ExprotDxf.cs" />
     <Compile Include="HoodAutoDrawing\HOODBCJAutoDrawing.cs" />
-    <Compile Include="HoodAutoDrawing\HWUWF555400AutoDrawing.cs" />
-    <Compile Include="HoodAutoDrawing\HWUWF555AutoDrawing.cs" />
-    <Compile Include="HoodAutoDrawing\HWUVF650AutoDrawing.cs" />
-    <Compile Include="HoodAutoDrawing\HWUVI650AutoDrawing.cs" />
+    <Compile Include="HuaWeiHoodAutoDrawing\HWUWF555400AutoDrawing.cs" />
+    <Compile Include="HuaWeiHoodAutoDrawing\HWUWF555AutoDrawing.cs" />
+    <Compile Include="HuaWeiHoodAutoDrawing\HWUVF650AutoDrawing.cs" />
+    <Compile Include="HuaWeiHoodAutoDrawing\HWUVI650AutoDrawing.cs" />
     <Compile Include="IAutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\KVI555AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\KWI555AutoDrawing.cs" />

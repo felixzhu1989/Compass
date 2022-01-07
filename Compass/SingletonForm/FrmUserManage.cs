@@ -6,7 +6,7 @@ using Common;
 
 namespace Compass
 {
-    public partial class FrmUserManage : Form
+    public partial class FrmUserManage : MetroFramework.Forms.MetroForm
     {
         private readonly UserService _objUserService = new UserService();
         private readonly User _currentUser = null;

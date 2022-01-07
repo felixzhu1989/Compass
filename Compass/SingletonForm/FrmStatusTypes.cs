@@ -8,13 +8,14 @@ using DAL;
 
 namespace Compass
 {
-    public partial class FrmStatusTypes : Form
+    public partial class FrmStatusTypes : MetroFramework.Forms.MetroForm
     {
         private readonly ProjectStatusService _objProjectStatusService =new ProjectStatusService();
         private readonly ProjectTypeService _objProjectTypeService=new ProjectTypeService();
         private readonly string _sbu = Program.ObjCurrentUser.SBU;//当前事业部
         private readonly KeyValuePair _pair=new KeyValuePair();
-        public FrmStatusTypes()
+        #region 单例模式
+        private FrmStatusTypes()
         {
             InitializeComponent();
 
@@ -28,6 +29,16 @@ namespace Compass
             btnEditProjectType.Visible = false;
             btnAddProjectType.Visible = true;
         }
+        private static FrmStatusTypes instance;
+        public static FrmStatusTypes GetInstance()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmStatusTypes();
+            }
+            return instance;
+        }
+        #endregion
         /// <summary>
         /// 添加行号
         /// </summary>

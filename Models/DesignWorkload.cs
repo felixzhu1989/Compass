@@ -10,7 +10,7 @@ namespace Models
     {
         public int WorkloadId { get; set; }
         public string Model { get; set; }
-        public decimal WorkloadValue { get; set; }
+        public double WorkloadValue { get; set; }
         public string ModelDesc { get; set; }
     }
 }

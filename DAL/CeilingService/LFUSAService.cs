@@ -77,11 +77,11 @@ namespace DAL
                     LFUSAId = Convert.ToInt32(objReader["LFUSAId"]),
                     ModuleTreeId = Convert.ToInt32(objReader["ModuleTreeId"]),
                     //最好不要用=null去判断，提示类型转换错误
-                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Length"]),
-                    Width = objReader["Width"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Width"]),
+                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["Length"]),
+                    Width = objReader["Width"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["Width"]),
                     SuNo = objReader["SuNo"].ToString().Length == 0 ? 0 : Convert.ToInt32(objReader["SuNo"]),
-                    SuDia = objReader["SuDia"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["SuDia"]),
-                    SuDis = objReader["SuDis"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["SuDis"]),
+                    SuDia = objReader["SuDia"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["SuDia"]),
+                    SuDis = objReader["SuDis"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["SuDis"]),
 
                     SidePanel = objReader["SidePanel"].ToString().Length == 0 ? "" : objReader["SidePanel"].ToString(),
                     Japan = objReader["Japan"].ToString().Length == 0 ? "" : objReader["Japan"].ToString()

@@ -38,7 +38,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-            EditPartMarine swEdit = new EditPartMarine();
+            MarinePart swEdit = new MarinePart();
 
 
             //打开Pack后的模型
@@ -48,7 +48,7 @@ namespace SolidWorksHelper
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true); //TopOnly参数设置成true，只重建顶层，不重建零件内部
                                          /*注意SolidWorks单位是m，计算是应当/1000d
-                                          * 整形与整形运算得出的结果仍然时整形，1640 / 1000d结果为0，因此必须将其中一个转化成decimal型，使用后缀m就可以了
+                                          * 整形与整形运算得出的结果仍然时整形，1640 / 1000d结果为0，因此必须将其中一个转化成double型，使用后缀m就可以了
                                           * (int)不进行四舍五入，Convert.ToInt32会四舍五入
                                            */
             #endregion

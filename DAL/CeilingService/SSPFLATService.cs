@@ -59,11 +59,11 @@ namespace DAL
                     SSPFLATId = Convert.ToInt32(objReader["SSPFLATId"]),
                     ModuleTreeId = Convert.ToInt32(objReader["ModuleTreeId"]),
                     //最好不要用=null去判断，提示类型转换错误
-                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Length"]),
+                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["Length"]),
                     LeftType = objReader["LeftType"].ToString().Length == 0 ? "" : objReader["LeftType"].ToString(),
                     RightType = objReader["RightType"].ToString().Length == 0 ? "" : objReader["RightType"].ToString(),
-                    LeftLength = objReader["LeftLength"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["LeftLength"]),
-                    RightLength = objReader["RightLength"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["RightLength"]),
+                    LeftLength = objReader["LeftLength"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["LeftLength"]),
+                    RightLength = objReader["RightLength"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["RightLength"]),
                     MPanelNo = objReader["MPanelNo"].ToString().Length == 0 ? 0 : Convert.ToInt32(objReader["MPanelNo"]),
                     LightType = objReader["LightType"].ToString().Length == 0 ? "" : objReader["LightType"].ToString()
                 };

@@ -8,15 +8,15 @@ namespace Models
         public int KCWDB800Id { get; set; }
         public int ModuleTreeId { get; set; }
         //基本参数
-        public decimal Length { get; set; }
-        public decimal ExRightDis { get; set; }
-        public decimal ExLength { get; set; }
-        public decimal ExWidth { get; set; }
-        public decimal ExHeight { get; set; }
+        public double Length { get; set; }
+        public double ExRightDis { get; set; }
+        public double ExLength { get; set; }
+        public double ExWidth { get; set; }
+        public double ExHeight { get; set; }
         //过滤器
         public string FCSide { get; set; }
-        public decimal FCSideLeft { get; set; }
-        public decimal FCSideRight { get; set; }
+        public double FCSideLeft { get; set; }
+        public double FCSideRight { get; set; }
         public int FCBlindNo { get; set; }
         //水洗
         public string SidePanel { get; set; }
@@ -25,7 +25,7 @@ namespace Models
         public string LightType { get; set; }
         public string SSPType { get; set; }
         public string Gutter { get; set; }
-        public decimal GutterWidth { get; set; }
+        public double GutterWidth { get; set; }
         public string Japan { get; set; }
         //ANSUL/MARVEL
         public string ANSUL { get; set; }

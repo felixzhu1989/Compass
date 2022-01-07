@@ -40,19 +40,19 @@ namespace SolidWorksHelper
             int warnings = 0;
             int errors = 0;
             suffix = "_" + suffix;//后缀
-            ModelDoc2 swModel = default(ModelDoc2);
-            ModelDoc2 swSubModel = default(ModelDoc2);
-            ModelDoc2 swPart = default(ModelDoc2);
-            AssemblyDoc swAssy = default(AssemblyDoc);
-            AssemblyDoc swSubAssy = default(AssemblyDoc);
-            Component2 swComp=default(Component2);
-            Feature swFeat = default(Feature);
+            ModelDoc2 swModel;
+            ModelDoc2 swSubModel;
+            ModelDoc2 swPart;
+            AssemblyDoc swAssy;
+            AssemblyDoc swSubAssy;
+            Component2 swComp;
+            Feature swFeat;
             object configNames = null;
-            ModelDocExtension swModelDocExt = default(ModelDocExtension);
-            ModelDocExtension swSubModelDocExt = default(ModelDocExtension);
-            bool status = false;
-            string compReName = string.Empty;
-            string subAssyName = string.Empty;
+            ModelDocExtension swModelDocExt;
+            ModelDocExtension swSubModelDocExt;
+            bool status;
+            string compReName;
+            string subAssyName;
             //打开Pack后的模型
             swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
                 (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
@@ -62,15 +62,15 @@ namespace SolidWorksHelper
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true);
             //TopOnly参数设置成true，只重建顶层，不重建零件内部
-            /*注意SolidWorks单位是m，计算是应当/1000m
-             * 整形与整形运算得出的结果仍然时整形，1640 / 1000m结果为0，因此必须将其中一个转化成decimal型，使用后缀m就可以了
+            /*注意SolidWorks单位是m，计算是应当/1000d
+             * 整形与整形运算得出的结果仍然时整形，1640 / 1000d结果为0，因此必须将其中一个转化成double型，使用后缀m就可以了
              * (int)不进行四舍五入，Convert.ToInt32会四舍五入
             */
             //-----------计算中间值，----------
             try
             {
                 //----------Top Level----------
-                swModel.Parameter("D1@Distance36").SystemValue = (item.Length-3m) / 1000m;
+                swModel.Parameter("D1@Distance36").SystemValue = (item.Length-3d) / 1000d;
                 //----------M型水洗挡板----------
                 if (item.MPanelNo == 0)
                 {
@@ -100,7 +100,7 @@ namespace SolidWorksHelper
                     {
                         swComp = swSubAssy.GetComponentByName(compReName + "-1");
                         swPart = swComp.GetModelDoc2(); //打开零件
-                        swPart.Parameter("D1@Sketch1").SystemValue = item.MPanelLength / 1000m;
+                        swPart.Parameter("D1@Sketch1").SystemValue = item.MPanelLength / 1000d;
                     }
 
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "BFW-8"));
@@ -123,7 +123,7 @@ namespace SolidWorksHelper
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
                     swModel.Parameter("D1@LocalLPattern1").SystemValue = item.MPanelNo;
-                    swModel.Parameter("D3@LocalLPattern1").SystemValue = (item.MPanelLength +item.WPanelLength) / 1000m;
+                    swModel.Parameter("D3@LocalLPattern1").SystemValue = (item.MPanelLength +item.WPanelLength) / 1000d;
                 }
                 //----------W型水洗挡板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "BFWF-8"));
@@ -157,7 +157,7 @@ namespace SolidWorksHelper
                 {
                     swComp = swSubAssy.GetComponentByName(compReName + "-1");
                     swPart = swComp.GetModelDoc2(); //打开零件
-                    swPart.Parameter("D1@Sketch1").SystemValue = item.WPanelLength / 1000m;
+                    swPart.Parameter("D1@Sketch1").SystemValue = item.WPanelLength / 1000d;
                     swFeat = swComp.FeatureByName("Cut-Extrude8");
                     if (item.UVType=="YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
@@ -179,7 +179,7 @@ namespace SolidWorksHelper
                 {
                     swComp = swSubAssy.GetComponentByName(compReName + "-1");
                     swPart = swComp.GetModelDoc2(); //打开零件
-                    swPart.Parameter("D1@Sketch1").SystemValue = (item.LeftLength - 7m) / 1000m;
+                    swPart.Parameter("D1@Sketch1").SystemValue = (item.LeftLength - 7d) / 1000d;
                 }
                 //----------UR水洗挡板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "BFUR-1"));
@@ -198,7 +198,7 @@ namespace SolidWorksHelper
                 {
                     swComp = swSubAssy.GetComponentByName(compReName + "-1");
                     swPart = swComp.GetModelDoc2(); //打开零件
-                    swPart.Parameter("D1@Sketch1").SystemValue = (item.RightLength - 7m) / 1000m;
+                    swPart.Parameter("D1@Sketch1").SystemValue = (item.RightLength - 7d) / 1000d;
                 }
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢

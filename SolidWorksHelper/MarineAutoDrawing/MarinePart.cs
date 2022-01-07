@@ -2,7 +2,7 @@
 
 namespace SolidWorksHelper
 {
-    class EditPartMarine
+    class MarinePart
     {
         ModelDoc2 swPart;
         Feature swFeat;
@@ -12,20 +12,20 @@ namespace SolidWorksHelper
             swPart = swComp.GetModelDoc2();
             if (height < 220d)
             {
-                swPart.Parameter("Korkeus2@Sketch1").SystemValue = 109.75m / 1000m;
-                swPart.Parameter("D3@Sketch16").SystemValue = 14.5m / 1000m;
+                swPart.Parameter("Korkeus2@Sketch1").SystemValue = 109.75d / 1000d;
+                swPart.Parameter("D3@Sketch16").SystemValue = 14.5d / 1000d;
             }
 
             if (height ==220d)
             {
-                swPart.Parameter("Korkeus2@Sketch1").SystemValue = 129.75m / 1000m;
-                swPart.Parameter("D3@Sketch16").SystemValue = 22.5m / 1000m;
+                swPart.Parameter("Korkeus2@Sketch1").SystemValue = 129.75d / 1000d;
+                swPart.Parameter("D3@Sketch16").SystemValue = 22.5d / 1000d;
             }
             
             if (height > 220d)
             {
-                swPart.Parameter("Korkeus2@Sketch1").SystemValue = 129.75m / 1000m;
-                swPart.Parameter("D3@Sketch16").SystemValue = 14.5m / 1000m;
+                swPart.Parameter("Korkeus2@Sketch1").SystemValue = 129.75d / 1000d;
+                swPart.Parameter("D3@Sketch16").SystemValue = 14.5d / 1000d;
             }
 
             #region 模型
@@ -95,11 +95,11 @@ namespace SolidWorksHelper
                     swPart.Parameter("D3@Sketch68").SystemValue = (powerPlugDis - 140d) / 1000d;
                     if (powerPlug == "NAC31")//D1@Sketch63=48
                     {
-                        swPart.Parameter("D1@Sketch68").SystemValue = 48m / 1000m;
+                        swPart.Parameter("D1@Sketch68").SystemValue = 48d / 1000d;
                     }
                     else//D1@Sketch63=39
                     {
-                        swPart.Parameter("D1@Sketch68").SystemValue = 39m / 1000m;
+                        swPart.Parameter("D1@Sketch68").SystemValue = 39d / 1000d;
                     }
                 }
                 else
@@ -209,7 +209,7 @@ namespace SolidWorksHelper
             {
                 swFeat = swComp.FeatureByName("TemperatureSwitch");
                 swFeat.SetSuppression2(1, 2, null);
-                swPart.Parameter("D4@Sketch92").SystemValue = 53m / 1000m;
+                swPart.Parameter("D4@Sketch92").SystemValue = 53d / 1000d;
 
             }
             else if (temperatureSwitch == "Yes" && model == "HMM")
@@ -217,7 +217,7 @@ namespace SolidWorksHelper
 
                 swFeat = swComp.FeatureByName("TemperatureSwitch");
                 swFeat.SetSuppression2(1, 2, null);
-                swPart.Parameter("D4@Sketch92").SystemValue = 43m / 1000m;
+                swPart.Parameter("D4@Sketch92").SystemValue = 43d / 1000d;
             }
             else if (temperatureSwitch == "No")
             {

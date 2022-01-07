@@ -214,8 +214,8 @@ namespace Compass
         {
             if (txtModuleNo.Text.Trim().Length == 0) return;//分段没有输入，不计算
             if (cobModel.SelectedIndex == -1) return;//模型没有选择，不计算
-            txtSubTotalWorkload.Text = (Convert.ToDecimal(txtModuleNo.Text.Trim())
-                * Convert.ToDecimal(cobModel.SelectedValue)).ToString();
+            txtSubTotalWorkload.Text = (Convert.ToDouble(txtModuleNo.Text.Trim())
+                * Convert.ToDouble(cobModel.SelectedValue)).ToString();
         }
         /// <summary>
         /// 烟罩分段数量变化时，计算subtotalworkload
@@ -233,8 +233,8 @@ namespace Compass
             }
             if (txtModuleNo.Text.Trim().Length == 0) return;//分段没有输入，不计算
             if (cobModel.SelectedIndex == -1) return;//模型没有选择，不计算
-            txtSubTotalWorkload.Text = (Convert.ToDecimal(txtModuleNo.Text.Trim())
-                * Convert.ToDecimal(cobModel.SelectedValue)).ToString();
+            txtSubTotalWorkload.Text = (Convert.ToDouble(txtModuleNo.Text.Trim())
+                * Convert.ToDouble(cobModel.SelectedValue)).ToString();
         }
         /// <summary>
         /// 添加计划记录
@@ -279,7 +279,7 @@ namespace Compass
                 Model = cobModel.Text,
                 ModuleNo = Convert.ToInt32(txtModuleNo.Text.Trim()),
                 DrReleaseTarget = Convert.ToDateTime(dtpDrReleaseTarget.Text),
-                SubTotalWorkload = Convert.ToDecimal(txtSubTotalWorkload.Text.Trim())
+                SubTotalWorkload = Convert.ToDouble(txtSubTotalWorkload.Text.Trim())
             };
             //提交添加
             try
@@ -363,8 +363,8 @@ namespace Compass
         {
             if (txtEditModuleNo.Text.Trim().Length == 0) return;//分段没有输入，不计算
             if (cobEditModel.SelectedIndex == -1) return;//模型没有选择，不计算
-            txtEditSubTotalWorkload.Text = (Convert.ToDecimal(txtEditModuleNo.Text.Trim())
-                                        * Convert.ToDecimal(cobEditModel.SelectedValue)).ToString();
+            txtEditSubTotalWorkload.Text = (Convert.ToDouble(txtEditModuleNo.Text.Trim())
+                                        * Convert.ToDouble(cobEditModel.SelectedValue)).ToString();
         }
         /// <summary>
         /// 同步计算工作量
@@ -382,8 +382,8 @@ namespace Compass
             }
             if (txtEditModuleNo.Text.Trim().Length == 0) return;//分段没有输入，不计算
             if (cobEditModel.SelectedIndex == -1) return;//模型没有选择，不计算
-            txtEditSubTotalWorkload.Text = (Convert.ToDecimal(txtEditModuleNo.Text.Trim())
-                                        * Convert.ToDecimal(cobEditModel.SelectedValue)).ToString();
+            txtEditSubTotalWorkload.Text = (Convert.ToDouble(txtEditModuleNo.Text.Trim())
+                                        * Convert.ToDouble(cobEditModel.SelectedValue)).ToString();
         }
         /// <summary>
         /// 提交修改
@@ -437,7 +437,7 @@ namespace Compass
                 Model = cobEditModel.Text,
                 ModuleNo = Convert.ToInt32(txtEditModuleNo.Text.Trim()),
                 DrReleaseTarget = Convert.ToDateTime(dtpEditDrReleaseTarget.Text),
-                SubTotalWorkload = Convert.ToDecimal(txtEditSubTotalWorkload.Text.Trim()),
+                SubTotalWorkload = Convert.ToDouble(txtEditSubTotalWorkload.Text.Trim()),
                 AddedDate = Convert.ToDateTime(dtpEditAddedDate.Text.Trim())
             };
             //调用后台方法修改对象

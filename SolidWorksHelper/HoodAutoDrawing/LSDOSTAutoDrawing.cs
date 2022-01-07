@@ -33,11 +33,11 @@ namespace SolidWorksHelper
             int warnings = 0;
             int errors = 0;
             suffix = "_" + suffix;//后缀
-            ModelDoc2 swModel = default(ModelDoc2);
-            ModelDoc2 swPart = default(ModelDoc2);
-            AssemblyDoc swAssy = default(AssemblyDoc);
+            ModelDoc2 swModel;
+            ModelDoc2 swPart;
+            AssemblyDoc swAssy;
             Component2 swComp;
-            Feature swFeat = default(Feature);
+            Feature swFeat;
             object configNames = null;
 
             //打开Pack后的模型
@@ -46,14 +46,14 @@ namespace SolidWorksHelper
             swAssy = swModel as AssemblyDoc;//装配体
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true);//TopOnly参数设置成true，只重建顶层，不重建零件内部
-            /*注意SolidWorks单位是m，计算是应当/1000m
-             * 整形与整形运算得出的结果仍然时整形，1640 / 1000m结果为0，因此必须将其中一个转化成decimal型，使用后缀m就可以了
+            /*注意SolidWorks单位是m，计算是应当/1000d
+             * 整形与整形运算得出的结果仍然时整形，1640 / 1000d结果为0，因此必须将其中一个转化成double型，使用后缀m就可以了
              * (int)不进行四舍五入，Convert.ToInt32会四舍五入
             */
             //-----------计算中间值，----------
             //铆钉数量
-            int rivetNo = (int)((item.Length - 47m) / 400m);
-            decimal rivetDis = (item.Length - 47m) / rivetNo;
+            int rivetNo = (int)((item.Length - 47d) / 400d);
+            double rivetDis = (item.Length - 47d) / rivetNo;
 
             try
             {
@@ -70,7 +70,7 @@ namespace SolidWorksHelper
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     swModel.Parameter("D1@LocalLPattern1").SystemValue = item.SuNo; //D1阵列数量,D3阵列距离
-                    swModel.Parameter("D3@LocalLPattern1").SystemValue = item.SuDis / 1000m; //D1阵列数量,D3阵列距离
+                    swModel.Parameter("D3@LocalLPattern1").SystemValue = item.SuDis / 1000d; //D1阵列数量,D3阵列距离
                 }
                 //中间测风压孔，三个脖颈时解压,两块网孔板
                 if (item.SuNo==3)
@@ -80,7 +80,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNLC0006-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swModel.Parameter("D1@LocalLPattern2").SystemValue = 4; //D1阵列数量,D3阵列距离
-                    swModel.Parameter("D3@LocalLPattern2").SystemValue = (item.Length-400m) / 3000m;
+                    swModel.Parameter("D3@LocalLPattern2").SystemValue = (item.Length-400d) / 3000d;
                 }
                 else
                 {
@@ -89,12 +89,12 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNLC0006-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                     swModel.Parameter("D1@LocalLPattern2").SystemValue = 2; //D1阵列数量,D3阵列距离
-                    swModel.Parameter("D3@LocalLPattern2").SystemValue = item.Length - 400m / 3000m;
+                    swModel.Parameter("D3@LocalLPattern2").SystemValue = item.Length - 400d / 3000d;
                 }
                 //----------散流器----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNLC0001-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 7m) / 1000m;
+                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 7d) / 1000d;
                 if (item.SuNo == 1)
                 {
                     swFeat = swComp.FeatureByName("LPattern1");
@@ -103,11 +103,11 @@ namespace SolidWorksHelper
                 }
                 else
                 {
-                    swPart.Parameter("D3@Sketch30").SystemValue = (item.SuDis*(item.SuNo/2m-1)+item.SuDis/2m)/1000;
+                    swPart.Parameter("D3@Sketch30").SystemValue = (item.SuDis*(item.SuNo/2d-1)+item.SuDis/2d)/1000;
                     swFeat = swComp.FeatureByName("LPattern1");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     swPart.Parameter("D1@LPattern1").SystemValue = item.SuNo; //D1阵列数量,D3阵列距离
-                    swPart.Parameter("D3@LPattern1").SystemValue = item.SuDis / 1000m; //D1阵列数量,D3阵列距离
+                    swPart.Parameter("D3@LPattern1").SystemValue = item.SuDis / 1000d; //D1阵列数量,D3阵列距离
                 }
                 if (rivetNo < 2)
                 {
@@ -118,13 +118,13 @@ namespace SolidWorksHelper
                 }
                 else
                 {
-                    swPart.Parameter("D1@Sketch43").SystemValue = rivetDis / 1000m;
+                    swPart.Parameter("D1@Sketch43").SystemValue = rivetDis / 1000d;
                     swFeat = swComp.FeatureByName("Cut-Extrude10");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("LPattern2");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     swPart.Parameter("D1@LPattern2").SystemValue = rivetNo; //D1阵列数量,D3阵列距离
-                    swPart.Parameter("D3@LPattern2").SystemValue = rivetDis / 1000m;
+                    swPart.Parameter("D3@LPattern2").SystemValue = rivetDis / 1000d;
                 }
                 swFeat = swComp.FeatureByName("Cut-Extrude11");
                 if (item.SuNo == 3)swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
@@ -138,7 +138,7 @@ namespace SolidWorksHelper
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNLC0003-3"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 4m) / 1000m;
+                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 4d) / 1000d;
                 if (rivetNo < 2)
                 {
                     swFeat = swComp.FeatureByName("Cut-Extrude4");
@@ -148,13 +148,13 @@ namespace SolidWorksHelper
                 }
                 else
                 {
-                    swPart.Parameter("D1@Sketch11").SystemValue = rivetDis / 1000m;
+                    swPart.Parameter("D1@Sketch11").SystemValue = rivetDis / 1000d;
                     swFeat = swComp.FeatureByName("Cut-Extrude4");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("LPattern1");
                     swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
                     swPart.Parameter("D1@LPattern1").SystemValue = rivetNo; //D1阵列数量,D3阵列距离
-                    swPart.Parameter("D3@LPattern1").SystemValue = rivetDis / 1000m;
+                    swPart.Parameter("D3@LPattern1").SystemValue = rivetDis / 1000d;
                 }
                 swFeat = swComp.FeatureByName("Cut-Extrude3");
                 if (item.SuNo == 3) swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
@@ -162,8 +162,8 @@ namespace SolidWorksHelper
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNLC0005-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                if (item.SuNo == 3) swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - 112m-34m) / 2000m;
-                else swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - 112m) / 1000m;
+                if (item.SuNo == 3) swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - 112d-34d) / 2000d;
+                else swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - 112d) / 1000d;
                 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
                 swModel.Save();//保存，很耗时间

@@ -54,18 +54,15 @@ namespace Compass
             };
             BtnQueryByYear_Click(null, null);
         }
-        #region 单例模式，重写关闭方法
-        protected override void OnClosing(CancelEventArgs e)
+        #region 单例模式
+        private static FrmDrawingPlanQuery instance;
+        public static FrmDrawingPlanQuery GetInstance()
         {
-            Hide();
-            e.Cancel = true;
-        }
-        internal void ShowAndFocus()
-        {
-            BtnQueryByYear_Click(null, null);
-            Show();
-            WindowState = FormWindowState.Maximized;
-            Focus();
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmDrawingPlanQuery();
+            }
+            return instance;
         }
         #endregion
 

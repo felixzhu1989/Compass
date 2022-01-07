@@ -94,7 +94,7 @@ namespace Compass
 
         private void txtLength_TextChanged(object sender, EventArgs e)
         {
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || txtLength.Text.Trim().Length == 0) return;
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || txtLength.Text.Trim().Length == 0) return;
             txtExRightDis.Text = (Convert.ToDecimal(txtLength.Text.Trim()) / 2).ToString();
         }
 
@@ -136,7 +136,7 @@ namespace Compass
             #region 数据验证
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 100m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 100d)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
                 txtLength.Focus();
@@ -150,7 +150,7 @@ namespace Compass
                 cobGutter.Focus();
                 return;
             }
-            else if (cobGutter.SelectedIndex == 0 && (!DataValidate.IsDecimal(txtGutterWidth.Text.Trim()) || Convert.ToDecimal(txtGutterWidth.Text.Trim()) < 30m))
+            else if (cobGutter.SelectedIndex == 0 && (!DataValidate.IsDouble(txtGutterWidth.Text.Trim()) || Convert.ToDouble(txtGutterWidth.Text.Trim()) < 30d))
             {
                 MessageBox.Show("请认真检查ANSUL腔宽度", "提示信息");//当脖颈大于2时需要填写脖颈间距
                 txtGutterWidth.Focus();
@@ -159,21 +159,21 @@ namespace Compass
             }
 
             //脖颈
-            if (!DataValidate.IsDecimal(txtExLength.Text.Trim()) || Convert.ToDecimal(txtExLength.Text.Trim()) < 50m)
+            if (!DataValidate.IsDouble(txtExLength.Text.Trim()) || Convert.ToDouble(txtExLength.Text.Trim()) < 50d)
             {
                 MessageBox.Show("请填写脖颈长度", "提示信息");
                 txtExLength.Focus();
                 txtExLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtExWidth.Text.Trim()) || Convert.ToDecimal(txtExWidth.Text.Trim()) < 50m)
+            if (!DataValidate.IsDouble(txtExWidth.Text.Trim()) || Convert.ToDouble(txtExWidth.Text.Trim()) < 50d)
             {
                 MessageBox.Show("请填写脖颈宽度", "提示信息");
                 txtExWidth.Focus();
                 txtExWidth.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtExHeight.Text.Trim()) || Convert.ToDecimal(txtExHeight.Text.Trim()) < 20m)
+            if (!DataValidate.IsDouble(txtExHeight.Text.Trim()) || Convert.ToDouble(txtExHeight.Text.Trim()) < 20d)
             {
                 MessageBox.Show("请填写脖颈高度", "提示信息");
                 txtExHeight.Focus();
@@ -217,7 +217,7 @@ namespace Compass
                 }
                 if (cobANDetectorNo.SelectedIndex > 0)
                 {
-                    if (!DataValidate.IsDecimal(txtANDetectorDis1.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis1.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtANDetectorDis1.Text.Trim()) || Convert.ToDouble(txtANDetectorDis1.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查探测器间距1", "提示信息");
                         txtANDetectorDis1.Focus();
@@ -227,7 +227,7 @@ namespace Compass
                 }
                 if (cobANDetectorNo.SelectedIndex > 1)
                 {
-                    if (!DataValidate.IsDecimal(txtANDetectorDis2.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis2.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtANDetectorDis2.Text.Trim()) || Convert.ToDouble(txtANDetectorDis2.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查探测器间距2", "提示信息");
                         txtANDetectorDis2.Focus();
@@ -237,7 +237,7 @@ namespace Compass
                 }
                 if (cobANDetectorNo.SelectedIndex > 2)
                 {
-                    if (!DataValidate.IsDecimal(txtANDetectorDis3.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis3.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtANDetectorDis3.Text.Trim()) || Convert.ToDouble(txtANDetectorDis3.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查探测器间距3", "提示信息");
                         txtANDetectorDis3.Focus();
@@ -247,7 +247,7 @@ namespace Compass
                 }
                 if (cobANDetectorNo.SelectedIndex > 3)
                 {
-                    if (!DataValidate.IsDecimal(txtANDetectorDis4.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis4.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtANDetectorDis4.Text.Trim()) || Convert.ToDouble(txtANDetectorDis4.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查探测器间距4", "提示信息");
                         txtANDetectorDis4.Focus();
@@ -257,7 +257,7 @@ namespace Compass
                 }
                 if (cobANDetectorNo.SelectedIndex > 4)
                 {
-                    if (!DataValidate.IsDecimal(txtANDetectorDis5.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis5.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtANDetectorDis5.Text.Trim()) || Convert.ToDouble(txtANDetectorDis5.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查探测器间距5", "提示信息");
                         txtANDetectorDis5.Focus();
@@ -304,14 +304,14 @@ namespace Compass
                 cobFCSide.Focus();
                 return;
             }
-            if ((cobFCSide.SelectedIndex == 0 || cobFCSide.SelectedIndex == 2) && (!DataValidate.IsDecimal(txtFCSideLeft.Text.Trim()) || Convert.ToDecimal(txtFCSideLeft.Text.Trim()) < 10m))
+            if ((cobFCSide.SelectedIndex == 0 || cobFCSide.SelectedIndex == 2) && (!DataValidate.IsDouble(txtFCSideLeft.Text.Trim()) || Convert.ToDouble(txtFCSideLeft.Text.Trim()) < 10d))
             {
                 MessageBox.Show("请认真检查左油网侧板长度", "提示信息");//当脖颈大于2时需要填写脖颈间距
                 txtFCSideLeft.Focus();
                 txtFCSideLeft.SelectAll();
                 return;
             }
-            if ((cobFCSide.SelectedIndex == 1 || cobFCSide.SelectedIndex == 2) && (!DataValidate.IsDecimal(txtFCSideRight.Text.Trim()) || Convert.ToDecimal(txtFCSideRight.Text.Trim()) < 10m))
+            if ((cobFCSide.SelectedIndex == 1 || cobFCSide.SelectedIndex == 2) && (!DataValidate.IsDouble(txtFCSideRight.Text.Trim()) || Convert.ToDouble(txtFCSideRight.Text.Trim()) < 10d))
             {
                 MessageBox.Show("请认真检查右油网侧板长度", "提示信息");//当脖颈大于2时需要填写脖颈间距
                 txtFCSideRight.Focus();
@@ -337,19 +337,19 @@ namespace Compass
                 LightType = cobLightType.Text,
                 LightCable = cobLightCable.Text,
 
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
-                ExRightDis = Convert.ToDecimal(txtExRightDis.Text.Trim()),
-                ExLength = Convert.ToDecimal(txtExLength.Text.Trim()),
-                ExWidth = Convert.ToDecimal(txtExWidth.Text.Trim()),
-                ExHeight = Convert.ToDecimal(txtExHeight.Text.Trim()),
-                GutterWidth = Convert.ToDecimal(txtGutterWidth.Text.Trim()),
-                FCSideLeft = Convert.ToDecimal(txtFCSideLeft.Text.Trim()),
-                FCSideRight = Convert.ToDecimal(txtFCSideRight.Text.Trim()),
-                ANDetectorDis1 = Convert.ToDecimal(txtANDetectorDis1.Text.Trim()),
-                ANDetectorDis2 = Convert.ToDecimal(txtANDetectorDis2.Text.Trim()),
-                ANDetectorDis3 = Convert.ToDecimal(txtANDetectorDis3.Text.Trim()),
-                ANDetectorDis4 = Convert.ToDecimal(txtANDetectorDis4.Text.Trim()),
-                ANDetectorDis5 = Convert.ToDecimal(txtANDetectorDis5.Text.Trim())
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
+                ExRightDis = Convert.ToDouble(txtExRightDis.Text.Trim()),
+                ExLength = Convert.ToDouble(txtExLength.Text.Trim()),
+                ExWidth = Convert.ToDouble(txtExWidth.Text.Trim()),
+                ExHeight = Convert.ToDouble(txtExHeight.Text.Trim()),
+                GutterWidth = Convert.ToDouble(txtGutterWidth.Text.Trim()),
+                FCSideLeft = Convert.ToDouble(txtFCSideLeft.Text.Trim()),
+                FCSideRight = Convert.ToDouble(txtFCSideRight.Text.Trim()),
+                ANDetectorDis1 = Convert.ToDouble(txtANDetectorDis1.Text.Trim()),
+                ANDetectorDis2 = Convert.ToDouble(txtANDetectorDis2.Text.Trim()),
+                ANDetectorDis3 = Convert.ToDouble(txtANDetectorDis3.Text.Trim()),
+                ANDetectorDis4 = Convert.ToDouble(txtANDetectorDis4.Text.Trim()),
+                ANDetectorDis5 = Convert.ToDouble(txtANDetectorDis5.Text.Trim())
             };
             //提交修改
             try

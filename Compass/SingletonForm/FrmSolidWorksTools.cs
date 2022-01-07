@@ -6,22 +6,20 @@ namespace Compass
 {
     public partial class FrmSolidWorksTools : MetroFramework.Forms.MetroForm
     {
-        public FrmSolidWorksTools()
+        #region 单例模式
+        private FrmSolidWorksTools()
         {
             InitializeComponent();
             txteDrawingsPath.Text = Properties.Settings.Default.eDrawings;
         }
-        #region 单例模式，重写关闭方法
-        protected override void OnClosing(CancelEventArgs e)
+        private static FrmSolidWorksTools instance;
+        public static FrmSolidWorksTools GetInstance()
         {
-            Hide();
-            e.Cancel = true;
-        }
-        internal void ShowAndFocus()
-        {
-            Show();
-            WindowState = FormWindowState.Normal;
-            Focus();
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmSolidWorksTools();
+            }
+            return instance;
         }
         #endregion
         private void BtnSearch_Click(object sender, EventArgs e)

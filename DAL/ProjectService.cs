@@ -108,8 +108,8 @@ namespace DAL
                     RiskLevel = objReader["RiskLevel"] == DBNull.Value ? 3 : Convert.ToInt32(objReader["RiskLevel"]),
                     ProjectStatusName = objReader["ProjectStatusName"].ToString(),
                     HoodType = objReader["HoodType"].ToString(),
-                    SalesValue = objReader["SalesValue"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["SalesValue"]),
-                    TotalWorkload = objReader["TotalWorkload"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["TotalWorkload"])
+                    SalesValue = objReader["SalesValue"] == DBNull.Value ? 0 : Convert.ToDouble(objReader["SalesValue"]),
+                    TotalWorkload = objReader["TotalWorkload"] == DBNull.Value ? 0 : Convert.ToDouble(objReader["TotalWorkload"])
                 });
             }
             objReader.Close();
@@ -169,8 +169,8 @@ namespace DAL
                     UserAccount = objReader["UserAccount"].ToString(),
                     RiskLevel = objReader["RiskLevel"] == DBNull.Value ? 3 : Convert.ToInt32(objReader["RiskLevel"]),
                     HoodType = objReader["HoodType"].ToString(),
-                    SalesValue = objReader["SalesValue"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["SalesValue"]),
-                    TotalWorkload = objReader["TotalWorkload"] == DBNull.Value ? 0 : Convert.ToDecimal(objReader["TotalWorkload"])
+                    SalesValue = objReader["SalesValue"] == DBNull.Value ? 0 : Convert.ToDouble(objReader["SalesValue"]),
+                    TotalWorkload = objReader["TotalWorkload"] == DBNull.Value ? 0 : Convert.ToDouble(objReader["TotalWorkload"])
                 };
             }
             objReader.Close();

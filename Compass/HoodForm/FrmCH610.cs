@@ -81,14 +81,14 @@ namespace Compass
             #region 数据验证
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 500m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 500d)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
                 txtLength.Focus();
                 txtLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtDeepth.Text.Trim()) || Convert.ToDecimal(txtDeepth.Text.Trim()) < 500m)
+            if (!DataValidate.IsDouble(txtDeepth.Text.Trim()) || Convert.ToDouble(txtDeepth.Text.Trim()) < 500d)
             {
                 MessageBox.Show("请认真检查烟罩深度", "提示信息");
                 txtDeepth.Focus();
@@ -102,7 +102,7 @@ namespace Compass
                 cobExNo.Focus();
                 return;
             }
-            else if (cobExNo.SelectedIndex > 0 && (!DataValidate.IsDecimal(txtExDis.Text.Trim()) || Convert.ToDecimal(txtExDis.Text.Trim()) < 40m))
+            else if (cobExNo.SelectedIndex > 0 && (!DataValidate.IsDouble(txtExDis.Text.Trim()) || Convert.ToDouble(txtExDis.Text.Trim()) < 40d))
             {
                 MessageBox.Show("请认真检查排风脖颈间距", "提示信息");//当脖颈大于2时需要填写脖颈间距
                 txtExDis.Focus();
@@ -110,21 +110,21 @@ namespace Compass
                 return;
             }
 
-            if (!DataValidate.IsDecimal(txtExLength.Text.Trim()) || Convert.ToDecimal(txtExLength.Text.Trim()) < 50m)
+            if (!DataValidate.IsDouble(txtExLength.Text.Trim()) || Convert.ToDouble(txtExLength.Text.Trim()) < 50d)
             {
                 MessageBox.Show("请填写脖颈长度", "提示信息");
                 txtExLength.Focus();
                 txtExLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtExWidth.Text.Trim()) || Convert.ToDecimal(txtExWidth.Text.Trim()) < 50m)
+            if (!DataValidate.IsDouble(txtExWidth.Text.Trim()) || Convert.ToDouble(txtExWidth.Text.Trim()) < 50d)
             {
                 MessageBox.Show("请填写脖颈宽度", "提示信息");
                 txtExWidth.Focus();
                 txtExWidth.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtExHeight.Text.Trim()) || Convert.ToDecimal(txtExHeight.Text.Trim()) < 20m)
+            if (!DataValidate.IsDouble(txtExHeight.Text.Trim()) || Convert.ToDouble(txtExHeight.Text.Trim()) < 20d)
             {
                 MessageBox.Show("请填写脖颈高度", "提示信息");
                 txtExHeight.Focus();
@@ -150,13 +150,13 @@ namespace Compass
                 ExNo = Convert.ToInt32(cobExNo.Text),
                 LightType = cobLightType.Text,
 
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
-                Deepth = Convert.ToDecimal(txtDeepth.Text.Trim()),
-                ExRightDis = Convert.ToDecimal(txtExRightDis.Text.Trim()),
-                ExDis = Convert.ToDecimal(txtExDis.Text.Trim()),
-                ExLength = Convert.ToDecimal(txtExLength.Text.Trim()),
-                ExWidth = Convert.ToDecimal(txtExWidth.Text.Trim()),
-                ExHeight = Convert.ToDecimal(txtExHeight.Text.Trim())
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
+                Deepth = Convert.ToDouble(txtDeepth.Text.Trim()),
+                ExRightDis = Convert.ToDouble(txtExRightDis.Text.Trim()),
+                ExDis = Convert.ToDouble(txtExDis.Text.Trim()),
+                ExLength = Convert.ToDouble(txtExLength.Text.Trim()),
+                ExWidth = Convert.ToDouble(txtExWidth.Text.Trim()),
+                ExHeight = Convert.ToDouble(txtExHeight.Text.Trim())
 
             };
             //提交修改
@@ -185,7 +185,7 @@ namespace Compass
         /// <param name="e"></param>
         private void txtLength_TextChanged(object sender, EventArgs e)
         {
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || txtLength.Text.Trim().Length == 0) return;
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || txtLength.Text.Trim().Length == 0) return;
             txtExRightDis.Text = (Convert.ToDecimal(txtLength.Text.Trim()) / 2).ToString();
         }
 

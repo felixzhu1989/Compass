@@ -44,7 +44,7 @@ namespace Compass
             #region 数据验证
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 50m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 50d)
             {
                 MessageBox.Show("请认真检查脖颈长度", "提示信息");
                 txtLength.Focus();
@@ -57,7 +57,7 @@ namespace Compass
             ABD200 objAbd200 = new ABD200()
             {
                 ABD200Id = Convert.ToInt32(modelView.Tag),
-                Length = Convert.ToDecimal(txtLength.Text.Trim())
+                Length = Convert.ToDouble(txtLength.Text.Trim())
             };
             //提交修改
             try

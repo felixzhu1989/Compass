@@ -78,14 +78,14 @@ namespace Compass
             #region 数据验证
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 200m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 200d)
             {
                 MessageBox.Show("请认真检查散流器长度", "提示信息");
                 txtLength.Focus();
                 txtLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtWidth.Text.Trim()) || Convert.ToDecimal(txtWidth.Text.Trim()) < 200m)
+            if (!DataValidate.IsDouble(txtWidth.Text.Trim()) || Convert.ToDouble(txtWidth.Text.Trim()) < 200d)
             {
                 MessageBox.Show("请认真检查散流器宽度", "提示信息");
                 txtWidth.Focus();
@@ -110,7 +110,7 @@ namespace Compass
                 cobSuNo.Focus();
                 return;
             }
-            else if (cobSuNo.SelectedIndex > 0 && (!DataValidate.IsDecimal(txtSuDis.Text.Trim()) || Convert.ToDecimal(txtSuDis.Text.Trim()) < 250m))
+            else if (cobSuNo.SelectedIndex > 0 && (!DataValidate.IsDouble(txtSuDis.Text.Trim()) || Convert.ToDouble(txtSuDis.Text.Trim()) < 250d))
             {
                 MessageBox.Show("请认真检查均流桶间距", "提示信息");
                 txtSuDis.Focus();
@@ -131,12 +131,12 @@ namespace Compass
                 SidePanel = cobSidePanel.Text,
                 
                 SuNo = Convert.ToInt32(cobSuNo.Text),
-                SuDia = Convert.ToDecimal(cobSuDia.Text.Trim()),
+                SuDia = Convert.ToDouble(cobSuDia.Text.Trim()),
                 Japan = cobJapan.Text,
 
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
-                Width = Convert.ToDecimal(txtWidth.Text.Trim()),
-                SuDis = Convert.ToDecimal(txtSuDis.Text.Trim())
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
+                Width = Convert.ToDouble(txtWidth.Text.Trim()),
+                SuDis = Convert.ToDouble(txtSuDis.Text.Trim())
             };
             //提交修改
             try

@@ -175,14 +175,14 @@ namespace Compass
             #region 数据验证
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 500m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 500d)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
                 txtLength.Focus();
                 txtLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtDeepth.Text.Trim()) || Convert.ToDecimal(txtDeepth.Text.Trim()) < 500m)
+            if (!DataValidate.IsDouble(txtDeepth.Text.Trim()) || Convert.ToDouble(txtDeepth.Text.Trim()) < 500d)
             {
                 MessageBox.Show("请认真检查烟罩深度", "提示信息");
                 txtDeepth.Focus();
@@ -201,28 +201,28 @@ namespace Compass
                 cobExNo.Focus();
                 return;
             }
-            else if (cobExNo.SelectedIndex > 0 && (!DataValidate.IsDecimal(txtExDis.Text.Trim()) || Convert.ToDecimal(txtExDis.Text.Trim()) < 40m))
+            else if (cobExNo.SelectedIndex > 0 && (!DataValidate.IsDouble(txtExDis.Text.Trim()) || Convert.ToDouble(txtExDis.Text.Trim()) < 40d))
             {
                 MessageBox.Show("请认真检查排风脖颈间距", "提示信息");//当脖颈大于2时需要填写脖颈间距
                 txtExDis.Focus();
                 txtExDis.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtExLength.Text.Trim()) || Convert.ToDecimal(txtExLength.Text.Trim()) < 50m)
+            if (!DataValidate.IsDouble(txtExLength.Text.Trim()) || Convert.ToDouble(txtExLength.Text.Trim()) < 50d)
             {
                 MessageBox.Show("请填写脖颈长度", "提示信息");
                 txtExLength.Focus();
                 txtExLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtExWidth.Text.Trim()) || Convert.ToDecimal(txtExWidth.Text.Trim()) < 50m)
+            if (!DataValidate.IsDouble(txtExWidth.Text.Trim()) || Convert.ToDouble(txtExWidth.Text.Trim()) < 50d)
             {
                 MessageBox.Show("请填写脖颈宽度", "提示信息");
                 txtExWidth.Focus();
                 txtExWidth.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtExHeight.Text.Trim()) || Convert.ToDecimal(txtExHeight.Text.Trim()) < 20m)
+            if (!DataValidate.IsDouble(txtExHeight.Text.Trim()) || Convert.ToDouble(txtExHeight.Text.Trim()) < 20d)
             {
                 MessageBox.Show("请填写脖颈高度", "提示信息");
                 txtExHeight.Focus();
@@ -256,7 +256,7 @@ namespace Compass
                     cobLEDSpotNo.Focus();
                     return;
                 }
-                if (!DataValidate.IsDecimal(txtLEDSpotDis.Text.Trim()) || Convert.ToDecimal(txtLEDSpotDis.Text.Trim()) < 60m)
+                if (!DataValidate.IsDouble(txtLEDSpotDis.Text.Trim()) || Convert.ToDouble(txtLEDSpotDis.Text.Trim()) < 60d)
                 {
                     MessageBox.Show("请填写筒灯间距", "提示信息");
                     txtLEDSpotDis.Focus();
@@ -286,14 +286,14 @@ namespace Compass
                 }
                 if (cobANDropNo.SelectedIndex > 0)
                 {
-                    if (!DataValidate.IsDecimal(txtANYDis.Text.Trim()) || Convert.ToDecimal(txtANYDis.Text.Trim()) < 200m)
+                    if (!DataValidate.IsDouble(txtANYDis.Text.Trim()) || Convert.ToDouble(txtANYDis.Text.Trim()) < 200d)
                     {
                         MessageBox.Show("请检查ANSUL下喷距离烟罩前端距离", "提示信息");
                         txtANYDis.Focus();
                         txtANYDis.SelectAll();
                         return;
                     }
-                    if (!DataValidate.IsDecimal(txtANDropDis1.Text.Trim()) || Convert.ToDecimal(txtANDropDis1.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtANDropDis1.Text.Trim()) || Convert.ToDouble(txtANDropDis1.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查下喷间距1", "提示信息");
                         txtANDropDis1.Focus();
@@ -303,7 +303,7 @@ namespace Compass
                 }
                 if (cobANDropNo.SelectedIndex > 1)
                 {
-                    if (!DataValidate.IsDecimal(txtANDropDis2.Text.Trim()) || Convert.ToDecimal(txtANDropDis2.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtANDropDis2.Text.Trim()) || Convert.ToDouble(txtANDropDis2.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查下喷间距2", "提示信息");
                         txtANDropDis2.Focus();
@@ -313,7 +313,7 @@ namespace Compass
                 }
                 if (cobANDropNo.SelectedIndex > 2)
                 {
-                    if (!DataValidate.IsDecimal(txtANDropDis3.Text.Trim()) || Convert.ToDecimal(txtANDropDis3.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtANDropDis3.Text.Trim()) || Convert.ToDouble(txtANDropDis3.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查下喷间距3", "提示信息");
                         txtANDropDis3.Focus();
@@ -323,7 +323,7 @@ namespace Compass
                 }
                 if (cobANDropNo.SelectedIndex > 3)
                 {
-                    if (!DataValidate.IsDecimal(txtANDropDis4.Text.Trim()) || Convert.ToDecimal(txtANDropDis4.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtANDropDis4.Text.Trim()) || Convert.ToDouble(txtANDropDis4.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查下喷间距4", "提示信息");
                         txtANDropDis4.Focus();
@@ -333,7 +333,7 @@ namespace Compass
                 }
                 if (cobANDropNo.SelectedIndex > 4)
                 {
-                    if (!DataValidate.IsDecimal(txtANDropDis5.Text.Trim()) || Convert.ToDecimal(txtANDropDis5.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtANDropDis5.Text.Trim()) || Convert.ToDouble(txtANDropDis5.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查下喷间距5", "提示信息");
                         txtANDropDis5.Focus();
@@ -350,7 +350,7 @@ namespace Compass
             }
             if (cobANDetectorNo.SelectedIndex > 0)
             {
-                if (!DataValidate.IsDecimal(txtANDetectorDis1.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis1.Text.Trim()) < 30m)
+                if (!DataValidate.IsDouble(txtANDetectorDis1.Text.Trim()) || Convert.ToDouble(txtANDetectorDis1.Text.Trim()) < 30d)
                 {
                     MessageBox.Show("请检查探测器间距1", "提示信息");
                     txtANDetectorDis1.Focus();
@@ -360,7 +360,7 @@ namespace Compass
             }
             if (cobANDetectorNo.SelectedIndex > 1)
             {
-                if (!DataValidate.IsDecimal(txtANDetectorDis2.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis2.Text.Trim()) < 30m)
+                if (!DataValidate.IsDouble(txtANDetectorDis2.Text.Trim()) || Convert.ToDouble(txtANDetectorDis2.Text.Trim()) < 30d)
                 {
                     MessageBox.Show("请检查探测器间距2", "提示信息");
                     txtANDetectorDis2.Focus();
@@ -370,7 +370,7 @@ namespace Compass
             }
             if (cobANDetectorNo.SelectedIndex > 2)
             {
-                if (!DataValidate.IsDecimal(txtANDetectorDis3.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis3.Text.Trim()) < 30m)
+                if (!DataValidate.IsDouble(txtANDetectorDis3.Text.Trim()) || Convert.ToDouble(txtANDetectorDis3.Text.Trim()) < 30d)
                 {
                     MessageBox.Show("请检查探测器间距3", "提示信息");
                     txtANDetectorDis3.Focus();
@@ -380,7 +380,7 @@ namespace Compass
             }
             if (cobANDetectorNo.SelectedIndex > 3)
             {
-                if (!DataValidate.IsDecimal(txtANDetectorDis4.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis4.Text.Trim()) < 30m)
+                if (!DataValidate.IsDouble(txtANDetectorDis4.Text.Trim()) || Convert.ToDouble(txtANDetectorDis4.Text.Trim()) < 30d)
                 {
                     MessageBox.Show("请检查探测器间距4", "提示信息");
                     txtANDetectorDis4.Focus();
@@ -390,7 +390,7 @@ namespace Compass
             }
             if (cobANDetectorNo.SelectedIndex > 4)
             {
-                if (!DataValidate.IsDecimal(txtANDetectorDis5.Text.Trim()) || Convert.ToDecimal(txtANDetectorDis5.Text.Trim()) < 30m)
+                if (!DataValidate.IsDouble(txtANDetectorDis5.Text.Trim()) || Convert.ToDouble(txtANDetectorDis5.Text.Trim()) < 30d)
                 {
                     MessageBox.Show("请检查探测器间距5", "提示信息");
                     txtANDetectorDis5.Focus();
@@ -408,7 +408,7 @@ namespace Compass
                 }
                 if (cobIRNo.SelectedIndex > 0)
                 {
-                    if (!DataValidate.IsDecimal(txtIRDis1.Text.Trim()) || Convert.ToDecimal(txtIRDis1.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtIRDis1.Text.Trim()) || Convert.ToDouble(txtIRDis1.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查IR间距1", "提示信息");
                         txtIRDis1.Focus();
@@ -418,7 +418,7 @@ namespace Compass
                 }
                 if (cobIRNo.SelectedIndex > 1)
                 {
-                    if (!DataValidate.IsDecimal(txtIRDis2.Text.Trim()) || Convert.ToDecimal(txtIRDis2.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtIRDis2.Text.Trim()) || Convert.ToDouble(txtIRDis2.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查IR间距2", "提示信息");
                         txtIRDis2.Focus();
@@ -428,7 +428,7 @@ namespace Compass
                 }
                 if (cobIRNo.SelectedIndex > 2)
                 {
-                    if (!DataValidate.IsDecimal(txtIRDis3.Text.Trim()) || Convert.ToDecimal(txtIRDis3.Text.Trim()) < 30m)
+                    if (!DataValidate.IsDouble(txtIRDis3.Text.Trim()) || Convert.ToDouble(txtIRDis3.Text.Trim()) < 30d)
                     {
                         MessageBox.Show("请检查IR间距3", "提示信息");
                         txtIRDis3.Focus();
@@ -485,28 +485,28 @@ namespace Compass
                 Inlet = cobInlet.Text,
                 BackToBack = cobBackToBack.Text,
 
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
-                Deepth = Convert.ToDecimal(txtDeepth.Text.Trim()),
-                ExRightDis = Convert.ToDecimal(txtExRightDis.Text.Trim()),
-                ExDis = Convert.ToDecimal(txtExDis.Text.Trim()),
-                ExLength = Convert.ToDecimal(txtExLength.Text.Trim()),
-                ExWidth = Convert.ToDecimal(txtExWidth.Text.Trim()),
-                ExHeight = Convert.ToDecimal(txtExHeight.Text.Trim()),
-                LEDSpotDis = Convert.ToDecimal(txtLEDSpotDis.Text.Trim()),
-                ANYDis = Convert.ToDecimal(txtANYDis.Text.Trim()),
-                ANDropDis1 = Convert.ToDecimal(txtANDropDis1.Text.Trim()),
-                ANDropDis2 = Convert.ToDecimal(txtANDropDis2.Text.Trim()),
-                ANDropDis3 = Convert.ToDecimal(txtANDropDis3.Text.Trim()),
-                ANDropDis4 = Convert.ToDecimal(txtANDropDis4.Text.Trim()),
-                ANDropDis5 = Convert.ToDecimal(txtANDropDis5.Text.Trim()),
-                ANDetectorDis1 = Convert.ToDecimal(txtANDetectorDis1.Text.Trim()),
-                ANDetectorDis2 = Convert.ToDecimal(txtANDetectorDis2.Text.Trim()),
-                ANDetectorDis3 = Convert.ToDecimal(txtANDetectorDis3.Text.Trim()),
-                ANDetectorDis4 = Convert.ToDecimal(txtANDetectorDis4.Text.Trim()),
-                ANDetectorDis5 = Convert.ToDecimal(txtANDetectorDis5.Text.Trim()),
-                IRDis1 = Convert.ToDecimal(txtIRDis1.Text.Trim()),
-                IRDis2 = Convert.ToDecimal(txtIRDis2.Text.Trim()),
-                IRDis3 = Convert.ToDecimal(txtIRDis3.Text.Trim())
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
+                Deepth = Convert.ToDouble(txtDeepth.Text.Trim()),
+                ExRightDis = Convert.ToDouble(txtExRightDis.Text.Trim()),
+                ExDis = Convert.ToDouble(txtExDis.Text.Trim()),
+                ExLength = Convert.ToDouble(txtExLength.Text.Trim()),
+                ExWidth = Convert.ToDouble(txtExWidth.Text.Trim()),
+                ExHeight = Convert.ToDouble(txtExHeight.Text.Trim()),
+                LEDSpotDis = Convert.ToDouble(txtLEDSpotDis.Text.Trim()),
+                ANYDis = Convert.ToDouble(txtANYDis.Text.Trim()),
+                ANDropDis1 = Convert.ToDouble(txtANDropDis1.Text.Trim()),
+                ANDropDis2 = Convert.ToDouble(txtANDropDis2.Text.Trim()),
+                ANDropDis3 = Convert.ToDouble(txtANDropDis3.Text.Trim()),
+                ANDropDis4 = Convert.ToDouble(txtANDropDis4.Text.Trim()),
+                ANDropDis5 = Convert.ToDouble(txtANDropDis5.Text.Trim()),
+                ANDetectorDis1 = Convert.ToDouble(txtANDetectorDis1.Text.Trim()),
+                ANDetectorDis2 = Convert.ToDouble(txtANDetectorDis2.Text.Trim()),
+                ANDetectorDis3 = Convert.ToDouble(txtANDetectorDis3.Text.Trim()),
+                ANDetectorDis4 = Convert.ToDouble(txtANDetectorDis4.Text.Trim()),
+                ANDetectorDis5 = Convert.ToDouble(txtANDetectorDis5.Text.Trim()),
+                IRDis1 = Convert.ToDouble(txtIRDis1.Text.Trim()),
+                IRDis2 = Convert.ToDouble(txtIRDis2.Text.Trim()),
+                IRDis3 = Convert.ToDouble(txtIRDis3.Text.Trim())
             };
             //提交修改
             try
@@ -560,7 +560,7 @@ namespace Compass
         /// <param name="e"></param>
         private void txtLength_TextChanged(object sender, EventArgs e)
         {
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || txtLength.Text.Trim().Length == 0) return;
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || txtLength.Text.Trim().Length == 0) return;
             txtExRightDis.Text = (Convert.ToDecimal(txtLength.Text.Trim()) / 2).ToString();
         }
         /// <summary>

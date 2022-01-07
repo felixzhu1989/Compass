@@ -29,15 +29,15 @@ namespace SolidWorksHelper
             int warnings = 0;
             int errors = 0;
             suffix = "_" + suffix;//后缀
-            ModelDoc2 swModel = default(ModelDoc2);
-            ModelDoc2 swPart = default(ModelDoc2);
-            AssemblyDoc swAssy = default(AssemblyDoc);
+            ModelDoc2 swModel;
+            ModelDoc2 swPart;
+            AssemblyDoc swAssy;
             Component2 swComp;
-            Feature swFeat = default(Feature);
+            Feature swFeat;
             object configNames = null;
-            ModelDocExtension swModelDocExt = default(ModelDocExtension);
-            bool status = false;
-            string compReName = string.Empty;
+            ModelDocExtension swModelDocExt;
+            bool status;
+            string compReName;
             //打开Pack后的模型
             swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
                 (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
@@ -47,8 +47,8 @@ namespace SolidWorksHelper
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true);
             //TopOnly参数设置成true，只重建顶层，不重建零件内部
-            /*注意SolidWorks单位是m，计算是应当/1000m
-             * 整形与整形运算得出的结果仍然时整形，1640 / 1000m结果为0，因此必须将其中一个转化成decimal型，使用后缀m就可以了
+            /*注意SolidWorks单位是m，计算是应当/1000d
+             * 整形与整形运算得出的结果仍然时整形，1640 / 1000d结果为0，因此必须将其中一个转化成double型，使用后缀m就可以了
              * (int)不进行四舍五入，Convert.ToInt32会四舍五入
             */
             //-----------计算中间值，----------
@@ -99,7 +99,7 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-1");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2();//打开零件
-                            swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideLeft - 3m) / 1000m;
+                            swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideLeft - 3d) / 1000d;
                         }
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0083-1"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
@@ -125,7 +125,7 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-1");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2();//打开零件
-                            swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideRight - 3m) / 1000m;
+                            swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideRight - 3d) / 1000d;
                         }
                         break;
                     case "BOTH":
@@ -148,7 +148,7 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-1");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2();//打开零件
-                            swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideLeft - 3m) / 1000m;
+                            swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideLeft - 3d) / 1000d;
                         }
                         //重命名装配体内部
                         compReName = "FNCE0083[HCLSP-" + tree.Module + "]{" + ((int)item.HCLSideRight - 3) + "}";
@@ -168,7 +168,7 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-1");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2();//打开零件
-                            swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideRight - 3m) / 1000m;
+                            swPart.Parameter("D1@Sketch1").SystemValue = (item.HCLSideRight - 3d) / 1000d;
                         }
                         break;
                     default:
@@ -192,13 +192,13 @@ namespace SolidWorksHelper
                 {
                     swComp = swAssy.GetComponentByName(compReName + "-1");
                     swPart = swComp.GetModelDoc2(); //打开零件
-                    swPart.Parameter("D2@Skizze1").SystemValue = item.Length / 1000m;
+                    swPart.Parameter("D2@Skizze1").SystemValue = item.Length / 1000d;
                     //HCL侧板磁铁孔
                     if (item.HCLSide == "LEFT" || item.HCLSide == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("Cut-Extrude5");
                         swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        swPart.Parameter("D5@Sketch22").SystemValue = (item.HCLSideLeft - 103) / 1000m;
+                        swPart.Parameter("D5@Sketch22").SystemValue = (item.HCLSideLeft - 103) / 1000d;
                     }
                     else
                     {
@@ -209,7 +209,7 @@ namespace SolidWorksHelper
                     {
                         swFeat = swComp.FeatureByName("Cut-Extrude6");
                         swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
-                        swPart.Parameter("D6@Sketch23").SystemValue = (item.HCLSideRight - 103) / 1000m;
+                        swPart.Parameter("D6@Sketch23").SystemValue = (item.HCLSideRight - 103) / 1000d;
                     }
                     else
                     {
@@ -225,20 +225,20 @@ namespace SolidWorksHelper
                 switch (item.HCLSide)
                 {
                     case "LEFT":
-                        swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideLeft) / 1000m;
-                        swModel.Parameter("D1@Distance8").SystemValue = item.HCLSideLeft / 1000m;
+                        swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideLeft) / 1000d;
+                        swModel.Parameter("D1@Distance8").SystemValue = item.HCLSideLeft / 1000d;
                         break;
                     case "RIGHT":
-                        swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideRight) / 1000m;
-                        swModel.Parameter("D1@Distance8").SystemValue = 0m;
+                        swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideRight) / 1000d;
+                        swModel.Parameter("D1@Distance8").SystemValue = 0d;
                         break;
                     case "BOTH":
-                        swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideLeft - item.HCLSideRight) / 1000m;
-                        swModel.Parameter("D1@Distance8").SystemValue = item.HCLSideLeft / 1000m;
+                        swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideLeft - item.HCLSideRight) / 1000d;
+                        swModel.Parameter("D1@Distance8").SystemValue = item.HCLSideLeft / 1000d;
                         break;
                     default:
-                        swPart.Parameter("D1@Skizze1").SystemValue = item.Length / 1000m;
-                        swModel.Parameter("D1@Distance8").SystemValue = 0m;
+                        swPart.Parameter("D1@Skizze1").SystemValue = item.Length / 1000d;
+                        swModel.Parameter("D1@Distance8").SystemValue = 0d;
                         break;
                 }
 

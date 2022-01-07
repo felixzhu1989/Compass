@@ -63,14 +63,14 @@ namespace Compass
             #region 数据验证
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 100m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 100d)
             {
                 MessageBox.Show("请认真检查灯腔长度", "提示信息");
                 txtLength.Focus();
                 txtLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtHeight.Text.Trim()) || Convert.ToDecimal(txtHeight.Text.Trim()) < 20m)
+            if (!DataValidate.IsDouble(txtHeight.Text.Trim()) || Convert.ToDouble(txtHeight.Text.Trim()) < 20d)
             {
                 MessageBox.Show("请认真检查灯腔高度", "提示信息");
                 txtHeight.Focus();
@@ -108,8 +108,8 @@ namespace Compass
                SidePanel = cobSidePanel.Text,
                 LightType = cobLightType.Text,
                 Japan = cobJapan.Text,
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
-                Height = Convert.ToDecimal(txtHeight.Text.Trim())
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
+                Height = Convert.ToDouble(txtHeight.Text.Trim())
 
             };
             //提交修改

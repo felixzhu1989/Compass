@@ -62,7 +62,6 @@ namespace Compass
             }
             return instance;
         }
-
         #endregion
 
         private void DgvProjects_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)

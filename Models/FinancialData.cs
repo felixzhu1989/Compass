@@ -7,6 +7,6 @@ namespace Models
     {
         public int FinancialDataId { get; set; }
         public int ProjectId { get; set; }
-        public decimal SalesValue { get; set; } 
+        public double SalesValue { get; set; } 
     }
 }

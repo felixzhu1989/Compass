@@ -7,19 +7,30 @@ using Common;
 
 namespace Compass
 {
-    public partial class FrmDesignWorkload : Form
+    public partial class FrmDesignWorkload : MetroFramework.Forms.MetroForm
     {
         private readonly DesignWorkloadService _objDesignWorkloadService=new DesignWorkloadService();
         private List<DesignWorkload> _designWorkloadList=new List<DesignWorkload>();
         private readonly string _sbu = Program.ObjCurrentUser.SBU;
 
-        public FrmDesignWorkload()
+        #region 单例模式
+        private FrmDesignWorkload()
         {
             InitializeComponent();
             dgvDesignWorkload.AutoGenerateColumns = false;
             RefreshData();
             grbEditWorkload.Visible = false;
         }
+        private static FrmDesignWorkload instance;
+        public static FrmDesignWorkload GetInstance()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new FrmDesignWorkload();
+            }
+            return instance;
+        }
+        #endregion
         private void RefreshData()
         {
             _designWorkloadList = _objDesignWorkloadService.GetAllDesignWorkload(_sbu);
@@ -59,7 +70,7 @@ namespace Compass
             DesignWorkload objDesignWorkload=new DesignWorkload()
             {
                 Model = txtModel.Text.Trim(),
-                WorkloadValue =Convert.ToDecimal(txtWorkloadValue.Text.Trim()),
+                WorkloadValue =Convert.ToDouble(txtWorkloadValue.Text.Trim()),
                 ModelDesc = txtModelDesc.Text.Trim()
             };
             //提交添加
@@ -153,7 +164,7 @@ namespace Compass
             {
                 WorkloadId = Convert.ToInt32(txtEditWorkloadId.Text.Trim()),
                 Model = txtEditModel.Text.Trim(),
-                WorkloadValue = Convert.ToDecimal(txtEditWorkloadValue.Text.Trim()),
+                WorkloadValue = Convert.ToDouble(txtEditWorkloadValue.Text.Trim()),
                 ModelDesc = txtEditModelDesc.Text.Trim()
             };
             //提交修改

@@ -8,8 +8,8 @@ namespace Models
         public int HOODBCJId { get; set; }
         public int ModuleTreeId { get; set; }
         //基本参数
-        public decimal Length { get; set; }
-        public decimal Height { get; set; }
-        public decimal SuDis { get; set; }
+        public double Length { get; set; }
+        public double Height { get; set; }
+        public double SuDis { get; set; }
     }
 }

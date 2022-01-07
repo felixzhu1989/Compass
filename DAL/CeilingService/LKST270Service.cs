@@ -73,7 +73,7 @@ namespace DAL
                     LKST270Id = Convert.ToInt32(objReader["LKST270Id"]),
                     ModuleTreeId = Convert.ToInt32(objReader["ModuleTreeId"]),
                     //最好不要用=null去判断，提示类型转换错误
-                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Length"]),
+                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["Length"]),
                     WBeam = objReader["WBeam"].ToString().Length == 0 ? "" : objReader["WBeam"].ToString(),
                     SidePanel = objReader["SidePanel"].ToString().Length == 0 ? "" : objReader["SidePanel"].ToString(),
                     LightType = objReader["LightType"].ToString().Length == 0 ? "" : objReader["LightType"].ToString(),

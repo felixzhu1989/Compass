@@ -70,7 +70,6 @@
             this.tsmiSetStartUp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiTestCode = new System.Windows.Forms.ToolStripMenuItem();
-            this.timerRefreshData = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -458,11 +457,6 @@
             this.tsmiTestCode.Text = "测试代码";
             this.tsmiTestCode.Click += new System.EventHandler(this.TsmiTestCode_Click);
             // 
-            // timerRefreshData
-            // 
-            this.timerRefreshData.Interval = 600000;
-            this.timerRefreshData.Tick += new System.EventHandler(this.TimerRefreshData_Tick);
-            // 
             // FrmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -534,7 +528,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiDrawingNumMatrix;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem tsmiTestCode;
-        private System.Windows.Forms.Timer timerRefreshData;
         private System.Windows.Forms.ToolStripMenuItem tsmiSetStartUp;
     }
 }

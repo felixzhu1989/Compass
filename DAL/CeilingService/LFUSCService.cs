@@ -72,10 +72,10 @@ namespace DAL
                     LFUSCId = Convert.ToInt32(objReader["LFUSCId"]),
                     ModuleTreeId = Convert.ToInt32(objReader["ModuleTreeId"]),
                     //最好不要用=null去判断，提示类型转换错误
-                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["Length"]),
+                    Length = objReader["Length"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["Length"]),
                     SuNo = objReader["SuNo"].ToString().Length == 0 ? 0 : Convert.ToInt32(objReader["SuNo"]),
-                    SuDia = objReader["SuDia"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["SuDia"]),
-                    SuDis = objReader["SuDis"].ToString().Length == 0 ? 0 : Convert.ToDecimal(objReader["SuDis"]),
+                    SuDia = objReader["SuDia"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["SuDia"]),
+                    SuDis = objReader["SuDis"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["SuDis"]),
 
                     Japan = objReader["Japan"].ToString().Length == 0 ? "" : objReader["Japan"].ToString()
                 };

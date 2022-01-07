@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDxfCutList));
             this.lblDesc = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditDXFCutList = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteDXFCutList = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnSaveToDB = new System.Windows.Forms.Button();
             this.btnImportFromExcel = new System.Windows.Forms.Button();
             this.txtThickness = new System.Windows.Forms.TextBox();
@@ -85,7 +85,7 @@
             // 
             this.lblDesc.AutoSize = true;
             this.lblDesc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.lblDesc.Location = new System.Drawing.Point(71, 27);
+            this.lblDesc.Location = new System.Drawing.Point(330, 5);
             this.lblDesc.Name = "lblDesc";
             this.lblDesc.Size = new System.Drawing.Size(35, 19);
             this.lblDesc.TabIndex = 36;
@@ -94,7 +94,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(304, 54);
+            this.label7.Location = new System.Drawing.Point(563, 32);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(22, 19);
             this.label7.TabIndex = 31;
@@ -103,7 +103,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(721, 54);
+            this.label9.Location = new System.Drawing.Point(980, 32);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(48, 19);
             this.label9.TabIndex = 32;
@@ -112,7 +112,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(376, 54);
+            this.label5.Location = new System.Drawing.Point(635, 32);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(22, 19);
             this.label5.TabIndex = 33;
@@ -121,7 +121,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(149, 54);
+            this.label3.Location = new System.Drawing.Point(408, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 19);
             this.label3.TabIndex = 34;
@@ -134,7 +134,7 @@
             this.btnDXFCutlist.FlatAppearance.BorderSize = 0;
             this.btnDXFCutlist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDXFCutlist.ForeColor = System.Drawing.Color.White;
-            this.btnDXFCutlist.Location = new System.Drawing.Point(856, 49);
+            this.btnDXFCutlist.Location = new System.Drawing.Point(1122, 27);
             this.btnDXFCutlist.Name = "btnDXFCutlist";
             this.btnDXFCutlist.Size = new System.Drawing.Size(82, 28);
             this.btnDXFCutlist.TabIndex = 29;
@@ -145,7 +145,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 54);
+            this.label4.Location = new System.Drawing.Point(267, 32);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 19);
             this.label4.TabIndex = 35;
@@ -156,7 +156,7 @@
             this.cobCategoryId.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cobCategoryId.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cobCategoryId.FormattingEnabled = true;
-            this.cobCategoryId.Location = new System.Drawing.Point(75, 50);
+            this.cobCategoryId.Location = new System.Drawing.Point(334, 28);
             this.cobCategoryId.Name = "cobCategoryId";
             this.cobCategoryId.Size = new System.Drawing.Size(68, 27);
             this.cobCategoryId.TabIndex = 23;
@@ -164,28 +164,28 @@
             // 
             // txtLength
             // 
-            this.txtLength.Location = new System.Drawing.Point(330, 51);
+            this.txtLength.Location = new System.Drawing.Point(589, 29);
             this.txtLength.Name = "txtLength";
             this.txtLength.Size = new System.Drawing.Size(45, 25);
             this.txtLength.TabIndex = 25;
             // 
             // txtPartNo
             // 
-            this.txtPartNo.Location = new System.Drawing.Point(773, 51);
+            this.txtPartNo.Location = new System.Drawing.Point(1032, 29);
             this.txtPartNo.Name = "txtPartNo";
             this.txtPartNo.Size = new System.Drawing.Size(78, 25);
             this.txtPartNo.TabIndex = 28;
             // 
             // txtWidth
             // 
-            this.txtWidth.Location = new System.Drawing.Point(399, 51);
+            this.txtWidth.Location = new System.Drawing.Point(658, 29);
             this.txtWidth.Name = "txtWidth";
             this.txtWidth.Size = new System.Drawing.Size(45, 25);
             this.txtWidth.TabIndex = 26;
             // 
             // txtPartDescription
             // 
-            this.txtPartDescription.Location = new System.Drawing.Point(187, 51);
+            this.txtPartDescription.Location = new System.Drawing.Point(446, 29);
             this.txtPartDescription.Name = "txtPartDescription";
             this.txtPartDescription.Size = new System.Drawing.Size(114, 25);
             this.txtPartDescription.TabIndex = 27;
@@ -223,11 +223,11 @@
             this.PartNo});
             this.dgvDXFCutList.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvDXFCutList.EnableHeadersVisualStyles = false;
-            this.dgvDXFCutList.Location = new System.Drawing.Point(12, 82);
+            this.dgvDXFCutList.Location = new System.Drawing.Point(12, 60);
             this.dgvDXFCutList.Name = "dgvDXFCutList";
             this.dgvDXFCutList.ReadOnly = true;
             this.dgvDXFCutList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDXFCutList.Size = new System.Drawing.Size(926, 227);
+            this.dgvDXFCutList.Size = new System.Drawing.Size(1194, 249);
             this.dgvDXFCutList.TabIndex = 30;
             this.dgvDXFCutList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvDXFCutList_RowPostPaint);
             this.dgvDXFCutList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvDXFCutList_KeyDown);
@@ -327,17 +327,6 @@
             this.tsmiDeleteDXFCutList.Text = "删除行";
             this.tsmiDeleteDXFCutList.Click += new System.EventHandler(this.TsmiDeleteDXFCutList_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            this.label1.Location = new System.Drawing.Point(5, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(212, 26);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "DXF图CutList模板管理";
-            // 
             // btnSaveToDB
             // 
             this.btnSaveToDB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -345,7 +334,7 @@
             this.btnSaveToDB.FlatAppearance.BorderSize = 0;
             this.btnSaveToDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveToDB.ForeColor = System.Drawing.Color.White;
-            this.btnSaveToDB.Location = new System.Drawing.Point(830, 315);
+            this.btnSaveToDB.Location = new System.Drawing.Point(1098, 315);
             this.btnSaveToDB.Name = "btnSaveToDB";
             this.btnSaveToDB.Size = new System.Drawing.Size(108, 28);
             this.btnSaveToDB.TabIndex = 40;
@@ -370,7 +359,7 @@
             // 
             // txtThickness
             // 
-            this.txtThickness.Location = new System.Drawing.Point(482, 51);
+            this.txtThickness.Location = new System.Drawing.Point(741, 29);
             this.txtThickness.Name = "txtThickness";
             this.txtThickness.Size = new System.Drawing.Size(35, 25);
             this.txtThickness.TabIndex = 26;
@@ -378,7 +367,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(444, 54);
+            this.label2.Location = new System.Drawing.Point(703, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 19);
             this.label2.TabIndex = 33;
@@ -386,7 +375,7 @@
             // 
             // txtQuantity
             // 
-            this.txtQuantity.Location = new System.Drawing.Point(556, 51);
+            this.txtQuantity.Location = new System.Drawing.Point(815, 29);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(23, 25);
             this.txtQuantity.TabIndex = 26;
@@ -394,7 +383,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(518, 54);
+            this.label6.Location = new System.Drawing.Point(777, 32);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 19);
             this.label6.TabIndex = 33;
@@ -434,7 +423,7 @@
             this.dgvDXFCutListFromExcel.Name = "dgvDXFCutListFromExcel";
             this.dgvDXFCutListFromExcel.ReadOnly = true;
             this.dgvDXFCutListFromExcel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDXFCutListFromExcel.Size = new System.Drawing.Size(926, 207);
+            this.dgvDXFCutListFromExcel.Size = new System.Drawing.Size(1194, 207);
             this.dgvDXFCutListFromExcel.TabIndex = 30;
             this.dgvDXFCutListFromExcel.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvDXFCutListFromExcel_RowPostPaint);
             // 
@@ -505,7 +494,7 @@
             // 
             // txtMaterials
             // 
-            this.txtMaterials.Location = new System.Drawing.Point(623, 50);
+            this.txtMaterials.Location = new System.Drawing.Point(882, 29);
             this.txtMaterials.Name = "txtMaterials";
             this.txtMaterials.Size = new System.Drawing.Size(92, 25);
             this.txtMaterials.TabIndex = 28;
@@ -513,7 +502,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(584, 53);
+            this.label8.Location = new System.Drawing.Point(843, 32);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 19);
             this.label8.TabIndex = 32;
@@ -522,8 +511,7 @@
             // FrmDxfCutList
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(950, 568);
+            this.ClientSize = new System.Drawing.Size(1218, 568);
             this.Controls.Add(this.btnSaveToDB);
             this.Controls.Add(this.btnImportFromExcel);
             this.Controls.Add(this.lblDesc);
@@ -546,11 +534,10 @@
             this.Controls.Add(this.txtPartDescription);
             this.Controls.Add(this.dgvDXFCutListFromExcel);
             this.Controls.Add(this.dgvDXFCutList);
-            this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmDxfCutList";
-            this.Text = "FrmDXFCutList";
+            this.Text = "DXF图CutList模板管理";
             ((System.ComponentModel.ISupportInitialize)(this.dgvDXFCutList)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDXFCutListFromExcel)).EndInit();
@@ -574,7 +561,6 @@
         private System.Windows.Forms.TextBox txtWidth;
         private System.Windows.Forms.TextBox txtPartDescription;
         private System.Windows.Forms.DataGridView dgvDXFCutList;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSaveToDB;
         private System.Windows.Forms.Button btnImportFromExcel;
         private System.Windows.Forms.TextBox txtThickness;

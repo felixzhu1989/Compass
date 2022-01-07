@@ -65,6 +65,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.Module2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvExecList = new System.Windows.Forms.DataGridView();
+            this.BtnIniCobOdpNo = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWaitingList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExecList)).BeginInit();
@@ -72,17 +73,17 @@
             // 
             // txtProjectName
             // 
-            this.txtProjectName.Location = new System.Drawing.Point(654, 19);
+            this.txtProjectName.Location = new System.Drawing.Point(756, 28);
             this.txtProjectName.Name = "txtProjectName";
             this.txtProjectName.ReadOnly = true;
-            this.txtProjectName.Size = new System.Drawing.Size(378, 25);
+            this.txtProjectName.Size = new System.Drawing.Size(422, 25);
             this.txtProjectName.TabIndex = 48;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label6.Location = new System.Drawing.Point(230, 43);
+            this.label6.Location = new System.Drawing.Point(332, 9);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(204, 19);
             this.label6.TabIndex = 66;
@@ -210,7 +211,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(588, 22);
+            this.label5.Location = new System.Drawing.Point(690, 31);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 19);
             this.label5.TabIndex = 51;
@@ -324,7 +325,7 @@
             this.cobODPNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cobODPNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cobODPNo.FormattingEnabled = true;
-            this.cobODPNo.Location = new System.Drawing.Point(295, 18);
+            this.cobODPNo.Location = new System.Drawing.Point(397, 27);
             this.cobODPNo.Name = "cobODPNo";
             this.cobODPNo.Size = new System.Drawing.Size(108, 27);
             this.cobODPNo.TabIndex = 61;
@@ -347,7 +348,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(408, 22);
+            this.label2.Location = new System.Drawing.Point(510, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 19);
             this.label2.TabIndex = 50;
@@ -355,7 +356,7 @@
             // 
             // txtBPONo
             // 
-            this.txtBPONo.Location = new System.Drawing.Point(474, 19);
+            this.txtBPONo.Location = new System.Drawing.Point(576, 28);
             this.txtBPONo.Name = "txtBPONo";
             this.txtBPONo.ReadOnly = true;
             this.txtBPONo.Size = new System.Drawing.Size(108, 25);
@@ -364,7 +365,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(230, 22);
+            this.label3.Location = new System.Drawing.Point(332, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 19);
             this.label3.TabIndex = 52;
@@ -409,10 +410,25 @@
             this.dgvExecList.TabIndex = 63;
             this.dgvExecList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvExecList_RowPostPaint);
             // 
+            // BtnIniCobOdpNo
+            // 
+            this.BtnIniCobOdpNo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.BtnIniCobOdpNo.FlatAppearance.BorderSize = 0;
+            this.BtnIniCobOdpNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnIniCobOdpNo.ForeColor = System.Drawing.Color.White;
+            this.BtnIniCobOdpNo.Location = new System.Drawing.Point(246, 27);
+            this.BtnIniCobOdpNo.Name = "BtnIniCobOdpNo";
+            this.BtnIniCobOdpNo.Size = new System.Drawing.Size(80, 27);
+            this.BtnIniCobOdpNo.TabIndex = 68;
+            this.BtnIniCobOdpNo.Text = "更新编号";
+            this.BtnIniCobOdpNo.UseVisualStyleBackColor = false;
+            this.BtnIniCobOdpNo.Click += new System.EventHandler(this.BtnIniCobOdpNo_Click);
+            // 
             // FrmMarineAutoDrawing
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
+            this.Controls.Add(this.BtnIniCobOdpNo);
             this.Controls.Add(this.txtProjectName);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnExportDxf);
@@ -478,5 +494,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Module2;
         private System.Windows.Forms.DataGridView dgvExecList;
+        private System.Windows.Forms.Button BtnIniCobOdpNo;
     }
 }

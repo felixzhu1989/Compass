@@ -8,6 +8,6 @@ namespace Models
         public int LLEDAId { get; set; }
         public int ModuleTreeId { get; set; }
         //基本参数
-        public decimal Length { get; set; }
+        public double Length { get; set; }
     }
 }

@@ -42,14 +42,14 @@ namespace Compass
         {
             //必填项目
             if (modelView.Tag.ToString().Length == 0) return;
-            if (!DataValidate.IsDecimal(txtLength.Text.Trim()) || Convert.ToDecimal(txtLength.Text.Trim()) < 50m)
+            if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 50d)
             {
                 MessageBox.Show("请认真检查长度", "提示信息");
                 txtLength.Focus();
                 txtLength.SelectAll();
                 return;
             }
-            if (!DataValidate.IsDecimal(txtWidth.Text.Trim()) || Convert.ToDecimal(txtWidth.Text.Trim()) < 20m)
+            if (!DataValidate.IsDouble(txtWidth.Text.Trim()) || Convert.ToDouble(txtWidth.Text.Trim()) < 20d)
             {
                 MessageBox.Show("请认真检查宽度", "提示信息");
                 txtWidth.Focus();
@@ -63,8 +63,8 @@ namespace Compass
             {
                 INFId = Convert.ToInt32(modelView.Tag),
 
-                Length = Convert.ToDecimal(txtLength.Text.Trim()),
-                Width = Convert.ToDecimal(txtWidth.Text.Trim())
+                Length = Convert.ToDouble(txtLength.Text.Trim()),
+                Width = Convert.ToDouble(txtWidth.Text.Trim())
 
             };
             //提交修改

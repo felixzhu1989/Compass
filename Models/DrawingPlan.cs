@@ -14,7 +14,7 @@ namespace Models
         public string Model { get; set; }
         public int ModuleNo { get; set; }
         public DateTime DrReleaseTarget { get; set; }
-        public decimal SubTotalWorkload { get; set; }
+        public double SubTotalWorkload { get; set; }
         public DateTime AddedDate { get; set; }
         public string LabelImage { get; set; }
         //简单扩展

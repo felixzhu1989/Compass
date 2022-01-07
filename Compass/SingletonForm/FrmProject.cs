@@ -200,10 +200,6 @@ namespace Compass
         {
             SingletonObject.GetSingleton.FrmDp?.IniCobOdpNo();
             SingletonObject.GetSingleton.FrmPt?.IniCobOdpNo();
-            SingletonObject.GetSingleton.FrmHad?.IniCobOdpNo();
-            SingletonObject.GetSingleton.FrmCad?.IniCobOdpNo();
-            SingletonObject.GetSingleton.FrmPi?.IniCobOdpNo();
-            
         }
 
 
@@ -442,7 +438,11 @@ namespace Compass
             if (dgvProjects.RowCount == 0) return;
             if (dgvProjects.CurrentRow == null) return;
             string odpNo = dgvProjects.CurrentRow.Cells["ODPNo"].Value.ToString();
-            SingletonObject.GetSingleton.FrmPi?.ShowWithOdpNo(odpNo);
+            FrmProjectInfo form = FrmProjectInfo.GetInstance();
+            form.WindowState = FormWindowState.Maximized;
+            form.HandlerOdpNo(odpNo);
+            form.Show();
+            form.Focus();
         }
         /// <summary>
         /// 根据订单号查询订单
