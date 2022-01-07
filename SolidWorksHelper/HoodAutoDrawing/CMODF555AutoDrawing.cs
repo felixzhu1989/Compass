@@ -523,12 +523,8 @@ namespace SolidWorksHelper
 
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0007-1"));
-                swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D1@草图1").SystemValue = (item.Length - 3d) / 1000d;
-                swPart.Parameter("D1@阵列(线性)7").SystemValue = frontPanelKaKouNo;
-                swPart.Parameter("D3@阵列(线性)7").SystemValue = frontPanelKaKouDis;
-                swPart.Parameter("D1@LPattern1").SystemValue = frontPanelHoleNo;
-                swPart.Parameter("D3@LPattern1").SystemValue = frontPanelHoleDis;
+                swEdit.FNHA0007(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, frontPanelHoleNo, frontPanelHoleDis);
+
                 //----------蜂窝板压条----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0008-1"));
                 swPart = swComp.GetModelDoc2();
@@ -596,7 +592,7 @@ namespace SolidWorksHelper
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("DRAINCHANNEL-LEFT");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                
+
                 //----------LOGO----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2900300005-2"));
                 if (item.LEDlogo == "YES") swComp.SetSuppression2(2); //2解压缩，0压缩

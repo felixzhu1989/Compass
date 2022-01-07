@@ -38,7 +38,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-
+            EditPart swEdit = new EditPart();
             //打开Pack后的模型
             swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
                 (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
@@ -1388,12 +1388,7 @@ namespace SolidWorksHelper
                 else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0003-3"));
-                swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D1@草图1").SystemValue = (item.Length - 3d) / 1000d;
-                swPart.Parameter("D1@阵列(线性)7").SystemValue = frontPanelKaKouNo;
-                swPart.Parameter("D3@阵列(线性)7").SystemValue = frontPanelKaKouDis;
-                swPart.Parameter("D1@LPattern1").SystemValue = frontPanelHoleNo;
-                swPart.Parameter("D3@LPattern1").SystemValue = frontPanelHoleDis;
+                swEdit.FNHA0003(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, frontPanelHoleNo, frontPanelHoleDis);
                 //----------新风底部CJ孔板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0002-2"));
                 swPart = swComp.GetModelDoc2();

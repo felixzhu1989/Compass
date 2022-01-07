@@ -79,8 +79,8 @@ namespace SolidWorksHelper
             //int sidePanelSideCjNo = (int)((item.Deepth - 380d) / 32d);
 
             //CMOD555400斜侧板CJ孔计算，175为CMOD底部长度，555-400为高度差
-            int sidePanelDownCjNo = (int)(((double)(Math.Sqrt(Math.Pow((double)item.Deepth-175d,2)+ Math.Pow(555d-400d,2))) - 95d) / 32d);
-            int sidePanelSideCjNo = sidePanelDownCjNo-3;
+            int sidePanelDownCjNo = (int)(((double)(Math.Sqrt(Math.Pow((double)item.Deepth - 175d, 2) + Math.Pow(555d - 400d, 2))) - 95d) / 32d);
+            int sidePanelSideCjNo = sidePanelDownCjNo - 3;
 
             try
             {
@@ -374,7 +374,7 @@ namespace SolidWorksHelper
                     //LEFT
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0051-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swEdit.FNHS0051(swComp, item.Deepth, 555d,400d,sidePanelSideCjNo, sidePanelDownCjNo);
+                    swEdit.FNHS0051(swComp, item.Deepth, 555d, 400d, sidePanelSideCjNo, sidePanelDownCjNo);
 
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0052-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
@@ -388,7 +388,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0054-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swEdit.FNHS0054(swComp, item.Deepth, 555d, 400d);
-                    
+
                 }
                 else if (item.SidePanel == "LEFT")
                 {
@@ -438,8 +438,8 @@ namespace SolidWorksHelper
 
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0027-1"));
-                swEdit.FNHA0027(swComp,Convert.ToDouble(item.Length), frontPanelKaKouNo,frontPanelKaKouDis,frontPanelHoleNo,frontPanelHoleDis);
-                
+                swEdit.FNHA0027(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, frontPanelHoleNo, frontPanelHoleDis);
+
                 //----------蜂窝板压条----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0029-1"));
                 swPart = swComp.GetModelDoc2();

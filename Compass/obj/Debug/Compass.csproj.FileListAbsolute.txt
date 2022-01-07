@@ -329,3 +329,4 @@ D:\Compass\Compass\bin\Debug\eDrawings.Interop.EModelViewControl.dll
 D:\Compass\Compass\obj\Debug\Compass.FrmHWUVF555400.resources
 E:\Compass\Compass\obj\Debug\MyUIControls.SuperTextBox.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmFRKVF555.resources
+E:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete

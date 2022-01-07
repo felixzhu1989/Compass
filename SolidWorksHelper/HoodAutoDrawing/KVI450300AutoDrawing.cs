@@ -935,12 +935,7 @@ namespace SolidWorksHelper
 
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0089-1"));
-                swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D1@草图1").SystemValue = (item.Length - 3d) / 1000d;
-                swPart.Parameter("D1@阵列(线性)7").SystemValue = frontPanelKaKouNo;
-                swPart.Parameter("D3@阵列(线性)7").SystemValue = frontPanelKaKouDis;
-                swPart.Parameter("D1@LPattern1").SystemValue = frontPanelHoleNo;
-                swPart.Parameter("D3@LPattern1").SystemValue = frontPanelHoleDis;
+                swEdit.FNHA0089(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, frontPanelHoleNo, frontPanelHoleDis);
                 //----------新风底部CJ孔板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0002-1"));
                 swPart = swComp.GetModelDoc2();

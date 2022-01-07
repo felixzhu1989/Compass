@@ -220,17 +220,71 @@ namespace SolidWorksHelper
 
         #endregion
 
-        #region 新风零件
+        #region 新风网孔板,前面板
+        //F555型网孔板
+        public void FNHA0007(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int frontPanelHoleNo, double frontPanelHoleDis)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@草图1", length - 2d);
+            swPart.ChangeDim("D1@阵列(线性)7", frontPanelKaKouNo);
+            swPart.ChangeDim("D3@阵列(线性)7", frontPanelKaKouDis);
+            swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
+            swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
+        }
+        //F450型网孔板
+        public void FNHA0033(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int frontPanelHoleNo, double frontPanelHoleDis)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@草图1", length - 2d);
+            swPart.ChangeDim("D1@阵列(线性)7", frontPanelKaKouNo);
+            swPart.ChangeDim("D3@阵列(线性)7", frontPanelKaKouDis);
+            swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
+            swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
+        }
+
+        //F400型网孔板
         public void FNHA0027(Component2 swComp,double length,int frontPanelKaKouNo, double frontPanelKaKouDis, int frontPanelHoleNo, double frontPanelHoleDis)
         {
             swPart = swComp.GetModelDoc2();
-
-            swPart.Parameter("D1@草图1").SystemValue = (length - 3d) / 1000d;
-            swPart.Parameter("D1@阵列(线性)7").SystemValue = frontPanelKaKouNo;
-            swPart.Parameter("D3@阵列(线性)7").SystemValue = frontPanelKaKouDis;
-            swPart.Parameter("D1@LPattern1").SystemValue = frontPanelHoleNo;
-            swPart.Parameter("D3@LPattern1").SystemValue = frontPanelHoleDis;
+            swPart.ChangeDim("D1@草图1",length - 2d);
+            swPart.ChangeDim("D1@阵列(线性)7",frontPanelKaKouNo);
+            swPart.ChangeDim("D3@阵列(线性)7",frontPanelKaKouDis);
+            swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
+            swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
         }
+
+        //I555型前面板
+        public void FNHA0003(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int frontPanelHoleNo, double frontPanelHoleDis)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@草图1", length - 2d);
+            swPart.ChangeDim("D1@阵列(线性)7", frontPanelKaKouNo);
+            swPart.ChangeDim("D3@阵列(线性)7", frontPanelKaKouDis);
+            swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
+            swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
+        }
+        //I400型前面板
+        public void FNHA0041(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int frontPanelHoleNo, double frontPanelHoleDis)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@草图1", length - 2d);
+            swPart.ChangeDim("D1@阵列(线性)7", frontPanelKaKouNo);
+            swPart.ChangeDim("D3@阵列(线性)7", frontPanelKaKouDis);
+            swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
+            swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
+        }
+        //I300型前面板
+        public void FNHA0089(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int frontPanelHoleNo, double frontPanelHoleDis)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@草图1", length - 2d);
+            swPart.ChangeDim("D1@阵列(线性)7", frontPanelKaKouNo);
+            swPart.ChangeDim("D3@阵列(线性)7", frontPanelKaKouDis);
+            swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
+            swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
+        }
+
+
         #endregion
 
 
