@@ -165,13 +165,11 @@ D:\Compass\Compass\bin\Debug\MetroFramework.Design.dll
 D:\Compass\Compass\bin\Debug\MetroFramework.dll
 D:\Compass\Compass\bin\Debug\MetroFramework.Fonts.dll
 D:\Compass\Compass\bin\Debug\Models.dll
-D:\Compass\Compass\bin\Debug\MyUIControls.dll
 D:\Compass\Compass\bin\Debug\SolidWorksHelper.dll
 D:\Compass\Compass\bin\Debug\UpdateProgram.exe
 D:\Compass\Compass\bin\Debug\Common.pdb
 D:\Compass\Compass\bin\Debug\DAL.pdb
 D:\Compass\Compass\bin\Debug\Models.pdb
-D:\Compass\Compass\bin\Debug\MyUIControls.pdb
 D:\Compass\Compass\bin\Debug\SolidWorksHelper.pdb
 D:\Compass\Compass\bin\Debug\UpdateProgram.pdb
 D:\Compass\Compass\bin\Debug\UpdateProgram.exe.config
@@ -330,3 +328,5 @@ D:\Compass\Compass\obj\Debug\Compass.FrmHWUVF555400.resources
 E:\Compass\Compass\obj\Debug\MyUIControls.SuperTextBox.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmFRKVF555.resources
 E:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
+D:\Compass\Compass\obj\Debug\Compass.FrmFRKVF555.resources
+D:\Compass\Compass\obj\Debug\MyUIControls.SuperTextBox.resources

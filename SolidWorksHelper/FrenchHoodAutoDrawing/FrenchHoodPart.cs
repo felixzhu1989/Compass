@@ -57,13 +57,16 @@ namespace SolidWorksHelper
 
         }
 
-        internal void FNHE0196(Component2 swComp, double length, int backRivetNum, double backRivetSideDis, double exRightDis, string UVType, int exNo, double exLength, double exWidth, double exDis)
+        internal void FNHE0196(Component2 swComp, double length, int backRivetNum, double backRivetSideDis, double exRightDis, string UVType, int exNo, double exLength, double exWidth, double exDis, double liftingHoleDis)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();//打开零件3
-            swPart.ChangeDim("D2@Base-Flange1", length - 1d);
+            swPart.ChangeDim("D2@Base-Flange1", length - 2d);
             //铆钉孔
             swPart.ChangeDim("D1@LPattern1", backRivetNum); 
             swPart.ChangeDim("D5@Sketch31", backRivetSideDis - 1d);
+            //吊装孔
+            swPart.ChangeDim("D1@Sketch34", liftingHoleDis);
+            
             //UVHood,UVRack-UV灯架孔和UV cable-UV灯线缆穿孔
             if (UVType == "NO")
             {
@@ -553,7 +556,7 @@ namespace SolidWorksHelper
 
         }
 
-        internal void FNHA0117(Component2 swComp, double length, int backRivetNum, double backRivetSideDis, int suNo, double suDis, string bluetooth, string sidePanel)
+        internal void FNHA0117(Component2 swComp, double length, int backRivetNum, double backRivetSideDis, int suNo, double suDis, string bluetooth, string sidePanel, double liftingHoleDis)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D2@Sketch1", length - 2d);
@@ -563,6 +566,8 @@ namespace SolidWorksHelper
             swPart.ChangeDim("D1@Sketch35", backRivetSideDis - 1d);
             //新风脖颈
             swPart.ChangeDim("D1@Sketch48", suDis * (suNo / 2 - 1) + suDis / 2d);
+            //吊装孔
+            swPart.ChangeDim("D4@Sketch49", liftingHoleDis);
 
             if (suNo == 1) swComp.Suppress("LPattern2");
             else
@@ -587,7 +592,9 @@ namespace SolidWorksHelper
             swPart.ChangeDim("D1@Sketch31", backRivetSideDis);
             swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
             swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
-            //改成卡扣形式? 
+            //改成卡扣形式?
+            
+
         }
         internal void FNHA0111(Component2 swComp, double length, int frontPanelHoleNo, double frontPanelHoleDis)
         {
@@ -595,6 +602,8 @@ namespace SolidWorksHelper
             swPart.ChangeDim("D2@Sketch1", length - 1d);
             swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
             swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
+            swPart.ChangeDim("D1@LPattern2", frontPanelHoleNo);
+            swPart.ChangeDim("D3@LPattern2", frontPanelHoleDis);
         }
     }
 }

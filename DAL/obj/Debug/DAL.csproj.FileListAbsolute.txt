@@ -19,4 +19,4 @@ D:\Compass\DAL\obj\Debug\DAL.dll
 D:\Compass\DAL\obj\Debug\DAL.pdb
 D:\Compass\DAL\obj\Debug\DAL.csproj.CopyComplete
 E:\Compass\DAL\obj\Debug\DAL.csproj.CopyComplete
-D:\Compass\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\Compass\DAL\obj\Debug\DAL.csprojAssemblyReference.cache

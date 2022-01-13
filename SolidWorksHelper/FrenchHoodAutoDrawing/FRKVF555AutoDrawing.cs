@@ -76,6 +76,9 @@ namespace SolidWorksHelper
             double backRivetSideDis = (item.Length - 200d * (backRivetNum - 1)) / 2d;
             //随着烟罩深度变化,除去排风，新风和灯板，剩下的距离等距居中处理
             double withoutExSuMiDis = (item.Deepth - 365d - 204d - 535d) / 2d;
+            //吊装孔的位置
+            double liftingHoleDis = (Math.Floor(withoutExSuMiDis / 50d) + 1) * 50d - withoutExSuMiDis + 24d;
+
             //随着烟罩长度的变化，MidRoof侧板根据灯具的不同发生变化，长灯1353，短灯753,多减去1dm
             double midRoofSidePanel = (item.Length - 1335d) / 2d;//长
             if (item.LightType == "FSSHORT") midRoofSidePanel = (item.Length - 735d) / 2d;//短
@@ -159,7 +162,7 @@ namespace SolidWorksHelper
                 #region 排风腔顶板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0196-1");
                 swEdit.FNHE0196(swComp, item.Length, backRivetNum, backRivetSideDis, item.ExRightDis, "NO",
-                    item.ExNo, item.ExLength, item.ExWidth, item.ExDis);
+                    item.ExNo, item.ExLength, item.ExWidth, item.ExDis,liftingHoleDis);
                 #endregion
 
                 #region 排风腔前面板
@@ -325,7 +328,7 @@ namespace SolidWorksHelper
 
                 #region 新风顶面板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0117-1");
-                swEdit.FNHA0117(swComp, item.Length, backRivetNum, backRivetSideDis, item.SuNo, item.SuDis, "NO", item.SidePanel);
+                swEdit.FNHA0117(swComp, item.Length, backRivetNum, backRivetSideDis, item.SuNo, item.SuDis, "NO", item.SidePanel, liftingHoleDis);
                 #endregion
 
                 #region 新风导轨
