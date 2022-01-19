@@ -9,12 +9,16 @@ namespace Compass
     public partial class FrmUvi555 : MetroFramework.Forms.MetroForm
     {
         readonly UVI555Service _objUvi555Service = new UVI555Service();
-        private readonly UVI555 _objUvi555 = null;
+        private readonly UVI555 _objUvi555;
+        private ModelView modelView;
         public FrmUvi555()
         {
             InitializeComponent();
             SetVisibleFalse();
             IniCob();
+            modelView = new ModelView();
+            panel1.Controls.Add(modelView);
+            modelView.Dock = DockStyle.Fill;
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
@@ -122,7 +126,7 @@ namespace Compass
         private void FillData()
         {
             if (_objUvi555 == null) return;
-            modelView.Tag = _objUvi555.UVI555Id;
+            panel1.Tag = _objUvi555.UVI555Id;
 
             cobSidePanel.Text = _objUvi555.SidePanel;
             //默认ExNo为1
@@ -170,7 +174,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (modelView.Tag.ToString().Length == 0) return;
+            if (panel1.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 500d)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -420,7 +424,7 @@ namespace Compass
             //封装对象
             UVI555 objUvi555 = new UVI555()
             {
-                UVI555Id = Convert.ToInt32(modelView.Tag),
+                UVI555Id = Convert.ToInt32(panel1.Tag),
                 SidePanel = cobSidePanel.Text,
                 ExNo = Convert.ToInt32(cobExNo.Text),
                 LightType = cobLightType.Text,

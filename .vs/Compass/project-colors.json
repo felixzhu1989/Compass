@@ -5,7 +5,27 @@
       "ProjectGuid": "c8373b8f-13e5-4dde-9903-6637bdd5fe1e",
       "DisplayName": "Common",
       "ColorIndex": 0
+    },
+    "a99d5aeb-2fd5-430b-9d56-dbf20c5c873f": {
+      "ProjectGuid": "a99d5aeb-2fd5-430b-9d56-dbf20c5c873f",
+      "DisplayName": "SolidWorksHelper",
+      "ColorIndex": 1
+    },
+    "e38420c8-b37c-4b26-a77e-ae60bc495395": {
+      "ProjectGuid": "e38420c8-b37c-4b26-a77e-ae60bc495395",
+      "DisplayName": "Models",
+      "ColorIndex": 2
+    },
+    "2479ec41-d7cb-47fa-a3f5-2a5080050fdd": {
+      "ProjectGuid": "2479ec41-d7cb-47fa-a3f5-2a5080050fdd",
+      "DisplayName": "DAL",
+      "ColorIndex": 3
+    },
+    "72c90539-b00c-47ac-933b-21fff2d96bfa": {
+      "ProjectGuid": "72c90539-b00c-47ac-933b-21fff2d96bfa",
+      "DisplayName": "Compass",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 5
 }

@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="CeilingAutoDrawing\BCJ330AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\CJ330AutoDrawing.cs" />
+    <Compile Include="HoodPart.cs" />
     <Compile Include="MarineAutoDrawing\MarinePart.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="FrenchHoodAutoDrawing\FrenchHoodPart.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="HoodAutoDrawing\UWF555400AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\UVI450300AutoDrawing.cs" />
     <Compile Include="HoodAutoDrawing\UVF450AutoDrawing.cs" />
+    <Compile Include="HoodAutoDrawing\UVI555400AutoDrawing.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

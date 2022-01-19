@@ -102,7 +102,7 @@
             this.cobMARVEL = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
             this.btnEditData = new System.Windows.Forms.Button();
-            this.modelView = new Compass.ModelView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.grbMARVEL.SuspendLayout();
             this.grbANSUL.SuspendLayout();
@@ -911,23 +911,21 @@
             this.btnEditData.UseVisualStyleBackColor = false;
             this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
             // 
-            // modelView
+            // panel1
             // 
-            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modelView.Location = new System.Drawing.Point(25, 48);
-            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.modelView.Name = "modelView";
-            this.modelView.Size = new System.Drawing.Size(750, 460);
-            this.modelView.TabIndex = 11;
+            this.panel1.Location = new System.Drawing.Point(25, 50);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(750, 460);
+            this.panel1.TabIndex = 10;
             // 
-            // FrmUVI555
+            // FrmUvi555
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
-            this.Controls.Add(this.modelView);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.btnEditData);
             this.Controls.Add(this.cobMARVEL);
@@ -1037,6 +1035,6 @@
         private System.Windows.Forms.ComboBox cobANDropNo;
         private System.Windows.Forms.Button btnEditData;
         private System.Windows.Forms.ComboBox cobLEDSpotNo;
-        private ModelView modelView;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -1,7 +1,7 @@
 ﻿using SolidWorks.Interop.sldworks;
 namespace SolidWorksHelper
 {
-    internal class FrenchHoodPart
+    public class FrenchHoodPart
     {
         #region 排风腔
         internal void FNHE0195(Component2 swComp, double length, int backRivetNum, double backRivetSideDis, string waterCollection, string sidePanel, string outlet, string backToBack)
@@ -255,7 +255,6 @@ namespace SolidWorksHelper
                 //压缩所有侧板，等确定方案后再修改
                 swAssy.Suppress(suffix, "FNHE0201-1");
                 swAssy.Suppress(suffix, "FNHE0202-1");
-
             }
             else
             {

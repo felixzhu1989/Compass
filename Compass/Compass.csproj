@@ -171,6 +171,12 @@
     <Compile Include="FrenchHoodForm\FrmFRKVF555.Designer.cs">
       <DependentUpon>FrmFRKVF555.cs</DependentUpon>
     </Compile>
+    <Compile Include="HoodForm\FrmUVI555400.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoodForm\FrmUVI555400.Designer.cs">
+      <DependentUpon>FrmUVI555400.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmHWUVF555400.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1090,6 +1096,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmHWUVF555400.resx">
       <DependentUpon>FrmHWUVF555400.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoodForm\FrmUVI555400.resx">
+      <DependentUpon>FrmUVI555400.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MarineForm\FrmHME.resx">
       <DependentUpon>FrmHME.cs</DependentUpon>

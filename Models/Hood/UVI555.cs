@@ -3,9 +3,6 @@
 namespace Models
 {
     [Serializable]
-    /// <summary>
-    /// UVI555
-    /// </summary>
     public class UVI555: HoodParent, IModel
     {
         public int UVI555Id { get; set; }

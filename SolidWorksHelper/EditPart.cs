@@ -8,6 +8,12 @@ namespace SolidWorksHelper
         ModelDoc2 swPart;
         Feature swFeat;
 
+
+
+
+
+
+
         #region Hood SidePanel 普通烟罩大侧板
 
         /// <summary>
