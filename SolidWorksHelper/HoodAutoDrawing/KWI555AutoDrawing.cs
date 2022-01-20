@@ -54,10 +54,10 @@ namespace SolidWorksHelper
             //-----------计算中间值，----------
             //新风面板卡扣数量及间距
             int frontPanelKaKouNo = (int)((item.Length - 300d) / 450d) + 2;
-            double frontPanelKaKouDis = Convert.ToDouble((item.Length - 300d) / (frontPanelKaKouNo - 1)) / 1000d;
+            double frontPanelKaKouDis = Convert.ToDouble((item.Length - 300d) / (frontPanelKaKouNo - 1));
             //新风面板螺丝孔数量及间距
             int frontPanelHoleNo = (int)((item.Length - 300d) / 900d) + 2;
-            double frontPanelHoleDis = Convert.ToDouble((item.Length - 300) / (frontPanelHoleNo - 1)) / 1000d;
+            double frontPanelHoleDis = Convert.ToDouble((item.Length - 300) / (frontPanelHoleNo - 1));
             //新风CJ孔数量和新风CJ孔第一个CJ距离边缘距离
             int frontCjNo = (int)((item.Length - 30d) / 32d) + 1;
             double frontCjFirstDis = Convert.ToDouble((item.Length - (frontCjNo - 1) * 32d) / 2) / 1000d;
@@ -896,7 +896,7 @@ namespace SolidWorksHelper
                 swPart.Parameter("D1@CJHOLES").SystemValue = frontCjNo;
                 swPart.Parameter("D10@草图8").SystemValue = frontCjFirstDis;
                 swPart.Parameter("D1@LPattern1").SystemValue = frontPanelHoleNo;
-                swPart.Parameter("D3@LPattern1").SystemValue = frontPanelHoleDis;
+                swPart.Parameter("D3@LPattern1").SystemValue = frontPanelHoleDis / 1000d;
                 swFeat = swComp.FeatureByName("BLUETOOTH");
                 swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swFeat = swComp.FeatureByName("LOGO");
