@@ -879,6 +879,7 @@ namespace SolidWorksHelper
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0041-1"));
                 swEdit.FNHA0041(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, frontPanelHoleNo, frontPanelHoleDis);
+
                 //----------新风底部CJ孔板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0002-1"));
                 swPart = swComp.GetModelDoc2();
