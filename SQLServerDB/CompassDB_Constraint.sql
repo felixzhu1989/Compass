@@ -792,6 +792,27 @@ GO
 alter table KVI555 add constraint df_Height_KVI555 default ('555') for Height
 GO
 
+
+--KVX555TP
+if exists (select * from sysobjects where name='pk_KVX555TPId')
+    alter table KVX555TP drop constraint pk_KVX555TPId
+GO
+alter table KVX555TP add constraint pk_KVX555TPId primary key (KVX555TPId)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_KVX555TP')
+    alter table KVX555TP drop constraint fk_ModuleTreeId_KVX555TP
+GO
+alter table KVX555TP add constraint fk_ModuleTreeId_KVX555TP foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_KVX555TP')
+    alter table KVX555TP drop constraint df_Height_KVX555TP
+GO
+alter table KVX555TP add constraint df_Height_KVX555TP default ('555') for Height
+GO
+
+
+
+
 --KVI400
 if exists (select * from sysobjects where name='pk_KVI400Id')
     alter table KVI400 drop constraint pk_KVI400Id

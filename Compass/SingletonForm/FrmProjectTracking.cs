@@ -159,7 +159,7 @@ namespace Compass
             if (e.RowIndex > -1)
             {
                 string projectStatus = dgvProjectTracking.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
-                dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = _pair.ProjectStatusColorKeyValue.First(q => q.Key == projectStatus).Value;
+                dgvProjectTracking.Rows[e.RowIndex].DefaultCellStyle.BackColor = _pair.ProjectStatusCnColorKeyValue.First(q => q.Key == projectStatus).Value;
             }
         }
 

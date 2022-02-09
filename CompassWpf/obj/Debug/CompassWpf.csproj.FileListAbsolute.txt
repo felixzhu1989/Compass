@@ -80,3 +80,4 @@ E:\Compass\CompassWpf\obj\Debug\View\ProjectsView.baml
 E:\Compass\CompassWpf\obj\Debug\CompassWpf.csproj.CopyComplete
 D:\Compass\CompassWpf\obj\Debug\CompassWpf.csprojAssemblyReference.cache
 D:\Compass\CompassWpf\obj\Debug\CompassWpf.csproj.CopyComplete
+E:\Compass\CompassWpf\obj\Debug\CompassWpf.csproj.SuggestedBindingRedirects.cache

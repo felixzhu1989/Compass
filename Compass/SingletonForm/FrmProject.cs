@@ -430,7 +430,7 @@ namespace Compass
             if (e.RowIndex > -1)
             {
                 string projectStatus = dgvProjects.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
-                dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor =_pair.ProjectStatusColorKeyValue.First(q => q.Key == projectStatus).Value;
+                dgvProjects.Rows[e.RowIndex].DefaultCellStyle.BackColor =_pair.ProjectStatusCnColorKeyValue.First(q => q.Key == projectStatus).Value;
             }
         }
         private void TsmiShowProjectInfo_Click(object sender, EventArgs e)

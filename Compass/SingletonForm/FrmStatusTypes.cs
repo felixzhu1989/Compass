@@ -50,7 +50,7 @@ namespace Compass
             if (e.RowIndex > -1)
             {
                 string projectStatus = dgvProjectStatus.Rows[e.RowIndex].Cells["ProjectStatusName"].Value.ToString();
-                dgvProjectStatus.Rows[e.RowIndex].DefaultCellStyle.BackColor = _pair.ProjectStatusColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
+                dgvProjectStatus.Rows[e.RowIndex].DefaultCellStyle.BackColor = _pair.ProjectStatusCnColorKeyValue.Where(q => q.Key == projectStatus).First().Value;
             }
         }
         private void dgvProjectTypes_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)

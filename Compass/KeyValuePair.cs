@@ -147,7 +147,8 @@ namespace Compass
         4	日本项目
         5	韩国项目
         7	华为项目
-        8	其他
+        8	中东项目
+        9	其他
          */
 
         /// <summary>
@@ -160,7 +161,8 @@ namespace Compass
             {"4", "日本项目"},
             {"5", "韩国项目"},
             {"7", "华为项目"},
-            {"8", "其他"}
+            {"8", "中东项目"},
+            {"9", "其他"}
             
         };
         public Dictionary<string, string> ProjectTypeIdCnKeyValue => _projectTypeIdCn;
@@ -172,8 +174,9 @@ namespace Compass
             {"国内项目", Color.LimeGreen},
             {"港澳台项目", Color.LightPink},
             {"日本项目", Color.Orange},
-            {"华为项目", Color.DeepSkyBlue},
             {"韩国项目", Color.Salmon},
+            {"华为项目", Color.DeepSkyBlue},
+            {"中东项目", Color.LightYellow},
             {"其他", Color.Silver}
         };
         public Dictionary<string, Color> ProjectTypeColorKeyValue => _projectTypeColor;

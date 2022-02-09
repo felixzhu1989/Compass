@@ -718,3 +718,19 @@ where ShippingTime>'2021.11.01'
 
 select projectId,SUM(SubTotalWorkload) as TotalWorkload from DrawingPlan
 group by projectId
+
+
+select TypeId,sum(SalesValue) as SalesValue from GeneralRequirements 
+inner join Projects on GeneralRequirements.ProjectId=Projects.ProjectId 
+left join FinancialData on Projects.ProjectId=FinancialData.ProjectId 
+where ShippingTime like'2022%' and month(ShippingTime) between 1 and 3  
+group by TypeId order by TypeId asc
+
+select * from GeneralRequirements order by ProjectId desc 
+
+
+
+
+
+
+

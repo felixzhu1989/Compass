@@ -419,4 +419,13 @@ select * from Categories
 insert into CategoriesMarine (CategoryId,ParentId,CategoryName,CategoryDesc,Model,SubType,ModelPath)
 	values
 		(1000,1000,'Halton','Halton',' ',' ',' ')
-		
+
+
+
+select * from GeneralRequirements
+	
+
+
+
+update ProjectStatus set ProjectStatusName='Òý½ø',StatusDesc='Import' where ProjectStatusId=10
+select * from ProjectStatus

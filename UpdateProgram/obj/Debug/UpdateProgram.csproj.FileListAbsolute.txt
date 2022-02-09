@@ -21,5 +21,4 @@ D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csproj.CoreCompileInputs.cache
 D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.exe
 D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.pdb
 D:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csprojAssemblyReference.cache
-E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csproj.AssemblyReference.cache
 E:\Compass\UpdateProgram\obj\Debug\UpdateProgram.csproj.SuggestedBindingRedirects.cache
