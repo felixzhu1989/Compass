@@ -8,7 +8,162 @@ namespace SolidWorksHelper
         ModelDoc2 swPart;
         Feature swFeat;
 
+        internal void FNHE0001(Component2 swComp, double length, int midRoofHoleNo, double midRoofSecondHoleDis, int exNo, double exRightDis, double exLength, double exWidth, double exDis, string waterCollection, string sidePanel, string outlet, string backToBack, string ansul, string anSide, string anDetector, string marvel, string UVType)
+        {
+            #region 基本参数
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@草图1", length);
+            swPart.ChangeDim("D2@Sketch3", midRoofSecondHoleDis);
+            if (midRoofHoleNo == 1)
+            {
+                swComp.Suppress("LPattern1");
+            }
+            else
+            {
+                swComp.UnSuppress("LPattern1");
+                swPart.ChangeDim("D1@LPattern1", midRoofHoleNo);
+            }
+            #endregion
 
+            #region 排风口
+            if (exNo == 1)
+            {
+                swComp.UnSuppress("EXCOONE");
+                swComp.Suppress("EXCOTWO");
+                swPart.ChangeDim("D4@Sketch9", exRightDis);
+                swPart.ChangeDim("D2@Sketch9", exLength);
+                swPart.ChangeDim("D3@Sketch9", exWidth);
+            }
+            else
+            {
+                swComp.Suppress("EXCOONE");
+                swComp.UnSuppress("EXCOTWO");
+                swPart.ChangeDim("D5@Sketch10", exRightDis);
+                swPart.ChangeDim("D1@Sketch10", exDis);
+                swPart.ChangeDim("D3@Sketch10", exLength);
+                swPart.ChangeDim("D4@Sketch10", exWidth);
+            }
+            #endregion
+
+            #region 集水翻边
+            if (waterCollection == "YES")
+            {
+                if (sidePanel == "RIGHT")
+                {
+                    swComp.UnSuppress("DRAINCHANNEL-RIGHT");
+                    swComp.Suppress("DRAINCHANNEL-LEFT");
+                }
+                else if (sidePanel == "LEFT")
+                {
+                    swComp.UnSuppress("DRAINCHANNEL-LEFT");
+                    swComp.Suppress("DRAINCHANNEL-RIGHT");
+                }
+                else if (sidePanel == "BOTH")
+                {
+                    swComp.UnSuppress("DRAINCHANNEL-RIGHT");
+                    swComp.UnSuppress("DRAINCHANNEL-LEFT");
+                }
+            }
+            else
+            {
+                swComp.Suppress("DRAINCHANNEL-RIGHT");
+                swComp.Suppress("DRAINCHANNEL-LEFT");
+            }
+            #endregion
+
+            #region 油塞
+            if (outlet == "LEFTTAP")
+            {
+                swComp.UnSuppress("DRAINTAP-LEFT");
+                swComp.Suppress("DRAINTAP-RIGHT");
+            }
+            else if (outlet == "RIGHTTAP")
+            {
+                swComp.Suppress("DRAINTAP-LEFT");
+                swComp.UnSuppress("DRAINTAP-RIGHT");
+            }
+            else
+            {
+                swComp.Suppress("DRAINTAP-LEFT");
+                swComp.Suppress("DRAINTAP-RIGHT");
+            }
+            #endregion
+
+            //背靠背
+            if (backToBack == "YES") swComp.UnSuppress("BACKTOBACK");
+            else swComp.Suppress("BACKTOBACK");
+
+            #region ANSUL
+            if (ansul == "YES")
+            {
+                //侧喷
+                if (anSide == "LEFT")
+                {
+                    swComp.UnSuppress("ANSUL-LEFT");
+                    swComp.UnSuppress("CHANNEL-LEFT");
+                }
+                else if (anSide == "RIGHT")
+                {
+                    swComp.UnSuppress("ANSUL-RIGHT");
+                    swComp.UnSuppress("CHANNEL-RIGHT");
+                }
+                else
+                {
+                    swComp.Suppress("ANSUL-LEFT");
+                    swComp.Suppress("ANSUL-RIGHT");
+                    swComp.Suppress("CHANNEL-LEFT");
+                    swComp.Suppress("CHANNEL-RIGHT");
+                }
+                //探测器
+                swComp.Suppress("ANDTEC-RIGHT");
+                swComp.Suppress("ANDTEC-LEFT");
+                if (anDetector == "RIGHT" || anDetector == "BOTH")
+                {
+                    swComp.UnSuppress("ANDTEC-RIGHT");
+                }
+                if (anDetector == "LEFT" || anDetector == "BOTH")
+                {
+                    swComp.UnSuppress("ANDTEC-LEFT");
+                }
+            }
+            #endregion
+
+            #region MARVEL
+            if (marvel == "YES")
+            {
+                swComp.UnSuppress("MA-NTC");
+                if (exNo == 1) swPart.ChangeDim("D1@Sketch21", exRightDis + exLength / 2d + 50d);
+                else swPart.ChangeDim("D1@Sketch21", exRightDis + exDis / 2d + exLength + 50d);
+            }
+            else swComp.Suppress("MA-NTC");
+            #endregion
+
+            #region UVHood
+            if (UVType == "LONG")
+            {
+                swComp.UnSuppress("UVRACK");
+                swPart.ChangeDim("D6@Sketch12", exRightDis);
+                swPart.ChangeDim("D5@Sketch12", 1640d);
+                swComp.UnSuppress("UVCABLE");
+                swPart.ChangeDim("D4@Sketch11", exRightDis);
+                swPart.ChangeDim("D1@Sketch11", 1500d);
+            }
+            else if (UVType == "SHORT")
+            {
+                swComp.UnSuppress("UVRACK");
+                swPart.ChangeDim("D6@Sketch12", exRightDis);
+                swPart.ChangeDim("D5@Sketch12", 930d);
+                swComp.UnSuppress("UVCABLE");
+                swPart.ChangeDim("D4@Sketch11", exRightDis);
+                swPart.ChangeDim("D1@Sketch11", 790d);
+            }
+            else
+            {
+                swComp.Suppress("UVRACK");
+                swComp.Suppress("UVCABLE");
+            }
+            #endregion
+        }
 
 
 

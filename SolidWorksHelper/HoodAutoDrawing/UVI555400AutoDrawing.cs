@@ -4,7 +4,7 @@ using DAL;
 using Models;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
-
+//已通过扩展方法改造
 namespace SolidWorksHelper
 {
     public class UVI555400AutoDrawing : IAutoDrawing

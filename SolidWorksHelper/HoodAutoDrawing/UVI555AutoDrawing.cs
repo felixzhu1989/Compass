@@ -4,9 +4,7 @@ using DAL;
 using Models;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
-using System.Windows.Forms;
-using Common;
-
+//已通过扩展方法改造
 namespace SolidWorksHelper
 {
     //2.实现接口具体方法
@@ -26,10 +24,8 @@ namespace SolidWorksHelper
             //packango后需要接收打包完成的地址，参数为后缀
             string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
             if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
-
             //查询参数
             UVI555 item = (UVI555)objUvi555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
             int warnings = 0;
             int errors = 0;
