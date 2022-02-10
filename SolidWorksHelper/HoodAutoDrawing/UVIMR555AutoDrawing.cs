@@ -1323,19 +1323,8 @@ namespace SolidWorksHelper
 
                 //------------M型烟罩方形新风腔主体/前面----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0012-1"));
-                swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D2@基体-法兰1").SystemValue = item.Length / 1000d;
-                swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
-                swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis;
-                swPart.Parameter("D1@Sketch2").SystemValue = midRoofSecondHoleDis;
-                swPart.Parameter("D1@Sketch8").SystemValue = 150d / 1000d - midRoofTopHoleDis;
-                swFeat = swComp.FeatureByName("LPattern1");
-                if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
-                else
-                {
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
-                }
+                swEdit.FNHA0012(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo);
+
                 //------------M型烟罩方形新风腔主体/背面----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0013-1"));
                 swPart = swComp.GetModelDoc2();

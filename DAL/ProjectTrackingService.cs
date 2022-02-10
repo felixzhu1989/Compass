@@ -28,7 +28,7 @@ namespace DAL
                 TableName = $"ProjectTracking{sbu}",
                 InnerJoin1 = innerJoin.ToString(),
                 InnerJoin2 = string.Format("inner join Projects{0} on ProjectTracking{0}.ProjectId=Projects{0}.ProjectId", sbu),
-                FiledName = "ProjectTrackingId,ODPNo,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName,ODPReceiveDate,KickOffDate,UserAccount",
+                FiledName = "ProjectTrackingId,ODPNo,ProjectStatusName,DrReleaseTarget,DrReleaseActual,ShippingTime,ProdFinishActual,DeliverActual,ProjectName,ODPReceiveDate,KickOffDate,UserAccount,datediff(day,ODPReceiveDate,ShippingTime) as ProjectCycle",
                 CurrentPage = 1,
                 Sort = "ShippingTime desc",
             };

@@ -377,7 +377,7 @@
             this.grbTracking.Size = new System.Drawing.Size(367, 297);
             this.grbTracking.TabIndex = 8;
             this.grbTracking.TabStop = false;
-            this.grbTracking.Text = "跟踪信息";
+            this.grbTracking.Text = "跟踪信息（项目周期）";
             // 
             // grbProjectStatus
             // 

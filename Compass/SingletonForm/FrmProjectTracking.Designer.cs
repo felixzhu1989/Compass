@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvProjectTracking = new System.Windows.Forms.DataGridView();
             this.ODPNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjectStatusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectCycle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ODPReceiveDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KickOffDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DrReleaseTarget = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +70,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.cobODPNo = new System.Windows.Forms.ComboBox();
@@ -91,6 +93,7 @@
             this.btnToPage = new System.Windows.Forms.Button();
             this.btnQueryByYear = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.label15 = new System.Windows.Forms.Label();
             this.txtToPage = new MyUIControls.SuperTextBox(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProjectTracking)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -102,27 +105,28 @@
             // 
             this.dgvProjectTracking.AllowUserToAddRows = false;
             this.dgvProjectTracking.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Azure;
-            this.dgvProjectTracking.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
+            this.dgvProjectTracking.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProjectTracking.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProjectTracking.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvProjectTracking.BackgroundColor = System.Drawing.Color.White;
             this.dgvProjectTracking.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProjectTracking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(232)))), ((int)(((byte)(155)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProjectTracking.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvProjectTracking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProjectTracking.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ODPNo,
             this.ProjectStatusName,
             this.ProjectName,
+            this.ProjectCycle,
             this.ODPReceiveDate,
             this.KickOffDate,
             this.DrReleaseTarget,
@@ -169,13 +173,21 @@
             this.ProjectName.ReadOnly = true;
             this.ProjectName.Width = 86;
             // 
+            // ProjectCycle
+            // 
+            this.ProjectCycle.DataPropertyName = "ProjectCycle";
+            this.ProjectCycle.HeaderText = "项目周期";
+            this.ProjectCycle.Name = "ProjectCycle";
+            this.ProjectCycle.ReadOnly = true;
+            this.ProjectCycle.Width = 86;
+            // 
             // ODPReceiveDate
             // 
             this.ODPReceiveDate.DataPropertyName = "ODPReceiveDate";
-            this.ODPReceiveDate.HeaderText = "ODPReceive";
+            this.ODPReceiveDate.HeaderText = "收到ODP";
             this.ODPReceiveDate.Name = "ODPReceiveDate";
             this.ODPReceiveDate.ReadOnly = true;
-            this.ODPReceiveDate.Width = 109;
+            this.ODPReceiveDate.Width = 89;
             // 
             // KickOffDate
             // 
@@ -286,7 +298,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 80);
+            this.label3.Location = new System.Drawing.Point(12, 76);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 19);
             this.label3.TabIndex = 18;
@@ -298,7 +310,7 @@
             this.btnQueryByProjectId.FlatAppearance.BorderSize = 0;
             this.btnQueryByProjectId.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQueryByProjectId.ForeColor = System.Drawing.Color.White;
-            this.btnQueryByProjectId.Location = new System.Drawing.Point(225, 75);
+            this.btnQueryByProjectId.Location = new System.Drawing.Point(225, 71);
             this.btnQueryByProjectId.Name = "btnQueryByProjectId";
             this.btnQueryByProjectId.Size = new System.Drawing.Size(46, 28);
             this.btnQueryByProjectId.TabIndex = 16;
@@ -363,7 +375,7 @@
             // label9
             // 
             this.label9.ForeColor = System.Drawing.Color.Blue;
-            this.label9.Location = new System.Drawing.Point(602, 48);
+            this.label9.Location = new System.Drawing.Point(602, 45);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(79, 41);
             this.label9.TabIndex = 21;
@@ -397,10 +409,11 @@
             this.grbEditProjectTracking.Controls.Add(this.label10);
             this.grbEditProjectTracking.Controls.Add(this.label7);
             this.grbEditProjectTracking.Controls.Add(this.label19);
+            this.grbEditProjectTracking.Controls.Add(this.label8);
             this.grbEditProjectTracking.Controls.Add(this.label5);
             this.grbEditProjectTracking.Location = new System.Drawing.Point(12, 137);
             this.grbEditProjectTracking.Name = "grbEditProjectTracking";
-            this.grbEditProjectTracking.Size = new System.Drawing.Size(926, 94);
+            this.grbEditProjectTracking.Size = new System.Drawing.Size(926, 96);
             this.grbEditProjectTracking.TabIndex = 24;
             this.grbEditProjectTracking.TabStop = false;
             this.grbEditProjectTracking.Text = "修改项目跟踪记录";
@@ -410,7 +423,7 @@
             this.cobEditODPNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cobEditODPNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cobEditODPNo.FormattingEnabled = true;
-            this.cobEditODPNo.Location = new System.Drawing.Point(69, 60);
+            this.cobEditODPNo.Location = new System.Drawing.Point(69, 61);
             this.cobEditODPNo.Name = "cobEditODPNo";
             this.cobEditODPNo.Size = new System.Drawing.Size(139, 27);
             this.cobEditODPNo.TabIndex = 40;
@@ -418,7 +431,7 @@
             // dtpEditKickOffDate
             // 
             this.dtpEditKickOffDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEditKickOffDate.Location = new System.Drawing.Point(467, 26);
+            this.dtpEditKickOffDate.Location = new System.Drawing.Point(467, 31);
             this.dtpEditKickOffDate.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dtpEditKickOffDate.Name = "dtpEditKickOffDate";
             this.dtpEditKickOffDate.Size = new System.Drawing.Size(117, 25);
@@ -427,7 +440,7 @@
             // dtpEditODPReceiveDate
             // 
             this.dtpEditODPReceiveDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEditODPReceiveDate.Location = new System.Drawing.Point(282, 29);
+            this.dtpEditODPReceiveDate.Location = new System.Drawing.Point(282, 31);
             this.dtpEditODPReceiveDate.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dtpEditODPReceiveDate.Name = "dtpEditODPReceiveDate";
             this.dtpEditODPReceiveDate.Size = new System.Drawing.Size(117, 25);
@@ -452,7 +465,7 @@
             this.cobEditProjectStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobEditProjectStatus.Enabled = false;
             this.cobEditProjectStatus.FormattingEnabled = true;
-            this.cobEditProjectStatus.Location = new System.Drawing.Point(70, 25);
+            this.cobEditProjectStatus.Location = new System.Drawing.Point(70, 30);
             this.cobEditProjectStatus.Name = "cobEditProjectStatus";
             this.cobEditProjectStatus.Size = new System.Drawing.Size(139, 27);
             this.cobEditProjectStatus.TabIndex = 14;
@@ -469,7 +482,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(2, 29);
+            this.label10.Location = new System.Drawing.Point(2, 34);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 19);
             this.label10.TabIndex = 19;
@@ -478,20 +491,30 @@
             // label7
             // 
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(215, 26);
+            this.label7.Location = new System.Drawing.Point(215, 30);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 50);
+            this.label7.Size = new System.Drawing.Size(71, 27);
             this.label7.TabIndex = 21;
-            this.label7.Text = "ODPRecv Date";
+            this.label7.Text = "收到ODP";
             // 
             // label19
             // 
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(404, 25);
+            this.label19.Location = new System.Drawing.Point(404, 32);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(57, 47);
+            this.label19.Size = new System.Drawing.Size(57, 23);
             this.label19.TabIndex = 21;
-            this.label19.Text = "KickOff Date";
+            this.label19.Text = "KickOff";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.Blue;
+            this.label8.Location = new System.Drawing.Point(286, 12);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(85, 19);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "转MO的时间";
             // 
             // label5
             // 
@@ -505,13 +528,14 @@
             // 
             // btnAdd
             // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.BackColor = System.Drawing.Color.Red;
             this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(277, 75);
+            this.btnAdd.Location = new System.Drawing.Point(861, 39);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(82, 28);
+            this.btnAdd.Size = new System.Drawing.Size(77, 28);
             this.btnAdd.TabIndex = 22;
             this.btnAdd.Text = "报告异常";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -521,7 +545,7 @@
             this.cobODPNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cobODPNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cobODPNo.FormattingEnabled = true;
-            this.cobODPNo.Location = new System.Drawing.Point(80, 76);
+            this.cobODPNo.Location = new System.Drawing.Point(80, 72);
             this.cobODPNo.Name = "cobODPNo";
             this.cobODPNo.Size = new System.Drawing.Size(139, 27);
             this.cobODPNo.TabIndex = 39;
@@ -747,6 +771,17 @@
             this.btnQueryByYear.UseVisualStyleBackColor = false;
             this.btnQueryByYear.Click += new System.EventHandler(this.BtnQueryByYear_Click);
             // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.ForeColor = System.Drawing.Color.Blue;
+            this.label15.Location = new System.Drawing.Point(649, 80);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(285, 19);
+            this.label15.TabIndex = 21;
+            this.label15.Text = "提示：项目周期是收到ODP到计划完工的天数。";
+            // 
             // txtToPage
             // 
             this.txtToPage.Location = new System.Drawing.Point(629, 25);
@@ -769,6 +804,7 @@
             this.Controls.Add(this.cobProjectStatus);
             this.Controls.Add(this.dgvProjectTracking);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label15);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmProjectTracking";
@@ -833,9 +869,12 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ToolStripMenuItem tsmiShowProjectInfo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridViewTextBoxColumn ODPNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectStatusName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProjectCycle;
         private System.Windows.Forms.DataGridViewTextBoxColumn ODPReceiveDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn KickOffDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn DrReleaseTarget;
@@ -846,6 +885,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AnomalyStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectTrackingId;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label15;
     }
 }

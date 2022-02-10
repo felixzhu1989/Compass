@@ -106,6 +106,7 @@ namespace Compass
             //objSqlDataPager.PageSize = Convert.ToInt32(this.cobRecordList.Text.Trim());
             //【3】执行查询
             dgvProjectTracking.DataSource = _objSqlDataPager.GetPagedData();
+
             //【4】显示记录总数，显示总页数，显示当前页码
             lblRecordsCound.Text = _objSqlDataPager.RecordCount.ToString();
             lblPageCount.Text = _objSqlDataPager.TotalPages.ToString();
@@ -131,6 +132,7 @@ namespace Compass
                 btnToPage.Enabled = true;
             }
         }
+
 
         private void QueryByYear()
         {

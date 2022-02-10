@@ -867,71 +867,7 @@ namespace SolidWorksHelper
                 //-I300新风
                 //------------I型新风腔主体----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0087-1"));
-                swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D2@基体-法兰1").SystemValue = item.Length / 1000d;
-                swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
-                swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis;
-                swPart.Parameter("D3@Sketch4").SystemValue = midRoofSecondHoleDis;
-                swPart.Parameter("D3@Sketch11").SystemValue = 200d / 1000d - midRoofTopHoleDis;
-                swFeat = swComp.FeatureByName("LPattern1");
-                if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩 
-                else
-                {
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
-                }
-                //MARVEL
-                if (item.MARVEL == "YES")
-                {
-                    if (item.IRNo > 0)
-                    {
-                        swFeat = swComp.FeatureByName("MA1");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        swPart.Parameter("D3@Sketch16").SystemValue = item.IRDis1 / 1000d;
-                        swFeat = swComp.FeatureByName("MACABLE1");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        swPart.Parameter("D2@Sketch19").SystemValue = item.IRDis1 / 1000d;
-                    }
-                    if (item.IRNo > 1)
-                    {
-                        swFeat = swComp.FeatureByName("MA2");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        swPart.Parameter("D3@Sketch17").SystemValue = item.IRDis2 / 1000d;
-                        swFeat = swComp.FeatureByName("MACABLE2");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        swPart.Parameter("D2@Sketch20").SystemValue = item.IRDis2 / 1000d;
-                    }
-                    if (item.IRNo > 2)
-                    {
-                        swFeat = swComp.FeatureByName("MA3");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        swPart.Parameter("D3@Sketch18").SystemValue = item.IRDis3 / 1000d;
-                        swFeat = swComp.FeatureByName("MACABLE3");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        swPart.Parameter("D2@Sketch21").SystemValue = item.IRDis3 / 1000d;
-                    }
-                }
-                else
-                {
-                    swFeat = swComp.FeatureByName("MA1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                    swFeat = swComp.FeatureByName("MA2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                    swFeat = swComp.FeatureByName("MA3");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                    swFeat = swComp.FeatureByName("MACABLE1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                    swFeat = swComp.FeatureByName("MACABLE2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                    swFeat = swComp.FeatureByName("MACABLE3");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                }
-                //UV HOOD
-                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
-                swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
-                if (item.MARVEL == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                swEdit.FNHA0087(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3, item.SidePanel, "KV", "NO");
 
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0089-1"));

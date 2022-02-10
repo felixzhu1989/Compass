@@ -1056,6 +1056,8 @@ namespace SolidWorksHelper
 
                 //------------I型新风腔主体----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0001-1");
+                swEdit.FNHA0001(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3, item.SidePanel, "UV", item.Bluetooth);
+
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D2@基体-法兰1").SystemValue = item.Length / 1000d;
                 swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;

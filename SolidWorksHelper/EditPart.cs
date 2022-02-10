@@ -226,6 +226,370 @@ namespace SolidWorksHelper
 
         #endregion
 
+
+        #region 新风腔零件
+        public void FNHA0001(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo,  string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D2@基体-法兰1").SystemValue = length / 1000d;
+            swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
+            swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis / 1000d;
+            swPart.Parameter("D3@Sketch3").SystemValue = midRoofSecondHoleDis;
+            swPart.Parameter("D9@草图7").SystemValue = 200d / 1000d - midRoofTopHoleDis;
+            swFeat = swComp.FeatureByName("LPattern1");
+            if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            else
+            {
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
+            }
+            //MARVEL
+            if (MARVEL == "YES")
+            {
+                if (IRNo > 0)
+                {
+                    swFeat = swComp.FeatureByName("MA1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch14").SystemValue = IRDis1 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D1@Sketch17").SystemValue = IRDis1 / 1000d;
+                }
+                if (IRNo > 1)
+                {
+                    swFeat = swComp.FeatureByName("MA2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch15").SystemValue = IRDis2 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D1@Sketch18").SystemValue = IRDis2 / 1000d;
+                }
+                if (IRNo > 2)
+                {
+                    swFeat = swComp.FeatureByName("MA3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch16").SystemValue = IRDis3 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D1@Sketch19").SystemValue = IRDis3 / 1000d;
+                }
+            }
+            else
+            {
+                swFeat = swComp.FeatureByName("MA1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MA2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MA3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            if (exType == "UV") //"UV"/"KV"
+            {
+                //UV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                if (bluetooth == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (sidePanel == "LEFT" || sidePanel == "BOTH") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            else
+            {
+                //KV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (MARVEL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩  
+            }
+
+        }
+        public void FNHA0004(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, double suDis, int suNo, string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D2@基体-法兰1").SystemValue = length / 1000d;
+            swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
+            swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis / 1000d;
+            swPart.Parameter("D3@Sketch4").SystemValue = midRoofSecondHoleDis;
+            swPart.Parameter("D1@Sketch11").SystemValue = 200d / 1000d - midRoofTopHoleDis;
+            swFeat = swComp.FeatureByName("LPattern1");
+            if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            else
+            {
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
+            }
+            //新风脖颈
+            swPart.Parameter("D3@Sketch6").SystemValue = (suDis * (suNo / 2 - 1) + suDis / 2d) / 1000d;
+            swFeat = swComp.FeatureByName("LPattern2");
+            if (suNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            else
+            {
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D1@LPattern2").SystemValue = suNo;
+                swPart.Parameter("D3@LPattern2").SystemValue = suDis / 1000d;
+            }
+            //MARVEL
+            if (MARVEL == "YES")
+            {
+                if (IRNo > 0)
+                {
+                    swFeat = swComp.FeatureByName("MA1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch16").SystemValue = IRDis1 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    if (suNo == 1) swPart.Parameter("D1@Sketch19").SystemValue = (length + 400) / 2000d;
+                    else swPart.Parameter("D1@Sketch19").SystemValue = length / 2000d;
+                }
+                if (IRNo > 1)
+                {
+                    swFeat = swComp.FeatureByName("MA2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch17").SystemValue = IRDis2 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D1@Sketch19").SystemValue = (length / 2 - 25d) / 1000d;
+                    swPart.Parameter("D1@Sketch20").SystemValue = 50d / 1000d;
+                }
+                if (IRNo > 2)
+                {
+                    swFeat = swComp.FeatureByName("MA3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch18").SystemValue = IRDis3 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D1@Sketch19").SystemValue = 220d / 1000d;
+                    swPart.Parameter("D1@Sketch20").SystemValue = (length - 440d) / 2000d;
+                    swPart.Parameter("D1@Sketch21").SystemValue = (length - 440d) / 2000d;
+                }
+            }
+            else
+            {
+                swFeat = swComp.FeatureByName("MA1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MA2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MA3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            if (exType == "UV") //"UV"/"KV"
+            {
+                //UV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                if (bluetooth == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (sidePanel == "LEFT" || sidePanel == "BOTH") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            else
+            {
+                //KV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (MARVEL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩  
+            }
+
+        }
+
+
+        public void FNHA0069(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D2@基体-法兰1").SystemValue = length / 1000d;
+            swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
+            swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis / 1000d;
+            swPart.Parameter("D3@Sketch3").SystemValue = midRoofSecondHoleDis;
+            swPart.Parameter("D9@草图7").SystemValue = 200d / 1000d - midRoofTopHoleDis;
+            swFeat = swComp.FeatureByName("LPattern1");
+            if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            else
+            {
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
+            }
+            //MARVEL
+            //if (MARVEL == "YES")
+            //{
+            //    if (IRNo > 0)
+            //    {
+            //        swFeat = swComp.FeatureByName("MA1");
+            //        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+            //        swPart.Parameter("D3@Sketch14").SystemValue = IRDis1 / 1000d;
+            //        swFeat = swComp.FeatureByName("MACABLE1");
+            //        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+            //        swPart.Parameter("D1@Sketch17").SystemValue = IRDis1 / 1000d;
+            //    }
+            //    if (IRNo > 1)
+            //    {
+            //        swFeat = swComp.FeatureByName("MA2");
+            //        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+            //        swPart.Parameter("D3@Sketch15").SystemValue = IRDis2 / 1000d;
+            //        swFeat = swComp.FeatureByName("MACABLE2");
+            //        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+            //        swPart.Parameter("D1@Sketch18").SystemValue = IRDis2 / 1000d;
+            //    }
+            //    if (IRNo > 2)
+            //    {
+            //        swFeat = swComp.FeatureByName("MA3");
+            //        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+            //        swPart.Parameter("D3@Sketch16").SystemValue = IRDis3 / 1000d;
+            //        swFeat = swComp.FeatureByName("MACABLE3");
+            //        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+            //        swPart.Parameter("D1@Sketch19").SystemValue = IRDis3 / 1000d;
+            //    }
+            //}
+            //else
+            //{
+            //    swFeat = swComp.FeatureByName("MA1");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            //    swFeat = swComp.FeatureByName("MA2");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            //    swFeat = swComp.FeatureByName("MA3");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            //    swFeat = swComp.FeatureByName("MACABLE1");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            //    swFeat = swComp.FeatureByName("MACABLE2");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            //    swFeat = swComp.FeatureByName("MACABLE3");
+            //    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            //}
+            if (exType == "UV") //"UV"/"KV"
+            {
+                //UV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                if (bluetooth == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (sidePanel == "LEFT" || sidePanel == "BOTH") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            else
+            {
+                //KV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (MARVEL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩  
+            }
+
+        }
+        public void FNHA0083(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, double suDis, int suNo, string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D2@基体-法兰1").SystemValue = length / 1000d;
+            swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
+            swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis / 1000d;
+            swPart.Parameter("D3@Sketch3").SystemValue = midRoofSecondHoleDis;
+            //swPart.Parameter("D1@Sketch11").SystemValue = 200d / 1000d - midRoofTopHoleDis;
+            swFeat = swComp.FeatureByName("LPattern1");
+            if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            else
+            {
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
+            }
+            //新风脖颈
+            swPart.Parameter("D3@Sketch6").SystemValue = (suDis * (suNo / 2 - 1) + suDis / 2d) / 1000d;
+            swFeat = swComp.FeatureByName("LPattern2");
+            if (suNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            else
+            {
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D1@LPattern2").SystemValue = suNo;
+                swPart.Parameter("D3@LPattern2").SystemValue = suDis / 1000d;
+            }
+            //MARVEL
+            if (MARVEL == "YES")
+            {
+                if (IRNo > 0)
+                {
+                    swFeat = swComp.FeatureByName("MA1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch16").SystemValue = IRDis1 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    if (suNo == 1) swPart.Parameter("D1@Sketch19").SystemValue = (length + 400) / 2000d;
+                    else swPart.Parameter("D1@Sketch19").SystemValue = length / 2000d;
+                }
+                if (IRNo > 1)
+                {
+                    swFeat = swComp.FeatureByName("MA2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch17").SystemValue = IRDis2 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D1@Sketch19").SystemValue = (length / 2 - 25d) / 1000d;
+                    swPart.Parameter("D1@Sketch20").SystemValue = 50d / 1000d;
+                }
+                if (IRNo > 2)
+                {
+                    swFeat = swComp.FeatureByName("MA3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch18").SystemValue = IRDis3 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D1@Sketch19").SystemValue = 220d / 1000d;
+                    swPart.Parameter("D1@Sketch20").SystemValue = (length - 440d) / 2000d;
+                    swPart.Parameter("D1@Sketch21").SystemValue = (length - 440d) / 2000d;
+                }
+            }
+            else
+            {
+                swFeat = swComp.FeatureByName("MA1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MA2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MA3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            if (exType == "UV") //"UV"/"KV"
+            {
+                //UV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                if (bluetooth == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (sidePanel == "LEFT" || sidePanel == "BOTH") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            else
+            {
+                //KV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (MARVEL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩  
+            }
+
+        }
+
+
+        #endregion
+
         #region 新风网孔板,前面板
         //F555型网孔板
         public void FNHA0007(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int frontPanelHoleNo, double frontPanelHoleDis)
@@ -1058,14 +1422,137 @@ namespace SolidWorksHelper
 
         #endregion
 
-        #region 400新风F型
 
+        #region 450新风
+        //F型
+        public void FNHA0039(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, double suDis, int suNo, string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D2@基体-法兰1").SystemValue = length / 1000d;
+            swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
+            swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis / 1000d;
+            swPart.Parameter("D3@Sketch1").SystemValue = midRoofSecondHoleDis;
+            swPart.Parameter("D3@Sketch18").SystemValue = 200d / 1000d - midRoofTopHoleDis;
+            swFeat = swComp.FeatureByName("LPattern1");
+            if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            else
+            {
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
+            }
+            //新风脖颈
+            swPart.Parameter("D3@Sketch5").SystemValue = (suDis * (suNo / 2 - 1) + suDis / 2d) / 1000d;
+            swFeat = swComp.FeatureByName("LPattern2");
+            if (suNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            else
+            {
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D1@LPattern2").SystemValue = suNo;
+                swPart.Parameter("D3@LPattern2").SystemValue = suDis / 1000d;
+            }
+            //MARVEL
+            if (MARVEL == "YES")
+            {
+                if (IRNo > 0)
+                {
+                    swFeat = swComp.FeatureByName("MA1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D2@Sketch24").SystemValue = IRDis1 / 1000d;
+                    swFeat = swComp.FeatureByName("MAINS1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D1@Sketch22").SystemValue = IRDis1 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch23").SystemValue = 150d / 1000d;
+                }
+                if (IRNo > 1)
+                {
+                    swFeat = swComp.FeatureByName("MA2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D2@Sketch25").SystemValue = IRDis2 / 1000d;
+                    swFeat = swComp.FeatureByName("MAINS2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D1@Sketch27").SystemValue = IRDis2 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch23").SystemValue = 150d / 1000d;
+                    swPart.Parameter("D1@Sketch29").SystemValue = (length - 300d) / 1000d;
+                }
+                if (IRNo > 2)
+                {
+                    swFeat = swComp.FeatureByName("MA3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D2@Sketch26").SystemValue = IRDis3 / 1000d;
+                    swFeat = swComp.FeatureByName("MAINS3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D1@Sketch28").SystemValue = IRDis3 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch23").SystemValue = 150d / 1000d;//第一出现孔
+                    swPart.Parameter("D1@Sketch29").SystemValue = (length - 300d) / 1000d;//第二出线孔
+                    swPart.Parameter("D1@Sketch30").SystemValue = 50d / 1000d;//第三出线孔
+                }
+            }
+            else
+            {
+                swFeat = swComp.FeatureByName("MA1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MA2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MA3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MAINS1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MAINS2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MAINS3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            if (exType == "UV") //"UV"/"KV"
+            {
+                //UV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                if (bluetooth == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (sidePanel == "LEFT" || sidePanel == "BOTH") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            else
+            {
+                //KV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (MARVEL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩  
+            }
+
+
+
+
+
+
+
+
+        }
+        #endregion
+
+        #region 400新风
+
+        //F型
         public void FNHA0021(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, double suDis, int suNo, string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
         {
             swPart = swComp.GetModelDoc2();
             swPart.Parameter("D2@基体-法兰1").SystemValue = length / 1000d;
             swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
-            swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis;
+            swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis/1000d;
             swPart.Parameter("D3@Sketch4").SystemValue = midRoofSecondHoleDis;
             swPart.Parameter("D1@Sketch11").SystemValue = 200d / 1000d - midRoofTopHoleDis;
             swFeat = swComp.FeatureByName("LPattern1");
@@ -1099,7 +1586,6 @@ namespace SolidWorksHelper
                     swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D1@Sketch20").SystemValue = IRDis1 / 1000d;
                     swFeat = swComp.FeatureByName("MACABLE1");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D3@Sketch17").SystemValue = 150d / 1000d;
                 }
@@ -1184,10 +1670,221 @@ namespace SolidWorksHelper
 
 
         }
+        //I型
+        public void FNHA0040(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo,  string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D2@基体-法兰1").SystemValue = length / 1000d;
+            swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
+            swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis / 1000d;
+            swPart.Parameter("D3@Sketch4").SystemValue = midRoofSecondHoleDis;
+            swPart.Parameter("D1@Sketch11").SystemValue = 200d / 1000d - midRoofTopHoleDis;
+            swFeat = swComp.FeatureByName("LPattern1");
+            if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            else
+            {
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
+            }
+            //MARVEL
+            if (MARVEL == "YES")
+            {
+                if (IRNo > 0)
+                {
+                    swFeat = swComp.FeatureByName("MA1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch16").SystemValue =IRDis1 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D2@Sketch19").SystemValue = IRDis1 / 1000d;
+                }
+                if (IRNo > 1)
+                {
+                    swFeat = swComp.FeatureByName("MA2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch17").SystemValue = IRDis2 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D2@Sketch20").SystemValue =IRDis2 / 1000d;
+                }
+                if (IRNo > 2)
+                {
+                    swFeat = swComp.FeatureByName("MA3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch18").SystemValue =IRDis3 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D2@Sketch21").SystemValue = IRDis3 / 1000d;
+                }
+            }
+            else
+            {
+                swFeat = swComp.FeatureByName("MA1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MA2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MA3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            if (exType == "UV") //"UV"/"KV"
+            {
+                //UV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                if (bluetooth == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (sidePanel == "LEFT" || sidePanel == "BOTH") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            else
+            {
+                //KV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (MARVEL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩  
+            }
 
 
 
 
+
+
+
+
+        }
+
+
+
+        #endregion
+
+        #region 300新风
+        //I型
+        public void FNHA0087(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D2@基体-法兰1").SystemValue = length / 1000d;
+            swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
+            swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis / 1000d;
+            swPart.Parameter("D3@Sketch4").SystemValue = midRoofSecondHoleDis;
+            swPart.Parameter("D1@Sketch11").SystemValue = 200d / 1000d - midRoofTopHoleDis;
+            swFeat = swComp.FeatureByName("LPattern1");
+            if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            else
+            {
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
+            }
+            //MARVEL
+            if (MARVEL == "YES")
+            {
+                if (IRNo > 0)
+                {
+                    swFeat = swComp.FeatureByName("MA1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch16").SystemValue = IRDis1 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE1");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D2@Sketch19").SystemValue = IRDis1 / 1000d;
+                }
+                if (IRNo > 1)
+                {
+                    swFeat = swComp.FeatureByName("MA2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch17").SystemValue = IRDis2 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE2");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D2@Sketch20").SystemValue = IRDis2 / 1000d;
+                }
+                if (IRNo > 2)
+                {
+                    swFeat = swComp.FeatureByName("MA3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D3@Sketch18").SystemValue = IRDis3 / 1000d;
+                    swFeat = swComp.FeatureByName("MACABLE3");
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swPart.Parameter("D2@Sketch21").SystemValue = IRDis3 / 1000d;
+                }
+            }
+            else
+            {
+                swFeat = swComp.FeatureByName("MA1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MA2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MA3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE1");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE2");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("MACABLE3");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            if (exType == "UV") //"UV"/"KV"
+            {
+                //UV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                if (bluetooth == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (sidePanel == "LEFT" || sidePanel == "BOTH") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+            }
+            else
+            {
+                //KV HOOD
+                swFeat = swComp.FeatureByName("SUCABLE-LEFT");
+                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swFeat = swComp.FeatureByName("JUNCTION BOX-LEFT");
+                if (MARVEL == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩  
+            }
+
+
+
+
+
+
+
+
+        }
+
+
+        #endregion
+        #region 方形新风腔
+        public void FNHA0012(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo)
+        {
+            swPart = swComp.GetModelDoc2();
+            swPart.Parameter("D2@基体-法兰1").SystemValue = length / 1000d;
+            swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
+            swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis / 1000d;
+            swPart.Parameter("D1@Sketch2").SystemValue = midRoofSecondHoleDis;
+            swPart.Parameter("D1@Sketch8").SystemValue = 150d / 1000d - midRoofTopHoleDis;
+            swFeat = swComp.FeatureByName("LPattern1");
+            if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+            else
+            {
+                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swPart.Parameter("D1@LPattern1").SystemValue = midRoofHoleNo;
+            }
+            
+
+
+
+
+
+
+
+
+        }
 
 
         #endregion

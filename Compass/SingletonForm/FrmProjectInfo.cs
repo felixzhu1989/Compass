@@ -344,29 +344,21 @@ namespace Compass
             DateTime dateDrwPlan = projectTracking.DrReleaseTarget;
             DateTime dateKickOff = projectTracking.KickOffDate;
             DateTime dateOdpRecv = projectTracking.ODPReceiveDate;
-
-            int daysDeliver = dateDeliver.Subtract(dateOdpRecv).Days < 0 ? 0 : dateDeliver.Subtract(dateOdpRecv).Days;//实际出货
-            int daysPrdFish = datePrdFish.Subtract(dateOdpRecv).Days < 0 ? 0 : datePrdFish.Subtract(dateOdpRecv).Days;//实际完工
-            int daysShiping = dateShiping.Subtract(dateOdpRecv).Days < 0 ? 0 : dateShiping.Subtract(dateOdpRecv).Days;//计划完工
-            int daysDrwRels = dateDrwRels.Subtract(dateOdpRecv).Days < 0 ? 0 : dateDrwRels.Subtract(dateOdpRecv).Days;//实际发图
-            int daysDrwPlan = dateDrwPlan.Subtract(dateOdpRecv).Days < 0 ? 0 : dateDrwPlan.Subtract(dateOdpRecv).Days;//计划发图
-            int daysKickOff = dateKickOff.Subtract(dateOdpRecv).Days < 0 ? 0 : dateKickOff.Subtract(dateOdpRecv).Days;//Kick-Off
-
-            //seriesTracking.Points.AddXY("Deliver: " + dateDeliver.ToShortDateString(), daysDeliver);
-            //seriesTracking.Points.AddXY("PrdFish: " + datePrdFish.ToShortDateString(), daysPrdFish);
-            //seriesTracking.Points.AddXY("Shiping: " + dateShiping.ToShortDateString(), daysShiping);
-            //seriesTracking.Points.AddXY("DrwRels: " + dateDrwRels.ToShortDateString(), daysDrwRels);
-            //seriesTracking.Points.AddXY("DrwPlan: " + dateDrwPlan.ToShortDateString(), daysDrwPlan);
-            //seriesTracking.Points.AddXY("Kick-Off: " + dateKickOff.ToShortDateString(), daysKickOff);
-            //seriesTracking.Points.AddXY("ODPRcv: " + dateODPRecv.ToShortDateString(), 0);
-
-            seriesTracking.Points.AddXY("实际发货: " + dateDeliver.ToShortDateString(), daysDeliver);
-            seriesTracking.Points.AddXY("实际完工: " + datePrdFish.ToShortDateString(), daysPrdFish);
-            seriesTracking.Points.AddXY("计划完工: " + dateShiping.ToShortDateString(), daysShiping);
-            seriesTracking.Points.AddXY("实际发图: " + dateDrwRels.ToShortDateString(), daysDrwRels);
-            seriesTracking.Points.AddXY("计划发图: " + dateDrwPlan.ToShortDateString(), daysDrwPlan);
-            seriesTracking.Points.AddXY("开工会议: " + dateKickOff.ToShortDateString(), daysKickOff);
-            seriesTracking.Points.AddXY("收到ODP: " + dateOdpRecv.ToShortDateString(), 0);
+            
+            int daysDeliver = DateDiff(dateOdpRecv,dateDeliver);//实际出货
+            int daysPrdFish = DateDiff(dateOdpRecv, datePrdFish);//实际完工
+            int daysShiping = DateDiff(dateOdpRecv, dateShiping);//计划完工
+            int daysDrwRels = DateDiff(dateOdpRecv, dateDrwRels);//实际发图
+            int daysDrwPlan = DateDiff(dateOdpRecv, dateDrwPlan) ;//计划发图
+            int daysKickOff = DateDiff(dateOdpRecv, dateKickOff);//Kick-Off
+            
+            seriesTracking.Points.AddXY("实际发货: " + DateString(dateDeliver), daysDeliver);
+            seriesTracking.Points.AddXY("实际完工: " + DateString(datePrdFish), daysPrdFish);
+            seriesTracking.Points.AddXY("计划完工: " + DateString(dateShiping), daysShiping);
+            seriesTracking.Points.AddXY("实际发图: " + DateString(dateDrwRels), daysDrwRels);
+            seriesTracking.Points.AddXY("计划发图: " + DateString(dateDrwPlan), daysDrwPlan);
+            seriesTracking.Points.AddXY("开工会议: " + DateString(dateKickOff), daysKickOff);
+            seriesTracking.Points.AddXY("收到ODP: " + DateString(dateOdpRecv), 0);
 
             seriesTracking.Points[0].Color = Color.LimeGreen;//项目完成
             seriesTracking.Points[1].Color = Color.GreenYellow;//实际完工
@@ -391,6 +383,23 @@ namespace Compass
             chartTracking.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White;//刻度值颜色
             chartTracking.ChartAreas[0].AxisY.MajorTickMark.Enabled = false;//隐藏刻度线 
         }
+
+        private bool NoDate(DateTime date)
+        {
+            //日期为1月1号(没有填写数据)
+            return Convert.ToDateTime(date) == Convert.ToDateTime("1/1/0001");
+        }
+
+        private int DateDiff(DateTime dateOdpRecv, DateTime date)
+        {
+            return NoDate(dateOdpRecv) || date.Subtract(dateOdpRecv).Days < 0 ? 0 : date.Subtract(dateOdpRecv).Days;
+        }
+
+        private string DateString(DateTime date)
+        {
+            return NoDate(date) ? "?": date.ToShortDateString();
+        }
+
         #endregion
 
         #region 月度和年度统计

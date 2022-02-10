@@ -728,7 +728,25 @@ group by TypeId order by TypeId asc
 
 select * from GeneralRequirements order by ProjectId desc 
 
+--查询跟踪信息
+--计算项目周期datediff(day,ODPReceiveDate,ShippingTime) as ProjectCycle
 
+select Top 100 ProjectTrackingId,ODPNo,ProjectStatusName,DrReleaseTarget,DrReleaseActual,
+ShippingTime,ProdFinishActual,DeliverActual,ProjectName,ODPReceiveDate,KickOffDate,UserAccount,
+datediff(day,ODPReceiveDate,ShippingTime) as ProjectCycle
+from ProjectTracking 
+inner join ProjectStatus on ProjectStatus.ProjectStatusId=ProjectTracking.ProjectStatusId 
+inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId 
+inner join Users on Projects.UserId=Users.UserId 
+left join (select ProjectId,max(DrReleaseTarget)as DrReleaseTarget from DrawingPlan 
+group by ProjectId) as PlanList on PlanList.ProjectId=Projects.ProjectId 
+where ShippingTime>='2022/01/01' and ShippingTime<='2022/12/31' 
+and ProjectTrackingId not in (select Top 0 ProjectTrackingId 
+from ProjectTracking where ShippingTime>='2022/01/01' and 
+ShippingTime<='2022/12/31' order by ShippingTime desc) 
+order by ShippingTime desc;select count(*) from ProjectTracking 
+inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId 
+where ShippingTime>='2022/01/01' and ShippingTime<='2022/12/31'
 
 
 
