@@ -331,3 +331,5 @@ E:\Compass\Compass\obj\Debug\Compass.csproj.CopyComplete
 D:\Compass\Compass\obj\Debug\Compass.FrmFRKVF555.resources
 D:\Compass\Compass\obj\Debug\MyUIControls.SuperTextBox.resources
 E:\Compass\Compass\obj\Debug\Compass.FrmUVI555400.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmCMODI700TS.resources
+E:\Compass\Compass\obj\Debug\Compass.FrmCMODF700TS.resources

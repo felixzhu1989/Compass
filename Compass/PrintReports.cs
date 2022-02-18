@@ -58,6 +58,72 @@ namespace Compass
             GC.Collect(); //垃圾回收机制
         }
 
+        public void ExecPrintEngLabel(ModuleTree tree)
+        {
+            JobCard objJobCard = new JobCardService().GetJobCard(tree);
+            //核对信息
+            if (objJobCard.Length == 0)
+            {
+                MessageBox.Show("编号" + objJobCard.Item + "中" + objJobCard.Module + "烟罩数据没有填写，请认真检查", "信息核对");
+                return;
+            }
+            if (objJobCard.LabelImage.Length == 0)
+            {
+                MessageBox.Show("编号" + objJobCard.Item + "中" + objJobCard.Module + "JobCard标签截图没有上传，请回到模型树中双击Item上传截图，请认真检查", "信息核对");
+                return;
+            }
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            string excelBookPath = Environment.CurrentDirectory + "\\JobCard_EngLabel.xlsx";
+            excelApp.Workbooks.Add(excelBookPath);
+            Worksheet workSheet = excelApp.Worksheets[1];
+            //插入Item图片
+            if (objJobCard.LabelImage.Length != 0)
+            {
+                Image image = (Image)new Common.SerializeObjectToString().DeserializeObject(objJobCard.LabelImage);
+                string imagePath = Environment.CurrentDirectory + "\\LabelImage.jpg";
+                if (File.Exists(imagePath)) File.Delete(imagePath);//删除图片
+                else
+                {
+                    //保存图片到系统目录中
+                    image.Save(imagePath);
+                    //将图片插入excel
+                    workSheet.Shapes.AddPicture(imagePath, Microsoft.Office.Core.MsoTriState.msoFalse,
+                        Microsoft.Office.Core.MsoTriState.msoTrue, 5, 157, 580, 225);//左，上，宽度，高度
+                    workSheet.Shapes.AddPicture(imagePath, Microsoft.Office.Core.MsoTriState.msoFalse,
+                        Microsoft.Office.Core.MsoTriState.msoTrue, 5, 545, 580, 225);//左，上，宽度，高度
+                    //使用完毕后删除保存的图片
+                    File.Delete(imagePath);
+                }
+            }
+            //通用信息
+            workSheet.Cells[3, 3] = objJobCard.ODPNo;
+            workSheet.Cells[4, 3] = objJobCard.ProjectName;
+            workSheet.Cells[5, 3] = objJobCard.CustomerName;
+            workSheet.Cells[6, 3] = objJobCard.Item + "(" + objJobCard.Module + ")";
+            workSheet.Cells[7, 3] = objJobCard.Model;
+            //长度
+            if (objJobCard.Model == "KVI" || objJobCard.Model == "KVF" || objJobCard.Model == "UVI" || objJobCard.Model == "UVF"
+                || objJobCard.Model == "KWI" || objJobCard.Model == "KWF" || objJobCard.Model == "UWI" || objJobCard.Model == "UWF"
+                || objJobCard.Model == "KVIM" || objJobCard.Model == "KVFM" || objJobCard.Model == "UVIM" || objJobCard.Model == "UVFM"
+                || objJobCard.Model == "KCH" || objJobCard.Model == "CMOD")
+            {
+                if (objJobCard.Length != 0 && objJobCard.SidePanel == "BOTH")
+                    workSheet.Cells[8, 3] = objJobCard.Length + 100;
+                else if (objJobCard.SidePanel == "MIDDLE") workSheet.Cells[8, 3] = objJobCard.Length;
+                else workSheet.Cells[8, 3] = objJobCard.Length + 50;
+            }
+            else workSheet.Cells[8, 3] = objJobCard.Length;
+            workSheet.Cells[8, 5] = objJobCard.Deepth;
+            workSheet.Cells[8, 7] = objJobCard.Height;
+
+            //打印
+            workSheet.PrintOutEx();
+            KillProcess(excelApp);
+            excelApp = null;//对象置空
+            GC.Collect(); //垃圾回收机制
+        }
+
+
 
         /// <summary>
         /// 标准烟罩打印JobCard

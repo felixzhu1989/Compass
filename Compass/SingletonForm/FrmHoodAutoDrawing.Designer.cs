@@ -68,6 +68,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.BtnIniCobOdpNo = new System.Windows.Forms.Button();
+            this.btnEnglishLabel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWaitingList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExecList)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -453,6 +454,20 @@
             this.BtnIniCobOdpNo.UseVisualStyleBackColor = false;
             this.BtnIniCobOdpNo.Click += new System.EventHandler(this.BtnIniCobOdpNo_Click);
             // 
+            // btnEnglishLabel
+            // 
+            this.btnEnglishLabel.BackColor = System.Drawing.Color.Red;
+            this.btnEnglishLabel.FlatAppearance.BorderSize = 0;
+            this.btnEnglishLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnglishLabel.ForeColor = System.Drawing.Color.White;
+            this.btnEnglishLabel.Location = new System.Drawing.Point(574, 215);
+            this.btnEnglishLabel.Name = "btnEnglishLabel";
+            this.btnEnglishLabel.Size = new System.Drawing.Size(52, 50);
+            this.btnEnglishLabel.TabIndex = 43;
+            this.btnEnglishLabel.Text = "英文标签";
+            this.btnEnglishLabel.UseVisualStyleBackColor = false;
+            this.btnEnglishLabel.Click += new System.EventHandler(this.btnEnglishLabel_Click);
+            // 
             // FrmHoodAutoDrawing
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -469,6 +484,7 @@
             this.Controls.Add(this.btnSub);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnHoodPackingList);
+            this.Controls.Add(this.btnEnglishLabel);
             this.Controls.Add(this.btnJobCard);
             this.Controls.Add(this.btnExportDxf);
             this.Controls.Add(this.btnExec);
@@ -530,5 +546,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button BtnIniCobOdpNo;
+        private System.Windows.Forms.Button btnEnglishLabel;
     }
 }

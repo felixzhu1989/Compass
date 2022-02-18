@@ -1285,6 +1285,26 @@ if exists (select * from sysobjects where name='df_Height_CMODI555')
 GO
 alter table CMODI555 add constraint df_Height_CMODI555 default ('555') for Height
 GO
+
+--CMODI700TS
+if exists (select * from sysobjects where name='pk_CMODI700TSId')
+    alter table CMODI700TS drop constraint pk_CMODI700TSId
+GO
+alter table CMODI700TS add constraint pk_CMODI700TSId primary key (CMODI700TSId)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_CMODI700TS')
+    alter table CMODI700TS drop constraint fk_ModuleTreeId_CMODI700TS
+GO
+alter table CMODI700TS add constraint fk_ModuleTreeId_CMODI700TS foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_CMODI700TS')
+    alter table CMODI700TS drop constraint df_Height_CMODI700TS
+GO
+alter table CMODI700TS add constraint df_Height_CMODI700TS default ('700') for Height
+GO
+
+
+
 --CMODF555
 if exists (select * from sysobjects where name='pk_CMODF555Id')
     alter table CMODF555 drop constraint pk_CMODF555Id
@@ -1301,6 +1321,24 @@ if exists (select * from sysobjects where name='df_Height_CMODF555')
 GO
 alter table CMODF555 add constraint df_Height_CMODF555 default ('555') for Height
 GO
+
+--CMODF700TS
+if exists (select * from sysobjects where name='pk_CMODF700TSId')
+    alter table CMODF700TS drop constraint pk_CMODF700TSId
+GO
+alter table CMODF700TS add constraint pk_CMODF700TSId primary key (CMODF700TSId)
+GO
+if exists (select * from sysobjects where name='fk_ModuleTreeId_CMODF700TS')
+    alter table CMODF700TS drop constraint fk_ModuleTreeId_CMODF700TS
+GO
+alter table CMODF700TS add constraint fk_ModuleTreeId_CMODF700TS foreign key(ModuleTreeId) references ModuleTree (ModuleTreeId)
+GO
+if exists (select * from sysobjects where name='df_Height_CMODF700TS')
+    alter table CMODF700TS drop constraint df_Height_CMODF700TS
+GO
+alter table CMODF700TS add constraint df_Height_CMODF700TS default ('700') for Height
+GO
+
 
 --CMODF555400
 if exists (select * from sysobjects where name='pk_CMODF555400Id')

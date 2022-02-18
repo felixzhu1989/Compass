@@ -1639,6 +1639,56 @@ create table CMODI555
     IRDis3 decimal(6,2),
 )
 
+--CMODI700TS
+if exists (select * from sysobjects where name='CMODI700TS')
+drop table CMODI700TS
+go
+create table CMODI700TS
+(
+    CMODI700TSId int identity(1,1),
+    ModuleTreeId int,
+    Length decimal(6,2),
+    Deepth decimal(6,2),
+	Height varchar(10),
+    ExRightDis decimal(6,2),
+    ExNo int,
+    ExDis decimal(6,2),
+    ExLength decimal(6,2),
+    ExWidth decimal(6,2),
+    ExHeight decimal(6,2),
+    SidePanel varchar(6),
+    Outlet varchar(9),
+	Inlet varchar(9),
+    LEDLogo varchar(3),
+    BackToBack varchar(3),
+    LEDSpotNo int,
+    LEDSpotDis decimal(6,2),
+    LightType varchar(7),
+    ANSUL varchar(3),
+    ANSide varchar(5),
+    ANDetectorEnd varchar(5),
+    ANYDis decimal(6,2),
+    ANDropNo int,
+    ANDropDis1 decimal(6,2),
+    ANDropDis2 decimal(6,2),
+    ANDropDis3 decimal(6,2),
+    ANDropDis4 decimal(6,2),
+    ANDropDis5 decimal(6,2),
+	ANDetectorNo int,
+    ANDetectorDis1 decimal(6,2),
+    ANDetectorDis2 decimal(6,2),
+    ANDetectorDis3 decimal(6,2),
+    ANDetectorDis4 decimal(6,2),
+    ANDetectorDis5 decimal(6,2),
+    MARVEL varchar(3),
+    IRNo int,
+    IRDis1 decimal(6,2),
+    IRDis2 decimal(6,2),
+    IRDis3 decimal(6,2),
+)
+
+
+
 if exists (select * from sysobjects where name='CMODF555')
 drop table CMODF555
 go
@@ -1687,6 +1737,57 @@ create table CMODF555
 	SuNo int,
 	SuDis decimal(6,2)
 )
+
+if exists (select * from sysobjects where name='CMODF700TS')
+drop table CMODF700TS
+go
+create table CMODF700TS
+(
+    CMODF700TSId int identity(1,1),
+    ModuleTreeId int,
+    Length decimal(6,2),
+    Deepth decimal(6,2),
+	Height varchar(10),
+    ExRightDis decimal(6,2),
+    ExNo int,
+    ExDis decimal(6,2),
+    ExLength decimal(6,2),
+    ExWidth decimal(6,2),
+    ExHeight decimal(6,2),
+    SidePanel varchar(6),
+    Outlet varchar(9),
+	Inlet varchar(9),
+    LEDLogo varchar(3),
+    BackToBack varchar(3),
+    LEDSpotNo int,
+    LEDSpotDis decimal(6,2),
+    LightType varchar(7),
+    ANSUL varchar(3),
+    ANSide varchar(5),
+    ANDetectorEnd varchar(5),
+    ANYDis decimal(6,2),
+    ANDropNo int,
+    ANDropDis1 decimal(6,2),
+    ANDropDis2 decimal(6,2),
+    ANDropDis3 decimal(6,2),
+    ANDropDis4 decimal(6,2),
+    ANDropDis5 decimal(6,2),
+	ANDetectorNo int,
+    ANDetectorDis1 decimal(6,2),
+    ANDetectorDis2 decimal(6,2),
+    ANDetectorDis3 decimal(6,2),
+    ANDetectorDis4 decimal(6,2),
+    ANDetectorDis5 decimal(6,2),
+    MARVEL varchar(3),
+    IRNo int,
+    IRDis1 decimal(6,2),
+    IRDis2 decimal(6,2),
+    IRDis3 decimal(6,2),
+	SuNo int,
+	SuDis decimal(6,2)
+)
+
+
 
 if exists (select * from sysobjects where name='CMODF555400')
 drop table CMODF555400

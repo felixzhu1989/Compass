@@ -753,18 +753,14 @@ namespace SolidWorksHelper
                 //华为灯板左右加高
                 if (item.Length >= 2200d && item.Length <= 2400d)
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0032-2"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0032-1"));
-                    swComp.SetSuppression2(2); //2解压缩，0压缩
+                    swAssy.UnSuppress(suffix, "FNHM0032-2");
+                    swComp = swAssy.UnSuppress(suffix, "FNHM0032-1");
                     swEdit.FNHM0032(swComp, "UW", item.Deepth, "555", midRoofTopHoleDis);
                 }
                 else
                 {
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0032-2"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0032-1"));
-                    swComp.SetSuppression2(0); //2解压缩，0压缩
+                    swAssy.Suppress(suffix, "FNHM0032-2");
+                    swAssy.Suppress(suffix, "FNHM0032-1");
                 }
 
                 //----------吊装槽钢----------

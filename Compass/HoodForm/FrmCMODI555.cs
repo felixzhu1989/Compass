@@ -10,6 +10,7 @@ namespace Compass
     {
         readonly CMODI555Service _objCmodi555Service = new CMODI555Service();
         private readonly CMODI555 _objCmodi555 = null;
+        private ModelView modelView;
         public FrmCmodi555()
         {
             InitializeComponent();
@@ -18,6 +19,9 @@ namespace Compass
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
+            modelView = new ModelView();
+            panel1.Controls.Add(modelView);
+            modelView.Dock = DockStyle.Fill;
         }
         public FrmCmodi555(Drawing drawing, ModuleTree tree) : this()
         {
@@ -122,7 +126,7 @@ namespace Compass
         private void FillData()
         {
             if (_objCmodi555 == null) return;
-            modelView.Tag = _objCmodi555.CMODI555Id;
+            panel1.Tag = _objCmodi555.CMODI555Id;
 
             cobSidePanel.Text = _objCmodi555.SidePanel;
             //默认ExNo为1
@@ -174,7 +178,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (modelView.Tag.ToString().Length == 0) return;
+            if (panel1.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 500d)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -468,7 +472,7 @@ namespace Compass
             //封装对象
             CMODI555 objCmodi555 = new CMODI555()
             {
-                CMODI555Id = Convert.ToInt32(modelView.Tag),
+                CMODI555Id = Convert.ToInt32(panel1.Tag),
                 SidePanel = cobSidePanel.Text,
                 ExNo = Convert.ToInt32(cobExNo.Text),
                 LightType = cobLightType.Text,

@@ -775,11 +775,18 @@ namespace SolidWorksHelper
                 swEdit.FNHM0031(swComp, "UV", item.Length, item.Deepth, 555d,400d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, item.LightYDis, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
 
                 //华为灯板左右加高
-                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0032-2");
-                swComp.SetSuppression2(2); //2解压缩，0压缩
-                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0032-1");
-                swComp.SetSuppression2(2); //2解压缩，0压缩
-                swEdit.FNHM0032(swComp, "UV", item.Deepth, "555", midRoofTopHoleDis);
+                if (item.Length >= 2200d && item.Length <= 2400d)
+                {
+                    swAssy.UnSuppress(suffix, "FNHM0032-2");
+                    swComp = swAssy.UnSuppress(suffix, "FNHM0032-1");
+                    swEdit.FNHM0032(swComp, "UV", item.Deepth, "555", midRoofTopHoleDis);
+                }
+                else
+                {
+                    swAssy.Suppress(suffix, "FNHM0032-2");
+                    swAssy.Suppress(suffix, "FNHM0032-1");
+                }
+
 
                 //----------吊装槽钢----------
                 //swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2900100001-1");

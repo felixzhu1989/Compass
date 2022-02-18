@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="CeilingService\BCJ330Service.cs" />
     <Compile Include="CeilingService\CJ330Service.cs" />
+    <Compile Include="TickSheetService\CMODF700TSService.cs" />
+    <Compile Include="TickSheetService\CMODI700TSService.cs" />
     <Compile Include="DrawingNumMatrixService.cs" />
     <Compile Include="FinancialDataService.cs" />
     <Compile Include="FrenchHoodService\FRKVF555Service.cs" />

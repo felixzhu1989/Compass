@@ -471,8 +471,8 @@ namespace SolidWorksHelper
             swPart.Parameter("D2@基体-法兰1").SystemValue = length / 1000d;
             swPart.Parameter("D1@阵列(线性)1").SystemValue = frontPanelKaKouNo;
             swPart.Parameter("D3@阵列(线性)1").SystemValue = frontPanelKaKouDis / 1000d;
-            swPart.Parameter("D3@Sketch4").SystemValue = midRoofSecondHoleDis;
-            swPart.Parameter("D1@Sketch11").SystemValue = 200d / 1000d - midRoofTopHoleDis;
+            swPart.Parameter("D3@Sketch3").SystemValue = midRoofSecondHoleDis;
+            swPart.Parameter("D4@草图7").SystemValue = 200d / 1000d - midRoofTopHoleDis;
             swFeat = swComp.FeatureByName("LPattern1");
             if (midRoofHoleNo == 1) swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
             else

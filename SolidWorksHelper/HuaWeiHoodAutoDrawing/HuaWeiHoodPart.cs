@@ -20,10 +20,10 @@ namespace SolidWorksHelper
         public void FNHS0067(Component2 swComp, double deepth, double height, int sidePanelSideCjNo, int sidePanelDownCjNo)
         {
             swPart = swComp.GetModelDoc2();
-            swPart.Parameter("D1@草图1").SystemValue = deepth / 1000d;
-            swPart.Parameter("D2@草图1").SystemValue = height / 1000d;
-            swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelSideCjNo;
-            swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelDownCjNo;
+            swPart.ChangeDim("D1@草图1",deepth);
+            swPart.ChangeDim("D2@草图1", height);
+            swPart.ChangeDim("D1@阵列(线性)1", sidePanelSideCjNo);
+            swPart.ChangeDim("D1@阵列(线性)2", sidePanelDownCjNo);
         }
         /// <summary>
         /// 左边大侧板内板
@@ -34,43 +34,42 @@ namespace SolidWorksHelper
         public void FNHS0068(Component2 swComp, double deepth, double height)
         {
             swPart = swComp.GetModelDoc2();
-            swPart.Parameter("D1@草图1").SystemValue = (deepth - 79d - 3.4d) / 1000d;//华为板厚1.2,内板过大-3.4
-            swPart.Parameter("D2@草图1").SystemValue = (height - 39d - 1d) / 1000d;
-            if (height == 555d || height == 650d)
+            swPart.ChangeDim("D1@草图1",deepth - 79d - 3.4d);//华为板厚1.2,内板过大-3.4
+            swPart.ChangeDim("D2@草图1",height - 39d - 1d);
+            if (height == 700d)
             {
-                swFeat = swComp.FeatureByName("F555");
-                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F450");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F400");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swComp.UnSuppress("F700");
+                swComp.Suppress("F555");
+                swComp.Suppress("F450");
+                swComp.Suppress("F400");
+            }
+            else if (height == 555d || height == 650d)
+            {
+                swComp.Suppress("F700");
+                swComp.UnSuppress("F555");
+                swComp.Suppress("F450");
+                swComp.Suppress("F400");
             }
             else if (height == 450d)
             {
-                swFeat = swComp.FeatureByName("F555");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F450");
-                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F400");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swComp.Suppress("F700");
+                swComp.Suppress("F555");
+                swComp.UnSuppress("F450");
+                swComp.Suppress("F400");
             }
             else if (height == 400d)
             {
-                swFeat = swComp.FeatureByName("F555");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F450");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F400");
-                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swComp.Suppress("F700");
+                swComp.Suppress("F555");
+                swComp.Suppress("F450");
+                swComp.UnSuppress("F400");
             }
             else
             {
-                swFeat = swComp.FeatureByName("F555");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F450");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F400");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swComp.Suppress("F700");
+                swComp.Suppress("F555");
+                swComp.Suppress("F450");
+                swComp.Suppress("F400");
             }
         }
 
@@ -85,10 +84,10 @@ namespace SolidWorksHelper
         public void FNHS0069(Component2 swComp, double deepth, double height, int sidePanelSideCjNo, int sidePanelDownCjNo)
         {
             swPart = swComp.GetModelDoc2();
-            swPart.Parameter("D1@草图1").SystemValue = deepth / 1000d;
-            swPart.Parameter("D2@草图1").SystemValue = height / 1000d;
-            swPart.Parameter("D1@阵列(线性)1").SystemValue = sidePanelSideCjNo;
-            swPart.Parameter("D1@阵列(线性)2").SystemValue = sidePanelDownCjNo;
+            swPart.ChangeDim("D1@草图1", deepth);
+            swPart.ChangeDim("D2@草图1", height);
+            swPart.ChangeDim("D1@阵列(线性)1", sidePanelSideCjNo);
+            swPart.ChangeDim("D1@阵列(线性)2", sidePanelDownCjNo);
         }
         /// <summary>
         /// 右边大侧板内板
@@ -99,43 +98,42 @@ namespace SolidWorksHelper
         public void FNHS0070(Component2 swComp, double deepth, double height)
         {
             swPart = swComp.GetModelDoc2();
-            swPart.Parameter("D1@草图1").SystemValue = (deepth - 79d - 3.4d) / 1000d;
-            swPart.Parameter("D2@草图1").SystemValue = (height - 39d - 1d) / 1000d;
-            if (height == 555d || height == 650d)
+            swPart.ChangeDim("D1@草图1", deepth - 79d - 3.4d);//华为板厚1.2,内板过大-3.4
+            swPart.ChangeDim("D2@草图1", height - 39d - 1d);
+            if (height == 700d)
             {
-                swFeat = swComp.FeatureByName("F555");
-                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F450");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F400");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩 
+                swComp.UnSuppress("F700");
+                swComp.Suppress("F555");
+                swComp.Suppress("F450");
+                swComp.Suppress("F400");
+            }
+            else if (height == 555d || height == 650d)
+            {
+                swComp.Suppress("F700");
+                swComp.UnSuppress("F555");
+                swComp.Suppress("F450");
+                swComp.Suppress("F400");
             }
             else if (height == 450d)
             {
-                swFeat = swComp.FeatureByName("F555");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F450");
-                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F400");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swComp.Suppress("F700");
+                swComp.Suppress("F555");
+                swComp.UnSuppress("F450");
+                swComp.Suppress("F400");
             }
             else if (height == 400d)
             {
-                swFeat = swComp.FeatureByName("F555");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F450");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F400");
-                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                swComp.Suppress("F700");
+                swComp.Suppress("F555");
+                swComp.Suppress("F450");
+                swComp.UnSuppress("F400");
             }
             else
             {
-                swFeat = swComp.FeatureByName("F555");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F450");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("F400");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                swComp.Suppress("F700");
+                swComp.Suppress("F555");
+                swComp.Suppress("F450");
+                swComp.Suppress("F400");
             }
         }
 

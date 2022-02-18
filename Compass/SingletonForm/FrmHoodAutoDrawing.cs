@@ -415,5 +415,45 @@ namespace Compass
                 }
             });
         }
+
+        //打印英文标签页
+        private async void btnEnglishLabel_Click(object sender, EventArgs e)
+        {
+            if (_execList.Count == 0) return;
+            btnEnglishLabel.Enabled = false;
+            tspbStatus.Value = 0;
+            tspbStatus.Step = 1;
+            tspbStatus.Maximum = _execList.Count;
+            foreach (var item in _execList)
+            {
+                tsslStatus.Text = item.Item + "(" + item.Module + ")正在打印...";
+                await PrintEngLabelAsync(item);
+                tspbStatus.Value += 1;
+            }
+            tsslStatus.Text = "英文标签打印完成！";
+            tspbStatus.Value = _execList.Count;
+            BtnSubAll_Click(null, null);//清除执行数据
+            btnEnglishLabel.Enabled = true;
+        }
+        /// <summary>
+        /// 以异步的方式打印EngLabel
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private Task PrintEngLabelAsync(ModuleTree item)
+        {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    new PrintReports().ExecPrintEngLabel(item);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            });
+        }
+
     }
 }

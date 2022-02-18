@@ -171,16 +171,28 @@
     <Compile Include="FrenchHoodForm\FrmFRKVF555.Designer.cs">
       <DependentUpon>FrmFRKVF555.cs</DependentUpon>
     </Compile>
+    <Compile Include="TickSheetForm\FrmCMODF700TS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TickSheetForm\FrmCMODF700TS.Designer.cs">
+      <DependentUpon>FrmCMODF700TS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TickSheetForm\FrmCMODI700TS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TickSheetForm\FrmCMODI700TS.Designer.cs">
+      <DependentUpon>FrmCMODI700TS.cs</DependentUpon>
+    </Compile>
     <Compile Include="HoodForm\FrmUVI555400.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HoodForm\FrmUVI555400.Designer.cs">
       <DependentUpon>FrmUVI555400.cs</DependentUpon>
     </Compile>
-    <Compile Include="HoodForm\FrmHWUVF555400.cs">
+    <Compile Include="HuaWeiHoodForm\FrmHWUVF555400.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HoodForm\FrmHWUVF555400.Designer.cs">
+    <Compile Include="HuaWeiHoodForm\FrmHWUVF555400.Designer.cs">
       <DependentUpon>FrmHWUVF555400.cs</DependentUpon>
     </Compile>
     <Compile Include="MarineForm\FrmHMM.cs">
@@ -219,16 +231,16 @@
     <Compile Include="SingletonForm\FrmDrawingNumMatrix.Designer.cs">
       <DependentUpon>FrmDrawingNumMatrix.cs</DependentUpon>
     </Compile>
-    <Compile Include="HoodForm\FrmHWUVI650.cs">
+    <Compile Include="HuaWeiHoodForm\FrmHWUVI650.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HoodForm\FrmHWUVI650.Designer.cs">
+    <Compile Include="HuaWeiHoodForm\FrmHWUVI650.Designer.cs">
       <DependentUpon>FrmHWUVI650.cs</DependentUpon>
     </Compile>
-    <Compile Include="HoodForm\FrmHWUVF650.cs">
+    <Compile Include="HuaWeiHoodForm\FrmHWUVF650.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HoodForm\FrmHWUVF650.Designer.cs">
+    <Compile Include="HuaWeiHoodForm\FrmHWUVF650.Designer.cs">
       <DependentUpon>FrmHWUVF650.cs</DependentUpon>
     </Compile>
     <Compile Include="SingletonForm\FrmProjectMeasure.cs">
@@ -262,10 +274,10 @@
     <Compile Include="SingletonForm\FrmSolidWorksTools.Designer.cs">
       <DependentUpon>FrmSolidWorksTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="HoodForm\FrmHWUWF555.cs">
+    <Compile Include="HuaWeiHoodForm\FrmHWUWF555.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HoodForm\FrmHWUWF555.Designer.cs">
+    <Compile Include="HuaWeiHoodForm\FrmHWUWF555.Designer.cs">
       <DependentUpon>FrmHWUWF555.cs</DependentUpon>
     </Compile>
     <Compile Include="HoodForm\FrmUVF450.cs">
@@ -274,10 +286,10 @@
     <Compile Include="HoodForm\FrmUVF450.Designer.cs">
       <DependentUpon>FrmUVF450.cs</DependentUpon>
     </Compile>
-    <Compile Include="HoodForm\FrmHWUWF555400.cs">
+    <Compile Include="HuaWeiHoodForm\FrmHWUWF555400.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HoodForm\FrmHWUWF555400.Designer.cs">
+    <Compile Include="HuaWeiHoodForm\FrmHWUWF555400.Designer.cs">
       <DependentUpon>FrmHWUWF555400.cs</DependentUpon>
     </Compile>
     <Compile Include="HoodForm\FrmKVV555.cs">
@@ -1094,7 +1106,10 @@
     <EmbeddedResource Include="FrenchHoodForm\FrmFRUVF555.resx">
       <DependentUpon>FrmFRUVF555.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HoodForm\FrmHWUVF555400.resx">
+    <EmbeddedResource Include="TickSheetForm\FrmCMODF700TS.resx">
+      <DependentUpon>FrmCMODF700TS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HuaWeiHoodForm\FrmHWUVF555400.resx">
       <DependentUpon>FrmHWUVF555400.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmUVI555400.resx">
@@ -1172,16 +1187,16 @@
     <EmbeddedResource Include="SingletonForm\FrmSolidWorksTools.resx">
       <DependentUpon>FrmSolidWorksTools.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HoodForm\FrmHWUVF650.resx">
+    <EmbeddedResource Include="HuaWeiHoodForm\FrmHWUVF650.resx">
       <DependentUpon>FrmHWUVF650.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HoodForm\FrmHWUVI650.resx">
+    <EmbeddedResource Include="HuaWeiHoodForm\FrmHWUVI650.resx">
       <DependentUpon>FrmHWUVI650.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HoodForm\FrmHWUWF555.resx">
+    <EmbeddedResource Include="HuaWeiHoodForm\FrmHWUWF555.resx">
       <DependentUpon>FrmHWUWF555.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HoodForm\FrmHWUWF555400.resx">
+    <EmbeddedResource Include="HuaWeiHoodForm\FrmHWUWF555400.resx">
       <DependentUpon>FrmHWUWF555400.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HoodForm\FrmKVI450300.resx">
@@ -1395,6 +1410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SuperTextBox.resx">
       <DependentUpon>SuperTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TickSheetForm\FrmCMODI700TS.resx">
+      <DependentUpon>FrmCMODI700TS.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

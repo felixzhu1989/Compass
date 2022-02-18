@@ -71,6 +71,8 @@
   <ItemGroup>
     <Compile Include="CeilingAutoDrawing\BCJ330AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\CJ330AutoDrawing.cs" />
+    <Compile Include="TickSheetAutoDrawing\COMDF700TSAutoDrawing.cs" />
+    <Compile Include="TickSheetAutoDrawing\CMODI700TSAutoDrawing.cs" />
     <Compile Include="ThickSheetPart.cs" />
     <Compile Include="HoodPart.cs" />
     <Compile Include="MarineAutoDrawing\MarinePart.cs" />
@@ -208,8 +210,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TickSheetAutoDrawing\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

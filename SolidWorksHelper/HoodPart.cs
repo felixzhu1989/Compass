@@ -1278,8 +1278,8 @@ namespace SolidWorksHelper
             swPart.ChangeDim("D2@基体-法兰1", length);
             swPart.ChangeDim("D1@阵列(线性)1", frontPanelKaKouNo);
             swPart.ChangeDim("D3@阵列(线性)1", frontPanelKaKouDis);
-            swPart.ChangeDim("D3@Sketch4", midRoofSecondHoleDis);
-            swPart.ChangeDim("D1@Sketch11", 200d - midRoofTopHoleDis);
+            swPart.ChangeDim("D3@Sketch3", midRoofSecondHoleDis);
+            swPart.ChangeDim("D4@草图7", 200d - midRoofTopHoleDis);
             if (midRoofHoleNo == 1) swComp.Suppress("LPattern1");
             else
             {
