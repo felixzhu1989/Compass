@@ -45,7 +45,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-            object configNames = null;
+            
             ModelDocExtension swModelDocExt;
             bool status;
             string compReName;
@@ -157,40 +157,40 @@ namespace SolidWorksHelper
                     if (item.BackCJSide == "LEFT" || item.BackCJSide == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("BCJ-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D11@Sketch19").SystemValue = (item.LeftDis + 1d) / 1000d;
                         leftSBDis += 90d;
                     }
                     else
                     {
                         swFeat = swComp.FeatureByName("BCJ-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     if (item.BackCJSide == "RIGHT" || item.BackCJSide == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("BCJ-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D11@Sketch20").SystemValue = (item.RightDis + 1d) / 1000d;
                         rightSBDis += 90d;
                     }
                     else
                     {
                         swFeat = swComp.FeatureByName("BCJ-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //----------左----------
                     //左类型排风腔KCJDB800
                     if (item.LeftBeamType == "KCJDB800" || item.LeftBeamType == "UCJDB800")
                     {
                         swFeat = swComp.FeatureByName("BCJ-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("KCJDB800-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D59@Sketch46").SystemValue = (item.LeftBeamDis + 1d) / 1000d;
                         if (item.GutterSide == "LEFT" || item.GutterSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("GUTTER-LEFT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D4@Sketch48").SystemValue = (item.GutterWidth - 2d) / 1000d;
                             swPart.Parameter("D5@Sketch48").SystemValue = (item.GutterWidth - 62d) / 1000d;
                             swPart.Parameter("D6@Sketch48").SystemValue = (item.Length - item.LeftBeamDis + 1d) / 1000d;
@@ -199,20 +199,20 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCJDB800-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //左类型排风腔KCWDB800
                     if (item.LeftBeamType == "KCWDB800" || item.LeftBeamType == "UCWDB800")
                     {
                         swFeat = swComp.FeatureByName("BCJ-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("KCWDB800-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D31@Sketch32").SystemValue = (item.LeftBeamDis + 1d) / 1000d;
                         if (item.GutterSide == "LEFT" || item.GutterSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("GUTTER-LEFT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D4@Sketch48").SystemValue = (item.GutterWidth - 2d) / 1000d;
                             swPart.Parameter("D5@Sketch48").SystemValue = (item.GutterWidth - 62d) / 1000d;
                             swPart.Parameter("D6@Sketch48").SystemValue = (item.Length - item.LeftBeamDis + 1d) / 1000d;
@@ -221,18 +221,18 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCWDB800-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //左类型排风腔KCJSB535
                     if (item.LeftBeamType == "KCJSB535" || item.LeftBeamType == "UCJSB535")
                     {
                         swFeat = swComp.FeatureByName("KCJSB535-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D46@Sketch35").SystemValue = (leftSBDis + 1d) / 1000d;
                         if (item.GutterSide == "LEFT" || item.GutterSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("GUTTER-LEFT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D4@Sketch48").SystemValue = (item.GutterWidth - 2d) / 1000d;
                             swPart.Parameter("D5@Sketch48").SystemValue = (item.GutterWidth - 62d) / 1000d;
                             swPart.Parameter("D6@Sketch48").SystemValue = (leftSBDis + 535d + 1d) / 1000d;
@@ -241,18 +241,18 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCJSB535-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //左类型排风腔KCWSB535
                     if (item.LeftBeamType == "KCWSB535" || item.LeftBeamType == "UCWSB535")
                     {
                         swFeat = swComp.FeatureByName("KCWSB535-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D23@Sketch28").SystemValue = (leftSBDis + 1d) / 1000d;
                         if (item.GutterSide == "LEFT" || item.GutterSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("GUTTER-LEFT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D4@Sketch48").SystemValue = (item.GutterWidth - 2d) / 1000d;
                             swPart.Parameter("D5@Sketch48").SystemValue = (item.GutterWidth - 62d) / 1000d;
                             swPart.Parameter("D6@Sketch48").SystemValue = (leftSBDis + 535d + 1d) / 1000d;
@@ -261,18 +261,18 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCWSB535-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //左类型排风腔UCJSB385
                     if (item.LeftBeamType == "UCJSB385")
                     {
                         swFeat = swComp.FeatureByName("UCJSB385-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D16@Sketch43").SystemValue = (leftSBDis + 1d) / 1000d;
                         if (item.GutterSide == "LEFT" || item.GutterSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("GUTTER-LEFT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D4@Sketch48").SystemValue = (item.GutterWidth - 2d) / 1000d;
                             swPart.Parameter("D5@Sketch48").SystemValue = (item.GutterWidth - 62d) / 1000d;
                             swPart.Parameter("D6@Sketch48").SystemValue = (leftSBDis + 385d + 1d) / 1000d;
@@ -281,18 +281,18 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("UCJSB385-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //左类型排风腔KCJSB290
                     if (item.LeftBeamType == "KCJSB290")
                     {
                         swFeat = swComp.FeatureByName("KCJSB290-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D14@Sketch41").SystemValue = (leftSBDis + 1d) / 1000d;
                         if (item.GutterSide == "LEFT" || item.GutterSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("GUTTER-LEFT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D4@Sketch48").SystemValue = (item.GutterWidth - 2d) / 1000d;
                             swPart.Parameter("D5@Sketch48").SystemValue = (item.GutterWidth - 62d) / 1000d;
                             swPart.Parameter("D6@Sketch48").SystemValue = (leftSBDis + 290d + 1d) / 1000d;
@@ -301,23 +301,23 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCJSB290-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //左类型排风腔KCJSB265
                     if (item.LeftBeamType == "KCJSB265")
                     {
                         swFeat = swComp.FeatureByName("KCJSB265-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D23@Sketch28").SystemValue = (leftSBDis + 1d) / 1000d;
                         if (item.LKSide == "LEFT" || item.LKSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("LKS270-LEFT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D24@Sketch51").SystemValue = (leftSBDis + 265d + 1d) / 1000d;
                             if (item.GutterSide == "LEFT" || item.GutterSide == "BOTH")
                             {
                                 swFeat = swComp.FeatureByName("GUTTER-LEFT");
-                                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                                 swPart.Parameter("D4@Sketch48").SystemValue = (item.GutterWidth - 2d) / 1000d;
                                 swPart.Parameter("D5@Sketch48").SystemValue = (item.GutterWidth - 62d) / 1000d;
                                 swPart.Parameter("D6@Sketch48").SystemValue = (leftSBDis + 270d + 265d + 1d) / 1000d;
@@ -328,7 +328,7 @@ namespace SolidWorksHelper
                             if (item.GutterSide == "LEFT" || item.GutterSide == "BOTH")
                             {
                                 swFeat = swComp.FeatureByName("GUTTER-LEFT");
-                                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                                 swPart.Parameter("D4@Sketch48").SystemValue = (item.GutterWidth - 2d) / 1000d;
                                 swPart.Parameter("D5@Sketch48").SystemValue = (item.GutterWidth - 62d) / 1000d;
                                 swPart.Parameter("D6@Sketch48").SystemValue = (leftSBDis + 265d + 1d) / 1000d;
@@ -338,23 +338,23 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCJSB265-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //左类型排风腔KCWSB265
                     if (item.LeftBeamType == "KCWSB265")
                     {
                         swFeat = swComp.FeatureByName("KCWSB265-LEFT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D15@Sketch22").SystemValue = (leftSBDis + 1d) / 1000d;
                         if (item.LKSide == "LEFT" || item.LKSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("LKS270-LEFT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D24@Sketch51").SystemValue = (leftSBDis + 265d + 1d) / 1000d;
                             if (item.GutterSide == "LEFT" || item.GutterSide == "BOTH")
                             {
                                 swFeat = swComp.FeatureByName("GUTTER-LEFT");
-                                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                                 swPart.Parameter("D4@Sketch48").SystemValue = (item.GutterWidth - 2d) / 1000d;
                                 swPart.Parameter("D5@Sketch48").SystemValue = (item.GutterWidth - 62d) / 1000d;
                                 swPart.Parameter("D6@Sketch48").SystemValue = (leftSBDis + 270d + 265d + 1d) / 1000d;
@@ -365,7 +365,7 @@ namespace SolidWorksHelper
                             if (item.GutterSide == "LEFT" || item.GutterSide == "BOTH")
                             {
                                 swFeat = swComp.FeatureByName("GUTTER-LEFT");
-                                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                                 swPart.Parameter("D4@Sketch48").SystemValue = (item.GutterWidth - 2d) / 1000d;
                                 swPart.Parameter("D5@Sketch48").SystemValue = (item.GutterWidth - 62d) / 1000d;
                                 swPart.Parameter("D6@Sketch48").SystemValue = (leftSBDis + 265d + 1d) / 1000d;
@@ -377,7 +377,7 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCWSB265-LEFT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
 
                     //----------右----------
@@ -385,14 +385,14 @@ namespace SolidWorksHelper
                     if (item.RightBeamType == "KCJDB800" || item.RightBeamType == "UCJDB800")
                     {
                         swFeat = swComp.FeatureByName("BCJ-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("KCJDB800-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D59@Sketch47").SystemValue = (item.RightBeamDis + 1d) / 1000d;
                         if (item.GutterSide == "RIGHT" || item.GutterSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("GUTTER-RIGHT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D4@Sketch50").SystemValue = (item.GutterWidth - 2d) / 1000d;
                             swPart.Parameter("D5@Sketch50").SystemValue = (item.GutterWidth - 62d) / 1000d;
                             swPart.Parameter("D7@Sketch50").SystemValue =
@@ -402,20 +402,20 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCJDB800-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //右类型排风腔KCWDB800
                     if (item.RightBeamType == "KCWDB800" || item.RightBeamType == "UCWDB800")
                     {
                         swFeat = swComp.FeatureByName("BCJ-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("KCWDB800-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D31@Sketch45").SystemValue = (item.RightBeamDis + 1d) / 1000d;
                         if (item.GutterSide == "RIGHT" || item.GutterSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("GUTTER-RIGHT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D4@Sketch50").SystemValue = (item.GutterWidth - 2d) / 1000d;
                             swPart.Parameter("D5@Sketch50").SystemValue = (item.GutterWidth - 62d) / 1000d;
                             swPart.Parameter("D7@Sketch50").SystemValue =
@@ -425,18 +425,18 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCWDB800-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //右类型排风腔KCJSB535
                     if (item.RightBeamType == "KCJSB535" || item.RightBeamType == "UCJSB535")
                     {
                         swFeat = swComp.FeatureByName("KCJSB535-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D46@Sketch37").SystemValue = (rightSBDis + 1d) / 1000d;
                         if (item.GutterSide == "RIGHT" || item.GutterSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("GUTTER-RIGHT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D4@Sketch50").SystemValue = (item.GutterWidth - 2d) / 1000d;
                             swPart.Parameter("D5@Sketch50").SystemValue = (item.GutterWidth - 62d) / 1000d;
                             swPart.Parameter("D7@Sketch50").SystemValue = (rightSBDis + 535d + 1d) / 1000d;
@@ -445,18 +445,18 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCJSB535-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //右类型排风腔KCWSB535
                     if (item.RightBeamType == "KCWSB535" || item.RightBeamType == "UCWSB535")
                     {
                         swFeat = swComp.FeatureByName("KCWSB535-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D23@Sketch29").SystemValue = (rightSBDis + 1d) / 1000d;
                         if (item.GutterSide == "RIGHT" || item.GutterSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("GUTTER-RIGHT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D4@Sketch50").SystemValue = (item.GutterWidth - 2d) / 1000d;
                             swPart.Parameter("D5@Sketch50").SystemValue = (item.GutterWidth - 62d) / 1000d;
                             swPart.Parameter("D7@Sketch50").SystemValue = (rightSBDis + 535d + 1d) / 1000d;
@@ -465,18 +465,18 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCWSB535-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //右类型排风腔UCJSB385
                     if (item.RightBeamType == "UCJSB385")
                     {
                         swFeat = swComp.FeatureByName("UCJSB385-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D16@Sketch44").SystemValue = (rightSBDis + 1d) / 1000d;
                         if (item.GutterSide == "RIGHT" || item.GutterSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("GUTTER-RIGHT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D4@Sketch50").SystemValue = (item.GutterWidth - 2d) / 1000d;
                             swPart.Parameter("D5@Sketch50").SystemValue = (item.GutterWidth - 62d) / 1000d;
                             swPart.Parameter("D7@Sketch50").SystemValue = (rightSBDis + 385d + 1d) / 1000d;
@@ -485,18 +485,18 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("UCJSB385-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //右类型排风腔KCJSB290
                     if (item.RightBeamType == "KCJSB290")
                     {
                         swFeat = swComp.FeatureByName("KCJSB290-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D14@Sketch42").SystemValue = (rightSBDis + 1d) / 1000d;
                         if (item.GutterSide == "RIGHT" || item.GutterSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("GUTTER-RIGHT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D4@Sketch50").SystemValue = (item.GutterWidth - 2d) / 1000d;
                             swPart.Parameter("D5@Sketch50").SystemValue = (item.GutterWidth - 62d) / 1000d;
                             swPart.Parameter("D7@Sketch50").SystemValue = (rightSBDis + 290d + 1d) / 1000d;
@@ -505,23 +505,23 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCJSB290-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //右类型排风腔KCJSB265
                     if (item.RightBeamType == "KCJSB265")
                     {
                         swFeat = swComp.FeatureByName("KCJSB265-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D1@Sketch55").SystemValue = (rightSBDis + 1d) / 1000d;
                         if (item.LKSide == "RIGHT" || item.LKSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("LKS270-RIGHT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D24@Sketch53").SystemValue = (rightSBDis + 265d + 1d) / 1000d;
                             if (item.GutterSide == "RIGHT" || item.GutterSide == "BOTH")
                             {
                                 swFeat = swComp.FeatureByName("GUTTER-RIGHT");
-                                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                                 swPart.Parameter("D4@Sketch50").SystemValue = (item.GutterWidth - 2d) / 1000d;
                                 swPart.Parameter("D5@Sketch50").SystemValue = (item.GutterWidth - 62d) / 1000d;
                                 swPart.Parameter("D7@Sketch50").SystemValue = (rightSBDis + 270d + 265d + 1d) / 1000d;
@@ -532,7 +532,7 @@ namespace SolidWorksHelper
                             if (item.GutterSide == "RIGHT" || item.GutterSide == "BOTH")
                             {
                                 swFeat = swComp.FeatureByName("GUTTER-RIGHT");
-                                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                                 swPart.Parameter("D4@Sketch50").SystemValue = (item.GutterWidth - 2d) / 1000d;
                                 swPart.Parameter("D5@Sketch50").SystemValue = (item.GutterWidth - 62d) / 1000d;
                                 swPart.Parameter("D7@Sketch50").SystemValue = (rightSBDis + 265d + 1d) / 1000d;
@@ -542,23 +542,23 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCJSB265-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //右类型排风腔KCWSB265
                     if (item.RightBeamType == "KCWSB265")
                     {
                         swFeat = swComp.FeatureByName("KCWSB265-RIGHT");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D14@Sketch23").SystemValue = (rightSBDis + 1d) / 1000d;
                         if (item.LKSide == "RIGHT" || item.LKSide == "BOTH")
                         {
                             swFeat = swComp.FeatureByName("LKS270-RIGHT");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                             swPart.Parameter("D24@Sketch53").SystemValue = (rightSBDis + 265d + 1d) / 1000d;
                             if (item.GutterSide == "RIGHT" || item.GutterSide == "BOTH")
                             {
                                 swFeat = swComp.FeatureByName("GUTTER-RIGHT");
-                                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                                 swPart.Parameter("D4@Sketch50").SystemValue = (item.GutterWidth - 2d) / 1000d;
                                 swPart.Parameter("D5@Sketch50").SystemValue = (item.GutterWidth - 62d) / 1000d;
                                 swPart.Parameter("D7@Sketch50").SystemValue = (rightSBDis + 270d + 265d + 1d) / 1000d;
@@ -569,7 +569,7 @@ namespace SolidWorksHelper
                             if (item.GutterSide == "RIGHT" || item.GutterSide == "BOTH")
                             {
                                 swFeat = swComp.FeatureByName("GUTTER-RIGHT");
-                                swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                                swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                                 swPart.Parameter("D4@Sketch50").SystemValue = (item.GutterWidth - 2d) / 1000d;
                                 swPart.Parameter("D5@Sketch50").SystemValue = (item.GutterWidth - 62d) / 1000d;
                                 swPart.Parameter("D7@Sketch50").SystemValue = (rightSBDis + 265d + 1d) / 1000d;
@@ -581,7 +581,7 @@ namespace SolidWorksHelper
                     else
                     {
                         swFeat = swComp.FeatureByName("KCWSB265-RIGHT");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                 }
                 //----------其他零件----------

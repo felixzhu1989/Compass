@@ -45,7 +45,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-            object configNames = null;
+            
             ModelDocExtension swModelDocExt;
             bool status;
             string compReName;
@@ -114,10 +114,10 @@ namespace SolidWorksHelper
                 swFeat = swAssy.FeatureByName("LocalLPattern1");
                 if (stdPanelNo > 1)
                 {
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swModel.Parameter("D1@LocalLPattern1").SystemValue = stdPanelNo;
                 }
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
 
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢

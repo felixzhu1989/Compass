@@ -45,7 +45,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-            object configNames = null;
+            
             ModelDocExtension swModelDocExt;
             bool status;
             string compReName;
@@ -88,12 +88,12 @@ namespace SolidWorksHelper
                         if (item.SuNo < 2)
                         {
                             swFeat = swComp.FeatureByName("LPattern2");
-                            swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                            swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         }
                         else
                         {
                             swFeat = swComp.FeatureByName("LPattern2");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                             swPart.Parameter("D1@LPattern2").SystemValue = item.SuNo;
                             swPart.Parameter("D3@LPattern2").SystemValue = item.SuDis / 1000d;
                         }
@@ -132,12 +132,12 @@ namespace SolidWorksHelper
                         if (item.SuNo < 2)
                         {
                             swFeat = swComp.FeatureByName("LPattern2");
-                            swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                            swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         }
                         else
                         {
                             swFeat = swComp.FeatureByName("LPattern2");
-                            swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                            swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                             swPart.Parameter("D1@LPattern2").SystemValue = item.SuNo;
                             swPart.Parameter("D3@LPattern2").SystemValue = item.SuDis / 1000d;
                         }

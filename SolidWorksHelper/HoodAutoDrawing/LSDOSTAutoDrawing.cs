@@ -38,7 +38,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-            object configNames = null;
+            
 
             //打开Pack后的模型
             swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
@@ -63,12 +63,12 @@ namespace SolidWorksHelper
                 if (item.SuNo == 1)
                 {
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swModel.Parameter("D1@LocalLPattern1").SystemValue = item.SuNo; //D1阵列数量,D3阵列距离
                     swModel.Parameter("D3@LocalLPattern1").SystemValue = item.SuDis / 1000d; //D1阵列数量,D3阵列距离
                 }
@@ -98,43 +98,43 @@ namespace SolidWorksHelper
                 if (item.SuNo == 1)
                 {
                     swFeat = swComp.FeatureByName("LPattern1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D3@Sketch30").SystemValue = 0;
                 }
                 else
                 {
                     swPart.Parameter("D3@Sketch30").SystemValue = (item.SuDis*(item.SuNo/2d-1)+item.SuDis/2d)/1000;
                     swFeat = swComp.FeatureByName("LPattern1");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D1@LPattern1").SystemValue = item.SuNo; //D1阵列数量,D3阵列距离
                     swPart.Parameter("D3@LPattern1").SystemValue = item.SuDis / 1000d; //D1阵列数量,D3阵列距离
                 }
                 if (rivetNo < 2)
                 {
                     swFeat = swComp.FeatureByName("Cut-Extrude10");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("LPattern2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
                     swPart.Parameter("D1@Sketch43").SystemValue = rivetDis / 1000d;
                     swFeat = swComp.FeatureByName("Cut-Extrude10");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("LPattern2");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D1@LPattern2").SystemValue = rivetNo; //D1阵列数量,D3阵列距离
                     swPart.Parameter("D3@LPattern2").SystemValue = rivetDis / 1000d;
                 }
                 swFeat = swComp.FeatureByName("Cut-Extrude11");
-                if (item.SuNo == 3)swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                if (item.SuNo == 3)swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
 
                 //中间测风压孔，三个脖颈时解压,两块网孔板,
                 //2021.06.04，散流器中间开缺口放置装配干涉，因为框子是先焊接后喷塑，最后装配的
                 swFeat = swComp.FeatureByName("Cut-Extrude12");
-                if (item.SuNo == 3) swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                if (item.SuNo == 3) swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNLC0003-3"));
                 swPart = swComp.GetModelDoc2();//打开零件3
@@ -142,23 +142,23 @@ namespace SolidWorksHelper
                 if (rivetNo < 2)
                 {
                     swFeat = swComp.FeatureByName("Cut-Extrude4");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("LPattern1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
                     swPart.Parameter("D1@Sketch11").SystemValue = rivetDis / 1000d;
                     swFeat = swComp.FeatureByName("Cut-Extrude4");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("LPattern1");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swPart.Parameter("D1@LPattern1").SystemValue = rivetNo; //D1阵列数量,D3阵列距离
                     swPart.Parameter("D3@LPattern1").SystemValue = rivetDis / 1000d;
                 }
                 swFeat = swComp.FeatureByName("Cut-Extrude3");
-                if (item.SuNo == 3) swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                if (item.SuNo == 3) swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNLC0005-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3

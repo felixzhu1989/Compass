@@ -47,7 +47,7 @@ namespace SolidWorksHelper
             AssemblyDoc swSubAssy;
             Component2 swComp;
             Feature swFeat;
-            object configNames = null;
+            
             ModelDocExtension swModelDocExt;
             ModelDocExtension swSubModelDocExt;
             bool status;
@@ -79,7 +79,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "BFW-8"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩. .
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
@@ -121,7 +121,7 @@ namespace SolidWorksHelper
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                     }
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                     swModel.Parameter("D1@LocalLPattern1").SystemValue = item.MPanelNo;
                     swModel.Parameter("D3@LocalLPattern1").SystemValue = (item.MPanelLength +item.WPanelLength) / 1000d;
                 }
@@ -159,8 +159,8 @@ namespace SolidWorksHelper
                     swPart = swComp.GetModelDoc2(); //打开零件
                     swPart.Parameter("D1@Sketch1").SystemValue = item.WPanelLength / 1000d;
                     swFeat = swComp.FeatureByName("Cut-Extrude8");
-                    if (item.UVType=="YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                    else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    if (item.UVType=="YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 //----------UL水洗挡板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "BFUL-1"));

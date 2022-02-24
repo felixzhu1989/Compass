@@ -34,7 +34,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-            object configNames = null;
+            
             ModelDocExtension swModelDocExt;
             bool status;
             string compReName;
@@ -63,18 +63,18 @@ namespace SolidWorksHelper
                 if (item.HCLSide == "NO")
                 {
                     swFeat = swAssy.FeatureByName("LocalLPattern3");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else if (item.HCLSide == "BOTH")
                 {
                     swFeat = swAssy.FeatureByName("LocalLPattern3");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swModel.Parameter("D1@LocalLPattern3").SystemValue = 8;
                 }
                 else
                 {
                     swFeat = swAssy.FeatureByName("LocalLPattern3");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swModel.Parameter("D1@LocalLPattern3").SystemValue = 4;
                 }
                 //----------HCL侧板----------
@@ -197,24 +197,24 @@ namespace SolidWorksHelper
                     if (item.HCLSide == "LEFT" || item.HCLSide == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("Cut-Extrude5");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D5@Sketch22").SystemValue = (item.HCLSideLeft - 103) / 1000d;
                     }
                     else
                     {
                         swFeat = swComp.FeatureByName("Cut-Extrude5");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     if (item.HCLSide == "RIGHT" || item.HCLSide == "BOTH")
                     {
                         swFeat = swComp.FeatureByName("Cut-Extrude6");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩 
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩 
                         swPart.Parameter("D6@Sketch23").SystemValue = (item.HCLSideRight - 103) / 1000d;
                     }
                     else
                     {
                         swFeat = swComp.FeatureByName("Cut-Extrude6");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                 }
 

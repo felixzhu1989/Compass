@@ -45,7 +45,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-            object configNames = null;
+            
             ModelDocExtension swModelDocExt;
             bool status;
             string compReName;
@@ -70,10 +70,10 @@ namespace SolidWorksHelper
                 swFeat = swAssy.FeatureByName("LocalLPattern1");
                 if (item.ZPanelNo > 1)
                 {
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swModel.Parameter("D1@LocalLPattern1").SystemValue = item.ZPanelNo;
                 }
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
 
                 //----------W板----------
                 //重命名装配体内部
@@ -90,8 +90,8 @@ namespace SolidWorksHelper
                     swPart.Parameter("D2@Skizze1").SystemValue = (item.Length-10d) / 1000d;
                     swPart.Parameter("D1@Skizze1").SystemValue = item.Width / 1000d;
                     swFeat = swComp.FeatureByName("LED");
-                    if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                    else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
 
                 //----------Z板----------
@@ -111,8 +111,8 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2(); //打开零件
                         swPart.Parameter("D2@Skizze1").SystemValue = (item.Length - 10d) / 1000d;
                         swFeat = swComp.FeatureByName("LED");
-                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                        else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                 }
                 else

@@ -45,7 +45,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-            object configNames = null;
+            
             ModelDocExtension swModelDocExt;
             bool status;
             string compReName;
@@ -163,39 +163,39 @@ namespace SolidWorksHelper
                     swPart.Parameter("D2@Skizze1").SystemValue = item.Length / 1000d;
                     swPart.Parameter("D7@Kante-Lasche1").SystemValue = item.Height / 1000d;
                     //swFeat = swComp.FeatureByName("Cut-Extrude2");
-                    //if (item.Japan == "YES") swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                    //else swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    //if (item.Japan == "YES") swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                    //else swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     //swFeat = swComp.FeatureByName("JAP LED M8");
-                    //if (item.Japan == "YES") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                    //else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    //if (item.Japan == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    //else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("LIGHT T8");
-                    if (item.LightType == "T8") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                    else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    if (item.LightType == "T8") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     //if (item.WBeam == "YES")
                     //{
                     //    swFeat = swComp.FeatureByName("Cut-Extrude3");
-                    //    swFeat.SetSuppression2(1, 2, configNames);
+                    //    swFeat.SetSuppression2(1, 2, null);
                     //    swFeat = swComp.FeatureByName("Cut-Extrude4");
-                    //    swFeat.SetSuppression2(1, 2, configNames);
+                    //    swFeat.SetSuppression2(1, 2, null);
                     //    swFeat = swComp.FeatureByName("Unfold1");
-                    //    swFeat.SetSuppression2(1, 2, configNames);
+                    //    swFeat.SetSuppression2(1, 2, null);
                     //    swFeat = swComp.FeatureByName("Cut-Extrude5");
-                    //    swFeat.SetSuppression2(1, 2, configNames);
+                    //    swFeat.SetSuppression2(1, 2, null);
                     //    swFeat = swComp.FeatureByName("Fold1");
-                    //    swFeat.SetSuppression2(1, 2, configNames);
+                    //    swFeat.SetSuppression2(1, 2, null);
                     //}
                     //else
                     //{
                     //    swFeat = swComp.FeatureByName("Cut-Extrude3");
-                    //    swFeat.SetSuppression2(0, 2, configNames);
+                    //    swFeat.SetSuppression2(0, 2, null);
                     //    swFeat = swComp.FeatureByName("Cut-Extrude4");
-                    //    swFeat.SetSuppression2(0, 2, configNames);
+                    //    swFeat.SetSuppression2(0, 2, null);
                     //    swFeat = swComp.FeatureByName("Unfold1");
-                    //    swFeat.SetSuppression2(0, 2, configNames);
+                    //    swFeat.SetSuppression2(0, 2, null);
                     //    swFeat = swComp.FeatureByName("Cut-Extrude5");
-                    //    swFeat.SetSuppression2(0, 2, configNames);
+                    //    swFeat.SetSuppression2(0, 2, null);
                     //    swFeat = swComp.FeatureByName("Fold1");
-                    //    swFeat.SetSuppression2(0, 2, configNames);
+                    //    swFeat.SetSuppression2(0, 2, null);
                     //}
                 }
                 if (item.Japan == "YES")
@@ -203,14 +203,14 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0070-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0070-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 }
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢

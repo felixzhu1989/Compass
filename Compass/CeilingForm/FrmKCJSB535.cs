@@ -11,6 +11,7 @@ namespace Compass
     {
         readonly KCJSB535Service _objKcjsb535Service = new KCJSB535Service();
         private readonly KCJSB535 _objKcjsb535 = null;
+        private ModelView modelView;
         public FrmKcjsb535()
         {
             InitializeComponent();
@@ -18,6 +19,9 @@ namespace Compass
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
+            modelView = new ModelView();
+            panel1.Controls.Add(modelView);
+            modelView.Dock = DockStyle.Fill;
         }
         public FrmKcjsb535(Drawing drawing, ModuleTree tree) : this()
         {
@@ -100,7 +104,7 @@ namespace Compass
         private void FillData()
         {
             if (_objKcjsb535 == null) return;
-            modelView.Tag = _objKcjsb535.KCJSB535Id;
+            panel1.Tag = _objKcjsb535.KCJSB535Id;
 
             cobGutter.Text = _objKcjsb535.Gutter;
             cobANSUL.Text = _objKcjsb535.ANSUL;
@@ -133,7 +137,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (modelView.Tag.ToString().Length == 0) return;
+            if (panel1.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 100d)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -262,9 +266,9 @@ namespace Compass
             }
             #endregion
             //封装对象
-            KCJSB535 objKcjsb535 = new KCJSB535()
+            KCJSB535 objKcjsb535 = new KCJSB535
             {
-                KCJSB535Id = Convert.ToInt32(modelView.Tag),
+                KCJSB535Id = Convert.ToInt32(panel1.Tag),
                 ANSUL = cobANSUL.Text,
                 ANSide = cobANSide.Text.Trim().Length == 0 ? "NO" : cobANSide.Text,
                 ANDetector = cobANDetector.Text.Trim().Length == 0 ? "NO" : cobANDetector.Text,

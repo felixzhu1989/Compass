@@ -45,7 +45,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-            object configNames = null;
+            
             ModelDocExtension swModelDocExt;
             bool status;
             string compReName;
@@ -89,27 +89,27 @@ namespace SolidWorksHelper
                     if (item.SuNo < 2)
                     {
                         swFeat = swComp.FeatureByName("LPattern1");
-                        swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     else
                     {
                         swFeat = swComp.FeatureByName("LPattern1");
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                         swPart.Parameter("D1@LPattern1").SystemValue = item.SuNo;
                         swPart.Parameter("D3@LPattern1").SystemValue = item.SuDis / 1000d;
                     }
 
                     swFeat = swComp.FeatureByName("HANGERHOLE");
-                    if (item.Japan == "YES") swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
-                    else swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    if (item.Japan == "YES") swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                    else swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("CUTLEFT");
                     if (item.SidePanel == "LEFT" || item.SidePanel == "BOTH")
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                    else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("CUTRIGHT");
                     if (item.SidePanel == "RIGHT" || item.SidePanel == "BOTH")
-                        swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                    else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 //----------侧板----------
                 switch (item.SidePanel)
@@ -173,14 +173,14 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0070-9"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0070-9"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 }
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢

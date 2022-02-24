@@ -37,7 +37,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-            object configNames = null;
+            
 
             //打开Pack后的模型
             swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
@@ -64,16 +64,16 @@ namespace SolidWorksHelper
                 if (item.Length == 400d || item.Length == 500d)
                 {
                     swFeat = swComp.FeatureByName("MIDDLE");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("300");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
                     swFeat = swComp.FeatureByName("MIDDLE");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("300");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 }
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHO0134-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
@@ -81,16 +81,16 @@ namespace SolidWorksHelper
                 if (item.Length == 400d || item.Length == 750d) swPart.Parameter("D5@Sketch27").SystemValue = 28.5d / 1000d;
                 else swPart.Parameter("D5@Sketch27").SystemValue = 78.5d / 1000d;
                 swFeat = swComp.FeatureByName("750");
-                if (item.Length == 750d) swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                if (item.Length == 750d) swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHO0135-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
                 swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Length - 25d) / 1000d;
                 if (item.Length == 400d || item.Length == 750d) swPart.Parameter("D4@Sketch7").SystemValue = 17.5d / 1000d;
                 else swPart.Parameter("D4@Sketch7").SystemValue = 67.5d / 1000d;
                 swFeat = swComp.FeatureByName("750");
-                if (item.Length == 750d) swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                if (item.Length == 750d) swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢

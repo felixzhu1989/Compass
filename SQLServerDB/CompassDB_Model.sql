@@ -2068,7 +2068,10 @@ create table KCJDB800
     ANDetectorDis4 decimal(6,2),
     ANDetectorDis5 decimal(6,2),
     MARVEL varchar(3),
-    Japan varchar(3)
+    Japan varchar(3),
+	LightPanelSide varchar(6), 
+	LightPanelLeft decimal(6,2),
+	LightPanelRight decimal(6,2)
 )
 if exists (select * from sysobjects where name='UCJSB385')
 drop table UCJSB385

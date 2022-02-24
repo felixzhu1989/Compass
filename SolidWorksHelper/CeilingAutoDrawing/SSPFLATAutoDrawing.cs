@@ -45,7 +45,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-            object configNames = null;
+            
             ModelDocExtension swModelDocExt;
             bool status;
             string compReName;
@@ -89,8 +89,8 @@ namespace SolidWorksHelper
                         swPart.Parameter("D2@Skizze1").SystemValue = (item.Length -10d) / 1000d;
                         swPart.Parameter("D1@Skizze1").SystemValue = item.LeftLength / 1000d;
                         swFeat = swComp.FeatureByName("LED");
-                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                        else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //重命名装配体内部
                     compReName = "FNCM0004[SSPFW-" + tree.Module + ".L]{" + (int)(item.Length - 10d) + "}(500)";
@@ -107,8 +107,8 @@ namespace SolidWorksHelper
                         swPart.Parameter("D2@Skizze1").SystemValue = (item.Length -10d) / 1000d;
                         swPart.Parameter("D1@Skizze1").SystemValue = 500d / 1000d;
                         swFeat = swComp.FeatureByName("LED");
-                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                        else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                 }
                 else
@@ -130,8 +130,8 @@ namespace SolidWorksHelper
                         swPart.Parameter("D2@Skizze1").SystemValue = (item.Length -10d) / 1000d;
                         swPart.Parameter("D1@Skizze1").SystemValue = item.LeftLength / 1000d;
                         swFeat = swComp.FeatureByName("LED");
-                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                        else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                 }
                 //右边
@@ -152,8 +152,8 @@ namespace SolidWorksHelper
                         swPart.Parameter("D2@Skizze1").SystemValue = (item.Length -10d) / 1000d;
                         swPart.Parameter("D1@Skizze1").SystemValue = item.RightLength / 1000d;
                         swFeat = swComp.FeatureByName("LED");
-                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                        else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     //重命名装配体内部
                     compReName = "FNCM0004[SSPFW-" + tree.Module + ".R]{" + (int)(item.Length - 10d) + "}(500)";
@@ -170,8 +170,8 @@ namespace SolidWorksHelper
                         swPart.Parameter("D2@Skizze1").SystemValue = (item.Length -10d) / 1000d;
                         swPart.Parameter("D1@Skizze1").SystemValue = 500d / 1000d;
                         swFeat = swComp.FeatureByName("LED");
-                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                        else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                 }
                 else
@@ -193,8 +193,8 @@ namespace SolidWorksHelper
                         swPart.Parameter("D2@Skizze1").SystemValue = (item.Length -10d) / 1000d;
                         swPart.Parameter("D1@Skizze1").SystemValue = item.RightLength / 1000d;
                         swFeat = swComp.FeatureByName("LED");
-                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                        else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                 }
                 //----------标准M板----------
@@ -213,8 +213,8 @@ namespace SolidWorksHelper
                     swPart.Parameter("D2@Skizze1").SystemValue = (item.Length -10d) / 1000d;
                     swPart.Parameter("D1@Skizze1").SystemValue = 500d / 1000d;
                     swFeat = swComp.FeatureByName("LED");
-                    if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                    else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 //----------标准W板----------
                 if (item.MPanelNo == 1)
@@ -222,9 +222,9 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCM0004[SSPFW-]{}-2"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                     swFeat = swAssy.FeatureByName("LocalLPattern2");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
-                    swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 else
                 {
@@ -243,13 +243,13 @@ namespace SolidWorksHelper
                         swPart.Parameter("D2@Skizze1").SystemValue = (item.Length -10d) / 1000d;
                         swPart.Parameter("D1@Skizze1").SystemValue = 500d / 1000d;
                         swFeat = swComp.FeatureByName("LED");
-                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
-                        else swFeat.SetSuppression2(0, 2, configNames); //参数1：1解压，0压缩
+                        if (item.LightType == "LED60") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                        else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
                     swFeat = swAssy.FeatureByName("LocalLPattern2");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swFeat = swAssy.FeatureByName("LocalLPattern1");
-                    swFeat.SetSuppression2(1, 2, configNames); //参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     swModel.Parameter("D1@LocalLPattern2").SystemValue = item.MPanelNo;
                     swModel.Parameter("D1@LocalLPattern1").SystemValue = item.MPanelNo - 1;
                 }

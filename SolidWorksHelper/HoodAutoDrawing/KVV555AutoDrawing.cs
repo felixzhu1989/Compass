@@ -39,7 +39,7 @@ namespace SolidWorksHelper
             AssemblyDoc swAssy;
             Component2 swComp;
             Feature swFeat;
-            object configNames = null;
+            
             EditPart swEdit = new EditPart();
 
 
@@ -149,16 +149,16 @@ namespace SolidWorksHelper
                 if (item.Length > 1500d)
                 {
                     swFeat = swComp.FeatureByName("HANDER2");
-                    swFeat.SetSuppression2(0, 2, configNames);//参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("HANDER4");
-                    swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
                 }
                 else
                 {
                     swFeat = swComp.FeatureByName("HANDER2");
-                    swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("HANDER4");
-                    swFeat.SetSuppression2(0, 2, configNames);//参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
                 }
                 
 
@@ -172,16 +172,16 @@ namespace SolidWorksHelper
                 if (item.Length > 1500d)
                 {
                     swFeat = swComp.FeatureByName("HANDER2");
-                    swFeat.SetSuppression2(0, 2, configNames);//参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("HANDER4");
-                    swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
+                    swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
                 }
                 else
                 {
                     swFeat = swComp.FeatureByName("HANDER2");
-                    swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩 
+                    swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩 
                     swFeat = swComp.FeatureByName("HANDER4");
-                    swFeat.SetSuppression2(0, 2, configNames);//参数1：1解压，0压缩
+                    swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩
                 }
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0067-1"));
@@ -215,8 +215,8 @@ namespace SolidWorksHelper
                     swPart.Parameter("D2@Sketch26").SystemValue = item.ExWidth / 1000d;
                     swPart.Parameter("D2@Sketch27").SystemValue = 50d * Convert.ToInt32((item.Deepth / 2d - 200d) / 50d) / 1000d;
                     swFeat = swComp.FeatureByName("PHILIPS LAMP");
-                    if (item.LightType == "PHILIPS") swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
-                    else swFeat.SetSuppression2(0, 2, configNames);
+                    if (item.LightType == "PHILIPS") swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
+                    else swFeat.SetSuppression2(0, 2, null);
                 }
                 else
                 {
@@ -233,8 +233,8 @@ namespace SolidWorksHelper
                     swPart.Parameter("D2@Sketch26").SystemValue = item.ExWidth / 1000d;
                     swPart.Parameter("D2@Sketch27").SystemValue = 50d * Convert.ToInt32((item.Deepth / 2d - 150d) / 50d) / 1000d;
                     swFeat = swComp.FeatureByName("PHILIPS LAMP");
-                    if (item.LightType == "PHILIPS") swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
-                    else swFeat.SetSuppression2(0, 2, configNames);
+                    if (item.LightType == "PHILIPS") swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
+                    else swFeat.SetSuppression2(0, 2, null);
                 }
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0008-3"));
@@ -243,8 +243,8 @@ namespace SolidWorksHelper
                 swPart.Parameter("D1@Sketch1").SystemValue = insidePanelWidth / 1000d;
                 swPart.Parameter("D3@Sketch39").SystemValue = (insidePanelWidth - 55.2d) / 1000d;
                 swFeat = swComp.FeatureByName("PHILIPS LAMP");
-                if (item.LightType == "PHILIPS") swFeat.SetSuppression2(1, 2, configNames);//参数1：1解压，0压缩
-                else swFeat.SetSuppression2(0, 2, configNames);
+                if (item.LightType == "PHILIPS") swFeat.SetSuppression2(1, 2, null);//参数1：1解压，0压缩
+                else swFeat.SetSuppression2(0, 2, null);
 
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHS0034-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
@@ -286,7 +286,7 @@ namespace SolidWorksHelper
                     swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength + 50d) / 1000d;
                     swPart.Parameter("D2@Sketch1").SystemValue = item.ExHeight / 1000d;
                     swFeat = swComp.FeatureByName("ANSUL");
-                    swFeat.SetSuppression2(0, 2, configNames);
+                    swFeat.SetSuppression2(0, 2, null);
                 }
 
 

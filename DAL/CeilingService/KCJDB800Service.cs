@@ -16,7 +16,7 @@ namespace DAL
             sqlBuilder.Append("Update KCJDB800 set Length=@Length,ExRightDis=@ExRightDis,ExLength=@ExLength,ExWidth=@ExWidth,ExHeight=@ExHeight,");
             sqlBuilder.Append("FCType=@FCType,FCSide=@FCSide,FCSideLeft=@FCSideLeft,FCSideRight=@FCSideRight,FCBlindNo=@FCBlindNo,");
             sqlBuilder.Append("LightType=@LightType,LightCable=@LightCable,SSPType=@SSPType,Gutter=@Gutter,GutterWidth=@GutterWidth,ANSUL=@ANSUL,ANSide=@ANSide,ANDetectorEnd=@ANDetectorEnd,");
-            sqlBuilder.Append("ANDetectorNo=@ANDetectorNo,ANDetectorDis1=@ANDetectorDis1,ANDetectorDis2=@ANDetectorDis2,ANDetectorDis3=@ANDetectorDis3,ANDetectorDis4=@ANDetectorDis4,ANDetectorDis5=@ANDetectorDis5,MARVEL=@MARVEL,Japan=@Japan where KCJDB800Id=@KCJDB800Id");
+            sqlBuilder.Append("ANDetectorNo=@ANDetectorNo,ANDetectorDis1=@ANDetectorDis1,ANDetectorDis2=@ANDetectorDis2,ANDetectorDis3=@ANDetectorDis3,ANDetectorDis4=@ANDetectorDis4,ANDetectorDis5=@ANDetectorDis5,MARVEL=@MARVEL,LightPanelSide=@LightPanelSide,LightPanelLeft=@LightPanelLeft,LightPanelRight=@LightPanelRight,Japan=@Japan where KCJDB800Id=@KCJDB800Id");
             //定义参数数组
             SqlParameter[] param = new SqlParameter[]
             {
@@ -46,6 +46,9 @@ namespace DAL
                 new SqlParameter("@ANDetectorDis5",objModel.ANDetectorDis5),
                 new SqlParameter("@MARVEL",objModel.MARVEL),
                 new SqlParameter("@Japan",objModel.Japan),
+                new SqlParameter("@LightPanelSide",objModel.LightPanelSide),
+                new SqlParameter("@LightPanelLeft",objModel.LightPanelLeft),
+                new SqlParameter("@LightPanelRight",objModel.LightPanelRight),
                 new SqlParameter("@KCJDB800Id",objModel.KCJDB800Id)
             };
             try
@@ -66,7 +69,7 @@ namespace DAL
         {
             string sql = "select KCJDB800Id,KCJDB800.ModuleTreeId,Item,Module,Length,ExRightDis,ExLength,ExWidth,ExHeight," +
                          "FCType,FCSide,FCSideLeft,FCSideRight,FCBlindNo,LightType,LightCable,SSPType,Gutter,GutterWidth," +
-                         "ANSUL,ANSide,ANDetectorEnd,ANDetectorNo,ANDetectorDis1,ANDetectorDis2,ANDetectorDis3,ANDetectorDis4,ANDetectorDis5,MARVEL,Japan from KCJDB800";
+                         "ANSUL,ANSide,ANDetectorEnd,ANDetectorNo,ANDetectorDis1,ANDetectorDis2,ANDetectorDis3,ANDetectorDis4,ANDetectorDis5,MARVEL,LightPanelSide,LightPanelLeft,LightPanelRight,Japan from KCJDB800";
             sql += " inner join ModuleTree on KCJDB800.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
             sql += $" where ProjectId={projectId}";
@@ -89,7 +92,7 @@ namespace DAL
             string sql =
                 "select KCJDB800Id,ModuleTreeId,Length,ExRightDis,ExLength,ExWidth,ExHeight," +
                 "FCType,FCSide,FCSideLeft,FCSideRight,FCBlindNo,LightType,LightCable,SSPType,Gutter,GutterWidth," +
-                "ANSUL,ANSide,ANDetectorEnd,ANDetectorNo,ANDetectorDis1,ANDetectorDis2,ANDetectorDis3,ANDetectorDis4,ANDetectorDis5,MARVEL,Japan from KCJDB800";
+                "ANSUL,ANSide,ANDetectorEnd,ANDetectorNo,ANDetectorDis1,ANDetectorDis2,ANDetectorDis3,ANDetectorDis4,ANDetectorDis5,MARVEL,LightPanelSide,LightPanelLeft,LightPanelRight,Japan from KCJDB800";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             KCJDB800 objModel = null;
@@ -128,6 +131,9 @@ namespace DAL
                     ANDetectorDis4 = objReader["ANDetectorDis4"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["ANDetectorDis4"]),
                     ANDetectorDis5 = objReader["ANDetectorDis5"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["ANDetectorDis5"]),
                     MARVEL = objReader["MARVEL"].ToString().Length == 0 ? "" : objReader["MARVEL"].ToString(),
+                    LightPanelSide = objReader["LightPanelSide"].ToString().Length == 0 ? "" : objReader["LightPanelSide"].ToString(),
+                    LightPanelLeft = objReader["LightPanelLeft"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["LightPanelLeft"]),
+                    LightPanelRight = objReader["LightPanelRight"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["LightPanelRight"]),
                     Japan = objReader["Japan"].ToString().Length == 0 ? "" : objReader["Japan"].ToString(),
                 };
             }
