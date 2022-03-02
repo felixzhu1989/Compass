@@ -980,6 +980,32 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             }
             #endregion
         }
+        internal void FNCE0099(Component2 swComp, double length, string lightPanelSide, double lightPanelLeft, double lightPanelRight)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@Skizze1", length);
+            #region 镀锌板安装距离
+            if (lightPanelSide == "LEFT" || lightPanelSide == "BOTH")
+            {
+                swComp.UnSuppress("LightPanelLeft");
+                swPart.ChangeDim("D5@Sketch24", (lightPanelLeft - 150));
+            }
+            else
+            {
+                swComp.Suppress("LightPanelLeft");
+            }
+            if (lightPanelSide == "RIGHT" || lightPanelSide == "BOTH")
+            {
+                swComp.UnSuppress("LightPanelRight");
+                swPart.ChangeDim("D5@Sketch25", (lightPanelRight - 150));
+            }
+            else
+            {
+                swComp.Suppress("LightPanelRight");
+            }
+            #endregion
+        }
+
 
         //-------HCL灯腔玻璃支架支撑条上部-------
         internal void FNCE0091(Component2 swComp, double length, double lightPanelLeft, double lightPanelRight)
@@ -1022,14 +1048,14 @@ namespace SolidWorksHelper.CeilingAutoDrawing
         {
             ModelDoc2 swPart = swComp.GetModelDoc2(); //打开零件
             swPart.ChangeDim("D1@Sketch1", lightPanelLeft);
-            swPart.ChangeDim("D6@Sketch42", lightPanelLeft - 150d);
+            swPart.ChangeDim("D6@Sketch42", lightPanelLeft - 124d);
         }
 
         internal void FNCE0094(Component2 swComp, double lightPanelRight)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2(); //打开零件
             swPart.ChangeDim("D1@Sketch1", lightPanelRight);
-            swPart.ChangeDim("D6@Sketch42", lightPanelRight - 150d);
+            swPart.ChangeDim("D6@Sketch42", lightPanelRight - 124d);
         }
 
 

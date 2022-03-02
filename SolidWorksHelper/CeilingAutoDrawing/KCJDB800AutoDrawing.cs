@@ -69,7 +69,7 @@ namespace SolidWorksHelper
                     swAssy.Suppress(suffix, "FNCE0114-2");
                     //HCL解压
                     //swAssy.UnSuppress(suffix, "FNCE0087-1");
-                    //swAssy.UnSuppress(suffix, "FNCE0090-1");
+                    //swAssy.UnSuppress(suffix, "FNCE0099-1");
                     //swAssy.UnSuppress(suffix, "FNCE0090-2");
                     //swAssy.UnSuppress(suffix, "FNCE0091-1");
                     //swAssy.UnSuppress(suffix, "FNCE0091-2");
@@ -109,9 +109,10 @@ namespace SolidWorksHelper
                     //-------KCJDB800HCL排风腔内灯腔----------
                     swComp = swAssy.UnSuppress(suffix, "FNCE0087-1");
                     ceilingPart.FNCE0087(swComp, item.Length, item.LightCable, item.LightType, item.Japan);
-                    
+
                     //-------灯腔玻璃支架底部-------
-                    swAssy.UnSuppress(suffix, "FNCE0090-1");
+                    swComp = swAssy.UnSuppress(suffix, "FNCE0099-1");
+                    ceilingPart.FNCE0099(swComp, item.Length, item.LightPanelSide, item.LightPanelLeft, item.LightPanelRight);
                     swComp = swAssy.UnSuppress(suffix, "FNCE0090-2");
                     ceilingPart.FNCE0090(swComp, item.Length, item.LightPanelSide, item.LightPanelLeft, item.LightPanelRight);
 
@@ -136,7 +137,7 @@ namespace SolidWorksHelper
                     swAssy.UnSuppress(suffix, "FNCE0114-2");
                     //HCL解压
                     swAssy.Suppress(suffix, "FNCE0087-1");
-                    swAssy.Suppress(suffix, "FNCE0090-1");
+                    swAssy.Suppress(suffix, "FNCE0099-1");
                     swAssy.Suppress(suffix, "FNCE0090-2");
                     swAssy.Suppress(suffix, "FNCE0091-1");
                     swAssy.Suppress(suffix, "FNCE0091-2");
