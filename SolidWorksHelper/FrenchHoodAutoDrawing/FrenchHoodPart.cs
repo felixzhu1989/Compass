@@ -598,7 +598,7 @@ namespace SolidWorksHelper
         internal void FNHA0111(Component2 swComp, double length, int frontPanelHoleNo, double frontPanelHoleDis)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D2@Sketch1", length - 1d);
+            swPart.ChangeDim("D2@Sketch1", length);
             swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
             swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
             swPart.ChangeDim("D1@LPattern2", frontPanelHoleNo);
