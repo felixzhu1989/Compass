@@ -1022,19 +1022,19 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             switch (lightPanelSide)
             {
                 case "LEFT":
-                    swComp = RenameComp(swModel, swAssy, suffix, "HLSP", module, leftPart, leftNum, lightPanelLeft, 200);
+                    swComp = RenameComp(swModel, swAssy, suffix, "HCLSP", module, leftPart, leftNum, lightPanelLeft, 200);
                     if (swComp != null) FNCE0092(swComp, lightPanelLeft);
                     SuppressIfExist(swModel, swAssy, suffix, rightPart, rightNum);
                     break;
                 case "RIGHT":
-                    swComp = RenameComp(swModel, swAssy, suffix, "HLSP", module, rightPart, rightNum, lightPanelRight, 200);
+                    swComp = RenameComp(swModel, swAssy, suffix, "HCLSP", module, rightPart, rightNum, lightPanelRight, 200);
                     if (swComp != null) FNCE0094(swComp, lightPanelRight);
                     SuppressIfExist(swModel, swAssy, suffix, leftPart, leftNum);
                     break;
                 case "BOTH":
-                    swComp = RenameComp(swModel, swAssy, suffix, "HLSP", $"{module}.1", leftPart, leftNum, lightPanelLeft, 200);
+                    swComp = RenameComp(swModel, swAssy, suffix, "HCLSP", $"{module}.1", leftPart, leftNum, lightPanelLeft, 200);
                     if (swComp != null) FNCE0092(swComp, lightPanelLeft);
-                    swComp = RenameComp(swModel, swAssy, suffix, "HLSP", $"{module}.2", rightPart, rightNum, lightPanelRight, 200);
+                    swComp = RenameComp(swModel, swAssy, suffix, "HCLSP", $"{module}.2", rightPart, rightNum, lightPanelRight, 200);
                     if (swComp != null) FNCE0094(swComp, lightPanelRight);
                     break;
                 default:
