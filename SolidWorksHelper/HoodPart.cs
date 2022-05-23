@@ -1350,7 +1350,7 @@ namespace SolidWorksHelper
             }
         }
 
-        internal void FNHA0005(Component2 swComp, double length, int frontCjNo, double frontCjFirstDis,
+        public void FNHA0005(Component2 swComp, double length, int frontCjNo, double frontCjFirstDis,
             int frontPanelHoleNo, double frontPanelHoleDis, string bluetooth, string ledLogo, string waterCollection,
             string sidePanel)
         {

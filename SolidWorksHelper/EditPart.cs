@@ -381,7 +381,6 @@ namespace SolidWorksHelper
 
         #endregion
 
-
         #region 新风腔零件
         public void FNHA0001(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo,  string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
         {
@@ -811,7 +810,6 @@ namespace SolidWorksHelper
 
 
         #endregion
-
 
         #region 水洗排风腔零件
 
@@ -1577,7 +1575,6 @@ namespace SolidWorksHelper
 
         #endregion
 
-
         #region 450新风
         //F型
         public void FNHA0039(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, double suDis, int suNo, string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
@@ -2014,6 +2011,7 @@ namespace SolidWorksHelper
 
 
         #endregion
+
         #region 方形新风腔
         public void FNHA0012(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo)
         {

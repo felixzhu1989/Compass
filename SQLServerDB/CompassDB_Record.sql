@@ -429,3 +429,7 @@ select * from GeneralRequirements
 
 update ProjectStatus set ProjectStatusName='引进',StatusDesc='Import' where ProjectStatusId=10
 select * from ProjectStatus
+
+select * from ProjectTracking where ProjectTrackingId=358
+--取消订单
+update ProjectTracking set ProjectStatusId=9 where ProjectTrackingId=358

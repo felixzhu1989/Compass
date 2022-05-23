@@ -11,6 +11,7 @@ namespace SolidWorksHelper
 {
     public class KVI400AutoDrawing : IAutoDrawing
     {
+        Component2 swComp; 
         readonly KVI400Service objKVI400Service = new KVI400Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
@@ -35,7 +36,7 @@ namespace SolidWorksHelper
             ModelDoc2 swModel;
             ModelDoc2 swPart;
             AssemblyDoc swAssy;
-            Component2 swComp;
+            
             Feature swFeat;
             
             EditPart swEdit = new EditPart();
@@ -875,7 +876,7 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
+                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
             }
             finally
             {

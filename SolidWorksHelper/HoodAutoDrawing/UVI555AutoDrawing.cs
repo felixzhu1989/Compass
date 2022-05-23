@@ -10,7 +10,7 @@ namespace SolidWorksHelper
     //2.实现接口具体方法
     public class UVI555AutoDrawing : IAutoDrawing
     {
-        readonly UVI555Service objUvi555Service = new UVI555Service();
+        Component2 swComp; readonly UVI555Service objUvi555Service = new UVI555Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             #region 准备工作
@@ -65,7 +65,7 @@ namespace SolidWorksHelper
 
             try
             {
-                Component2 swComp;
+                
                 #region 装配体顶层
                 //烟罩深度
                 swModel.ChangeDim("D1@Distance32", item.Deepth);
@@ -211,7 +211,7 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
+                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
             }
             finally
             {

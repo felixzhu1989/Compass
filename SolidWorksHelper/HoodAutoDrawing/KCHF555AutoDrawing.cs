@@ -11,6 +11,7 @@ namespace SolidWorksHelper
 {
     public class KCHF555AutoDrawing : IAutoDrawing
     {
+        Component2 swComp; 
         readonly KCHF555Service objKCHF555Service = new KCHF555Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
@@ -35,9 +36,9 @@ namespace SolidWorksHelper
             ModelDoc2 swModel;
             ModelDoc2 swPart;
             AssemblyDoc swAssy;
-            Component2 swComp;
+
             Feature swFeat;
-            
+
             EditPart swEdit = new EditPart();
 
             //打开Pack后的模型
@@ -274,7 +275,7 @@ namespace SolidWorksHelper
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 //ANSUL
-                
+
                 //MARVEL
                 swFeat = swComp.FeatureByName("MA-NTC");
                 if (item.MARVEL == "YES")
@@ -1028,7 +1029,7 @@ namespace SolidWorksHelper
                 swFeat = swComp.FeatureByName("LOGO");
                 if (item.LEDlogo == "YES") swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                 else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                                                                //集水翻边
+                                                         //集水翻边
 
                 if (item.SidePanel == "RIGHT")
                 {
@@ -1072,7 +1073,7 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
+                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
             }
             finally
             {

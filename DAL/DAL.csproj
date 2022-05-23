@@ -63,12 +63,13 @@
   <ItemGroup>
     <Compile Include="CeilingService\BCJ330Service.cs" />
     <Compile Include="CeilingService\CJ330Service.cs" />
+    <Compile Include="HuaWeiHoodService\UWUWF650Service.cs" />
     <Compile Include="TickSheetService\CMODF700TSService.cs" />
     <Compile Include="TickSheetService\CMODI700TSService.cs" />
     <Compile Include="DrawingNumMatrixService.cs" />
     <Compile Include="FinancialDataService.cs" />
     <Compile Include="FrenchHoodService\FRKVF555Service.cs" />
-    <Compile Include="HoodService\HWUVF555400Service.cs" />
+    <Compile Include="HuaWeiHoodService\HWUVF555400Service.cs" />
     <Compile Include="MarineService\HMMService.cs" />
     <Compile Include="MarineService\HMFService.cs" />
     <Compile Include="FrenchHoodService\FRUVF555Service.cs" />
@@ -95,10 +96,10 @@
     <Compile Include="DrawingPlanService.cs" />
     <Compile Include="DrawingService.cs" />
     <Compile Include="HoodCutListService.cs" />
-    <Compile Include="HoodService\HWUWF555400Service.cs" />
-    <Compile Include="HoodService\HWUWF555Service.cs" />
-    <Compile Include="HoodService\HWUVF650Service.cs" />
-    <Compile Include="HoodService\HWUVI650Service.cs" />
+    <Compile Include="HuaWeiHoodService\HWUWF555400Service.cs" />
+    <Compile Include="HuaWeiHoodService\HWUWF555Service.cs" />
+    <Compile Include="HuaWeiHoodService\HWUVF650Service.cs" />
+    <Compile Include="HuaWeiHoodService\HWUVI650Service.cs" />
     <Compile Include="IModelService.cs" />
     <Compile Include="CeilingService\INFService.cs" />
     <Compile Include="JobCardService.cs" />

@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class KVSAutoDrawing : IAutoDrawing
     {
-        readonly KVSService objKVSService = new KVSService();
+        Component2 swComp; readonly KVSService objKVSService = new KVSService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             //创建项目模型存放地址
@@ -90,7 +90,7 @@ namespace SolidWorksHelper
                     swModel.Parameter("D3@LocalLPattern1").SystemValue = (item.ExDis + item.ExLength) / 1000d; //D1阵列数量,D3阵列距离
                 }
                 //日光灯
-                Component2 swComp;
+                
                 if (item.LightType == "FSSHORT")
                 {
                     //SHORT
@@ -353,7 +353,7 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
+                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
             }
             finally
             {

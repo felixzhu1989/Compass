@@ -11,6 +11,7 @@ namespace SolidWorksHelper
 {
     public class CMODF555AutoDrawing : IAutoDrawing
     {
+        Component2 swComp;
         readonly CMODF555Service objCMODF555Service = new CMODF555Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
@@ -34,8 +35,7 @@ namespace SolidWorksHelper
             suffix = "_" + suffix;//后缀
             ModelDoc2 swModel;
             ModelDoc2 swPart;
-            AssemblyDoc swAssy;
-            Component2 swComp;
+            AssemblyDoc swAssy;            
             Feature swFeat;
             EditPart swEdit = new EditPart();
 
@@ -529,7 +529,7 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
+                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
             }
             finally
             {

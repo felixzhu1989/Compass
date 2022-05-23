@@ -12,6 +12,7 @@ namespace SolidWorksHelper
 {
     public class KCJDB800AutoDrawing : IAutoDrawing
     {
+        Component2 swComp; 
         readonly KCJDB800Service objKCJDB800Service = new KCJDB800Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
@@ -105,7 +106,7 @@ namespace SolidWorksHelper
                     }
                     #endregion
                     #endregion
-                    
+
                     //-------KCJDB800HCL排风腔内灯腔----------
                     swComp = swAssy.UnSuppress(suffix, "FNCE0087-1");
                     ceilingPart.FNCE0087(swComp, item.Length, item.LightCable, item.LightType, item.Japan);
@@ -163,21 +164,21 @@ namespace SolidWorksHelper
                 //排风腔
                 swComp = ceilingPart.RenameComp(swModel, swAssy, suffix, "KCJDB800", tree.Module, "FNCE0115", 1, item.Length, 800);
                 if (swComp != null)
-                    ceilingPart.FNCE0115(swComp, item.Length, item.LightType,item.LightCable, item.MARVEL, item.ANSUL, item.ANSide, item.ANDetectorEnd,item.ANDetectorNo,item.ANDetectorDis1,item.ANDetectorDis2,item.ANDetectorDis3,item.ANDetectorDis4,item.ANDetectorDis5, item.Japan, item.ExRightDis, item.ExLength, item.ExWidth);
+                    ceilingPart.FNCE0115(swComp, item.Length, item.LightType, item.LightCable, item.MARVEL, item.ANSUL, item.ANSide, item.ANDetectorEnd, item.ANDetectorNo, item.ANDetectorDis1, item.ANDetectorDis2, item.ANDetectorDis3, item.ANDetectorDis4, item.ANDetectorDis5, item.Japan, item.ExRightDis, item.ExLength, item.ExWidth);
 
                 //----------公共零件----------
                 //盲板
                 ceilingPart.FCBlind(swModel, swAssy, suffix, item.FCBlindNo, item.FCSideLeft, "FNCE0107[BP-500]{500}-3", "LocalLPattern4", "D1@Distance31", "NO", "");
                 ceilingPart.FCBlind(swModel, swAssy, suffix, item.FCBlindNo, item.FCSideLeft, "FNCE0107[BP-500]{500}-7", "LocalLPattern4", "D1@Distance31", "NO", "");
-                
+
                 //FC或者KSA
                 ceilingPart.KSAorFC(swModel, swAssy, suffix, item.FCBlindNo, item.FCType, fcNo, item.FCSideLeft, "5202040401-1", "LocalLPattern5", "D1@Distance34", "KCJ FC FILTER-1", "LocalLPattern3", "D1@Distance33", "NO", "");
                 ceilingPart.KSAorFC(swModel, swAssy, suffix, item.FCBlindNo, item.FCType, fcNo, item.FCSideLeft, "5202040401-7", "LocalLPattern5", "D1@Distance34", "KCJ FC FILTER-9", "LocalLPattern3", "D1@Distance33", "NO", "");
-                
+
                 //----------油网侧板----------
                 ceilingPart.FCFilter(swModel, swAssy, suffix, tree.Module, item.FCSide, item.FCType, fcNo, item.FCSideLeft, item.FCSideRight, "FNCE0108", 3, "FNCE0109", 3);
                 ceilingPart.FCFilter(swModel, swAssy, suffix, tree.Module, item.FCSide, item.FCType, fcNo, item.FCSideLeft, item.FCSideRight, "FNCE0108", 4, "FNCE0109", 4);
-                
+
                 //----------SSP灯板支撑条----------
                 ceilingPart.SSPSupport(swModel, swAssy, suffix, item.Length, "NO", item.SSPType, item.Gutter, item.GutterWidth, "FNCE0035-7", "D1@Distance27", "", "FNCE0036-5", "D1@Distance28", "");
                 ceilingPart.SSPSupport(swModel, swAssy, suffix, item.Length, "NO", item.SSPType, item.Gutter, item.GutterWidth, "FNCE0035-6", "D1@Distance36", "", "FNCE0036-4", "D1@Distance37", "");
@@ -205,14 +206,14 @@ namespace SolidWorksHelper
                     //排风滑门
                     ceilingPart.ExaustRail(swAssy, suffix, item.MARVEL, item.ExLength, item.ExWidth, 1, 0, "EXDOOR-1");
                 }
-                
+
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
                 swModel.Save();//保存，很耗时间
                 swApp.CloseDoc(packedAssyPath);//关闭，很快
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
+                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
             }
             finally
             {

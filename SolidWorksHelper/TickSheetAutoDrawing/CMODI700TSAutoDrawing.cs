@@ -9,6 +9,7 @@ namespace SolidWorksHelper
 {
     public class CMODI700TSAutoDrawing:IAutoDrawing
     {
+        Component2 swComp;
         readonly CMODI700TSService objCMODI700TSService = new CMODI700TSService();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
@@ -81,8 +82,7 @@ namespace SolidWorksHelper
 
 
             try
-            {
-                Component2 swComp;
+            {                
 
                 #region 装配体顶层
                 //烟罩深度
@@ -151,7 +151,7 @@ namespace SolidWorksHelper
                 {
                     swAssy.UnSuppress(suffix, "FNHM0032-4");
                     swComp = swAssy.UnSuppress(suffix, "FNHM0032-3");
-                    hwEdit.FNHM0032(swComp, "CMOD", item.Deepth, "700", 50d / 1000d);
+                    hwEdit.FNHM0032(swComp, "CMOD", item.Deepth, 700d, 50d / 1000d);
                 }
                 else
                 {
@@ -236,7 +236,7 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
+                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
             }
             finally
             {

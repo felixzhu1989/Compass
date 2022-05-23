@@ -11,6 +11,7 @@ namespace SolidWorksHelper
 {
     public class HWUWF555AutoDrawing : IAutoDrawing
     {
+        Component2 swComp;
         readonly HWUWF555Service objHWUWF555Service = new HWUWF555Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
@@ -34,8 +35,7 @@ namespace SolidWorksHelper
             suffix = "_" + suffix;//后缀
             ModelDoc2 swModel;
             ModelDoc2 swPart;
-            AssemblyDoc swAssy;
-            Component2 swComp;
+            AssemblyDoc swAssy;           
             Feature swFeat;
             HuaWeiHoodPart swEdit = new HuaWeiHoodPart();
             //打开Pack后的模型
@@ -76,9 +76,12 @@ namespace SolidWorksHelper
             ////水洗烟罩KW/UW
             //int sidePanelSideCjNo = (int)((item.Deepth - 380d) / 32d);
 
-            //HWUWF555斜侧板CJ孔计算,150为排风底部长度，555-400为高度差
-            int sidePanelDownCjNo = (int)(((double)(Math.Sqrt(Math.Pow((double)item.Deepth - 150d, 2) + Math.Pow(555d - 400d, 2))) - 95d) / 32d);
-            int sidePanelSideCjNo = sidePanelDownCjNo - 3;
+            //侧板CJ孔整列到烟罩底部
+            int sidePanelDownCjNo = (int)((item.Deepth - 95d) / 32d);
+            //非水洗烟罩KV/UV
+            //int sidePanelSideCjNo = (int)((item.Deepth - 305d) / 32d);
+            //水洗烟罩KW/UW
+            int sidePanelSideCjNo = (int)((item.Deepth - 380) / 32);
 
 
             try
@@ -259,7 +262,7 @@ namespace SolidWorksHelper
                 }
                 //----------排风腔顶部零件----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0148-1"));
-                swEdit.FNHE0148(swComp, item.Length, midRoofSecondHoleDis, midRoofHoleNo, item.ExNo, item.ExRightDis, item.ExLength, item.ExWidth, item.ExDis, item.Inlet, item.ANSUL, item.ANSide, item.MARVEL, item.UVType, "UW");
+                swEdit.FNHE0148(swComp, item.Length, midRoofSecondHoleDis*1000d, midRoofHoleNo, item.ExNo, item.ExRightDis, item.ExLength, item.ExWidth, item.ExDis, item.Inlet, item.ANSUL, item.ANSide, item.MARVEL, item.UVType, "UW");
 
                 //----------UWHood排风腔顶部检修门盖板？----------
                 //if ((item.UVType == "SHORT" && item.Length >= 1600d) || (item.UVType == "LONG" && item.Length >= 2400d))
@@ -415,8 +418,7 @@ namespace SolidWorksHelper
                 //----------水洗挡板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0150-1"));
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 105d - 1.5d) / 1000d;
-                //2021.06.08 july更改模型，磁铁拉铆钉避让1.5dm
+                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 105d - 5d) / 1000d;                
                 swFeat = swComp.FeatureByName("UWHOOD");
                 swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
 
@@ -748,14 +750,14 @@ namespace SolidWorksHelper
                 //}
                 //----------MiddleRoof灯板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0031-1"));
-                swEdit.FNHM0031(swComp, "UW", item.Length, item.Deepth, 555d,555d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, item.LightYDis, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, item.ANDetectorEnd, item.ANDetectorNo, item.ANDetectorDis1, item.ANDetectorDis2, item.ANDetectorDis3, item.ANDetectorDis4, item.ANDetectorDis5, item.Bluetooth, item.UVType, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
+                swEdit.FNHM0031(swComp, "UW", item.Length, item.Deepth, 555d,555d, item.ExRightDis, midRoofTopHoleDis*1000d, midRoofSecondHoleDis*1000d, midRoofHoleNo, item.LightType, item.LightYDis, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, item.ANDetectorEnd, item.ANDetectorNo, item.ANDetectorDis1, item.ANDetectorDis2, item.ANDetectorDis3, item.ANDetectorDis4, item.ANDetectorDis5, item.Bluetooth, item.UVType, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
 
                 //华为灯板左右加高
                 if (item.Length >= 2200d && item.Length <= 2400d)
                 {
                     swAssy.UnSuppress(suffix, "FNHM0032-2");
                     swComp = swAssy.UnSuppress(suffix, "FNHM0032-1");
-                    swEdit.FNHM0032(swComp, "UW", item.Deepth, "555", midRoofTopHoleDis);
+                    swEdit.FNHM0032(swComp, "UW", item.Deepth, 555d, midRoofTopHoleDis*1000d);
                 }
                 else
                 {
@@ -1104,7 +1106,7 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
+                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
             }
             finally
             {

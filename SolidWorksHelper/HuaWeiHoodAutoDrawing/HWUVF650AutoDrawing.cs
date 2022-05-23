@@ -9,6 +9,7 @@ namespace SolidWorksHelper
 {
     public class HWUVF650AutoDrawing : IAutoDrawing
     {
+        Component2 swComp;
         readonly HWUVF650Service objHWUVF650Service = new HWUVF650Service();
 
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
@@ -35,7 +36,7 @@ namespace SolidWorksHelper
             ModelDoc2 swModel;
             ModelDoc2 swPart;
             AssemblyDoc swAssy;
-            Component2 swComp;
+            
             Feature swFeat;
             HuaWeiHoodPart swEdit = new HuaWeiHoodPart();
             //打开Pack后的模型
@@ -80,7 +81,7 @@ namespace SolidWorksHelper
             //水洗烟罩KW/UW
             //int sidePanelSideCjNo = (int)((item.Deepth - 380) / 32); 
             #endregion
-            
+
             try
             {
                 #region Top Level
@@ -321,13 +322,28 @@ namespace SolidWorksHelper
                         swFeat = swComp.FeatureByName("ANDTEC-LEFT");
                         swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
                     }
-                    else
+                    if(item.ANDetector == "NO")
                     {
                         swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
                         swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                         swFeat = swComp.FeatureByName("ANDTEC-LEFT");
                         swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     }
+                }
+                else
+                {
+                    swFeat = swComp.FeatureByName("ANSUL-LEFT");
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                    swFeat = swComp.FeatureByName("ANSUL-RIGHT");
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                    swFeat = swComp.FeatureByName("CHANNEL-LEFT");
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                    swFeat = swComp.FeatureByName("CHANNEL-RIGHT");
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                    swFeat = swComp.FeatureByName("ANDTEC-RIGHT");
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                    swFeat = swComp.FeatureByName("ANDTEC-LEFT");
+                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 //MARVEL
                 //swFeat = swComp.FeatureByName("MA-NTC");
@@ -828,27 +844,21 @@ namespace SolidWorksHelper
 
                 #region MiddleRoof灯板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0031-1");
-                swEdit.FNHM0031(swComp, "UV", item.Length, item.Deepth, 650d,650d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, item.LightYDis, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
+                swEdit.FNHM0031(swComp, "UV", item.Length, item.Deepth, 650d, 650d, item.ExRightDis, midRoofTopHoleDis*1000d, midRoofSecondHoleDis*1000d, midRoofHoleNo, item.LightType, item.LightYDis, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
 
                 //华为灯板左右加高
-                if (item.Length >= 2200d && item.Length <= 2400d)
-                {
-                    swAssy.UnSuppress(suffix, "FNHM0032-2");
-                    swComp = swAssy.UnSuppress(suffix, "FNHM0032-1");
-                    swEdit.FNHM0032(swComp, "UV", item.Deepth, "650", midRoofTopHoleDis);
-                }
-                else
-                {
-                    swAssy.Suppress(suffix, "FNHM0032-2");
-                    swAssy.Suppress(suffix, "FNHM0032-1");
-                }
+
+                swAssy.UnSuppress(suffix, "FNHM0032-2");
+                swComp = swAssy.UnSuppress(suffix, "FNHM0032-1");
+                swEdit.FNHM0032(swComp, "UV", item.Deepth, 650d, midRoofTopHoleDis*1000d);
+
 
 
                 //----------吊装槽钢----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2900100001-1");
                 swPart = swComp.GetModelDoc2();
                 if (item.ANSUL == "YES") swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 250) / 1000d;
-                else swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 100d) / 1000d; 
+                else swPart.Parameter("D2@基体-法兰1").SystemValue = (item.Deepth - 100d) / 1000d;
                 #endregion
 
                 #region 大侧板
@@ -952,10 +962,7 @@ namespace SolidWorksHelper
                         swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHS0072-1");
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                         swPart = swComp.GetModelDoc2();
-                        swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 368d + 88d + 3d) / 1000d;//水洗烟罩(item.Deepth - 368) / 1000d;
-                        //swPart.Parameter("D5@Sketch7").SystemValue = 12d / 1000d;//水洗烟罩19.87d / 1000d
-                        //swPart.Parameter("D5@Sketch8").SystemValue = 27.3d / 1000d;
-                        //UV555400，22d,标准烟罩27.3
+                        swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Deepth - 368d + 88d + 3d) / 1000d;
                     }
                     else
                     {
@@ -1164,16 +1171,16 @@ namespace SolidWorksHelper
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                     swFeat = swComp.FeatureByName("DRAINCHANNEL-LEFT");
                     swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                } 
+                }
                 #endregion
-                
+
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
                 swModel.Save();//保存，很耗时间
                 swApp.CloseDoc(packedAssyPath);//关闭，很快
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
+                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
             }
             finally
             {

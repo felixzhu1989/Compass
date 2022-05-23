@@ -12,6 +12,7 @@ namespace SolidWorksHelper
 {
     public class KCJSB535AutoDrawing : IAutoDrawing
     {
+        Component2 swComp; 
         readonly KCJSB535Service objKCJSB535Service = new KCJSB535Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
@@ -57,7 +58,7 @@ namespace SolidWorksHelper
             CeilingPart ceilingPart = new CeilingPart();
             try
             {
-                Component2 swComp;
+                
                 //判断是否是HCL特殊灯腔
                 if (item.LightType == "HCL")
                 {
@@ -214,7 +215,7 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
+                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
             }
             finally
             {

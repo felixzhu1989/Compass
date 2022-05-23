@@ -10,6 +10,7 @@ namespace SolidWorksHelper
     //2.实现接口具体方法
     public class FRUVF555AutoDrawing : IAutoDrawing
     {
+        Component2 swComp;
         readonly FRUVF555Service objFRUVF555Service = new FRUVF555Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
@@ -34,7 +35,7 @@ namespace SolidWorksHelper
             int errors = 0;
             suffix = "_" + suffix;//后缀
             ModelDoc2 swPart;
-            Component2 swComp;
+            
             FrenchHoodPart swEdit = new FrenchHoodPart();
 
             //打开Pack后的模型
@@ -63,7 +64,7 @@ namespace SolidWorksHelper
             int ksaNo = (int)((item.Length + 1d) / 498d);
             double ksaSideLength = Convert.ToDouble((item.Length - ksaNo * 498d) / 2d);
             //MESH侧板长度(除去排风三角板3dm计算)
-            double meshSideLength = Convert.ToDouble((item.Length - 3d - (int)((item.Length - 2d) / 498d) * 498d) / 2d) / 1000d;
+            double meshSideLength = Convert.ToDouble((item.Length - 3d - (int)((item.Length - 2d) / 498d) * 498d) / 2d) ;
             //侧板CJ孔整列到烟罩底部
             int sidePanelDownCjNo = (int)((item.Deepth - 95d) / 32d);
             //非水洗烟罩KV/UV
@@ -459,7 +460,7 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
+                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
             }
             finally
             {

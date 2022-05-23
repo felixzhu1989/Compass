@@ -11,6 +11,7 @@ namespace SolidWorksHelper
 {
     public class BF200AutoDrawing : IAutoDrawing
     {
+        Component2 swComp;
         readonly BF200Service objBF200Service = new BF200Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
@@ -44,8 +45,7 @@ namespace SolidWorksHelper
             ModelDoc2 swSubModel;
             ModelDoc2 swPart;
             AssemblyDoc swAssy;
-            AssemblyDoc swSubAssy;
-            Component2 swComp;
+            AssemblyDoc swSubAssy;            
             Feature swFeat;
             
             ModelDocExtension swModelDocExt;
@@ -207,7 +207,7 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception(packedAssyPath + "作图过程发生异常，详细：" + ex.Message);
+                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
             }
             finally
             {
