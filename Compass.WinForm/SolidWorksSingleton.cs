@@ -35,9 +35,9 @@ namespace SolidWorksHelper
             {
                 return await Task.Run(() =>
                 {
-                    //_swApp = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application")) as SldWorks;
-                    _swApp = Marshal.GetActiveObject("SldWorks.Application") as SldWorks;
-                    if (_swApp == null) throw new ArgumentNullException("请先开启SolidWorks程序");
+                    _swApp = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application")) as SldWorks;
+                    //_swApp = Marshal.GetActiveObject("SldWorks.Application") as SldWorks;
+                    //if (_swApp == null) throw new ArgumentNullException("请先开启SolidWorks程序");
                     _swApp.Visible = true;
                     return _swApp;
                 });
