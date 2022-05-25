@@ -133,6 +133,8 @@ namespace SolidWorksHelper
                 }
 
                 //探测器
+                swComp.Suppress("ANDTEC-RIGHT");
+                swComp.Suppress("ANDTEC-LEFT");
                 if (anDetector == "RIGHT" || anDetector == "BOTH")
                 {
                     swComp.UnSuppress("ANDTEC-RIGHT");
@@ -140,12 +142,7 @@ namespace SolidWorksHelper
                 if (anDetector == "LEFT" || anDetector == "BOTH")
                 {
                     swComp.UnSuppress("ANDTEC-LEFT");
-                }
-                if (anDetector == "NO")
-                {
-                    swComp.Suppress("ANDTEC-RIGHT");
-                    swComp.Suppress("ANDTEC-LEFT");
-                }
+                }               
             }
             else
             {
@@ -201,7 +198,6 @@ namespace SolidWorksHelper
                 swComp.Suppress("UVRACK");
                 swComp.Suppress("UVDOUBLE");
             }
-
             #endregion UV灯门
         }
 
@@ -214,8 +210,8 @@ namespace SolidWorksHelper
 
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@草图1", length - 6.4d);
-            //1200长度的时候UV门跟测风压干涉D3@Sketch14=22,D2@Sketch14=35，原先都是50
-            if (length==1200d)
+            //1150@Sketch14=22,D2@Sketch14=35，原先都是50
+            if (length==1150)
             {
                 swPart.ChangeDim("D3@Sketch14", 22d);
                 swPart.ChangeDim("D2@Sketch14", 35d);
@@ -282,6 +278,8 @@ namespace SolidWorksHelper
             swPart.ChangeDim("D1@Sketch1", (length - 12d));
             if (ansul == "YES")
             {
+                swComp.Suppress("ANDTEC-RIGHT");
+                swComp.Suppress("ANDTEC-LEFT");
                 //探测器
                 if (anDetector == "RIGHT" || anDetector == "BOTH")
                 {
@@ -290,12 +288,7 @@ namespace SolidWorksHelper
                 if (anDetector == "LEFT" || anDetector == "BOTH")
                 {
                     swComp.UnSuppress("ANDTEC-LEFT");
-                }
-                if (anDetector == "NO")
-                {
-                    swComp.Suppress("ANDTEC-RIGHT");
-                    swComp.Suppress("ANDTEC-LEFT");
-                }
+                }                
             }
             else
             {
@@ -324,10 +317,8 @@ namespace SolidWorksHelper
             if (UVType == "DOUBLE")
             {
                 swComp.UnSuppress("UVDOOR-DOUBLE");
-
                 swPart.ChangeDim("D1@Sketch8", exRightDis - 3.5d);
                 swComp.Suppress("UVDOOR-LONG");
-
                 swComp.Suppress("UVDOOR-SHORT");
             }
             else if (UVType == "LONG")
@@ -336,24 +327,19 @@ namespace SolidWorksHelper
 
                 swPart.ChangeDim("D1@Sketch9", (exRightDis - 2.5d));
                 swComp.Suppress("UVDOOR-DOUBLE");
-
-                swComp.Suppress("UVDOOR-SHORT");
+                swComp.Suppress("UVDOOR-SHORT");  
             }
             else if (UVType == "SHORT")
             {
                 swComp.UnSuppress("UVDOOR-SHORT");
-
                 swPart.ChangeDim("D1@Sketch10", (exRightDis - 2.5d));
                 swComp.Suppress("UVDOOR-DOUBLE");
-
                 swComp.Suppress("UVDOOR-LONG");
             }
             else
             {
                 swComp.Suppress("UVDOOR-DOUBLE");
-
                 swComp.Suppress("UVDOOR-LONG");
-
                 swComp.Suppress("UVDOOR-SHORT");
             }
         }
