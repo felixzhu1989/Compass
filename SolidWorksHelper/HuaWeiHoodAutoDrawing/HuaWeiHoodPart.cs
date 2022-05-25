@@ -1754,7 +1754,7 @@ namespace SolidWorksHelper
         }
         #endregion 华为斜烟罩大侧板
 
-        #region 华为新风
+        #region 华为新风F650
 
         /// <summary>
         /// F新风底部CJ孔板
@@ -1925,6 +1925,134 @@ namespace SolidWorksHelper
                 swComp.Suppress("MA3");
             }
         }
-        #endregion 华为新风
+        #endregion 华为新风F650
+
+        #region 华为新风I650
+        /// <summary>
+        /// I型新风腔主体
+        /// </summary>
+        public void FNHA0113(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int midRoofHoleNo, double midRoofSecondHoleDis, double midRoofTopHoleDis, string marvel, int irNo, double irDis1, double irDis2, double irDis3, string bluetooth, string sidePanel)
+        {
+            #region 基本尺寸
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D2@基体-法兰1", length - 6.4d);
+            swPart.ChangeDim("D1@阵列(线性)1", frontPanelKaKouNo);
+            swPart.ChangeDim("D3@阵列(线性)1", frontPanelKaKouDis);
+            swPart.ChangeDim("D3@Sketch3", midRoofSecondHoleDis - 3.2d);
+            swPart.ChangeDim("D5@草图7", 200d  - midRoofTopHoleDis);
+            if (midRoofHoleNo == 1) swComp.Suppress("LPattern1");
+            else
+            {
+                swComp.UnSuppress("LPattern1");
+                swPart.ChangeDim("D1@LPattern1", midRoofHoleNo);
+            }
+            #endregion 基本尺寸
+
+            #region MARVEL
+            if (marvel == "YES")
+            {
+                if (irNo > 0)
+                {
+                    swComp.UnSuppress("MA1");
+                    swPart.ChangeDim("D3@Sketch46", irDis1);
+                    swComp.UnSuppress("MACABLE1");
+                    swPart.ChangeDim("D1@Sketch49", irDis1);
+                }
+                if (irNo > 1)
+                {
+                    swComp.UnSuppress("MA2");
+                    swPart.ChangeDim("D3@Sketch47", irDis2);
+                    swComp.UnSuppress("MACABLE2");
+                    swPart.ChangeDim("D1@Sketch50", irDis2);
+                }
+                if (irNo > 2)
+                {
+                    swComp.UnSuppress("MA3");
+                    swPart.ChangeDim("D3@Sketch48", irDis3);
+                    swComp.UnSuppress("MACABLE3");
+                    swPart.ChangeDim("D1@Sketch51", irDis3);
+                }
+            }
+            else
+            {
+                swComp.Suppress("MA1");
+                swComp.Suppress("MA2");
+                swComp.Suppress("MA3");
+                swComp.Suppress("MACABLE1");
+                swComp.Suppress("MACABLE2");
+                swComp.Suppress("MACABLE3");
+            }
+            #endregion MARVEL
+
+            #region UV HOOD
+            if (bluetooth == "YES") swComp.UnSuppress("SUCABLE-LEFT");
+            else swComp.Suppress("SUCABLE-LEFT");
+            swComp.UnSuppress("SUCABLE-RIGHT");
+            if (sidePanel == "LEFT" || sidePanel == "BOTH") swComp.UnSuppress("JUNCTION BOX-LEFT");
+            else swComp.Suppress("JUNCTION BOX-LEFT");
+            swComp.UnSuppress("JUNCTION BOX-RIGHT");
+            #endregion UV HOOD
+        }
+
+        /// <summary>
+        /// 新风前面板
+        /// </summary>
+        public void FNHA0120(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int frontPanelHoleNo, double frontPanelHoleDis)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@草图1", length - 3d);
+            swPart.ChangeDim("D1@阵列(线性)7", frontPanelKaKouNo);
+            swPart.ChangeDim("D3@阵列(线性)7", frontPanelKaKouDis);
+            swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
+            swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
+        }
+
+        /// <summary>
+        /// 新风底部CJ孔板
+        /// </summary>
+        public void FNHA0114(Component2 swComp, double length, int frontCjNo, double frontCjFirstDis, int frontPanelHoleNo, double frontPanelHoleDis, string bluetooth, string ledLogo, string waterCollection, string sidePanel)
+        {
+            #region 基本尺寸
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D2@基体-法兰1", length);
+            swPart.ChangeDim("D1@CJHOLES", frontCjNo);
+            swPart.ChangeDim("D10@草图8", frontCjFirstDis);
+            swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
+            swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
+            if (bluetooth == "YES") swComp.UnSuppress("BLUETOOTH");
+            else swComp.Suppress("BLUETOOTH");
+            if (ledLogo == "YES") swComp.UnSuppress("LOGO");
+            else swComp.Suppress("LOGO");
+            #endregion 基本尺寸
+
+            #region 集水翻边
+            if (waterCollection == "YES")
+            {
+                if (sidePanel == "RIGHT")
+                {
+                    swComp.UnSuppress("DRAINCHANNEL-RIGHT");
+                    swComp.Suppress("DRAINCHANNEL-LEFT");
+                }
+                else if (sidePanel == "LEFT")
+                {
+                    swComp.Suppress("DRAINCHANNEL-RIGHT");
+                    swComp.UnSuppress("DRAINCHANNEL-LEFT");
+                }
+                else if (sidePanel == "BOTH")
+                {
+                    swComp.UnSuppress("DRAINCHANNEL-RIGHT");
+                    swComp.UnSuppress("DRAINCHANNEL-LEFT");
+                }
+            }
+            else
+            {
+                swComp.Suppress("DRAINCHANNEL-RIGHT");
+                swComp.Suppress("DRAINCHANNEL-LEFT");
+            }
+            #endregion 集水翻边
+        }
+
+        #endregion 华为新风I650
+
     }
 }

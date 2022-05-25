@@ -147,16 +147,16 @@ namespace SolidWorksHelper
                 swEdit.FNHE0186(swComp, item.Length, midRoofHoleNo, midRoofSecondHoleDis, item.ExNo, item.ExLength, item.ExWidth, item.ExDis, item.ExRightDis, item.WaterCollection, item.SidePanel, item.Outlet, item.BackToBack, item.ANSUL, item.ANSide, item.ANDetector, item.UVType);
                 //--------排风腔前面板-------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0187-1");
-
+                swEdit.FNHE0187(swComp, item.Length, item.UVType, item.ExRightDis);
                 //--------MESH油网后导轨-------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0188-1");
-
+                swEdit.FNHE0188(swComp, item.Length, item.ANSUL, item.ANDetector);
                 //--------MESH油网前导轨-------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0189-1");
-
+                swEdit.FNHE0189(swComp, item.Length);
                 //--------MESH油网轨道支架-------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0190-1");
-
+                swEdit.FNHE0190(swComp, item.Length, item.UVType, item.ExRightDis);
                 //--------KSA侧边-------
                 swEdit.KSAFilter(swAssy, suffix, ksaSideLength, "FNHE0160-1", "FNHE0161-1", "FNHE0170-1");
 
@@ -178,13 +178,13 @@ namespace SolidWorksHelper
                 #region MiddleRoof灯板
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0031-1");
-                swEdit.FNHM0031(swComp, "UV", item.Length, item.Deepth, 650d, 650d, item.ExRightDis, midRoofTopHoleDis*1000d, midRoofSecondHoleDis*1000d, midRoofHoleNo, item.LightType, item.LightYDis, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
+                swEdit.FNHM0031(swComp, "UV", item.Length, item.Deepth, 650d, 650d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, item.LightYDis, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
 
                 //华为灯板左右加高
 
                 swAssy.UnSuppress(suffix, "FNHM0032-2");
                 swComp = swAssy.UnSuppress(suffix, "FNHM0032-1");
-                swEdit.FNHM0032(swComp, "UV", item.Deepth, 650d, midRoofTopHoleDis*1000d);
+                swEdit.FNHM0032(swComp, "UV", item.Deepth, 650d, midRoofTopHoleDis);
 
                 //----------吊装槽钢----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2900100001-1");
@@ -197,7 +197,7 @@ namespace SolidWorksHelper
 
                 #endregion 大侧板
 
-                #region F型新风腔主体
+                #region F型新风腔
                 //------------F型新风腔主体----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0108-1");
                 swEdit.FNHA0108(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.SuNo, item.SuDis, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3, item.Bluetooth, item.SidePanel);
@@ -213,7 +213,8 @@ namespace SolidWorksHelper
                 //------------新风滑门导轨----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0097-1");
                 swEdit.FNHA0097(swComp, item.Length);
-                #endregion F型新风腔主体
+
+                #endregion F型新风腔
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
                 swModel.Save();//保存，很耗时间
