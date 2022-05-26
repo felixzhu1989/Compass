@@ -69,7 +69,7 @@ namespace SolidWorksHelper
             double ksaSideLength = Convert.ToDouble((item.Length - ksaNo * 498d) / 2d);
             //MESH侧板长度(除去排风三角板3dm计算,2022.05.25华为新改烟罩需在减去2)
             double meshSideLength =
-                Convert.ToDouble((item.Length - 3d -2d- (int)((item.Length - 2d-2d) / 497d) * 497d) / 2d - 2d);
+                Convert.ToDouble((item.Length - 3d- (int)((item.Length - 2d) / 497d) * 497d) / 2d - 2d);
 
             #endregion 计算中建参数
 

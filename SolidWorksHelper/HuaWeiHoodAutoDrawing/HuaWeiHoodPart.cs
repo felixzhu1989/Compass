@@ -15,8 +15,8 @@ namespace SolidWorksHelper
             #region 基本尺寸
 
             ModelDoc2 swPart = swComp.GetModelDoc2();//打开零件3
-            swPart.ChangeDim("D1@草图1", length - 6.4d);
-            swPart.ChangeDim("D2@Sketch3", midRoofSecondHoleDis - 3.2d);
+            swPart.ChangeDim("D1@草图1", length);
+            swPart.ChangeDim("D2@Sketch3", midRoofSecondHoleDis);
             if (midRoofHoleNo == 1)
             {
                 swComp.Suppress("LPattern1");
@@ -35,7 +35,7 @@ namespace SolidWorksHelper
             {
                 swComp.UnSuppress("EXCOONE");
                 swComp.Suppress("EXCOTWO");
-                swPart.ChangeDim("D4@Sketch9", exRightDis - 3.2d);
+                swPart.ChangeDim("D4@Sketch9", exRightDis);
                 swPart.ChangeDim("D2@Sketch9", exLength);
                 swPart.ChangeDim("D3@Sketch9", exWidth);
             }
@@ -43,7 +43,7 @@ namespace SolidWorksHelper
             {
                 swComp.Suppress("EXCOONE");
                 swComp.UnSuppress("EXCOTWO");
-                swPart.ChangeDim("D5@Sketch10", exRightDis - 3.2d);
+                swPart.ChangeDim("D5@Sketch10", exRightDis);
                 swPart.ChangeDim("D1@Sketch10", exDis);
                 swPart.ChangeDim("D3@Sketch10", exLength);
                 swPart.ChangeDim("D4@Sketch10", exWidth);
@@ -181,14 +181,14 @@ namespace SolidWorksHelper
             else if (UVType == "LONG")
             {
                 swComp.UnSuppress("UVRACK");
-                swPart.ChangeDim("D6@Sketch12", exRightDis - 3.2d);
+                swPart.ChangeDim("D6@Sketch12", exRightDis);
                 swPart.ChangeDim("D5@Sketch12", 1622d);
                 swComp.Suppress("UVDOUBLE");
             }
             else if (UVType == "SHORT")
             {
                 swComp.UnSuppress("UVRACK");
-                swPart.ChangeDim("D6@Sketch12", exRightDis - 3.2d);
+                swPart.ChangeDim("D6@Sketch12", exRightDis);
                 swPart.ChangeDim("D5@Sketch12", 912d);
                 swComp.Suppress("UVDOUBLE");
             }
@@ -209,7 +209,7 @@ namespace SolidWorksHelper
             #region 基本尺寸
 
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D1@草图1", length - 6.4d);
+            swPart.ChangeDim("D1@草图1", length);
             //1150@Sketch14=22,D2@Sketch14=35，原先都是50
             if (length==1150)
             {
@@ -1815,10 +1815,10 @@ namespace SolidWorksHelper
         public void FNHA0108(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, int suNo, double suDis, string marvel, int irNo, double irDis1, double irDis2, double irDis3, string bluetooth, string sidePanel)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D2@基体-法兰1", length - 6.4d);
+            swPart.ChangeDim("D2@基体-法兰1", length);
             swPart.ChangeDim("D1@阵列(线性)1", frontPanelKaKouNo);
             swPart.ChangeDim("D3@阵列(线性)1", frontPanelKaKouDis);
-            swPart.ChangeDim("D3@Sketch3", midRoofSecondHoleDis - 3.2d);
+            swPart.ChangeDim("D3@Sketch3", midRoofSecondHoleDis);
             swPart.ChangeDim("D5@草图7", 200d - midRoofTopHoleDis);
             if (midRoofHoleNo == 1) swComp.Suppress("LPattern1");
             else
@@ -1921,10 +1921,10 @@ namespace SolidWorksHelper
         {
             #region 基本尺寸
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D2@基体-法兰1", length - 6.4d);
+            swPart.ChangeDim("D2@基体-法兰1", length);
             swPart.ChangeDim("D1@阵列(线性)1", frontPanelKaKouNo);
             swPart.ChangeDim("D3@阵列(线性)1", frontPanelKaKouDis);
-            swPart.ChangeDim("D3@Sketch3", midRoofSecondHoleDis - 3.2d);
+            swPart.ChangeDim("D3@Sketch3", midRoofSecondHoleDis);
             swPart.ChangeDim("D5@草图7", 200d  - midRoofTopHoleDis);
             if (midRoofHoleNo == 1) swComp.Suppress("LPattern1");
             else

@@ -72,9 +72,9 @@ namespace SolidWorksHelper
             int ksaNo = (int)((item.Length + 1) / 498d);
             double ksaSideLength = Convert.ToDouble((item.Length - ksaNo * 498d) / 2) / 1000d;
             
-            //MESH侧板长度(除去排风三角板3dm计算,2022.05.25华为新改烟罩需在减去2)
+            //MESH侧板长度(除去排风三角板3dm计算)
             double meshSideLength =
-                Convert.ToDouble((item.Length - 3d -2d- (int)((item.Length - 2d-2d) / 497d) * 497d) / 2d - 2d);
+                Convert.ToDouble((item.Length - 3d - (int)((item.Length - 2d) / 497d) * 497d) / 2d - 2d);
 
             //HWUWF555400斜侧板CJ孔计算,150为排风底部长度,非水洗长度为76，555-400为高度差
             int sidePanelDownCjNo = (int)(((double)(Math.Sqrt(Math.Pow((double)item.Deepth - 76d, 2) + Math.Pow(555d - 400d, 2))) - 95d) / 32d);
