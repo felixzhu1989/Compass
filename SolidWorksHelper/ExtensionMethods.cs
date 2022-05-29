@@ -29,16 +29,16 @@ namespace SolidWorksHelper
         /// <summary>
         /// 部件解压特征
         /// </summary>
-        public static void Suppress(this Component2 swComp,string featureName)
+        public static void Suppress(this Component2 swComp, string featureName)
         {
-            swComp.FeatureByName(featureName).SetSuppression2(0,2,null);
+            swComp.FeatureByName(featureName).SetSuppression2(0, 2, null);
         }
         /// <summary>
         /// 部件不解压特征
         /// </summary>
         public static void UnSuppress(this Component2 swComp, string featureName)
         {
-            swComp.FeatureByName(featureName).SetSuppression2(1,2,null);
+            swComp.FeatureByName(featureName).SetSuppression2(1, 2, null);
         }
         /// <summary>
         /// 装配体解压特征
@@ -57,20 +57,19 @@ namespace SolidWorksHelper
         /// <summary>
         /// 装配体解压部件
         /// </summary>
-        public static void Suppress(this AssemblyDoc swAssy,string suffix , string compName)
+        public static void Suppress(this AssemblyDoc swAssy, string suffix, string compName)
         {
-            swAssy.GetComponentByNameWithSuffix(suffix, compName).SetSuppression2(0); 
+            swAssy.GetComponentByNameWithSuffix(suffix, compName).SetSuppression2(0);
         }
         /// <summary>
         /// 装配体不解压部件
         /// </summary>
-        public static Component2 UnSuppress(this AssemblyDoc swAssy,  string suffix, string compName)
+        public static Component2 UnSuppress(this AssemblyDoc swAssy, string suffix, string compName)
         {
-            Component2 swComp= swAssy.GetComponentByNameWithSuffix(suffix, compName);
+            Component2 swComp = swAssy.GetComponentByNameWithSuffix(suffix, compName);
             swComp.SetSuppression2(2);
             return swComp;
         }
-
 
     }
 }

@@ -247,7 +247,7 @@ namespace SolidWorksHelper
 
                 //----------水洗挡板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0150-1"));
-                swEdit.FNHE0150(swComp, item.Length);
+                swEdit.FNHE0150(swComp, item.Length,"UW");
 
                 //----------排风腔内部零件----------
                 //MESH油网下导轨
