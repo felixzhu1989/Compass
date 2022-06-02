@@ -69,6 +69,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.BtnIniCobOdpNo = new System.Windows.Forms.Button();
             this.btnEnglishLabel = new System.Windows.Forms.Button();
+            this.btnFinalInspection = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWaitingList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExecList)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -90,9 +91,9 @@
             this.btnExec.FlatAppearance.BorderSize = 0;
             this.btnExec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExec.ForeColor = System.Drawing.Color.White;
-            this.btnExec.Location = new System.Drawing.Point(574, 540);
+            this.btnExec.Location = new System.Drawing.Point(574, 552);
             this.btnExec.Name = "btnExec";
-            this.btnExec.Size = new System.Drawing.Size(52, 85);
+            this.btnExec.Size = new System.Drawing.Size(52, 73);
             this.btnExec.TabIndex = 43;
             this.btnExec.Text = "开始作图";
             this.btnExec.UseVisualStyleBackColor = false;
@@ -348,9 +349,9 @@
             this.btnJobCard.FlatAppearance.BorderSize = 0;
             this.btnJobCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJobCard.ForeColor = System.Drawing.Color.White;
-            this.btnJobCard.Location = new System.Drawing.Point(574, 267);
+            this.btnJobCard.Location = new System.Drawing.Point(574, 327);
             this.btnJobCard.Name = "btnJobCard";
-            this.btnJobCard.Size = new System.Drawing.Size(52, 85);
+            this.btnJobCard.Size = new System.Drawing.Size(52, 69);
             this.btnJobCard.TabIndex = 43;
             this.btnJobCard.Text = "打印 Job Card";
             this.btnJobCard.UseVisualStyleBackColor = false;
@@ -362,9 +363,9 @@
             this.btnExportDxf.FlatAppearance.BorderSize = 0;
             this.btnExportDxf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportDxf.ForeColor = System.Drawing.Color.White;
-            this.btnExportDxf.Location = new System.Drawing.Point(574, 449);
+            this.btnExportDxf.Location = new System.Drawing.Point(574, 477);
             this.btnExportDxf.Name = "btnExportDxf";
-            this.btnExportDxf.Size = new System.Drawing.Size(52, 85);
+            this.btnExportDxf.Size = new System.Drawing.Size(52, 69);
             this.btnExportDxf.TabIndex = 43;
             this.btnExportDxf.Text = "导出DXF图纸";
             this.btnExportDxf.UseVisualStyleBackColor = false;
@@ -405,9 +406,9 @@
             this.btnHoodPackingList.FlatAppearance.BorderSize = 0;
             this.btnHoodPackingList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHoodPackingList.ForeColor = System.Drawing.Color.White;
-            this.btnHoodPackingList.Location = new System.Drawing.Point(574, 358);
+            this.btnHoodPackingList.Location = new System.Drawing.Point(574, 402);
             this.btnHoodPackingList.Name = "btnHoodPackingList";
-            this.btnHoodPackingList.Size = new System.Drawing.Size(52, 85);
+            this.btnHoodPackingList.Size = new System.Drawing.Size(52, 69);
             this.btnHoodPackingList.TabIndex = 43;
             this.btnHoodPackingList.Text = "导出装箱清单";
             this.btnHoodPackingList.UseVisualStyleBackColor = false;
@@ -468,6 +469,20 @@
             this.btnEnglishLabel.UseVisualStyleBackColor = false;
             this.btnEnglishLabel.Click += new System.EventHandler(this.btnEnglishLabel_Click);
             // 
+            // btnFinalInspection
+            // 
+            this.btnFinalInspection.BackColor = System.Drawing.Color.SaddleBrown;
+            this.btnFinalInspection.FlatAppearance.BorderSize = 0;
+            this.btnFinalInspection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinalInspection.ForeColor = System.Drawing.Color.White;
+            this.btnFinalInspection.Location = new System.Drawing.Point(574, 271);
+            this.btnFinalInspection.Name = "btnFinalInspection";
+            this.btnFinalInspection.Size = new System.Drawing.Size(52, 50);
+            this.btnFinalInspection.TabIndex = 43;
+            this.btnFinalInspection.Text = "最终检验";
+            this.btnFinalInspection.UseVisualStyleBackColor = false;
+            this.btnFinalInspection.Click += new System.EventHandler(this.btnFinalInspection_Click);
+            // 
             // FrmHoodAutoDrawing
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -484,6 +499,7 @@
             this.Controls.Add(this.btnSub);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnHoodPackingList);
+            this.Controls.Add(this.btnFinalInspection);
             this.Controls.Add(this.btnEnglishLabel);
             this.Controls.Add(this.btnJobCard);
             this.Controls.Add(this.btnExportDxf);
@@ -547,5 +563,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button BtnIniCobOdpNo;
         private System.Windows.Forms.Button btnEnglishLabel;
+        private System.Windows.Forms.Button btnFinalInspection;
     }
 }

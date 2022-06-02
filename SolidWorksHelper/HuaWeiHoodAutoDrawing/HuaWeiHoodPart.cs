@@ -363,12 +363,16 @@ namespace SolidWorksHelper
                         swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
                         swComp.UnSuppress("ANSUL");
                         swComp.Suppress("KW");
+                        swPart.ChangeDim("D3@Sketch25", 30d);
+                        swPart.ChangeDim("D3@Sketch26", 190d);
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
                         swComp.Suppress("ANSUL");
                         swComp.Suppress("KW");
+                        swPart.ChangeDim("D1@Sketch25", 30d);
+                        swPart.ChangeDim("D3@Sketch26", 190d);
                     }
                     else if (anSide == "RIGHT")
                     {
@@ -377,11 +381,15 @@ namespace SolidWorksHelper
                         swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
                         swComp.Suppress("ANSUL");
                         swComp.Suppress("KW");
+                        swPart.ChangeDim("D3@Sketch25", 30d);
+                        swPart.ChangeDim("D3@Sketch26", 190d);
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
                         swComp.UnSuppress("ANSUL");
                         swComp.Suppress("KW");
+                        swPart.ChangeDim("D1@Sketch25", 30d);
+                        swPart.ChangeDim("D3@Sketch26", 190d);
                     }
                     else
                     {
@@ -390,11 +398,15 @@ namespace SolidWorksHelper
                         swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
                         swComp.Suppress("ANSUL");
                         swComp.Suppress("KW");
+                        swPart.ChangeDim("D3@Sketch25", 30d);
+                        swPart.ChangeDim("D3@Sketch26", 190d);
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
                         swComp.Suppress("ANSUL");
                         swComp.Suppress("KW");
+                        swPart.ChangeDim("D1@Sketch25", 30d);
+                        swPart.ChangeDim("D3@Sketch26", 190d);
                     }
                 }
                 else
@@ -406,16 +418,20 @@ namespace SolidWorksHelper
                         swPart.ChangeDim("D2@Sketch1", 2d * meshSideLength);
                         swComp.UnSuppress("ANSUL");
                         swComp.Suppress("KW");
+                        swPart.ChangeDim("D3@Sketch25", 30d);
+                        swPart.ChangeDim("D3@Sketch26", 190d);
                         swAssy.Suppress(suffix, rightPart);
                     }
                     else if (anSide == "RIGHT")
                     {
                         swAssy.Suppress(suffix, leftPart);
-                        swComp = swAssy.UnSuppress(suffix, "FNHE0013-1");
+                        swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", 2d * meshSideLength);
                         swComp.UnSuppress("ANSUL");
                         swComp.Suppress("KW");
+                        swPart.ChangeDim("D1@Sketch25", 30d);
+                        swPart.ChangeDim("D3@Sketch26", 190d);
                     }
                     else
                     {
@@ -425,6 +441,8 @@ namespace SolidWorksHelper
                         swPart.ChangeDim("D2@Sketch1", 2 * meshSideLength);
                         swComp.Suppress("ANSUL");
                         swComp.Suppress("KW");
+                        swPart.ChangeDim("D1@Sketch25", 30d);
+                        swPart.ChangeDim("D3@Sketch26", 190d);
                     }
                 }
             }
@@ -438,11 +456,15 @@ namespace SolidWorksHelper
                     swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
                     swComp.Suppress("ANSUL");
                     swComp.Suppress("KW");
+                    swPart.ChangeDim("D3@Sketch25", 30d);
+                    swPart.ChangeDim("D3@Sketch26", 190d);
                     swComp = swAssy.UnSuppress(suffix, rightPart);
                     swPart = swComp.GetModelDoc2();
                     swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
                     swComp.Suppress("ANSUL");
                     swComp.Suppress("KW");
+                    swPart.ChangeDim("D1@Sketch25", 30d);
+                    swPart.ChangeDim("D3@Sketch26", 190d);
                 }
                 else if (meshSideLength <= 40d && meshSideLength > 1.5d)
                 {
@@ -452,6 +474,8 @@ namespace SolidWorksHelper
                     swPart.ChangeDim("D2@Sketch1", 2 * meshSideLength);
                     swComp.Suppress("ANSUL");
                     swComp.Suppress("KW");
+                    swPart.ChangeDim("D1@Sketch25", 30d);
+                    swPart.ChangeDim("D3@Sketch26", 190d);
                 }
                 else
                 {
@@ -878,16 +902,36 @@ namespace SolidWorksHelper
                 swComp = swAssy.UnSuppress(suffix, leftPart);
                 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
-                if (inlet == "LEFT") swComp.UnSuppress("KW");
-                else swComp.Suppress("KW");
+                if (inlet == "LEFT")
+                {
+                    swComp.UnSuppress("KW");
+                    swPart.ChangeDim("D3@Sketch25", 100d);
+                    swPart.ChangeDim("D3@Sketch26", 120d);
+                }
+                else
+                {
+                    swComp.Suppress("KW");
+                    swPart.ChangeDim("D3@Sketch25", 30d);
+                    swPart.ChangeDim("D3@Sketch26", 190d);
+                }
                 if (ansul == "YES" && anSide == "LEFT")
                     swComp.UnSuppress("ANSUL");
                 else swComp.Suppress("ANSUL");
                 swComp = swAssy.UnSuppress(suffix, rightPart);
                 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
-                if (inlet == "RIGHT") swComp.UnSuppress("KW");
-                else swComp.Suppress("KW");
+                if (inlet == "RIGHT")
+                {
+                    swComp.UnSuppress("KW");
+                    swPart.ChangeDim("D1@Sketch25", 100d);
+                    swPart.ChangeDim("D3@Sketch26", 120d);
+                }
+                else
+                {
+                    swComp.Suppress("KW");
+                    swPart.ChangeDim("D1@Sketch25", 30d);
+                    swPart.ChangeDim("D3@Sketch26", 190d);
+                }
                 if (ansul == "YES" && anSide == "RIGHT")
                     swComp.UnSuppress("ANSUL");
                 else swComp.Suppress("ANSUL");
@@ -903,6 +947,8 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
                         swComp.UnSuppress("KW");
+                        swPart.ChangeDim("D3@Sketch25", 100d);
+                        swPart.ChangeDim("D3@Sketch26", 120d);
                         if (ansul == "YES" && anSide == "LEFT")
                             swComp.UnSuppress("ANSUL");
                         else swComp.Suppress("ANSUL");
@@ -910,6 +956,8 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
                         swComp.Suppress("KW");
+                        swPart.ChangeDim("D1@Sketch25", 30d);
+                        swPart.ChangeDim("D3@Sketch26", 190d);
                         swComp.Suppress("ANSUL");
                     }
                     else
@@ -918,11 +966,15 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
                         swComp.Suppress("KW");
+                        swPart.ChangeDim("D3@Sketch25", 30d);
+                        swPart.ChangeDim("D3@Sketch26", 190d);
                         swComp.Suppress("ANSUL");
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
                         swComp.UnSuppress("KW");
+                        swPart.ChangeDim("D1@Sketch25", 100d);
+                        swPart.ChangeDim("D3@Sketch26", 120d);
                         if (ansul == "YES" && anSide == "RIGHT")
                             swComp.UnSuppress("ANSUL");
                         else swComp.Suppress("ANSUL");
@@ -936,6 +988,8 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", 2d * meshSideLength);
                         swComp.UnSuppress("KW");
+                        swPart.ChangeDim("D3@Sketch25", 100d);
+                        swPart.ChangeDim("D3@Sketch26", 120d);
                         if (ansul == "YES" && anSide == "LEFT")
                             swComp.UnSuppress("ANSUL");
                         else swComp.Suppress("ANSUL");
@@ -948,6 +1002,8 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", 2d * meshSideLength);
                         swComp.UnSuppress("KW");
+                        swPart.ChangeDim("D1@Sketch25", 100d);
+                        swPart.ChangeDim("D3@Sketch26", 120d);
                         if (ansul == "YES" && anSide == "RIGHT")
                             swComp.UnSuppress("ANSUL");
                         else swComp.Suppress("ANSUL");

@@ -454,6 +454,42 @@ namespace Compass
                 }
             });
         }
-
+        /// <summary>
+        /// 打印终检单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void btnFinalInspection_Click(object sender, EventArgs e)
+        {
+            if (_execList.Count == 0) return;
+            btnFinalInspection.Enabled = false;
+            tspbStatus.Value = 0;
+            tspbStatus.Step = 1;
+            tspbStatus.Maximum = _execList.Count;
+            foreach (var item in _execList)
+            {
+                tsslStatus.Text = item.Item + "(" + item.Module + ")正在打印...";
+                await PrintFinalInspectionAsync(item);
+                tspbStatus.Value += 1;
+            }
+            tsslStatus.Text = "最终检验单打印完成！";
+            tspbStatus.Value = _execList.Count;
+            BtnSubAll_Click(null, null);//清除执行数据
+            btnFinalInspection.Enabled = true;
+        }
+        private Task PrintFinalInspectionAsync(ModuleTree item)
+        {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    new PrintReports().ExecPrintFinalInspection(item);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            });
+        }
     }
 }

@@ -156,6 +156,10 @@ namespace SolidWorksHelper
 
                 #endregion 排风脖颈数量和距离
 
+                //UV灯支架，两个
+                if (item.UVType == "DOUBLE") swAssy.UnSuppress("LocalLPattern4");
+                else swAssy.Suppress("LocalLPattern4");
+
                 #region 灯板加强筋
 
                 //if (item.Deepth > 1649d && ((item.LightType == "FSLONG" && item.Length > 1900d) ||

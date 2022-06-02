@@ -124,6 +124,34 @@ namespace Compass
         }
 
 
+        public void ExecPrintFinalInspection(ModuleTree tree)
+        {
+            JobCard objJobCard = new JobCardService().GetJobCard(tree);
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            string excelBookPath = Environment.CurrentDirectory + "\\JobCard_FinalInspection.xlsx";
+            excelApp.Workbooks.Add(excelBookPath);
+            Worksheet workSheet = excelApp.Worksheets[1];
+
+            //通用信息
+            workSheet.Cells[3, 3] = objJobCard.ODPNo;
+            workSheet.Cells[4, 3] = objJobCard.BPONo;
+            workSheet.Cells[5, 3] = objJobCard.ProjectName;
+            workSheet.Cells[6, 3] = objJobCard.CustomerName;
+            workSheet.Cells[7, 3] = objJobCard.Item + "(" + objJobCard.Module + ")";
+            workSheet.Cells[8, 3] = objJobCard.Model;
+
+            //打印
+            workSheet.PrintOutEx();
+            KillProcess(excelApp);
+            excelApp = null;//对象置空
+            GC.Collect(); //垃圾回收机制
+        }
+
+
+
+
+
+
 
         /// <summary>
         /// 标准烟罩打印JobCard

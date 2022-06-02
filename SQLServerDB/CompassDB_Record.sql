@@ -432,7 +432,7 @@ select * from ProjectStatus
 
 select * from ProjectTracking where ProjectTrackingId=358
 --È¡Ïû¶©µ¥
-update ProjectTracking set ProjectStatusId=9 where ProjectTrackingId=358
+update ProjectTracking set ProjectStatusId=3 where ProjectTrackingId=358
 
 select * from Projects where  ProjectId>400
 select * from ProjectTracking where ProjectTrackingId>360
