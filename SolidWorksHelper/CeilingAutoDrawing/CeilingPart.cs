@@ -694,7 +694,7 @@ namespace SolidWorksHelper.CeilingAutoDrawing
         internal void FNCE0112(Component2 swComp, double length, string lightCable, string lightType, string japan)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D2@Base-Flange1", length);
+            swPart.ChangeDim("D1@Linear austragen1", length);
             swComp.Suppress("FC SUPPORT");
             #region 灯腔出线孔
             if (lightCable == "LEFT")

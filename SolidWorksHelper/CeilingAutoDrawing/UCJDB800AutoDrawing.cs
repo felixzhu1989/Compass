@@ -249,7 +249,7 @@ namespace SolidWorksHelper
                     case "LEFT":
                         //重命名装配体内部
                         compReName = "FNCE0108[BP-" + tree.Module + ".1]{" + (int)(item.FCSideLeft - fcNo * 0.5d - 2d) + "}";
-                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0108[BP-]{}-2") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0108-2") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
                         status = swModelDocExt.SelectByID2(compReName + "-2" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -263,7 +263,7 @@ namespace SolidWorksHelper
                         }
                         //重命名装配体内部
                         compReName = "FNCE0136[BP-" + tree.Module + ".2]{" + (int)(item.FCSideLeft - fcNo * 0.5d - 2d) + "}";
-                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0136[BP-]{}-3") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0136-3") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
                         status = swModelDocExt.SelectByID2(compReName + "-3" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -275,19 +275,19 @@ namespace SolidWorksHelper
                             swPart = swComp.GetModelDoc2();//打开零件
                             swPart.Parameter("D2@草图1").SystemValue = (item.FCSideLeft - fcNo * 0.5d - 2d) / 1000d;
                         }
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0109[BP-]{}-3"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0109-3"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0162[BP-]{}-4"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0162-4"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         break;
                     case "RIGHT":
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0108[BP-]{}-2"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0108-2"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0136[BP-]{}-3"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0136-3"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         //重命名装配体内部
                         compReName = "FNCE0109[BP-" + tree.Module + ".1]{" + (int)(item.FCSideRight - fcNo * 0.5d - 2d) + "}";
-                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0109[BP-]{}-3") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0109-3") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
                         status = swModelDocExt.SelectByID2(compReName + "-3" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -301,7 +301,7 @@ namespace SolidWorksHelper
                         }
                         //重命名装配体内部
                         compReName = "FNCE0162[BP-" + tree.Module + ".2]{" + (int)(item.FCSideRight - fcNo * 0.5d - 2d) + "}";
-                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0162[BP-]{}-4") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0162-4") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
                         status = swModelDocExt.SelectByID2(compReName + "-4" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -317,7 +317,7 @@ namespace SolidWorksHelper
                     case "BOTH":
                         //重命名装配体内部
                         compReName = "FNCE0108[BP-" + tree.Module + ".1]{" + (int)(item.FCSideLeft - fcNo * 1d - 2d) + "}";
-                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0108[BP-]{}-2") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0108-2") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
                         status = swModelDocExt.SelectByID2(compReName + "-2" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -331,7 +331,7 @@ namespace SolidWorksHelper
                         }
                         //重命名装配体内部
                         compReName = "FNCE0136[BP-" + tree.Module + ".2]{" + (int)(item.FCSideLeft - fcNo * 1d - 2d) + "}";
-                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0136[BP-]{}-3") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0136-3") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
                         status = swModelDocExt.SelectByID2(compReName + "-3" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -345,7 +345,7 @@ namespace SolidWorksHelper
                         }
                         //重命名装配体内部
                         compReName = "FNCE0109[BP-" + tree.Module + ".3]{" + (int)(item.FCSideRight - fcNo * 1d - 2d) + "}";
-                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0109[BP-]{}-3") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0109-3") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
                         status = swModelDocExt.SelectByID2(compReName + "-3" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -359,7 +359,7 @@ namespace SolidWorksHelper
                         }
                         //重命名装配体内部
                         compReName = "FNCE0162[BP-" + tree.Module + ".4]{" + (int)(item.FCSideRight - fcNo * 1d - 2d) + "}";
-                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0162[BP-]{}-4") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
+                        status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0162-4") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
                         status = swModelDocExt.SelectByID2(compReName + "-4" + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
@@ -373,13 +373,13 @@ namespace SolidWorksHelper
                         }
                         break;
                     default:
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0108[BP-]{}-2"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0108-2"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0136[BP-]{}-3"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0136-3"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0109[BP-]{}-3"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0109-3"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
-                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0162[BP-]{}-4"));
+                        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0162-4"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         break;
                 }
