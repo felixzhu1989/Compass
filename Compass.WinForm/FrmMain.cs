@@ -267,6 +267,19 @@ namespace Compass
             form.Show();
             form.Focus();
         }
+        /// <summary>
+        /// 半成品清单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmiSemiBom_Click(object sender, EventArgs e)
+        {
+            FrmSemiBom from=FrmSemiBom.GetInstance();
+            from.WindowState = FormWindowState.Normal;
+            from.Show();
+            from.Focus();
+        }
+
         #endregion  SolidWorks自动绘图
 
         #region 统计菜单
@@ -398,8 +411,9 @@ namespace Compass
             //MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
             MessageBox.Show(Environment.GetFolderPath(Environment.SpecialFolder.CommonPrograms));
         }
+
         #endregion
 
-
+        
     }
 }

@@ -426,3 +426,19 @@ if exists (select * from sysobjects where name='fk_UserId_DrawingNumMatrix')
 GO
 alter table DrawingNumMatrix add constraint fk_UserId_DrawingNumMatrix foreign key(UserId) references Users (UserId)
 GO
+
+
+if exists (select * from sysobjects where name='SemiBom')
+drop table SemiBom
+go
+create table SemiBom
+(    
+	ProjectId int not null,
+    DrawingNum varchar(8) not null,
+	Quantity int
+)
+if exists (select * from sysobjects where name='fk_ProjectId_SemiBom')
+    alter table SemiBom drop constraint fk_ProjectId_SemiBom
+GO
+alter table SemiBom add constraint fk_ProjectId_SemiBom foreign key(ProjectId) references Projects (ProjectId)
+GO

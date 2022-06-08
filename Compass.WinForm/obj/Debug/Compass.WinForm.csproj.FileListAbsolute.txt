@@ -168,3 +168,4 @@ E:\Compass\Compass.WinForm\obj\Debug\Compass.WinForm.csproj.CoreCompileInputs.ca
 E:\Compass\Compass.WinForm\obj\Debug\Compass.WinForm.csproj.CopyComplete
 E:\Compass\Compass.WinForm\obj\Debug\Compass.exe
 E:\Compass\Compass.WinForm\obj\Debug\Compass.pdb
+E:\Compass\Compass.WinForm\obj\Debug\Compass.FrmSemiBom.resources

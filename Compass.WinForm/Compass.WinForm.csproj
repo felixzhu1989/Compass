@@ -177,6 +177,12 @@
     <Compile Include="HuaWeiHoodForm\FrmHWUWF650.Designer.cs">
       <DependentUpon>FrmHWUWF650.cs</DependentUpon>
     </Compile>
+    <Compile Include="SingletonForm\FrmSemiBom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SingletonForm\FrmSemiBom.Designer.cs">
+      <DependentUpon>FrmSemiBom.cs</DependentUpon>
+    </Compile>
     <Compile Include="TickSheetForm\FrmCMODF700TS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1114,6 +1120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HuaWeiHoodForm\FrmHWUWF650.resx">
       <DependentUpon>FrmHWUWF650.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingletonForm\FrmSemiBom.resx">
+      <DependentUpon>FrmSemiBom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TickSheetForm\FrmCMODF700TS.resx">
       <DependentUpon>FrmCMODF700TS.cs</DependentUpon>

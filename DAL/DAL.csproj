@@ -64,6 +64,7 @@
     <Compile Include="CeilingService\BCJ330Service.cs" />
     <Compile Include="CeilingService\CJ330Service.cs" />
     <Compile Include="HuaWeiHoodService\UWUWF650Service.cs" />
+    <Compile Include="SemiBomService.cs" />
     <Compile Include="TickSheetService\CMODF700TSService.cs" />
     <Compile Include="TickSheetService\CMODI700TSService.cs" />
     <Compile Include="DrawingNumMatrixService.cs" />

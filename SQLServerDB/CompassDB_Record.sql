@@ -437,7 +437,5 @@ update ProjectTracking set ProjectStatusId=3 where ProjectTrackingId=358
 select * from Projects where  ProjectId>400
 select * from ProjectTracking where ProjectTrackingId>360
 
-ODPNo='FSO220119' 
-
-
-where ODPNo='FSO220119'
+select * from HoodCutList
+select * from semibom

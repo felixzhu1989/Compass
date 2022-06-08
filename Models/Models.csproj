@@ -65,6 +65,7 @@
     <Compile Include="Ceiling\CJ330.cs" />
     <Compile Include="Ceiling\LFUMC150SUSDXF.cs" />
     <Compile Include="HuaWeiHood\HWUWF650.cs" />
+    <Compile Include="SemiBom.cs" />
     <Compile Include="TickSheet\CMODF700TS.cs" />
     <Compile Include="TickSheet\CMODI700TS.cs" />
     <Compile Include="CutList.cs" />

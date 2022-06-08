@@ -70,6 +70,7 @@
             this.tsmiSetStartUp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiTestCode = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSemiBom = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -211,6 +212,7 @@
             this.tsmiHoodAutoDrawing,
             this.tsmiCeilingAutoDrawing,
             this.tsmiMarineAutoDrawing,
+            this.tsmiSemiBom,
             this.toolStripMenuItem2,
             this.tsmiSyncFiles,
             this.tsmiDrawingNumMatrix,
@@ -457,6 +459,13 @@
             this.tsmiTestCode.Text = "测试代码";
             this.tsmiTestCode.Click += new System.EventHandler(this.TsmiTestCode_Click);
             // 
+            // tsmiSemiBom
+            // 
+            this.tsmiSemiBom.Name = "tsmiSemiBom";
+            this.tsmiSemiBom.Size = new System.Drawing.Size(80, 21);
+            this.tsmiSemiBom.Text = "半成品清单";
+            this.tsmiSemiBom.Click += new System.EventHandler(this.tsmiSemiBom_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -529,6 +538,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem tsmiTestCode;
         private System.Windows.Forms.ToolStripMenuItem tsmiSetStartUp;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSemiBom;
     }
 }
 

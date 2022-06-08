@@ -72,7 +72,9 @@
     <Compile Include="CeilingAutoDrawing\BCJ330AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\CJ330AutoDrawing.cs" />
     <Compile Include="CeilingAutoDrawing\CeilingPart.cs" />
+    <Compile Include="CreateBomFactory.cs" />
     <Compile Include="HuaWeiHoodAutoDrawing\HWUWF650AutoDrawing.cs" />
+    <Compile Include="ICreateBom.cs" />
     <Compile Include="TickSheetAutoDrawing\COMDF700TSAutoDrawing.cs" />
     <Compile Include="TickSheetAutoDrawing\CMODI700TSAutoDrawing.cs" />
     <Compile Include="ThickSheetPart.cs" />

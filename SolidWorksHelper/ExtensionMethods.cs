@@ -1,10 +1,21 @@
-﻿using SolidWorks.Interop.sldworks;
+﻿using Models;
+using SolidWorks.Interop.sldworks;
+using System.Collections.Generic;
 
 namespace SolidWorksHelper
 {
     //扩展方法
     public static class ExtensionMethods
     {
+        /// <summary>
+        /// 添加半成品清单扩展方法
+        /// </summary>        
+        public static void AddItem(this Dictionary<string, int> semiBomDic, string drawingNum,int quantity)
+        {
+            if (semiBomDic.ContainsKey(drawingNum)) semiBomDic[drawingNum] += quantity;
+            else semiBomDic.Add(drawingNum, quantity);
+        }
+
         /// <summary>
         /// 选择零件带后缀
         /// </summary>

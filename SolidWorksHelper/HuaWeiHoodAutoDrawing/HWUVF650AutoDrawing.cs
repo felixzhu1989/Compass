@@ -3,11 +3,12 @@ using Models;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace SolidWorksHelper
 {
-    public class HWUVF650AutoDrawing : IAutoDrawing
+    public class HWUVF650AutoDrawing : IAutoDrawing, ICreateBom
     {
         private Component2 swComp;
         private readonly HWUVF650Service objHWUVF650Service = new HWUVF650Service();
@@ -228,6 +229,77 @@ namespace SolidWorksHelper
             {
                 swApp.CommandInProgress = false; //及时关闭外部命令调用，否则影响SolidWorks的使用
             }
+        }
+
+        public void CreateSemiBom(ModuleTree tree,Dictionary<string, int> semiBomDic)
+        {
+            //查询参数
+            HWUVF650 item = (HWUVF650)objHWUVF650Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
+           
+            #region 新风            
+            semiBomDic.AddItem("5201010201", 1);
+            semiBomDic.AddItem("5201010202", 1);
+            semiBomDic.AddItem("5201010203", 2);
+            semiBomDic.AddItem("5201010404", 1);
+
+            //新风脖颈
+            if (item.SuNo==2) semiBomDic.AddItem("5201010405", 2);
+            else semiBomDic.AddItem("5201010405", 1);
+            //蜂窝板压条
+            semiBomDic.AddItem("5201010412", 6);
+            #endregion
+
+            #region 日光灯
+            if (item.LightType=="FSLONG")
+            {
+                //长灯
+                semiBomDic.AddItem("5201020405", 1);
+                semiBomDic.AddItem("5201020407", 1);
+                semiBomDic.AddItem("5201020410", 1);
+                semiBomDic.AddItem("5201020424", 2);
+            }
+            else if (item.LightType=="FSSHORT")
+            {
+
+            }
+            else if (item.LightType=="LED60")
+            {
+
+            }
+            else if (item.LightType=="LED140")
+            {
+
+            }
+            #endregion
+
+            //KSA
+            int ksaNo = (int)((item.Length + 1) / 498d);
+            semiBomDic.AddItem("5201040302", ksaNo);
+            switch (ksaNo)//磁棒板
+            {
+                case 4:
+                    semiBomDic.AddItem("5201050407", 1);
+                    break;
+                default:
+                    break;
+            }
+            //UV
+            semiBomDic.AddItem("5201050403", 2);//UV控制器支架（长）
+            semiBomDic.AddItem("5201050404", 2);//UV门框传感器支架
+            if (item.UVType=="DOUBLE")
+            {
+                semiBomDic.AddItem("5201060406", 2);//工厂组装 水洗 UVR4S
+                semiBomDic.AddItem("5201069920", 1); //国产UVC8-一拖二
+            }
+            else if (item.UVType=="LONG")
+            {
+
+            }
+            else if (item.UVType=="SHORT")
+            {
+                semiBomDic.AddItem("5201060406", 1);//工厂组装 水洗 UVR4S
+            }
+            
         }
     }
 }
