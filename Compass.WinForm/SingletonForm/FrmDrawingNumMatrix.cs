@@ -375,6 +375,7 @@ namespace Compass
                 DrawingDesc = txtDrawingDesc.Text,
                 DrawingType = cobDrawingType.Text,
                 Mark = txtMark.Text,
+                ProdPriority=Convert.ToInt32(txtProdPriority.Text),
                 UserId = Program.ObjCurrentUser.UserId
             };
 
@@ -453,6 +454,7 @@ namespace Compass
             txtDrawingNum.Text = objDrawingNum.DrawingNum;
             txtDrawingDesc.Text = objDrawingNum.DrawingDesc;
             txtMark.Text = objDrawingNum.Mark;
+            txtProdPriority.Text=objDrawingNum.ProdPriority.ToString();
             cobDrawingType.Text = objDrawingNum.DrawingType;
             //将按钮的tag更改成id，显示为更新图号
             btnCommit.Tag = objDrawingNum.DrawingId;
@@ -937,6 +939,9 @@ namespace Compass
             swApp.CommandInProgress = false;
         }
 
+        private void FrmDrawingNumMatrix_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

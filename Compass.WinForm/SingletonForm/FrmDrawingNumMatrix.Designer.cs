@@ -44,9 +44,10 @@
             this.DrawingNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DrawingDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DrawingType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProdPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AddedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DrawingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiEditDrawingNum = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,7 +67,6 @@
             this.tpgImage = new System.Windows.Forms.TabPage();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.tpgEDrawing = new System.Windows.Forms.TabPage();
-            this.ctrlEDrw = new Compass.EDrawingsUserControl();
             this.btnClearImage = new System.Windows.Forms.Button();
             this.btnChooseImage = new System.Windows.Forms.Button();
             this.btnRefreshImage = new System.Windows.Forms.Button();
@@ -74,6 +74,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnOpenFile = new System.Windows.Forms.Button();
             this.btnOpenDrawing = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtProdPriority = new System.Windows.Forms.TextBox();
+            this.ctrlEDrw = new Compass.EDrawingsUserControl();
             this.pnlTabel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingNumMatrix)).BeginInit();
             this.contextMenuStrip.SuspendLayout();
@@ -158,8 +161,9 @@
             // 
             // pnlTabel
             // 
-            this.pnlTabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.pnlTabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlTabel.Controls.Add(this.dgvDrawingNumMatrix);
             this.pnlTabel.Location = new System.Drawing.Point(10, 267);
             this.pnlTabel.Name = "pnlTabel";
@@ -172,6 +176,9 @@
             this.dgvDrawingNumMatrix.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Azure;
             this.dgvDrawingNumMatrix.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvDrawingNumMatrix.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvDrawingNumMatrix.BackgroundColor = System.Drawing.Color.White;
             this.dgvDrawingNumMatrix.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -187,12 +194,12 @@
             this.DrawingNum,
             this.DrawingDesc,
             this.DrawingType,
+            this.ProdPriority,
+            this.Mark,
             this.AddedDate,
             this.UserAccount,
-            this.Mark,
             this.DrawingId});
             this.dgvDrawingNumMatrix.ContextMenuStrip = this.contextMenuStrip;
-            this.dgvDrawingNumMatrix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDrawingNumMatrix.EnableHeadersVisualStyles = false;
             this.dgvDrawingNumMatrix.Location = new System.Drawing.Point(0, 0);
             this.dgvDrawingNumMatrix.Name = "dgvDrawingNumMatrix";
@@ -200,7 +207,7 @@
             this.dgvDrawingNumMatrix.RowHeadersWidth = 55;
             this.dgvDrawingNumMatrix.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvDrawingNumMatrix.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDrawingNumMatrix.Size = new System.Drawing.Size(637, 373);
+            this.dgvDrawingNumMatrix.Size = new System.Drawing.Size(634, 373);
             this.dgvDrawingNumMatrix.TabIndex = 1;
             this.dgvDrawingNumMatrix.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.DgvProjects_RowPostPaint);
             // 
@@ -227,6 +234,20 @@
             this.DrawingType.ReadOnly = true;
             this.DrawingType.Width = 85;
             // 
+            // ProdPriority
+            // 
+            this.ProdPriority.DataPropertyName = "ProdPriority";
+            this.ProdPriority.HeaderText = "生产优先级";
+            this.ProdPriority.Name = "ProdPriority";
+            this.ProdPriority.ReadOnly = true;
+            // 
+            // Mark
+            // 
+            this.Mark.DataPropertyName = "Mark";
+            this.Mark.HeaderText = "备注";
+            this.Mark.Name = "Mark";
+            this.Mark.ReadOnly = true;
+            // 
             // AddedDate
             // 
             this.AddedDate.DataPropertyName = "AddedDate";
@@ -242,13 +263,6 @@
             this.UserAccount.Name = "UserAccount";
             this.UserAccount.ReadOnly = true;
             this.UserAccount.Width = 80;
-            // 
-            // Mark
-            // 
-            this.Mark.DataPropertyName = "Mark";
-            this.Mark.HeaderText = "备注";
-            this.Mark.Name = "Mark";
-            this.Mark.ReadOnly = true;
             // 
             // DrawingId
             // 
@@ -301,7 +315,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMark.Location = new System.Drawing.Point(924, 235);
             this.txtMark.Name = "txtMark";
-            this.txtMark.Size = new System.Drawing.Size(266, 25);
+            this.txtMark.Size = new System.Drawing.Size(100, 25);
             this.txtMark.TabIndex = 39;
             // 
             // label3
@@ -425,8 +439,7 @@
             // 
             // tabControl
             // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.tpgImage);
             this.tabControl.Controls.Add(this.tpgEDrawing);
@@ -469,20 +482,9 @@
             this.tpgEDrawing.Text = "模型";
             this.tpgEDrawing.UseVisualStyleBackColor = true;
             // 
-            // ctrlEDrw
-            // 
-            this.ctrlEDrw.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ctrlEDrw.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlEDrw.Location = new System.Drawing.Point(3, 3);
-            this.ctrlEDrw.Margin = new System.Windows.Forms.Padding(155, 589, 155, 589);
-            this.ctrlEDrw.Name = "ctrlEDrw";
-            this.ctrlEDrw.Size = new System.Drawing.Size(357, 341);
-            this.ctrlEDrw.TabIndex = 1;
-            this.ctrlEDrw.EDrawingsControlLoaded += new System.Action<eDrawings.Interop.EModelViewControl.EModelViewControl>(this.OnControlLoaded);
-            // 
             // btnClearImage
             // 
-            this.btnClearImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnClearImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClearImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnClearImage.FlatAppearance.BorderSize = 0;
             this.btnClearImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -497,7 +499,7 @@
             // 
             // btnChooseImage
             // 
-            this.btnChooseImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnChooseImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnChooseImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             this.btnChooseImage.FlatAppearance.BorderSize = 0;
             this.btnChooseImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -512,7 +514,7 @@
             // 
             // btnRefreshImage
             // 
-            this.btnRefreshImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRefreshImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRefreshImage.BackColor = System.Drawing.Color.Magenta;
             this.btnRefreshImage.FlatAppearance.BorderSize = 0;
             this.btnRefreshImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -584,6 +586,35 @@
             this.btnOpenDrawing.UseVisualStyleBackColor = false;
             this.btnOpenDrawing.Click += new System.EventHandler(this.BtnOpenDrawing_Click);
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1030, 238);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 19);
+            this.label5.TabIndex = 41;
+            this.label5.Text = "生产优先级：";
+            // 
+            // txtProdPriority
+            // 
+            this.txtProdPriority.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtProdPriority.Location = new System.Drawing.Point(1125, 234);
+            this.txtProdPriority.Name = "txtProdPriority";
+            this.txtProdPriority.Size = new System.Drawing.Size(65, 25);
+            this.txtProdPriority.TabIndex = 39;
+            // 
+            // ctrlEDrw
+            // 
+            this.ctrlEDrw.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ctrlEDrw.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlEDrw.Location = new System.Drawing.Point(3, 3);
+            this.ctrlEDrw.Margin = new System.Windows.Forms.Padding(655, 5863, 655, 5863);
+            this.ctrlEDrw.Name = "ctrlEDrw";
+            this.ctrlEDrw.Size = new System.Drawing.Size(357, 341);
+            this.ctrlEDrw.TabIndex = 1;
+            this.ctrlEDrw.EDrawingsControlLoaded += new System.Action<eDrawings.Interop.EModelViewControl.EModelViewControl>(this.OnControlLoaded);
+            // 
             // FrmDrawingNumMatrix
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -602,8 +633,10 @@
             this.Controls.Add(this.txtMeasurements);
             this.Controls.Add(this.pnlTabel);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtProdPriority);
             this.Controls.Add(this.txtMark);
             this.Controls.Add(this.cobDrawingType);
             this.Controls.Add(this.txtDrawingDesc);
@@ -617,6 +650,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmDrawingNumMatrix";
             this.Text = "图号生成器";
+            this.Load += new System.EventHandler(this.FrmDrawingNumMatrix_Load);
             this.pnlTabel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDrawingNumMatrix)).EndInit();
             this.contextMenuStrip.ResumeLayout(false);
@@ -663,15 +697,18 @@
         private EDrawingsUserControl ctrlEDrw;
         private System.Windows.Forms.ToolStripMenuItem tsmiBathImportImage;
         private System.Windows.Forms.Button btnAddCustomInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DrawingNum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DrawingDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DrawingType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AddedDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Mark;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DrawingId;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnOpenFile;
         private System.Windows.Forms.Button btnOpenDrawing;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtProdPriority;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DrawingNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DrawingDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DrawingType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProdPriority;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mark;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AddedDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserAccount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DrawingId;
     }
 }

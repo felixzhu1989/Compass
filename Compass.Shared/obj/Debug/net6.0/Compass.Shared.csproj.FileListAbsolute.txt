@@ -1,0 +1,12 @@
+E:\Compass\Compass.Shared\bin\Debug\net6.0\Compass.Shared.deps.json
+E:\Compass\Compass.Shared\bin\Debug\net6.0\Compass.Shared.dll
+E:\Compass\Compass.Shared\bin\Debug\net6.0\Compass.Shared.pdb
+E:\Compass\Compass.Shared\obj\Debug\net6.0\Compass.Shared.csproj.AssemblyReference.cache
+E:\Compass\Compass.Shared\obj\Debug\net6.0\Compass.Shared.GeneratedMSBuildEditorConfig.editorconfig
+E:\Compass\Compass.Shared\obj\Debug\net6.0\Compass.Shared.AssemblyInfoInputs.cache
+E:\Compass\Compass.Shared\obj\Debug\net6.0\Compass.Shared.AssemblyInfo.cs
+E:\Compass\Compass.Shared\obj\Debug\net6.0\Compass.Shared.csproj.CoreCompileInputs.cache
+E:\Compass\Compass.Shared\obj\Debug\net6.0\Compass.Shared.dll
+E:\Compass\Compass.Shared\obj\Debug\net6.0\refint\Compass.Shared.dll
+E:\Compass\Compass.Shared\obj\Debug\net6.0\Compass.Shared.pdb
+E:\Compass\Compass.Shared\obj\Debug\net6.0\ref\Compass.Shared.dll

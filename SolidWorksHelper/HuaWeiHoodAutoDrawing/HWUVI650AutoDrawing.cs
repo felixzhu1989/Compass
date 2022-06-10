@@ -3,11 +3,12 @@ using Models;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace SolidWorksHelper
 {
-    public class HWUVI650AutoDrawing : IAutoDrawing
+    public class HWUVI650AutoDrawing : IAutoDrawing, ICreateBom
     {
         private Component2 swComp;
         readonly HWUVI650Service objHWUVI650Service = new HWUVI650Service();
@@ -205,6 +206,11 @@ namespace SolidWorksHelper
                 swApp.CommandInProgress = false; //及时关闭外部命令调用，否则影响SolidWorks的使用
             }
 
+        }
+
+        public void CreateSemiBom(ModuleTree tree, Dictionary<string, int> semiBomDic)
+        {
+            
         }
     }
 }

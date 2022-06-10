@@ -485,6 +485,38 @@ namespace Compass
         }
         #endregion
 
+        #region 半成品清单
+        public void ExecExportSemiBom(string odpListStr, List<SemiBom> semiBomTotalList)
+        {
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            string excelBookPath = Environment.CurrentDirectory + "\\SemiBom.xlsx";
+            Workbook workBook = excelApp.Workbooks.Add(excelBookPath);
+            Worksheet workSheet = excelApp.Worksheets["半成品清单"];
+            //预览
+            //excelApp.Visible = true;
+            //填写项目号
+            workSheet.Cells[1, 2] = odpListStr;            
+            for (int i = 0; i < semiBomTotalList.Count; i++)
+            {
+                //插入行
+                Range range = workSheet.get_Range($"A{i+4}:D{i+4}");
+                range.Insert(XlInsertShiftDirection.xlShiftDown, null);
+                //写入行
+                workSheet.Cells[i + 3, 1] = semiBomTotalList[i].DrawingNum;                
+                workSheet.Cells[i + 3, 2] = semiBomTotalList[i].DrawingDesc;
+                workSheet.Cells[i + 3, 3] = semiBomTotalList[i].Quantity;
+                workSheet.Cells[i + 3, 4] = semiBomTotalList[i].ProdPriority;
+            }
+            //另存为
+            string strDesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            workBook.SaveAs(strDesktopPath + @"\" + odpListStr + "半成品清单.xlsx", XlFileFormat.xlOpenXMLWorkbook);
+            KillProcess(excelApp);
+            excelApp = null;//对象置空
+            GC.Collect(); //垃圾回收机制
+        }
+        #endregion
+
+
         #region CutList
         /// <summary>
         /// 打印Ceiling的CutList
@@ -605,7 +637,6 @@ namespace Compass
             workSheet.Cells[1, 11].ColumnWidth = 5;
         }
         #endregion
-
 
         /// <summary>
         /// 引用Windows句柄，获取程序PID

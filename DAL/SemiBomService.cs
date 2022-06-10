@@ -24,20 +24,22 @@ namespace DAL
         /// <returns></returns>
         public List<SemiBom> GetSemiBomsByWhereSql(string whereSql)
         {
-            string sql = "select ProjectId,DrawingNum,DrawingDesc,Quantity from SemiBom";
+            string sql = "select SemiBomId,ProjectId,SemiBom.DrawingNum,DrawingDesc,Quantity,ProdPriority from SemiBom";
             sql += " inner join DrawingNumMatrix on DrawingNumMatrix.DrawingNum=SemiBom.DrawingNum";
             sql += whereSql;
-            sql += " order by DrawingNum";
+            sql += " order by ProdPriority,DrawingNum";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             List<SemiBom> list = new List<SemiBom>();
             while (objReader.Read())
             {
                 list.Add(new SemiBom()
                 {
+                    SemiBomId=Convert.ToInt32(objReader["SemiBomId"]),
                     ProjectId= Convert.ToInt32(objReader["ProjectId"]),                    
                     DrawingNum= objReader["DrawingNum"].ToString(),
                     DrawingDesc = objReader["DrawingDesc"].ToString(),                   
                     Quantity = Convert.ToInt32(objReader["Quantity"]),
+                    ProdPriority=objReader["ProdPriority"].ToString().Length==0?0: Convert.ToInt32(objReader["ProdPriority"])
                 });
             }
             objReader.Close();
@@ -51,7 +53,7 @@ namespace DAL
         public bool ImportSemiBom(List<SemiBom> SemiBoms)
         {
             //编写SQL语句
-            StringBuilder sqlBuilder = new StringBuilder("insert into SemiBom (ProjectId,DrawingNum，Quantity) values({0},'{1}',{2})");
+            StringBuilder sqlBuilder = new StringBuilder("insert into SemiBom (ProjectId,DrawingNum,Quantity) values({0},'{1}',{2})");
             List<string> sqlList = new List<string>();//用来保存生成的多条SQL语句
             //解析对象
             foreach (SemiBom objSemiBom in SemiBoms)
@@ -68,7 +70,7 @@ namespace DAL
         /// </summary>
         /// <param name="idList"></param>
         /// <returns></returns>
-        public bool DeleteCutlistByTran(List<int> idList)
+        public bool DeleteSemiBomByTran(List<int> idList)
         {
             //编写SQL语句
             StringBuilder sqlBuilder = new StringBuilder("delete from SemiBom where SemiBomId={0}");

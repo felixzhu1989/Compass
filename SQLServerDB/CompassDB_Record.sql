@@ -439,3 +439,6 @@ select * from ProjectTracking where ProjectTrackingId>360
 
 select * from HoodCutList
 select * from semibom
+
+select * from DrawingNumMatrix where DrawingNum like '5%'
+update DrawingNumMatrix set ProdPriority=3 where DrawingNum='5201010404'

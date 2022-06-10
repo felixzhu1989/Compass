@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using Compass.Wpf.ViewModels;
+using Compass.Wpf.Views;
+using Prism.DryIoc;
+using Prism.Ioc; 
+
+namespace Compass.Wpf
+{
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : PrismApplication
+    {
+        protected override Window CreateShell()
+        {
+            //创建启动页面
+            return Container.Resolve<MainView>();
+        }
+        //依赖注入
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<IndexView, IndexViewModel>();
+            containerRegistry.RegisterForNavigation<ProjectListView, ProjectListViewModel>();
+            containerRegistry.RegisterForNavigation<DrawingPlanView, DrawingPlanViewModel>();
+            containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
+        }
+    }
+}

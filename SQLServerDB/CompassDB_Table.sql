@@ -398,14 +398,18 @@ go
 create table DrawingNumMatrix
 (
     DrawingId int identity(1,1),
-	DrawingNum varchar(8) not null,
+	DrawingNum varchar(10) not null,
     DrawingDesc varchar(100) not null,
 	DrawingType varchar(10) not null,	
 	Mark varchar(100),
+	ProdPriority int,
 	AddedDate datetime,
     UserId int not null,
 	DrawingImage text
 )
+
+--alter table DrawingNumMatrix add ProdPriority int
+
 if exists (select * from sysobjects where name='pk_DrawingId')
     alter table DrawingNumMatrix drop constraint pk_DrawingId
 GO
@@ -432,11 +436,17 @@ if exists (select * from sysobjects where name='SemiBom')
 drop table SemiBom
 go
 create table SemiBom
-(    
+(   
+	SemiBomId int identity(1,1),
 	ProjectId int not null,
-    DrawingNum varchar(8) not null,
+    DrawingNum varchar(10) not null,
 	Quantity int
 )
+if exists (select * from sysobjects where name='pk_SemiBomId')
+    alter table SemiBom drop constraint pk_SemiBomId
+GO
+alter table SemiBom add constraint pk_SemiBomId primary key (SemiBomId)
+GO
 if exists (select * from sysobjects where name='fk_ProjectId_SemiBom')
     alter table SemiBom drop constraint fk_ProjectId_SemiBom
 GO

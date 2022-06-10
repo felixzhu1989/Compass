@@ -11,6 +11,7 @@ namespace Models
         public DateTime AddedDate { get; set; }
         public string UserAccount { get; set; }
         public string Mark { get; set; }
+        public int ProdPriority { get; set; }
         public int UserId { get; set; }
         public string DrawingImage { get; set; }
         public int DrawingId { get; set; }

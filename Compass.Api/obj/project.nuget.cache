@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "qGlm2/k8dQC27YGZfNncQDCeqyLcMxuaA6q/5kXezDOWZrZjtCLu7SFpfpG0nCqkD1PmEC3IOD5CWpHNN/B41Q==",
+  "success": true,
+  "projectFilePath": "E:\\Compass\\Compass.Api\\Compass.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\felix.zhu\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\felix.zhu\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\felix.zhu\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\felix.zhu\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\felix.zhu\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\felix.zhu\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

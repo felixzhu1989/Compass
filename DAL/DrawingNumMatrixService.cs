@@ -38,7 +38,7 @@ namespace DAL
         public List<DrawingNumMatrix> GetAllDrawingNum()
         {
             string sql =
-                "select DrawingId,DrawingNum,DrawingDesc,DrawingType,Mark,DrawingNumMatrix.UserId,UserAccount,AddedDate from DrawingNumMatrix";
+                "select DrawingId,DrawingNum,DrawingDesc,DrawingType,Mark,ProdPriority,DrawingNumMatrix.UserId,UserAccount,AddedDate from DrawingNumMatrix";
             sql += " inner join Users on Users.UserId = DrawingNumMatrix.UserId";
             sql += " order by DrawingNum asc";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
@@ -52,6 +52,7 @@ namespace DAL
                     DrawingDesc = objReader["DrawingDesc"].ToString(),
                     DrawingType = objReader["DrawingType"].ToString(),
                     Mark = objReader["Mark"].ToString(),
+                    ProdPriority =objReader["ProdPriority"].ToString().Length == 0 ?0: Convert.ToInt32(objReader["ProdPriority"]),
                     UserId = Convert.ToInt32(objReader["UserId"]),
                     UserAccount = objReader["UserAccount"].ToString(),
                     AddedDate = Convert.ToDateTime(objReader["AddedDate"])
@@ -69,8 +70,8 @@ namespace DAL
         /// <returns></returns>
         public string AddDrawingNum(DrawingNumMatrix objDrawingNum)
         {
-            string sql = "insert into DrawingNumMatrix (DrawingNum,DrawingDesc,DrawingType,Mark,UserId) values('{0}','{1}','{2}','{3}','{4}')";
-            sql = string.Format(sql, objDrawingNum.DrawingNum, objDrawingNum.DrawingDesc, objDrawingNum.DrawingType, objDrawingNum.Mark, objDrawingNum.UserId);
+            string sql = "insert into DrawingNumMatrix (DrawingNum,DrawingDesc,DrawingType,Mark,ProdPriority,UserId) values('{0}','{1}','{2}','{3}',{4},{5})";
+            sql = string.Format(sql, objDrawingNum.DrawingNum, objDrawingNum.DrawingDesc, objDrawingNum.DrawingType, objDrawingNum.Mark,objDrawingNum.ProdPriority, objDrawingNum.UserId);
             try
             {
                 SQLHelper.GetSingleResult(sql);
@@ -99,7 +100,7 @@ namespace DAL
         /// <returns></returns>
         public DrawingNumMatrix GetDrawingNumById(string drawingId)
         {
-            string sql ="select DrawingId,DrawingNum,DrawingDesc,DrawingType,Mark from DrawingNumMatrix";
+            string sql = "select DrawingId,DrawingNum,DrawingDesc,DrawingType,Mark,ProdPriority from DrawingNumMatrix";
             sql += $" where DrawingId={drawingId}";
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             DrawingNumMatrix objDrawingNum = null;
@@ -111,7 +112,8 @@ namespace DAL
                     DrawingNum = objReader["DrawingNum"].ToString(),
                     DrawingDesc = objReader["DrawingDesc"].ToString(),
                     DrawingType = objReader["DrawingType"].ToString(),
-                    Mark = objReader["Mark"].ToString()
+                    Mark = objReader["Mark"].ToString(),
+                    ProdPriority = objReader["ProdPriority"].ToString().Length == 0 ? 0 : Convert.ToInt32(objReader["ProdPriority"])
                 };
             }
             objReader.Close();
@@ -124,8 +126,8 @@ namespace DAL
         /// <returns></returns>
         public int EditDrawingNum(DrawingNumMatrix objDrawingNum)
         {
-            string sql = "update DrawingNumMatrix set DrawingNum='{0}',DrawingDesc='{1}',DrawingType='{2}',Mark='{3}',UserId='{4}' where DrawingId={5}";
-            sql = string.Format(sql, objDrawingNum.DrawingNum, objDrawingNum.DrawingDesc, objDrawingNum.DrawingType, objDrawingNum.Mark, objDrawingNum.UserId,objDrawingNum.DrawingId);
+            string sql = "update DrawingNumMatrix set DrawingNum='{0}',DrawingDesc='{1}',DrawingType='{2}',Mark='{3}',ProdPriority={4},UserId={5} where DrawingId={6}";
+            sql = string.Format(sql, objDrawingNum.DrawingNum, objDrawingNum.DrawingDesc, objDrawingNum.DrawingType, objDrawingNum.Mark, objDrawingNum.ProdPriority, objDrawingNum.UserId,objDrawingNum.DrawingId);
             try
             {
                 return SQLHelper.Update(sql);

@@ -208,6 +208,5 @@
     <Compile Include="Hood\UVF450.cs" />
     <Compile Include="Hood\UVI555400.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
