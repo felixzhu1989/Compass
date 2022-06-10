@@ -133,13 +133,32 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                 }
 
-                swFeat = swAssy.FeatureByName("LocalLPattern1");
-                if (item.LongGlassNo > 2)
+                if (item.ShortGlassNo == 0&&item.LongGlassNo > 2)
                 {
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
+                    swAssy.UnSuppress(suffix, "2200600003-12");
+                    swAssy.UnSuppress(suffix, "FNCL0028[LLKA-MID]{289}-1");
+                    swAssy.UnSuppress("LocalLPattern1");
                     swModel.Parameter("D1@LocalLPattern1").SystemValue = item.LongGlassNo - 1;
                 }
-                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                else
+                {
+                    swAssy.Suppress(suffix, "2200600003-12");
+                    swAssy.Suppress(suffix, "FNCL0028[LLKA-MID]{289}-1");
+                    swAssy.Suppress("LocalLPattern1");
+                }
+                if (item.ShortGlassNo > 0 && item.LongGlassNo > 1)
+                {
+                    swAssy.Suppress(suffix, "2200600003-15");
+                    swAssy.Suppress(suffix, "2200600015-6");
+                    swAssy.UnSuppress("LocalLPattern2");
+                    swModel.Parameter("D1@LocalLPattern2").SystemValue = item.LongGlassNo;
+                }
+                else
+                {
+                    swAssy.UnSuppress(suffix, "2200600003-15");
+                    swAssy.UnSuppress(suffix, "2200600015-6");
+                    swAssy.Suppress("LocalLPattern2");
+                }
 
                 //----------短玻璃----------
                 if (item.ShortGlassNo > 0)
@@ -148,6 +167,7 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2200600003-17"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
+
                 }
                 else
                 {
@@ -155,14 +175,7 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "2200600003-17"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩.
-                }
-                swFeat = swAssy.FeatureByName("LocalLPattern2");
-                if (item.ShortGlassNo > 1)
-                {
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swModel.Parameter("D1@LocalLPattern2").SystemValue = item.ShortGlassNo;
-                }
-                else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                }                
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
                 swModel.Save();//保存，很耗时间
