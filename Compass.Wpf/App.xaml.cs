@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Compass.Wpf.Common;
 using Compass.Wpf.ViewModels;
 using Compass.Wpf.Views;
 using Prism.DryIoc;
@@ -29,6 +30,15 @@ namespace Compass.Wpf
             containerRegistry.RegisterForNavigation<ProjectListView, ProjectListViewModel>();
             containerRegistry.RegisterForNavigation<DrawingPlanView, DrawingPlanViewModel>();
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
+        }
+        /// <summary>
+        /// 初始化默认首页
+        /// </summary>
+        protected override void OnInitialized()
+        {
+            var service = Current.MainWindow!.DataContext as IConfigureService;
+            service!.Configure();
+            base.OnInitialized();
         }
     }
 }

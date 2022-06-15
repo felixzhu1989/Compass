@@ -39,3 +39,4 @@ E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\refint\Compass.Wpf.dll
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Compass.Wpf.pdb
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Compass.Wpf.genruntimeconfig.cache
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\ref\Compass.Wpf.dll
+E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs

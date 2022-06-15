@@ -1,4 +1,5 @@
-﻿using Compass.Wpf.Common.Models;
+﻿using Compass.Wpf.Common;
+using Compass.Wpf.Common.Models;
 using Compass.Wpf.Extensions;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -11,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Compass.Wpf.ViewModels;
 
-public class MainViewModel : BindableBase
+public class MainViewModel : BindableBase, IConfigureService
 {
 
     #region 字段
@@ -44,8 +45,7 @@ public class MainViewModel : BindableBase
     public MainViewModel(IRegionManager regionManager)
     {
         this.regionManager=regionManager;
-        MenuBars = new ObservableCollection<MenuBar>();
-        CreateMenuBar();
+        MenuBars = new ObservableCollection<MenuBar>();        
         NavigateCommand = new DelegateCommand<MenuBar>(Navigate);
         HomeCommand=new DelegateCommand(HomePage);
         GoBackCommand = new DelegateCommand(() =>
@@ -63,7 +63,7 @@ public class MainViewModel : BindableBase
     /// </summary>
     private void HomePage()
     {
-        Navigate(MenuBars[0]);
+        Navigate(MenuBars[1]);
     }
     /// <summary>
     /// 页面导航
@@ -87,5 +87,13 @@ public class MainViewModel : BindableBase
         MenuBars.Add(new MenuBar { Icon = "FormatListBulleted", Title = "项目列表", NameSpace = "ProjectListView" });
         MenuBars.Add(new MenuBar { Icon = "WrenchClock", Title = "制图计划", NameSpace = "DrawingPlanView" });
         MenuBars.Add(new MenuBar { Icon = "Cog", Title = "系统设置", NameSpace = "SettingsView" });
+    }
+    /// <summary>
+    /// 初始化配置默认首页
+    /// </summary>
+    public void Configure()
+    {
+        CreateMenuBar();
+        regionManager.Regions[PrismManager.MainViewRegionName].RequestNavigate("ProjectListView");
     }
 }

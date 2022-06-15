@@ -235,7 +235,9 @@ namespace SolidWorksHelper
         {
             //查询参数
             HWUVF650 item = (HWUVF650)objHWUVF650Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
-           
+           //第一次输入参数的时候必须输入部分参数（跟半成品关联的参数）
+
+
             #region 新风            
             semiBomDic.AddItem("5201010201", 1);
             semiBomDic.AddItem("5201010202", 1);

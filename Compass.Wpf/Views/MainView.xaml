@@ -18,7 +18,7 @@
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True"
         Height="768"
-        Width="1280"
+        Width="1366"
         ResizeMode="CanResizeWithGrip"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
