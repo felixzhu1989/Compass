@@ -183,6 +183,7 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <Border BorderBrush="Gray"
@@ -192,7 +193,8 @@
                                     <Grid Margin="0,0,0,5">
                                         <Border Background="{Binding ProdFinishDate,Converter={StaticResource EndToColor}}"
                                                 CornerRadius="8"
-                                                Opacity="0.7" />
+                                                Opacity="0.7" 
+                                                Margin="-5,0"/>
                                         <TextBlock Text="{Binding ProdFinishDate,StringFormat=生产完工：{0:MM/dd}}"
                                                    ToolTip="订单默认按照完工时间逆序排列" />
                                     </Grid>
@@ -206,8 +208,16 @@
                                     <TextBlock Text="{Binding ItemLine,StringFormat=订单行：{0}}" />
                                     <TextBlock Text="{Binding StdWorkload,StringFormat=工作量：{0:N1}}" />
                                 </StackPanel>
+                                <Border Grid.Row="2"
+                                        BorderBrush="Gray"
+                                        BorderThickness="0,0,0,1" />
+                                <StackPanel Grid.Row="2"
+                                            Margin="0,5">
+                                    <TextBlock Text="{Binding SemiProductStatus,StringFormat=半成品状态：{0}}" />
+                                    <TextBlock Text="{Binding PurchaseStatus,StringFormat=采购件状态：{0}}" />                                    
+                                </StackPanel>
                                 <TextBlock Text="{Binding ModelSummary,StringFormat=型号概览：{0}}"
-                                           Grid.Row="2"
+                                           Grid.Row="3"
                                            TextWrapping="Wrap"
                                            Margin="0,5" />
                             </Grid>
@@ -293,7 +303,8 @@
                                     <Grid Grid.Row="2">
                                         <Border Background="{Binding RiskLevel,Converter={StaticResource RiskToColor}}"
                                                 CornerRadius="8"
-                                                Opacity="0.7" />
+                                                Opacity="0.7"
+                                                Margin="-5,0" />
                                         <TextBlock Text="{Binding RiskLevel,StringFormat=风险等级：{0}}" />
                                     </Grid>
                                 </StackPanel>

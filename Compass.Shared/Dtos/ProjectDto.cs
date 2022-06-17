@@ -67,13 +67,29 @@ public class ProjectDto : BaseDto,IComparable<ProjectDto>
     {
         get { return stdWorkload; }
         set { stdWorkload = value; OnPropertyChanged(); }
+    }    
+    private string semiProductStatus;
+    public string SemiProductStatus
+    {
+        get { return semiProductStatus; }
+        set { semiProductStatus = value; OnPropertyChanged(); }
     }
+    private string purchaseStatus;
+    public string PurchaseStatus
+    {
+        get { return purchaseStatus; }
+        set { purchaseStatus = value; OnPropertyChanged(); }
+    }
+
     private string modelSummary;
     public string ModelSummary
     {
         get { return modelSummary; }
         set { modelSummary = value; OnPropertyChanged(); }
     }
+
+
+
     #endregion
 
     #region 项目状态记录
