@@ -442,3 +442,10 @@ select * from semibom
 
 select * from DrawingNumMatrix where DrawingNum like '5%'
 update DrawingNumMatrix set ProdPriority=3 where DrawingNum='5201010404'
+
+
+
+insert into Users(Contact,Email,UserGroupId,UserAccount,UserPwd) 
+values('','albert.chen@halton.com',4,'albert','123')
+insert into Users(Contact,Email,UserGroupId,UserAccount,UserPwd) 
+values('13764042728','andy.lu@halton.com',7,'andy','123')

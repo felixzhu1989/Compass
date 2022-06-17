@@ -9,17 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Compass.Shared.Const;
-using Compass.Wpf.Common.Converters;
 using Compass.Wpf.Views;
-using MaterialDesignThemes.Wpf;
-using MaterialDesignThemes.Wpf.Converters;
-using MaterialDesignThemes.Wpf.Transitions;
-using Microsoft.Xaml.Behaviors;
-using Microsoft.Xaml.Behaviors.Core;
-using Microsoft.Xaml.Behaviors.Input;
-using Microsoft.Xaml.Behaviors.Layout;
-using Microsoft.Xaml.Behaviors.Media;
 using System;
 using System.Diagnostics;
 using System.Windows;
