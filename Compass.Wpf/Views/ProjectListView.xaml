@@ -97,6 +97,15 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
+            <!--刷新数据-->
+            <Button Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryDarkButton}"
+                    Content="{materialDesign:PackIcon Kind=Refresh, Size=20}"
+                    Command="{Binding RefreshCommand}"
+                    Height="25"
+                    Width="25"
+                    Foreground="White"
+                    Margin="15,0" />
+            
             <!--统计信息-->
             <Grid>
                 <Border Background="LightGray"

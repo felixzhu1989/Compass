@@ -20,7 +20,7 @@ public class ProjectListViewModel : BindableBase
     {
         get { return search; }
         set { search = value; RaisePropertyChanged(); }
-    }
+    }   
     public DelegateCommand QueryCommand { get; }
     private ProjectListSummaryDto summary;
     public ProjectListSummaryDto Summary
@@ -62,7 +62,7 @@ public class ProjectListViewModel : BindableBase
         set { yearMonth = value; RaisePropertyChanged(); }
     }
     #endregion
-    
+
 
     #region 模拟数据
     LocalDb localDb;
@@ -81,7 +81,7 @@ public class ProjectListViewModel : BindableBase
         InitProjectStatus();
         localDb=new LocalDb();
         ProjectList=new ObservableCollection<ProjectDto>();
-        Summary=new ProjectListSummaryDto();        
+        Summary=new ProjectListSummaryDto();
         QueryCommand=new DelegateCommand(Query);
         Query();
     }
@@ -95,9 +95,9 @@ public class ProjectListViewModel : BindableBase
         if (models != null)
         {
             models.ForEach(x => ProjectList.Add(x));
-        }        
+        }
         foreach (var item in ProjectList)
-        {            
+        {
             //内部排序：给状态记录和关键路径排序
             if (item.ProjectStatusRecords!=null)
                 item.ProjectStatusRecords.Sort();
@@ -106,10 +106,10 @@ public class ProjectListViewModel : BindableBase
         }
         //统计信息
         Summary.ProjectCount=ProjectList.Count();
-        Summary.TotalHoodQuantity=ProjectList.Sum(x=>x.HoodQuantity);
-        Summary.TotalItemLine=ProjectList.Sum(x=>x.ItemLine);
-        Summary.TotalStdWorkload=ProjectList.Sum(x=>x.StdWorkload);
-        Summary.TotalVtaValue=ProjectList.Sum(x=>x.VtaValue);
+        Summary.TotalHoodQuantity=ProjectList.Sum(x => x.HoodQuantity);
+        Summary.TotalItemLine=ProjectList.Sum(x => x.ItemLine);
+        Summary.TotalStdWorkload=ProjectList.Sum(x => x.StdWorkload);
+        Summary.TotalVtaValue=ProjectList.Sum(x => x.VtaValue);
     }
     //点击工位进入【工位计划】界面，该界面显示工位的订单排程（所有项目执行的明细）
 

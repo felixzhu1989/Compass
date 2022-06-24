@@ -450,4 +450,16 @@ values('','albert.chen@halton.com',4,'albert','123')
 insert into Users(Contact,Email,UserGroupId,UserAccount,UserPwd) 
 values('13764042728','andy.lu@halton.com',7,'andy','123')
 insert into Users(Contact,Email,UserGroupId,UserAccount,UserPwd) 
-values('','rongjie.zhu@halton.com',3,'rongjie','123')
+values('','rongjie.zhu@halton.com',2,'rongjie','123')
+
+select * from users
+update Users set UserGroupId=2 where UserId=87
+
+select * from ProjectTracking 
+inner join Projects on Projects.ProjectId=ProjectTracking.ProjectId
+where ODPNo='MSO200212'
+update ProjectTracking set ODPReceiveDate='2020/10/29' 
+	inner join Projects on Projects.ProjectId=ProjectTracking.ProjectId
+	where ODPNo='MSO200212'
+
+update ProjectTracking set ODPReceiveDate='2020/10/29' where ProjectTracking.ProjectId=(select Projects.ProjectId from Projects where ODPNo='MSO200212')
