@@ -2672,8 +2672,11 @@ create table LLKSJ
 	LongGlassNo int,
 	ShortGlassNo int,
 	LeftLength decimal(6,2),
-	RightLength decimal(6,2)
+	RightLength decimal(6,2),
+	MidLength decimal(6,2)
 )
+
+Alter table LLKSJ add MidLength decimal(6,2) constraint def_lksmidlength default 295
 
 --LPZ
 if exists (select * from sysobjects where name='LPZ')
@@ -2754,8 +2757,11 @@ create table LLKAJ
 	LongGlassNo int,
 	ShortGlassNo int,
 	LeftLength decimal(6,2),
-	RightLength decimal(6,2)
+	RightLength decimal(6,2),
+	MidLength decimal(6,2)
 )
+Alter table LLKAJ add MidLength decimal(6,2) constraint def_lkamidlength default 295
+select * from llkaj
 
 --INF
 if exists (select * from sysobjects where name='INF')

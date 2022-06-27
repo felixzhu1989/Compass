@@ -14,7 +14,7 @@ namespace Common
         /// <returns></returns>
         public static bool IsInteger(string txt)
         {
-            Regex objRegex=new Regex(@"^[1-9]\d*$");
+            Regex objRegex=new Regex(@"^[0-9]\d*$");
             return objRegex.IsMatch(txt);
         }
         /// <summary>

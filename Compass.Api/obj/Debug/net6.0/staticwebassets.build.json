@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "bEgt+WWAiYWKjBWvk+QqaCXwIlodDQ8ycLU2uxDL3Ew=",
+  "Source": "Compass.Api",
+  "BasePath": "_content/Compass.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -7,13 +7,17 @@ using Models;
 namespace Compass
 {
     public partial class FrmLlkaj : MetroFramework.Forms.MetroForm
+
     {
+        private ModelView modelView;
         readonly LLKAJService _objLlkajService = new LLKAJService();
         private readonly LLKAJ _objLlkaj = null;
         public FrmLlkaj()
         {
             InitializeComponent();
-            IniCob();
+            modelView = new ModelView();
+            panel1.Controls.Add(modelView);
+            modelView.Dock = DockStyle.Fill;
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
@@ -27,71 +31,25 @@ namespace Compass
             modelView.ShowImage();
             FillData();
         }
-        private void IniCob()
-        {
-            //玻璃数量
-            cobLongGlassNo.Items.Add("0");
-            cobLongGlassNo.Items.Add("1");
-            cobLongGlassNo.Items.Add("2");
-            cobLongGlassNo.Items.Add("3");
-            cobLongGlassNo.Items.Add("4");
-            cobLongGlassNo.Items.Add("5");
-            cobLongGlassNo.Items.Add("6");
-            cobLongGlassNo.Items.Add("7");
-            cobLongGlassNo.Items.Add("8");
-            cobLongGlassNo.Items.Add("9");
-            cobLongGlassNo.Items.Add("10");
-            cobLongGlassNo.Items.Add("11");
-            cobLongGlassNo.Items.Add("12");
-            cobLongGlassNo.Items.Add("13");
-            cobLongGlassNo.Items.Add("14");
-            cobLongGlassNo.Items.Add("15");
-            cobLongGlassNo.Items.Add("16");
-            cobLongGlassNo.Items.Add("17");
-            cobLongGlassNo.Items.Add("18");
-            cobLongGlassNo.Items.Add("19");
-            cobLongGlassNo.Items.Add("20");
-
-            cobShortGlassNo.Items.Add("0");
-            cobShortGlassNo.Items.Add("1");
-            cobShortGlassNo.Items.Add("2");
-            cobShortGlassNo.Items.Add("3");
-            cobShortGlassNo.Items.Add("4");
-            cobShortGlassNo.Items.Add("5");
-            cobShortGlassNo.Items.Add("6");
-            cobShortGlassNo.Items.Add("7");
-            cobShortGlassNo.Items.Add("8");
-            cobShortGlassNo.Items.Add("9");
-            cobShortGlassNo.Items.Add("10");
-            cobShortGlassNo.Items.Add("11");
-            cobShortGlassNo.Items.Add("12");
-            cobShortGlassNo.Items.Add("13");
-            cobShortGlassNo.Items.Add("14");
-            cobShortGlassNo.Items.Add("15");
-            cobShortGlassNo.Items.Add("16");
-            cobShortGlassNo.Items.Add("17");
-            cobShortGlassNo.Items.Add("18");
-            cobShortGlassNo.Items.Add("19");
-            cobShortGlassNo.Items.Add("20");
-
-        }
+       
         /// <summary>
         /// 填数据
         /// </summary>
         private void FillData()
         {
             if (_objLlkaj == null) return;
-            modelView.Tag = _objLlkaj.LLKAJId;
-            cobLongGlassNo.Text = _objLlkaj.LongGlassNo.ToString();
-            cobShortGlassNo.Text = _objLlkaj.ShortGlassNo.ToString();
+            panel1.Tag = _objLlkaj.LLKAJId;
+            txtLongGlassNo.Text = _objLlkaj.LongGlassNo.ToString();
+            txtShortGlassNo.Text = _objLlkaj.ShortGlassNo.ToString();
             txtLength.Text = _objLlkaj.Length.ToString();
             txtLeftLength.Text = _objLlkaj.LeftLength.ToString();
             txtRightLength.Text = _objLlkaj.RightLength.ToString();
+            txtMidLength.Text = _objLlkaj.MidLength.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
             //必填项目
-            if (modelView.Tag.ToString().Length == 0) return;
+            if (panel1.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 100d)
             {
                 MessageBox.Show("请认真检查灯腔侧板总长", "提示信息");
@@ -113,28 +71,38 @@ namespace Compass
                 txtRightLength.SelectAll();
                 return;
             }
-            if (cobLongGlassNo.SelectedIndex == -1)
+            if (!DataValidate.IsDouble(txtMidLength.Text.Trim()) || Convert.ToDouble(txtMidLength.Text.Trim()) < 20d)
             {
-                MessageBox.Show("请选择长玻璃数量", "提示信息");
-                cobLongGlassNo.Focus();
+                MessageBox.Show("请认真检查中间板长度", "提示信息");
+                txtMidLength.Focus();
+                txtMidLength.SelectAll();
                 return;
             }
-            if (cobShortGlassNo.SelectedIndex == -1)
+            if (!DataValidate.IsInteger(txtLongGlassNo.Text))
             {
-                MessageBox.Show("请选择短玻璃数量", "提示信息");
-                cobShortGlassNo.Focus();
+                MessageBox.Show("请填写长玻璃数量", "提示信息");
+                txtLongGlassNo.Focus();
+                txtLongGlassNo.SelectAll();
+                return;
+            }
+            if (!DataValidate.IsInteger(txtShortGlassNo.Text))
+            {
+                MessageBox.Show("请填写短玻璃数量", "提示信息");
+                txtShortGlassNo.Focus();
+                txtShortGlassNo.SelectAll();
                 return;
             }
             //封装对象
             LLKAJ objLlkaj = new LLKAJ()
             {
-                LLKAJId = Convert.ToInt32(modelView.Tag),
+                LLKAJId = Convert.ToInt32(panel1.Tag),
 
                 Length = Convert.ToDouble(txtLength.Text.Trim()),
-                LongGlassNo = Convert.ToInt32(cobLongGlassNo.Text.Trim()),
-                ShortGlassNo = Convert.ToInt32(cobShortGlassNo.Text.Trim()),
+                LongGlassNo = Convert.ToInt32(txtLongGlassNo.Text.Trim()),
+                ShortGlassNo = Convert.ToInt32(txtShortGlassNo.Text.Trim()),
                 LeftLength = Convert.ToDouble(txtLeftLength.Text.Trim()),
-                RightLength = Convert.ToDouble(txtRightLength.Text.Trim())
+                RightLength = Convert.ToDouble(txtRightLength.Text.Trim()),
+                MidLength = Convert.ToDouble(txtMidLength.Text.Trim())
             };
             //提交修改
             try

@@ -13,7 +13,7 @@ namespace DAL
             LLKAJ objModel = (LLKAJ)model;
             //编写带参数的SQL语句
             StringBuilder sqlBuilder = new StringBuilder();
-            sqlBuilder.Append("Update LLKAJ set Length=@Length,LongGlassNo=@LongGlassNo,ShortGlassNo=@ShortGlassNo,LeftLength=@LeftLength,RightLength=@RightLength where LLKAJId=@LLKAJId");
+            sqlBuilder.Append("Update LLKAJ set Length=@Length,LongGlassNo=@LongGlassNo,ShortGlassNo=@ShortGlassNo,LeftLength=@LeftLength,RightLength=@RightLength,MidLength=@MidLength where LLKAJId=@LLKAJId");
             //定义参数数组
             SqlParameter[] param = new SqlParameter[]
             {
@@ -22,6 +22,7 @@ namespace DAL
                 new SqlParameter("@ShortGlassNo",objModel.ShortGlassNo),
                 new SqlParameter("@LeftLength",objModel.LeftLength),
                 new SqlParameter("@RightLength",objModel.RightLength),
+                new SqlParameter("@MidLength",objModel.MidLength),
                 new SqlParameter("@LLKAJId",objModel.LLKAJId)
             };
             try
@@ -40,7 +41,7 @@ namespace DAL
 
         public DataSet GetModelByDataSet(string projectId)
         {
-            string sql = "select LLKAJId,LLKAJ.ModuleTreeId,Item,Module,Length,LongGlassNo,ShortGlassNo,LeftLength,RightLength from LLKAJ";
+            string sql = "select LLKAJId,LLKAJ.ModuleTreeId,Item,Module,Length,LongGlassNo,ShortGlassNo,LeftLength,RightLength,MidLength from LLKAJ";
             sql += " inner join ModuleTree on LLKAJ.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
             sql += $" where ProjectId={projectId}";
@@ -61,7 +62,7 @@ namespace DAL
         public IModel GetModelByWhereSql(string whereSql)
         {
             string sql =
-                "select LLKAJId,ModuleTreeId,Length,LongGlassNo,ShortGlassNo,LeftLength,RightLength from LLKAJ";
+                "select LLKAJId,ModuleTreeId,Length,LongGlassNo,ShortGlassNo,LeftLength,RightLength,MidLength from LLKAJ";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             LLKAJ objModel = null;
@@ -76,7 +77,8 @@ namespace DAL
                     LongGlassNo = objReader["LongGlassNo"].ToString().Length == 0 ? 0 : Convert.ToInt32(objReader["LongGlassNo"]),
                     ShortGlassNo = objReader["ShortGlassNo"].ToString().Length == 0 ? 0 : Convert.ToInt32(objReader["ShortGlassNo"]),
                     LeftLength = objReader["LeftLength"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["LeftLength"]),
-                    RightLength = objReader["RightLength"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["RightLength"])
+                    RightLength = objReader["RightLength"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["RightLength"]),
+                    MidLength = objReader["MidLength"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["MidLength"])
                 };
             }
             objReader.Close();

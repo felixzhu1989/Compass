@@ -13,5 +13,6 @@ namespace Models
         public int ShortGlassNo { get; set; }
         public double LeftLength { get; set; }
         public double RightLength { get; set; }
+        public double MidLength { get; set; }
     }
 }

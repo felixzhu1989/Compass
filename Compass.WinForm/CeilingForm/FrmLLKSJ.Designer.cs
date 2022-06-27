@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLlksj));
             this.btnEditData = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cobShortGlassNo = new System.Windows.Forms.ComboBox();
-            this.cobLongGlassNo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -41,7 +39,11 @@
             this.txtLeftLength = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.modelView = new Compass.ModelView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtMidLength = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtLongGlassNo = new System.Windows.Forms.TextBox();
+            this.txtShortGlassNo = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,15 +66,17 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.cobShortGlassNo);
-            this.groupBox1.Controls.Add(this.cobLongGlassNo);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtRightLength);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.txtMidLength);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtLeftLength);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtShortGlassNo);
+            this.groupBox1.Controls.Add(this.txtLongGlassNo);
             this.groupBox1.Controls.Add(this.txtLength);
             this.groupBox1.Location = new System.Drawing.Point(24, 517);
             this.groupBox1.Name = "groupBox1";
@@ -81,34 +85,10 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "不锈钢灯腔尺寸";
             // 
-            // cobShortGlassNo
-            // 
-            this.cobShortGlassNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobShortGlassNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobShortGlassNo.BackColor = System.Drawing.Color.Azure;
-            this.cobShortGlassNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobShortGlassNo.FormattingEnabled = true;
-            this.cobShortGlassNo.Location = new System.Drawing.Point(76, 96);
-            this.cobShortGlassNo.Name = "cobShortGlassNo";
-            this.cobShortGlassNo.Size = new System.Drawing.Size(100, 27);
-            this.cobShortGlassNo.TabIndex = 4;
-            // 
-            // cobLongGlassNo
-            // 
-            this.cobLongGlassNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobLongGlassNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobLongGlassNo.BackColor = System.Drawing.Color.Azure;
-            this.cobLongGlassNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobLongGlassNo.FormattingEnabled = true;
-            this.cobLongGlassNo.Location = new System.Drawing.Point(76, 61);
-            this.cobLongGlassNo.Name = "cobLongGlassNo";
-            this.cobLongGlassNo.Size = new System.Drawing.Size(100, 27);
-            this.cobLongGlassNo.TabIndex = 3;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 100);
+            this.label2.Location = new System.Drawing.Point(2, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 19);
             this.label2.TabIndex = 5;
@@ -117,7 +97,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 65);
+            this.label4.Location = new System.Drawing.Point(2, 65);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 19);
             this.label4.TabIndex = 6;
@@ -174,23 +154,55 @@
             this.txtLength.Size = new System.Drawing.Size(100, 25);
             this.txtLength.TabIndex = 0;
             // 
-            // modelView
+            // panel1
             // 
-            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modelView.Location = new System.Drawing.Point(25, 48);
-            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.modelView.Name = "modelView";
-            this.modelView.Size = new System.Drawing.Size(750, 460);
-            this.modelView.TabIndex = 77;
+            this.panel1.Location = new System.Drawing.Point(23, 51);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(750, 460);
+            this.panel1.TabIndex = 8;
             // 
-            // FrmLLKSJ
+            // txtMidLength
+            // 
+            this.txtMidLength.BackColor = System.Drawing.Color.Azure;
+            this.txtMidLength.Location = new System.Drawing.Point(255, 62);
+            this.txtMidLength.Name = "txtMidLength";
+            this.txtMidLength.Size = new System.Drawing.Size(100, 25);
+            this.txtMidLength.TabIndex = 1;
+            this.txtMidLength.Text = "295";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(179, 65);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(74, 19);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "中间板长度";
+            // 
+            // txtLongGlassNo
+            // 
+            this.txtLongGlassNo.BackColor = System.Drawing.Color.Azure;
+            this.txtLongGlassNo.Location = new System.Drawing.Point(76, 62);
+            this.txtLongGlassNo.Name = "txtLongGlassNo";
+            this.txtLongGlassNo.Size = new System.Drawing.Size(100, 25);
+            this.txtLongGlassNo.TabIndex = 0;
+            // 
+            // txtShortGlassNo
+            // 
+            this.txtShortGlassNo.BackColor = System.Drawing.Color.Azure;
+            this.txtShortGlassNo.Location = new System.Drawing.Point(76, 99);
+            this.txtShortGlassNo.Name = "txtShortGlassNo";
+            this.txtShortGlassNo.Size = new System.Drawing.Size(100, 25);
+            this.txtShortGlassNo.TabIndex = 0;
+            // 
+            // FrmLlksj
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
-            this.Controls.Add(this.modelView);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEditData);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -209,14 +221,16 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtLength;
-        private System.Windows.Forms.ComboBox cobShortGlassNo;
-        private System.Windows.Forms.ComboBox cobLongGlassNo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtRightLength;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtLeftLength;
-        private ModelView modelView;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtMidLength;
+        private System.Windows.Forms.TextBox txtShortGlassNo;
+        private System.Windows.Forms.TextBox txtLongGlassNo;
     }
 }

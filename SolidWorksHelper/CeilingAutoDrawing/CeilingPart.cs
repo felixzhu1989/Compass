@@ -1065,5 +1065,16 @@ namespace SolidWorksHelper.CeilingAutoDrawing
 
         #endregion
 
+
+        #region 日本灯腔侧板，玻璃
+
+        public void FNCL0026(Component2 swComp, double leftLength)
+        {
+           ModelDoc2 swPart = swComp.GetModelDoc2(); //打开零件
+            swPart.ChangeDim("D2@Skizze1",leftLength);
+        }
+
+        #endregion
+
     }
 }
