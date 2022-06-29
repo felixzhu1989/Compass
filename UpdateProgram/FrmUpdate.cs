@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UpdateProgram
@@ -13,12 +15,10 @@ namespace UpdateProgram
             Init();
         }
         /// <summary>
-        /// 初始化
+        /// 更新文件
         /// </summary>
         private void Init()
         {
-            //设置相关按钮
-            btnFinish.Visible = false;
             //将同步显示进度的方法和委托变量关联
             objUpdateManager.ShowUpdateProgressDelegate = ShowUpdateProgress;
             //显示需要更新的文件列表
@@ -29,8 +29,42 @@ namespace UpdateProgram
             }
             //显示当前版本号和最近一次更新的事件
             lblVersion.Text = objUpdateManager.LastUpdateInfo.Version;
-            lblLastUpdateTime.Text = objUpdateManager.LastUpdateInfo.UpdateTime.ToString();
+            lblLastUpdateTime.Text = objUpdateManager.LastUpdateInfo.UpdateTime.ToString(CultureInfo.InvariantCulture);
         }
+
+        public async Task UpdateFiles()
+        {
+            try
+            {
+                BtnStart.Visible=false;
+                btnCancel.Visible = false;
+                lblUpdateStatus.Text = "正在下载更新文件，请稍候...";
+                //开始下载文件，同时异步显示下载的百分比
+                objUpdateManager.DownloadFiles();
+                objUpdateManager.CopyFiles();
+                BtnFinish.Left = btnCancel.Left;
+                BtnFinish.Visible=true;
+                lblUpdateStatus.Text = "更新完成！";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private async void BtnStart_Click(object sender, EventArgs e)
+        {
+            await UpdateFiles();
+        }
+
+        private void BtnFinish_Click(object sender, EventArgs e)
+        {
+            //启动主程序
+            System.Diagnostics.Process.Start("Compass.exe");
+            //关闭升级程序
+            Application.ExitThread();
+            Application.Exit();
+        }
+
         /// <summary>
         /// 根据委托定义一个同步显示下载百分比的方法
         /// </summary>
@@ -44,62 +78,7 @@ namespace UpdateProgram
             pbDownLoadFile.Maximum = 100;
             pbDownLoadFile.Value = finishedPercent;
         }
-
-        private void BtnClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-        /// <summary>
-        /// 完成
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnFinish_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (objUpdateManager.CopyFiles()) //调用复制文件方法，复制新文件到程序根目录
-                {
-                   //启动主程序
-                    System.Diagnostics.Process.Start("Compass.exe");
-                    //关闭升级程序
-                    Application.ExitThread();
-                    Application.Exit();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        /// <summary>
-        /// 下一步
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BtnNext_Click(object sender, EventArgs e)
-        {
-            //this.btnNext.Enabled = false;
-            try
-            {
-                lblUpdateStatus.Text = "正在下载更新文件，请稍候...";
-                lblTips.Text = "点击“取消”可以结束升级...";
-                //this.btnClose.Enabled = false;//升级过程中禁止关闭窗口
-                //开始下载文件，同时异步显示下载的百分比
-                objUpdateManager.DownloadFiles();
-
-                lblTips.Text = "全部文件已下载，点击“完成”结束升级...";
-                lblUpdateStatus.Visible = false;
-                btnNext.Visible = false;
-                btnCancel.Visible = false;
-                btnFinish.Location = btnCancel.Location;//将完成按钮移动至右边
-                btnFinish.Visible = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
         /// <summary>
         /// 取消
         /// </summary>
@@ -107,8 +86,7 @@ namespace UpdateProgram
         /// <param name="e"></param>
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("确认取消升级吗？", "取消询问", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) ==
-                DialogResult.OK)Close();
+            Close();
         }
     }
 }

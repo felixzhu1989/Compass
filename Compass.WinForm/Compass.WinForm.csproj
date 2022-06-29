@@ -58,6 +58,9 @@
   <PropertyGroup>
     <ApplicationIcon>compass_64px.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="eDrawings.Interop.EModelMarkupControl">
       <HintPath>C:\Program Files\SOLIDWORKS2021 Corp\eDrawings\eDrawings.Interop.EModelMarkupControl.dll</HintPath>

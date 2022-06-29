@@ -21,7 +21,12 @@ namespace Compass.Wpf.Beta.Views
     {
         public MainView()
         {
+
             InitializeComponent();
+            //处理最大化问题
+            MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            MaxWidth = SystemParameters.MaximizedPrimaryScreenWidth;
+            //标题栏
             ColorZone.MouseMove += (s, e) =>
             {
                 if (e.LeftButton == MouseButtonState.Pressed) DragMove();

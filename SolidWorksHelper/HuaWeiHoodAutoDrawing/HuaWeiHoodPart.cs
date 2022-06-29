@@ -2012,64 +2012,64 @@ namespace SolidWorksHelper
         public void FNHA0108(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, int suNo, double suDis, string marvel, int irNo, double irDis1, double irDis2, double irDis3, string bluetooth, string sidePanel)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D2@基体-法兰1", length);
-            swPart.ChangeDim("D1@阵列(线性)1", frontPanelKaKouNo);
-            swPart.ChangeDim("D3@阵列(线性)1", frontPanelKaKouDis);
-            swPart.ChangeDim("D3@Sketch3", midRoofSecondHoleDis);
-            swPart.ChangeDim("D5@草图7", 200d - midRoofTopHoleDis);
-            if (midRoofHoleNo == 1) swComp.Suppress("LPattern1");
-            else
-            {
-                swComp.UnSuppress("LPattern1");
-                swPart.ChangeDim("D1@LPattern1", midRoofHoleNo);
-            }
-            //新风脖颈
-            swPart.ChangeDim("D3@Sketch6", suDis * (suNo / 2d - 1) + suDis / 2d);
-            if (suNo == 1) swComp.Suppress("LPattern2");
+            swPart.ChangeDim("D2@Base-Flange1", length);
+            swPart.ChangeDim("D1@LPattern1", frontPanelKaKouNo);
+            swPart.ChangeDim("D3@LPattern1", frontPanelKaKouDis);
+            swPart.ChangeDim("D3@Sketch14", midRoofSecondHoleDis);
+            swPart.ChangeDim("D4@Sketch12", 200d - midRoofTopHoleDis);
+            if (midRoofHoleNo == 1) swComp.Suppress("LPattern2");
             else
             {
                 swComp.UnSuppress("LPattern2");
-                swPart.ChangeDim("D1@LPattern2", suNo);
-                swPart.ChangeDim("D3@LPattern2", suDis);
+                swPart.ChangeDim("D1@LPattern2", midRoofHoleNo);
             }
-            //MARVEL
-            if (marvel == "YES")
-            {
-                if (irNo > 0)
-                {
-                    swComp.UnSuppress("MA1");
-                    swPart.ChangeDim("D3@Sketch48", irDis1);
-                    swComp.UnSuppress("MACABLE1");
-                    if (suNo == 1) swPart.ChangeDim("D1@Sketch50", (length + 400d) / 2d);
-                    else swPart.ChangeDim("D1@Sketch50", length / 2d);
-                }
-                if (irNo > 1)
-                {
-                    swComp.UnSuppress("MA2");
-                    swPart.ChangeDim("D3@Sketch51", irDis2);
-                    swComp.UnSuppress("MACABLE2");
-                    swPart.ChangeDim("D1@Sketch50", length / 2d - 25d);
-                    swPart.ChangeDim("D1@Sketch52", 50d);
-                }
-                if (irNo > 2)
-                {
-                    swComp.UnSuppress("MA3");
-                    swPart.ChangeDim("D3@Sketch53", irDis3);
-                    swComp.UnSuppress("MACABLE3");
-                    swPart.ChangeDim("D1@Sketch50", 220d);
-                    swPart.ChangeDim("D1@Sketch52", (length - 440d) / 2d);
-                    swPart.ChangeDim("D1@Sketch54", (length - 440d) / 2d);
-                }
-            }
+            //新风脖颈
+            swPart.ChangeDim("D2@Sketch18", suDis * (suNo / 2d - 1) + suDis / 2d);
+            if (suNo == 1) swComp.Suppress("LPattern3");
             else
             {
-                swComp.Suppress("MA3");
-                swComp.Suppress("MA2");
-                swComp.Suppress("MA1");
-                swComp.Suppress("MACABLE3");
-                swComp.Suppress("MACABLE2");
-                swComp.Suppress("MACABLE1");
+                swComp.UnSuppress("LPattern3");
+                swPart.ChangeDim("D1@LPattern3", suNo);
+                swPart.ChangeDim("D3@LPattern3", suDis);
             }
+            //MARVEL
+            //if (marvel == "YES")
+            //{
+            //    if (irNo > 0)
+            //    {
+            //        swComp.UnSuppress("MA1");
+            //        swPart.ChangeDim("D3@Sketch48", irDis1);
+            //        swComp.UnSuppress("MACABLE1");
+            //        if (suNo == 1) swPart.ChangeDim("D1@Sketch50", (length + 400d) / 2d);
+            //        else swPart.ChangeDim("D1@Sketch50", length / 2d);
+            //    }
+            //    if (irNo > 1)
+            //    {
+            //        swComp.UnSuppress("MA2");
+            //        swPart.ChangeDim("D3@Sketch51", irDis2);
+            //        swComp.UnSuppress("MACABLE2");
+            //        swPart.ChangeDim("D1@Sketch50", length / 2d - 25d);
+            //        swPart.ChangeDim("D1@Sketch52", 50d);
+            //    }
+            //    if (irNo > 2)
+            //    {
+            //        swComp.UnSuppress("MA3");
+            //        swPart.ChangeDim("D3@Sketch53", irDis3);
+            //        swComp.UnSuppress("MACABLE3");
+            //        swPart.ChangeDim("D1@Sketch50", 220d);
+            //        swPart.ChangeDim("D1@Sketch52", (length - 440d) / 2d);
+            //        swPart.ChangeDim("D1@Sketch54", (length - 440d) / 2d);
+            //    }
+            //}
+            //else
+            //{
+            //    swComp.Suppress("MA3");
+            //    swComp.Suppress("MA2");
+            //    swComp.Suppress("MA1");
+            //    swComp.Suppress("MACABLE3");
+            //    swComp.Suppress("MACABLE2");
+            //    swComp.Suppress("MACABLE1");
+            //}
             //UV HOOD
             if (bluetooth == "YES") swComp.UnSuppress("SUCABLE-LEFT");
             else swComp.Suppress("SUCABLE-LEFT");

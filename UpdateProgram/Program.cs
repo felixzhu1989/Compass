@@ -13,12 +13,7 @@ namespace UpdateProgram
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            FrmUpdateStart frmUpdateStart=new FrmUpdateStart();
-            DialogResult result = frmUpdateStart.ShowDialog();
-            if(result==DialogResult.OK)
-                Application.Run(new FrmUpdate());
-            else
-                Application.Exit();
+            Application.Run(new FrmUpdate());
         }
     }
 }

@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compass.Wpf.Beta", "Compass
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compass.Update", "Compass.Update\Compass.Update.csproj", "{EDE6A1BA-1AF2-415C-859D-E56648A7CDE3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewDesigm", "NewDesigm", "{DC4DA295-06DA-4843-AAF0-C195D69F08C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -124,6 +126,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BE8A5086-3E7F-46BB-BC73-723280F2EE89} = {DC4DA295-06DA-4843-AAF0-C195D69F08C5}
+		{C835438C-7375-42DE-A014-BF0B6B8FD926} = {DC4DA295-06DA-4843-AAF0-C195D69F08C5}
+		{24969AF8-762D-438E-836A-C295609B1D93} = {DC4DA295-06DA-4843-AAF0-C195D69F08C5}
+		{EDE6A1BA-1AF2-415C-859D-E56648A7CDE3} = {DC4DA295-06DA-4843-AAF0-C195D69F08C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D5357EE-777C-4931-90F6-9FB71DF1F024}
