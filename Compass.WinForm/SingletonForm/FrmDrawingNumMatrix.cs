@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -375,11 +373,9 @@ namespace Compass
                 DrawingDesc = txtDrawingDesc.Text,
                 DrawingType = cobDrawingType.Text,
                 Mark = txtMark.Text,
-                ProdPriority=Convert.ToInt32(txtProdPriority.Text),
+                ProdPriority=txtProdPriority.Text.Length == 0 ? 3 : Convert.ToInt32(txtProdPriority.Text),
                 UserId = Program.ObjCurrentUser.UserId
             };
-
-
 
             if (btnCommit.Tag.ToString() == "0")//添加图号
             {
