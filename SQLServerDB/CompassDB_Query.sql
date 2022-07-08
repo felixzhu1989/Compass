@@ -749,6 +749,23 @@ inner join Projects on ProjectTracking.ProjectId=Projects.ProjectId
 where ShippingTime>='2022/01/01' and ShippingTime<='2022/12/31'
 
 
+-- 核实完工率问题
+-- 完工项目的数量
+select month(ShippingTime) as Mon, count(*) as OnTime from Projects 
+inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId 
+where ShippingTime like '2022%' and ProdFinishActual<>'0001-01-01' and ProdFinishActual<=ShippingTime 
+group by month(ShippingTime) order by Mon asc
+--当月项目总数
+select month(ShippingTime) as Mon, count(*) as Total from Projects 
+where ShippingTime like '2022%' group by month(ShippingTime) order by Mon asc
+
+
+
+
+select * from ProjectTracking where ProjectTrackingId=368
+
+
+
 
 
 

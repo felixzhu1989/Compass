@@ -140,8 +140,8 @@ namespace Compass
         #region 初始化完工率图
         private void IniDeliveryReliabilityChart()
         {
-            List<ChartData> qtyDatas = _objProjectMeasureService.GetOnTimeProjectsQtyRate(_currentYear);
-            List<ChartData> workloadDatas = _objProjectMeasureService.GetOnTimeProjectsWorkloadRate(_currentYear);
+            List<ChartData> qtyData = _objProjectMeasureService.GetOnTimeProjectsQtyRate(_currentYear);
+            List<ChartData> workloadData = _objProjectMeasureService.GetOnTimeProjectsWorkloadRate(_currentYear);
 
             chartDeliveryReliability.Series.Clear();
             chartDeliveryReliability.ChartAreas[0].AxisY.Maximum = double.NaN;
@@ -171,7 +171,7 @@ namespace Compass
                 }
             }
 
-            AddSeries("Qty", qtyDatas, Color.LightPink);
+            AddSeries("Qty", qtyData, Color.LightPink);
             //AddSeries("Workload", workloadDatas,Color.Orange);
 
             chartDeliveryReliability.ChartAreas[0].AxisX.Title = "月 | Month";

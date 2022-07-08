@@ -50,11 +50,18 @@ namespace DAL
         /// <returns></returns>
         public List<ChartData> GetOnTimeProjectsQtyRate(int year)
         {
-            List<ChartData> onTimeRate = GetOnTimeProjectsCount(year);
-            List<ChartData> totalDatas = GetTotalProjectsCount(year);
-            for (int i = 0; i < onTimeRate.Count; i++)
+            List<ChartData> onTimeRate=new List<ChartData>();
+            Dictionary<string, double> onTimeData = GetOnTimeProjectsCount(year);
+            Dictionary<string, double> totalData = GetTotalProjectsCount(year);
+            //循环总数
+            foreach (var item in totalData)
             {
-                onTimeRate[i].Value = Math.Round(onTimeRate[i].Value / totalDatas[i].Value * 100d, 1);
+                //判断及时完工的数据中是否存在月份的数据
+                if (onTimeData.ContainsKey(item.Key))
+                {
+                    onTimeRate.Add(new ChartData(){Text = item.Key ,Value =Math.Round(onTimeData[item.Key]/item.Value* 100d,1)});
+                    
+                }
             }
             return onTimeRate;
         }
@@ -64,21 +71,18 @@ namespace DAL
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        public List<ChartData> GetOnTimeProjectsCount(int year)
+        public Dictionary<string, double> GetOnTimeProjectsCount(int year)
         {
-            List<ChartData> list = new List<ChartData>();
+            //使用字典类型
+            Dictionary<string, double> list = new Dictionary<string, double>();
             StringBuilder sql = new StringBuilder("select month(ShippingTime) as Mon, count(*) as OnTime from Projects");
             sql.Append(" inner join ProjectTracking on ProjectTracking.ProjectId=Projects.ProjectId");
-            sql.Append($" where ShippingTime like '{year}%' and ProdFinishActual<=ShippingTime");
+            sql.Append($" where ShippingTime like '{year}%' and ProdFinishActual<>'0001-01-01' and ProdFinishActual<=ShippingTime");
             sql.Append(" group by month(ShippingTime) order by Mon asc");
             SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             while (objReader.Read())
             {
-                list.Add(new ChartData()
-                {
-                    Text = objReader["Mon"].ToString(),
-                    Value = Convert.ToDouble(objReader["OnTime"].ToString())
-                });
+                list[objReader["Mon"].ToString()] = Convert.ToDouble(objReader["OnTime"].ToString());
             }
             objReader.Close();
             return list;
@@ -88,20 +92,16 @@ namespace DAL
         /// </summary>
         /// <param name="year"></param>
         /// <returns></returns>
-        public List<ChartData> GetTotalProjectsCount(int year)
+        public Dictionary<string, double> GetTotalProjectsCount(int year)
         {
-            List<ChartData> list = new List<ChartData>();
+            Dictionary<string, double> list = new Dictionary<string, double>();
             StringBuilder sql = new StringBuilder("select month(ShippingTime) as Mon, count(*) as Total from Projects");
             sql.Append($" where ShippingTime like '{year}%'");
             sql.Append(" group by month(ShippingTime) order by Mon asc");
             SqlDataReader objReader = SQLHelper.GetReader(sql.ToString());
             while (objReader.Read())
             {
-                list.Add(new ChartData()
-                {
-                    Text = objReader["Mon"].ToString(),
-                    Value = Convert.ToDouble(objReader["Total"].ToString())
-                });
+                list[objReader["Mon"].ToString()] = Convert.ToDouble(objReader["Total"].ToString());
             }
             objReader.Close();
             return list;
