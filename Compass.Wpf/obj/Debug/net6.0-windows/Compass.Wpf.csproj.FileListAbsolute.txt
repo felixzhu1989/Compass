@@ -1,8 +1,5 @@
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Compass.Wpf.csproj.AssemblyReference.cache
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\DrawingPlanView.g.cs
-E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\IndexView.g.cs
-E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\MainView.g.cs
-E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\ProjectListView.g.cs
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\SettingsView.g.cs
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\App.g.cs
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Compass.Wpf_Content.g.cs
@@ -24,9 +21,6 @@ E:\Compass\Compass.Wpf\bin\Debug\net6.0-windows\Compass.Shared.dll
 E:\Compass\Compass.Wpf\bin\Debug\net6.0-windows\Compass.Shared.pdb
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\App.baml
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\DrawingPlanView.baml
-E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\IndexView.baml
-E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\MainView.baml
-E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\ProjectListView.baml
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\SettingsView.baml
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Compass.Wpf.g.resources
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Compass.Wpf.GeneratedMSBuildEditorConfig.editorconfig
@@ -40,3 +34,9 @@ E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Compass.Wpf.pdb
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Compass.Wpf.genruntimeconfig.cache
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\ref\Compass.Wpf.dll
 E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\MainWindow.g.cs
+E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\MainWindow.baml
+E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\ProductionPlanView.g.cs
+E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\ProductionPlanView.baml
+E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\ProjectTrackingView.g.cs
+E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\Views\ProjectTrackingView.baml

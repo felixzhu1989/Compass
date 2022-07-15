@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 E:\Compass\Compass.Wpf\App.xaml
-51274699844
+5-696796000
 1-1067898385
-21570223071
+21-709388364
 202-256360053
-Views\DrawingPlanView.xaml;Views\IndexView.xaml;Views\MainView.xaml;Views\ProjectListView.xaml;Views\SettingsView.xaml;
+Views\DrawingPlanView.xaml;Views\MainWindow.xaml;Views\ProductionPlanView.xaml;Views\ProjectTrackingView.xaml;Views\SettingsView.xaml;
 
-False
+True
 

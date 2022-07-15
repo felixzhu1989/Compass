@@ -23,7 +23,6 @@ public class LocalDb
         ProjectList=new List<ProjectDto>();
         ProjectList.Add(new ProjectDto()
         {
-            PoNumber="P000174099",
             QuoteNumber="SQFS220039",
             OdpNumber="FSO220118",
             ProdNumber="CMFP220071",
@@ -37,7 +36,7 @@ public class LocalDb
                 new ProjectStatusRecordDto() { ProjectStatus=ProjectStatus_e.ProdCompleted, StartDate=Convert.ToDateTime("2022-06-8") },
                 new ProjectStatusRecordDto() { ProjectStatus=ProjectStatus_e.ProjCompleted, StartDate=Convert.ToDateTime("2022-06-10") }
             },
-            ProjectType=ProjectType_e.烟罩,
+            ProductType=ProductType_e.烟罩,
             CustomerType=CustomerType_e.国内,
             RiskLevel=3,
             HoodQuantity=2,
@@ -115,7 +114,7 @@ public class LocalDb
                 new ProjectStatusRecordDto(){ProjectStatus=ProjectStatus_e.GettingOdp,StartDate=Convert.ToDateTime("2022-05-20")},
                 new ProjectStatusRecordDto(){ProjectStatus=ProjectStatus_e.Abnormal,StartDate=Convert.ToDateTime("2022-05-30")},
             },
-            ProjectType=ProjectType_e.天花,
+            ProductType=ProductType_e.天花,
             CustomerType=CustomerType_e.港澳台,
             RiskLevel=2,
             HoodQuantity=2,

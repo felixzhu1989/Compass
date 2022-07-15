@@ -21,13 +21,13 @@ namespace Compass.Wpf
         protected override Window CreateShell()
         {
             //创建启动页面
-            return Container.Resolve<MainView>();
+            return Container.Resolve<MainWindow>();
         }
         //依赖注入
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<IndexView, IndexViewModel>();
-            containerRegistry.RegisterForNavigation<ProjectListView, ProjectListViewModel>();
+            containerRegistry.RegisterForNavigation<ProjectTrackingView,ProjectTrackingViewModel>();
+            containerRegistry.RegisterForNavigation<ProductionPlanView, ProductionPlanViewModel>();
             containerRegistry.RegisterForNavigation<DrawingPlanView, DrawingPlanViewModel>();
             containerRegistry.RegisterForNavigation<SettingsView, SettingsViewModel>();
         }

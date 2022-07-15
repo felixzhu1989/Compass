@@ -1,15 +1,9 @@
 ﻿using Compass.Shared.Const;
 
 namespace Compass.Shared.Dtos;
-public class ProjectDto : BaseDto,IComparable<ProjectDto>
+public class ProjectDto : BaseDto //, IComparable<ProjectDto>
 {
-    #region 项目信息
-    private string poNumber;
-    public string PoNumber
-    {
-        get { return poNumber; }
-        set { poNumber = value; OnPropertyChanged(); }
-    }
+    #region 项目信息属性
     private string quoteNumber;
     public string QuoteNumber
     {
@@ -36,169 +30,131 @@ public class ProjectDto : BaseDto,IComparable<ProjectDto>
     }
     #endregion
 
-    #region 项目概况
-    private DateTime odpReleaseDate;
-    public DateTime OdpReleaseDate
+    #region 项目概况属性
+    private int goodsQuantity;
+    public int GoodsQuantity
     {
-        get { return odpReleaseDate; }
-        set { odpReleaseDate = value; OnPropertyChanged(); }
+        get { return goodsQuantity; }
+        set { goodsQuantity = value; OnPropertyChanged(); }
     }
-    private DateTime prodFinishDate;
-    public DateTime ProdFinishDate
-    {
-        get { return prodFinishDate; }
-        set { prodFinishDate = value; OnPropertyChanged(); }
-    }
-    private int hoodQuantity;
-    public int HoodQuantity
-    {
-        get { return hoodQuantity; }
-        set { hoodQuantity = value; OnPropertyChanged(); }
-    }
+
     private int itemLine;
     public int ItemLine
     {
         get { return itemLine; }
         set { itemLine = value; OnPropertyChanged(); }
     }
-    
+
     private float stdWorkload;
     public float StdWorkload
     {
         get { return stdWorkload; }
         set { stdWorkload = value; OnPropertyChanged(); }
-    }    
-    private string semiProductStatus;
-    public string SemiProductStatus
-    {
-        get { return semiProductStatus; }
-        set { semiProductStatus = value; OnPropertyChanged(); }
     }
-    private string purchaseStatus;
-    public string PurchaseStatus
+    
+    private string goodsSummary;
+    public string GoodsSummary
     {
-        get { return purchaseStatus; }
-        set { purchaseStatus = value; OnPropertyChanged(); }
+        get { return goodsSummary; }
+        set { goodsSummary = value; OnPropertyChanged(); }
     }
 
-    private string modelSummary;
-    public string ModelSummary
+    private string specialRequirements;
+    public string SpecialRequirements
     {
-        get { return modelSummary; }
-        set { modelSummary = value; OnPropertyChanged(); }
-    }
-
-
-
-    #endregion
-
-    #region 项目状态记录
-    private List<ProjectStatusRecordDto> projectStatusRecords;
-    public List<ProjectStatusRecordDto> ProjectStatusRecords
-    {
-        get { return projectStatusRecords; }
-        set { projectStatusRecords = value; OnPropertyChanged(); }
+        get { return specialRequirements; }
+        set { specialRequirements = value; OnPropertyChanged(); }
     }
     #endregion
 
-    #region 项目属性  
-    private ProjectType_e projectType;
-    public ProjectType_e ProjectType
-    {
-        get { return projectType; }
-        set { projectType = value; OnPropertyChanged(); }
-    }
-    private CustomerType_e customerType;
-    public CustomerType_e CustomerType
-    {
-        get { return customerType; }
-        set { customerType = value; OnPropertyChanged(); }
-    }
-    private int riskLevel;
-    public int RiskLevel
-    {
-        get { return riskLevel; }
-        set { riskLevel = value; OnPropertyChanged(); }
-    }
-    //电制，MARVEL，ANSUL预埋，ANSUL系统
-    private Electricity_e electricity;
-    public Electricity_e Electricity
-    {
-        get { return electricity; }
-        set { electricity = value; OnPropertyChanged(); }
-    }
-    private MarvelOption_e marvelOption;
-    public MarvelOption_e MarvelOption
-    {
-        get { return marvelOption; }
-        set { marvelOption = value; OnPropertyChanged(); }
-    }
-    private AnsulPrePipe_e ansulPrePipe;
-    public AnsulPrePipe_e AnsulPrePipe
-    {
-        get { return ansulPrePipe; }
-        set { ansulPrePipe = value; OnPropertyChanged(); }
-    }
-    private AnsulSystem_e ansulSystem;
-    public AnsulSystem_e AnsulSystem
-    {
-        get { return ansulSystem; }
-        set { ansulSystem = value; OnPropertyChanged(); }
-    }
-    #endregion
-
-    #region 特殊要求
-    private string projectSpecialRequire;
-    public string ProjectSpecialRequire
-    {
-        get { return projectSpecialRequire; }
-        set { projectSpecialRequire = value; OnPropertyChanged(); }
-    }
-    private List<ItemSpecialRequireDto> itemSpecialRequires;
-    public List<ItemSpecialRequireDto> ItemSpecialRequires
-    {
-        get { return itemSpecialRequires; }
-        set { itemSpecialRequires = value; OnPropertyChanged(); }
-    }
-    #endregion
-
-    #region 运行状态(关键路径)
-    private List<ActivityDto> criticalPath;
-    public List<ActivityDto> CriticalPath
-    {
-        get { return criticalPath; }
-        set { criticalPath = value; OnPropertyChanged(); }
-    }
-    #endregion
-
-    #region 财务信息
-    private decimal vtaValue;
-    public decimal VtaValue
-    {
-        get { return vtaValue; }
-        set { vtaValue = value; OnPropertyChanged(); }
-    }
-    private DateTime invoiceMonth;
-    public DateTime InvoiceMonth
-    {
-        get { return invoiceMonth; }
-        set { invoiceMonth = value; OnPropertyChanged(); }
-    }
+    //-------------------导航属性Customer(n:1)---------------------
     private CustomerDto customer;
     public CustomerDto Customer
     {
         get { return customer; }
         set { customer = value; OnPropertyChanged(); }
     }
-    /// <summary>
-    /// 按照完工日期排序
-    /// </summary>    
-    public int CompareTo(ProjectDto? other)
-    {       
-        if (prodFinishDate==other.prodFinishDate) return 0;
-        else if (prodFinishDate>other.prodFinishDate) return 1;
-        else return -1;
+    //-------------------导航属性User(n:1)---------------------
+    private UserDto user;
+    public UserDto User
+    {
+        get { return user; }
+        set { user = value; OnPropertyChanged(); }
     }
-    #endregion
+
+
+    //-------------------导航属性TechnicalOptions(1:1)---------------------
+    private TechnicalOptionsDto technicalOptions;
+    public TechnicalOptionsDto TechnicalOptions
+    {
+        get { return technicalOptions; }
+        set { technicalOptions = value; OnPropertyChanged(); }
+    }
+
+    //-------------------导航属性ProjectTracing(1:1)---------------------
+    private ProjectTrackingDto projectTracking;
+    public ProjectTrackingDto ProjectTracking
+    {
+        get { return projectTracking; }
+        set { projectTracking = value; OnPropertyChanged();}
+    }
+
+    //-------------------导航属性ProductionPlan(1:1)---------------------
+    private ProductionPlanDto productionPlan;
+    public ProductionPlanDto ProductionPlan
+    {
+        get { return productionPlan; }
+        set { productionPlan = value; OnPropertyChanged(); }
+    }
+
+    //-------------------导航属性FinancialInformation(1:1)---------------------
+    private FinancialInformationDto financialInformation;
+    public FinancialInformationDto FinancialInformation
+    {
+        get { return financialInformation; }
+        set { financialInformation = value; OnPropertyChanged(); }
+    }
+
+
+
+
+
+
+
+    //-------------------导航属性StatusRecord(1:n)---------------------
+    private List<StatusRecordDto> statusRecords;
+    public List<StatusRecordDto> StatusRecords
+    {
+        get { return statusRecords; }
+        set { statusRecords = value; OnPropertyChanged(); }
+    }
+
+    //-------------------导航属性AbnormalAlarm(1:n)---------------------
+    private List<AbnormalAlarmDto> abnormalAlarms;
+    public List<AbnormalAlarmDto> AbnormalAlarms
+    {
+        get { return abnormalAlarms; }
+        set { abnormalAlarms = value; OnPropertyChanged(); }
+    }
+
+
+
+
+
+
+
+
+
+
+    ///// <summary>
+    ///// 按照完工日期排序
+    ///// </summary>    
+    //public int CompareTo(ProjectDto? other)
+    //{
+    //    if (prodFinishDate==other.prodFinishDate) return 0;
+    //    else if (prodFinishDate>other.prodFinishDate) return 1;
+    //    else return -1;
+    //}
+
 
 }

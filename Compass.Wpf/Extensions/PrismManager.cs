@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace Compass.Wpf.Extensions;
 
 public class PrismManager
-{
+{ 
     public static readonly string MainViewRegionName = "MainViewRegion";
 }

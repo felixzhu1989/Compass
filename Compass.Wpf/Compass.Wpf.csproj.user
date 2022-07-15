@@ -10,10 +10,10 @@
     <Compile Update="Views\DrawingPlanView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\IndexView.xaml.cs">
+    <Compile Update="Views\ProductionPlanView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\ProjectListView.xaml.cs">
+    <Compile Update="Views\ProjectTrackingView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\SettingsView.xaml.cs">
@@ -24,13 +24,13 @@
     <Page Update="Views\DrawingPlanView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\IndexView.xaml">
+    <Page Update="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\MainView.xaml">
+    <Page Update="Views\ProductionPlanView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\ProjectListView.xaml">
+    <Page Update="Views\ProjectTrackingView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SettingsView.xaml">

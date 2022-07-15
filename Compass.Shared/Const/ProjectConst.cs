@@ -4,6 +4,23 @@ using System.Linq;
 namespace Compass.Shared.Const
 {
     /// <summary>
+    /// 用户角色
+    /// </summary>
+    public enum Role_e
+    {
+        Viewer,
+        Admin,
+        ProjectManager,
+        Designer,
+        Plan,
+        Production,
+        Quality,
+        Purchase,
+        Warehouse,
+        Logistic,
+        Sales,
+    }
+    /// <summary>
     /// 项目状态
     /// </summary>
     public enum ProjectStatus_e
@@ -20,14 +37,42 @@ namespace Compass.Shared.Const
         ProdCompleted,
         ProjCompleted,        
         Cancel,        
-        Suspend,
-        Abnormal
+        Suspend
     }
-    
+
+    public enum Abnormal_e
+    {
+        客服图纸问题,
+        客服图纸延误,
+        销售合同变更,
+        销售订单拆分,
+        销售要求暂停,
+        技术方案变更,
+        技术图纸问题,
+        技术图纸延误,
+        物料清单问题,
+        物料清单延误,
+        技术要求暂停,
+        物料质量问题,
+        物料库存缺料,
+        生产质量问题,
+        产线物料丢失,
+        生产设备问题,
+        生产产能问题,
+        FAT整改,
+        发货前货物损坏,
+        收款问题,
+        包装问题,
+        运输问题,
+    }
+
+
+
+
     /// <summary>
     /// 订单类型
     /// </summary>
-    public enum ProjectType_e
+    public enum ProductType_e
     {        
         烟罩,
         天花,
@@ -44,12 +89,12 @@ namespace Compass.Shared.Const
     /// </summary>
     public enum CustomerType_e
     {
-        国内,
         其他,
+        国内,
+        华为,
         港澳台,
         日本,
         韩国,
-        华为,
         中东,
     }
     /// <summary>
