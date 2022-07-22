@@ -70,18 +70,19 @@ namespace Compass
             #endregion
         }
         /// <summary>
-        /// 选择图片
+        /// 选择图片，20220722改成从剪切板粘贴图片
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnChooseImage_Click(object sender, EventArgs e)
         {
-            OpenFileDialog objFileDialog = new OpenFileDialog();
-            DialogResult result = objFileDialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                pbLabelImage.Image = Image.FromFile(objFileDialog.FileName);
-            }
+            //OpenFileDialog objFileDialog = new OpenFileDialog();
+            //DialogResult result = objFileDialog.ShowDialog();
+            //if (result == DialogResult.OK)
+            //{
+            //    pbLabelImage.Image = Image.FromFile(objFileDialog.FileName);
+            //}
+            if (Clipboard.ContainsImage()) pbLabelImage.Image = Clipboard.GetImage();
             btnDrawing.Focus();
         }
         /// <summary>

@@ -14,12 +14,12 @@ namespace Compass
         static void Main()
         {
             #region 只能运行一个程序
-            new Mutex(true, Application.ProductName, out bool canOpen);
-            if (!canOpen)
-            {
-                MessageBox.Show(null, "请不要同时运行多个本程序！", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;//退出程序
-            } 
+            //new Mutex(true, Application.ProductName, out bool canOpen);
+            //if (!canOpen)
+            //{
+            //    MessageBox.Show(null, "请不要同时运行多个本程序！", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;//退出程序
+            //}
             #endregion
 
             Application.EnableVisualStyles();
