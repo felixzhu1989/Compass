@@ -821,7 +821,7 @@ namespace SolidWorksHelper
 
                 //------------I型新风腔主体----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0001-1");
-                swEdit.FNHA0001(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3, item.SidePanel, "KV", "NO");
+                swEdit.FNHA0001(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.MARVEL, item.SidePanel, "KV", "NO");
 
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0003-1");

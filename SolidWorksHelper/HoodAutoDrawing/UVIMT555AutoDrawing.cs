@@ -1320,7 +1320,7 @@ namespace SolidWorksHelper
                 //------------M型烟罩方形新风腔主体/前面----------
                 //------------I型新风腔主体----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0001-1"));
-                swEdit.FNHA0001(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3, item.SidePanel, "UV", item.Bluetooth);
+                swEdit.FNHA0001(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.MARVEL, item.SidePanel, "UV", item.Bluetooth);
                 
 
                 //----------新风前面板----------
@@ -1389,7 +1389,7 @@ namespace SolidWorksHelper
 
                 //------------I型新风腔主体----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0085-1"));
-                swEdit.FNHA0001(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, "No", 0, 0, 0, 0, item.SidePanel, "KV", "No");
+                swEdit.FNHA0001(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, "No", item.SidePanel, "KV", "No");
 
                 //----------新风底部CJ孔板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0086-1"));

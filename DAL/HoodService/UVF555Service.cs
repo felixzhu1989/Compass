@@ -15,7 +15,7 @@ namespace DAL
         /// <returns></returns>
         public DataSet GetModelByDataSet(string projectId)
         {
-            string sql = "select UVF555Id,UVF555.ModuleTreeId,Item,Module,Length,Deepth,ExRightDis,ExNo,EXDis,ExLength,ExWidth,ExHeight,SuNo,SuDis,SidePanel,Outlet,LEDlogo,Bluetooth,BackToBack,WaterCollection,LEDSpotNo,LEDSpotDis,LightType,UVType,ANSUL,ANSide,ANDetector,ANYDis,ANDropNo,ANDropDis1,ANDropDis2,ANDropDis3,ANDropDis4,ANDropDis5,MARVEL,IRNo,IRDis1,IRDis2,IRDis3 from UVF555";
+            string sql = "select UVF555Id,UVF555.ModuleTreeId,Item,Module,Length,Deepth,ExRightDis,ExNo,EXDis,ExLength,ExWidth,ExHeight,SuNo,SuDis,SidePanel,Outlet,LEDlogo,Bluetooth,BackToBack,WaterCollection,LEDSpotNo,LEDSpotDis,LightType,UVType,ANSUL,ANSide,ANDetector,ANYDis,ANDropNo,ANDropDis1,ANDropDis2,ANDropDis3,ANDropDis4,ANDropDis5,MARVEL from UVF555";
             sql += " inner join ModuleTree on UVF555.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
             sql += $" where ProjectId={projectId}";
@@ -48,7 +48,7 @@ namespace DAL
         public IModel GetModelByWhereSql(string whereSql)
         {
             string sql =
-                "select UVF555Id,ModuleTreeId,Length,Deepth,ExRightDis,ExNo,EXDis,ExLength,ExWidth,ExHeight,SuNo,SuDis,SidePanel,Outlet,LEDlogo,Bluetooth,BackToBack,WaterCollection,LEDSpotNo,LEDSpotDis,LightType,UVType,ANSUL,ANSide,ANDetector,ANYDis,ANDropNo,ANDropDis1,ANDropDis2,ANDropDis3,ANDropDis4,ANDropDis5,MARVEL,IRNo,IRDis1,IRDis2,IRDis3 from UVF555"+ whereSql;
+                "select UVF555Id,ModuleTreeId,Length,Deepth,ExRightDis,ExNo,EXDis,ExLength,ExWidth,ExHeight,SuNo,SuDis,SidePanel,Outlet,LEDlogo,Bluetooth,BackToBack,WaterCollection,LEDSpotNo,LEDSpotDis,LightType,UVType,ANSUL,ANSide,ANDetector,ANYDis,ANDropNo,ANDropDis1,ANDropDis2,ANDropDis3,ANDropDis4,ANDropDis5,MARVEL from UVF555"+ whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             UVF555 objModel = null;
             if (objReader.Read())
@@ -95,10 +95,7 @@ namespace DAL
 
                     MARVEL = objReader["MARVEL"].ToString().Length == 0 ? "" : objReader["MARVEL"].ToString(),
 
-                    IRNo = objReader["IRNo"].ToString().Length == 0 ? 0 : Convert.ToInt32(objReader["IRNo"]),
-                    IRDis1 = objReader["IRDis1"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["IRDis1"]),
-                    IRDis2 = objReader["IRDis2"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["IRDis2"]),
-                    IRDis3 = objReader["IRDis3"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["IRDis3"])
+                   
                 };
             }
             objReader.Close();
@@ -117,7 +114,7 @@ namespace DAL
             sqlBuilder.Append("Update UVF555 set Length=@Length,Deepth=@Deepth,ExRightDis=@ExRightDis,ExNo=@ExNo,ExDis=@ExDis,ExLength=@ExLength,ExWidth=@ExWidth,ExHeight=@ExHeight,SuNo=@SuNo,SuDis=@SuDis,SidePanel=@SidePanel,");
             sqlBuilder.Append("Outlet=@Outlet,LEDlogo=@LEDlogo,Bluetooth=@Bluetooth,BackToBack=@BackToBack,WaterCollection=@WaterCollection,LEDSpotNo=@LEDSpotNo,LEDSpotDis=@LEDSpotDis,LightType=@LightType,UVType=@UVType,");
             sqlBuilder.Append("ANSUL=@ANSUL,ANSide=@ANSide,ANDetector=@ANDetector,ANYDis=@ANYDis,ANDropNo=@ANDropNo,ANDropDis1=@ANDropDis1,ANDropDis2=@ANDropDis2,ANDropDis3=@ANDropDis3,ANDropDis4=@ANDropDis4,ANDropDis5=@ANDropDis5,");
-            sqlBuilder.Append("MARVEL=@MARVEL,IRNo=@IRNo,IRDis1=@IRDis1,IRDis2=@IRDis2,IRDis3=@IRDis3 where UVF555Id=@UVF555Id");
+            sqlBuilder.Append("MARVEL=@MARVEL where UVF555Id=@UVF555Id");
             //定义参数数组
             SqlParameter[] param = new SqlParameter[]
             {
@@ -152,10 +149,6 @@ namespace DAL
                 new SqlParameter("@ANDropDis4",objModel.ANDropDis4),
                 new SqlParameter("@ANDropDis5",objModel.ANDropDis5),
                 new SqlParameter("@MARVEL",objModel.MARVEL),
-                new SqlParameter("@IRNo",objModel.IRNo),
-                new SqlParameter("@IRDis1",objModel.IRDis1),
-                new SqlParameter("@IRDis2",objModel.IRDis2),
-                new SqlParameter("@IRDis3",objModel.IRDis3),
                 new SqlParameter("@UVF555Id",objModel.UVF555Id)
             };
             try

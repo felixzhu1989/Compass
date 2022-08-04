@@ -535,7 +535,7 @@ namespace SolidWorksHelper
 
                 #region MiddleRoof灯板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0001-1");
-                swEdit.FNHM0001(swComp, "KV", item.Length, item.Deepth, 555d, 555d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, "NO", "NO", item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
+                swEdit.FNHM0001(swComp, "KV", item.Length, item.Deepth, 555d, 555d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, "NO", "NO", item.MARVEL);
                 #endregion
 
                 #region 吊装槽钢
@@ -664,7 +664,7 @@ namespace SolidWorksHelper
 
                 #region F型新风腔主体
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0004-1");
-                swEdit.FNHA0004(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.SuDis, item.SuNo, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3, item.SidePanel, "KV", "NO");
+                swEdit.FNHA0004(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.SuDis, item.SuNo, item.MARVEL,  item.SidePanel, "KV", "NO");
                 #endregion
 
                 #region 新风前面板
@@ -687,33 +687,11 @@ namespace SolidWorksHelper
                 //MARVEL
                 if (item.MARVEL == "YES")
                 {
-                    if (item.IRNo > 0)
-                    {
-                        swFeat = swComp.FeatureByName("MA1");
-                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                        swPart.Parameter("D1@Sketch2").SystemValue = item.IRDis1 / 1000d;
-                    }
-                    if (item.IRNo > 1)
-                    {
-                        swFeat = swComp.FeatureByName("MA2");
-                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                        swPart.Parameter("D1@Sketch3").SystemValue = item.IRDis2 / 1000d;
-                    }
-                    if (item.IRNo > 2)
-                    {
-                        swFeat = swComp.FeatureByName("MA3");
-                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                        swPart.Parameter("D1@Sketch4").SystemValue = item.IRDis3 / 1000d;
-                    }
+                    
                 }
                 else
                 {
-                    swFeat = swComp.FeatureByName("MA1");
-                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                    swFeat = swComp.FeatureByName("MA2");
-                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                    swFeat = swComp.FeatureByName("MA3");
-                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                   
                 }
                 #endregion
 

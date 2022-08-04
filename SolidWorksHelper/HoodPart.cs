@@ -549,7 +549,7 @@ namespace SolidWorksHelper
 
 
 
-        internal void FNHM0001(Component2 swComp, string exType, double length, double deepth, double exHeight, double suHeight, double exRightDis, double midRoofTopHoleDis, double midRoofSecondHoleDis, int midRoofHoleNo, string lightType, double lightYDis, int ledSpotNo, double ledSpotDis, string ansul, int anDropNo, double anYDis, double anDropDis1, double anDropDis2, double anDropDis3, double anDropDis4, double anDropDis5, string anDetectorEnd, int anDetectorNo, double anDetectorDis1, double anDetectorDis2, double anDetectorDis3, double anDetectorDis4, double anDetectorDis5, string bluetooth, string uvType, string marvel, int irNo, double irDis1, double irDis2, double irDis3)
+        internal void FNHM0001(Component2 swComp, string exType, double length, double deepth, double exHeight, double suHeight, double exRightDis, double midRoofTopHoleDis, double midRoofSecondHoleDis, int midRoofHoleNo, string lightType, double lightYDis, int ledSpotNo, double ledSpotDis, string ansul, int anDropNo, double anYDis, double anDropDis1, double anDropDis2, double anDropDis3, double anDropDis4, double anDropDis5, string anDetectorEnd, int anDetectorNo, double anDetectorDis1, double anDetectorDis2, double anDetectorDis3, double anDetectorDis4, double anDetectorDis5, string bluetooth, string uvType, string marvel)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
 
@@ -775,21 +775,7 @@ namespace SolidWorksHelper
             swComp.Suppress("MAINS3");
             if (marvel == "YES" && suHeight != 555d)
             {
-                if (irNo > 0)
-                {
-                    swComp.UnSuppress("MAINS1");
-                    swPart.ChangeDim("D1@Sketch37", irDis1);
-                }
-                if (irNo > 1)
-                {
-                    swComp.UnSuppress("MAINS2");
-                    swPart.ChangeDim("D1@Sketch38", irDis2);
-                }
-                if (irNo > 2)
-                {
-                    swComp.FeatureByName("MAINS3");
-                    swPart.ChangeDim("D1@Sketch39", irDis3);
-                }
+                
             }
             #endregion
 
@@ -1167,7 +1153,7 @@ namespace SolidWorksHelper
 
         #region 新风腔
         //I555型新风腔体
-        internal void FNHA0001(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int midRoofHoleNo, double midRoofSecondHoleDis, double midRoofTopHoleDis, string marvel, int irNo, double irDis1, double irDis2, double irDis3, string UVType, string bluetooth, string sidePanel)
+        internal void FNHA0001(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int midRoofHoleNo, double midRoofSecondHoleDis, double midRoofTopHoleDis, string marvel, string UVType, string bluetooth, string sidePanel)
         {
             #region 基本尺寸
             ModelDoc2 swPart = swComp.GetModelDoc2();
@@ -1193,27 +1179,7 @@ namespace SolidWorksHelper
             swComp.Suppress("MACABLE3");
             if (marvel == "YES")
             {
-                if (irNo > 0)
-                {
-                    swComp.UnSuppress("MA1");
-                    swPart.ChangeDim("D3@Sketch14", irDis1);
-                    swComp.UnSuppress("MACABLE1");
-                    swPart.ChangeDim("D1@Sketch17", irDis1);
-                }
-                if (irNo > 1)
-                {
-                    swComp.UnSuppress("MA2");
-                    swPart.ChangeDim("D3@Sketch15", irDis2);
-                    swComp.UnSuppress("MACABLE2");
-                    swPart.ChangeDim("D1@Sketch18", irDis2);
-                }
-                if (irNo > 2)
-                {
-                    swComp.UnSuppress("MA3");
-                    swPart.ChangeDim("D3@Sketch16", irDis3);
-                    swComp.UnSuppress("MACABLE3");
-                    swPart.ChangeDim("D1@Sketch19", irDis3);
-                }
+               
             }
             #endregion
 
@@ -1272,7 +1238,7 @@ namespace SolidWorksHelper
         }
 
         //F555新风腔体
-        public void FNHA0004(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, double suDis, int suNo, string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
+        public void FNHA0004(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, double suDis, int suNo, string MARVEL, string sidePanel, string exType, string bluetooth)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D2@基体-法兰1", length);
@@ -1298,40 +1264,11 @@ namespace SolidWorksHelper
             //MARVEL
             if (MARVEL == "YES")
             {
-                if (IRNo > 0)
-                {
-                    swComp.UnSuppress("MA1");
-                    swPart.ChangeDim("D3@Sketch16", IRDis1);
-                    swComp.UnSuppress("MACABLE1");
-                    if (suNo == 1) swPart.ChangeDim("D1@Sketch19", (length + 400d) / 2d);
-                    else swPart.ChangeDim("D1@Sketch19", length / 2d);
-                }
-                if (IRNo > 1)
-                {
-                    swComp.UnSuppress("MA2");
-                    swPart.ChangeDim("D3@Sketch17", IRDis2);
-                    swComp.UnSuppress("MACABLE2");
-                    swPart.ChangeDim("D1@Sketch19", length / 2d - 25d);
-                    swPart.ChangeDim("D1@Sketch20", 50d);
-                }
-                if (IRNo > 2)
-                {
-                    swComp.UnSuppress("MA3");
-                    swPart.ChangeDim("D3@Sketch18", IRDis3);
-                    swComp.UnSuppress("MACABLE3");
-                    swPart.ChangeDim("D1@Sketch19", 220d);
-                    swPart.ChangeDim("D1@Sketch20", (length - 440d) / 2d);
-                    swPart.ChangeDim("D1@Sketch21", (length - 440d) / 2d);
-                }
+               
             }
             else
             {
-                swComp.Suppress("MA1");
-                swComp.Suppress("MA2");
-                swComp.Suppress("MA3");
-                swComp.Suppress("MACABLE1");
-                swComp.Suppress("MACABLE2");
-                swComp.Suppress("MACABLE3");
+               
             }
             if (exType == "UV") //"UV"/"KV"
             {
@@ -1377,34 +1314,18 @@ namespace SolidWorksHelper
         }
 
         //F555镀锌隔板
-        public void FNHA0006(Component2 swComp, double length, string marvel, int irNo, double irDis1, double irDis2, double irDis3)
+        public void FNHA0006(Component2 swComp, double length, string marvel)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@草图1", length - 6d);
             #region MARVEL
             if (marvel == "YES")
             {
-                if (irNo > 0)
-                {
-                    swComp.UnSuppress("MA1");
-                    swPart.ChangeDim("D1@Sketch2", irDis1);
-                }
-                if (irNo > 1)
-                {
-                    swComp.UnSuppress("MA2");
-                    swPart.ChangeDim("D1@Sketch3", irDis2);
-                }
-                if (irNo > 2)
-                {
-                    swComp.UnSuppress("MA3");
-                    swPart.ChangeDim("D1@Sketch4", irDis3);
-                }
+               
             }
             else
             {
-                swComp.Suppress("MA1");
-                swComp.Suppress("MA2");
-                swComp.Suppress("MA3");
+               
             }
             #endregion
         }

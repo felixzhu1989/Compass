@@ -334,7 +334,7 @@ namespace SolidWorksHelper
                 }
                 //----------MiddleRoof灯板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0001-1");
-                swEdit.FNHM0001(swComp, "CMOD", item.Length, item.Deepth+245d, 555d, 400d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, item.ANDetectorEnd, item.ANDetectorNo, item.ANDetectorDis1, item.ANDetectorDis2, item.ANDetectorDis3, item.ANDetectorDis4, item.ANDetectorDis5, "NO", "NO", item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
+                swEdit.FNHM0001(swComp, "CMOD", item.Length, item.Deepth+245d, 555d, 400d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, item.ANDetectorEnd, item.ANDetectorNo, item.ANDetectorDis1, item.ANDetectorDis2, item.ANDetectorDis3, item.ANDetectorDis4, item.ANDetectorDis5, "NO", "NO", item.MARVEL);
 
                 //----------吊装槽钢----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2900100001-1");
@@ -408,7 +408,7 @@ namespace SolidWorksHelper
 
                 //------------I型新风腔主体----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0001-2");
-                swEdit.FNHA0001(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3, item.SidePanel, "KV", "NO");
+                swEdit.FNHA0001(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.MARVEL, item.SidePanel, "KV", "NO");
 
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0003-1");

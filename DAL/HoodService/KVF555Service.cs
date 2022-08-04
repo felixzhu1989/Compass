@@ -15,7 +15,7 @@ namespace DAL
         /// <returns></returns>
         public DataSet GetModelByDataSet(string projectId)
         {
-            string sql = "select KVF555Id,KVF555.ModuleTreeId,Item,Module,Length,Deepth,ExRightDis,ExNo,EXDis,ExLength,ExWidth,ExHeight,SuNo,SuDis,SidePanel,Outlet,LEDlogo,BackToBack,WaterCollection,LEDSpotNo,LEDSpotDis,LightType,ANSUL,ANSide,ANDetector,ANYDis,ANDropNo,ANDropDis1,ANDropDis2,ANDropDis3,ANDropDis4,ANDropDis5,MARVEL,IRNo,IRDis1,IRDis2,IRDis3 from KVF555";
+            string sql = "select KVF555Id,KVF555.ModuleTreeId,Item,Module,Length,Deepth,ExRightDis,ExNo,EXDis,ExLength,ExWidth,ExHeight,SuNo,SuDis,SidePanel,Outlet,LEDlogo,BackToBack,WaterCollection,LEDSpotNo,LEDSpotDis,LightType,ANSUL,ANSide,ANDetector,ANYDis,ANDropNo,ANDropDis1,ANDropDis2,ANDropDis3,ANDropDis4,ANDropDis5,MARVEL from KVF555";
             sql += " inner join ModuleTree on KVF555.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
             sql += $" where ProjectId={projectId}";
@@ -51,7 +51,7 @@ namespace DAL
                 "select KVF555Id,ModuleTreeId,Length,Deepth,ExRightDis,ExNo,EXDis,ExLength,ExWidth,ExHeight,SuNo,SuDis,SidePanel," +
                 "Outlet,LEDlogo,BackToBack,WaterCollection,LEDSpotNo,LEDSpotDis,LightType," +
                 "ANSUL,ANSide,ANDetector,ANYDis,ANDropNo,ANDropDis1,ANDropDis2,ANDropDis3,ANDropDis4,ANDropDis5," +
-                "MARVEL,IRNo,IRDis1,IRDis2,IRDis3 from KVF555";
+                "MARVEL from KVF555";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             KVF555 objModel = null;
@@ -95,13 +95,8 @@ namespace DAL
                     ANDropDis4 = objReader["ANDropDis4"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["ANDropDis4"]),
                     ANDropDis5 = objReader["ANDropDis5"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["ANDropDis5"]),
 
-                    MARVEL = objReader["MARVEL"].ToString().Length == 0 ? "" : objReader["MARVEL"].ToString(),
-
-                    IRNo = objReader["IRNo"].ToString().Length == 0 ? 0 : Convert.ToInt32(objReader["IRNo"]),
-                    IRDis1 = objReader["IRDis1"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["IRDis1"]),
-                    IRDis2 = objReader["IRDis2"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["IRDis2"]),
-                    IRDis3 = objReader["IRDis3"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["IRDis3"])
-                };
+                    MARVEL = objReader["MARVEL"].ToString().Length == 0 ? "" : objReader["MARVEL"].ToString()
+                    };
             }
             objReader.Close();
             return objModel;
@@ -119,7 +114,7 @@ namespace DAL
             sqlBuilder.Append("Update KVF555 set Length=@Length,Deepth=@Deepth,ExRightDis=@ExRightDis,ExNo=@ExNo,ExDis=@ExDis,ExLength=@ExLength,ExWidth=@ExWidth,ExHeight=@ExHeight,SuNo=@SuNo,SuDis=@SuDis,SidePanel=@SidePanel,");
             sqlBuilder.Append("Outlet=@Outlet,LEDlogo=@LEDlogo,BackToBack=@BackToBack,WaterCollection=@WaterCollection,LEDSpotNo=@LEDSpotNo,LEDSpotDis=@LEDSpotDis,LightType=@LightType,");
             sqlBuilder.Append("ANSUL=@ANSUL,ANSide=@ANSide,ANDetector=@ANDetector,ANYDis=@ANYDis,ANDropNo=@ANDropNo,ANDropDis1=@ANDropDis1,ANDropDis2=@ANDropDis2,ANDropDis3=@ANDropDis3,ANDropDis4=@ANDropDis4,ANDropDis5=@ANDropDis5,");
-            sqlBuilder.Append("MARVEL=@MARVEL,IRNo=@IRNo,IRDis1=@IRDis1,IRDis2=@IRDis2,IRDis3=@IRDis3 where KVF555Id=@KVF555Id");
+            sqlBuilder.Append("MARVEL=@MARVEL where KVF555Id=@KVF555Id");
             //定义参数数组
             SqlParameter[] param = new SqlParameter[]
             {
@@ -152,10 +147,6 @@ namespace DAL
                 new SqlParameter("@ANDropDis4",objModel.ANDropDis4),
                 new SqlParameter("@ANDropDis5",objModel.ANDropDis5),
                 new SqlParameter("@MARVEL",objModel.MARVEL),
-                new SqlParameter("@IRNo",objModel.IRNo),
-                new SqlParameter("@IRDis1",objModel.IRDis1),
-                new SqlParameter("@IRDis2",objModel.IRDis2),
-                new SqlParameter("@IRDis3",objModel.IRDis3),
                 new SqlParameter("@KVF555Id",objModel.KVF555Id)
             };
             try

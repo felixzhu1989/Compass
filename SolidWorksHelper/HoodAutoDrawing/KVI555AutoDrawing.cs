@@ -519,7 +519,7 @@ namespace SolidWorksHelper
 
                 #region MiddleRoof灯板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0001-1");
-                swEdit.FNHM0001(swComp, "KV", item.Length, item.Deepth, 555d, 555d,item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, "NO", "NO", item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
+                swEdit.FNHM0001(swComp, "KV", item.Length, item.Deepth, 555d, 555d,item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, "NO", "NO", item.MARVEL);
 
                 #endregion
 
@@ -649,7 +649,7 @@ namespace SolidWorksHelper
 
                 #region I型新风腔主体
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0001-2");
-                swEdit.FNHA0001(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3, item.SidePanel, "KV", "NO");
+                swEdit.FNHA0001(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.MARVEL, item.SidePanel, "KV", "NO");
                 #endregion
 
                 #region 新风前面板

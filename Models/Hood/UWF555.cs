@@ -28,10 +28,6 @@ namespace Models
         public double ANDropDis5 { get; set; }
         //MARVEL
         public string MARVEL { get; set; }
-        public int IRNo { get; set; }
-        public double IRDis1 { get; set; }
-        public double IRDis2 { get; set; }
-        public double IRDis3 { get; set; }
         //UV
         public string UVType { get; set; }
         public string Bluetooth { get; set; }

@@ -382,7 +382,7 @@ namespace SolidWorksHelper
         #endregion
 
         #region 新风腔零件
-        public void FNHA0001(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo,  string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
+        public void FNHA0001(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo,  string MARVEL,  string sidePanel, string exType, string bluetooth)
         {
             swPart = swComp.GetModelDoc2();
             swPart.Parameter("D2@基体-法兰1").SystemValue = length / 1000d;
@@ -400,33 +400,7 @@ namespace SolidWorksHelper
             //MARVEL
             if (MARVEL == "YES")
             {
-                if (IRNo > 0)
-                {
-                    swFeat = swComp.FeatureByName("MA1");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D3@Sketch14").SystemValue = IRDis1 / 1000d;
-                    swFeat = swComp.FeatureByName("MACABLE1");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@Sketch17").SystemValue = IRDis1 / 1000d;
-                }
-                if (IRNo > 1)
-                {
-                    swFeat = swComp.FeatureByName("MA2");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D3@Sketch15").SystemValue = IRDis2 / 1000d;
-                    swFeat = swComp.FeatureByName("MACABLE2");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@Sketch18").SystemValue = IRDis2 / 1000d;
-                }
-                if (IRNo > 2)
-                {
-                    swFeat = swComp.FeatureByName("MA3");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D3@Sketch16").SystemValue = IRDis3 / 1000d;
-                    swFeat = swComp.FeatureByName("MACABLE3");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@Sketch19").SystemValue = IRDis3 / 1000d;
-                }
+               
             }
             else
             {
@@ -464,7 +438,7 @@ namespace SolidWorksHelper
             }
 
         }
-        public void FNHA0004(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, double suDis, int suNo, string MARVEL, int IRNo, double IRDis1, double IRDis2, double IRDis3, string sidePanel, string exType, string bluetooth)
+        public void FNHA0004(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, double suDis, int suNo, string MARVEL, string sidePanel, string exType, string bluetooth)
         {
             swPart = swComp.GetModelDoc2();
             swPart.Parameter("D2@基体-法兰1").SystemValue = length / 1000d;
@@ -492,52 +466,11 @@ namespace SolidWorksHelper
             //MARVEL
             if (MARVEL == "YES")
             {
-                if (IRNo > 0)
-                {
-                    swFeat = swComp.FeatureByName("MA1");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D3@Sketch16").SystemValue = IRDis1 / 1000d;
-                    swFeat = swComp.FeatureByName("MACABLE1");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    if (suNo == 1) swPart.Parameter("D1@Sketch19").SystemValue = (length + 400) / 2000d;
-                    else swPart.Parameter("D1@Sketch19").SystemValue = length / 2000d;
-                }
-                if (IRNo > 1)
-                {
-                    swFeat = swComp.FeatureByName("MA2");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D3@Sketch17").SystemValue = IRDis2 / 1000d;
-                    swFeat = swComp.FeatureByName("MACABLE2");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@Sketch19").SystemValue = (length / 2 - 25d) / 1000d;
-                    swPart.Parameter("D1@Sketch20").SystemValue = 50d / 1000d;
-                }
-                if (IRNo > 2)
-                {
-                    swFeat = swComp.FeatureByName("MA3");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D3@Sketch18").SystemValue = IRDis3 / 1000d;
-                    swFeat = swComp.FeatureByName("MACABLE3");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@Sketch19").SystemValue = 220d / 1000d;
-                    swPart.Parameter("D1@Sketch20").SystemValue = (length - 440d) / 2000d;
-                    swPart.Parameter("D1@Sketch21").SystemValue = (length - 440d) / 2000d;
-                }
+                
             }
             else
             {
-                swFeat = swComp.FeatureByName("MA1");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("MA2");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("MA3");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("MACABLE1");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("MACABLE2");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("MACABLE3");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                
             }
             if (exType == "UV") //"UV"/"KV"
             {
@@ -1231,7 +1164,7 @@ namespace SolidWorksHelper
 
         #region MidRoof
 
-        public void FNHM0001(Component2 swComp, string exType, double length, double deepth, double exHeight, double suHeight, double exRightDis, double midRoofTopHoleDis, double midRoofSecondHoleDis, int midRoofHoleNo, string lightType, double lightYDis, int ledSpotNo, double ledSpotDis, string ansul, int anDropNo, double anYDis, double anDropDis1, double anDropDis2, double anDropDis3, double anDropDis4, double anDropDis5, string anDetectorEnd, int anDetectorNo, double anDetectorDis1, double anDetectorDis2, double anDetectorDis3, double anDetectorDis4, double anDetectorDis5, string bluetooth, string uvType, string marvel, int irNo, double irDis1, double irDis2, double irDis3)
+        public void FNHM0001(Component2 swComp, string exType, double length, double deepth, double exHeight, double suHeight, double exRightDis, double midRoofTopHoleDis, double midRoofSecondHoleDis, int midRoofHoleNo, string lightType, double lightYDis, int ledSpotNo, double ledSpotDis, string ansul, int anDropNo, double anYDis, double anDropDis1, double anDropDis2, double anDropDis3, double anDropDis4, double anDropDis5, string anDetectorEnd, int anDetectorNo, double anDetectorDis1, double anDetectorDis2, double anDetectorDis3, double anDetectorDis4, double anDetectorDis5, string bluetooth, string uvType, string marvel)
         {
             swPart = swComp.GetModelDoc2();
             swPart.Parameter("D1@草图1").SystemValue = (length - 4d) / 1000d;
@@ -1538,33 +1471,11 @@ namespace SolidWorksHelper
             //400新风腔IR安装孔
             if (marvel == "YES" && suHeight != 555d)
             {
-                if (irNo > 0)
-                {
-                    swFeat = swComp.FeatureByName("MAINS1");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@Sketch37").SystemValue = irDis1 / 1000d;
-                }
-                if (irNo > 1)
-                {
-                    swFeat = swComp.FeatureByName("MAINS2");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@Sketch38").SystemValue = irDis2 / 1000d;
-                }
-                if (irNo > 2)
-                {
-                    swFeat = swComp.FeatureByName("MAINS3");
-                    swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                    swPart.Parameter("D1@Sketch39").SystemValue = irDis3 / 1000d;
-                }
+                
             }
             else
             {
-                swFeat = swComp.FeatureByName("MAINS1");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("MAINS2");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                swFeat = swComp.FeatureByName("MAINS3");
-                swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                
             }
             //CMOD NTC Sensor
             swFeat = swComp.FeatureByName("NTC Sensor");

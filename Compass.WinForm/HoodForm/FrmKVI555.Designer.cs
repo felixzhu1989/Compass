@@ -36,15 +36,6 @@
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
             this.txtDeepth = new System.Windows.Forms.TextBox();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.grbMARVEL = new System.Windows.Forms.GroupBox();
-            this.cobIRNo = new System.Windows.Forms.ComboBox();
-            this.txtIRDis3 = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.txtIRDis2 = new System.Windows.Forms.TextBox();
-            this.txtIRDis1 = new System.Windows.Forms.TextBox();
-            this.lblIRDis1 = new System.Windows.Forms.Label();
-            this.lblIRDis3 = new System.Windows.Forms.Label();
-            this.lblIRDis2 = new System.Windows.Forms.Label();
             this.grbANSUL = new System.Windows.Forms.GroupBox();
             this.txtDropDis5 = new System.Windows.Forms.TextBox();
             this.txtDropDis4 = new System.Windows.Forms.TextBox();
@@ -98,9 +89,8 @@
             this.cobMARVEL = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
             this.btnEditData = new System.Windows.Forms.Button();
-            this.modelView = new Compass.ModelView();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
-            this.grbMARVEL.SuspendLayout();
             this.grbANSUL.SuspendLayout();
             this.grbLEDSpot.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -179,98 +169,6 @@
             this.txtLength.Size = new System.Drawing.Size(100, 25);
             this.txtLength.TabIndex = 0;
             this.txtLength.TextChanged += new System.EventHandler(this.txtLength_TextChanged);
-            // 
-            // grbMARVEL
-            // 
-            this.grbMARVEL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grbMARVEL.Controls.Add(this.cobIRNo);
-            this.grbMARVEL.Controls.Add(this.txtIRDis3);
-            this.grbMARVEL.Controls.Add(this.label30);
-            this.grbMARVEL.Controls.Add(this.txtIRDis2);
-            this.grbMARVEL.Controls.Add(this.txtIRDis1);
-            this.grbMARVEL.Controls.Add(this.lblIRDis1);
-            this.grbMARVEL.Controls.Add(this.lblIRDis3);
-            this.grbMARVEL.Controls.Add(this.lblIRDis2);
-            this.grbMARVEL.Location = new System.Drawing.Point(779, 404);
-            this.grbMARVEL.Name = "grbMARVEL";
-            this.grbMARVEL.Size = new System.Drawing.Size(398, 104);
-            this.grbMARVEL.TabIndex = 7;
-            this.grbMARVEL.TabStop = false;
-            this.grbMARVEL.Text = "MARVEL";
-            // 
-            // cobIRNo
-            // 
-            this.cobIRNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobIRNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobIRNo.BackColor = System.Drawing.Color.Azure;
-            this.cobIRNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobIRNo.FormattingEnabled = true;
-            this.cobIRNo.Location = new System.Drawing.Point(92, 24);
-            this.cobIRNo.Name = "cobIRNo";
-            this.cobIRNo.Size = new System.Drawing.Size(100, 27);
-            this.cobIRNo.TabIndex = 0;
-            this.cobIRNo.SelectedIndexChanged += new System.EventHandler(this.cobIRNo_SelectedIndexChanged);
-            // 
-            // txtIRDis3
-            // 
-            this.txtIRDis3.BackColor = System.Drawing.Color.Azure;
-            this.txtIRDis3.Location = new System.Drawing.Point(279, 73);
-            this.txtIRDis3.Name = "txtIRDis3";
-            this.txtIRDis3.Size = new System.Drawing.Size(100, 25);
-            this.txtIRDis3.TabIndex = 3;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 22);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(47, 19);
-            this.label30.TabIndex = 2;
-            this.label30.Text = "IR数量";
-            // 
-            // txtIRDis2
-            // 
-            this.txtIRDis2.BackColor = System.Drawing.Color.Azure;
-            this.txtIRDis2.Location = new System.Drawing.Point(279, 46);
-            this.txtIRDis2.Name = "txtIRDis2";
-            this.txtIRDis2.Size = new System.Drawing.Size(100, 25);
-            this.txtIRDis2.TabIndex = 2;
-            // 
-            // txtIRDis1
-            // 
-            this.txtIRDis1.BackColor = System.Drawing.Color.Azure;
-            this.txtIRDis1.Location = new System.Drawing.Point(279, 18);
-            this.txtIRDis1.Name = "txtIRDis1";
-            this.txtIRDis1.Size = new System.Drawing.Size(100, 25);
-            this.txtIRDis1.TabIndex = 1;
-            // 
-            // lblIRDis1
-            // 
-            this.lblIRDis1.AutoSize = true;
-            this.lblIRDis1.Location = new System.Drawing.Point(193, 20);
-            this.lblIRDis1.Name = "lblIRDis1";
-            this.lblIRDis1.Size = new System.Drawing.Size(55, 19);
-            this.lblIRDis1.TabIndex = 2;
-            this.lblIRDis1.Text = "IR间距1";
-            // 
-            // lblIRDis3
-            // 
-            this.lblIRDis3.AutoSize = true;
-            this.lblIRDis3.Location = new System.Drawing.Point(193, 77);
-            this.lblIRDis3.Name = "lblIRDis3";
-            this.lblIRDis3.Size = new System.Drawing.Size(55, 19);
-            this.lblIRDis3.TabIndex = 2;
-            this.lblIRDis3.Text = "IR间距3";
-            // 
-            // lblIRDis2
-            // 
-            this.lblIRDis2.AutoSize = true;
-            this.lblIRDis2.Location = new System.Drawing.Point(193, 49);
-            this.lblIRDis2.Name = "lblIRDis2";
-            this.lblIRDis2.Size = new System.Drawing.Size(55, 19);
-            this.lblIRDis2.TabIndex = 2;
-            this.lblIRDis2.Text = "IR间距2";
             // 
             // grbANSUL
             // 
@@ -811,7 +709,6 @@
             this.cobMARVEL.Name = "cobMARVEL";
             this.cobMARVEL.Size = new System.Drawing.Size(100, 27);
             this.cobMARVEL.TabIndex = 6;
-            this.cobMARVEL.SelectedIndexChanged += new System.EventHandler(this.cobMARVEL_SelectedIndexChanged);
             // 
             // label29
             // 
@@ -840,23 +737,21 @@
             this.btnEditData.UseVisualStyleBackColor = false;
             this.btnEditData.Click += new System.EventHandler(this.btnEditData_Click);
             // 
-            // modelView
+            // panel1
             // 
-            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modelView.Location = new System.Drawing.Point(25, 48);
-            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.modelView.Name = "modelView";
-            this.modelView.Size = new System.Drawing.Size(750, 460);
-            this.modelView.TabIndex = 10;
+            this.panel1.Location = new System.Drawing.Point(24, 62);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(749, 449);
+            this.panel1.TabIndex = 10;
             // 
-            // FrmKVI555
+            // FrmKvi555
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
-            this.Controls.Add(this.modelView);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.btnEditData);
             this.Controls.Add(this.cobMARVEL);
@@ -864,7 +759,6 @@
             this.Controls.Add(this.grbLEDSpot);
             this.Controls.Add(this.grbANSUL);
             this.Controls.Add(this.cobLightType);
-            this.Controls.Add(this.grbMARVEL);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox1);
@@ -877,8 +771,6 @@
             this.Text = "KVI555";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.grbMARVEL.ResumeLayout(false);
-            this.grbMARVEL.PerformLayout();
             this.grbANSUL.ResumeLayout(false);
             this.grbANSUL.PerformLayout();
             this.grbLEDSpot.ResumeLayout(false);
@@ -894,7 +786,6 @@
 
         #endregion
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox grbMARVEL;
         private System.Windows.Forms.GroupBox grbANSUL;
         private System.Windows.Forms.GroupBox grbLEDSpot;
         private System.Windows.Forms.GroupBox groupBox6;
@@ -950,18 +841,10 @@
         private System.Windows.Forms.Label lblDropDis1;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.ComboBox cobMARVEL;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox txtIRDis3;
-        private System.Windows.Forms.TextBox txtIRDis2;
-        private System.Windows.Forms.TextBox txtIRDis1;
-        private System.Windows.Forms.Label lblIRDis1;
-        private System.Windows.Forms.Label lblIRDis2;
-        private System.Windows.Forms.Label lblIRDis3;
         private System.Windows.Forms.Label lblDropDis5;
-        private System.Windows.Forms.ComboBox cobIRNo;
         private System.Windows.Forms.ComboBox cobANDropNo;
         private System.Windows.Forms.Button btnEditData;
         private System.Windows.Forms.ComboBox cobLEDSpotNo;
-        private Compass.ModelView modelView;
+        private System.Windows.Forms.Panel panel1;
     }
 }

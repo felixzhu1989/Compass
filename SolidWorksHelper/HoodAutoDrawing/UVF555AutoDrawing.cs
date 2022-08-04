@@ -189,7 +189,7 @@ namespace SolidWorksHelper
 
                 //----------MiddleRoof灯板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0001-1");
-                swEdit.FNHM0001(swComp, "UV", item.Length, item.Deepth, 555d, 555d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
+                swEdit.FNHM0001(swComp, "UV", item.Length, item.Deepth, 555d, 555d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL);
 
                 //----------吊装槽钢----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2900100001-1");
@@ -201,7 +201,7 @@ namespace SolidWorksHelper
 
                 //------------F型新风腔主体----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0004-1");
-                swEdit.FNHA0004(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.SuDis, item.SuNo, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3, item.SidePanel, "UV", item.Bluetooth);
+                swEdit.FNHA0004(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.SuDis, item.SuNo, item.MARVEL, item.SidePanel, "UV", item.Bluetooth);
 
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0007-1");
@@ -209,7 +209,7 @@ namespace SolidWorksHelper
 
                 //----------镀锌隔板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0006-1");
-                swEdit.FNHA0006(swComp,item.Length,item.MARVEL,item.IRNo,item.IRDis1,item.IRDis2,item.IRDis3);
+                swEdit.FNHA0006(swComp,item.Length,item.MARVEL);
                 
                 //----------新风滑门导轨----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0010-1");

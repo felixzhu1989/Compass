@@ -831,7 +831,7 @@ namespace SolidWorksHelper
 
                 //------------F型新风腔主体----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0004-1");
-                swEdit.FNHA0004(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.SuDis, item.SuNo, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3, item.SidePanel, "KV", "NO");
+                swEdit.FNHA0004(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofSecondHoleDis, midRoofTopHoleDis, midRoofHoleNo, item.SuDis, item.SuNo, item.MARVEL,  item.SidePanel, "KV", "NO");
 
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0007-1");
@@ -849,33 +849,11 @@ namespace SolidWorksHelper
                 //MARVEL
                 if (item.MARVEL == "YES")
                 {
-                    if (item.IRNo > 0)
-                    {
-                        swFeat = swComp.FeatureByName("MA1");
-                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                        swPart.Parameter("D1@Sketch2").SystemValue = item.IRDis1 / 1000d;
-                    }
-                    if (item.IRNo > 1)
-                    {
-                        swFeat = swComp.FeatureByName("MA2");
-                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                        swPart.Parameter("D1@Sketch3").SystemValue = item.IRDis2 / 1000d;
-                    }
-                    if (item.IRNo > 2)
-                    {
-                        swFeat = swComp.FeatureByName("MA3");
-                        swFeat.SetSuppression2(1, 2, null); //参数1：1解压，0压缩
-                        swPart.Parameter("D1@Sketch4").SystemValue = item.IRDis3 / 1000d;
-                    }
+                   
                 }
                 else
                 {
-                    swFeat = swComp.FeatureByName("MA1");
-                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                    swFeat = swComp.FeatureByName("MA2");
-                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
-                    swFeat = swComp.FeatureByName("MA3");
-                    swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
+                    
                 }
                 //----------新风滑门导轨----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0010-1");

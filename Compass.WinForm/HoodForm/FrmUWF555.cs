@@ -10,11 +10,15 @@ namespace Compass
     {
         readonly UWF555Service _objUwf555Service = new UWF555Service();
         private readonly UWF555 _objUwf555 = null;
+        private ModelView modelView;
         public FrmUwf555()
         {
             InitializeComponent();
             SetVisibleFalse();
             IniCob();
+            modelView = new ModelView();
+            panel1.Controls.Add(modelView);
+            modelView.Dock = DockStyle.Fill;
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
@@ -87,11 +91,7 @@ namespace Compass
             cobMARVEL.Items.Add("YES");
             cobMARVEL.Items.Add("NO");
             cobMARVEL.SelectedIndex = 1;
-            //IR数量
-            cobIRNo.Items.Add("0");
-            cobIRNo.Items.Add("1");
-            cobIRNo.Items.Add("2");
-            cobIRNo.Items.Add("3");
+            
             //烟罩配置信息
             //UV灯类型
             cobUVType.Items.Add("LONG");
@@ -125,7 +125,7 @@ namespace Compass
         {
             grbLEDSpot.Visible = false;
             grbANSUL.Visible = false;
-            grbMARVEL.Visible = false;
+            
         }
         /// <summary>
         /// 填数据
@@ -133,7 +133,7 @@ namespace Compass
         private void FillData()
         {
             if (_objUwf555 == null) return;
-            modelView.Tag = _objUwf555.UWF555Id;
+            panel1.Tag = _objUwf555.UWF555Id;
 
             cobSidePanel.Text = _objUwf555.SidePanel;
             //默认ExNo为1
@@ -147,7 +147,7 @@ namespace Compass
             cobANDropNo.Text = _objUwf555.ANDropNo.ToString();
             cobANDetectorNo.Text = _objUwf555.ANDetectorNo.ToString();
             cobMARVEL.Text = _objUwf555.MARVEL;
-            cobIRNo.Text = _objUwf555.IRNo.ToString();
+            
             cobUVType.Text = _objUwf555.UVType;
             cobBluetooth.Text = _objUwf555.Bluetooth;
             cobLEDLogo.Text = _objUwf555.LEDlogo;
@@ -177,9 +177,7 @@ namespace Compass
             txtANDetectorDis3.Text = _objUwf555.ANDetectorDis3.ToString();
             txtANDetectorDis4.Text = _objUwf555.ANDetectorDis4.ToString();
             txtANDetectorDis5.Text = _objUwf555.ANDetectorDis5.ToString();
-            txtIRDis1.Text = _objUwf555.IRDis1.ToString();
-            txtIRDis2.Text = _objUwf555.IRDis2.ToString();
-            txtIRDis3.Text = _objUwf555.IRDis3.ToString();
+            
         }
         /// <summary>
         /// 修改参数
@@ -190,7 +188,7 @@ namespace Compass
         {
             #region 数据验证
             //必填项目
-            if (modelView.Tag.ToString().Length == 0) return;
+            if (panel1.Tag.ToString().Length == 0) return;
             if (!DataValidate.IsDouble(txtLength.Text.Trim()) || Convert.ToDouble(txtLength.Text.Trim()) < 500d)
             {
                 MessageBox.Show("请认真检查烟罩长度", "提示信息");
@@ -427,45 +425,6 @@ namespace Compass
                     return;
                 }
             }
-            if (cobMARVEL.SelectedIndex == 0)
-            {
-                if (cobIRNo.SelectedIndex == -1)
-                {
-                    MessageBox.Show("请检查IR数量", "提示信息");
-                    cobIRNo.Focus();
-                    return;
-                }
-                if (cobIRNo.SelectedIndex > 0)
-                {
-                    if (!DataValidate.IsDouble(txtIRDis1.Text.Trim()) || Convert.ToDouble(txtIRDis1.Text.Trim()) < 30d)
-                    {
-                        MessageBox.Show("请检查IR间距1", "提示信息");
-                        txtIRDis1.Focus();
-                        txtIRDis1.SelectAll();
-                        return;
-                    }
-                }
-                if (cobIRNo.SelectedIndex > 1)
-                {
-                    if (!DataValidate.IsDouble(txtIRDis2.Text.Trim()) || Convert.ToDouble(txtIRDis2.Text.Trim()) < 30d)
-                    {
-                        MessageBox.Show("请检查IR间距2", "提示信息");
-                        txtIRDis2.Focus();
-                        txtIRDis2.SelectAll();
-                        return;
-                    }
-                }
-                if (cobIRNo.SelectedIndex > 2)
-                {
-                    if (!DataValidate.IsDouble(txtIRDis3.Text.Trim()) || Convert.ToDouble(txtIRDis3.Text.Trim()) < 30d)
-                    {
-                        MessageBox.Show("请检查IR间距3", "提示信息");
-                        txtIRDis3.Focus();
-                        txtIRDis3.SelectAll();
-                        return;
-                    }
-                }
-            }
             if (cobUVType.SelectedIndex == -1)
             {
                 MessageBox.Show("请检查UV灯类型", "提示信息");
@@ -514,7 +473,7 @@ namespace Compass
             //封装对象
             UWF555 objUwf555 = new UWF555()
             {
-                UWF555Id = Convert.ToInt32(modelView.Tag),
+                UWF555Id = Convert.ToInt32(panel1.Tag),
                 SidePanel = cobSidePanel.Text,
                 ExNo = Convert.ToInt32(cobExNo.Text),
                 SuNo = Convert.ToInt32(cobSuNo.Text),
@@ -526,7 +485,6 @@ namespace Compass
                 ANDropNo = cobANDropNo.Text.Trim().Length == 0 ? 0 : Convert.ToInt32(cobANDropNo.Text),
                 ANDetectorNo = cobANDetectorNo.Text.Trim().Length == 0 ? 0 : Convert.ToInt32(cobANDetectorNo.Text),
                 MARVEL = cobMARVEL.Text,
-                IRNo = cobIRNo.Text.Trim().Length == 0 ? 0 : Convert.ToInt32(cobIRNo.Text),
                 UVType = cobUVType.Text,
                 Bluetooth = cobBluetooth.Text,
                 LEDlogo = cobLEDLogo.Text,
@@ -555,9 +513,6 @@ namespace Compass
                 ANDetectorDis3 = Convert.ToDouble(txtANDetectorDis3.Text.Trim()),
                 ANDetectorDis4 = Convert.ToDouble(txtANDetectorDis4.Text.Trim()),
                 ANDetectorDis5 = Convert.ToDouble(txtANDetectorDis5.Text.Trim()),
-                IRDis1 = Convert.ToDouble(txtIRDis1.Text.Trim()),
-                IRDis2 = Convert.ToDouble(txtIRDis2.Text.Trim()),
-                IRDis3 = Convert.ToDouble(txtIRDis3.Text.Trim())
             };
             //提交修改
             try
@@ -594,16 +549,7 @@ namespace Compass
             if (cobANSUL.SelectedIndex == 0) grbANSUL.Visible = true;
             else grbANSUL.Visible = false;
         }
-        /// <summary>
-        /// MARVEL分组显示
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cobMARVEL_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cobMARVEL.SelectedIndex == 0) grbMARVEL.Visible = true;
-            else grbMARVEL.Visible = false;
-        }
+        
         /// <summary>
         /// 填写烟罩长度时脖颈距离中心距离自动改变
         /// </summary>
@@ -748,50 +694,7 @@ namespace Compass
                 txtSuDis.Visible = false;
             }
         }
-        /// <summary>
-        /// 动态选择IR数量
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cobIRNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cobIRNo.SelectedIndex == 0)
-            {
-                lblIRDis1.Visible = false;
-                lblIRDis2.Visible = false;
-                lblIRDis3.Visible = false;
-                txtIRDis1.Visible = false;
-                txtIRDis2.Visible = false;
-                txtIRDis3.Visible = false;
-            }
-            else if (cobIRNo.SelectedIndex == 1)
-            {
-                lblIRDis1.Visible = true;
-                txtIRDis1.Visible = true;
-                lblIRDis2.Visible = false;
-                lblIRDis3.Visible = false;
-                txtIRDis2.Visible = false;
-                txtIRDis3.Visible = false;
-            }
-            else if (cobIRNo.SelectedIndex == 2)
-            {
-                lblIRDis1.Visible = true;
-                txtIRDis1.Visible = true;
-                lblIRDis2.Visible = true;
-                txtIRDis2.Visible = true;
-                lblIRDis3.Visible = false;
-                txtIRDis3.Visible = false;
-            }
-            else if (cobIRNo.SelectedIndex == 3)
-            {
-                lblIRDis1.Visible = true;
-                txtIRDis1.Visible = true;
-                lblIRDis2.Visible = true;
-                txtIRDis2.Visible = true;
-                lblIRDis3.Visible = true;
-                txtIRDis3.Visible = true;
-            }
-        }
+        
         /// <summary>
         /// 探测器数量
         /// </summary>

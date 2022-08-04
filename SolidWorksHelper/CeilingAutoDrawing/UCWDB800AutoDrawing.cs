@@ -402,7 +402,7 @@ namespace SolidWorksHelper
                 {
                     case "LEFT":
                         //重命名装配体内部
-                        compReName = "FNCE0058[BP-" + tree.Module + "]{" + ((int)item.FCSideLeft - fcNo - 4) + "}";
+                        compReName = "FNCE0058[BP-" + tree.Module + "]{" + ((int)item.FCSideLeft - 3) + "}";
                         status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0058[BP-]{}-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
@@ -413,7 +413,7 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-1");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2();//打开零件
-                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideLeft - fcNo * 1d - 4d) / 1000d;
+                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideLeft -3) / 1000d;
                             if (item.FCSideLeft < 100d)
                             {
                                 swFeat = swComp.FeatureByName("Edge-Flange2");
@@ -447,7 +447,7 @@ namespace SolidWorksHelper
                         swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0058[BP-]{}-2"));
                         swComp.SetSuppression2(0); //2解压缩，0压缩.
                         //重命名装配体内部
-                        compReName = "FNCE0059[BP-" + tree.Module + "]{" + ((int)item.FCSideRight - fcNo - 4) + "}";
+                        compReName = "FNCE0059[BP-" + tree.Module + "]{" + ((int)item.FCSideRight -3) + "}";
                         status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0059[BP-]{}-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
@@ -458,7 +458,7 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-1");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2();//打开零件
-                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideRight - fcNo * 1d - 4d) / 1000d;
+                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideRight - 3) / 1000d;
                             if (item.FCSideLeft < 100d)
                             {
                                 swFeat = swComp.FeatureByName("Edge-Flange2");
@@ -484,7 +484,7 @@ namespace SolidWorksHelper
                         break;
                     case "BOTH":
                         //重命名装配体内部
-                        compReName = "FNCE0058[BP-" + tree.Module + ".1]{" + ((int)item.FCSideLeft - fcNo - 2) + "}";
+                        compReName = "FNCE0058[BP-" + tree.Module + ".1]{" + ((int)item.FCSideLeft - 1.5) + "}";
                         status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0058[BP-]{}-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
@@ -495,7 +495,7 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-1");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2();//打开零件
-                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideLeft - fcNo * 1d - 2d) / 1000d;
+                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideLeft - 1.5) / 1000d;
                             if (item.FCSideLeft < 100d)
                             {
                                 swFeat = swComp.FeatureByName("Edge-Flange2");
@@ -519,7 +519,7 @@ namespace SolidWorksHelper
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                         }
                         //重命名装配体内部
-                        compReName = "FNCE0059[BP-" + tree.Module + ".2]{" + ((int)item.FCSideRight - fcNo - 2) + "}";
+                        compReName = "FNCE0059[BP-" + tree.Module + ".2]{" + ((int)item.FCSideRight - 1.5) + "}";
                         status = swModelDocExt.SelectByID2(CommonFunc.AddSuffix(suffix, "FNCE0059[BP-]{}-1") + "@" + assyName, "COMPONENT", 0, 0, 0, false, 0, null, 0);
                         if (status) swModelDocExt.RenameDocument(compReName);
                         swModel.ClearSelection2(true);
@@ -530,7 +530,7 @@ namespace SolidWorksHelper
                             swComp = swAssy.GetComponentByName(compReName + "-1");
                             swComp.SetSuppression2(2); //2解压缩，0压缩.
                             swPart = swComp.GetModelDoc2();//打开零件
-                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideRight - fcNo * 1d - 2d) / 1000d;
+                            swPart.Parameter("D2@Sketch1").SystemValue = (item.FCSideRight - 1.5) / 1000d;
                             if (item.FCSideLeft < 100d)
                             {
                                 swFeat = swComp.FeatureByName("Edge-Flange2");
