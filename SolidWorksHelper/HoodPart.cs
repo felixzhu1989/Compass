@@ -5,7 +5,30 @@ namespace SolidWorksHelper
 {
     public class HoodPart
     {
-        #region 排风腔
+        //模块化改造，Ctrl+M+O 折叠代码
+        #region Exhaust排风腔模块
+        //KvExhaust,UvExhaust,KwExhaust,UwExhaust
+        internal void KvExhaust(Component2 swTopLevelComp, string suffix, double length, int exNo, double exRightDis, double exLength, double exWidth, double exDis, string waterCollection, string sidePanel, string outlet, string backToBack, string ansul, string anSide, string anDetector, string marvel, string uvType)
+        {
+            //计算中间值
+            int midRoofHoleNo = (int)((length - 300d) / 400d);
+            double midRoofSecondHoleDis = Convert.ToDouble((length - (midRoofHoleNo - 1) * 400d) / 2);
+            
+
+            //顶层子装配
+            var swTopLevelAssy = swTopLevelComp as AssemblyDoc;
+            var swComp = swTopLevelAssy.GetComponentByNameWithSuffix(suffix, "FNHE0001-1");
+            FNHE0001(swComp,length,midRoofHoleNo,midRoofSecondHoleDis,exNo,exRightDis,exLength,exWidth,exDis,waterCollection,sidePanel,outlet,backToBack,ansul,anSide,anDetector,marvel, uvType);
+
+
+        }
+
+
+
+
+
+
+
         //排风腔
         internal void FNHE0001(Component2 swComp, double length, int midRoofHoleNo, double midRoofSecondHoleDis, int exNo, double exRightDis, double exLength, double exWidth, double exDis, string waterCollection, string sidePanel, string outlet, string backToBack, string ansul, string anSide, string anDetector, string marvel, string UVType)
         {
@@ -527,7 +550,7 @@ namespace SolidWorksHelper
 
         #endregion
 
-        #region MidRoof
+        #region MidRoof模块
         internal void Light(AssemblyDoc swAssy, string suffix, string lightType, string LongPart, string shortPart)
         {
             if (lightType == "FSLONG")
@@ -775,7 +798,7 @@ namespace SolidWorksHelper
             swComp.Suppress("MAINS3");
             if (marvel == "YES" && suHeight != 555d)
             {
-                
+
             }
             #endregion
 
@@ -795,7 +818,7 @@ namespace SolidWorksHelper
 
         #endregion
 
-        #region Hood SidePanel 普通烟罩大侧板
+        #region SidePanel 普通烟罩大侧板模块
 
         internal void SidePanel(AssemblyDoc swAssy, string suffix, string sidePanel, double deepth, double exHeight, string waterCollection, string exType, string leftOuter, string leftInner, string rightOuter, string rightInner, string leftCollection, string rightCollection)
         {
@@ -1151,7 +1174,7 @@ namespace SolidWorksHelper
 
         #endregion
 
-        #region 新风腔
+        #region Supply新风腔模块
         //I555型新风腔体
         internal void FNHA0001(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int midRoofHoleNo, double midRoofSecondHoleDis, double midRoofTopHoleDis, string marvel, string UVType, string bluetooth, string sidePanel)
         {
@@ -1179,7 +1202,7 @@ namespace SolidWorksHelper
             swComp.Suppress("MACABLE3");
             if (marvel == "YES")
             {
-               
+
             }
             #endregion
 
@@ -1264,11 +1287,11 @@ namespace SolidWorksHelper
             //MARVEL
             if (MARVEL == "YES")
             {
-               
+
             }
             else
             {
-               
+
             }
             if (exType == "UV") //"UV"/"KV"
             {
@@ -1306,8 +1329,8 @@ namespace SolidWorksHelper
 
             #region 集水翻边
             if (waterCollection == "YES" && (sidePanel == "BOTH" || sidePanel == "RIGHT")) swComp.UnSuppress("DRAINCHANNEL-RIGHT");
-            else  swComp.Suppress("DRAINCHANNEL-RIGHT");
-           
+            else swComp.Suppress("DRAINCHANNEL-RIGHT");
+
             if (waterCollection == "YES" && (sidePanel == "BOTH" || sidePanel == "LEFT")) swComp.UnSuppress("DRAINCHANNEL-LEFT");
             else swComp.Suppress("DRAINCHANNEL-LEFT");
             #endregion
@@ -1321,11 +1344,11 @@ namespace SolidWorksHelper
             #region MARVEL
             if (marvel == "YES")
             {
-               
+
             }
             else
             {
-               
+
             }
             #endregion
         }
@@ -1343,9 +1366,9 @@ namespace SolidWorksHelper
         }
         //新风滑门轨道
         public void FNHA0010(Component2 swComp, double length)
-        { 
+        {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D2@草图1",length - 200d);
+            swPart.ChangeDim("D2@草图1", length - 200d);
         }
 
         public void FNHE0010(Component2 swComp, double length)

@@ -26,7 +26,7 @@ namespace SolidWorksHelper
             string newPath = dxfPath + @"\" + tree.Item + "-" + tree.Module + @"\";
             if (!Directory.Exists(newPath)) Directory.CreateDirectory(newPath);
             //拷贝文件，调用通用函数
-            if (!CommonFunc.CopyDxfFiles(tree.ModelPath, newPath)) return;
+            if (!tree.ModelPath.CopyDxfFilesTo(newPath)) return;
             //查询参数
             LFUMC200DXF objLFUMC200DXF = (LFUMC200DXF)objLFUMC200DXFService.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             //查询标准DxfCutlist，根据item.categoryId查询dxfCutList对象列表

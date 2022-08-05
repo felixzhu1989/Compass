@@ -9,6 +9,11 @@ namespace SolidWorksHelper
 {
     public static class CommonFunc
     {
+
+
+
+
+
         /// <summary>
         /// 创建项目模型存放地址
         /// </summary>

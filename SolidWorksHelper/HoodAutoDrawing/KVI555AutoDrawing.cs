@@ -16,30 +16,26 @@ namespace SolidWorksHelper
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             #region 准备工作
-            //创建项目模型存放地址
-            string itemPath = $@"{projectPath}\{tree.Item}-{tree.Module}-{tree.CategoryName}";
-            if (!CommonFunc.CreateProjectPath(itemPath)) return;
-            //Pack的后缀
-            string suffix = $@"{tree.Item}-{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
-
-            //判断文件是否存在，如果存在将不执行pack，如果不存在则执行pack
             //packango后需要接收打包完成的地址，参数为后缀
-            string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
-            if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
+            string packedAssyPath = swApp.PackAndGoHood(tree , projectPath, out string suffix);
 
             //查询参数
             KVI555 item = (KVI555)objKvi555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
 
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
-            int warnings = 0;
             int errors = 0;
-            suffix = "_" + suffix;//后缀
+            int warnings = 0;
+            EditPart swEdit = new EditPart();
+            HoodPart swHoodPart=new HoodPart();
+
+
+
+
             ModelDoc2 swModel;
             ModelDoc2 swPart;
             AssemblyDoc swAssy;
-            
             Feature swFeat;
-            EditPart swEdit = new EditPart();
+            
 
 
             //打开Pack后的模型
@@ -164,6 +160,16 @@ namespace SolidWorksHelper
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                 }
                 #endregion
+
+
+                //模块化KvExhaust
+                Component2 swTopLevelComp = swAssy.GetComponentByNameWithSuffix(suffix, "KvExhaust-1");
+                swHoodPart.KvExhaust(swTopLevelComp,suffix);
+
+
+
+
+
 
                 #region 排风腔
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0001-1");
@@ -719,7 +725,8 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
+                //以后记录在日志中
+                throw new Exception($"作图过程发生异常：{packedAssyPath} 。\n零件：{swComp.Name}\n对象：{ex.Source}\n详细：{ex.Message}");
             }
             finally
             {
