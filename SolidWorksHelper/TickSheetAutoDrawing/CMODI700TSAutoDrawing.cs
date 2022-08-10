@@ -111,7 +111,7 @@ namespace SolidWorksHelper
                 swEdit.FSHE0014(swComp, item.Length, midRoofHoleNo, midRoofSecondHoleDis, item.ExLength, item.ExWidth, item.Outlet, item.Inlet, item.ANSUL, item.ANSide,item.ANDetectorEnd);
 
                 //----------三角板/ANSUL----------
-                //swEdit.ExaustSide(swAssy,suffix,item.ANSUL,item.SidePanel, "FSHE0015-1", "FSHE0016-1");
+                //swEdit.ExhaustSide(swAssy,suffix,item.ANSUL,item.SidePanel, "FSHE0015-1", "FSHE0016-1");
 
 
                 //----------排风腔前面板及内部零件----------

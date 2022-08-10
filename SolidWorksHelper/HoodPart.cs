@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
-using Models;
 using SolidWorks.Interop.sldworks;
 
 namespace SolidWorksHelper
@@ -329,7 +327,7 @@ namespace SolidWorksHelper
             }
         }
 
-        internal void ExaustRail(AssemblyDoc swAssy, string suffix, string marvel, double exLength, double exWidth,
+        internal void ExhaustRail(AssemblyDoc swAssy, string suffix, string marvel, double exLength, double exWidth,
             int exNo, double exDis, string doorPart1, string doorPart2, string railPart1, string railPart2)
         {
             Component2 swComp;
@@ -356,7 +354,7 @@ namespace SolidWorksHelper
             }
         }
 
-        internal void ExaustSpigot(AssemblyDoc swAssy, string suffix, string ansul, string marvel, double exLength,
+        internal void ExhaustSpigot(AssemblyDoc swAssy, string suffix, string ansul, string marvel, double exLength,
             double exWidth, double exHeight, string frontPart, string backPart, string leftPart, string rightPart)
         {
             Component2 swComp;
@@ -394,7 +392,8 @@ namespace SolidWorksHelper
             }
         }
 
-        internal void ExaustSide(AssemblyDoc swAssy, string suffix, string ansul, string sidePanel, string leftPart, string rightPart)
+        //三角板
+        internal void ExhaustSide(AssemblyDoc swAssy, string suffix, string ansul, string sidePanel, string leftPart, string rightPart)
         {
             Component2 swComp;
             if (ansul == "YES" && sidePanel == "MIDDLE")
@@ -422,7 +421,8 @@ namespace SolidWorksHelper
             }
         }
 
-        internal void UVLightDoor(AssemblyDoc swAssy, string suffix, string uvType, string doorLong, string uvLong, string doorShort, string uvShort)
+        //----------UV灯，UV灯门----------
+        internal void UvLightDoor(AssemblyDoc swAssy, string suffix, string uvType, string doorLong, string uvLong, string doorShort, string uvShort)
         {
             if (uvType == "LONG")
             {
@@ -440,7 +440,7 @@ namespace SolidWorksHelper
             }
         }
 
-        internal void MeshFilter(AssemblyDoc swAssy, string suffix, double meshSideLength, string ansul, string anSide, string leftPart, string rightPart)
+        public void MeshFilter(AssemblyDoc swAssy, string suffix, double meshSideLength, string ansul, string anSide, string leftPart, string rightPart)
         {
             Component2 swComp;
             ModelDoc2 swPart;
@@ -542,6 +542,7 @@ namespace SolidWorksHelper
             }
         }
 
+        //----------吊装槽钢----------
         public void Std2900100001(Component2 swComp, string ansul, double deepth)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
@@ -602,7 +603,7 @@ namespace SolidWorksHelper
         }
 
         //水洗排风腔顶部零件
-        public void FNHE0032(Component2 swComp, double length, double midRoofSecondHoleDis, int midRoofHoleNo, int exNo, double exRightDis, double exLength, double exWidth, double exDis, string inlet, string ansul, string anSide, string marvel, string uvType, string uwHood)
+        public void FNHE0032(Component2 swComp, double length, double midRoofSecondHoleDis, int midRoofHoleNo, int exNo, double exRightDis, double exLength, double exWidth, double exDis, string inlet, string ansul, string anSide, string marvel, string uvType)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();//打开零件3
             swPart.ChangeDim("D1@草图1", length);
@@ -707,7 +708,7 @@ namespace SolidWorksHelper
                 swComp.Suppress("UVCABLE");
             }
             //解压检修门，水洗烟罩，且带UV，短灯>=1600,长灯>=2400
-            if (uwHood != "NO" && ((uvType == "SHORT" && length >= 1600d) || (uvType == "LONG" && length >= 2400d)))
+            if ((uvType == "SHORT" && length >= 1600d) || (uvType == "LONG" && length >= 2400d))
             {
                 if (inlet == "LEFT")
                 {
@@ -732,8 +733,37 @@ namespace SolidWorksHelper
             }
         }
 
-        //----------排风腔前面板----------
-        public void FNHE0033(Component2 swComp, double length, string inlet, string marvel, string uvType)
+        //----------水洗UV排风腔顶部检修门盖板----------
+        public void ExhaustTopCover(AssemblyDoc swAssy, string suffix, string uvType, double length, string inlet, string leftPart, string rightPart)
+        {
+            if ((uvType == "SHORT" && length >= 1600d) || (uvType == "LONG" && length >= 2400d))
+            {
+                if (inlet == "LEFT")
+                {
+                    swAssy.UnSuppress(suffix, leftPart);
+                    swAssy.Suppress(suffix, rightPart);
+                }
+                else if (inlet == "RIGHT")
+                {
+                    swAssy.Suppress(suffix, leftPart);
+                    swAssy.UnSuppress(suffix, rightPart);
+                }
+                else
+                {
+                    swAssy.Suppress(suffix, leftPart);
+                    swAssy.Suppress(suffix, rightPart);
+                }
+            }
+            else
+            {
+                swAssy.Suppress(suffix, leftPart);
+                swAssy.Suppress(suffix, rightPart);
+            }
+        }
+
+
+        //----------水洗排风腔前面板----------
+        public void FNHE0033(Component2 swComp, double length, string inlet, string marvel, double exRightDis, string uvType)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@Sketch1", length);
@@ -747,27 +777,38 @@ namespace SolidWorksHelper
                 swComp.Suppress("PIPEIN-LEFT");
                 swComp.UnSuppress("PIPEIN-RIGHT");
             }
-            if (marvel == "YES") swComp.UnSuppress("EXTAB-UP");
+            if (marvel == "YES" || uvType!="NO") swComp.UnSuppress("EXTAB-UP");
             else swComp.Suppress("EXTAB-UP");
             //UV HoodParent,过滤器感应出线孔，UV门，UV cable-UV灯线缆穿孔避让缺口
             if (uvType == "LONG")
             {
-
+                swComp.Suppress("UVDOOR-SHORT");
+                swComp.UnSuppress("UVDOOR-LONG");
+                swPart.ChangeDim("D1@Sketch7", exRightDis);
+                swComp.UnSuppress("FILTER-CABLE");
+                swPart.ChangeDim("D1@Sketch10", exRightDis);
+                swComp.UnSuppress("BFCABLE");
             }
             else if (uvType == "SHORT")
             {
-
+                swComp.Suppress("UVDOOR-LONG");
+                swComp.UnSuppress("UVDOOR-SHORT");
+                swPart.ChangeDim("D1@Sketch6", exRightDis);
+                swComp.UnSuppress("FILTER-CABLE");
+                swPart.ChangeDim("D1@Sketch10", exRightDis);
+                swComp.UnSuppress("BFCABLE");
             }
             else
             {
-                swComp.Suppress("FILTER-CABLE");
                 swComp.Suppress("UVDOOR-SHORT");
                 swComp.Suppress("UVDOOR-LONG");
                 swComp.Suppress("UVCABLE");
+                swComp.Suppress("FILTER-CABLE");
                 swComp.Suppress("BFCABLE");
             }
         }
-        //----------三角板上的UV----------内部运水
+
+        //----------水洗三角板上的UV----------内部运水
         public void FNHE0034(Component2 swComp, string outlet, string sidePanel, string uvType)
         {
             if (outlet == "NO" && (sidePanel == "RIGHT" || sidePanel == "MIDDLE"))
@@ -792,23 +833,174 @@ namespace SolidWorksHelper
             else swComp.UnSuppress("UWHOOD");
         }
 
-        //----------水管----------
+        //----------水洗水管----------
         public void Std2900500003(Component2 swComp, double length)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D1@Boss-Extrude1",length - 125d);
+            swPart.ChangeDim("D1@Boss-Extrude1", length - 125d);
         }
-        //----------KSA下轨道支架----------
+        //----------水洗KSA下轨道支架----------
         public void FNHE0037(Component2 swComp, double length)
         {
-           ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D2@Sketch1",length - 5d);
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D2@Sketch1", length - 5d);
         }
+
+        //----------水洗UV灯，UV灯门----------
+        internal void UwLightDoor(AssemblyDoc swAssy, string suffix, string uvType, string doorLong, string doorFrameLong, string uvLong, string doorShort, string doorFrameShort, string uvShort)
+        {
+            if (uvType == "LONG")
+            {
+                swAssy.UnSuppress(suffix, doorLong);
+                swAssy.UnSuppress(suffix, doorFrameLong);
+                swAssy.UnSuppress(suffix, uvLong);
+                swAssy.Suppress(suffix, doorShort);
+                swAssy.Suppress(suffix, doorFrameShort);
+                swAssy.Suppress(suffix, uvShort);
+            }
+            else
+            {
+                swAssy.Suppress(suffix, doorLong);
+                swAssy.Suppress(suffix, doorFrameLong);
+                swAssy.Suppress(suffix, uvLong);
+                swAssy.UnSuppress(suffix, doorShort);
+                swAssy.UnSuppress(suffix, doorFrameShort);
+                swAssy.UnSuppress(suffix, uvShort);
+            }
+        }
+
+        //----------水洗MESH油网侧板----------
+        public void UwMeshFilter(AssemblyDoc swAssy, string suffix, double meshSideLength, string inlet, string ansul, string anSide, string leftPart, string rightPart)
+        {
+            Component2 swComp;
+            ModelDoc2 swPart;
+
+            if ((inlet == "LEFT" && anSide == "RIGHT") || (anSide == "LEFT" && inlet == "RIGHT"))//不同一侧
+            {
+                if ((meshSideLength - 20d) < 57d) meshSideLength += 249d;
+                swComp = swAssy.UnSuppress(suffix, leftPart);
+                swPart = swComp.GetModelDoc2();
+                swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
+                if (inlet == "LEFT") swComp.UnSuppress("KW");
+                else swComp.Suppress("KW");
+                if (ansul == "YES" && anSide == "LEFT") swComp.UnSuppress("ANSUL");
+                else swComp.Suppress("ANSUL");
+
+                swComp = swAssy.UnSuppress(suffix, rightPart);
+                swPart = swComp.GetModelDoc2();
+                swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
+                if (inlet == "RIGHT") swComp.UnSuppress("KW");
+                else swComp.Suppress("KW");
+                if (ansul == "YES" && anSide == "RIGHT") swComp.UnSuppress("ANSUL");
+                else swComp.Suppress("ANSUL");
+            }
+            else
+            {
+                if (meshSideLength * 2 < 57d / 1000d) meshSideLength += 249d / 1000d;
+                if ((meshSideLength - 20d / 1000d) > 57d / 1000d)
+                {
+                    if (inlet == "LEFT")
+                    {
+                        swComp = swAssy.UnSuppress(suffix, leftPart);
+                        swPart = swComp.GetModelDoc2();
+                        swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
+                        if (inlet == "LEFT") swComp.UnSuppress("KW");
+                        else swComp.Suppress("KW");
+                        if (ansul == "YES" && anSide == "LEFT") swComp.UnSuppress("ANSUL");
+                        else swComp.Suppress("ANSUL");
+
+                        swComp = swAssy.UnSuppress(suffix, rightPart);
+                        swPart = swComp.GetModelDoc2();
+                        swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
+                        if (inlet == "RIGHT") swComp.UnSuppress("KW");
+                        else swComp.Suppress("KW");
+                        if (ansul == "YES" && anSide == "RIGHT") swComp.UnSuppress("ANSUL");
+                        else swComp.Suppress("ANSUL");
+                    }
+                    else
+                    {
+                        swComp = swAssy.UnSuppress(suffix, leftPart);
+                        swPart = swComp.GetModelDoc2();
+                        swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
+                        if (inlet == "LEFT") swComp.UnSuppress("KW");
+                        else swComp.Suppress("KW");
+                        if (ansul == "YES" && anSide == "LEFT") swComp.UnSuppress("ANSUL");
+                        else swComp.Suppress("ANSUL");
+
+                        swComp = swAssy.UnSuppress(suffix, rightPart);
+                        swPart = swComp.GetModelDoc2();
+                        swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
+                        if (inlet == "RIGHT") swComp.UnSuppress("KW");
+                        else swComp.Suppress("KW");
+                        if (ansul == "YES" && anSide == "RIGHT") swComp.UnSuppress("ANSUL");
+                        else swComp.Suppress("ANSUL");
+                    }
+                }
+                else
+                {
+                    if (inlet == "LEFT")
+                    {
+                        swComp = swAssy.UnSuppress(suffix, leftPart);
+                        swPart = swComp.GetModelDoc2();
+                        swPart.ChangeDim("D2@Sketch1", 2d * meshSideLength);
+                        if (inlet == "LEFT") swComp.UnSuppress("KW");
+                        else swComp.Suppress("KW");
+                        if (ansul == "YES" && anSide == "LEFT") swComp.UnSuppress("ANSUL");
+                        else swComp.Suppress("ANSUL");
+                        swAssy.Suppress(suffix, rightPart);
+                    }
+                    else
+                    {
+                        swAssy.Suppress(suffix, leftPart);
+                        swComp = swAssy.UnSuppress(suffix, rightPart);
+                        swPart = swComp.GetModelDoc2();
+                        swPart.ChangeDim("D2@Sketch1", 2d*meshSideLength);
+                        if (inlet == "RIGHT") swComp.UnSuppress("KW");
+                        else swComp.Suppress("KW");
+                        if (ansul == "YES" && anSide == "RIGHT") swComp.UnSuppress("ANSUL");
+                        else swComp.Suppress("ANSUL");
+                    }
+                }
+            }
+        }
+
+        //----------水洗排风腔内部零件----------
+        public void FNHE0040(Component2 swComp, double length)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@Sketch1", length - 8d);
+        }
+
+        public void FNHE0041(Component2 swComp, double length,double exRightDis, string uvType)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@Sketch1", length - 5d);
+            if (uvType == "LONG")
+            {
+                swComp.Suppress("UVDOOR-SHORT");
+                swComp.UnSuppress("UVDOOR-LONG");
+                swPart.ChangeDim("D12@Sketch3", exRightDis - 2.5d);
+            }
+            else if (uvType == "SHORT")
+            {
+                swComp.UnSuppress("UVDOOR-SHORT");
+                swPart.ChangeDim("D10@Sketch4", exRightDis - 2.5d);
+                swComp.Suppress("UVDOOR-LONG");
+            }
+            else
+            {
+                swComp.Suppress("UVDOOR-SHORT");
+                swComp.Suppress("UVDOOR-LONG");
+            }
+
+        }
+
 
 
         #endregion
 
         #region MidRoof模块
+        //----------灯具,日光灯----------
         internal void Light(AssemblyDoc swAssy, string suffix, string lightType, string LongPart, string shortPart)
         {
             if (lightType == "FSLONG")
@@ -829,7 +1021,7 @@ namespace SolidWorksHelper
         }
 
 
-
+        //----------MiddleRoof灯板----------
         internal void FNHM0001(Component2 swComp, string exType, double length, double deepth, double exHeight, double suHeight, double exRightDis, double midRoofTopHoleDis, double midRoofSecondHoleDis, int midRoofHoleNo, string lightType, double lightYDis, int ledSpotNo, double ledSpotDis, string ansul, int anDropNo, double anYDis, double anDropDis1, double anDropDis2, double anDropDis3, double anDropDis4, double anDropDis5, string anDetectorEnd, int anDetectorNo, double anDetectorDis1, double anDetectorDis2, double anDetectorDis3, double anDetectorDis4, double anDetectorDis5, string bluetooth, string uvType, string marvel)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
@@ -1068,6 +1260,7 @@ namespace SolidWorksHelper
             else swComp.Suppress("NTC Sensor");
         }
 
+        //----------灯板加强筋----------
         internal void FNHM0006(Component2 swComp, double deepth)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
@@ -1436,7 +1629,7 @@ namespace SolidWorksHelper
         #endregion
 
         #region Supply新风腔模块
-        //I555型新风腔体
+        //------------I型新风腔主体----------
         internal void FNHA0001(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int midRoofHoleNo, double midRoofSecondHoleDis, double midRoofTopHoleDis, string marvel, string sidePanel, string uvType, string bluetooth)
         {
             #region 基本尺寸
@@ -1475,7 +1668,7 @@ namespace SolidWorksHelper
             }
             #endregion
         }
-        //新风底部CJ板
+        //----------I新风底部CJ孔板----------
         internal void FNHA0002(Component2 swComp, double length, int frontCjNo, double frontCjFirstDis, int frontPanelHoleNo, double frontPanelHoleDis, string bluetooth, string ledLogo, string waterCollection, string sidePanel)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
@@ -1502,7 +1695,7 @@ namespace SolidWorksHelper
         }
 
 
-        //I555型前面板
+        //----------I新风前面板----------
         public void FNHA0003(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int frontPanelHoleNo, double frontPanelHoleDis)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
@@ -1513,7 +1706,7 @@ namespace SolidWorksHelper
             swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
         }
 
-        //F555新风腔体
+        //------------F型新风腔主体----------
         public void FNHA0004(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, double suDis, int suNo, string marvel, string sidePanel, string uvType, string bluetooth)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
@@ -1558,6 +1751,7 @@ namespace SolidWorksHelper
             }
         }
 
+        //----------F新风底部CJ孔板----------
         public void FNHA0005(Component2 swComp, double length, int frontCjNo, double frontCjFirstDis,
             int frontPanelHoleNo, double frontPanelHoleDis, string bluetooth, string ledLogo, string waterCollection,
             string sidePanel)
@@ -1584,7 +1778,7 @@ namespace SolidWorksHelper
             #endregion
         }
 
-        //F555镀锌隔板
+        //----------F镀锌隔板----------
         public void FNHA0006(Component2 swComp, double length)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
@@ -1592,7 +1786,7 @@ namespace SolidWorksHelper
         }
 
 
-        //F555型网孔板
+        //----------F新风前面板----------
         public void FNHA0007(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int frontPanelHoleNo, double frontPanelHoleDis)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
@@ -1602,18 +1796,19 @@ namespace SolidWorksHelper
             swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
             swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
         }
-        //新风滑门轨道
+
+        //----------F新风滑门导轨----------
         public void FNHA0010(Component2 swComp, double length)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D2@草图1", length - 200d);
         }
-
         public void FNHE0010(Component2 swComp, double length)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@草图1", length - 200d);
         }
+
 
         public void FNHA0040(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis,
            int midRoofHoleNo, double midRoofSecondHoleDis, double midRoofTopHoleDis, string marvel, int irNo,
@@ -1695,13 +1890,14 @@ namespace SolidWorksHelper
             swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
         }
 
-
+        //----------蓝牙----------
         internal void Bluetooth(AssemblyDoc swAssy, string suffix, string bluetooth, string bluetoothPart)
         {
             if (bluetooth == "YES") swAssy.UnSuppress(suffix, bluetoothPart);
             else swAssy.Suppress(suffix, bluetoothPart);
         }
 
+        //----------LOGO----------
         internal void LedLogo(AssemblyDoc swAssy, string suffix, string ledlogo, string ledLogoPart, string ledLogoSupport)
         {
             if (ledlogo == "YES")
@@ -1715,11 +1911,6 @@ namespace SolidWorksHelper
                 swAssy.UnSuppress(suffix, ledLogoSupport);
             }
         }
-
-
-
-
-
 
 
         #endregion

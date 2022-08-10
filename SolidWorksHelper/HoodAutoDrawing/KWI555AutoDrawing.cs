@@ -146,11 +146,11 @@ namespace SolidWorksHelper
                 
                 //----------排风腔顶部零件----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0032-1");
-                swHoodPart.FNHE0032(swComp, item.Length, midRoofSecondHoleDis, midRoofHoleNo, item.ExNo, item.ExRightDis, item.ExLength, item.ExWidth, item.ExDis, item.Inlet, item.ANSUL, item.ANSide, item.MARVEL, "NO", "NO");
+                swHoodPart.FNHE0032(swComp, item.Length, midRoofSecondHoleDis, midRoofHoleNo, item.ExNo, item.ExRightDis, item.ExLength, item.ExWidth, item.ExDis, item.Inlet, item.ANSUL, item.ANSide, item.MARVEL, "NO");
 
                 //----------排风腔前面板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0033-1");
-                swHoodPart.FNHE0033(swComp,item.Length,item.Inlet,item.MARVEL,"NO");
+                swHoodPart.FNHE0033(swComp,item.Length,item.Inlet,item.MARVEL,item.ExRightDis,"NO");
                 
 
                 //----------三角板上的UV----------内部运水
@@ -170,11 +170,11 @@ namespace SolidWorksHelper
 
 
                 //----------排风滑门/导轨----------
-                swHoodPart.ExaustRail(swAssy, suffix, item.MARVEL, item.ExLength, item.ExWidth, item.ExNo, item.ExDis, "FNCE0013-1", "FNCE0013-2", "FNCE0018-1", "FNCE0018-2");
+                swHoodPart.ExhaustRail(swAssy, suffix, item.MARVEL, item.ExLength, item.ExWidth, item.ExNo, item.ExDis, "FNCE0013-1", "FNCE0013-2", "FNCE0018-1", "FNCE0018-2");
 
 
                 //----------排风脖颈----------
-                swHoodPart.ExaustSpigot(swAssy, suffix, item.ANSUL, item.MARVEL, item.ExLength, item.ExWidth, item.ExHeight, "FNHE0006-1", "FNHE0007-1", "FNHE0008-1", "FNHE0009-1");
+                swHoodPart.ExhaustSpigot(swAssy, suffix, item.ANSUL, item.MARVEL, item.ExLength, item.ExWidth, item.ExHeight, "FNHE0006-1", "FNHE0007-1", "FNHE0008-1", "FNHE0009-1");
 
                 
                 //----------排风腔内部零件----------

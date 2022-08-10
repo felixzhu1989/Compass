@@ -155,18 +155,18 @@ namespace SolidWorksHelper
                 swHoodPart.KSAFilter(swAssy, suffix, ksaSideLength, "FNHE0003-1", "FNHE0004-1", "FNHE0005-1");
 
                 //----------排风滑门/导轨----------
-                swHoodPart.ExaustRail(swAssy, suffix, item.MARVEL, item.ExLength, item.ExWidth, item.ExNo, item.ExDis, "FNCE0013-1", "FNCE0013-4", "FNCE0018-1", "FNCE0018-2");
+                swHoodPart.ExhaustRail(swAssy, suffix, item.MARVEL, item.ExLength, item.ExWidth, item.ExNo, item.ExDis, "FNCE0013-1", "FNCE0013-4", "FNCE0018-1", "FNCE0018-2");
 
                 //----------排风脖颈----------
-                swHoodPart.ExaustSpigot(swAssy, suffix, item.ANSUL, item.MARVEL, item.ExLength, item.ExWidth, item.ExHeight, "FNHE0006-2", "FNHE0007-1", "FNHE0008-1", "FNHE0009-2");
+                swHoodPart.ExhaustSpigot(swAssy, suffix, item.ANSUL, item.MARVEL, item.ExLength, item.ExWidth, item.ExHeight, "FNHE0006-2", "FNHE0007-1", "FNHE0008-1", "FNHE0009-2");
 
 
                 //----------排风三角板----------
-                swHoodPart.ExaustSide(swAssy, suffix, item.ANSUL, item.SidePanel, "5201030401-4", "5201030401-5");
+                swHoodPart.ExhaustSide(swAssy, suffix, item.ANSUL, item.SidePanel, "5201030401-4", "5201030401-5");
 
 
                 //----------UV灯，UV灯门----------
-                swHoodPart.UVLightDoor(swAssy, suffix, item.UVType, "5201050414-1", "5201060409-1", "5201050413-1", "5201060410-1");
+                swHoodPart.UvLightDoor(swAssy, suffix, item.UVType, "5201050414-1", "5201060409-1", "5201050413-1", "5201060410-1");
 
                 //----------MESH油网侧板----------
                 swHoodPart.MeshFilter(swAssy, suffix, meshSideLength, item.ANSUL, item.ANSide, "FNHE0012-1", "FNHE0013-1");
@@ -236,7 +236,8 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
+                //以后记录在日志中
+                throw new Exception($"作图过程发生异常：{packedAssyPath} 。\n零件：{swComp.Name}\n对象：{ex.Source}\n详细：{ex.Message}");
             }
             finally
             {

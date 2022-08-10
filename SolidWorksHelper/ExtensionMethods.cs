@@ -61,7 +61,7 @@ namespace SolidWorksHelper
             //4.获取理论上PackAndGo后的地址，例如：...\UVF555_Item-M1-210203.SLDASM
             string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}{suffix}.sldasm";
             //4.判断文件是否存在，如果存在将不执行PackAndGo，直接返回地址
-            if (!File.Exists(packedAssyPath)) return packedAssyPath;
+            if (File.Exists(packedAssyPath)) return packedAssyPath;
             //5.如果文件不存在则执行PackAndGo
             return swApp.PackAndGoFunc(tree.ModelPath, itemPath, suffix);
         }
@@ -117,7 +117,7 @@ namespace SolidWorksHelper
 
             // Add a prefix and suffix to the filenames
             //swPackAndGo.AddPrefix = "SW_";添加后缀
-            swPackAndGo.AddSuffix = "_" + suffix;
+            swPackAndGo.AddSuffix = suffix;
             try
             {
                 // 执行Pack and Go

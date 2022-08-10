@@ -16,15 +16,8 @@ namespace SolidWorksHelper
         {
 
             #region 准备工作
-            //创建项目模型存放地址
-            string itemPath = $@"{projectPath}\{tree.Item}-{tree.Module}-{tree.CategoryName}";
-            if (!CommonFunc.CreateProjectPath(itemPath)) return;
-            //Pack的后缀
-            string suffix = $@"{tree.Item}-{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
-            //判断文件是否存在，如果存在将不执行pack，如果不存在则执行pack
-            //packango后需要接收打包完成的地址，参数为后缀
-            string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
-            if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
+            //packandgo后需要接收打包完成的地址，参数为后缀
+            string packedAssyPath = swApp.PackAndGoHood(tree, projectPath, out string suffix);
 
             //查询参数
             FRKVF555 item = (FRKVF555)objFRKVF555Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
@@ -32,10 +25,7 @@ namespace SolidWorksHelper
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
             int warnings = 0;
             int errors = 0;
-            suffix = "_" + suffix;//后缀
-            ModelDoc2 swPart;
-            
-            FrenchHoodPart swEdit = new FrenchHoodPart();
+            FrenchHoodPart swFrenchHoodPart = new FrenchHoodPart();
 
             //打开Pack后的模型
             var swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
@@ -46,14 +36,6 @@ namespace SolidWorksHelper
             #endregion
 
             #region 计算中间值
-            /*注意SolidWorks单位是m，计算是应当/1000d
-                 * 整形与整形运算得出的结果仍然时整形，1640 / 1000d结果为0，因此必须将其中一个转化成double型，使用后缀m就可以了
-                 * (int)不进行四舍五入，Convert.ToInt32会四舍五入
-                */
-
-            //新风面板卡扣数量及间距
-            int frontPanelKaKouNo = (int)((item.Length - 300d) / 450d) + 2;
-            double frontPanelKaKouDis = Convert.ToDouble((item.Length - 300d) / (frontPanelKaKouNo - 1));
 
             //新风CJ孔数量和新风CJ孔第一个CJ距离边缘距离
             int frontCjNo = (int)((item.Length - 30d) / 32d) + 1;
@@ -62,8 +44,7 @@ namespace SolidWorksHelper
             //KSA数量，KSA侧板长度(以全长计算)
             int ksaNo = (int)((item.Length + 1d) / 498d);
             double ksaSideLength = Convert.ToDouble((item.Length - ksaNo * 498d) / 2d);
-            //MESH侧板长度(除去排风三角板3dm计算)
-            double meshSideLength = Convert.ToDouble((item.Length - 3d - (int)((item.Length - 2d) / 498d) * 498d) / 2d) / 1000d;
+            
             //侧板CJ孔整列到烟罩底部
             int sidePanelDownCjNo = (int)((item.Deepth - 95d) / 32d);
             //非水洗烟罩KV/UV
@@ -157,18 +138,18 @@ namespace SolidWorksHelper
 
                 #region 排风腔背板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0195-1");
-                swEdit.FNHE0195(swComp, item.Length, backRivetNum, backRivetSideDis, item.WaterCollection, item.SidePanel, item.Outlet, item.BackToBack);
+                swFrenchHoodPart.FNHE0195(swComp, item.Length, backRivetNum, backRivetSideDis, item.WaterCollection, item.SidePanel, item.Outlet, item.BackToBack);
                 #endregion
 
                 #region 排风腔顶板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0196-1");
-                swEdit.FNHE0196(swComp, item.Length, backRivetNum, backRivetSideDis, item.ExRightDis, "NO",
+                swFrenchHoodPart.FNHE0196(swComp, item.Length, backRivetNum, backRivetSideDis, item.ExRightDis, "NO",
                     item.ExNo, item.ExLength, item.ExWidth, item.ExDis,liftingHoleDis);
                 #endregion
 
                 #region 排风腔前面板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0197-1");
-                swEdit.FNHE0197(swComp, item.Length, "NO", item.ExRightDis, withoutExSuMiDis, item.LightType, midRoofSidePanel);
+                swFrenchHoodPart.FNHE0197(swComp, item.Length, "NO", item.ExRightDis, withoutExSuMiDis, item.LightType, midRoofSidePanel);
                 #endregion
 
                 #region 排风三角板
@@ -211,28 +192,28 @@ namespace SolidWorksHelper
                 #endregion
                 
                 #region 排风脖颈
-                swEdit.ExaustSpigot(swAssy, suffix, item.ANSUL, item.MARVEL, item.ExLength, item.ExWidth, item.ExHeight);
+                swFrenchHoodPart.ExaustSpigot(swAssy, suffix, item.ANSUL, item.MARVEL, item.ExLength, item.ExWidth, item.ExHeight);
                 #endregion
 
                 #region 排风滑门/导轨
-                swEdit.ExaustRail(swAssy, suffix, item.MARVEL, item.ExLength, item.ExWidth, item.ExNo, item.ExDis);
+                swFrenchHoodPart.ExaustRail(swAssy, suffix, item.MARVEL, item.ExLength, item.ExWidth, item.ExNo, item.ExDis);
                 #endregion
 
                 #region KSA侧边,默认两边都有侧板，且对称，特殊情况以后处理
-                swEdit.KSAFilter(swAssy, suffix, ksaSideLength);
+                swFrenchHoodPart.KSAFilter(swAssy, suffix, ksaSideLength);
                 #endregion
                 
                 #region 日光灯
-                swEdit.LightOperate(swAssy, suffix, item.LightType);
+                swFrenchHoodPart.LightOperate(swAssy, suffix, item.LightType);
                 #endregion
 
                 #region 吊装槽钢
-                swEdit.Hanger(swAssy, suffix, item.Deepth, item.ANSUL, item.SidePanel);
+                swFrenchHoodPart.Hanger(swAssy, suffix, item.Deepth, item.ANSUL, item.SidePanel);
                 #endregion
 
                 #region MidRoof侧板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0041-1");
-                swEdit.FNHM0041(swComp, midRoofSidePanel);
+                swFrenchHoodPart.FNHM0041(swComp, midRoofSidePanel);
                 #endregion
 
                 #region 大侧板
@@ -240,21 +221,21 @@ namespace SolidWorksHelper
                 {
                     //LEFT
                     swComp = swAssy.UnSuppress(suffix, "FNHS0073-1");
-                    swEdit.FNHS0073(swComp, item.Deepth, 555d, sidePanelSideCjNo, sidePanelDownCjNo);
+                    swFrenchHoodPart.FNHS0073(swComp, item.Deepth, 555d, sidePanelSideCjNo, sidePanelDownCjNo);
                     swComp = swAssy.UnSuppress(suffix, "FNHS0075-1");
-                    swEdit.FNHS0075(swComp, item.Deepth, 555d, withoutExSuMiDis);
+                    swFrenchHoodPart.FNHS0075(swComp, item.Deepth, 555d, withoutExSuMiDis);
                     //RIGHT
                     swComp = swAssy.UnSuppress(suffix, "FNHS0074-1");
-                    swEdit.FNHS0074(swComp, item.Deepth, 555d, sidePanelSideCjNo, sidePanelDownCjNo);
+                    swFrenchHoodPart.FNHS0074(swComp, item.Deepth, 555d, sidePanelSideCjNo, sidePanelDownCjNo);
                     swComp = swAssy.UnSuppress(suffix, "FNHS0076-1");
-                    swEdit.FNHS0076(swComp, item.Deepth, 555d, withoutExSuMiDis);
+                    swFrenchHoodPart.FNHS0076(swComp, item.Deepth, 555d, withoutExSuMiDis);
 
                     if (item.WaterCollection == "YES")
                     {
                         swComp = swAssy.UnSuppress(suffix, "FNHS0077-1");
-                        swEdit.FNHS0077(swComp, item.Deepth);
+                        swFrenchHoodPart.FNHS0077(swComp, item.Deepth);
                         swComp = swAssy.UnSuppress(suffix, "FNHS0078-1");
-                        swEdit.FNHS0078(swComp, item.Deepth);
+                        swFrenchHoodPart.FNHS0078(swComp, item.Deepth);
                     }
                     else
                     {
@@ -268,15 +249,15 @@ namespace SolidWorksHelper
                     swAssy.Suppress(suffix, "FNHS0076-1");
 
                     swComp = swAssy.UnSuppress(suffix, "FNHS0073-1");
-                    swEdit.FNHS0073(swComp, item.Deepth, 555d, sidePanelSideCjNo, sidePanelDownCjNo);
+                    swFrenchHoodPart.FNHS0073(swComp, item.Deepth, 555d, sidePanelSideCjNo, sidePanelDownCjNo);
                     swComp = swAssy.UnSuppress(suffix, "FNHS0075-1");
-                    swEdit.FNHS0075(swComp, item.Deepth, 555d, withoutExSuMiDis);
+                    swFrenchHoodPart.FNHS0075(swComp, item.Deepth, 555d, withoutExSuMiDis);
 
                     if (item.WaterCollection == "YES")
                     {
                         swAssy.Suppress(suffix, "FNHS0078-1");
                         swComp = swAssy.UnSuppress(suffix, "FNHS0077-1");
-                        swEdit.FNHS0077(swComp, item.Deepth);
+                        swFrenchHoodPart.FNHS0077(swComp, item.Deepth);
                     }
                     else
                     {
@@ -290,15 +271,15 @@ namespace SolidWorksHelper
                     swAssy.Suppress(suffix, "FNHS0075-1");
 
                     swComp = swAssy.UnSuppress(suffix, "FNHS0074-1");
-                    swEdit.FNHS0074(swComp, item.Deepth, 555d, sidePanelSideCjNo, sidePanelDownCjNo);
+                    swFrenchHoodPart.FNHS0074(swComp, item.Deepth, 555d, sidePanelSideCjNo, sidePanelDownCjNo);
                     swComp = swAssy.UnSuppress(suffix, "FNHS0076-1");
-                    swEdit.FNHS0076(swComp, item.Deepth, 555d, withoutExSuMiDis);
+                    swFrenchHoodPart.FNHS0076(swComp, item.Deepth, 555d, withoutExSuMiDis);
 
                     if (item.WaterCollection == "YES")
                     {
                         swAssy.Suppress(suffix, "FNHS0077-1");
                         swComp = swAssy.UnSuppress(suffix, "FNHS0078-1");
-                        swEdit.FNHS0078(swComp, item.Deepth);
+                        swFrenchHoodPart.FNHS0078(swComp, item.Deepth);
                     }
                     else
                     {
@@ -319,34 +300,34 @@ namespace SolidWorksHelper
 
                 #region F型新风腔底部CJ孔板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0115-1");
-                swEdit.FNHA0115(swComp, item.Length, frontCjNo, frontCjFirstDis, frontPanelHoleNo, frontPanelHoleDis, "NO", item.LEDlogo, item.WaterCollection, item.SidePanel);
+                swFrenchHoodPart.FNHA0115(swComp, item.Length, frontCjNo, frontCjFirstDis, frontPanelHoleNo, frontPanelHoleDis, "NO", item.LEDlogo, item.WaterCollection, item.SidePanel);
                 #endregion
 
                 #region 新风斜面板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0116-1");
-                swEdit.FNHA0116(swComp, item.Length, withoutExSuMiDis, item.LightType, midRoofSidePanel);
+                swFrenchHoodPart.FNHA0116(swComp, item.Length, withoutExSuMiDis, item.LightType, midRoofSidePanel);
                 #endregion
 
                 #region 新风顶面板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0117-1");
-                swEdit.FNHA0117(swComp, item.Length, backRivetNum, backRivetSideDis, item.SuNo, item.SuDis, "NO", item.SidePanel, liftingHoleDis);
+                swFrenchHoodPart.FNHA0117(swComp, item.Length, backRivetNum, backRivetSideDis, item.SuNo, item.SuDis, "NO", item.SidePanel, liftingHoleDis);
                 #endregion
 
                 #region 新风导轨
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0123-1");
-                swPart = swComp.GetModelDoc2();
+                ModelDoc2 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@Base-Flange1", item.Length - 180d);
                 #endregion
 
                 #region 新风顶包边
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0118-1");
-                swEdit.FNHA0118(swComp, item.Length, backRivetNum, backRivetSideDis, frontPanelHoleNo,
+                swFrenchHoodPart.FNHA0118(swComp, item.Length, backRivetNum, backRivetSideDis, frontPanelHoleNo,
                     frontPanelHoleDis);
                 #endregion
 
                 #region 新风前网孔面板
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0111-1");
-                swEdit.FNHA0111(swComp, item.Length, frontPanelHoleNo, frontPanelHoleDis);
+                swFrenchHoodPart.FNHA0111(swComp, item.Length, frontPanelHoleNo, frontPanelHoleDis);
 
                 #endregion
 
@@ -362,7 +343,8 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
+                //以后记录在日志中
+                throw new Exception($"作图过程发生异常：{packedAssyPath} 。\n零件：{swComp.Name}\n对象：{ex.Source}\n详细：{ex.Message}");
             }
             finally
             {

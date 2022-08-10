@@ -130,9 +130,6 @@ namespace SolidWorksHelper
                 }
 
 
-
-
-
                 //----------新风脖颈----------
                 if (item.SuNo == 1) swAssy.Suppress("LocalLPattern3");
                 {
@@ -157,11 +154,11 @@ namespace SolidWorksHelper
 
                 //----------排风腔顶部零件----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0032-1");
-                swHoodPart.FNHE0032(swComp, item.Length, midRoofSecondHoleDis, midRoofHoleNo, item.ExNo, item.ExRightDis, item.ExLength, item.ExWidth, item.ExDis, item.Inlet, item.ANSUL, item.ANSide, item.MARVEL, "NO", "NO");
+                swHoodPart.FNHE0032(swComp, item.Length, midRoofSecondHoleDis, midRoofHoleNo, item.ExNo, item.ExRightDis, item.ExLength, item.ExWidth, item.ExDis, item.Inlet, item.ANSUL, item.ANSide, item.MARVEL, "NO");
 
                 //----------排风腔前面板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0033-1");
-                swHoodPart.FNHE0033(swComp, item.Length, item.Inlet, item.MARVEL, "NO");
+                swHoodPart.FNHE0033(swComp, item.Length, item.Inlet, item.MARVEL,item.ExRightDis, "NO");
                 
                 //----------三角板上的UV----------内部运水
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0034-1");
@@ -179,11 +176,11 @@ namespace SolidWorksHelper
                 swHoodPart.KSAFilter(swAssy, suffix, ksaSideLength, "FNHE0003-1", "FNHE0004-1", "FNHE0005-1");
 
                 //----------排风滑门/导轨----------
-                swHoodPart.ExaustRail(swAssy, suffix, item.MARVEL, item.ExLength, item.ExWidth, item.ExNo, item.ExDis, "FNCE0013-1", "FNCE0013-2", "FNCE0018-1", "FNCE0018-2");
+                swHoodPart.ExhaustRail(swAssy, suffix, item.MARVEL, item.ExLength, item.ExWidth, item.ExNo, item.ExDis, "FNCE0013-1", "FNCE0013-2", "FNCE0018-1", "FNCE0018-2");
 
 
                 //----------排风脖颈----------
-                swHoodPart.ExaustSpigot(swAssy, suffix, item.ANSUL, item.MARVEL, item.ExLength, item.ExWidth, item.ExHeight, "FNHE0006-1", "FNHE0007-1", "FNHE0008-1", "FNHE0009-1");
+                swHoodPart.ExhaustSpigot(swAssy, suffix, item.ANSUL, item.MARVEL, item.ExLength, item.ExWidth, item.ExHeight, "FNHE0006-1", "FNHE0007-1", "FNHE0008-1", "FNHE0009-1");
 
 
                 //----------排风腔内部零件----------
@@ -243,7 +240,8 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
+                //以后记录在日志中
+                throw new Exception($"作图过程发生异常：{packedAssyPath} 。\n零件：{swComp.Name}\n对象：{ex.Source}\n详细：{ex.Message}");
             }
             finally
             {

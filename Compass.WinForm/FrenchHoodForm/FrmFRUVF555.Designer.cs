@@ -48,7 +48,6 @@ namespace Compass
             this.cobANDropNo = new System.Windows.Forms.ComboBox();
             this.cobANDetector = new System.Windows.Forms.ComboBox();
             this.cobANSide = new System.Windows.Forms.ComboBox();
-            this.cobIRNo = new System.Windows.Forms.ComboBox();
             this.lblSuDis = new System.Windows.Forms.Label();
             this.cobSuNo = new System.Windows.Forms.ComboBox();
             this.txtSuDis = new System.Windows.Forms.TextBox();
@@ -57,16 +56,9 @@ namespace Compass
             this.label3 = new System.Windows.Forms.Label();
             this.txtDeepth = new System.Windows.Forms.TextBox();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.lblIRDis3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cobSidePanel = new System.Windows.Forms.ComboBox();
-            this.txtIRDis3 = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.txtIRDis2 = new System.Windows.Forms.TextBox();
-            this.txtIRDis1 = new System.Windows.Forms.TextBox();
-            this.lblIRDis1 = new System.Windows.Forms.Label();
-            this.lblIRDis2 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.txtExHeight = new System.Windows.Forms.TextBox();
             this.txtExWidth = new System.Windows.Forms.TextBox();
@@ -107,7 +99,6 @@ namespace Compass
             this.grbLEDSpot = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
             this.cobANSUL = new System.Windows.Forms.ComboBox();
-            this.grbMARVEL = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -115,7 +106,6 @@ namespace Compass
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.grbLEDSpot.SuspendLayout();
-            this.grbMARVEL.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDropDis5
@@ -296,19 +286,6 @@ namespace Compass
             this.cobANSide.Size = new System.Drawing.Size(100, 27);
             this.cobANSide.TabIndex = 0;
             // 
-            // cobIRNo
-            // 
-            this.cobIRNo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobIRNo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobIRNo.BackColor = System.Drawing.Color.Azure;
-            this.cobIRNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobIRNo.FormattingEnabled = true;
-            this.cobIRNo.Location = new System.Drawing.Point(92, 24);
-            this.cobIRNo.Name = "cobIRNo";
-            this.cobIRNo.Size = new System.Drawing.Size(100, 27);
-            this.cobIRNo.TabIndex = 0;
-            this.cobIRNo.SelectedIndexChanged += new System.EventHandler(this.CobIRNo_SelectedIndexChanged);
-            // 
             // lblSuDis
             // 
             this.lblSuDis.AutoSize = true;
@@ -391,16 +368,6 @@ namespace Compass
             this.txtLength.TabIndex = 0;
             this.txtLength.TextChanged += new System.EventHandler(this.TxtLength_TextChanged);
             // 
-            // lblIRDis3
-            // 
-            this.lblIRDis3.AutoSize = true;
-            this.lblIRDis3.Location = new System.Drawing.Point(193, 77);
-            this.lblIRDis3.Name = "lblIRDis3";
-            this.lblIRDis3.Size = new System.Drawing.Size(55, 19);
-            this.lblIRDis3.TabIndex = 2;
-            this.lblIRDis3.Text = "IR间距3";
-            this.lblIRDis3.Visible = false;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -431,62 +398,6 @@ namespace Compass
             this.cobSidePanel.Name = "cobSidePanel";
             this.cobSidePanel.Size = new System.Drawing.Size(100, 27);
             this.cobSidePanel.TabIndex = 2;
-            // 
-            // txtIRDis3
-            // 
-            this.txtIRDis3.BackColor = System.Drawing.Color.Azure;
-            this.txtIRDis3.Location = new System.Drawing.Point(279, 73);
-            this.txtIRDis3.Name = "txtIRDis3";
-            this.txtIRDis3.Size = new System.Drawing.Size(100, 25);
-            this.txtIRDis3.TabIndex = 3;
-            this.txtIRDis3.Visible = false;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 22);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(47, 19);
-            this.label30.TabIndex = 2;
-            this.label30.Text = "IR数量";
-            // 
-            // txtIRDis2
-            // 
-            this.txtIRDis2.BackColor = System.Drawing.Color.Azure;
-            this.txtIRDis2.Location = new System.Drawing.Point(279, 46);
-            this.txtIRDis2.Name = "txtIRDis2";
-            this.txtIRDis2.Size = new System.Drawing.Size(100, 25);
-            this.txtIRDis2.TabIndex = 2;
-            this.txtIRDis2.Visible = false;
-            // 
-            // txtIRDis1
-            // 
-            this.txtIRDis1.BackColor = System.Drawing.Color.Azure;
-            this.txtIRDis1.Location = new System.Drawing.Point(279, 18);
-            this.txtIRDis1.Name = "txtIRDis1";
-            this.txtIRDis1.Size = new System.Drawing.Size(100, 25);
-            this.txtIRDis1.TabIndex = 1;
-            this.txtIRDis1.Visible = false;
-            // 
-            // lblIRDis1
-            // 
-            this.lblIRDis1.AutoSize = true;
-            this.lblIRDis1.Location = new System.Drawing.Point(193, 20);
-            this.lblIRDis1.Name = "lblIRDis1";
-            this.lblIRDis1.Size = new System.Drawing.Size(55, 19);
-            this.lblIRDis1.TabIndex = 2;
-            this.lblIRDis1.Text = "IR间距1";
-            this.lblIRDis1.Visible = false;
-            // 
-            // lblIRDis2
-            // 
-            this.lblIRDis2.AutoSize = true;
-            this.lblIRDis2.Location = new System.Drawing.Point(193, 49);
-            this.lblIRDis2.Name = "lblIRDis2";
-            this.lblIRDis2.Size = new System.Drawing.Size(55, 19);
-            this.lblIRDis2.TabIndex = 2;
-            this.lblIRDis2.Text = "IR间距2";
-            this.lblIRDis2.Visible = false;
             // 
             // label29
             // 
@@ -684,7 +595,6 @@ namespace Compass
             this.cobMARVEL.Name = "cobMARVEL";
             this.cobMARVEL.Size = new System.Drawing.Size(100, 27);
             this.cobMARVEL.TabIndex = 7;
-            this.cobMARVEL.SelectedIndexChanged += new System.EventHandler(this.CobMARVEL_SelectedIndexChanged);
             // 
             // grbANSUL
             // 
@@ -954,25 +864,6 @@ namespace Compass
             this.cobANSUL.TabIndex = 5;
             this.cobANSUL.SelectedIndexChanged += new System.EventHandler(this.CobANSUL_SelectedIndexChanged);
             // 
-            // grbMARVEL
-            // 
-            this.grbMARVEL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grbMARVEL.Controls.Add(this.cobIRNo);
-            this.grbMARVEL.Controls.Add(this.txtIRDis3);
-            this.grbMARVEL.Controls.Add(this.label30);
-            this.grbMARVEL.Controls.Add(this.txtIRDis2);
-            this.grbMARVEL.Controls.Add(this.txtIRDis1);
-            this.grbMARVEL.Controls.Add(this.lblIRDis1);
-            this.grbMARVEL.Controls.Add(this.lblIRDis3);
-            this.grbMARVEL.Controls.Add(this.lblIRDis2);
-            this.grbMARVEL.Location = new System.Drawing.Point(779, 404);
-            this.grbMARVEL.Name = "grbMARVEL";
-            this.grbMARVEL.Size = new System.Drawing.Size(398, 104);
-            this.grbMARVEL.TabIndex = 8;
-            this.grbMARVEL.TabStop = false;
-            this.grbMARVEL.Text = "MARVEL";
-            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -1001,7 +892,6 @@ namespace Compass
             this.Controls.Add(this.grbLEDSpot);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.cobANSUL);
-            this.Controls.Add(this.grbMARVEL);
             this.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 675);
@@ -1019,8 +909,6 @@ namespace Compass
             this.groupBox6.PerformLayout();
             this.grbLEDSpot.ResumeLayout(false);
             this.grbLEDSpot.PerformLayout();
-            this.grbMARVEL.ResumeLayout(false);
-            this.grbMARVEL.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1046,7 +934,6 @@ namespace Compass
         private System.Windows.Forms.ComboBox cobANDropNo;
         private System.Windows.Forms.ComboBox cobANDetector;
         private System.Windows.Forms.ComboBox cobANSide;
-        private System.Windows.Forms.ComboBox cobIRNo;
         private System.Windows.Forms.Label lblSuDis;
         private System.Windows.Forms.ComboBox cobSuNo;
         private System.Windows.Forms.TextBox txtSuDis;
@@ -1055,16 +942,9 @@ namespace Compass
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDeepth;
         private System.Windows.Forms.TextBox txtLength;
-        private System.Windows.Forms.Label lblIRDis3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cobSidePanel;
-        private System.Windows.Forms.TextBox txtIRDis3;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox txtIRDis2;
-        private System.Windows.Forms.TextBox txtIRDis1;
-        private System.Windows.Forms.Label lblIRDis1;
-        private System.Windows.Forms.Label lblIRDis2;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.TextBox txtExHeight;
         private System.Windows.Forms.TextBox txtExWidth;
@@ -1105,7 +985,6 @@ namespace Compass
         private System.Windows.Forms.GroupBox grbLEDSpot;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.ComboBox cobANSUL;
-        private System.Windows.Forms.GroupBox grbMARVEL;
         private System.Windows.Forms.Panel panel1;
     }
 }

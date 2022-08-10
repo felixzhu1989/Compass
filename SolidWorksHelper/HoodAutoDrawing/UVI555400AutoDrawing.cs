@@ -23,6 +23,8 @@ namespace SolidWorksHelper
             //packango后需要接收打包完成的地址，参数为后缀
             string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
             if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
+
+
             //查询参数
             UVI555400 item = (UVI555400)objUvi555400Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
@@ -139,17 +141,17 @@ namespace SolidWorksHelper
                 swEdit.KSAFilter(swAssy, suffix, ksaSideLength, "FNHE0003-1", "FNHE0004-1", "FNHE0005-1");
 
                 //----------排风滑门/导轨----------
-                swEdit.ExaustRail(swAssy, suffix, item.MARVEL, item.ExLength, item.ExWidth, item.ExNo, item.ExDis, "FNCE0013-1", "FNCE0013-4", "FNCE0018-1", "FNCE0018-2");
+                swEdit.ExhaustRail(swAssy, suffix, item.MARVEL, item.ExLength, item.ExWidth, item.ExNo, item.ExDis, "FNCE0013-1", "FNCE0013-4", "FNCE0018-1", "FNCE0018-2");
 
                 //----------排风脖颈----------
-                swEdit.ExaustSpigot(swAssy, suffix, item.ANSUL, item.MARVEL, item.ExLength, item.ExWidth, item.ExHeight, "FNHE0006-2", "FNHE0007-1", "FNHE0008-1", "FNHE0009-2");
+                swEdit.ExhaustSpigot(swAssy, suffix, item.ANSUL, item.MARVEL, item.ExLength, item.ExWidth, item.ExHeight, "FNHE0006-2", "FNHE0007-1", "FNHE0008-1", "FNHE0009-2");
 
                 //----------排风三角板----------
-                swEdit.ExaustSide(swAssy, suffix, item.ANSUL, item.SidePanel, "5201030401-4", "5201030401-5");
+                swEdit.ExhaustSide(swAssy, suffix, item.ANSUL, item.SidePanel, "5201030401-4", "5201030401-5");
 
                 //----------UV灯，UV灯门----------
 
-                swEdit.UVLightDoor(swAssy, suffix, item.UVType, "5201050414-1", "5201060409-1", "5201050413-1", "5201060410-1");
+                swEdit.UvLightDoor(swAssy, suffix, item.UVType, "5201050414-1", "5201060409-1", "5201050413-1", "5201060410-1");
 
                 //----------MESH油网侧板----------
 
@@ -195,8 +197,11 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0002-1");
                 swEdit.FNHA0002(swComp, item.Length, frontCjNo, frontCjFirstDis, frontPanelHoleNo, frontPanelHoleDis, item.Bluetooth, item.LEDlogo, item.WaterCollection, item.SidePanel);
 
-                //----------蓝牙和LOGO----------
-                swEdit.BluetoothLogo(swAssy, suffix, item.Bluetooth, item.LEDlogo, "2900200001-1", "2900300005-1", "5201010401-1");
+                //----------蓝牙----------
+                swEdit.Bluetooth(swAssy, suffix, item.Bluetooth, "2900200001-1");
+
+                //----------LOGO----------
+                swEdit.LedLogo(swAssy, suffix, item.LEDlogo, "2900300005-1", "5201010401-1");
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
                 swModel.Save();//保存，很耗时间
@@ -204,7 +209,8 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
+                //以后记录在日志中
+                throw new Exception($"作图过程发生异常：{packedAssyPath} 。\n零件：{swComp.Name}\n对象：{ex.Source}\n详细：{ex.Message}");
             }
             finally
             {
