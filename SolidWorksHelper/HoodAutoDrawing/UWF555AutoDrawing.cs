@@ -53,8 +53,7 @@ namespace SolidWorksHelper
             //KSA数量，KSA侧板长度(以全长计算)水洗烟罩KSA在三角板内侧，减去3dm
             int ksaNo = (int)((item.Length - 2d) / 498d);
             double ksaSideLength = Convert.ToDouble((item.Length - 3d - ksaNo * 498d) / 2);
-            //MESH侧板长度(除去排风三角板3dm计算)
-            double meshSideLength = Convert.ToDouble((item.Length - 3d - (int)((item.Length - 2d) / 498d) * 498d) / 2);
+            
             
 
             try
@@ -191,7 +190,7 @@ namespace SolidWorksHelper
                 swHoodPart.UwLightDoor(swAssy, suffix, item.UVType, "5201050416-asm-2", "5201050418-4", "5201060409-1", "5201050415-asm-2", "5201050417-4", "5201060410-1");
 
                 //----------MESH油网侧板----------
-                swHoodPart.UwMeshFilter(swAssy, suffix, meshSideLength, item.Inlet, item.ANSUL, item.ANSide, "FNHE0038-1", "FNHE0039-3");
+                swHoodPart.UwMeshFilter(swAssy, suffix, item.Length, item.Inlet, item.ANSUL, item.ANSide, "FNHE0038-1", "FNHE0039-3");
 
 
                 //----------排风腔内部零件----------

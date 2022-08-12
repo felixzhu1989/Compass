@@ -440,14 +440,16 @@ namespace SolidWorksHelper
             }
         }
 
-        public void MeshFilter(AssemblyDoc swAssy, string suffix, double meshSideLength, string ansul, string anSide, string leftPart, string rightPart)
+        public void MeshFilter(AssemblyDoc swAssy, string suffix, double length, string ansul, string anSide, string leftPart, string rightPart)
         {
+            //MESH侧板长度(除去排风三角板3dm计算)
+            double meshSideLength = Convert.ToDouble((length - 3d - (int)((length - 2d) / 498d) * 498d) / 2);
             Component2 swComp;
             ModelDoc2 swPart;
             if (ansul == "YES")
             {
-                if (meshSideLength * 2d < 57d) meshSideLength += 249d;
-                if ((meshSideLength - 20d) > 57d)
+                if (meshSideLength * 2d < 55d) meshSideLength += 249d;
+                if ((meshSideLength + 20d) > 55d)
                 {
                     if (anSide == "LEFT")
                     {
@@ -455,10 +457,13 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
                         swComp.UnSuppress("ANSUL");
+                        swComp.Suppress("KW");
+
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
                         swComp.Suppress("ANSUL");
+                        swComp.Suppress("KW");
                     }
                     else if (anSide == "RIGHT")
                     {
@@ -466,10 +471,13 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
                         swComp.Suppress("ANSUL");
+                        swComp.Suppress("KW");
+
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
                         swComp.UnSuppress("ANSUL");
+                        swComp.Suppress("KW");
                     }
                     else
                     {
@@ -477,10 +485,13 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
                         swComp.Suppress("ANSUL");
+                        swComp.Suppress("KW");
+
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
                         swComp.Suppress("ANSUL");
+                        swComp.Suppress("KW");
                     }
                 }
                 else
@@ -491,48 +502,48 @@ namespace SolidWorksHelper
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength * 2d);
                         swComp.UnSuppress("ANSUL");
+                        swComp.Suppress("KW");
+
                         swAssy.Suppress(suffix, rightPart);
-                    }
-                    else if (anSide == "RIGHT")
-                    {
-                        swAssy.Suppress(suffix, leftPart);
-                        swComp = swAssy.UnSuppress(suffix, rightPart);
-                        swPart = swComp.GetModelDoc2();
-                        swPart.ChangeDim("D2@Sketch1", meshSideLength * 2d);
-                        swComp.UnSuppress("ANSUL");
                     }
                     else
                     {
                         swAssy.Suppress(suffix, leftPart);
+
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength * 2d);
                         swComp.Suppress("ANSUL");
+                        swComp.Suppress("KW");
                     }
                 }
             }
             else
             {
-                if (2 * meshSideLength < 15d && meshSideLength > 1.5d)
-                    meshSideLength += 249d;
-                if (meshSideLength > 40d)
+                if (2 * meshSideLength < 15d && meshSideLength > 1.5d) meshSideLength += 249d;
+                if (meshSideLength > 30d)
                 {
                     swComp = swAssy.UnSuppress(suffix, leftPart);
                     swPart = swComp.GetModelDoc2();
                     swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
                     swComp.Suppress("ANSUL");
+                    swComp.Suppress("KW");
+
                     swComp = swAssy.UnSuppress(suffix, rightPart);
                     swPart = swComp.GetModelDoc2();
                     swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
                     swComp.Suppress("ANSUL");
+                    swComp.Suppress("KW");
                 }
-                else if (meshSideLength <= 40d && meshSideLength > 1.5d)
+                else if (meshSideLength <= 30d && meshSideLength > 1.5d)
                 {
                     swAssy.Suppress(suffix, leftPart);
+
                     swComp = swAssy.UnSuppress(suffix, rightPart);
                     swPart = swComp.GetModelDoc2();
                     swPart.ChangeDim("D2@Sketch1", meshSideLength * 2d);
                     swComp.Suppress("ANSUL");
+                    swComp.Suppress("KW");
                 }
                 else
                 {
@@ -788,6 +799,8 @@ namespace SolidWorksHelper
                 swComp.UnSuppress("FILTER-CABLE");
                 swPart.ChangeDim("D1@Sketch10", exRightDis);
                 swComp.UnSuppress("BFCABLE");
+                swComp.UnSuppress("UVCABLE");
+                swPart.ChangeDim("D2@Sketch10", 1500d);
             }
             else if (uvType == "SHORT")
             {
@@ -797,6 +810,8 @@ namespace SolidWorksHelper
                 swComp.UnSuppress("FILTER-CABLE");
                 swPart.ChangeDim("D1@Sketch10", exRightDis);
                 swComp.UnSuppress("BFCABLE");
+                swComp.UnSuppress("UVCABLE");
+                swPart.ChangeDim("D2@Sketch10", 790d);
             }
             else
             {
@@ -870,14 +885,17 @@ namespace SolidWorksHelper
         }
 
         //----------水洗MESH油网侧板----------
-        public void UwMeshFilter(AssemblyDoc swAssy, string suffix, double meshSideLength, string inlet, string ansul, string anSide, string leftPart, string rightPart)
+        public void UwMeshFilter(AssemblyDoc swAssy, string suffix, double length, string inlet, string ansul, string anSide, string leftPart, string rightPart)
         {
+            //MESH侧板长度(除去排风三角板3dm计算,20220812-增加了考虑水管孔避让，最小55，再加上20错开KSA)
+            double meshSideLength = Convert.ToDouble((length - 3d -(int)((length-2d-35d) / 498d) * 498d) / 2d);
+
             Component2 swComp;
             ModelDoc2 swPart;
 
-            if ((inlet == "LEFT" && anSide == "RIGHT") || (anSide == "LEFT" && inlet == "RIGHT"))//不同一侧
+            if ((inlet == "LEFT" && anSide == "RIGHT") || (anSide == "LEFT" && inlet == "RIGHT"))//ANSUL和进水管不同一侧
             {
-                if ((meshSideLength - 20d) < 57d) meshSideLength += 249d;
+                if ((meshSideLength - 20d) < 55d) meshSideLength += 249d;//再减少一个MESH(498/2)
                 swComp = swAssy.UnSuppress(suffix, leftPart);
                 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
@@ -896,8 +914,10 @@ namespace SolidWorksHelper
             }
             else
             {
-                if (meshSideLength * 2 < 57d / 1000d) meshSideLength += 249d / 1000d;
-                if ((meshSideLength - 20d / 1000d) > 57d / 1000d)
+                //ANSUL和进水管在同一侧（保险，有可能不可能）
+                if (meshSideLength * 2 < 55d) meshSideLength += 249d;//如果只有一个MESH侧板，再减少一个MESH(498/2)
+
+                if ((meshSideLength + 20d) > 55d) //最大侧板>55，才能穿水管
                 {
                     if (inlet == "LEFT")
                     {
@@ -938,6 +958,7 @@ namespace SolidWorksHelper
                 }
                 else
                 {
+                    //只做一个MESH侧板的情况
                     if (inlet == "LEFT")
                     {
                         swComp = swAssy.UnSuppress(suffix, leftPart);
@@ -971,7 +992,7 @@ namespace SolidWorksHelper
             swPart.ChangeDim("D1@Sketch1", length - 8d);
         }
 
-        public void FNHE0041(Component2 swComp, double length,double exRightDis, string uvType)
+        public void FNHE0041(Component2 swComp, double length, double exRightDis, string uvType)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@Sketch1", length - 5d);

@@ -51,8 +51,7 @@ namespace SolidWorksHelper
             //KSA数量，KSA侧板长度(以全长计算)
             int ksaNo = (int)((item.Length + 1) / 498d);
             double ksaSideLength = Convert.ToDouble((item.Length - ksaNo * 498d) / 2);
-            //MESH侧板长度(除去排风三角板3dm计算)
-            double meshSideLength = Convert.ToDouble((item.Length - 3d - (int)((item.Length - 2d) / 498d) * 498d) / 2);
+            
 
             #endregion
 
@@ -169,7 +168,7 @@ namespace SolidWorksHelper
                 swHoodPart.UvLightDoor(swAssy, suffix, item.UVType, "5201050414-1", "5201060409-1", "5201050413-1", "5201060410-1");
 
                 //----------MESH油网侧板----------
-                swHoodPart.MeshFilter(swAssy, suffix, meshSideLength, item.ANSUL, item.ANSide, "FNHE0012-1", "FNHE0013-1");
+                swHoodPart.MeshFilter(swAssy, suffix, item.Length, item.ANSUL, item.ANSide, "FNHE0012-1", "FNHE0013-1");
 
                 //----------排风腔内部零件----------
                 //MESH油网下导轨
