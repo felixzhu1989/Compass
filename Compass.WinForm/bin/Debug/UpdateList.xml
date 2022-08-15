@@ -5,50 +5,50 @@
   <!--升级文件信息-->
   <UpdateInfo>
     <!--升级文件的更新日期-->
-    <UpdateTime Date="2022-8-12 11:00"/>
+    <UpdateTime Date="2022-8-15 11:00"/>
     <!--升级文件的版本号-->
-    <Version Num="2.1.1.3"/>
+    <Version Num="2.1.1.4"/>
   </UpdateInfo>
   <!--升级文件列表-->
   <UpdateFileList>   
-		<UpdateFile Ver="2.1.1.3" FileName="DAL.dll" ContentLength="227KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="Models.dll" ContentLength="114KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="SolidWorksHelper.dll" ContentLength="1510KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="Common.dll" ContentLength="10KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="DAL.dll" ContentLength="227KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="Models.dll" ContentLength="114KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="SolidWorksHelper.dll" ContentLength="1510KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="Common.dll" ContentLength="10KB"/>
 		<!--主程序文件-->
-		<UpdateFile Ver="2.1.1.3" FileName="Compass.exe" ContentLength="1815KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="Compass.exe" ContentLength="1815KB"/>
 		<!--备用升级程序-->
-		<UpdateFile Ver="2.1.1.3" FileName="UpdateProgram.back.exe" ContentLength="361KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="UpdateProgram.back.exe" ContentLength="361KB"/>
 		<!--xml文件-->
-		<UpdateFile Ver="2.1.1.3" FileName="UpdateList.xml" ContentLength="2KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="UpdateList.xml" ContentLength="2KB"/>
 		<!--excel文件-->
-		<UpdateFile Ver="2.1.1.3" FileName="JobCard_EngLabel.xlsx" ContentLength="23KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="JobCard_FinalInspection.xlsx" ContentLength="24KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="SemiBom.xlsx" ContentLength="11KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="JobCard.xlsx" ContentLength="39KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="JobCard_Ceiling.xlsx" ContentLength="29KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="JobCard_EngLabel.xlsx" ContentLength="23KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="JobCard_FinalInspection.xlsx" ContentLength="24KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="SemiBom.xlsx" ContentLength="11KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="JobCard.xlsx" ContentLength="39KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="JobCard_Ceiling.xlsx" ContentLength="29KB"/>
 	</UpdateFileList>
 <!--暂时不升级文件列表-->
   <NotUpdateFileList>
 		<!--DLL文件-->	
-		<UpdateFile Ver="2.1.1.3" FileName="eDrawings.Interop.EModelMarkupControl.dll" ContentLength="20KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="eDrawings.Interop.EModelViewControl.dll" ContentLength="66KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="MetroFramework.Design.dll" ContentLength="11KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="MetroFramework.dll" ContentLength="11KB"/>	
-		<UpdateFile Ver="2.1.1.3" FileName="MetroFramework.Fonts.dll" ContentLength="11KB"/>	
+		<UpdateFile Ver="2.1.1.4" FileName="eDrawings.Interop.EModelMarkupControl.dll" ContentLength="20KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="eDrawings.Interop.EModelViewControl.dll" ContentLength="66KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="MetroFramework.Design.dll" ContentLength="11KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="MetroFramework.dll" ContentLength="11KB"/>	
+		<UpdateFile Ver="2.1.1.4" FileName="MetroFramework.Fonts.dll" ContentLength="11KB"/>	
 		
 		<!--图标文件-->
-		<UpdateFile Ver="2.1.1.3" FileName="compass_64px.ico" ContentLength="1815KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="compass_64px.ico" ContentLength="1815KB"/>
 		
 		<!--缺省图文件-->
-		<UpdateFile Ver="2.1.1.3" FileName="NoPic.png" ContentLength="1815KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="NoPic.png" ContentLength="1815KB"/>
 		
 		<!--excel文件-->
-		<UpdateFile Ver="2.1.1.3" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="CeilingLabel.xlsx" ContentLength="5KB"/>		
-		<UpdateFile Ver="2.1.1.3" FileName="CutList.xlsx" ContentLength="11KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="Cutlist导入模板.xlsx" ContentLength="10KB"/>
-		<UpdateFile Ver="2.1.1.3" FileName="DrawingNum导入模板.xlsx" ContentLength="13KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="CeilingLabel.xlsx" ContentLength="5KB"/>		
+		<UpdateFile Ver="2.1.1.4" FileName="CutList.xlsx" ContentLength="11KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="Cutlist导入模板.xlsx" ContentLength="10KB"/>
+		<UpdateFile Ver="2.1.1.4" FileName="DrawingNum导入模板.xlsx" ContentLength="13KB"/>
   </NotUpdateFileList>
 </autoUpdater>
