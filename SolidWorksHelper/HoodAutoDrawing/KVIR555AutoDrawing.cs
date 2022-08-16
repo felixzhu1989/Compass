@@ -41,26 +41,13 @@ namespace SolidWorksHelper
             //KSA数量，KSA侧板长度(以全长计算)/M型侧板与MESH一样需要减去三角板厚度
             int ksaNo = (int)((item.ExBeamLength -2d) / 498d);
             double ksaSideLength = Convert.ToDouble((item.ExBeamLength - 3d - ksaNo * 498d) / 2);
-
-
-            //圆环新风
-            double innerRadius= item.Deepth / 2d - 90d;
-            double alpha = Math.Asin(400d/innerRadius);
-            double beta = Math.PI - 2 * alpha;
-            double innerRound = beta * innerRadius - 4d;
-            int innerCjNo = (int)((innerRound - 30d) / 32d) + 1;
-            double innerCjFirstDis = (innerRound - (innerCjNo - 1) * 32d) / 2d;
-
-            double downMidRound = beta * (innerRadius + 45d);
-            int downCjNo = (int)((downMidRound - 30d) / 32d) + 1;
-            double downCjFirstDis = (downMidRound - (innerCjNo - 1) * 32d) / 2d;
+            
+            
             #endregion
 
             try
             {
-                #region Top Level
-                //吊装槽钢
-                swModel.ChangeDim("D3@LocalLPattern1", item.ExBeamLength - 50d);
+                #region Top Level                
 
                 //排风脖颈数量和距离
                 if (item.ExNo == 1)
@@ -138,10 +125,10 @@ namespace SolidWorksHelper
                 swHoodPart.FNHA0048(swComp,item.Deepth);
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0049-1");
-                swHoodPart.FNHA0049(swComp, item.Deepth, innerCjFirstDis, innerCjNo);
+                swHoodPart.FNHA0049(swComp, item.Deepth);
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0050-1");
-                swHoodPart.FNHA0050(swComp,item.Deepth, downCjFirstDis, downCjNo,beta);
+                swHoodPart.FNHA0050(swComp,item.Deepth);
 
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0051-1");
                 swHoodPart.FNHA0051(swComp,item.Deepth,item.ExBeamLength);

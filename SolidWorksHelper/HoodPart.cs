@@ -2120,11 +2120,20 @@ namespace SolidWorksHelper
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@Sketch1", depth / 2d - 1d);
-            swPart.ChangeDim("D3@Sketch1", depth / 2d - 3d);
+            swPart.ChangeDim("D3@Sketch1", depth / 2d - 2.5d);
         }
 
-        public void FNHA0049(Component2 swComp, double depth, double innerCjFirstDis, int innerCjNo)
+        public void FNHA0049(Component2 swComp, double depth)
         {
+            //圆环新风
+            double innerRadius = depth / 2d - 90d;
+            double alpha = Math.Asin(400d/innerRadius);
+            double beta = Math.PI - 2 * alpha;
+
+            double innerRound = beta * innerRadius - 4d;
+            int innerCjNo = (int)((innerRound - 30d) / 32d) + 1;
+            double innerCjFirstDis = (innerRound - (innerCjNo - 1) * 32d) / 2d;
+
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@Sketch1", depth / 2d - 90d + 1d);
             swPart.ChangeDim("D3@Sketch1", depth / 2d - 90d + 1d+0.5d-400d);
@@ -2132,8 +2141,16 @@ namespace SolidWorksHelper
             swPart.ChangeDim("D1@LPattern1", innerCjNo);
         }
 
-        public void FNHA0050(Component2 swComp, double depth, double downCjFirstDis, int downCjNo,double beta)
+        public void FNHA0050(Component2 swComp, double depth)
         {
+            double innerRadius = depth / 2d - 90d;
+            double alpha = Math.Asin(400d/innerRadius);
+            double beta = Math.PI - 2 * alpha;
+
+            double downMidRound = beta * (innerRadius + 45d)-16d;
+            int downCjNo = (int)((downMidRound - 30d) / 32d)+ 1;
+            double downCjFirstDis = (downMidRound - (downCjNo -1) * 32d) / 2d;
+
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@Sketch1", depth / 2d - 1d);
             swPart.ChangeDim("D4@Sketch1", depth / 2d - 90d +1d);
@@ -2141,7 +2158,7 @@ namespace SolidWorksHelper
             swPart.ChangeDim("D3@Sketch2", depth - 90d);
             swPart.ChangeDim("D2@Sketch2", downCjFirstDis);
             swPart.ChangeDim("D1@CirPattern1", downCjNo);
-            swPart.ChangeDim("D3@CirPattern1", (beta*180)/Math.PI);
+            swPart.ChangeDim("D3@CirPattern1", beta*1000d);
         }
 
         public void FNHA0051(Component2 swComp, double depth, double exBeamLength)
