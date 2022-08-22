@@ -196,7 +196,8 @@ namespace Compass
             {"james", Color.Red},
             {"admin",Color.Silver},
             {"sky",Color.Silver},
-            {"cart", Color.Magenta}
+            {"cart", Color.Magenta},
+            {"rongjie", Color.ForestGreen},
         };
         public Dictionary<string, Color> UserColorKeyValue => _userColor;
 
