@@ -957,11 +957,13 @@ namespace SolidWorksHelper
                         else swComp.Suppress("KW");
                         if (ansul == "YES" && anSide == "LEFT") swComp.UnSuppress("ANSUL");
                         else swComp.Suppress("ANSUL");
+
                         swAssy.Suppress(suffix, rightPart);
                     }
                     else
                     {
                         swAssy.Suppress(suffix, leftPart);
+
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", 2d*meshSideLength);
@@ -2116,13 +2118,14 @@ namespace SolidWorksHelper
 
 
         //----------圆环新风----------
+        //外圆
         public void FNHA0048(Component2 swComp, double depth)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@Sketch1", depth / 2d - 1d);
-            swPart.ChangeDim("D3@Sketch1", depth / 2d - 2.5d);
+            swPart.ChangeDim("D3@Sketch1", depth / 2d - 2d);//外半径-2
         }
-
+        //内圆
         public void FNHA0049(Component2 swComp, double depth)
         {
             //圆环新风
@@ -2136,7 +2139,7 @@ namespace SolidWorksHelper
 
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@Sketch1", depth / 2d - 90d + 1d);
-            swPart.ChangeDim("D3@Sketch1", depth / 2d - 90d + 1d+0.5d-400d);
+            swPart.ChangeDim("D3@Sketch1", depth / 2d - 90d + 1d-0.5d-400d);//内半径-400.5
             swPart.ChangeDim("D3@Sketch6", innerCjFirstDis);
             swPart.ChangeDim("D1@LPattern1", innerCjNo);
         }
@@ -2161,6 +2164,7 @@ namespace SolidWorksHelper
             swPart.ChangeDim("D3@CirPattern1", beta*1000d);
         }
 
+        //ding
         public void FNHA0051(Component2 swComp, double depth, double exBeamLength)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();

@@ -17,16 +17,8 @@ namespace SolidWorksHelper
         {
             #region 准备工作
 
-            //创建项目模型存放地址
-            string itemPath = $@"{projectPath}\{tree.Item}-{tree.Module}-{tree.CategoryName}";
-            if (!CommonFunc.CreateProjectPath(itemPath)) return;
-            //Pack的后缀
-            string suffix = $@"{tree.Item}-{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
-
-            //判断文件是否存在，如果存在将不执行pack，如果不存在则执行pack
-            //packango后需要接收打包完成的地址，参数为后缀
-            string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
-            if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
+            //packandgo后需要接收打包完成的地址，参数为后缀
+            string packedAssyPath = swApp.PackAndGoHood(tree, projectPath, out string suffix);
 
             //查询参数
             HWUVF650 item = (HWUVF650)objHWUVF650Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
@@ -34,7 +26,7 @@ namespace SolidWorksHelper
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
             int warnings = 0;
             int errors = 0;
-            suffix = "_" + suffix; //后缀
+            
             HuaWeiHoodPart swEdit = new HuaWeiHoodPart();
             //打开Pack后的模型
             ModelDoc2 swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
@@ -70,9 +62,7 @@ namespace SolidWorksHelper
             //KSA数量，KSA侧板长度(以全长计算)
             int ksaNo = (int)((item.Length + 1) / 498d);
             double ksaSideLength = Convert.ToDouble((item.Length - ksaNo * 498d) / 2d);
-            //MESH侧板长度(除去排风三角板3dm计算,2022.05.25华为新改烟罩需在减去2)
-            double meshSideLength =
-                Convert.ToDouble((item.Length - 3d - (int)((item.Length - 2d) / 497d) * 497d) / 2d - 2d);
+            
 
             #endregion 中间参数
 
@@ -172,7 +162,7 @@ namespace SolidWorksHelper
                 swEdit.UVLightDoor(swAssy, suffix, item.UVType, partList);
 
                 //----------MESH油网侧板----------
-                swEdit.MeshFilter(swAssy, suffix, meshSideLength, item.ANSUL, item.ANSide, "FNHE0162-1", "FNHE0163-1");
+                swEdit.MeshFilter(swAssy, suffix, item.Length, item.ANSUL, item.ANSide, "FNHE0162-1", "FNHE0163-1");
 
                 #endregion 排风腔
 
@@ -223,7 +213,8 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
+                //以后记录在日志中
+                throw new Exception($"作图过程发生异常：{packedAssyPath} 。\n零件：{swComp.Name}\n对象：{ex.Source}\n详细：{ex.Message}");
             }
             finally
             {

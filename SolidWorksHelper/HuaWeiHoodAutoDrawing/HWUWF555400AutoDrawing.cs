@@ -14,16 +14,8 @@ namespace SolidWorksHelper
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             #region 准备工作
-            //创建项目模型存放地址
-            string itemPath = $@"{projectPath}\{tree.Item}-{tree.Module}-{tree.CategoryName}";
-            if (!CommonFunc.CreateProjectPath(itemPath)) return;
-            //Pack的后缀
-            string suffix = $@"{tree.Item}-{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
-
-            //判断文件是否存在，如果存在将不执行pack，如果不存在则执行pack
-            //packango后需要接收打包完成的地址，参数为后缀
-            string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
-            if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
+            //packandgo后需要接收打包完成的地址，参数为后缀
+            string packedAssyPath = swApp.PackAndGoHood(tree, projectPath, out string suffix);
 
             //查询参数
             HWUWF555400 item = (HWUWF555400)objHWUWF555400Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
@@ -31,12 +23,12 @@ namespace SolidWorksHelper
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
             int warnings = 0;
             int errors = 0;
-            suffix = "_" + suffix;//后缀
+            
             HuaWeiHoodPart swEdit = new HuaWeiHoodPart();
 
             //打开Pack后的模型
             ModelDoc2 swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
-                (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
+                (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings);
             AssemblyDoc swAssy = swModel as AssemblyDoc;//装配体
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true);//TopOnly参数设置成true，只重建顶层，不重建零件内部
@@ -67,8 +59,7 @@ namespace SolidWorksHelper
             //KSA数量，KSA侧板长度(以全长计算)水洗烟罩KSA在三角板内侧，减去3dm
             int ksaNo = (int)((item.Length - 2d) / 498d);
             double ksaSideLength = Convert.ToDouble((item.Length - 3d - ksaNo * 498d) / 2);
-            //MESH侧板长度(除去排风三角板3dm计算)
-            double meshSideLength = Convert.ToDouble((item.Length - 3d - (int)((item.Length - 2d) / 497d) * 497d) / 2);
+            
             #endregion 计算中间值
 
             try
@@ -157,7 +148,7 @@ namespace SolidWorksHelper
                 swEdit.UVLightDoor(swAssy, suffix, item.UVType, partList);
 
                 //----------MESH油网侧板----------
-                swEdit.MeshFilterUW(swAssy, suffix, meshSideLength, item.Inlet, item.ANSUL, item.ANSide, "FNHE0162-1", "FNHE0163-1");
+                swEdit.UwMeshFilter(swAssy, suffix, item.Length, item.Inlet, item.ANSUL, item.ANSide, "FNHE0162-1", "FNHE0163-1");
 
                 #endregion 排风腔
 
@@ -209,7 +200,8 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
+                //以后记录在日志中
+                throw new Exception($"作图过程发生异常：{packedAssyPath} 。\n零件：{swComp.Name}\n对象：{ex.Source}\n详细：{ex.Message}");
             }
             finally
             {

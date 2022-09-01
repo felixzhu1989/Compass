@@ -15,17 +15,8 @@ namespace SolidWorksHelper
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             #region 准备工作
-
-            //创建项目模型存放地址
-            string itemPath = $@"{projectPath}\{tree.Item}-{tree.Module}-{tree.CategoryName}";
-            if (!CommonFunc.CreateProjectPath(itemPath)) return;
-            //Pack的后缀
-            string suffix = $@"{tree.Item}-{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
-
-            //判断文件是否存在，如果存在将不执行pack，如果不存在则执行pack
-            //packango后需要接收打包完成的地址，参数为后缀
-            string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
-            if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
+            //packandgo后需要接收打包完成的地址，参数为后缀
+            string packedAssyPath = swApp.PackAndGoHood(tree, projectPath, out string suffix);
 
             //查询参数
             HWUWF650 item = (HWUWF650)objHWUWF650Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
@@ -33,26 +24,19 @@ namespace SolidWorksHelper
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
             int warnings = 0;
             int errors = 0;
-            suffix = "_" + suffix;//后缀
-
             HuaWeiHoodPart swEdit = new HuaWeiHoodPart();
 
             //打开Pack后的模型
             var swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
-                (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings) as ModelDoc2;
+                (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings);
             var swAssy = swModel as AssemblyDoc;//装配体
             //打开装配体后必须重建，使Pack后的零件名都更新到带后缀的状态，否则程序出错
             swModel.ForceRebuild3(true);//TopOnly参数设置成true，只重建顶层，不重建零件内部
 
             #endregion 准备工作
-
-            /*注意SolidWorks单位是m，计算是应当/1000d
-             * 整形与整形运算得出的结果仍然时整形，1640 / 1000d结果为0，因此必须将其中一个转化成double型，使用后缀m就可以了
-             * (int)不进行四舍五入，Convert.ToInt32会四舍五入
-            */
+            
 
             #region 计算中间值
-
             //新风面板卡扣数量及间距
             int frontPanelKaKouNo = (int)((item.Length - 300d) / 450d) + 2;
             double frontPanelKaKouDis = Convert.ToDouble((item.Length - 300d) / (frontPanelKaKouNo - 1));
@@ -71,8 +55,7 @@ namespace SolidWorksHelper
             //KSA数量，KSA侧板长度(以全长计算)水洗烟罩KSA在三角板内侧，减去3dm
             int ksaNo = (int)((item.Length - 2d) / 498d);
             double ksaSideLength = Convert.ToDouble((item.Length - 3d - ksaNo * 498d) / 2);
-            //MESH侧板长度(除去排风三角板3dm计算)
-            double meshSideLength = Convert.ToDouble((item.Length - 3d - (int)((item.Length - 2d) / 497d) * 497d) / 2);
+            
 
             #endregion 计算中间值
 
@@ -83,10 +66,7 @@ namespace SolidWorksHelper
                 //烟罩深度
                 swModel.ChangeDim("D1@Distance81", item.Deepth);
                 //判断KSA数量，KSA侧板长度，如果太小，则使用特殊小侧板侧边
-                if (ksaNo == 1)
-                {
-                    swAssy.Suppress("LocalLPattern1");
-                }
+                if (ksaNo == 1) swAssy.Suppress("LocalLPattern1");
                 else
                 {
                     swAssy.UnSuppress("LocalLPattern1");
@@ -95,50 +75,7 @@ namespace SolidWorksHelper
                 //KSA距离左边缘
                 if (ksaSideLength < 12d) swModel.ChangeDim("D1@Distance82", 0.5d);
                 else swModel.ChangeDim("D1@Distance82", ksaSideLength);
-
-                #region 下水口管件进水口管件
-
-                //if (item.Inlet == "LEFT")
-                //{
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "Connection asm Inlet L-2"));
-                //    swComp.SetSuppression2(2); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "Connection asm KSA L-2"));
-                //    swComp.SetSuppression2(2); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHB0037-3"));
-                //    swComp.SetSuppression2(2); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHB0038-3"));
-                //    swComp.SetSuppression2(2); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "Connection asm Inlet R-2"));
-                //    swComp.SetSuppression2(0); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "Connection asm KSA R-2"));
-                //    swComp.SetSuppression2(0); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHB0037-4"));
-                //    swComp.SetSuppression2(0); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHB0038-4"));
-                //    swComp.SetSuppression2(0); //2解压缩，0压缩
-                //}
-                //else
-                //{
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "Connection asm Inlet L-2"));
-                //    swComp.SetSuppression2(0); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "Connection asm KSA L-2"));
-                //    swComp.SetSuppression2(0); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHB0037-3"));
-                //    swComp.SetSuppression2(0); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHB0038-3"));
-                //    swComp.SetSuppression2(0); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "Connection asm Inlet R-2"));
-                //    swComp.SetSuppression2(2); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "Connection asm KSA R-2"));
-                //    swComp.SetSuppression2(2); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHB0037-4"));
-                //    swComp.SetSuppression2(2); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHB0038-4"));
-                //    swComp.SetSuppression2(2); //2解压缩，0压缩
-                //}
-
-                #endregion 下水口管件进水口管件
-
+                
                 #region 排风脖颈数量和距离
 
                 if (item.ExNo == 1)
@@ -160,27 +97,7 @@ namespace SolidWorksHelper
                 if (item.UVType == "DOUBLE") swAssy.UnSuppress("LocalLPattern4");
                 else swAssy.Suppress("LocalLPattern4");
 
-                #region 灯板加强筋
-
-                //if (item.Deepth > 1649d && ((item.LightType == "FSLONG" && item.Length > 1900d) ||
-                //                           (item.LightType == "FSSHORT" && item.Length > 1500d) || (item.Length > 2000d)))
-                //{
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0006-1"));
-                //    swComp.SetSuppression2(2); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0006-2"));
-                //    swComp.SetSuppression2(2); //2解压缩，0压缩
-                //    swPart = swComp.GetModelDoc2();//打开零件
-                //    swPart.Parameter("D2@Base-Flange1").SystemValue = item.Deepth / 1000d - 898d / 1000d;
-                //}
-                //else
-                //{
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0006-1"));
-                //    swComp.SetSuppression2(0); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHM0006-2"));
-                //    swComp.SetSuppression2(0); //2解压缩，0压缩
-                //}
-
-                #endregion 灯板加强筋
+                
 
                 #region 新风脖颈,新风前面板中间加强筋
 
@@ -207,44 +124,7 @@ namespace SolidWorksHelper
                 //----------排风腔顶部零件----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0148-1"));
                 swEdit.FNHE0148(swComp, item.Length, midRoofSecondHoleDis, midRoofHoleNo, item.ExNo, item.ExRightDis, item.ExLength, item.ExWidth, item.ExDis, item.Inlet, item.ANSUL, item.ANSide, item.MARVEL, item.UVType, "UW");
-
-                #region UWHood排风腔顶部检修门盖板?
-
-                //----------UWHood排风腔顶部检修门盖板？----------
-                //if ((item.UVType == "SHORT" && item.Length >= 1600d) || (item.UVType == "LONG" && item.Length >= 2400d))
-                //{
-                //    if (item.Inlet == "LEFT")
-                //    {
-                //        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0146-1"));
-                //        swComp.SetSuppression2(0); //2解压缩，0压缩
-                //        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0146-2"));
-                //        swComp.SetSuppression2(2); //2解压缩，0压缩
-                //    }
-                //    else if (item.Inlet == "RIGHT")
-                //    {
-                //        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0146-1"));
-                //        swComp.SetSuppression2(2); //2解压缩，0压缩
-                //        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0146-2"));
-                //        swComp.SetSuppression2(0); //2解压缩，0压缩
-                //    }
-                //    else
-                //    {
-                //        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0146-1"));
-                //        swComp.SetSuppression2(0); //2解压缩，0压缩
-                //        swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0146-2"));
-                //        swComp.SetSuppression2(0); //2解压缩，0压缩
-                //    }
-                //}
-                //else
-                //{
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0146-1"));
-                //    swComp.SetSuppression2(0); //2解压缩，0压缩
-                //    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0146-2"));
-                //    swComp.SetSuppression2(0); //2解压缩，0压缩
-                //}
-
-                #endregion UWHood排风腔顶部检修门盖板?
-
+                
                 //----------排风腔前面板----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0180-1"));
                 swEdit.FNHE0180(swComp, item.Length, item.Inlet, item.UVType, item.ExRightDis);
@@ -281,7 +161,7 @@ namespace SolidWorksHelper
                 swEdit.UVLightDoor(swAssy, suffix, item.UVType, partList);
 
                 //----------MESH油网侧板----------
-                swEdit.MeshFilterUW(swAssy, suffix, meshSideLength, item.Inlet, item.ANSUL, item.ANSide, "FNHE0162-1", "FNHE0163-1");
+                swEdit.UwMeshFilter(swAssy, suffix, item.Length, item.Inlet, item.ANSUL, item.ANSide, "FNHE0162-1", "FNHE0163-1");
 
                 #endregion 排风腔
 
@@ -360,7 +240,8 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
+                //以后记录在日志中
+                throw new Exception($"作图过程发生异常：{packedAssyPath} 。\n零件：{swComp.Name}\n对象：{ex.Source}\n详细：{ex.Message}");
             }
             finally
             {

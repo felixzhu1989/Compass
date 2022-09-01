@@ -347,14 +347,17 @@ namespace SolidWorksHelper
         /// <summary>
         /// MESH油网侧板，非水洗
         /// </summary>
-        public void MeshFilter(AssemblyDoc swAssy, string suffix, double meshSideLength, string ansul, string anSide, string leftPart, string rightPart)
+        public void MeshFilter(AssemblyDoc swAssy, string suffix, double length, string ansul, string anSide, string leftPart, string rightPart)
         {
+            //MESH侧板长度(除去排风三角板3dm计算)，肖启才说，手划伤了，华为不锈钢mesh用498.5去计算,包边再减去4
+            double meshSideLength = Convert.ToDouble((length - 3d-4d - (int)((length - 2d) / 498.5d) * 498.5d) / 2);
+
             Component2 swComp;
             ModelDoc2 swPart;
             if (ansul == "YES")
             {
-                if (meshSideLength * 2d < 57d) meshSideLength += 249d;
-                if ((meshSideLength - 20d) > 57d)
+                if (meshSideLength * 2d < 55d) meshSideLength += 249d;
+                if ((meshSideLength - 20d) > 55d)
                 {
                     if (anSide == "LEFT")
                     {
@@ -365,6 +368,7 @@ namespace SolidWorksHelper
                         swComp.Suppress("KW");
                         swPart.ChangeDim("D3@Sketch25", 30d);
                         swPart.ChangeDim("D3@Sketch26", 190d);
+
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swComp.SetSuppression2(2); //2解压缩，0压缩
                         swPart = swComp.GetModelDoc2();
@@ -383,6 +387,7 @@ namespace SolidWorksHelper
                         swComp.Suppress("KW");
                         swPart.ChangeDim("D3@Sketch25", 30d);
                         swPart.ChangeDim("D3@Sketch26", 190d);
+
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
@@ -449,7 +454,7 @@ namespace SolidWorksHelper
             else
             {
                 if (2d * meshSideLength < 15d && meshSideLength > 1.5d) meshSideLength += 249d;
-                if (meshSideLength > 40d)
+                if (meshSideLength > 30d)
                 {
                     swComp = swAssy.UnSuppress(suffix, leftPart);
                     swPart = swComp.GetModelDoc2();
@@ -466,7 +471,7 @@ namespace SolidWorksHelper
                     swPart.ChangeDim("D1@Sketch25", 30d);
                     swPart.ChangeDim("D3@Sketch26", 190d);
                 }
-                else if (meshSideLength <= 40d && meshSideLength > 1.5d)
+                else if (meshSideLength <= 30d && meshSideLength > 1.5d)
                 {
                     swAssy.Suppress(suffix, leftPart);
                     swComp = swAssy.UnSuppress(suffix, rightPart);
@@ -892,13 +897,16 @@ namespace SolidWorksHelper
         /// <summary>
         /// MESH油网侧板,水洗
         /// </summary>
-        public void MeshFilterUW(AssemblyDoc swAssy, string suffix, double meshSideLength, string inlet, string ansul, string anSide, string leftPart, string rightPart)
+        public void UwMeshFilter(AssemblyDoc swAssy, string suffix, double length, string inlet, string ansul, string anSide, string leftPart, string rightPart)
         {
+            //MESH侧板长度(除去排风三角板3dm计算)，肖启才说，手划伤了，华为不锈钢mesh用498.5去计算
+            double meshSideLength = Convert.ToDouble((length - 3d -(int)((length-2d-35d) / 498.5d) * 498.5d) / 2d);
+
             Component2 swComp;
             ModelDoc2 swPart;
             if ((inlet == "LEFT" && anSide == "RIGHT") || (anSide == "LEFT" && inlet == "RIGHT"))//不同一侧
             {
-                if ((meshSideLength - 20d) < 57d) meshSideLength += 249d;
+                if ((meshSideLength - 20d) < 55d) meshSideLength += 249d;
                 swComp = swAssy.UnSuppress(suffix, leftPart);
                 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
@@ -917,6 +925,7 @@ namespace SolidWorksHelper
                 if (ansul == "YES" && anSide == "LEFT")
                     swComp.UnSuppress("ANSUL");
                 else swComp.Suppress("ANSUL");
+
                 swComp = swAssy.UnSuppress(suffix, rightPart);
                 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
@@ -938,8 +947,8 @@ namespace SolidWorksHelper
             }
             else
             {
-                if (meshSideLength * 2 < 57d) meshSideLength += 249d;
-                if ((meshSideLength - 20d) > 57d)
+                if (meshSideLength * 2 < 55d) meshSideLength += 249d;
+                if ((meshSideLength - 20d) > 55d)
                 {
                     if (inlet == "LEFT")
                     {
@@ -952,6 +961,7 @@ namespace SolidWorksHelper
                         if (ansul == "YES" && anSide == "LEFT")
                             swComp.UnSuppress("ANSUL");
                         else swComp.Suppress("ANSUL");
+
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength - 20d);
@@ -969,6 +979,7 @@ namespace SolidWorksHelper
                         swPart.ChangeDim("D3@Sketch25", 30d);
                         swPart.ChangeDim("D3@Sketch26", 190d);
                         swComp.Suppress("ANSUL");
+
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
@@ -993,11 +1004,13 @@ namespace SolidWorksHelper
                         if (ansul == "YES" && anSide == "LEFT")
                             swComp.UnSuppress("ANSUL");
                         else swComp.Suppress("ANSUL");
+
                         swAssy.Suppress(suffix, rightPart);
                     }
                     else
                     {
                         swAssy.Suppress(suffix, leftPart);
+
                         swComp = swAssy.UnSuppress(suffix, rightPart);
                         swPart = swComp.GetModelDoc2();
                         swPart.ChangeDim("D2@Sketch1", 2d * meshSideLength);
@@ -1199,9 +1212,6 @@ namespace SolidWorksHelper
             //水洗挡板感应器穿线孔
             swComp.UnSuppress("BFCABLE");
         }
-
-
-
 
 
         #endregion
@@ -1488,34 +1498,7 @@ namespace SolidWorksHelper
 
             #endregion UV灯线缆穿孔
 
-            #region 400新风腔IR安装孔
-
-            if (marvel == "YES" && suHeight == 400d)
-            {
-                if (irNo > 0)
-                {
-                    swComp.UnSuppress("MAINS1");
-                    swPart.ChangeDim("D1@Sketch37", irDis1);
-                }
-                if (irNo > 1)
-                {
-                    swComp.UnSuppress("MAINS2");
-                    swPart.ChangeDim("D1@Sketch38", irDis2);
-                }
-                if (irNo > 2)
-                {
-                    swComp.UnSuppress("MAINS3");
-                    swPart.ChangeDim("D1@Sketch39", irDis3);
-                }
-            }
-            else
-            {
-                swComp.Suppress("MAINS1");
-                swComp.Suppress("MAINS2");
-                swComp.Suppress("MAINS3");
-            }
-
-            #endregion 400新风腔IR安装孔
+            
         }
 
         public void FNHM0032(Component2 swComp, string exType, double deepth, double height, double midRoofTopHoleDis)
@@ -2033,43 +2016,7 @@ namespace SolidWorksHelper
                 swPart.ChangeDim("D3@LPattern3", suDis);
             }
             //MARVEL
-            //if (marvel == "YES")
-            //{
-            //    if (irNo > 0)
-            //    {
-            //        swComp.UnSuppress("MA1");
-            //        swPart.ChangeDim("D3@Sketch48", irDis1);
-            //        swComp.UnSuppress("MACABLE1");
-            //        if (suNo == 1) swPart.ChangeDim("D1@Sketch50", (length + 400d) / 2d);
-            //        else swPart.ChangeDim("D1@Sketch50", length / 2d);
-            //    }
-            //    if (irNo > 1)
-            //    {
-            //        swComp.UnSuppress("MA2");
-            //        swPart.ChangeDim("D3@Sketch51", irDis2);
-            //        swComp.UnSuppress("MACABLE2");
-            //        swPart.ChangeDim("D1@Sketch50", length / 2d - 25d);
-            //        swPart.ChangeDim("D1@Sketch52", 50d);
-            //    }
-            //    if (irNo > 2)
-            //    {
-            //        swComp.UnSuppress("MA3");
-            //        swPart.ChangeDim("D3@Sketch53", irDis3);
-            //        swComp.UnSuppress("MACABLE3");
-            //        swPart.ChangeDim("D1@Sketch50", 220d);
-            //        swPart.ChangeDim("D1@Sketch52", (length - 440d) / 2d);
-            //        swPart.ChangeDim("D1@Sketch54", (length - 440d) / 2d);
-            //    }
-            //}
-            //else
-            //{
-            //    swComp.Suppress("MA3");
-            //    swComp.Suppress("MA2");
-            //    swComp.Suppress("MA1");
-            //    swComp.Suppress("MACABLE3");
-            //    swComp.Suppress("MACABLE2");
-            //    swComp.Suppress("MACABLE1");
-            //}
+            
             //UV HOOD
             if (bluetooth == "YES") swComp.UnSuppress("SUCABLE-LEFT");
             else swComp.Suppress("SUCABLE-LEFT");
@@ -2083,30 +2030,7 @@ namespace SolidWorksHelper
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@草图1", length - 8d);
-            if (marvel == "YES")
-            {
-                if (irNo > 0)
-                {
-                    swComp.UnSuppress("MA1");
-                    swPart.ChangeDim("D1@Sketch2", irDis1);
-                }
-                if (irNo > 1)
-                {
-                    swComp.UnSuppress("MA2");
-                    swPart.ChangeDim("D1@Sketch3", irDis2);
-                }
-                if (irNo > 2)
-                {
-                    swComp.UnSuppress("MA3");
-                    swPart.ChangeDim("D1@Sketch4", irDis3);
-                }
-            }
-            else
-            {
-                swComp.Suppress("MA1");
-                swComp.Suppress("MA2");
-                swComp.Suppress("MA3");
-            }
+           
         }
         #endregion 华为新风F650
 
@@ -2132,39 +2056,7 @@ namespace SolidWorksHelper
             #endregion 基本尺寸
 
             #region MARVEL
-            if (marvel == "YES")
-            {
-                if (irNo > 0)
-                {
-                    swComp.UnSuppress("MA1");
-                    swPart.ChangeDim("D3@Sketch46", irDis1);
-                    swComp.UnSuppress("MACABLE1");
-                    swPart.ChangeDim("D1@Sketch49", irDis1);
-                }
-                if (irNo > 1)
-                {
-                    swComp.UnSuppress("MA2");
-                    swPart.ChangeDim("D3@Sketch47", irDis2);
-                    swComp.UnSuppress("MACABLE2");
-                    swPart.ChangeDim("D1@Sketch50", irDis2);
-                }
-                if (irNo > 2)
-                {
-                    swComp.UnSuppress("MA3");
-                    swPart.ChangeDim("D3@Sketch48", irDis3);
-                    swComp.UnSuppress("MACABLE3");
-                    swPart.ChangeDim("D1@Sketch51", irDis3);
-                }
-            }
-            else
-            {
-                swComp.Suppress("MA1");
-                swComp.Suppress("MA2");
-                swComp.Suppress("MA3");
-                swComp.Suppress("MACABLE1");
-                swComp.Suppress("MACABLE2");
-                swComp.Suppress("MACABLE3");
-            }
+            
             #endregion MARVEL
 
             #region UV HOOD
