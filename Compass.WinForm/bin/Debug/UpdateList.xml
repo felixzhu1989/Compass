@@ -5,7 +5,7 @@
   <!--升级文件信息-->
   <UpdateInfo>
     <!--升级文件的更新日期-->
-    <UpdateTime Date="2022-8-30 14:00"/>
+    <UpdateTime Date="2022-9-8 14:00"/>
     <!--升级文件的版本号-->
     <Version Num="2.1.1.9"/>
   </UpdateInfo>
@@ -27,6 +27,7 @@
 		<UpdateFile Ver="2.1.1.9" FileName="SemiBom.xlsx" ContentLength="11KB"/>
 		<UpdateFile Ver="2.1.1.9" FileName="JobCard.xlsx" ContentLength="39KB"/>
 		<UpdateFile Ver="2.1.1.9" FileName="JobCard_Ceiling.xlsx" ContentLength="29KB"/>
+		<UpdateFile Ver="2.1.1.9" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
 	</UpdateFileList>
 <!--暂时不升级文件列表-->
   <NotUpdateFileList>
@@ -44,7 +45,7 @@
 		<UpdateFile Ver="2.1.1.9" FileName="NoPic.png" ContentLength="1815KB"/>
 		
 		<!--excel文件-->
-		<UpdateFile Ver="2.1.1.9" FileName="HoodPackingList.xlsm" ContentLength="41KB"/>
+		
 		<UpdateFile Ver="2.1.1.9" FileName="CeilingPackingList.xlsx" ContentLength="5KB"/>
 		<UpdateFile Ver="2.1.1.9" FileName="CeilingLabel.xlsx" ContentLength="5KB"/>		
 		<UpdateFile Ver="2.1.1.9" FileName="CutList.xlsx" ContentLength="11KB"/>
