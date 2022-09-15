@@ -3,8 +3,6 @@ E:\Compass\Compass.WinForm\bin\Debug\Compass.exe
 E:\Compass\Compass.WinForm\bin\Debug\Compass.pdb
 E:\Compass\Compass.WinForm\bin\Debug\Common.dll
 E:\Compass\Compass.WinForm\bin\Debug\DAL.dll
-E:\Compass\Compass.WinForm\bin\Debug\eDrawings.Interop.EModelMarkupControl.dll
-E:\Compass\Compass.WinForm\bin\Debug\eDrawings.Interop.EModelViewControl.dll
 E:\Compass\Compass.WinForm\bin\Debug\MetroFramework.Design.dll
 E:\Compass\Compass.WinForm\bin\Debug\MetroFramework.dll
 E:\Compass\Compass.WinForm\bin\Debug\MetroFramework.Fonts.dll

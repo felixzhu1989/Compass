@@ -226,8 +226,8 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0107-1");
                 swEdit.FNHA0107(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, frontPanelHoleNo, frontPanelHoleDis);
                 //------------F镀锌隔板----------
-                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0006-1");
-                swEdit.FNHA0006(swComp, item.Length, item.MARVEL, item.IRNo, item.IRDis1, item.IRDis2, item.IRDis3);
+                swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0109-1");
+                swEdit.FNHA0109(swComp, item.Length);
                 //------------新风滑门导轨----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0097-1");
                 swEdit.FNHA0097(swComp, item.Length);

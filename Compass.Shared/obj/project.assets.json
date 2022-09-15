@@ -8,7 +8,7 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\felix.zhu\\.nuget\\packages\\": {},
+    "C:\\Users\\rongjie.zhu\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -17,14 +17,14 @@
       "projectUniqueName": "E:\\Compass\\Compass.Shared\\Compass.Shared.csproj",
       "projectName": "Compass.Shared",
       "projectPath": "E:\\Compass\\Compass.Shared\\Compass.Shared.csproj",
-      "packagesPath": "C:\\Users\\felix.zhu\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\rongjie.zhu\\.nuget\\packages\\",
       "outputPath": "E:\\Compass\\Compass.Shared\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\felix.zhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rongjie.zhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -55,8 +55,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -65,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

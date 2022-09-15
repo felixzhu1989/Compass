@@ -8,27 +8,19 @@
           "System.Reflection.Emit.Lightweight": "4.3.0"
         },
         "compile": {
-          "lib/netstandard2.0/DryIoc.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/DryIoc.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/DryIoc.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/DryIoc.dll": {}
         }
       },
       "MaterialDesignColors/2.0.6": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.1/MaterialDesignColors.dll": {
-            "related": ".pdb"
-          }
+          "lib/netcoreapp3.1/MaterialDesignColors.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.1/MaterialDesignColors.dll": {
-            "related": ".pdb"
-          }
+          "lib/netcoreapp3.1/MaterialDesignColors.dll": {}
         }
       },
       "MaterialDesignThemes/4.5.0": {
@@ -37,14 +29,10 @@
           "MaterialDesignColors": "[2.0.6, 3.0.0)"
         },
         "compile": {
-          "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/netcoreapp3.1/MaterialDesignThemes.Wpf.dll": {}
         },
         "build": {
           "build/MaterialDesignThemes.targets": {}
@@ -71,14 +59,10 @@
       "Microsoft.Xaml.Behaviors.Wpf/1.1.31": {
         "type": "package",
         "compile": {
-          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {}
         },
         "runtime": {
-          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
@@ -87,14 +71,10 @@
       "Prism.Core/8.1.97": {
         "type": "package",
         "compile": {
-          "lib/net5.0/Prism.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0/Prism.dll": {}
         },
         "runtime": {
-          "lib/net5.0/Prism.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0/Prism.dll": {}
         }
       },
       "Prism.DryIoc/8.1.97": {
@@ -104,14 +84,10 @@
           "Prism.Wpf": "8.1.97"
         },
         "compile": {
-          "lib/net5.0-windows7.0/Prism.DryIoc.Wpf.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0-windows7.0/Prism.DryIoc.Wpf.dll": {}
         },
         "runtime": {
-          "lib/net5.0-windows7.0/Prism.DryIoc.Wpf.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0-windows7.0/Prism.DryIoc.Wpf.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
@@ -124,14 +100,10 @@
           "Prism.Core": "8.1.97"
         },
         "compile": {
-          "lib/net5.0-windows7.0/Prism.Wpf.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0-windows7.0/Prism.Wpf.dll": {}
         },
         "runtime": {
-          "lib/net5.0-windows7.0/Prism.Wpf.dll": {
-            "related": ".pdb;.xml"
-          }
+          "lib/net5.0-windows7.0/Prism.Wpf.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
@@ -147,9 +119,7 @@
           "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.5/System.IO.dll": {
-            "related": ".xml"
-          }
+          "ref/netstandard1.5/System.IO.dll": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -162,9 +132,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.5/System.Reflection.dll": {
-            "related": ".xml"
-          }
+          "ref/netstandard1.5/System.Reflection.dll": {}
         }
       },
       "System.Reflection.Emit.ILGeneration/4.3.0": {
@@ -175,9 +143,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/System.Reflection.Emit.ILGeneration.dll": {
-            "related": ".xml"
-          }
+          "ref/netstandard1.0/System.Reflection.Emit.ILGeneration.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Reflection.Emit.ILGeneration.dll": {}
@@ -192,9 +158,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/System.Reflection.Emit.Lightweight.dll": {
-            "related": ".xml"
-          }
+          "ref/netstandard1.0/System.Reflection.Emit.Lightweight.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Reflection.Emit.Lightweight.dll": {}
@@ -208,9 +172,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/System.Reflection.Primitives.dll": {
-            "related": ".xml"
-          }
+          "ref/netstandard1.0/System.Reflection.Primitives.dll": {}
         }
       },
       "System.Runtime/4.3.0": {
@@ -220,9 +182,7 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         },
         "compile": {
-          "ref/netstandard1.5/System.Runtime.dll": {
-            "related": ".xml"
-          }
+          "ref/netstandard1.5/System.Runtime.dll": {}
         }
       },
       "System.Text.Encoding/4.3.0": {
@@ -233,9 +193,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/System.Text.Encoding.dll": {
-            "related": ".xml"
-          }
+          "ref/netstandard1.3/System.Text.Encoding.dll": {}
         }
       },
       "System.Threading.Tasks/4.3.0": {
@@ -246,9 +204,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/System.Threading.Tasks.dll": {
-            "related": ".xml"
-          }
+          "ref/netstandard1.3/System.Threading.Tasks.dll": {}
         }
       },
       "Compass.Shared/1.0.0": {
@@ -1028,7 +984,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\felix.zhu\\.nuget\\packages\\": {},
+    "C:\\Users\\rongjie.zhu\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -1037,18 +993,18 @@
       "projectUniqueName": "E:\\Compass\\Compass.Wpf\\Compass.Wpf.csproj",
       "projectName": "Compass.Wpf",
       "projectPath": "E:\\Compass\\Compass.Wpf\\Compass.Wpf.csproj",
-      "packagesPath": "C:\\Users\\felix.zhu\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\rongjie.zhu\\.nuget\\packages\\",
       "outputPath": "E:\\Compass\\Compass.Wpf\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\felix.zhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\rongjie.zhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0-windows"
+        "net6.0-windows7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -1089,8 +1045,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -1102,7 +1057,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

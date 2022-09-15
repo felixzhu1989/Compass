@@ -2026,7 +2026,7 @@ namespace SolidWorksHelper
         /// <summary>
         /// F650镀锌隔板
         /// </summary>
-        public void FNHA0006(Component2 swComp, double length, string marvel, int irNo, double irDis1, double irDis2, double irDis3)
+        public void FNHA0109(Component2 swComp, double length)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@草图1", length - 8d);
