@@ -442,7 +442,7 @@ namespace SolidWorksHelper
 
         public void MeshFilter(AssemblyDoc swAssy, string suffix, double length, string ansul, string anSide, string leftPart, string rightPart)
         {
-            //MESH侧板长度(除去排风三角板3dm计算)
+            //MESH侧板长度(除去排风三角板3dm计算)1500
             double meshSideLength = Convert.ToDouble((length - 3d - (int)((length - 2d) / 498d) * 498d) / 2);
             Component2 swComp;
             ModelDoc2 swPart;
@@ -512,7 +512,8 @@ namespace SolidWorksHelper
             }
             else
             {
-                if (2 * meshSideLength < 15d && meshSideLength > 1.5d) meshSideLength += 249d;
+                //应该是（2 * meshSideLength）总长剩余1.5就没有小侧板
+                if (2 * meshSideLength < 15d && 2 * meshSideLength > 1.5d) meshSideLength += 249d;
                 if (meshSideLength > 30d)
                 {
                     swComp = swAssy.UnSuppress(suffix, leftPart);
@@ -525,7 +526,7 @@ namespace SolidWorksHelper
                     swPart.ChangeDim("D2@Sketch1", meshSideLength + 20d);
                     swComp.Suppress("ANSUL");
                 }
-                else if (meshSideLength <= 30d && meshSideLength > 1.5d)
+                else if (meshSideLength <= 30d && 2 * meshSideLength > 1.5d)
                 {
                     swAssy.Suppress(suffix, leftPart);
 

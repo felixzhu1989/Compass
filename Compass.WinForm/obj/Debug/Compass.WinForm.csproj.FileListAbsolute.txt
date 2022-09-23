@@ -16,7 +16,6 @@ E:\Compass\Compass.WinForm\bin\Debug\SolidWorksHelper.pdb
 E:\Compass\Compass.WinForm\bin\Debug\UpdateProgram.pdb
 E:\Compass\Compass.WinForm\bin\Debug\UpdateProgram.exe.config
 E:\Compass\Compass.WinForm\obj\Debug\Compass.WinForm.csproj.AssemblyReference.cache
-E:\Compass\Compass.WinForm\obj\Debug\Compass.WinForm.csproj.ResolveComReference.cache
 E:\Compass\Compass.WinForm\obj\Debug\Compass.FrmBcj300.resources
 E:\Compass\Compass.WinForm\obj\Debug\Compass.FrmBcj330.resources
 E:\Compass\Compass.WinForm\obj\Debug\Compass.FrmBf200.resources
@@ -167,3 +166,4 @@ E:\Compass\Compass.WinForm\obj\Debug\Compass.WinForm.csproj.CopyComplete
 E:\Compass\Compass.WinForm\obj\Debug\Compass.exe
 E:\Compass\Compass.WinForm\obj\Debug\Compass.pdb
 E:\Compass\Compass.WinForm\obj\Debug\Compass.FrmSemiBom.resources
+E:\Compass\Compass.WinForm\obj\Debug\Compass.WinForm.FrmAddCutList.resources

@@ -17,6 +17,9 @@ namespace DAL
         {
             return GetHoodCutListsByWhereSql($" where ModuleTreeId = '{moduleTreeId}'");
         }
+
+
+
         /// <summary>
         /// 根据条件返回Cutlist集合
         /// </summary>
@@ -78,7 +81,7 @@ namespace DAL
         /// </summary>
         /// <param name="idList"></param>
         /// <returns></returns>
-        public bool DeleteCutlistByTran(List<int> idList)
+        public bool DeleteCutListByTran(List<int> idList)
         {
             //编写SQL语句
             StringBuilder sqlBuilder = new StringBuilder("delete from HoodCutList where CutListId={0}");
@@ -92,6 +95,43 @@ namespace DAL
             }
             //将SQL语句集合提交到数据库
             return SQLHelper.UpdateByTransaction(sqlList);
+        }
+
+
+
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="objHoodCutList"></param>
+        /// <returns></returns>
+        public bool AddHoodCutList(HoodCutList objCutList)
+        {
+            string sql = "insert into HoodCutList (ModuleTreeId,PartDescription,Length,Width,Thickness,Quantity,Materials,PartNo,UserId)";
+            sql += " values({0},'{1}','{2}','{3}','{4}',{5},'{6}','{7}',{8})";
+            sql = string.Format(sql, objCutList.ModuleTreeId, objCutList.PartDescription,
+                objCutList.Length, objCutList.Width, objCutList.Thickness, objCutList.Quantity,
+                objCutList.Materials, objCutList.PartNo, objCutList.UserId);
+            try
+            {
+                SQLHelper.GetSingleResult(sql);
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                //2627
+                if (ex.Number == 2627)
+                {
+                    throw new Exception("CutList重复,不能添加重复的项目信息");
+                }
+                else
+                {
+                    throw new Exception("添加CutList时数据库访问异常" + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

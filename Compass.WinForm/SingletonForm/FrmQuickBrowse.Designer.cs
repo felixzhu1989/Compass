@@ -40,6 +40,7 @@
             this.tsmiDeleteCutList = new System.Windows.Forms.ToolStripMenuItem();
             this.btnPrintCutList = new System.Windows.Forms.Button();
             this.lblModule = new System.Windows.Forms.Label();
+            this.AddCutList = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuickBrowse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCutList)).BeginInit();
             this.cmsCutlist.SuspendLayout();
@@ -158,11 +159,27 @@
             this.lblModule.TabIndex = 25;
             this.lblModule.Text = "Module";
             // 
+            // AddCutList
+            // 
+            this.AddCutList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddCutList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.AddCutList.FlatAppearance.BorderSize = 0;
+            this.AddCutList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddCutList.ForeColor = System.Drawing.Color.White;
+            this.AddCutList.Location = new System.Drawing.Point(682, 276);
+            this.AddCutList.Name = "AddCutList";
+            this.AddCutList.Size = new System.Drawing.Size(125, 28);
+            this.AddCutList.TabIndex = 44;
+            this.AddCutList.Text = "添加CutList";
+            this.AddCutList.UseVisualStyleBackColor = false;
+            this.AddCutList.Click += new System.EventHandler(this.AddCutList_Click);
+            // 
             // FrmQuickBrowse
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(950, 568);
+            this.Controls.Add(this.AddCutList);
             this.Controls.Add(this.btnPrintCutList);
             this.Controls.Add(this.dgvCutList);
             this.Controls.Add(this.dgvQuickBrowse);
@@ -189,5 +206,6 @@
         private System.Windows.Forms.Label lblModule;
         private System.Windows.Forms.ContextMenuStrip cmsCutlist;
         private System.Windows.Forms.ToolStripMenuItem tsmiDeleteCutList;
+        private System.Windows.Forms.Button AddCutList;
     }
 }

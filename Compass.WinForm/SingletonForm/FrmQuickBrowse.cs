@@ -5,6 +5,7 @@ using Common;
 using DAL;
 using Models;
 using System.Reflection;
+using Compass.WinForm;
 using MetroFramework.Forms;
 
 namespace Compass
@@ -16,8 +17,6 @@ namespace Compass
         private readonly HoodCutListService _objHoodCutListService = new HoodCutListService();
         readonly ModuleTreeService _objModuleTreeService = new ModuleTreeService();
         private Drawing _objDrawing = null;
-        
-
         public FrmQuickBrowse()
         {
             InitializeComponent();
@@ -30,7 +29,7 @@ namespace Compass
             if (drawing == null || tree == null) return;
             _objDrawing = drawing;
             RefreshData(drawing, tree);
-            RefreshCutlist(drawing, tree);
+            RefreshCutList(drawing, tree);
             ////天花烟罩不显示Cutlist
             //if (drawing.HoodType == "Ceiling")
             //{
@@ -60,7 +59,7 @@ namespace Compass
                 dgvCutList.KeyDown -= new KeyEventHandler(DgvCutList_KeyDown);
             }
         }
-        private void RefreshCutlist(Drawing drawing, ModuleTree tree)
+        private void RefreshCutList(Drawing drawing, ModuleTree tree)
         {
             lblModule.Text = drawing.Item + " (" + tree.Module + ")";//标题
             dgvCutList.DataSource = _objHoodCutListService.GetHoodCutListsByModuleTreeId(tree.ModuleTreeId.ToString());
@@ -131,7 +130,7 @@ namespace Compass
             }
             try
             {
-                if (_objHoodCutListService.DeleteCutlistByTran(idList))
+                if (_objHoodCutListService.DeleteCutListByTran(idList))
                     dgvCutList.DataSource = _objHoodCutListService.GetHoodCutListsByModuleTreeId(moduleTreeId); ;
             }
             catch (Exception ex)
@@ -164,6 +163,16 @@ namespace Compass
             btnPrintCutList.Enabled = true;
             btnPrintCutList.Text = "打印CustList";
         }
-        
+
+        private void AddCutList_Click(object sender, EventArgs e)
+        {
+            var moduleTreeId =(int) dgvCutList.Rows[0].Cells["ModuleTreeId"].Value;
+            FrmAddCutList frm = new FrmAddCutList(moduleTreeId);
+            if (frm.ShowDialog()==DialogResult.OK)
+            {
+               var objModuleTree= _objModuleTreeService.GetModuleTreeById(moduleTreeId.ToString(),_sbu);
+                RefreshCutList(_objDrawing, objModuleTree);
+            }
+        }
     }
 }

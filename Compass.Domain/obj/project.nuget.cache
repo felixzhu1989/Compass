@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ncfh4D8uidb8kQIP+4gC8a5HeG2GuM8YvMGa93Ej/wSV1qZ4p+NbElsjM1Q4S/SeRdFbpTRyoEtxibakHUuuOg==",
+  "success": true,
+  "projectFilePath": "E:\\Compass\\Compass.Domain\\Compass.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\asmresolver\\4.11.2\\asmresolver.4.11.2.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\asmresolver.dotnet\\4.11.2\\asmresolver.dotnet.4.11.2.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\asmresolver.pe\\4.11.2\\asmresolver.pe.4.11.2.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\asmresolver.pe.file\\4.11.2\\asmresolver.pe.file.4.11.2.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.text.json\\6.0.4\\system.text.json.6.0.4.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\zack.commons\\1.1.10\\zack.commons.1.1.10.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\zack.domaincommons\\1.1.3\\zack.domaincommons.1.1.3.nupkg.sha512"
+  ],
+  "logs": []
+}
