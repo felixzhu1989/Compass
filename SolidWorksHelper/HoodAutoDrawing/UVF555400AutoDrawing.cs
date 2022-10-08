@@ -81,7 +81,7 @@ namespace SolidWorksHelper
 
             //UVF555400斜侧板CJ孔计算,77为排风底部长度，555-400为高度差
             int sidePanelDownCjNo = (int)(((double)(Math.Sqrt(Math.Pow((double)item.Deepth - 77d, 2) + Math.Pow(555d - 400d, 2))) - 95d) / 32d);
-            int sidePanelSideCjNo = sidePanelDownCjNo - 3;
+            int sidePanelSideCjNo = sidePanelDownCjNo - 3-1;//2022-10-08，hujian反应侧面CJ与排风干涉，减少一个
 
 
             try

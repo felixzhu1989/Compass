@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "v9Lih8glcgOFmZ91HEUtkMRkGF417xL6kFr6yfCd1eY=",
+  "Source": "Compass.WebApi",
+  "BasePath": "_content/Compass.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,12 @@
+E:\Compass\Compass.Domain\bin\Debug\net6.0\Compass.Domain.deps.json
+E:\Compass\Compass.Domain\bin\Debug\net6.0\Compass.Domain.dll
+E:\Compass\Compass.Domain\bin\Debug\net6.0\Compass.Domain.pdb
+E:\Compass\Compass.Domain\obj\Debug\net6.0\Compass.Domain.csproj.AssemblyReference.cache
+E:\Compass\Compass.Domain\obj\Debug\net6.0\Compass.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\Compass\Compass.Domain\obj\Debug\net6.0\Compass.Domain.AssemblyInfoInputs.cache
+E:\Compass\Compass.Domain\obj\Debug\net6.0\Compass.Domain.AssemblyInfo.cs
+E:\Compass\Compass.Domain\obj\Debug\net6.0\Compass.Domain.csproj.CoreCompileInputs.cache
+E:\Compass\Compass.Domain\obj\Debug\net6.0\Compass.Domain.dll
+E:\Compass\Compass.Domain\obj\Debug\net6.0\refint\Compass.Domain.dll
+E:\Compass\Compass.Domain\obj\Debug\net6.0\Compass.Domain.pdb
+E:\Compass\Compass.Domain\obj\Debug\net6.0\ref\Compass.Domain.dll

@@ -1,0 +1,14 @@
+E:\Compass\Compass.Infrastructure\bin\Debug\net6.0\Compass.Infrastructure.deps.json
+E:\Compass\Compass.Infrastructure\bin\Debug\net6.0\Compass.Infrastructure.runtimeconfig.json
+E:\Compass\Compass.Infrastructure\bin\Debug\net6.0\Compass.Infrastructure.dll
+E:\Compass\Compass.Infrastructure\bin\Debug\net6.0\Compass.Infrastructure.pdb
+E:\Compass\Compass.Infrastructure\obj\Debug\net6.0\Compass.Infrastructure.csproj.AssemblyReference.cache
+E:\Compass\Compass.Infrastructure\obj\Debug\net6.0\Compass.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\Compass\Compass.Infrastructure\obj\Debug\net6.0\Compass.Infrastructure.AssemblyInfoInputs.cache
+E:\Compass\Compass.Infrastructure\obj\Debug\net6.0\Compass.Infrastructure.AssemblyInfo.cs
+E:\Compass\Compass.Infrastructure\obj\Debug\net6.0\Compass.Infrastructure.csproj.CoreCompileInputs.cache
+E:\Compass\Compass.Infrastructure\obj\Debug\net6.0\Compass.Infrastructure.dll
+E:\Compass\Compass.Infrastructure\obj\Debug\net6.0\refint\Compass.Infrastructure.dll
+E:\Compass\Compass.Infrastructure\obj\Debug\net6.0\Compass.Infrastructure.pdb
+E:\Compass\Compass.Infrastructure\obj\Debug\net6.0\Compass.Infrastructure.genruntimeconfig.cache
+E:\Compass\Compass.Infrastructure\obj\Debug\net6.0\ref\Compass.Infrastructure.dll

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <autoUpdater>
   <!--升级文件所在服务器端的网址-->
-  <URLAddress URL="http://10.9.18.31/DownLoadFiles/"/>
+  <URLAddress URL="http://10.9.18.31:8000/DownLoadFiles/"/>
   <!--升级文件信息-->
   <UpdateInfo>
     <!--升级文件的更新日期-->
-    <UpdateTime Date="2022-9-22 13:00"/>
+    <UpdateTime Date="2022-10-08 11:00"/>
     <!--升级文件的版本号-->
     <Version Num="2.1.3"/>
   </UpdateInfo>
