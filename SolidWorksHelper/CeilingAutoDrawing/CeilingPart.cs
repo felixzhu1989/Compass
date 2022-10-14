@@ -1008,10 +1008,15 @@ namespace SolidWorksHelper.CeilingAutoDrawing
 
 
         //-------HCL灯腔玻璃支架支撑条上部-------
-        internal void FNCE0091(Component2 swComp, double length, double lightPanelLeft, double lightPanelRight)
+        internal void FNCE0091(Component2 swComp, double length, string lightPanelSide, double lightPanelLeft, double lightPanelRight)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2(); //打开零件
-            swPart.ChangeDim("D1@Skizze1", length - lightPanelLeft - lightPanelRight);
+            double totalLength;
+            if (lightPanelSide == "LEFT") totalLength = length - lightPanelLeft;
+            else if (lightPanelSide == "RIGHT") totalLength = length - lightPanelRight;
+            else if (lightPanelSide == "BOTH") totalLength = length - lightPanelLeft - lightPanelRight;
+            else totalLength = length;
+            swPart.ChangeDim("D1@Skizze1", totalLength);
         }
 
 

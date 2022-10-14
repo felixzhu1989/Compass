@@ -118,9 +118,10 @@ namespace SolidWorksHelper
                     ceilingPart.FNCE0090(swComp, item.Length, item.LightPanelSide, item.LightPanelLeft, item.LightPanelRight);
 
                     //-------灯腔玻璃支架支撑条上部-------
+
                     swAssy.UnSuppress(suffix, "FNCE0091-1");
                     swComp = swAssy.UnSuppress(suffix, "FNCE0091-2");
-                    ceilingPart.FNCE0091(swComp, item.Length, item.LightPanelLeft, item.LightPanelRight);
+                    ceilingPart.FNCE0091(swComp, item.Length,item.LightPanelSide, item.LightPanelLeft, item.LightPanelRight);
 
                     //-------HCL灯腔侧板,重命名-------
                     ceilingPart.HCLSidePanel(swModel, swAssy, suffix, tree.Module, item.LightPanelSide, item.LightPanelLeft, item.LightPanelRight, "FNCE0092", 1, "FNCE0094", 1);
