@@ -122,8 +122,8 @@ namespace SolidWorksHelper.CeilingAutoDrawing
                 swAssy.UnSuppress(suffix, fcBlindPart);
                 swAssy.UnSuppress(fcBlindPattern);//盲板的阵列
                 swModel.ChangeDim($"D1@{fcBlindPattern}", fcBlindNo);
-                swModel.ChangeDim(fcBlindDis, fcSideLeft);
                 if (lightType == "HCL") swModel.ChangeDim(fcBlindDisHCL, fcSideLeft);//HCL
+                else swModel.ChangeDim(fcBlindDis, fcSideLeft);
             }
             else
             {
@@ -149,8 +149,8 @@ namespace SolidWorksHelper.CeilingAutoDrawing
                 swAssy.UnSuppress(suffix, fcPart);
                 swAssy.UnSuppress(fcPattern);
                 swModel.ChangeDim($"D1@{fcPattern}", fcNo); //D1阵列数量,D3阵列距离
-                swModel.ChangeDim(fcDis, fcSideLeft + 500d * fcBlindNo);
                 if (lightType == "HCL") swModel.ChangeDim(fcDisHCL, fcSideLeft + 500d * fcBlindNo);//HCL
+                else swModel.ChangeDim(fcDis, fcSideLeft + 500d * fcBlindNo);
                 swAssy.Suppress(suffix, ksaPart);
                 swAssy.Suppress(ksaPattern);
             }
@@ -243,9 +243,30 @@ namespace SolidWorksHelper.CeilingAutoDrawing
         }
 
 
+        //UCJ FC
+        internal void UCJFC(ModelDoc2 swModel, AssemblyDoc swAssy, string suffix, int fcBlindNo, int fcNo, double fcSideLeft, string fcPart, string fcPattern, string fcDis, string lightType, string fcDisHCL)
+        {
+            swAssy.UnSuppress(suffix, fcPart);
+            swAssy.UnSuppress(fcPattern);
+            swModel.ChangeDim($"D1@{fcPattern}", fcNo); //D1阵列数量,D3阵列距离
+            if (lightType == "HCL") swModel.ChangeDim(fcDisHCL, fcSideLeft + 500d * fcBlindNo);//HCL
+            else swModel.ChangeDim(fcDis, fcSideLeft + 500d * fcBlindNo);
+        }
 
-
-
+        //UCJ UVRack
+        internal void SpecialUvRack(AssemblyDoc swAssy, string suffix, string uvType, string shortPart, string longPart)
+        {
+            if (uvType == "LONG")
+            {
+                swAssy.Suppress(suffix, shortPart);
+                swAssy.UnSuppress(suffix, longPart);
+            }
+            else
+            {
+                swAssy.UnSuppress(suffix, shortPart);
+                swAssy.Suppress(suffix, longPart);
+            }
+        }
 
 
         #endregion
@@ -253,6 +274,7 @@ namespace SolidWorksHelper.CeilingAutoDrawing
 
 
         #region 各个排风腔不同
+
         //-------KCJSB535排风腔----------
         internal void FNCE0111(Component2 swComp, double length, string lightCable, string marvel, string ansul, string anSide, string anDetector, string japan, double exRightDis, double exLength, double exWidth)
         {
@@ -719,13 +741,21 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             else swComp.Suppress("JAP LED M8");
         }
 
-        //-------KCJB800排风腔内灯腔----------
-        internal void FNCE0116(Component2 swComp, double length, string lightCable, string lightType, string japan)
+        //-------KCJDB800/UCJDB800排风腔内灯腔----------
+        internal void FNCE0116(Component2 swComp, double length,string uvType, string lightCable, string lightType, string japan)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@Linear austragen1", length);
-            swComp.Suppress("FC SUPPORT");
-            swComp.Suppress("FC SUPPORT B");
+            if (uvType == "NO")
+            {
+                swComp.Suppress("FC SUPPORT");
+                swComp.Suppress("FC SUPPORT B");
+            }
+            else
+            {
+                swComp.UnSuppress("FC SUPPORT");
+                swComp.UnSuppress("FC SUPPORT B");
+            }
 
             #region 出线孔
             if (lightCable == "LEFT")
@@ -758,9 +788,349 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             swPart.ChangeDim("D1@Skizze1", length);
         }
 
-        
 
-        
+        //-------UCJSB535排风腔----------
+        internal void FNCE0159(Component2 swComp, double length, string uvType, string lightCable, string marvel, string ansul, string anSide, string anDetector, string japan, double exRightDis, double exLength, double exWidth)
+
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            //公共的
+            swPart.ChangeDim("D1@Linear austragen1", length);
+            swComp.UnSuppress("FC CABLE");
+            swComp.UnSuppress("MA-TAB");
+
+            #region UV灯
+            if (uvType == "LONG")
+            {
+                swComp.UnSuppress("UV L");
+                swPart.ChangeDim("D8@Sketch14", exRightDis - 800d);
+                swPart.ChangeDim("D9@Sketch14", exRightDis - 600d);
+                swComp.Suppress("UV S");
+            }
+            else
+            {
+                swComp.UnSuppress("UV S");
+                swPart.ChangeDim("D5@Sketch4", exRightDis - 446.5d);
+                swPart.ChangeDim("D7@Sketch4", exRightDis - 300d);
+                swComp.Suppress("UV L");
+            }
+            #endregion
+
+
+            #region 出线孔
+            if (lightCable == "LEFT")
+            {
+                swComp.UnSuppress("LIGHT HOLE LEFT");
+                swComp.Suppress("LIGHT HOLE RIGHT");
+            }
+            else if (lightCable == "RIGHT")
+            {
+                swComp.Suppress("LIGHT HOLE LEFT");
+                swComp.UnSuppress("LIGHT HOLE RIGHT");
+            }
+            else
+            {
+                swComp.Suppress("LIGHT HOLE LEFT");
+                swComp.Suppress("LIGHT HOLE RIGHT");
+            }
+            #endregion
+
+            #region MARVEL
+            if (marvel == "YES")
+            {
+                swComp.UnSuppress("MA-NTC");
+                swPart.ChangeDim("D1@Sketch12", exRightDis + exLength / 2d + 50d);
+            }
+            else
+            {
+                swComp.Suppress("MA-NTC");
+            }
+            #endregion
+
+            #region ANSUL
+            if (ansul == "YES")
+            {
+                //侧喷
+                if (anSide == "LEFT")
+                {
+                    swComp.Suppress("ANSULSIDE RIGHT");
+                    swComp.UnSuppress("ANSULSIDE LEFT");
+                }
+                else if (anSide == "RIGHT")
+                {
+                    swComp.UnSuppress("ANSULSIDE RIGHT");
+                    swComp.Suppress("ANSULSIDE LEFT");
+                }
+                else
+                {
+                    swComp.Suppress("ANSULSIDE RIGHT");
+                    swComp.Suppress("ANSULSIDE LEFT");
+                }
+                //探测器
+                if (anDetector == "LEFT")
+                {
+                    swComp.Suppress("ANDTECSIDE RIGHT");
+                    swComp.UnSuppress("ANDTECSIDE LEFT");
+                }
+                else if (anDetector == "RIGHT")
+                {
+                    swComp.UnSuppress("ANDTECSIDE RIGHT");
+                    swComp.Suppress("ANDTECSIDE LEFT");
+                }
+                else if (anDetector == "BOTH")
+                {
+                    swComp.UnSuppress("ANDTECSIDE RIGHT");
+                    swComp.UnSuppress("ANDTECSIDE LEFT");
+                }
+                else
+                {
+                    swComp.Suppress("ANDTECSIDE RIGHT");
+                    swComp.Suppress("ANDTECSIDE LEFT");
+                }
+            }
+            else
+            {
+                swComp.Suppress("ANSULSIDE RIGHT");
+                swComp.Suppress("ANSULSIDE LEFT");
+                swComp.Suppress("ANDTECSIDE RIGHT");
+                swComp.Suppress("ANDTECSIDE LEFT");
+            }
+            #endregion
+
+            #region 日本的
+            if (japan == "YES")
+            {
+                swComp.Suppress("EX");
+                swComp.Suppress("Cut-Extrude4");
+            }
+            else
+            {
+                swComp.UnSuppress("EX");
+                swComp.UnSuppress("Cut-Extrude4");
+                swPart.ChangeDim("D3@Sketch1", exRightDis);
+                swPart.ChangeDim("D1@Sketch1", exLength);
+                swPart.ChangeDim("D2@Sketch1", exWidth);
+            }
+            #endregion
+        }
+
+        //-------UCJSB535磁棒板----------
+        internal void FNCE0145(Component2 swComp, double length, string fcSide, int fcNo, int fcBlindNo, double fcSideLeft)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();//打开零件
+            swPart.ChangeDim("D2@Base-Flange1", length - 5d);
+            swPart.ChangeDim("D1@LPattern1", fcNo + fcBlindNo);
+            swPart.ChangeDim("D3@Sketch6", fcSideLeft + 250d);
+            if (fcSide == "LEFT"||fcSide=="BOTH")
+            {
+                swComp.UnSuppress("Cut-Extrude4");
+                swPart.ChangeDim("D2@Sketch10", fcSideLeft/2d);
+            }
+            else swComp.Suppress("Cut-Extrude4");
+        }
+        internal void FNCE0161(Component2 swComp, double length, string fcSide, int fcNo, int fcBlindNo, double fcSideRight)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();//打开零件
+            swPart.ChangeDim("D2@Base-Flange1", length - 5d);
+            swPart.ChangeDim("D1@LPattern1", fcNo + fcBlindNo);
+            swPart.ChangeDim("D3@Sketch6", fcSideRight + 250d);
+            if (fcSide == "RIGHT"||fcSide=="BOTH")
+            {
+                swComp.UnSuppress("Cut-Extrude4");
+                swPart.ChangeDim("D3@Sketch10", fcSideRight/2d);
+            }
+            else swComp.Suppress("Cut-Extrude4");
+        }
+
+        //-------UCJDB800排风腔----------
+        internal void FNCE0141(Component2 swComp, double length,string uvType, string lightType, string lightCable, string marvel, string ansul, string anSide, string anDetectorEnd, int anDetectorNo, double anDetectorDis1, double anDetectorDis2, double anDetectorDis3, double anDetectorDis4, double anDetectorDis5, string japan, double exRightDis, double exLength, double exWidth)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@Linear austragen1", length);
+            swComp.UnSuppress("MA-TAB");
+
+            #region UV灯
+            if (uvType == "LONG")
+            {
+                swComp.UnSuppress("UV L");
+                swPart.ChangeDim("D5@Sketch4", exRightDis - 800d);
+                swPart.ChangeDim("D8@Sketch4", exRightDis - 600d);
+                swComp.Suppress("UV S");
+            }
+            else
+            {
+                swComp.UnSuppress("UV S");
+                swPart.ChangeDim("D3@Sketch11", exRightDis - 446.5d);
+                swPart.ChangeDim("D8@Sketch11", exRightDis - 300d);
+                swComp.Suppress("UV L");
+            }
+            #endregion
+
+            #region 出线孔
+            /*if (lightType == "HCL")
+            {
+                if (lightCable == "LEFT")
+                {
+                    swComp.UnSuppress("HCL LIGHT HOLE LEFT");
+                    swComp.Suppress("HCL LIGHT HOLE RIGHT");
+                }
+                else if (lightCable == "RIGHT")
+                {
+                    swComp.Suppress("HCL LIGHT HOLE LEFT");
+                    swComp.UnSuppress("HCL LIGHT HOLE RIGHT");
+                }
+                else
+                {
+                    swComp.Suppress("HCL LIGHT HOLE LEFT");
+                    swComp.Suppress("HCL LIGHT HOLE RIGHT");
+                }
+                swComp.Suppress("LIGHT HOLE LEFT");
+                swComp.Suppress("LIGHT HOLE RIGHT");
+            }
+            else
+            {
+                if (lightCable == "LEFT")
+                {
+                    swComp.UnSuppress("LIGHT HOLE LEFT");
+                    swComp.Suppress("LIGHT HOLE RIGHT");
+                }
+                else if (lightCable == "RIGHT")
+                {
+                    swComp.Suppress("LIGHT HOLE LEFT");
+                    swComp.UnSuppress("LIGHT HOLE RIGHT");
+                }
+                else
+                {
+                    swComp.Suppress("LIGHT HOLE LEFT");
+                    swComp.Suppress("LIGHT HOLE RIGHT");
+                }
+                swComp.Suppress("HCL LIGHT HOLE LEFT");
+                swComp.Suppress("HCL LIGHT HOLE RIGHT");
+            }*/
+            if (lightCable == "LEFT")
+            {
+                swComp.UnSuppress("LIGHT HOLE LEFT");
+                swComp.Suppress("LIGHT HOLE RIGHT");
+            }
+            else if (lightCable == "RIGHT")
+            {
+                swComp.Suppress("LIGHT HOLE LEFT");
+                swComp.UnSuppress("LIGHT HOLE RIGHT");
+            }
+            else
+            {
+                swComp.Suppress("LIGHT HOLE LEFT");
+                swComp.Suppress("LIGHT HOLE RIGHT");
+            }
+            #endregion
+
+            #region MARVEL
+            if (marvel == "YES")
+            {
+                swComp.UnSuppress("MA-NTC");
+            }
+            else
+            {
+                swComp.Suppress("MA-NTC");
+            }
+            #endregion
+
+            #region ANSUL
+            if (ansul == "YES")
+            {
+                //侧喷
+                if (anSide == "LEFT")
+                {
+                    swComp.Suppress("ANSULSIDE RIGHT");
+                    swComp.UnSuppress("ANSULSIDE LEFT");
+                }
+                else if (anSide == "RIGHT")
+                {
+                    swComp.UnSuppress("ANSULSIDE RIGHT");
+                    swComp.Suppress("ANSULSIDE LEFT");
+                }
+                else
+                {
+                    swComp.Suppress("ANSULSIDE RIGHT");
+                    swComp.Suppress("ANSULSIDE LEFT");
+                }
+                //探测器
+                swComp.Suppress("ANDTEC1");
+                swComp.Suppress("ANDTEC2");
+                swComp.Suppress("ANDTEC3");
+                swComp.Suppress("ANDTEC4");
+                swComp.Suppress("ANDTEC5");
+                if (anDetectorNo > 0)
+                {
+                    swComp.UnSuppress("ANDTEC1");
+                    swPart.ChangeDim("D3@Sketch9", anDetectorDis1);
+                    if (anDetectorEnd == "RIGHT" || (anDetectorEnd == "LEFT" && anDetectorNo == 1))
+                        swPart.ChangeDim("D1@Sketch9", 195d);
+                    else swPart.ChangeDim("D1@Sketch9", 175d);
+                }
+                if (anDetectorNo > 1)
+                {
+                    swComp.UnSuppress("ANDTEC2");
+                    swPart.ChangeDim("D1@Sketch15", anDetectorDis2);
+                    if (anDetectorEnd == "LEFT" && anDetectorNo == 2)
+                        swPart.ChangeDim("D2@Sketch15", 195d);
+                    else swPart.ChangeDim("D2@Sketch15", 175d);
+                }
+                if (anDetectorNo > 2)
+                {
+                    swComp.UnSuppress("ANDTEC3");
+                    swPart.ChangeDim("D1@Sketch16", anDetectorDis3);
+                    if (anDetectorEnd == "LEFT" && anDetectorNo == 3)
+                        swPart.ChangeDim("D2@Sketch16", 195d);
+                    else swPart.ChangeDim("D2@Sketch16", 175d);
+                }
+                if (anDetectorNo > 3)
+                {
+                    swComp.UnSuppress("ANDTEC4");
+                    swPart.ChangeDim("D1@Sketch17", anDetectorDis4);
+                    if (anDetectorEnd == "LEFT" && anDetectorNo == 4)
+                        swPart.ChangeDim("D2@Sketch17", 195d);
+                    else swPart.ChangeDim("D2@Sketch17", 175d);
+                }
+                if (anDetectorNo > 4)
+                {
+                    swComp.UnSuppress("ANDTEC5");
+                    swPart.ChangeDim("D1@Sketch18", anDetectorDis5);
+                    if (anDetectorEnd == "LEFT" && anDetectorNo == 5)
+                        swPart.ChangeDim("D2@Sketch18", 195d);
+                    else swPart.ChangeDim("D2@Sketch18", 175d);
+                }
+            }
+            else
+            {
+                swComp.Suppress("ANSULSIDE RIGHT");
+                swComp.Suppress("ANSULSIDE LEFT");
+                swComp.Suppress("ANDTEC1");
+                swComp.Suppress("ANDTEC2");
+                swComp.Suppress("ANDTEC3");
+                swComp.Suppress("ANDTEC4");
+                swComp.Suppress("ANDTEC5");
+            }
+            #endregion
+
+            #region 日本的
+            if (japan == "YES")
+            {
+                swComp.Suppress("EX");
+                swComp.Suppress("Cut-Extrude4");
+            }
+            else
+            {
+                swComp.UnSuppress("EX");
+                swComp.UnSuppress("Cut-Extrude4");
+                swPart.ChangeDim("D3@Sketch3", exRightDis);
+                swPart.ChangeDim("D1@Sketch3", exLength);
+                swPart.ChangeDim("D2@Sketch3", exWidth);
+            }
+            #endregion
+        }
+
+
 
         #endregion
 
@@ -857,7 +1227,7 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             if (lightPanelSide == "LEFT" || lightPanelSide == "BOTH")
             {
                 swComp.UnSuppress("LightPanelLeft");
-                swPart.ChangeDim("D5@Sketch21", (lightPanelLeft - 150));
+                swPart.ChangeDim("D5@Sketch21", lightPanelLeft - 150d);
             }
             else
             {
@@ -866,7 +1236,7 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             if (lightPanelSide == "RIGHT" || lightPanelSide == "BOTH")
             {
                 swComp.UnSuppress("LightPanelRight");
-                swPart.ChangeDim("D5@Sketch22", (lightPanelRight - 150));
+                swPart.ChangeDim("D5@Sketch22", lightPanelRight - 150d);
             }
             else
             {
@@ -890,8 +1260,6 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             }
             #endregion
         }
-
-
 
         //-------KCJ535HCL排风腔内灯腔----------
         internal void FNCE0085(Component2 swComp, double length, string lightCable, string lightType, string japan)
@@ -929,6 +1297,9 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             swPart.ChangeDim("D1@Linear austragen1", length);
             swComp.Suppress("FC SUPPORT");
             swComp.Suppress("FC SUPPORT B");
+            swComp.Suppress("LIGHT T8");
+            swComp.Suppress("JAP LED M8");
+
             #region 灯腔出线孔
             if (lightCable == "LEFT")
             {
@@ -946,8 +1317,7 @@ namespace SolidWorksHelper.CeilingAutoDrawing
                 swComp.Suppress("LIGHT HOLE RIGHT");
             }
             #endregion
-            swComp.Suppress("LIGHT T8");
-            swComp.Suppress("JAP LED M8");
+            
         }
 
 
@@ -1063,6 +1433,238 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             swPart.ChangeDim("D6@Sketch42", lightPanelRight - 124d);
         }
 
+        //-------UCJ535HCL排风腔-------
+        internal void FNCE0102(Component2 swComp, double length, string uvType, string lightCable, string marvel, string ansul, string anSide, string anDetector, string lightPanelSide, double lightPanelLeft, double lightPanelRight, string japan, double exRightDis, double exLength, double exWidth)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            //公共的
+            swPart.ChangeDim("D1@Linear austragen1", length);
+            swComp.UnSuppress("FC CABLE");
+            swComp.UnSuppress("MA-TAB");
+
+            #region UV灯
+            if (uvType == "LONG")
+            {
+                swComp.UnSuppress("UV L");
+                swPart.ChangeDim("D8@Sketch14", exRightDis - 800d);
+                swPart.ChangeDim("D9@Sketch14", exRightDis - 600d);
+                swComp.Suppress("UV S");
+            }
+            else
+            {
+                swComp.UnSuppress("UV S");
+                swPart.ChangeDim("D5@Sketch4", exRightDis - 446.5d);
+                swPart.ChangeDim("D7@Sketch4", exRightDis - 300d);
+                swComp.Suppress("UV L");
+            }
+            #endregion
+
+
+            #region 出线孔
+            if (lightCable == "LEFT")
+            {
+                swComp.UnSuppress("LIGHT HOLE LEFT");
+                swComp.Suppress("LIGHT HOLE RIGHT");
+            }
+            else if (lightCable == "RIGHT")
+            {
+                swComp.Suppress("LIGHT HOLE LEFT");
+                swComp.UnSuppress("LIGHT HOLE RIGHT");
+            }
+            else
+            {
+                swComp.Suppress("LIGHT HOLE LEFT");
+                swComp.Suppress("LIGHT HOLE RIGHT");
+            }
+            #endregion
+
+            #region MARVEL
+            if (marvel == "YES")
+            {
+                swComp.UnSuppress("MA-NTC");
+                swPart.ChangeDim("D1@Sketch12", exRightDis + exLength / 2d + 50d);
+            }
+            else
+            {
+                swComp.Suppress("MA-NTC");
+            }
+            #endregion
+
+            #region ANSUL
+            if (ansul == "YES")
+            {
+                //侧喷
+                if (anSide == "LEFT")
+                {
+                    swComp.Suppress("ANSULSIDE RIGHT");
+                    swComp.UnSuppress("ANSULSIDE LEFT");
+                }
+                else if (anSide == "RIGHT")
+                {
+                    swComp.UnSuppress("ANSULSIDE RIGHT");
+                    swComp.Suppress("ANSULSIDE LEFT");
+                }
+                else
+                {
+                    swComp.Suppress("ANSULSIDE RIGHT");
+                    swComp.Suppress("ANSULSIDE LEFT");
+                }
+                //探测器
+                if (anDetector == "LEFT")
+                {
+                    swComp.Suppress("ANDTECSIDE RIGHT");
+                    swComp.UnSuppress("ANDTECSIDE LEFT");
+                }
+                else if (anDetector == "RIGHT")
+                {
+                    swComp.UnSuppress("ANDTECSIDE RIGHT");
+                    swComp.Suppress("ANDTECSIDE LEFT");
+                }
+                else if (anDetector == "BOTH")
+                {
+                    swComp.UnSuppress("ANDTECSIDE RIGHT");
+                    swComp.UnSuppress("ANDTECSIDE LEFT");
+                }
+                else
+                {
+                    swComp.Suppress("ANDTECSIDE RIGHT");
+                    swComp.Suppress("ANDTECSIDE LEFT");
+                }
+            }
+            else
+            {
+                swComp.Suppress("ANSULSIDE RIGHT");
+                swComp.Suppress("ANSULSIDE LEFT");
+                swComp.Suppress("ANDTECSIDE RIGHT");
+                swComp.Suppress("ANDTECSIDE LEFT");
+            }
+            #endregion
+
+            #region 镀锌板安装距离
+            if (lightPanelSide == "LEFT" || lightPanelSide == "BOTH")
+            {
+                swComp.UnSuppress("Cut-Extrude5");
+                swPart.ChangeDim("D5@Sketch21", lightPanelLeft - 150d);
+            }
+            else
+            {
+                swComp.Suppress("Cut-Extrude5");
+            }
+            if (lightPanelSide == "RIGHT" || lightPanelSide == "BOTH")
+            {
+                swComp.UnSuppress("Cut-Extrude6");
+                swPart.ChangeDim("D5@Sketch22", lightPanelRight - 150d);
+            }
+            else
+            {
+                swComp.Suppress("Cut-Extrude6");
+            }
+            #endregion
+
+            #region 日本的
+            if (japan == "YES")
+            {
+                swComp.Suppress("EX");
+                swComp.Suppress("Cut-Extrude4");
+            }
+            else
+            {
+                swComp.UnSuppress("EX");
+                swComp.UnSuppress("Cut-Extrude4");
+                swPart.ChangeDim("D3@Sketch1", exRightDis);
+                swPart.ChangeDim("D1@Sketch1", exLength);
+                swPart.ChangeDim("D2@Sketch1", exWidth);
+            }
+            #endregion
+        }
+
+        //-------UCJ535HCL排风腔内灯腔----------
+        internal void FNCE0067(Component2 swComp, double length, string lightCable, string lightType, string japan)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D2@Base-Flange1", length);
+            swComp.UnSuppress("FC SUPPORT");
+            #region 灯腔出线孔
+            if (lightCable == "LEFT")
+            {
+                swComp.UnSuppress("LIGHT HOLE LEFT");
+                swComp.Suppress("LIGHT HOLE RIGHT");
+            }
+            else if (lightCable == "RIGHT")
+            {
+                swComp.Suppress("LIGHT HOLE LEFT");
+                swComp.UnSuppress("LIGHT HOLE RIGHT");
+            }
+            else
+            {
+                swComp.Suppress("LIGHT HOLE LEFT");
+                swComp.Suppress("LIGHT HOLE RIGHT");
+            }
+            #endregion
+            if (lightType == "T8") swComp.UnSuppress("LIGHT T8");
+            else swComp.Suppress("LIGHT T8");
+            if (japan == "YES") swComp.UnSuppress("JAP LED M8");
+            else swComp.Suppress("JAP LED M8");
+        }
+
+        //-------HCL磁棒板----------
+        internal void FNCE0069(Component2 swComp, double length, string fcSide, int fcNo, int fcBlindNo, double fcSideLeft)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();//打开零件
+            swPart.ChangeDim("D2@Base-Flange1", length - 5d);
+            swPart.ChangeDim("D1@LPattern1", fcNo + fcBlindNo);
+            swPart.ChangeDim("D3@Sketch6", fcSideLeft + 250d);
+            if (fcSide == "LEFT"||fcSide=="BOTH")
+            {
+                swComp.UnSuppress("Cut-Extrude4");
+                swPart.ChangeDim("D3@Sketch10", fcSideLeft/2d);
+            }
+            else swComp.Suppress("Cut-Extrude4");
+        }
+        internal void FNCE0071(Component2 swComp, double length, string fcSide, int fcNo, int fcBlindNo, double fcSideRight)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();//打开零件
+            swPart.ChangeDim("D2@Base-Flange1", length - 5d);
+            swPart.ChangeDim("D1@LPattern1", fcNo + fcBlindNo);
+            swPart.ChangeDim("D3@Sketch6", fcSideRight + 250d);
+            if (fcSide == "RIGHT"||fcSide=="BOTH")
+            {
+                swComp.UnSuppress("Cut-Extrude4");
+                swPart.ChangeDim("D3@Sketch10", fcSideRight/2d);
+            }
+            else swComp.Suppress("Cut-Extrude4");
+        }
+
+
+
+        //-------UCJDB800HCL排风腔内灯腔----------
+        internal void FNCE0054(Component2 swComp, double length, string lightCable, string lightType, string japan)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@Linear austragen1", length);
+            swComp.UnSuppress("FC SUPPORT");
+            swComp.UnSuppress("FC SUPPORT B");
+            swComp.Suppress("LIGHT T8");
+            swComp.Suppress("JAP LED M8");
+
+            #region 灯腔出线孔
+            if (lightCable == "LEFT")
+            {
+                swComp.UnSuppress("LIGHT HOLE LEFT");
+                swComp.Suppress("LIGHT HOLE RIGHT");
+            }
+            else if (lightCable == "RIGHT")
+            {
+                swComp.Suppress("LIGHT HOLE LEFT");
+                swComp.UnSuppress("LIGHT HOLE RIGHT");
+            }
+            else
+            {
+                swComp.Suppress("LIGHT HOLE LEFT");
+                swComp.Suppress("LIGHT HOLE RIGHT");
+            }
+            #endregion
+        }
 
 
 
@@ -1070,15 +1672,13 @@ namespace SolidWorksHelper.CeilingAutoDrawing
 
         #endregion
 
-
         #region 日本灯腔侧板，玻璃
 
         public void FNCL0026(Component2 swComp, double leftLength)
         {
-           ModelDoc2 swPart = swComp.GetModelDoc2(); //打开零件
-            swPart.ChangeDim("D2@Skizze1",leftLength);
+            ModelDoc2 swPart = swComp.GetModelDoc2(); //打开零件
+            swPart.ChangeDim("D2@Skizze1", leftLength);
         }
-
         #endregion
 
     }

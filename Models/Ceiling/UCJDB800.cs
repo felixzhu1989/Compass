@@ -37,5 +37,9 @@ namespace Models
         public double ANDetectorDis4 { get; set; }
         public double ANDetectorDis5 { get; set; }
         public string MARVEL { get; set; }
+        //HCL 灯板
+        public string LightPanelSide { get; set; }
+        public double LightPanelLeft { get; set; }
+        public double LightPanelRight { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace Compass
     {
         readonly UCJDB800Service _objUcjdb800Service = new UCJDB800Service();
         private readonly UCJDB800 _objUcjdb800 = null;
+        private ModelView modelView;
         public FrmUcjdb800()
         {
             InitializeComponent();
@@ -17,6 +18,9 @@ namespace Compass
             //管理员和技术部才能更新数据
             if (Program.ObjCurrentUser.UserGroupId == 1 || Program.ObjCurrentUser.UserGroupId == 2) btnEditData.Visible = true;
             else btnEditData.Visible = false;
+            modelView = new ModelView();
+            panel1.Controls.Add(modelView);
+            modelView.Dock = DockStyle.Fill;
         }
         public FrmUcjdb800(Drawing drawing, ModuleTree tree) : this()
         {
@@ -63,6 +67,11 @@ namespace Compass
             cobLightType.Items.Add("LED");
             cobLightType.Items.Add("T8");
             cobLightType.Items.Add("HCL");
+            //HCL灯板
+            cobLightPanelSide.Items.Add("LEFT");
+            cobLightPanelSide.Items.Add("RIGHT");
+            cobLightPanelSide.Items.Add("BOTH");
+            cobLightPanelSide.Items.Add("NO");
             //灯腔出线孔位置
             cobLightCable.Items.Add("LEFT");
             cobLightCable.Items.Add("RIGHT");
@@ -116,6 +125,7 @@ namespace Compass
             cobFCBlindNo.Text = _objUcjdb800.FCBlindNo.ToString();
             cobLightType.Text = _objUcjdb800.LightType;
             cobLightCable.Text = _objUcjdb800.LightCable;
+            cobLightPanelSide.Text = _objUcjdb800.LightPanelSide;
 
             txtLength.Text = _objUcjdb800.Length.ToString();
             txtExRightDis.Text = _objUcjdb800.ExRightDis.ToString();
@@ -130,6 +140,8 @@ namespace Compass
             txtANDetectorDis3.Text = _objUcjdb800.ANDetectorDis3.ToString();
             txtANDetectorDis4.Text = _objUcjdb800.ANDetectorDis4.ToString();
             txtANDetectorDis5.Text = _objUcjdb800.ANDetectorDis5.ToString();
+            txtLightPanelLeft.Text = _objUcjdb800.LightPanelLeft.ToString();
+            txtLightPanelRight.Text = _objUcjdb800.LightPanelRight.ToString();
         }
         private void btnEditData_Click(object sender, EventArgs e)
         {
@@ -336,6 +348,7 @@ namespace Compass
                 FCBlindNo = Convert.ToInt32(cobFCBlindNo.Text.Trim()),
                 LightType = cobLightType.Text,
                 LightCable = cobLightCable.Text,
+                LightPanelSide = cobLightPanelSide.Text,
 
                 Length = Convert.ToDouble(txtLength.Text.Trim()),
                 ExRightDis = Convert.ToDouble(txtExRightDis.Text.Trim()),
@@ -349,7 +362,9 @@ namespace Compass
                 ANDetectorDis2 = Convert.ToDouble(txtANDetectorDis2.Text.Trim()),
                 ANDetectorDis3 = Convert.ToDouble(txtANDetectorDis3.Text.Trim()),
                 ANDetectorDis4 = Convert.ToDouble(txtANDetectorDis4.Text.Trim()),
-                ANDetectorDis5 = Convert.ToDouble(txtANDetectorDis5.Text.Trim())
+                ANDetectorDis5 = Convert.ToDouble(txtANDetectorDis5.Text.Trim()),
+                LightPanelLeft = txtLightPanelLeft.Text.Trim().Length == 0 ? 0 : Convert.ToDouble(txtLightPanelLeft.Text.Trim()),
+                LightPanelRight = txtLightPanelRight.Text.Trim().Length == 0 ? 0 : Convert.ToDouble(txtLightPanelRight.Text.Trim())
             };
             //提交修改
             try
@@ -518,6 +533,55 @@ namespace Compass
                 lblANDetectorDis5.Visible = true;
                 txtANDetectorDis5.Visible = true;
             }
+        }
+        private void cobLightType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cobLightType.Text == "HCL")
+            {
+                cobLightPanelSide.Visible = true;
+                lblLightPanelSide.Visible = true;
+
+            }
+            else
+            {
+                cobLightPanelSide.Visible = false;
+                lblLightPanelSide.Visible = false;
+                lblLightPanelLeft.Visible = false;
+                lblLightPanelRight.Visible = false;
+                txtLightPanelLeft.Visible = false;
+                txtLightPanelRight.Visible = false;
+            }
+        }
+        private void cobLightPanelSide_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cobLightPanelSide.Text.Trim())
+            {
+                case "LEFT":
+                    lblLightPanelLeft.Visible = true;
+                    lblLightPanelRight.Visible = false;
+                    txtLightPanelLeft.Visible = true;
+                    txtLightPanelRight.Visible = false;
+                    break;
+                case "RIGHT":
+                    lblLightPanelLeft.Visible = false;
+                    lblLightPanelRight.Visible = true;
+                    txtLightPanelLeft.Visible = false;
+                    txtLightPanelRight.Visible = true;
+                    break;
+                case "BOTH":
+                    lblLightPanelLeft.Visible = true;
+                    lblLightPanelRight.Visible = true;
+                    txtLightPanelLeft.Visible = true;
+                    txtLightPanelRight.Visible = true;
+                    break;
+                default:
+                    lblLightPanelLeft.Visible = false;
+                    lblLightPanelRight.Visible = false;
+                    txtLightPanelLeft.Visible = false;
+                    txtLightPanelRight.Visible = false;
+                    break;
+            }
+
         }
     }
 }

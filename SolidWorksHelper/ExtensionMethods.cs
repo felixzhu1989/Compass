@@ -72,16 +72,16 @@ namespace SolidWorksHelper
         /// </summary>
         public static string PackAndGoCeiling(this SldWorks swApp, ModuleTree tree, string projectPath, out string suffix)
         {
-            //1.获得项目模型存档地址，例如STA-HOT-038-M2-UVF555
-            string itemPath = $@"{projectPath}\{tree.Item}-{tree.Module}-{tree.CategoryName}";
+            //1.获得项目模型存档地址，天花烟罩去掉Item
+            string itemPath = $@"{projectPath}\{tree.Module}-{tree.CategoryName}";
             //2.判断文件夹是否存在，如果不存在则创建它
             if (!Directory.Exists(itemPath)) Directory.CreateDirectory(itemPath);
             //3.获取PackAndGo需要添加的后缀，该后缀需要抛出给作图过程使用
-            suffix = $@"{tree.Item}-{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
+            suffix = $@"_{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
             //4.获取理论上PackAndGo后的地址
             string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}{suffix}.sldasm";
             //4.判断文件是否存在，如果存在将不执行PackAndGo，直接返回地址
-            if (!File.Exists(packedAssyPath)) return packedAssyPath;
+            if (File.Exists(packedAssyPath)) return packedAssyPath;
             //5.如果文件不存在则执行PackAndGo
             return swApp.PackAndGoFunc(tree.ModelPath, itemPath, suffix);
         }

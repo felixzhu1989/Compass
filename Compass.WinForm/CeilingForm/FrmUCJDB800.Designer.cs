@@ -29,17 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUcjdb800));
-            this.grbMARVEL = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cobUVType = new System.Windows.Forms.ComboBox();
-            this.cobLightType = new System.Windows.Forms.ComboBox();
-            this.cobSSPType = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.cobLightCable = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.cobJapan = new System.Windows.Forms.ComboBox();
             this.grbANSUL = new System.Windows.Forms.GroupBox();
             this.txtANDetectorDis5 = new System.Windows.Forms.TextBox();
             this.txtANDetectorDis4 = new System.Windows.Forms.TextBox();
@@ -88,39 +79,34 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtLength = new System.Windows.Forms.TextBox();
-            this.modelView = new Compass.ModelView();
-            this.grbMARVEL.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.grbMARVEL = new System.Windows.Forms.GroupBox();
+            this.txtLightPanelRight = new System.Windows.Forms.TextBox();
+            this.lblLightPanelSide = new System.Windows.Forms.Label();
+            this.lblLightPanelRight = new System.Windows.Forms.Label();
+            this.cobLightPanelSide = new System.Windows.Forms.ComboBox();
+            this.lblLightPanelLeft = new System.Windows.Forms.Label();
+            this.txtLightPanelLeft = new System.Windows.Forms.TextBox();
+            this.cobLightType = new System.Windows.Forms.ComboBox();
+            this.cobSSPType = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.cobLightCable = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.cobJapan = new System.Windows.Forms.ComboBox();
             this.grbANSUL.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.grbMARVEL.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // grbMARVEL
-            // 
-            this.grbMARVEL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.grbMARVEL.Controls.Add(this.label5);
-            this.grbMARVEL.Controls.Add(this.cobUVType);
-            this.grbMARVEL.Controls.Add(this.cobLightType);
-            this.grbMARVEL.Controls.Add(this.cobSSPType);
-            this.grbMARVEL.Controls.Add(this.label3);
-            this.grbMARVEL.Controls.Add(this.label2);
-            this.grbMARVEL.Controls.Add(this.label30);
-            this.grbMARVEL.Controls.Add(this.cobLightCable);
-            this.grbMARVEL.Controls.Add(this.label22);
-            this.grbMARVEL.Controls.Add(this.cobJapan);
-            this.grbMARVEL.Location = new System.Drawing.Point(779, 372);
-            this.grbMARVEL.Name = "grbMARVEL";
-            this.grbMARVEL.Size = new System.Drawing.Size(398, 136);
-            this.grbMARVEL.TabIndex = 4;
-            this.grbMARVEL.TabStop = false;
-            this.grbMARVEL.Text = "其他配置";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(200, 60);
+            this.label5.Location = new System.Drawing.Point(11, 137);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 19);
             this.label5.TabIndex = 4;
@@ -133,94 +119,10 @@
             this.cobUVType.BackColor = System.Drawing.Color.Azure;
             this.cobUVType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobUVType.FormattingEnabled = true;
-            this.cobUVType.Location = new System.Drawing.Point(279, 56);
+            this.cobUVType.Location = new System.Drawing.Point(89, 134);
             this.cobUVType.Name = "cobUVType";
             this.cobUVType.Size = new System.Drawing.Size(100, 27);
             this.cobUVType.TabIndex = 3;
-            // 
-            // cobLightType
-            // 
-            this.cobLightType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobLightType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobLightType.BackColor = System.Drawing.Color.Azure;
-            this.cobLightType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobLightType.FormattingEnabled = true;
-            this.cobLightType.Location = new System.Drawing.Point(92, 56);
-            this.cobLightType.Name = "cobLightType";
-            this.cobLightType.Size = new System.Drawing.Size(100, 27);
-            this.cobLightType.TabIndex = 2;
-            // 
-            // cobSSPType
-            // 
-            this.cobSSPType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobSSPType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobSSPType.BackColor = System.Drawing.Color.Azure;
-            this.cobSSPType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobSSPType.FormattingEnabled = true;
-            this.cobSSPType.Location = new System.Drawing.Point(92, 21);
-            this.cobSSPType.Name = "cobSSPType";
-            this.cobSSPType.Size = new System.Drawing.Size(100, 27);
-            this.cobSSPType.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 60);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 19);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "灯具类型";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 92);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 19);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "出线孔位置";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(4, 25);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(85, 19);
-            this.label30.TabIndex = 2;
-            this.label30.Text = "SSP灯板类型";
-            // 
-            // cobLightCable
-            // 
-            this.cobLightCable.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobLightCable.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobLightCable.BackColor = System.Drawing.Color.Azure;
-            this.cobLightCable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobLightCable.FormattingEnabled = true;
-            this.cobLightCable.Location = new System.Drawing.Point(92, 89);
-            this.cobLightCable.Name = "cobLightCable";
-            this.cobLightCable.Size = new System.Drawing.Size(100, 27);
-            this.cobLightCable.TabIndex = 4;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(200, 25);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(61, 19);
-            this.label22.TabIndex = 2;
-            this.label22.Text = "日本项目";
-            // 
-            // cobJapan
-            // 
-            this.cobJapan.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cobJapan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cobJapan.BackColor = System.Drawing.Color.Azure;
-            this.cobJapan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobJapan.FormattingEnabled = true;
-            this.cobJapan.Location = new System.Drawing.Point(279, 21);
-            this.cobJapan.Name = "cobJapan";
-            this.cobJapan.Size = new System.Drawing.Size(100, 27);
-            this.cobJapan.TabIndex = 1;
             // 
             // grbANSUL
             // 
@@ -247,7 +149,7 @@
             this.grbANSUL.Controls.Add(this.cobANSide);
             this.grbANSUL.Location = new System.Drawing.Point(779, 63);
             this.grbANSUL.Name = "grbANSUL";
-            this.grbANSUL.Size = new System.Drawing.Size(398, 303);
+            this.grbANSUL.Size = new System.Drawing.Size(398, 272);
             this.grbANSUL.TabIndex = 3;
             this.grbANSUL.TabStop = false;
             this.grbANSUL.Text = "ANSUL/MARVEL";
@@ -255,7 +157,7 @@
             // txtANDetectorDis5
             // 
             this.txtANDetectorDis5.BackColor = System.Drawing.Color.Azure;
-            this.txtANDetectorDis5.Location = new System.Drawing.Point(92, 272);
+            this.txtANDetectorDis5.Location = new System.Drawing.Point(92, 243);
             this.txtANDetectorDis5.Name = "txtANDetectorDis5";
             this.txtANDetectorDis5.Size = new System.Drawing.Size(100, 25);
             this.txtANDetectorDis5.TabIndex = 8;
@@ -263,7 +165,7 @@
             // txtANDetectorDis4
             // 
             this.txtANDetectorDis4.BackColor = System.Drawing.Color.Azure;
-            this.txtANDetectorDis4.Location = new System.Drawing.Point(92, 242);
+            this.txtANDetectorDis4.Location = new System.Drawing.Point(92, 213);
             this.txtANDetectorDis4.Name = "txtANDetectorDis4";
             this.txtANDetectorDis4.Size = new System.Drawing.Size(100, 25);
             this.txtANDetectorDis4.TabIndex = 7;
@@ -271,7 +173,7 @@
             // txtANDetectorDis3
             // 
             this.txtANDetectorDis3.BackColor = System.Drawing.Color.Azure;
-            this.txtANDetectorDis3.Location = new System.Drawing.Point(92, 212);
+            this.txtANDetectorDis3.Location = new System.Drawing.Point(92, 183);
             this.txtANDetectorDis3.Name = "txtANDetectorDis3";
             this.txtANDetectorDis3.Size = new System.Drawing.Size(100, 25);
             this.txtANDetectorDis3.TabIndex = 6;
@@ -279,7 +181,7 @@
             // txtANDetectorDis2
             // 
             this.txtANDetectorDis2.BackColor = System.Drawing.Color.Azure;
-            this.txtANDetectorDis2.Location = new System.Drawing.Point(92, 182);
+            this.txtANDetectorDis2.Location = new System.Drawing.Point(92, 153);
             this.txtANDetectorDis2.Name = "txtANDetectorDis2";
             this.txtANDetectorDis2.Size = new System.Drawing.Size(100, 25);
             this.txtANDetectorDis2.TabIndex = 5;
@@ -287,7 +189,7 @@
             // txtANDetectorDis1
             // 
             this.txtANDetectorDis1.BackColor = System.Drawing.Color.Azure;
-            this.txtANDetectorDis1.Location = new System.Drawing.Point(92, 152);
+            this.txtANDetectorDis1.Location = new System.Drawing.Point(92, 123);
             this.txtANDetectorDis1.Name = "txtANDetectorDis1";
             this.txtANDetectorDis1.Size = new System.Drawing.Size(100, 25);
             this.txtANDetectorDis1.TabIndex = 4;
@@ -295,7 +197,7 @@
             // lblANDetectorDis5
             // 
             this.lblANDetectorDis5.AutoSize = true;
-            this.lblANDetectorDis5.Location = new System.Drawing.Point(4, 268);
+            this.lblANDetectorDis5.Location = new System.Drawing.Point(4, 239);
             this.lblANDetectorDis5.Name = "lblANDetectorDis5";
             this.lblANDetectorDis5.Size = new System.Drawing.Size(82, 19);
             this.lblANDetectorDis5.TabIndex = 43;
@@ -304,7 +206,7 @@
             // lblANDetectorDis4
             // 
             this.lblANDetectorDis4.AutoSize = true;
-            this.lblANDetectorDis4.Location = new System.Drawing.Point(4, 238);
+            this.lblANDetectorDis4.Location = new System.Drawing.Point(4, 209);
             this.lblANDetectorDis4.Name = "lblANDetectorDis4";
             this.lblANDetectorDis4.Size = new System.Drawing.Size(82, 19);
             this.lblANDetectorDis4.TabIndex = 44;
@@ -313,7 +215,7 @@
             // lblANDetectorDis3
             // 
             this.lblANDetectorDis3.AutoSize = true;
-            this.lblANDetectorDis3.Location = new System.Drawing.Point(4, 208);
+            this.lblANDetectorDis3.Location = new System.Drawing.Point(4, 179);
             this.lblANDetectorDis3.Name = "lblANDetectorDis3";
             this.lblANDetectorDis3.Size = new System.Drawing.Size(82, 19);
             this.lblANDetectorDis3.TabIndex = 45;
@@ -322,7 +224,7 @@
             // lblANDetectorDis2
             // 
             this.lblANDetectorDis2.AutoSize = true;
-            this.lblANDetectorDis2.Location = new System.Drawing.Point(4, 178);
+            this.lblANDetectorDis2.Location = new System.Drawing.Point(4, 149);
             this.lblANDetectorDis2.Name = "lblANDetectorDis2";
             this.lblANDetectorDis2.Size = new System.Drawing.Size(82, 19);
             this.lblANDetectorDis2.TabIndex = 46;
@@ -331,7 +233,7 @@
             // lblANDetectorDis1
             // 
             this.lblANDetectorDis1.AutoSize = true;
-            this.lblANDetectorDis1.Location = new System.Drawing.Point(4, 148);
+            this.lblANDetectorDis1.Location = new System.Drawing.Point(4, 119);
             this.lblANDetectorDis1.Name = "lblANDetectorDis1";
             this.lblANDetectorDis1.Size = new System.Drawing.Size(82, 19);
             this.lblANDetectorDis1.TabIndex = 47;
@@ -340,7 +242,7 @@
             // lblANDetectorNo
             // 
             this.lblANDetectorNo.AutoSize = true;
-            this.lblANDetectorNo.Location = new System.Drawing.Point(4, 118);
+            this.lblANDetectorNo.Location = new System.Drawing.Point(4, 86);
             this.lblANDetectorNo.Name = "lblANDetectorNo";
             this.lblANDetectorNo.Size = new System.Drawing.Size(74, 19);
             this.lblANDetectorNo.TabIndex = 48;
@@ -353,7 +255,7 @@
             this.cobANDetectorNo.BackColor = System.Drawing.Color.Azure;
             this.cobANDetectorNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobANDetectorNo.FormattingEnabled = true;
-            this.cobANDetectorNo.Location = new System.Drawing.Point(92, 120);
+            this.cobANDetectorNo.Location = new System.Drawing.Point(92, 88);
             this.cobANDetectorNo.Name = "cobANDetectorNo";
             this.cobANDetectorNo.Size = new System.Drawing.Size(100, 27);
             this.cobANDetectorNo.TabIndex = 3;
@@ -386,7 +288,7 @@
             // lblANDetectorEnd
             // 
             this.lblANDetectorEnd.AutoSize = true;
-            this.lblANDetectorEnd.Location = new System.Drawing.Point(4, 88);
+            this.lblANDetectorEnd.Location = new System.Drawing.Point(4, 57);
             this.lblANDetectorEnd.Name = "lblANDetectorEnd";
             this.lblANDetectorEnd.Size = new System.Drawing.Size(74, 19);
             this.lblANDetectorEnd.TabIndex = 2;
@@ -420,7 +322,7 @@
             // lblANSide
             // 
             this.lblANSide.AutoSize = true;
-            this.lblANSide.Location = new System.Drawing.Point(4, 58);
+            this.lblANSide.Location = new System.Drawing.Point(201, 60);
             this.lblANSide.Name = "lblANSide";
             this.lblANSide.Size = new System.Drawing.Size(61, 19);
             this.lblANSide.TabIndex = 2;
@@ -433,7 +335,7 @@
             this.cobANDetectorEnd.BackColor = System.Drawing.Color.Azure;
             this.cobANDetectorEnd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobANDetectorEnd.FormattingEnabled = true;
-            this.cobANDetectorEnd.Location = new System.Drawing.Point(92, 88);
+            this.cobANDetectorEnd.Location = new System.Drawing.Point(92, 56);
             this.cobANDetectorEnd.Name = "cobANDetectorEnd";
             this.cobANDetectorEnd.Size = new System.Drawing.Size(100, 27);
             this.cobANDetectorEnd.TabIndex = 2;
@@ -445,7 +347,7 @@
             this.cobANSide.BackColor = System.Drawing.Color.Azure;
             this.cobANSide.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobANSide.FormattingEnabled = true;
-            this.cobANSide.Location = new System.Drawing.Point(92, 56);
+            this.cobANSide.Location = new System.Drawing.Point(279, 57);
             this.cobANSide.Name = "cobANSide";
             this.cobANSide.Size = new System.Drawing.Size(100, 27);
             this.cobANSide.TabIndex = 1;
@@ -731,24 +633,196 @@
             this.txtLength.TabIndex = 0;
             this.txtLength.TextChanged += new System.EventHandler(this.txtLength_TextChanged);
             // 
-            // modelView
+            // panel1
             // 
-            this.modelView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.modelView.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modelView.Location = new System.Drawing.Point(25, 48);
-            this.modelView.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.modelView.Name = "modelView";
-            this.modelView.Size = new System.Drawing.Size(750, 460);
-            this.modelView.TabIndex = 77;
+            this.panel1.Location = new System.Drawing.Point(24, 51);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(750, 460);
+            this.panel1.TabIndex = 9;
             // 
-            // FrmUCJDB800
+            // grbMARVEL
+            // 
+            this.grbMARVEL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.grbMARVEL.Controls.Add(this.label5);
+            this.grbMARVEL.Controls.Add(this.cobUVType);
+            this.grbMARVEL.Controls.Add(this.txtLightPanelRight);
+            this.grbMARVEL.Controls.Add(this.lblLightPanelSide);
+            this.grbMARVEL.Controls.Add(this.lblLightPanelRight);
+            this.grbMARVEL.Controls.Add(this.cobLightPanelSide);
+            this.grbMARVEL.Controls.Add(this.lblLightPanelLeft);
+            this.grbMARVEL.Controls.Add(this.txtLightPanelLeft);
+            this.grbMARVEL.Controls.Add(this.cobLightType);
+            this.grbMARVEL.Controls.Add(this.cobSSPType);
+            this.grbMARVEL.Controls.Add(this.label3);
+            this.grbMARVEL.Controls.Add(this.label2);
+            this.grbMARVEL.Controls.Add(this.label30);
+            this.grbMARVEL.Controls.Add(this.cobLightCable);
+            this.grbMARVEL.Controls.Add(this.label22);
+            this.grbMARVEL.Controls.Add(this.cobJapan);
+            this.grbMARVEL.Location = new System.Drawing.Point(779, 337);
+            this.grbMARVEL.Name = "grbMARVEL";
+            this.grbMARVEL.Size = new System.Drawing.Size(398, 179);
+            this.grbMARVEL.TabIndex = 10;
+            this.grbMARVEL.TabStop = false;
+            this.grbMARVEL.Text = "其他配置";
+            // 
+            // txtLightPanelRight
+            // 
+            this.txtLightPanelRight.BackColor = System.Drawing.Color.Azure;
+            this.txtLightPanelRight.Location = new System.Drawing.Point(279, 137);
+            this.txtLightPanelRight.Name = "txtLightPanelRight";
+            this.txtLightPanelRight.Size = new System.Drawing.Size(100, 25);
+            this.txtLightPanelRight.TabIndex = 6;
+            this.txtLightPanelRight.Visible = false;
+            // 
+            // lblLightPanelSide
+            // 
+            this.lblLightPanelSide.AutoSize = true;
+            this.lblLightPanelSide.Location = new System.Drawing.Point(204, 64);
+            this.lblLightPanelSide.Name = "lblLightPanelSide";
+            this.lblLightPanelSide.Size = new System.Drawing.Size(61, 19);
+            this.lblLightPanelSide.TabIndex = 7;
+            this.lblLightPanelSide.Text = "HCL灯板";
+            this.lblLightPanelSide.Visible = false;
+            // 
+            // lblLightPanelRight
+            // 
+            this.lblLightPanelRight.AutoSize = true;
+            this.lblLightPanelRight.Location = new System.Drawing.Point(200, 139);
+            this.lblLightPanelRight.Name = "lblLightPanelRight";
+            this.lblLightPanelRight.Size = new System.Drawing.Size(74, 19);
+            this.lblLightPanelRight.TabIndex = 8;
+            this.lblLightPanelRight.Text = "右灯板长度";
+            this.lblLightPanelRight.Visible = false;
+            // 
+            // cobLightPanelSide
+            // 
+            this.cobLightPanelSide.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobLightPanelSide.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobLightPanelSide.BackColor = System.Drawing.Color.Azure;
+            this.cobLightPanelSide.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobLightPanelSide.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cobLightPanelSide.FormattingEnabled = true;
+            this.cobLightPanelSide.Location = new System.Drawing.Point(279, 62);
+            this.cobLightPanelSide.Name = "cobLightPanelSide";
+            this.cobLightPanelSide.Size = new System.Drawing.Size(100, 27);
+            this.cobLightPanelSide.TabIndex = 4;
+            this.cobLightPanelSide.Visible = false;
+            this.cobLightPanelSide.SelectedIndexChanged += new System.EventHandler(this.cobLightPanelSide_SelectedIndexChanged);
+            // 
+            // lblLightPanelLeft
+            // 
+            this.lblLightPanelLeft.AutoSize = true;
+            this.lblLightPanelLeft.Location = new System.Drawing.Point(200, 103);
+            this.lblLightPanelLeft.Name = "lblLightPanelLeft";
+            this.lblLightPanelLeft.Size = new System.Drawing.Size(74, 19);
+            this.lblLightPanelLeft.TabIndex = 9;
+            this.lblLightPanelLeft.Text = "左灯板长度";
+            this.lblLightPanelLeft.Visible = false;
+            // 
+            // txtLightPanelLeft
+            // 
+            this.txtLightPanelLeft.BackColor = System.Drawing.Color.Azure;
+            this.txtLightPanelLeft.Location = new System.Drawing.Point(279, 100);
+            this.txtLightPanelLeft.Name = "txtLightPanelLeft";
+            this.txtLightPanelLeft.Size = new System.Drawing.Size(100, 25);
+            this.txtLightPanelLeft.TabIndex = 5;
+            this.txtLightPanelLeft.Visible = false;
+            // 
+            // cobLightType
+            // 
+            this.cobLightType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobLightType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobLightType.BackColor = System.Drawing.Color.Azure;
+            this.cobLightType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobLightType.FormattingEnabled = true;
+            this.cobLightType.Location = new System.Drawing.Point(92, 56);
+            this.cobLightType.Name = "cobLightType";
+            this.cobLightType.Size = new System.Drawing.Size(100, 27);
+            this.cobLightType.TabIndex = 2;
+            this.cobLightType.SelectedIndexChanged += new System.EventHandler(this.cobLightType_SelectedIndexChanged);
+            // 
+            // cobSSPType
+            // 
+            this.cobSSPType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobSSPType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobSSPType.BackColor = System.Drawing.Color.Azure;
+            this.cobSSPType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobSSPType.FormattingEnabled = true;
+            this.cobSSPType.Location = new System.Drawing.Point(92, 21);
+            this.cobSSPType.Name = "cobSSPType";
+            this.cobSSPType.Size = new System.Drawing.Size(100, 27);
+            this.cobSSPType.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(4, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 19);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "灯具类型";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 96);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 19);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "出线孔位置";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(4, 25);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(85, 19);
+            this.label30.TabIndex = 2;
+            this.label30.Text = "SSP灯板类型";
+            // 
+            // cobLightCable
+            // 
+            this.cobLightCable.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobLightCable.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobLightCable.BackColor = System.Drawing.Color.Azure;
+            this.cobLightCable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobLightCable.FormattingEnabled = true;
+            this.cobLightCable.Location = new System.Drawing.Point(92, 92);
+            this.cobLightCable.Name = "cobLightCable";
+            this.cobLightCable.Size = new System.Drawing.Size(100, 27);
+            this.cobLightCable.TabIndex = 3;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(200, 25);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(61, 19);
+            this.label22.TabIndex = 2;
+            this.label22.Text = "日本项目";
+            // 
+            // cobJapan
+            // 
+            this.cobJapan.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cobJapan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cobJapan.BackColor = System.Drawing.Color.Azure;
+            this.cobJapan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobJapan.FormattingEnabled = true;
+            this.cobJapan.Location = new System.Drawing.Point(279, 21);
+            this.cobJapan.Name = "cobJapan";
+            this.cobJapan.Size = new System.Drawing.Size(100, 27);
+            this.cobJapan.TabIndex = 1;
+            // 
+            // FrmUcjdb800
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1200, 675);
-            this.Controls.Add(this.modelView);
             this.Controls.Add(this.grbMARVEL);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.grbANSUL);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox2);
@@ -760,8 +834,6 @@
             this.MinimumSize = new System.Drawing.Size(1200, 675);
             this.Name = "FrmUcjdb800";
             this.Text = "UCJDB800";
-            this.grbMARVEL.ResumeLayout(false);
-            this.grbMARVEL.PerformLayout();
             this.grbANSUL.ResumeLayout(false);
             this.grbANSUL.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -772,21 +844,13 @@
             this.groupBox6.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.grbMARVEL.ResumeLayout(false);
+            this.grbMARVEL.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox grbMARVEL;
-        private System.Windows.Forms.ComboBox cobLightType;
-        private System.Windows.Forms.ComboBox cobSSPType;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.ComboBox cobLightCable;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.ComboBox cobJapan;
         private System.Windows.Forms.GroupBox grbANSUL;
         private System.Windows.Forms.TextBox txtANDetectorDis5;
         private System.Windows.Forms.TextBox txtANDetectorDis4;
@@ -837,6 +901,21 @@
         private System.Windows.Forms.TextBox txtLength;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cobUVType;
-        private ModelView modelView;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox grbMARVEL;
+        private System.Windows.Forms.TextBox txtLightPanelRight;
+        private System.Windows.Forms.Label lblLightPanelSide;
+        private System.Windows.Forms.Label lblLightPanelRight;
+        private System.Windows.Forms.ComboBox cobLightPanelSide;
+        private System.Windows.Forms.Label lblLightPanelLeft;
+        private System.Windows.Forms.TextBox txtLightPanelLeft;
+        private System.Windows.Forms.ComboBox cobLightType;
+        private System.Windows.Forms.ComboBox cobSSPType;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.ComboBox cobLightCable;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ComboBox cobJapan;
     }
 }

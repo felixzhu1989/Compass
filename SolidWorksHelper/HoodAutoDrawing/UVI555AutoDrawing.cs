@@ -55,10 +55,8 @@ namespace SolidWorksHelper
             
             #endregion
 
-
             try
             {
-                
                 #region 装配体顶层
                 //烟罩深度
                 swModel.ChangeDim("D1@Distance32", item.Deepth);

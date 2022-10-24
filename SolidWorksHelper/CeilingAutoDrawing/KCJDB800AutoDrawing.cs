@@ -17,30 +17,14 @@ namespace SolidWorksHelper
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             #region 准备工作
-            //创建项目模型存放地址
-            string itemPath = $@"{projectPath}\{tree.Module}-{tree.CategoryName}";
-            if (!Directory.Exists(itemPath))
-            {
-                Directory.CreateDirectory(itemPath);
-            }
-            else
-            {
-                ShowMsg show = new ShowMsg();
-                DialogResult result = show.ShowMessageBoxTimeout($"模型文件夹{itemPath}存在，如果之前pack已经执行过，将不执行pack过程而是直接修改模型，如果要中断作图点击YES，继续作图请点击No或者3s后窗口会自动消失", "提示信息", MessageBoxButtons.YesNo, 3000);
-                if (result == DialogResult.Yes) return;
-            }
-            //Pack的后缀
-            string suffix = $"{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
-            //判断文件是否存在，如果存在将不执行pack，如果不存在则执行pack
-            //packango后需要接收打包完成的地址，参数为后缀
-            string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
-            if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
+            //packandgo后需要接收打包完成的地址，参数为后缀
+            string packedAssyPath = swApp.PackAndGoCeiling(tree, projectPath, out string suffix);
             //查询参数
             KCJDB800 item = (KCJDB800)objKCJDB800Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
             int warnings = 0;
             int errors = 0;
-            suffix = "_" + suffix;//后缀
+            CeilingPart ceilingPart = new CeilingPart();
             //打开Pack后的模型
             var swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
                 (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings);
@@ -54,10 +38,9 @@ namespace SolidWorksHelper
             if (item.FCSide == "RIGHT" || item.FCSide == "NO") item.FCSideLeft = 0.5d;//过滤掉填错的情况
             int fcNo = (int)((item.Length - item.FCSideLeft - item.FCSideRight) / 499d) - item.FCBlindNo;
 
-            CeilingPart ceilingPart = new CeilingPart();
+            
             try
             {
-                Component2 swComp;
                 //判断是否是HCL特殊灯腔
                 if (item.LightType == "HCL")
                 {
@@ -118,7 +101,6 @@ namespace SolidWorksHelper
                     ceilingPart.FNCE0090(swComp, item.Length, item.LightPanelSide, item.LightPanelLeft, item.LightPanelRight);
 
                     //-------灯腔玻璃支架支撑条上部-------
-
                     swAssy.UnSuppress(suffix, "FNCE0091-1");
                     swComp = swAssy.UnSuppress(suffix, "FNCE0091-2");
                     ceilingPart.FNCE0091(swComp, item.Length,item.LightPanelSide, item.LightPanelLeft, item.LightPanelRight);
@@ -155,19 +137,23 @@ namespace SolidWorksHelper
 
                     //----------灯腔----------
                     swComp = swAssy.UnSuppress(suffix, "FNCE0116-1");
-                    ceilingPart.FNCE0116(swComp, item.Length, item.LightCable, item.LightType, item.Japan);
+                    ceilingPart.FNCE0116(swComp, item.Length,"NO", item.LightCable, item.LightType, item.Japan);
 
                     swAssy.UnSuppress(suffix, "FNCE0056-1");
                     swComp = swAssy.UnSuppress(suffix, "FNCE0056-2");
                     ceilingPart.FNCE0056(swComp, item.Length);
                 }
 
+
+
+                //----------公共零件----------
                 //排风腔
                 swComp = ceilingPart.RenameComp(swModel, swAssy, suffix, "KCJDB800", tree.Module, "FNCE0115", 1, item.Length, 800);
                 if (swComp != null)
                     ceilingPart.FNCE0115(swComp, item.Length, item.LightType, item.LightCable, item.MARVEL, item.ANSUL, item.ANSide, item.ANDetectorEnd, item.ANDetectorNo, item.ANDetectorDis1, item.ANDetectorDis2, item.ANDetectorDis3, item.ANDetectorDis4, item.ANDetectorDis5, item.Japan, item.ExRightDis, item.ExLength, item.ExWidth);
 
-                //----------公共零件----------
+
+
                 //盲板
                 ceilingPart.FCBlind(swModel, swAssy, suffix, item.FCBlindNo, item.FCSideLeft, "FNCE0107[BP-500]{500}-3", "LocalLPattern4", "D1@Distance31", "NO", "");
                 ceilingPart.FCBlind(swModel, swAssy, suffix, item.FCBlindNo, item.FCSideLeft, "FNCE0107[BP-500]{500}-7", "LocalLPattern4", "D1@Distance31", "NO", "");

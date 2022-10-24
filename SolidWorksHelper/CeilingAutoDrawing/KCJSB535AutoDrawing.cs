@@ -18,30 +18,16 @@ namespace SolidWorksHelper
         {
 
             #region 准备工作
-            //创建项目模型存放地址
-            string itemPath = $@"{projectPath}\{tree.Module}-{tree.CategoryName}";
-            if (!Directory.Exists(itemPath))
-            {
-                Directory.CreateDirectory(itemPath);
-            }
-            else
-            {
-                ShowMsg show = new ShowMsg();
-                DialogResult result = show.ShowMessageBoxTimeout($"模型文件夹{itemPath}存在，如果之前pack已经执行过，将不执行pack过程而是直接修改模型，如果要中断作图点击YES，继续作图请点击No或者3s后窗口会自动消失", "提示信息", MessageBoxButtons.YesNo, 3000);
-                if (result == DialogResult.Yes) return;
-            }
-            //Pack的后缀
-            string suffix =$"{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
-            //判断文件是否存在，如果存在将不执行pack，如果不存在则执行pack
-            //packango后需要接收打包完成的地址，参数为后缀
-            string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
-            if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
+            //packandgo后需要接收打包完成的地址，参数为后缀
+            string packedAssyPath = swApp.PackAndGoCeiling(tree, projectPath, out string suffix);
+
             //查询参数
             KCJSB535 item = (KCJSB535)objKCJSB535Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
             int warnings = 0;
             int errors = 0;
-            suffix = "_" + suffix;//后缀
+            CeilingPart ceilingPart = new CeilingPart();
+
             //打开Pack后的模型
             var swModel = swApp.OpenDoc6(packedAssyPath, (int)swDocumentTypes_e.swDocASSEMBLY,
                 (int)swOpenDocOptions_e.swOpenDocOptions_Silent, "", ref errors, ref warnings);
@@ -54,8 +40,7 @@ namespace SolidWorksHelper
             //-----------计算中间值，----------
             if (item.FCSide == "RIGHT" || item.FCSide == "NO") item.FCSideLeft = 0.5d;//过滤掉填错的情况
             int fcNo = (int)((item.Length - item.FCSideLeft - item.FCSideRight) / 499d) - item.FCBlindNo;
-
-            CeilingPart ceilingPart = new CeilingPart();
+            
             try
             {
                 
@@ -73,8 +58,8 @@ namespace SolidWorksHelper
                     //swAssy.UnSuppress(suffix, "FNCE0089-1");
                     //swAssy.UnSuppress(suffix, "FNCE0085-1");
                     //swAssy.UnSuppress(suffix, "FNCE0090-1");
-                    //swAssy.UnSuppress(suffix, "FNCE0091-1");
-                    //swAssy.UnSuppress(suffix, "FNCE0091-3");
+                    swAssy.UnSuppress(suffix, "FNCE0091-1");
+                    swAssy.UnSuppress(suffix, "FNCE0091-3");
                     //swAssy.UnSuppress(suffix, "FNCE0093-1");
                     //swAssy.UnSuppress(suffix, "FNCE0092-1");
                     //swAssy.UnSuppress(suffix, "FNCE0094-1");
@@ -215,7 +200,8 @@ namespace SolidWorksHelper
             }
             catch (Exception ex)
             {
-                throw new Exception($"{packedAssyPath} 作图过程发生异常。\n零件：{swComp.Name}\n详细：{ex.Message}");
+                //以后记录在日志中
+                throw new Exception($"作图过程发生异常：{packedAssyPath} 。\n零件：{swComp.Name}\n对象：{ex.Source}\n详细：{ex.Message}");
             }
             finally
             {

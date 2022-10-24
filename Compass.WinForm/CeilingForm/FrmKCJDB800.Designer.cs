@@ -164,7 +164,7 @@
             this.cobLightPanelSide.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobLightPanelSide.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cobLightPanelSide.FormattingEnabled = true;
-            this.cobLightPanelSide.Location = new System.Drawing.Point(279, 64);
+            this.cobLightPanelSide.Location = new System.Drawing.Point(279, 63);
             this.cobLightPanelSide.Name = "cobLightPanelSide";
             this.cobLightPanelSide.Size = new System.Drawing.Size(100, 27);
             this.cobLightPanelSide.TabIndex = 4;
@@ -174,7 +174,7 @@
             // lblLightPanelLeft
             // 
             this.lblLightPanelLeft.AutoSize = true;
-            this.lblLightPanelLeft.Location = new System.Drawing.Point(200, 105);
+            this.lblLightPanelLeft.Location = new System.Drawing.Point(200, 104);
             this.lblLightPanelLeft.Name = "lblLightPanelLeft";
             this.lblLightPanelLeft.Size = new System.Drawing.Size(74, 19);
             this.lblLightPanelLeft.TabIndex = 9;
@@ -227,7 +227,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 92);
+            this.label2.Location = new System.Drawing.Point(6, 96);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 19);
             this.label2.TabIndex = 2;
@@ -249,7 +249,7 @@
             this.cobLightCable.BackColor = System.Drawing.Color.Azure;
             this.cobLightCable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobLightCable.FormattingEnabled = true;
-            this.cobLightCable.Location = new System.Drawing.Point(92, 89);
+            this.cobLightCable.Location = new System.Drawing.Point(92, 94);
             this.cobLightCable.Name = "cobLightCable";
             this.cobLightCable.Size = new System.Drawing.Size(100, 27);
             this.cobLightCable.TabIndex = 3;

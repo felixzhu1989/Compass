@@ -16,7 +16,7 @@ namespace DAL
             sqlBuilder.Append("Update UCJSB535 set Length=@Length,ExRightDis=@ExRightDis,ExLength=@ExLength,ExWidth=@ExWidth,ExHeight=@ExHeight,");
             sqlBuilder.Append("FCSide=@FCSide,FCSideLeft=@FCSideLeft,FCSideRight=@FCSideRight,FCBlindNo=@FCBlindNo,");
             sqlBuilder.Append("UVType=@UVType,LightType=@LightType,LightCable=@LightCable,SSPType=@SSPType,Gutter=@Gutter,GutterWidth=@GutterWidth,ANSUL=@ANSUL,ANSide=@ANSide,ANDetector=@ANDetector,");
-            sqlBuilder.Append("MARVEL=@MARVEL,Japan=@Japan where UCJSB535Id=@UCJSB535Id");
+            sqlBuilder.Append("MARVEL=@MARVEL,LightPanelSide=@LightPanelSide,LightPanelLeft=@LightPanelLeft,LightPanelRight=@LightPanelRight,Japan=@Japan where UCJSB535Id=@UCJSB535Id");
             //定义参数数组
             SqlParameter[] param = new SqlParameter[]
             {
@@ -40,6 +40,9 @@ namespace DAL
                 new SqlParameter("@ANDetector",objModel.ANDetector),
                 new SqlParameter("@MARVEL",objModel.MARVEL),
                 new SqlParameter("@Japan",objModel.Japan),
+                new SqlParameter("@LightPanelSide",objModel.LightPanelSide),
+                new SqlParameter("@LightPanelLeft",objModel.LightPanelLeft),
+                new SqlParameter("@LightPanelRight",objModel.LightPanelRight),
 
                 new SqlParameter("@UCJSB535Id",objModel.UCJSB535Id)
             };
@@ -59,9 +62,7 @@ namespace DAL
 
         public DataSet GetModelByDataSet(string projectId)
         {
-            string sql = "select UCJSB535Id,UCJSB535.ModuleTreeId,Item,Module,Length,ExRightDis,ExLength,ExWidth,ExHeight," +
-                         "FCSide,FCSideLeft,FCSideRight,FCBlindNo,UVType,LightType,LightCable,SSPType,Gutter,GutterWidth," +
-                         "ANSUL,ANSide,ANDetector,MARVEL,Japan from UCJSB535";
+            string sql = "select UCJSB535Id,UCJSB535.ModuleTreeId,Item,Module,Length,ExRightDis,ExLength,ExWidth,ExHeight,FCSide,FCSideLeft,FCSideRight,FCBlindNo,UVType,LightType,LightCable,SSPType,Gutter,GutterWidth,ANSUL,ANSide,ANDetector,MARVEL,LightPanelSide,LightPanelLeft,LightPanelRight,Japan from UCJSB535";
             sql += " inner join ModuleTree on UCJSB535.ModuleTreeId=ModuleTree.ModuleTreeId";
             sql += " inner join DrawingPlan on ModuleTree.DrawingPlanId=DrawingPlan.DrawingPlanId";
             sql += $" where ProjectId={projectId}";
@@ -82,9 +83,7 @@ namespace DAL
         public IModel GetModelByWhereSql(string whereSql)
         {
             string sql =
-                "select UCJSB535Id,ModuleTreeId,Length,ExRightDis,ExLength,ExWidth,ExHeight," +
-                "FCSide,FCSideLeft,FCSideRight,FCBlindNo,UVType,LightType,LightCable,SSPType,Gutter,GutterWidth," +
-                "ANSUL,ANSide,ANDetector,MARVEL,Japan from UCJSB535";
+                "select UCJSB535Id,ModuleTreeId,Length,ExRightDis,ExLength,ExWidth,ExHeight,FCSide,FCSideLeft,FCSideRight,FCBlindNo,UVType,LightType,LightCable,SSPType,Gutter,GutterWidth,ANSUL,ANSide,ANDetector,MARVEL,LightPanelSide,LightPanelLeft,LightPanelRight,Japan from UCJSB535";
             sql += whereSql;
             SqlDataReader objReader = SQLHelper.GetReader(sql);
             UCJSB535 objModel = null;
@@ -117,6 +116,9 @@ namespace DAL
                     ANSide = objReader["ANSide"].ToString().Length == 0 ? "" : objReader["ANSide"].ToString(),
                     ANDetector = objReader["ANDetector"].ToString().Length == 0 ? "" : objReader["ANDetector"].ToString(),
                     MARVEL = objReader["MARVEL"].ToString().Length == 0 ? "" : objReader["MARVEL"].ToString(),
+                    LightPanelSide = objReader["LightPanelSide"].ToString().Length == 0 ? "" : objReader["LightPanelSide"].ToString(),
+                    LightPanelLeft = objReader["LightPanelLeft"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["LightPanelLeft"]),
+                    LightPanelRight = objReader["LightPanelRight"].ToString().Length == 0 ? 0 : Convert.ToDouble(objReader["LightPanelRight"]),
                     Japan = objReader["Japan"].ToString().Length == 0 ? "" : objReader["Japan"].ToString(),
                 };
             }
