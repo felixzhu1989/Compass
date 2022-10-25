@@ -2399,7 +2399,8 @@ namespace SolidWorksHelper
             //UVF555400斜侧板CJ孔计算,77为排风底部长度，555-400为高度差
             int sidePanelDownCjNo = (int)((Math.Sqrt(Math.Pow(depth - 77d, 2) + Math.Pow(exHeight - suHeight, 2)) - 95d) / 32d);
             if (exType == "W") sidePanelDownCjNo = (int)((Math.Sqrt(Math.Pow(depth - 150d, 2) + Math.Pow(555d - 400d, 2)) - 95d) / 32d);
-            int sidePanelSideCjNo = sidePanelDownCjNo - 3;
+            //侧面多余一个CJ孔导致干涉
+            int sidePanelSideCjNo = sidePanelDownCjNo - 4;
             Component2 swComp;
             #region 大侧板
             if (sidePanel == "BOTH")
@@ -2848,8 +2849,7 @@ namespace SolidWorksHelper
 
 
         public void FNHA0040(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis,
-           int midRoofHoleNo, double midRoofSecondHoleDis, double midRoofTopHoleDis, string marvel, int irNo,
-           double irDis1, double irDis2, double irDis3, string UVType, string bluetooth, string sidePanel)
+           int midRoofHoleNo, double midRoofSecondHoleDis, double midRoofTopHoleDis, string marvel, string UVType, string bluetooth, string sidePanel)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             #region 基本尺寸
@@ -2865,38 +2865,10 @@ namespace SolidWorksHelper
                 swPart.ChangeDim("D1@LPattern1", midRoofHoleNo);
             }
             #endregion
-
-            #region MARVEL
-            swComp.Suppress("MA1");
-            swComp.Suppress("MA2");
-            swComp.Suppress("MA3");
-            swComp.Suppress("MACABLE1");
-            swComp.Suppress("MACABLE2");
-            swComp.Suppress("MACABLE3");
-            if (marvel == "YES")
-            {
-                if (irNo > 0)
-                {
-                    swComp.UnSuppress("MA1");
-                    swPart.ChangeDim("D3@Sketch16", irDis1);
-                    swComp.UnSuppress("MACABLE1");
-                    swPart.ChangeDim("D2@Sketch19", irDis1);
-                }
-                if (irNo > 1)
-                {
-                    swComp.UnSuppress("MA2");
-                    swPart.ChangeDim("D3@Sketch17", irDis2);
-                    swComp.UnSuppress("MACABLE2");
-                    swPart.ChangeDim("D2@Sketch20", irDis2);
-                }
-                if (irNo > 2)
-                {
-                    swComp.UnSuppress("MA3");
-                    swPart.ChangeDim("D3@Sketch18", irDis3);
-                    swComp.UnSuppress("MACABLE3");
-                    swPart.ChangeDim("D2@Sketch21", irDis3);
-                }
-            }
+            
+            #region IR
+            if (marvel == "YES") swComp.UnSuppress("Cut-Extrude12");
+            else swComp.Suppress("Cut-Extrude12");
             #endregion
 
             #region UV HOOD
