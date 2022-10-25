@@ -920,24 +920,27 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             ModelDoc2 swPart = swComp.GetModelDoc2();//打开零件
             swPart.ChangeDim("D2@Base-Flange1", length - 5d);
             swPart.ChangeDim("D1@LPattern1", fcNo + fcBlindNo);
-            swPart.ChangeDim("D3@Sketch6", fcSideLeft + 250d);
+            //只有左边有侧板才有意义
+            if (fcSide == "LEFT" || fcSide == "BOTH") swPart.ChangeDim("D3@Sketch6", fcSideLeft + 250d);
+            else swPart.ChangeDim("D3@Sketch6", 250d);
             if (fcSide == "LEFT"||fcSide=="BOTH")
             {
                 swComp.UnSuppress("Cut-Extrude4");
-                swPart.ChangeDim("D2@Sketch10", fcSideLeft/2d);
+                swPart.ChangeDim("D2@Sketch10", fcSideLeft/2d-2.5d);
             }
             else swComp.Suppress("Cut-Extrude4");
         }
-        internal void FNCE0161(Component2 swComp, double length, string fcSide, int fcNo, int fcBlindNo, double fcSideRight)
+        internal void FNCE0161(Component2 swComp, double length, string fcSide, int fcNo, int fcBlindNo, double fcSideRight, double fcSideLeft)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();//打开零件
             swPart.ChangeDim("D2@Base-Flange1", length - 5d);
             swPart.ChangeDim("D1@LPattern1", fcNo + fcBlindNo);
-            swPart.ChangeDim("D3@Sketch6", fcSideRight + 250d);
+            if (fcSide == "LEFT" || fcSide == "BOTH") swPart.ChangeDim("D3@Sketch6", fcSideLeft + 250d);
+            else swPart.ChangeDim("D3@Sketch6", 250d);
             if (fcSide == "RIGHT"||fcSide=="BOTH")
             {
                 swComp.UnSuppress("Cut-Extrude4");
-                swPart.ChangeDim("D3@Sketch10", fcSideRight/2d);
+                swPart.ChangeDim("D3@Sketch10", fcSideRight/2d-2.5d);
             }
             else swComp.Suppress("Cut-Extrude4");
         }
@@ -1613,24 +1616,28 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             ModelDoc2 swPart = swComp.GetModelDoc2();//打开零件
             swPart.ChangeDim("D2@Base-Flange1", length - 5d);
             swPart.ChangeDim("D1@LPattern1", fcNo + fcBlindNo);
-            swPart.ChangeDim("D3@Sketch6", fcSideLeft + 250d);
+            
+            if (fcSide == "LEFT" || fcSide == "BOTH") swPart.ChangeDim("D3@Sketch6", fcSideLeft + 250d);
+            else swPart.ChangeDim("D3@Sketch6", 250d);
+            
             if (fcSide == "LEFT"||fcSide=="BOTH")
             {
                 swComp.UnSuppress("Cut-Extrude4");
-                swPart.ChangeDim("D3@Sketch10", fcSideLeft/2d);
+                swPart.ChangeDim("D3@Sketch10", fcSideLeft/2d-2.5d);
             }
             else swComp.Suppress("Cut-Extrude4");
         }
-        internal void FNCE0071(Component2 swComp, double length, string fcSide, int fcNo, int fcBlindNo, double fcSideRight)
+        internal void FNCE0071(Component2 swComp, double length, string fcSide, int fcNo, int fcBlindNo, double fcSideRight,double fcSideLeft)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();//打开零件
             swPart.ChangeDim("D2@Base-Flange1", length - 5d);
             swPart.ChangeDim("D1@LPattern1", fcNo + fcBlindNo);
-            swPart.ChangeDim("D3@Sketch6", fcSideRight + 250d);
+            if (fcSide == "LEFT" || fcSide == "BOTH") swPart.ChangeDim("D3@Sketch6", fcSideLeft + 250d);
+            else swPart.ChangeDim("D3@Sketch6", 250d);
             if (fcSide == "RIGHT"||fcSide=="BOTH")
             {
                 swComp.UnSuppress("Cut-Extrude4");
-                swPart.ChangeDim("D3@Sketch10", fcSideRight/2d);
+                swPart.ChangeDim("D3@Sketch10", fcSideRight/2d-2.5d);
             }
             else swComp.Suppress("Cut-Extrude4");
         }

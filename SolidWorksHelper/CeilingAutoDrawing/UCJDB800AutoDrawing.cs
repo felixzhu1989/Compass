@@ -107,7 +107,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.UnSuppress(suffix, "FNCE0069-1");
                     ceilingPart.FNCE0069(swComp, item.Length, item.FCSide, fcNo, item.FCBlindNo, item.FCSideLeft);
                     swComp = swAssy.UnSuppress(suffix, "FNCE0071-1");
-                    ceilingPart.FNCE0071(swComp, item.Length, item.FCSide, fcNo, item.FCBlindNo, item.FCSideRight);
+                    ceilingPart.FNCE0071(swComp, item.Length, item.FCSide, fcNo, item.FCBlindNo, item.FCSideRight,item.FCSideLeft);
 
                     //-------灯腔玻璃支架底部-------
                     swComp = swAssy.UnSuppress(suffix, "FNCE0099-1");
@@ -168,7 +168,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.UnSuppress(suffix, "FNCE0145-2");
                     ceilingPart.FNCE0145(swComp, item.Length, item.FCSide, fcNo, item.FCBlindNo, item.FCSideLeft);
                     swComp = swAssy.UnSuppress(suffix, "FNCE0161-2");
-                    ceilingPart.FNCE0161(swComp, item.Length, item.FCSide, fcNo, item.FCBlindNo, item.FCSideRight);
+                    ceilingPart.FNCE0161(swComp, item.Length, item.FCSide, fcNo, item.FCBlindNo, item.FCSideRight,item.FCSideLeft);
 
                     swAssy.UnSuppress(suffix, "FNCE0056-1");
                     swComp = swAssy.UnSuppress(suffix, "FNCE0056-2");
