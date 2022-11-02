@@ -16,16 +16,8 @@ namespace SolidWorksHelper
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
             #region 准备工作
-            //创建项目模型存放地址
-            string itemPath = $@"{projectPath}\{tree.Item}-{tree.Module}-{tree.CategoryName}";
-            if (!CommonFunc.CreateProjectPath(itemPath)) return;
-            //Pack的后缀
-            string suffix = $@"{tree.Item}-{tree.Module}-{tree.ODPNo.Substring(tree.ODPNo.Length - 6)}";
-
-            //判断文件是否存在，如果存在将不执行pack，如果不存在则执行pack
-            //packango后需要接收打包完成的地址，参数为后缀
-            string packedAssyPath = $@"{itemPath}\{tree.CategoryName.ToLower()}_{suffix}.sldasm";
-            if (!File.Exists(packedAssyPath)) packedAssyPath = CommonFunc.PackAndGoFunc(suffix, swApp, tree.ModelPath, itemPath);
+            //packandgo后需要接收打包完成的地址，参数为后缀
+            string packedAssyPath = swApp.PackAndGoHood(tree, projectPath, out string suffix);
 
             //查询参数
             HWUVI650 item = (HWUVI650)objHWUVI650Service.GetModelByModuleTreeId(tree.ModuleTreeId.ToString());
@@ -33,7 +25,6 @@ namespace SolidWorksHelper
             swApp.CommandInProgress = true; //告诉SolidWorks，现在是用外部程序调用命令
             int warnings = 0;
             int errors = 0;
-            suffix = "_" + suffix; //后缀
             HuaWeiHoodPart swEdit = new HuaWeiHoodPart();
 
             //打开Pack后的模型
@@ -68,9 +59,10 @@ namespace SolidWorksHelper
             //KSA数量，KSA侧板长度(以全长计算)
             int ksaNo = (int)((item.Length + 1) / 498d);
             double ksaSideLength = Convert.ToDouble((item.Length - ksaNo * 498d) / 2d);
-            //MESH侧板长度(除去排风三角板3dm计算,2022.05.25华为新改烟罩需在减去2)
-            double meshSideLength =
-                Convert.ToDouble((item.Length - 3d- (int)((item.Length - 2d) / 497d) * 497d) / 2d - 2d);
+            
+            
+            
+            
 
             #endregion 计算中建参数
 
@@ -156,7 +148,7 @@ namespace SolidWorksHelper
                 swEdit.UVLightDoor(swAssy, suffix, item.UVType, partList);
 
                 //----------MESH油网侧板----------
-                swEdit.MeshFilter(swAssy, suffix, meshSideLength, item.ANSUL, item.ANSide, "FNHE0162-1", "FNHE0163-1");
+                swEdit.MeshFilter(swAssy, suffix, item.Length, item.ANSUL, item.ANSide, "FNHE0162-1", "FNHE0163-1");
 
                 #endregion 排风腔
 

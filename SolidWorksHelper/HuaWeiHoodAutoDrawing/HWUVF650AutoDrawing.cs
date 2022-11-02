@@ -148,6 +148,7 @@ namespace SolidWorksHelper
                 //--------MESH油网轨道支架-------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0190-1");
                 swEdit.FNHE0190(swComp, item.Length, item.UVType, item.ExRightDis);
+                
                 //--------KSA侧边-------
                 swEdit.KSAFilter(swAssy, suffix, ksaSideLength, "FNHE0160-1", "FNHE0161-1", "FNHE0170-1");
 
