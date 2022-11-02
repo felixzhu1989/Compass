@@ -49,7 +49,12 @@ namespace Compass
             SetPermissions();
             dgvDrawingNumMatrix.SelectionChanged += new EventHandler(DgvDrawingNumMatrix_SelectionChanged);
 
-            if (!Directory.Exists(_imageDir)) Directory.CreateDirectory(_imageDir);
+
+            if (!Directory.Exists(_imageDir))
+            {
+                Directory.CreateDirectory(_imageDir);
+            }
+           
         }
         private static FrmDrawingNumMatrix instance;
         public static FrmDrawingNumMatrix GetInstance()

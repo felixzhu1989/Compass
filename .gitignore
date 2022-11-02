@@ -1,0 +1,11 @@
+#Folder
+bin/*
+FileContentIndex/*
+ProjectEvaluation/*
+Debug/*
+
+#Files
+
+*.vsidx
+*.suo
+*.cache

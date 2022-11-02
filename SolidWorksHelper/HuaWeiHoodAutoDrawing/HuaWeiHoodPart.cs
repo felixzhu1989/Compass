@@ -2023,6 +2023,14 @@ namespace SolidWorksHelper
             if (sidePanel == "LEFT" || sidePanel == "BOTH") swComp.UnSuppress("JUNCTION BOX-LEFT");
             else swComp.Suppress("JUNCTION BOX-LEFT");
         }
+
+        //----------F镀锌隔板----------
+        public void FNHA0006(Component2 swComp, double length)
+        {
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D1@草图1", length - 8d);
+        }
+
         /// <summary>
         /// F650镀锌隔板
         /// </summary>
