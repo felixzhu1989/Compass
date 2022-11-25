@@ -483,11 +483,13 @@ namespace SolidWorksHelper
                     else swFeat.SetSuppression2(0, 2, null); //参数1：1解压，0压缩
                 }
                 //----------UV灯，UV灯门----------
+
+
                 if (item.UVType == "LONG")
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201050416-asm-2"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201050418-4"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201050418-5"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201060409-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
@@ -502,7 +504,7 @@ namespace SolidWorksHelper
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201050416-asm-2"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201050418-4"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201050418-5"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201060409-1"));
                     swComp.SetSuppression2(0); //2解压缩，0压缩

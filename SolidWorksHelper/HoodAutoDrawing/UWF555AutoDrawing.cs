@@ -187,7 +187,7 @@ namespace SolidWorksHelper
                 swHoodPart.ExhaustSpigot(swAssy, suffix, item.ANSUL, item.MARVEL, item.ExLength, item.ExWidth, item.ExHeight, "FNHE0006-1", "FNHE0007-1", "FNHE0008-1", "FNHE0009-1");
 
                 //----------UV灯，UV灯门----------
-                swHoodPart.UwLightDoor(swAssy, suffix, item.UVType, "5201050416-asm-2", "5201050418-4", "5201060409-1", "5201050415-asm-2", "5201050417-4", "5201060410-1");
+                swHoodPart.UwLightDoor(swAssy, suffix, item.UVType, "5201050416-asm-2", "5201050418-5", "5201060409-1", "5201050415-asm-2", "5201050417-4", "5201060410-1");
 
                 //----------MESH油网侧板----------
                 swHoodPart.UwMeshFilter(swAssy, suffix, item.Length, item.Inlet, item.ANSUL, item.ANSide, "FNHE0038-1", "FNHE0039-3");
