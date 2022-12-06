@@ -489,7 +489,7 @@ namespace SolidWorksHelper
                 {
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201050416-asm-2"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
-                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201050418-5"));
+                    swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201050418-4"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "5201060409-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩

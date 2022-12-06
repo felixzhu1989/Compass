@@ -11,7 +11,7 @@ namespace SolidWorksHelper
 {
     public class UVIMT555AutoDrawing : IAutoDrawing
     {
-        Component2 swComp;
+        private Component2 swComp;
         readonly UVIMT555Service objUVIMT555Service = new UVIMT555Service();
         public void AutoDrawing(SldWorks swApp, ModuleTree tree, string projectPath)
         {
