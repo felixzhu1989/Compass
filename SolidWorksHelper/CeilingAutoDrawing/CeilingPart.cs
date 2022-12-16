@@ -79,7 +79,7 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             string frontPart = "FNCE0019-1";
             string backPart = "FNCE0020-1";
             string leftPart = "FNCE0047-1";
-            string rightPart = "FNCE0048-1";
+            string rightPart = "FNCE0048-2";
             if (ansul != "YES" && (exHeight == 100d || marvel == "YES"))
             {
                 swAssy.Suppress(suffix, subAssy);
