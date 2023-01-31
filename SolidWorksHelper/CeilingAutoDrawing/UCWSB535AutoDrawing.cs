@@ -802,19 +802,20 @@ namespace SolidWorksHelper
                     {
                         case "LEFT":
                             swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideLeft) / 1000d;
-                            swModel.Parameter("D1@Distance85").SystemValue = item.HCLSideLeft / 1000d;
+                            //2023/01/31,代码与模型不匹配，更改模型，D1@Distance94
+                            //swModel.Parameter("D1@Distance94").SystemValue = item.HCLSideLeft / 1000d;
                             break;
                         case "RIGHT":
                             swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideRight) / 1000d;
-                            swModel.Parameter("D1@Distance85").SystemValue = 0d;
+                            //swModel.Parameter("D1@Distance94").SystemValue = 0d;
                             break;
                         case "BOTH":
                             swPart.Parameter("D1@Skizze1").SystemValue = (item.Length - item.HCLSideLeft - item.HCLSideRight) / 1000d;
-                            swModel.Parameter("D1@Distance85").SystemValue = item.HCLSideLeft / 1000d;
+                            //swModel.Parameter("D1@Distance94").SystemValue = item.HCLSideLeft / 1000d;
                             break;
                         default:
                             swPart.Parameter("D1@Skizze1").SystemValue = item.Length / 1000d;
-                            swModel.Parameter("D1@Distance85").SystemValue = 0d;
+                            //swModel.Parameter("D1@Distance94").SystemValue = 0d;
                             break;
                     }
                 }
