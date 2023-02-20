@@ -78,7 +78,7 @@ namespace SolidWorksHelper
             {
                 #region Top Level装配体顶层
                 //吊装槽钢
-                swModel.Parameter("D3@LocalLPattern1").SystemValue = (item.ExBeamLength - 50d) / 1000d;
+                //swModel.Parameter("D3@LocalLPattern1").SystemValue = (item.ExBeamLength - 50d) / 1000d;
 
                 //排风脖颈数量和距离
                 if (item.ExNo == 1)
