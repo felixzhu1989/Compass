@@ -126,7 +126,7 @@ namespace SolidWorksHelper
 
                 //----------排风腔----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0001-1");
-                swEdit.FNHE0001(swComp, item.Length, midRoofHoleNo, midRoofSecondHoleDis, item.ExNo, item.ExRightDis, item.ExLength, item.ExWidth, item.ExDis, item.WaterCollection, item.SidePanel, item.Outlet, item.BackToBack, item.ANSUL, item.ANSide, item.ANDetector, item.MARVEL, item.UVType);
+                swEdit.FNHE0001(swComp, item.Length, item.ExNo, item.ExRightDis, item.ExLength, item.ExWidth, item.ExDis, item.WaterCollection, item.SidePanel, item.Outlet, item.BackToBack, item.ANSUL, item.ANSide, item.ANDetector, item.MARVEL, item.UVType);
 
                 //----------排风腔前面板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0002-1");

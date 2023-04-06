@@ -34,9 +34,7 @@ namespace SolidWorksHelper
 
             
             //计算中间值
-            //新风面板卡扣数量及间距
-            int frontPanelKaKouNo = (int)((item.Length - 300d) / 450d) + 2;
-            double frontPanelKaKouDis = Convert.ToDouble((item.Length - 300d) / (frontPanelKaKouNo - 1));
+            
             //新风面板螺丝孔数量及间距
             int frontPanelHoleNo = (int)((item.Length - 300d) / 900d) + 2;
             double frontPanelHoleDis = Convert.ToDouble((item.Length - 300) / (frontPanelHoleNo - 1));
@@ -142,7 +140,7 @@ namespace SolidWorksHelper
 
                 //----------排风腔体----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0001-1");
-                swHoodPart.FNHE0001(swComp,item.Length,midRoofHoleNo,midRoofSecondHoleDis,item.ExNo,item.ExRightDis,item.ExLength,item.ExWidth,item.ExDis,item.WaterCollection,item.SidePanel,item.Outlet,item.BackToBack,item.ANSUL,item.ANSide,item.ANDetector,item.MARVEL,"NO");
+                swHoodPart.FNHE0001(swComp,item.Length,item.ExNo,item.ExRightDis,item.ExLength,item.ExWidth,item.ExDis,item.WaterCollection,item.SidePanel,item.Outlet,item.BackToBack,item.ANSUL,item.ANSide,item.ANDetector,item.MARVEL,"NO");
 
                 //----------排风腔前面板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHE0002-1");
@@ -170,7 +168,7 @@ namespace SolidWorksHelper
 
                 //----------MiddleRoof灯板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0001-1");
-                swHoodPart.FNHM0001(swComp, "KV", item.Length, item.Deepth, 555d, 555d,item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, "NO", "NO", item.MARVEL);
+                swHoodPart.FNHM0001(swComp, "KV", item.Length, item.Deepth, item.ExRightDis, item.LightType,  item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, "NO", "NO", item.MARVEL);
 
                 //----------吊装槽钢----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2900100001-1");
@@ -183,15 +181,15 @@ namespace SolidWorksHelper
 
                 //------------I型新风腔主体----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0001-2");
-                swHoodPart.FNHA0001(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, midRoofHoleNo, midRoofSecondHoleDis, midRoofTopHoleDis, item.MARVEL, item.SidePanel, "NO", "NO");
+                swHoodPart.FNHA0001(swComp, item.Length, item.Deepth, item.MARVEL, item.SidePanel, "NO", "NO");
 
                 //----------I新风前面板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0003-1");
-                swHoodPart.FNHA0003(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, frontPanelHoleNo, frontPanelHoleDis);
+                swHoodPart.FNHA0003(swComp, item.Length);
 
                 //----------I新风底部CJ孔板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0002-1");
-                swHoodPart.FNHA0002(swComp, item.Length, frontCjNo, frontCjFirstDis, frontPanelHoleNo, frontPanelHoleDis, "NO", item.LEDlogo, item.WaterCollection, item.SidePanel);
+                swHoodPart.FNHA0002(swComp, item.Length,  "NO", item.LEDlogo, item.WaterCollection, item.SidePanel);
 
 
                 //----------LOGO----------

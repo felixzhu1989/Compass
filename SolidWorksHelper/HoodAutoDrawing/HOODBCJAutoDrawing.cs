@@ -49,35 +49,29 @@ namespace SolidWorksHelper
              * (int)不进行四舍五入，Convert.ToInt32会四舍五入
             */
             //-----------计算中间值，----------
-            int cjNo = (int)((item.Length - 40d) / 30d);//天花烟罩马蹄形CJ孔阵列距离为30
-            double firstCjDis = (item.Length - 30d * cjNo) / 2;
-            if (firstCjDis < 15d)
-            {
-                cjNo--;
-                firstCjDis += 15d;
-            }
-
+            int cjNumber = (int)((item.Length - 40d) / 30d);//天花烟罩马蹄形CJ孔阵列距离为30
+            double firstCjDis = (item.Length - 30d * cjNumber) / 2d;
+            if (firstCjDis < 20d) firstCjDis += 20d;
             try
             {
-                //----------Top Level----------
-
                 //----------Main Body----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHA0084-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D2@Skizze1").SystemValue = item.Length / 1000d;
-                swPart.Parameter("D1@Skizze1").SystemValue = (item.Height+1d) / 1000d;
-                swPart.Parameter("D1@LPattern1").SystemValue = cjNo + 1;
-                swPart.Parameter("D3@Skizze17").SystemValue = firstCjDis / 1000d;
-                swPart.Parameter("D4@Skizze16").SystemValue = item.SuDis / 1000d;
+                swPart.ChangeDim("Length@SketchBase", item.Length);
+                swPart.ChangeDim("Height@SketchBase", item.Length+1d);
+                swPart.ChangeDim("Dis@SketchCj", firstCjDis);
+                swPart.ChangeDim("ToRight@SketchSpigot", item.SuDis);
+
+
                 //----------Side Panel----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0102-1"));
                 swPart = swComp.GetModelDoc2();//打开零件3
-                swPart.Parameter("D3@Skizze1").SystemValue = (item.Height - 1d) / 1000d;
-                swPart.Parameter("D4@Skizze1").SystemValue = (item.Height - 1d-40d-90d) / 2000d;
+                swPart.ChangeDim("Height@SketchBase", item.Height-1d);
+
                 //----------其他零件----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCJ0016-1"));
                 swPart = swComp.GetModelDoc2();//打开零件
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 10d) / 1000d;
+                swPart.ChangeDim("Length@SketchBase", item.Length-10d);
 
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢

@@ -20,7 +20,7 @@ namespace SolidWorksHelper
             //顶层子装配
             var swTopLevelAssy = swTopLevelComp as AssemblyDoc;
             var swComp = swTopLevelAssy.GetComponentByNameWithSuffix(suffix, "FNHE0001-1");
-            FNHE0001(swComp, length, midRoofHoleNo, midRoofSecondHoleDis, exNo, exRightDis, exLength, exWidth, exDis, waterCollection, sidePanel, outlet, backToBack, ansul, anSide, anDetector, marvel, uvType);
+            FNHE0001(swComp, length, exNo, exRightDis, exLength, exWidth, exDis, waterCollection, sidePanel, outlet, backToBack, ansul, anSide, anDetector, marvel, uvType);
 
 
         }
@@ -31,91 +31,72 @@ namespace SolidWorksHelper
 
 
 
-        //排风腔
-        internal void FNHE0001(Component2 swComp, double length, int midRoofHoleNo, double midRoofSecondHoleDis, int exNo, double exRightDis, double exLength, double exWidth, double exDis, string waterCollection, string sidePanel, string outlet, string backToBack, string ansul, string anSide, string anDetector, string marvel, string uvType)
+        //排风腔new
+        internal void FNHE0001(Component2 swComp, double length, int exNo, double exRightDis, double exLength, double exWidth, double exDis, string waterCollection, string sidePanel, string outlet, string backToBack, string ansul, string anSide, string anDetector, string marvel, string uvType)
         {
             #region 基本参数
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D1@草图1", length);
-            swPart.ChangeDim("D2@Sketch3", midRoofSecondHoleDis);
-            if (midRoofHoleNo == 1)
+            swPart.ChangeDim("Length@SketchBase", length);
+            #endregion
+
+            #region MidRoof铆螺母孔
+            //2023/3/10 11:44:03 Administrator:
+            //修改MidRoof螺丝孔逻辑，以最低450间距计算间距即可(Length-300d)/((int)(Length-300)/450-1)
+            var midRoofNutNumber = (int)((length - 300d) / 450d);
+            var midRoofNutDis = (length - 300d)/(midRoofNutNumber-1);
+            swPart.ChangeDim("Dis@LPatternMidRoofNut", midRoofNutDis);
+            #endregion
+
+            #region 集水翻边
+            if (waterCollection == "YES" && (sidePanel == "BOTH" || sidePanel == "RIGHT")) swComp.UnSuppress("DrainChannelRight");
+            else swComp.Suppress("DrainChannelRight");
+
+            if (waterCollection == "YES" && (sidePanel == "BOTH" || sidePanel == "LEFT")) swComp.UnSuppress("DrainChannelLeft");
+            else swComp.Suppress("DrainChannelLeft");
+            #endregion
+
+            #region 油塞
+            if (outlet == "LEFTTAP")
             {
-                swComp.Suppress("LPattern1");
+                swComp.UnSuppress("DrainTapLeft");
+                swComp.Suppress("DrainTapRight");
+            }
+            else if (outlet == "RIGHTTAP")
+            {
+                swComp.Suppress("DrainTapLeft");
+                swComp.UnSuppress("DrainTapRight");
             }
             else
             {
-                swComp.UnSuppress("LPattern1");
-                swPart.ChangeDim("D1@LPattern1", midRoofHoleNo);
+                swComp.Suppress("DrainTapLeft");
+                swComp.Suppress("DrainTapRight");
             }
             #endregion
 
             #region 排风口
             if (exNo == 1)
             {
-                swComp.UnSuppress("EXCOONE");
-                swComp.Suppress("EXCOTWO");
-                swPart.ChangeDim("D4@Sketch9", exRightDis);
-                swPart.ChangeDim("D2@Sketch9", exLength);
-                swPart.ChangeDim("D3@Sketch9", exWidth);
+                swComp.UnSuppress("OneSpigot");
+                swComp.Suppress("TwoSpigots");
+                swPart.ChangeDim("ToRight@SketchOneSpigot", exRightDis);
+                swPart.ChangeDim("Length@SketchOneSpigot", exLength);
+                swPart.ChangeDim("Width@SketchOneSpigot", exWidth);
             }
             else
             {
-                swComp.Suppress("EXCOONE");
-                swComp.UnSuppress("EXCOTWO");
-                swPart.ChangeDim("D5@Sketch10", exRightDis);
-                swPart.ChangeDim("D1@Sketch10", exDis);
-                swPart.ChangeDim("D3@Sketch10", exLength);
-                swPart.ChangeDim("D4@Sketch10", exWidth);
+                swComp.Suppress("OneSpigot");
+                swComp.UnSuppress("TwoSpigots");
+                swPart.ChangeDim("ToRight@SketchTwoSpigots", exRightDis);
+                swPart.ChangeDim("Dis@SketchTwoSpigots", exDis);
+                swPart.ChangeDim("Length@SketchTwoSpigots", exLength);
+                swPart.ChangeDim("Width@SketchTwoSpigots", exWidth);
             }
             #endregion
 
-            #region 集水翻边
-            if (waterCollection == "YES")
-            {
-                if (sidePanel == "RIGHT")
-                {
-                    swComp.UnSuppress("DRAINCHANNEL-RIGHT");
-                    swComp.Suppress("DRAINCHANNEL-LEFT");
-                }
-                else if (sidePanel == "LEFT")
-                {
-                    swComp.UnSuppress("DRAINCHANNEL-LEFT");
-                    swComp.Suppress("DRAINCHANNEL-RIGHT");
-                }
-                else if (sidePanel == "BOTH")
-                {
-                    swComp.UnSuppress("DRAINCHANNEL-RIGHT");
-                    swComp.UnSuppress("DRAINCHANNEL-LEFT");
-                }
-            }
-            else
-            {
-                swComp.Suppress("DRAINCHANNEL-RIGHT");
-                swComp.Suppress("DRAINCHANNEL-LEFT");
-            }
+            #region 背靠背
+            if (backToBack == "YES") swComp.UnSuppress("BackToBack");
+            else swComp.Suppress("BackToBack");
             #endregion
-
-            #region 油塞
-            if (outlet == "LEFTTAP")
-            {
-                swComp.UnSuppress("DRAINTAP-LEFT");
-                swComp.Suppress("DRAINTAP-RIGHT");
-            }
-            else if (outlet == "RIGHTTAP")
-            {
-                swComp.Suppress("DRAINTAP-LEFT");
-                swComp.UnSuppress("DRAINTAP-RIGHT");
-            }
-            else
-            {
-                swComp.Suppress("DRAINTAP-LEFT");
-                swComp.Suppress("DRAINTAP-RIGHT");
-            }
-            #endregion
-
-            //背靠背
-            if (backToBack == "YES") swComp.UnSuppress("BACKTOBACK");
-            else swComp.Suppress("BACKTOBACK");
 
             #region ANSUL
             if (ansul == "YES")
@@ -123,31 +104,31 @@ namespace SolidWorksHelper
                 //侧喷
                 if (anSide == "LEFT")
                 {
-                    swComp.UnSuppress("ANSUL-LEFT");
-                    swComp.UnSuppress("CHANNEL-LEFT");
+                    swComp.UnSuppress("AnsulSideLeft");
+                    swComp.UnSuppress("ChannelLeft");
                 }
                 else if (anSide == "RIGHT")
                 {
-                    swComp.UnSuppress("ANSUL-RIGHT");
-                    swComp.UnSuppress("CHANNEL-RIGHT");
+                    swComp.UnSuppress("AnsulSideRight");
+                    swComp.UnSuppress("ChannelRight");
                 }
                 else
                 {
-                    swComp.Suppress("ANSUL-LEFT");
-                    swComp.Suppress("ANSUL-RIGHT");
-                    swComp.Suppress("CHANNEL-LEFT");
-                    swComp.Suppress("CHANNEL-RIGHT");
+                    swComp.Suppress("AnsulSideLeft");
+                    swComp.Suppress("AnsulSideRight");
+                    swComp.Suppress("ChannelLeft");
+                    swComp.Suppress("ChannelRight");
                 }
                 //探测器
-                swComp.Suppress("ANDTEC-RIGHT");
-                swComp.Suppress("ANDTEC-LEFT");
+                swComp.Suppress("AnsulDetectorRight");
+                swComp.Suppress("AnsulDetectorLeft");
                 if (anDetector == "RIGHT" || anDetector == "BOTH")
                 {
-                    swComp.UnSuppress("ANDTEC-RIGHT");
+                    swComp.UnSuppress("AnsulDetectorRight");
                 }
                 if (anDetector == "LEFT" || anDetector == "BOTH")
                 {
-                    swComp.UnSuppress("ANDTEC-LEFT");
+                    swComp.UnSuppress("AnsulDetectorLeft");
                 }
             }
             #endregion
@@ -155,75 +136,77 @@ namespace SolidWorksHelper
             #region MARVEL
             if (marvel == "YES")
             {
-                swComp.UnSuppress("MA-NTC");
-                if (exNo == 1) swPart.ChangeDim("D1@Sketch21", exRightDis + exLength / 2d + 50d);
-                else swPart.ChangeDim("D1@Sketch21", exRightDis + exDis / 2d + exLength + 50d);
+                swComp.UnSuppress("MarvelNtc");
+                if (exNo == 1) swPart.ChangeDim("ToRight@SketchMarvelNtc", exRightDis + exLength / 2d + 50d);
+                else swPart.ChangeDim("ToRight@SketchMarvelNtc", exRightDis + exDis / 2d + exLength + 50d);
             }
-            else swComp.Suppress("MA-NTC");
+            else swComp.Suppress("MarvelNtc");
             #endregion
 
             #region UVHood
             if (uvType == "LONG")
             {
-                swComp.UnSuppress("UVRACK");
-                swPart.ChangeDim("D6@Sketch12", exRightDis);
-                swPart.ChangeDim("D5@Sketch12", 1640d);
-                swComp.UnSuppress("UVCABLE");
-                swPart.ChangeDim("D4@Sketch11", exRightDis);
-                swPart.ChangeDim("D1@Sketch11", 1500d);
+                swComp.UnSuppress("UvRack");
+                swPart.ChangeDim("ToRight@SketchUvRack", exRightDis);
+                swPart.ChangeDim("UvRack@SketchUvRack", 1640d);
+                swComp.UnSuppress("UvCable");
+                swPart.ChangeDim("ToRight@SketchUvCable", exRightDis);
+                swPart.ChangeDim("UvCable@SketchUvCable", 1500d);
             }
             else if (uvType == "SHORT")
             {
-                swComp.UnSuppress("UVRACK");
-                swPart.ChangeDim("D6@Sketch12", exRightDis);
-                swPart.ChangeDim("D5@Sketch12", 930d);
-                swComp.UnSuppress("UVCABLE");
-                swPart.ChangeDim("D4@Sketch11", exRightDis);
-                swPart.ChangeDim("D1@Sketch11", 790d);
+                swComp.UnSuppress("UvRack");
+                swPart.ChangeDim("ToRight@SketchUvRack", exRightDis);
+                swPart.ChangeDim("UvRack@SketchUvRack", 930d);
+                swComp.UnSuppress("UvCable");
+                swPart.ChangeDim("ToRight@SketchUvCable", exRightDis);
+                swPart.ChangeDim("UvCable@SketchUvCable", 790d);
             }
             else
             {
-                swComp.Suppress("UVRACK");
-                swComp.Suppress("UVCABLE");
+                swComp.Suppress("UvRack");
+                swComp.Suppress("UvCable");
             }
             #endregion
         }
+
+
 
         //排风腔前面板
         internal void FNHE0002(Component2 swComp, double length, string UVType, double exRightDis)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D1@草图1", length);
+            swPart.ChangeDim("Length@SketchBase", length);
             #region UVHood
             if (UVType == "LONG")
             {
-                swComp.UnSuppress("EXTAB-UP");
-                swComp.UnSuppress("FILTER-CABLE");
-                swComp.Suppress("UVDOOR-SHORT");
-                swComp.UnSuppress("UVDOOR-LONG");
-                swPart.ChangeDim("D2@Sketch17", exRightDis);
-                swComp.UnSuppress("UVCABLE");
-                swPart.ChangeDim("D3@Sketch22", exRightDis);
-                swPart.ChangeDim("D4@Sketch22", 1500d);
+                swComp.UnSuppress("TabUp");
+                swComp.UnSuppress("SensorCable");
+                swComp.Suppress("UvDoorShort");
+                swComp.UnSuppress("UvDoorLong");
+                swPart.ChangeDim("ToRight@SketchUvDoorShort", exRightDis);
+                swComp.UnSuppress("UvCable");
+                swPart.ChangeDim("ToRight@SketchUvCable", exRightDis);
+                swPart.ChangeDim("UvCable@SketchUvCable", 1500d);
             }
             else if (UVType == "SHORT")
             {
-                swComp.UnSuppress("EXTAB-UP");
-                swComp.UnSuppress("FILTER-CABLE");
-                swComp.UnSuppress("UVDOOR-SHORT");
-                swComp.Suppress("UVDOOR-LONG");
-                swPart.ChangeDim("D1@Sketch21", exRightDis);
-                swComp.UnSuppress("UVCABLE");
-                swPart.ChangeDim("D3@Sketch22", exRightDis);
-                swPart.ChangeDim("D4@Sketch22", 790d);
+                swComp.UnSuppress("TabUp");
+                swComp.UnSuppress("SensorCable");
+                swComp.UnSuppress("UvDoorShort");
+                swComp.Suppress("UvDoorLong");
+                swPart.ChangeDim("ToRight@SketchUvDoorLong", exRightDis);
+                swComp.UnSuppress("UvCable");
+                swPart.ChangeDim("ToRight@SketchUvCable", exRightDis);
+                swPart.ChangeDim("UvCable@SketchUvCable", 790d);
             }
             else
             {
-                swComp.Suppress("EXTAB-UP");
-                swComp.Suppress("FILTER-CABLE");
-                swComp.Suppress("UVDOOR-SHORT");
-                swComp.Suppress("UVDOOR-LONG");
-                swComp.Suppress("UVCABLE");
+                swComp.Suppress("TabUp");
+                swComp.Suppress("SensorCable");
+                swComp.Suppress("UvDoorShort");
+                swComp.Suppress("UvDoorLong");
+                swComp.Suppress("UvCable");
             }
             #endregion
         }
@@ -307,13 +290,13 @@ namespace SolidWorksHelper
                 swAssy.Suppress(suffix, rightPart);
                 swComp = swAssy.UnSuppress(suffix, specialPart);
                 swPart = swComp.GetModelDoc2();
-                swPart.ChangeDim("D1@草图1", ksaSideLength * 2d);
+                swPart.ChangeDim("Length@SketchBase", ksaSideLength * 2d);
             }
             else if (ksaSideLength < 25d && ksaSideLength >= 12d)
             {
                 swComp = swAssy.UnSuppress(suffix, leftPart);
                 swPart = swComp.GetModelDoc2();
-                swPart.ChangeDim("D2@草图1", ksaSideLength * 2);
+                swPart.ChangeDim("Length@SketchBase", ksaSideLength * 2);
                 swAssy.Suppress(suffix, rightPart);
                 swAssy.Suppress(suffix, specialPart);
             }
@@ -321,13 +304,16 @@ namespace SolidWorksHelper
             {
                 swComp = swAssy.UnSuppress(suffix, leftPart);
                 swPart = swComp.GetModelDoc2();
-                swPart.ChangeDim("D2@草图1", ksaSideLength);
+                swPart.ChangeDim("Length@SketchBase", ksaSideLength);
                 swComp = swAssy.UnSuppress(suffix, rightPart);
                 swPart = swComp.GetModelDoc2();
-                swPart.ChangeDim("D2@草图1", ksaSideLength);
+                swPart.ChangeDim("Length@SketchBase", ksaSideLength);
                 swAssy.Suppress(suffix, specialPart);
             }
         }
+
+
+
 
         internal void ExhaustRail(AssemblyDoc swAssy, string suffix, string marvel, double exLength, double exWidth,
             int exNo, double exDis, string doorPart1, string doorPart2, string railPart1, string railPart2)
@@ -341,8 +327,8 @@ namespace SolidWorksHelper
             {
                 swComp = swAssy.UnSuppress(suffix, doorPart1);
                 swPart = swComp.GetModelDoc2();
-                swPart.ChangeDim("D1@Sketch1", exLength / 2d + 10d);
-                swPart.ChangeDim("D2@Sketch1", exWidth + 20d);
+                swPart.ChangeDim("Length@SketchBase", exLength / 2d + 10d);
+                swPart.ChangeDim("Width@SketchBase", exWidth + 20d);
             }
             if (marvel == "YES") swAssy.Suppress(suffix, railPart2);
             else swAssy.UnSuppress(suffix, railPart2);
@@ -351,8 +337,8 @@ namespace SolidWorksHelper
             {
                 swComp = swAssy.UnSuppress(suffix, railPart1);
                 swPart = swComp.GetModelDoc2();
-                if (exNo == 1) swPart.ChangeDim("D2@Base-Flange1", exLength * 2d + 100d);
-                else swPart.ChangeDim("D2@Base-Flange1", exLength * 3d + exDis + 100d);
+                if (exNo == 1) swPart.ChangeDim("Length@Base-Flange", exLength * 2d + 100d);
+                else swPart.ChangeDim("Length@Base-Flange", exLength * 3d + exDis + 100d);
             }
         }
 
@@ -372,25 +358,25 @@ namespace SolidWorksHelper
             {
                 swComp = swAssy.UnSuppress(suffix, frontPart);
                 swPart = swComp.GetModelDoc2();
-                swPart.ChangeDim("D2@Base-Flange1", exLength + 50d);
-                swPart.ChangeDim("D2@Sketch1", exHeight);
-                if (ansul == "YES") swComp.UnSuppress("ANSUL");
-                else swComp.Suppress("ANSUL");
+                swPart.ChangeDim("Length@Base-Flange", exLength + 50d);
+                swPart.ChangeDim("Height@SketchBase", exHeight);
+                if (ansul == "YES") swComp.UnSuppress("Ansul");
+                else swComp.Suppress("Ansul");
 
                 swComp = swAssy.UnSuppress(suffix, backPart);
                 swPart = swComp.GetModelDoc2();
-                swPart.ChangeDim("D2@Base-Flange1", exLength + 50d);
-                swPart.ChangeDim("D2@Sketch1", exHeight);
+                swPart.ChangeDim("Length@Base-Flange", exLength + 50d);
+                swPart.ChangeDim("Height@SketchBase", exHeight);
 
                 swComp = swAssy.UnSuppress(suffix, leftPart);
                 swPart = swComp.GetModelDoc2();
-                swPart.ChangeDim("D2@基体-法兰1", exWidth);
-                swPart.ChangeDim("D3@草图1", exHeight);
+                swPart.ChangeDim("Length@Base-Flange", exWidth);
+                swPart.ChangeDim("Height@SketchBase", exHeight);
 
                 swComp = swAssy.UnSuppress(suffix, rightPart);
                 swPart = swComp.GetModelDoc2();
-                swPart.ChangeDim("D2@基体-法兰1", exWidth);
-                swPart.ChangeDim("D3@草图1", exHeight);
+                swPart.ChangeDim("Length@Base-Flange", exWidth);
+                swPart.ChangeDim("Height@SketchBase", exHeight);
             }
         }
 
@@ -402,19 +388,19 @@ namespace SolidWorksHelper
             {
                 swAssy.UnSuppress(suffix, leftPart);
                 swComp = swAssy.UnSuppress(suffix, rightPart);
-                swComp.UnSuppress("ANDTEC");
+                swComp.UnSuppress("AnsulDetector");
             }
             else if (ansul == "YES" && sidePanel == "LEFT")
             {
                 swAssy.Suppress(suffix, leftPart);
                 swComp = swAssy.UnSuppress(suffix, rightPart);
-                swComp.UnSuppress("ANDTEC");
+                swComp.UnSuppress("AnsulDetector");
             }
             else if (ansul == "YES" && sidePanel == "RIGHT")
             {
                 swAssy.Suppress(suffix, rightPart);
                 swComp = swAssy.UnSuppress(suffix, leftPart);
-                swComp.FeatureByName("ANDTEC");
+                swComp.FeatureByName("AnsulDetector");
             }
             else
             {
@@ -422,6 +408,9 @@ namespace SolidWorksHelper
                 swAssy.Suppress(suffix, rightPart);
             }
         }
+
+
+
 
         //----------UV灯，UV灯门----------
         internal void UvLightDoor(AssemblyDoc swAssy, string suffix, string uvType, string doorLong, string uvLong, string doorShort, string uvShort)
@@ -1582,242 +1571,260 @@ namespace SolidWorksHelper
 
 
         //----------MiddleRoof灯板----------
-        public void FNHM0001(Component2 swComp, string exType, double length, double depth, double exHeight, double suHeight, double exRightDis, double midRoofTopHoleDis, double midRoofSecondHoleDis, int midRoofHoleNo, string lightType, double lightYDis, int ledSpotNo, double ledSpotDis, string ansul, int anDropNo, double anYDis, double anDropDis1, double anDropDis2, double anDropDis3, double anDropDis4, double anDropDis5, string anDetectorEnd, int anDetectorNo, double anDetectorDis1, double anDetectorDis2, double anDetectorDis3, double anDetectorDis4, double anDetectorDis5, string bluetooth, string uvType, string marvel)
+        public void FNHM0001(Component2 swComp, string exType, double length, double depth, double exRightDis, string lightType, int ledSpotNo, double ledSpotDis, string ansul, int anDropNo, double anYDis, double anDropDis1, double anDropDis2, double anDropDis3, double anDropDis4, double anDropDis5, string anDetectorEnd, int anDetectorNo, double anDetectorDis1, double anDetectorDis2, double anDetectorDis3, double anDetectorDis4, double anDetectorDis5, string bluetooth, string uvType, string marvel)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
 
             #region 基本尺寸
-            swPart.ChangeDim("D1@草图1", length - 4d);
-            swPart.ChangeDim("D2@草图1", depth - 669d);
-            swPart.ChangeDim("D1@草图6", depth - 896d);
-            swPart.ChangeDim("D3@草图25", midRoofTopHoleDis);
-            swPart.ChangeDim("D2@草图26", (depth - 840d) / 3d);
-            swPart.ChangeDim("D1@Sketch3", midRoofSecondHoleDis - 2d);
+            //计算净宽度，总宽度减去排风，减去新风再减1
+            var netWidth = depth - 535d - 360d - 1d;
+            swPart.ChangeDim("Length@SketchBase", length - 4d);
+            swPart.ChangeDim("Width@SketchBase", depth - 669d);//depth - 669d
+            swPart.ChangeDim("Width@SketchWidth", netWidth);//depth - 896d
 
-            if (midRoofHoleNo == 1) swComp.Suppress("LPattern1");
+            //因为后方一点距离前端固定90，这里计算前端一点移动的距离
+            var midRoofTopHoleDis = depth - 535d - 360d - 90d - (int)((depth - 535d - 360d - 90d - 100d) / 50d) * 50d;
+            swPart.ChangeDim("Dis@SketchTopHole", midRoofTopHoleDis);
+            //侧向连接孔
+            swPart.ChangeDim("Dis@SketchSideHole", netWidth / 3d);
+
+            #endregion
+
+            #region MidRoof铆螺母孔
+            //2023/3/10 11:44:03 Administrator:
+            //修改MidRoof螺丝孔逻辑，以最低450间距计算间距即可(Length-300d)/((int)(Length-300)/450-1)
+            var midRoofNutNumber = (int)((length - 300d) / 450d);
+            var midRoofNutDis = (length - 300d)/(midRoofNutNumber-1);
+            swPart.ChangeDim("Dis@LPatternMidRoofNut", midRoofNutDis);
+            #endregion
+
+            #region UVHood
+            if (uvType == "LONG")
+            {
+                swComp.UnSuppress("UvCable");
+                swPart.ChangeDim("ToRight@SketchUvCable", exRightDis);
+                swPart.ChangeDim("UvCable@SketchUvCable", 1500d);
+            }
+            else if (uvType == "SHORT")
+            {
+                swComp.UnSuppress("UvCable");
+                swPart.ChangeDim("ToRight@SketchUvCable", exRightDis);
+                swPart.ChangeDim("UvCable@SketchUvCable", 790);
+            }
             else
             {
-                swComp.UnSuppress("LPattern1");
-                swPart.ChangeDim("D1@LPattern1", midRoofHoleNo);
+                swComp.Suppress("UvCable");
             }
             #endregion
 
-            #region 灯具
+            #region 开方孔,UV或带MARVEL时解压
+            //KsaTabCable，KSA感应线和测风压口
+            //UvDoorCable，UV门感应线
+            //BluetoothCable，蓝牙线出口（Logo走风机线，不需要）
+            //CutFrontRight，风机线，都需要
+            if (uvType!="LONG" && uvType!="SHORT")
+            {
+                //UV
+                swComp.UnSuppress("KsaTabCable");
+                swComp.UnSuppress("UvDoorCable");
+            }
+            else
+            {
+                //非UV
+                if (marvel == "YES") swComp.UnSuppress("KsaTabCable");
+                else swComp.Suppress("KsaTabCable");
+                swComp.Suppress("UvDoorCable");
+            }
+            swComp.UnSuppress("CjFanCable");
+            if (bluetooth == "YES") swComp.UnSuppress("BluetoothCable");
+            else swComp.Suppress("BluetoothCable");
+            #endregion
+
+            #region 灯具选项
             if (lightType == "LED60")
             {
-                swComp.Suppress("LED140");
-                swComp.Suppress("LPattern3");
-                swComp.Suppress("FSLONG");
-                swComp.Suppress("FSSHORT");
-                swComp.UnSuppress("LED60");
-                if (ledSpotNo == 1) swPart.ChangeDim("D2@Sketch1", 0d);
+                swComp.Suppress("Led140");
+                swComp.Suppress("LPatternLed140");
+                swComp.Suppress("FsLong");
+                swComp.Suppress("FsShort");
+                swComp.UnSuppress("Led60");
+                if (ledSpotNo == 1) swPart.ChangeDim("ToMiddle@SketchLed60", 0d);
                 else
                 {
-                    swPart.ChangeDim("D2@Sketch1", ledSpotDis * (ledSpotNo / 2d - 1d) + ledSpotDis / 2d);
-                    swComp.UnSuppress("LPattern2");
-                    swPart.ChangeDim("D1@LPattern2", ledSpotNo);
-                    swPart.ChangeDim("D3@LPattern2", ledSpotDis);
+                    swPart.ChangeDim("ToMiddle@SketchLed60", ledSpotDis * (ledSpotNo / 2d - 1d) + ledSpotDis / 2d);
+                    swComp.UnSuppress("LPatternLed60");
+                    swPart.ChangeDim("Number@LPatternLed60", ledSpotNo);
+                    swPart.ChangeDim("Dis@LPatternLed60", ledSpotDis);
                 }
             }
             else if (lightType == "LED140")
             {
-                swComp.Suppress("LED60");
-                swComp.Suppress("LPattern2");
-                swComp.Suppress("FSLONG");
-                swComp.Suppress("FSSHORT");
-                swComp.UnSuppress("LED140");
-                if (ledSpotNo == 1) swPart.ChangeDim("D5@Sketch7", 0d);
+                swComp.Suppress("Led60");
+                swComp.Suppress("LPatternLed60");
+                swComp.Suppress("FsLong");
+                swComp.Suppress("FsShort");
+                swComp.UnSuppress("Led140");
+                if (ledSpotNo == 1) swPart.ChangeDim("ToMiddle@SketchLed140", 0d);
                 else
                 {
-                    swPart.ChangeDim("D5@Sketch7", ledSpotDis * (ledSpotNo / 2d - 1d) + ledSpotDis / 2d);
-                    swComp.UnSuppress("LPattern3");
-                    swPart.ChangeDim("D1@LPattern3", ledSpotNo);
-                    swPart.ChangeDim("D3@LPattern3", ledSpotDis);
+                    swPart.ChangeDim("ToMiddle@SketchLed140", ledSpotDis * (ledSpotNo / 2d - 1d) + ledSpotDis / 2d);
+                    swComp.UnSuppress("LPatternLed140");
+                    swPart.ChangeDim("Number@LPatternLed140", ledSpotNo);
+                    swPart.ChangeDim("Dis@LPatternLed140", ledSpotDis);
                 }
             }
             else if (lightType == "FSLONG")
             {
-                swComp.Suppress("LED60");
-                swComp.Suppress("LPattern2");
-                swComp.Suppress("LED140");
-                swComp.Suppress("LPattern3");
-                swComp.UnSuppress("FSLONG");
-                swComp.Suppress("FSSHORT");
+                swComp.Suppress("Led60");
+                swComp.Suppress("LPatternLed60");
+                swComp.Suppress("Led140");
+                swComp.Suppress("LPatternLed140");
+                swComp.UnSuppress("FsLong");
+                swComp.Suppress("FsShort");
             }
             else if (lightType == "FSSHORT")
             {
-                swComp.Suppress("LED60");
-                swComp.Suppress("LPattern2");
-                swComp.Suppress("LED140");
-                swComp.Suppress("LPattern3");
-                swComp.Suppress("FSLONG");
-                swComp.UnSuppress("FSSHORT");
+                swComp.Suppress("Led60");
+                swComp.Suppress("LPatternLed60");
+                swComp.Suppress("Led140");
+                swComp.Suppress("LPatternLed140");
+                swComp.Suppress("FsLong");
+                swComp.UnSuppress("FsShort");
             }
             else
             {
-                swComp.Suppress("LED60");
-                swComp.Suppress("LPattern2");
-                swComp.Suppress("LED140");
-                swComp.Suppress("LPattern3");
-                swComp.Suppress("FSLONG");
-                swComp.Suppress("FSSHORT");
+                swComp.Suppress("Led60");
+                swComp.Suppress("LPatternLed60");
+                swComp.Suppress("Led140");
+                swComp.Suppress("LPatternLed140");
+                swComp.Suppress("FsLong");
+                swComp.Suppress("FsShort");
             }
             #endregion
 
-            #region ANSUL
-            swComp.Suppress("AN1");
-            swComp.Suppress("AN2");
-            swComp.Suppress("AN3");
-            swComp.Suppress("AN4");
-            swComp.Suppress("AN5");
+            #region ANSUL选项
+            swComp.Suppress("AnsulDrop1");
+            swComp.Suppress("AnsulDrop2");
+            swComp.Suppress("AnsulDrop3");
+            swComp.Suppress("AnsulDrop4");
+            swComp.Suppress("AnsulDrop5");
             //UW/KW HOOD 水洗烟罩探测器在midRoof上，非水洗烟罩压缩
-            swComp.Suppress("ANDTEC1");
-            swComp.Suppress("ANDTEC2");
-            swComp.Suppress("ANDTEC3");
-            swComp.Suppress("ANDTEC4");
-            swComp.Suppress("ANDTEC5");
-            swComp.Suppress("ANDTECACROSS");
+            swComp.Suppress("AnsulDetector1");
+            swComp.Suppress("AnsulDetector2");
+            swComp.Suppress("AnsulDetector3");
+            swComp.Suppress("AnsulDetector4");
+            swComp.Suppress("AnsulDetector5");
+            swComp.Suppress("AnsulDetectorAcross");
             if (ansul == "YES")
             {
-                //下喷
+
+                #region Ansul下喷
                 if (anDropNo > 0)
                 {
-                    swComp.UnSuppress("AN1");
-                    swPart.ChangeDim("D1@Sketch11", anDropDis1);
-                    swPart.ChangeDim("D3@Sketch11", anYDis - 360d);
+                    swComp.UnSuppress("AnsulDrop1");
+                    swPart.ChangeDim("Dis@SketchAnsulDrop1", anDropDis1);
+                    swPart.ChangeDim("DisY@SketchAnsulDrop1", anYDis - 360d);
                 }
                 if (anDropNo > 1)
                 {
-                    swComp.UnSuppress("AN2");
-                    swPart.ChangeDim("D1@Sketch12", anDropDis2);
+                    swComp.UnSuppress("AnsulDrop2");
+                    swPart.ChangeDim("Dis@SketchAnsulDrop2", anDropDis2);
                 }
                 if (anDropNo > 2)
                 {
-                    swComp.UnSuppress("AN3");
-                    swPart.ChangeDim("D1@Sketch13", anDropDis3);
+                    swComp.UnSuppress("AnsulDrop3");
+                    swPart.ChangeDim("Dis@SketchAnsulDrop3", anDropDis3);
                 }
                 if (anDropNo > 3)
                 {
-                    swComp.UnSuppress("AN4");
-                    swPart.ChangeDim("D1@Sketch14", anDropDis4);
+                    swComp.UnSuppress("AnsulDrop4");
+                    swPart.ChangeDim("Dis@SketchAnsulDrop4", anDropDis4);
                 }
                 if (anDropNo > 4)
                 {
-                    swComp.UnSuppress("AN5");
-                    swPart.ChangeDim("D1@Sketch15", anDropDis5);
+                    swComp.UnSuppress("AnsulDrop5");
+                    swPart.ChangeDim("Dis@SketchAnsulDrop5", anDropDis5);
                 }
+                #endregion
 
+
+                #region Ansul探测器，水洗烟罩需要探测器安装在MidRoof上
                 if (exType == "UW" || exType == "KW" || exType == "CMOD")
                 {
                     //探测器
-                    swComp.UnSuppress("ANDTECACROSS");
+                    swComp.UnSuppress("AnsulDetectorAcross");
                     if (anDetectorNo > 0)
                     {
-                        swComp.UnSuppress("ANDTEC1");
-                        swPart.ChangeDim("D1@Sketch31", anDetectorDis1);
+                        swComp.UnSuppress("AnsulDetector1");
+                        swPart.ChangeDim("Dis@SketchAnsulDetector1", anDetectorDis1);
                         if (anDetectorEnd == "LEFT" || (anDetectorEnd == "RIGHT" && anDetectorNo == 1))
-                            swPart.ChangeDim("D2@Sketch31", 195d);
-                        else swPart.ChangeDim("D2@Sketch31", 175d);
+                            swPart.ChangeDim("Length@SketchAnsulDetector1", 195d);
+                        else swPart.ChangeDim("Length@SketchAnsulDetector1", 175d);
                     }
                     if (anDetectorNo > 1)
                     {
-                        swComp.UnSuppress("ANDTEC2");
-                        swPart.ChangeDim("D1@Sketch32", anDetectorDis2);
+                        swComp.UnSuppress("AnsulDetector2");
+                        swPart.ChangeDim("Dis@SketchAnsulDetector2", anDetectorDis2);
                         if (anDetectorEnd == "RIGHT" && anDetectorNo == 2)
-                            swPart.ChangeDim("D2@Sketch32", 195d);
-                        else swPart.ChangeDim("D2@Sketch32", 175d);
+                            swPart.ChangeDim("Length@SketchAnsulDetector2", 195d);
+                        else swPart.ChangeDim("Length@SketchAnsulDetector2", 175d);
                     }
                     if (anDetectorNo > 2)
                     {
-                        swComp.UnSuppress("ANDTEC3");
-                        swPart.ChangeDim("D1@Sketch33", anDetectorDis3);
+                        swComp.UnSuppress("AnsulDetector3");
+                        swPart.ChangeDim("Dis@SketchAnsulDetector3", anDetectorDis3);
                         if (anDetectorEnd == "RIGHT" && anDetectorNo == 3)
-                            swPart.ChangeDim("D2@Sketch33", 195d);
-                        else swPart.ChangeDim("D2@Sketch33", 175d);
+                            swPart.ChangeDim("Length@SketchAnsulDetector3", 195d);
+                        else swPart.ChangeDim("Length@SketchAnsulDetector3", 175d);
                     }
                     if (anDetectorNo > 3)
                     {
-                        swComp.UnSuppress("ANDTEC4");
-                        swPart.ChangeDim("D1@Sketch34", anDetectorDis4);
+                        swComp.UnSuppress("AnsulDetector4");
+                        swPart.ChangeDim("Dis@SketchAnsulDetector4", anDetectorDis4);
                         if (anDetectorEnd == "RIGHT" && anDetectorNo == 4)
-                            swPart.ChangeDim("D2@Sketch34", 195d);
-                        else swPart.ChangeDim("D2@Sketch34", 175d);
+                            swPart.ChangeDim("Length@SketchAnsulDetector4", 195d);
+                        else swPart.ChangeDim("Length@SketchAnsulDetector4", 175d);
                     }
                     if (anDetectorNo > 4)
                     {
-                        swComp.UnSuppress("ANDTEC5");
-                        swPart.ChangeDim("D1@Sketch35", anDetectorDis5);
+                        swComp.UnSuppress("AnsulDetector5");
+                        swPart.ChangeDim("Dis@SketchAnsulDetector5", anDetectorDis5);
                         if (anDetectorEnd == "RIGHT" && anDetectorNo == 5)
-                            swPart.ChangeDim("D2@Sketch35", 195d);
-                        else swPart.ChangeDim("D2@Sketch35", 175d);
+                            swPart.ChangeDim("Length@SketchAnsulDetector5", 195d);
+                        else swPart.ChangeDim("Length@SketchAnsulDetector5", 175d);
                     }
                 }
                 else
                 {
                     //UW/KW HOOD 水洗烟罩探测器在midRoof上，非水洗烟罩压缩
-                    swComp.Suppress("ANDTEC1");
-                    swComp.Suppress("ANDTEC2");
-                    swComp.Suppress("ANDTEC3");
-                    swComp.Suppress("ANDTEC4");
-                    swComp.Suppress("ANDTEC5");
-                    swComp.Suppress("ANDTECACROSS");
+                    swComp.Suppress("AnsulDetector1");
+                    swComp.Suppress("AnsulDetector2");
+                    swComp.Suppress("AnsulDetector3");
+                    swComp.Suppress("AnsulDetector4");
+                    swComp.Suppress("AnsulDetector5");
+                    swComp.Suppress("AnsulDetectorAcross");
                 }
-            }
-            #endregion
-
-            #region 开方孔,UV或待MARVEL时解压
-            if (exType == "UV" || exType == "UW")
-            {
-                swComp.UnSuppress("CUT-BACK-LEFT");
-                swComp.UnSuppress("CUT-BACK-RIGHT");
-            }
-            else
-            {
-
-                if (marvel == "YES") swComp.UnSuppress("CUT-BACK-LEFT");
-                else swComp.Suppress("CUT-BACK-LEFT");
-                swComp.Suppress("CUT-BACK-RIGHT");
-            }
-            swComp.UnSuppress("CUT-FRONT-RIGHT");
-            if (bluetooth == "YES") swComp.UnSuppress("CUT-FRONT-LEFT");
-            else swComp.Suppress("CUT-FRONT-LEFT");
-            #endregion
-
-            #region UV灯线缆穿孔
-            if (uvType == "LONG")
-            {
-                swComp.UnSuppress("UVCABLE");
-                swPart.ChangeDim("D4@草图28", exRightDis);
-                swPart.ChangeDim("D3@草图28", 1500d);
-            }
-            else if (uvType == "SHORT")
-            {
-                swComp.UnSuppress("UVCABLE");
-                swPart.ChangeDim("D4@草图28", exRightDis);
-                swPart.ChangeDim("D3@草图28", 790d);
-            }
-            else
-            {
-                swComp.Suppress("UVCABLE");
+                #endregion
             }
             #endregion
 
             #region IR
             if (marvel == "YES")
             {
-                swComp.UnSuppress("IR-LHC-2");
-                swComp.UnSuppress("IR-2");
+                swComp.UnSuppress("IrLhc2");
+                swComp.UnSuppress("Ir2");
             }
             else
             {
-                swComp.Suppress("IR-LHC-2");
-                swComp.Suppress("IR-2");
+                swComp.Suppress("IrLhc2");
+                swComp.Suppress("Ir2");
             }
             #endregion
 
-            //CMOD NTC Sensor
-            if (exType == "CMOD") swComp.UnSuppress("NTC Sensor");
-            else swComp.Suppress("NTC Sensor");
+            #region CMOD NTC Sensor
+            if (exType == "CMOD") swComp.UnSuppress("NtcSensor");
+            else swComp.Suppress("NtcSensor");
+            #endregion
         }
 
 
@@ -1829,7 +1836,9 @@ namespace SolidWorksHelper
         internal void FNHM0006(Component2 swComp, double depth)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D2@Base-Flange1", depth - 898d);
+            //计算净宽度，总宽度减去排风，减去新风再减1
+            var netWidth = depth - 535d - 360d - 1d;
+            swPart.ChangeDim("Length@Base-Flange", netWidth-3d);
         }
 
 
@@ -2195,12 +2204,12 @@ namespace SolidWorksHelper
             {
                 //LEFT
                 swComp = swAssy.UnSuppress(suffix, leftOuter);
-                FNHS0001(swComp, depth, exHeight, sidePanelSideCjNo, sidePanelDownCjNo);
+                FNHS0001(swComp, depth, exHeight, sidePanelSideCjNo);
                 swComp = swAssy.UnSuppress(suffix, leftInner);
                 FNHS0002(swComp, depth, exHeight);
                 //RIGHT
                 swComp = swAssy.UnSuppress(suffix, rightOuter);
-                FNHS0003(swComp, depth, exHeight, sidePanelSideCjNo, sidePanelDownCjNo);
+                FNHS0003(swComp, depth, exHeight, sidePanelSideCjNo);
                 swComp = swAssy.UnSuppress(suffix, rightInner);
                 FNHS0004(swComp, depth, exHeight);
             }
@@ -2210,7 +2219,7 @@ namespace SolidWorksHelper
                 swAssy.Suppress(suffix, rightInner);
 
                 swComp = swAssy.UnSuppress(suffix, leftOuter);
-                FNHS0001(swComp, depth, exHeight, sidePanelSideCjNo, sidePanelDownCjNo);
+                FNHS0001(swComp, depth, exHeight, sidePanelSideCjNo);
                 swComp = swAssy.UnSuppress(suffix, leftInner);
                 FNHS0002(swComp, depth, exHeight);
             }
@@ -2220,7 +2229,7 @@ namespace SolidWorksHelper
                 swAssy.Suppress(suffix, leftInner);
 
                 swComp = swAssy.UnSuppress(suffix, rightOuter);
-                FNHS0003(swComp, depth, exHeight, sidePanelSideCjNo, sidePanelDownCjNo);
+                FNHS0003(swComp, depth, exHeight, sidePanelSideCjNo);
                 swComp = swAssy.UnSuppress(suffix, rightInner);
                 FNHS0004(swComp, depth, exHeight);
             }
@@ -2255,57 +2264,56 @@ namespace SolidWorksHelper
             #endregion
         }
 
-        internal void FNHS0001(Component2 swComp, double depth, double exHeight, int sidePanelSideCjNo, int sidePanelDownCjNo)
+        internal void FNHS0001(Component2 swComp, double depth, double exHeight, int sidePanelSideCjNo)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D1@草图1", depth);
-            swPart.ChangeDim("D2@草图1", exHeight);
-            swPart.ChangeDim("D1@阵列(线性)1", sidePanelSideCjNo);
-            swPart.ChangeDim("D1@阵列(线性)2", sidePanelDownCjNo);
+            //todo:if,backcj,+90
+            swPart.ChangeDim("Length@SketchBase", depth);
+            swPart.ChangeDim("Height@SketchBase", exHeight);
+            swPart.ChangeDim("CjSide@CjSide", sidePanelSideCjNo);
         }
         internal void FNHS0002(Component2 swComp, double depth, double exHeight)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D1@草图1", depth - 79d);
-            swPart.ChangeDim("D2@草图1", exHeight - 39d);
+            swPart.ChangeDim("Length@SketchBase", depth);
+            swPart.ChangeDim("Height@SketchBase", exHeight);
             if (exHeight == 555d || exHeight == 650d)
             {
-                swComp.UnSuppress("F555");
-                swComp.Suppress("F450");
-                swComp.Suppress("F400");
+                swComp.UnSuppress("FI555");
+                swComp.Suppress("FI450");
+                swComp.Suppress("FI400");
             }
             else if (exHeight == 450d)
             {
-                swComp.Suppress("F555");
-                swComp.UnSuppress("F450");
-                swComp.Suppress("F400");
+                swComp.Suppress("FI555");
+                swComp.UnSuppress("FI450");
+                swComp.Suppress("FI400");
             }
             else if (exHeight == 400d)
             {
-                swComp.Suppress("F555");
-                swComp.Suppress("F450");
-                swComp.UnSuppress("F400");
+                swComp.Suppress("FI555");
+                swComp.Suppress("FI450");
+                swComp.UnSuppress("FI400");
             }
             else
             {
-                swComp.Suppress("F555");
-                swComp.Suppress("F450");
-                swComp.Suppress("F400");
+                swComp.Suppress("FI555");
+                swComp.Suppress("FI450");
+                swComp.Suppress("FI400");
             }
         }
-        internal void FNHS0003(Component2 swComp, double depth, double exHeight, int sidePanelSideCjNo, int sidePanelDownCjNo)
+        internal void FNHS0003(Component2 swComp, double depth, double exHeight, int sidePanelSideCjNo)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D1@草图1", depth);
-            swPart.ChangeDim("D2@草图1", exHeight);
-            swPart.ChangeDim("D1@阵列(线性)1", sidePanelSideCjNo);
-            swPart.ChangeDim("D1@阵列(线性)2", sidePanelDownCjNo);
+            swPart.ChangeDim("Length@SketchBase", depth);
+            swPart.ChangeDim("Height@SketchBase", exHeight);
+            swPart.ChangeDim("CjSide@CjSide", sidePanelSideCjNo);
         }
         internal void FNHS0004(Component2 swComp, double depth, double exHeight)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D1@草图1", depth - 79d);
-            swPart.ChangeDim("D2@草图1", exHeight - 39d);
+            swPart.ChangeDim("Length@SketchBase", depth);
+            swPart.ChangeDim("Height@SketchBase", exHeight);
             if (exHeight == 555d || exHeight == 650d)
             {
                 swComp.UnSuppress("F555");
@@ -2334,64 +2342,44 @@ namespace SolidWorksHelper
         internal void FNHS0005(Component2 swComp, double depth, double exHeight, double suHeight, string exType)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D2@Base-Flange1", depth);
+            swPart.ChangeDim("Width@SketchHood", depth);
 
-            swPart.ChangeDim("D3@Sketch11", depth);
+            swPart.ChangeDim("SuHeight@SketchHood", suHeight);//新风
+            swPart.ChangeDim("ExHeight@SketchHood", exHeight);//排风
 
-            swPart.ChangeDim("D2@Sketch11", suHeight);//新风
-            swPart.ChangeDim("D8@Sketch11", exHeight);//排风
-            if (exHeight == 450d)
-            {
-                swPart.ChangeDim("D6@Sketch11", 105d);//EX450,105
-                swPart.ChangeDim("D11@Sketch11", 50d);//EX450,50
-                swPart.ChangeDim("D9@Sketch11", 1000d * 135d / 180d * Math.PI);//EX450,135，角度特殊，不能除以1000,应当乘回去
-            }
-            else
-            {
-                if (exType == "W")
-                {
-                    swPart.ChangeDim("D6@Sketch11", 150d);//普通76.5水洗150
-                    swPart.ChangeDim("D11@Sketch11", 101d);//普通85水洗101
-                    swPart.ChangeDim("D9@Sketch11", 1000d * 145d / 180d * Math.PI);//普通135水洗145
-                }
-                else
-                {
-                    swPart.ChangeDim("D6@Sketch11", 76.5d);//普通76.5水洗150
-                    swPart.ChangeDim("D11@Sketch11", 85d);//普通85水洗101
-                    swPart.ChangeDim("D9@Sketch11", 1000d * 135d / 180d * Math.PI);//普通135水洗145
-                }
-            }
+            // KVUV555排风尺寸，ExHeitht555，ExButton76.5，ExFront85,ExAngle135
+            // KWUW排风尺寸，ExHeitht555，ExButton150，ExFront101,ExAngle145
+            // 450高度排风没有水洗，ExHeitht450，ExButton105，ExFront50,ExAngle135
+            // 角度特殊，不能除以1000,应当乘回去
+            var exButton = exHeight.Equals(450d)? 105d: exType == "W"? 150d : 76.5d;
+            var exFront = exHeight.Equals(450d) ? 50d : exType == "W" ? 101d : 85d;
+            var exAngle = (exHeight.Equals(450d) ? 135d : exType == "W" ? 145d : 135d)*1000d* Math.PI/ 180d;
+            
+            swPart.ChangeDim("ExButton@SketchHood", exButton);//EX450,105
+            swPart.ChangeDim("ExFront@SketchHood", exFront);//EX450,50
+            swPart.ChangeDim("ExAngle@SketchHood", exAngle);
+
+
         }
         internal void FNHS0006(Component2 swComp, double depth, double exHeight, double suHeight, string exType)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D2@Base-Flange1", depth);
+            swPart.ChangeDim("Width@SketchHood", depth);
 
-            swPart.ChangeDim("D3@Sketch11", depth);
+            swPart.ChangeDim("SuHeight@SketchHood", suHeight);//新风
+            swPart.ChangeDim("ExHeight@SketchHood", exHeight);//排风
 
-            swPart.ChangeDim("D2@Sketch11", suHeight);//新风
-            swPart.ChangeDim("D8@Sketch11", exHeight);//排风
-            if (exHeight == 450d)
-            {
-                swPart.ChangeDim("D6@Sketch11", 105d);//EX450,105
-                swPart.ChangeDim("D11@Sketch11", 50d);//EX450,50
-                swPart.ChangeDim("D9@Sketch11", 1000d * 135d / 180d * Math.PI);//EX450,135
-            }
-            else
-            {
-                if (exType == "W")
-                {
-                    swPart.ChangeDim("D6@Sketch11", 150d);//普通76.5水洗150
-                    swPart.ChangeDim("D11@Sketch11", 101d);//普通85水洗101
-                    swPart.ChangeDim("D9@Sketch11", 1000d * 145d / 180d * Math.PI);//普通135水洗145
-                }
-                else
-                {
-                    swPart.ChangeDim("D6@Sketch11", 76.5d);//普通76.5水洗150
-                    swPart.ChangeDim("D11@Sketch11", 85d);//普通85水洗101
-                    swPart.ChangeDim("D9@Sketch11", 1000d * 135d / 180d * Math.PI);//普通135水洗145
-                }
-            }
+            // KVUV555排风尺寸，ExHeitht555，ExButton76.5，ExFront85,ExAngle135
+            // KWUW排风尺寸，ExHeitht555，ExButton150，ExFront101,ExAngle145
+            // 450高度排风没有水洗，ExHeitht450，ExButton105，ExFront50,ExAngle135
+            // 角度特殊，不能除以1000,应当乘回去
+            var exButton = exHeight.Equals(450d) ? 105d : exType == "W" ? 150d : 76.5d;
+            var exFront = exHeight.Equals(450d) ? 50d : exType == "W" ? 101d : 85d;
+            var exAngle = (exHeight.Equals(450d) ? 135d : exType == "W" ? 145d : 135d)*1000d* Math.PI/ 180d;
+
+            swPart.ChangeDim("ExButton@SketchHood", exButton);//EX450,105
+            swPart.ChangeDim("ExFront@SketchHood", exFront);//EX450,50
+            swPart.ChangeDim("ExAngle@SketchHood", exAngle);
         }
 
         internal void SidePanelSpecial(AssemblyDoc swAssy, string suffix, string sidePanel, double depth, double exHeight, double suHeight, string waterCollection, string exType, string leftOuter, string leftInner, string rightOuter, string rightInner, string leftCollection, string rightCollection)
@@ -2548,7 +2536,7 @@ namespace SolidWorksHelper
                 swComp = swAssy.UnSuppress(suffix, rightOuter);
                 FNHS0007(swComp, depth, exHeight, sidePanelSideCjNo, sidePanelDownCjNo);
                 swComp = swAssy.UnSuppress(suffix, rightInner);
-                FNHS0009(swComp, depth, exHeight,suType);
+                FNHS0009(swComp, depth, exHeight, suType);
             }
             else if (sidePanel == "LEFT")
             {
@@ -2668,80 +2656,105 @@ namespace SolidWorksHelper
 
         #region Supply新风腔模块
         //------------I型新风腔主体----------
-        internal void FNHA0001(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int midRoofHoleNo, double midRoofSecondHoleDis, double midRoofTopHoleDis, string marvel, string sidePanel, string uvType, string bluetooth)
+        internal void FNHA0001(Component2 swComp, double length, double width, string marvel, string sidePanel, string uvType, string bluetooth)
         {
             #region 基本尺寸
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D2@基体-法兰1", length);
-            swPart.ChangeDim("D1@阵列(线性)1", frontPanelKaKouNo);
-            swPart.ChangeDim("D3@阵列(线性)1", frontPanelKaKouDis);
-            swPart.ChangeDim("D3@Sketch3", midRoofSecondHoleDis);
-            swPart.ChangeDim("D9@草图7", 200d - midRoofTopHoleDis);
-            if (midRoofHoleNo == 1) swComp.Suppress("LPattern1");
-            else
-            {
-                swComp.UnSuppress("LPattern1");
-                swPart.ChangeDim("D1@LPattern1", midRoofHoleNo);
-            }
+            swPart.ChangeDim("Length@Base-Flange", length);
+            //吊装孔
+            //因为后方一点距离前端固定90，这里计算前端一点移动的距离
+            var midRoofTopHoleDis = width - 535d - 360d - 90d - (int)((width - 535d - 360d - 90d - 100d) / 50d) * 50d;
+            swPart.ChangeDim("Dis@SketchTopHole", 200d - midRoofTopHoleDis);
+            #endregion
+            #region MidRoof铆螺母孔
+            //2023/3/10 11:44:03 Administrator:
+            //修改MidRoof螺丝孔逻辑，以最低450间距计算间距即可(Length-300d)/((int)(Length-300)/450-1)
+            var midRoofNutNumber = (int)((length - 300d) / 450d);
+            var midRoofNutDis = (length - 300d)/(midRoofNutNumber-1);
+            swPart.ChangeDim("Dis@LPatternMidRoofNut", midRoofNutDis);
+            #endregion
+
+            #region 新风前面板卡口，距离与铆螺母数量相同，无需重复计算
+            swPart.ChangeDim("Dis@LPatternPlug", midRoofNutDis);
             #endregion
 
             #region IR
-            if (marvel == "YES") swComp.UnSuppress("IR-LHC-2");
-            else swComp.Suppress("IR-LHC-2");
+            if (marvel == "YES") swComp.UnSuppress("IrLhc2");
+            else swComp.Suppress("IrLhc2");
             #endregion
 
             #region UV HOOD
             if (uvType !="NO")
             {
-                if (bluetooth == "YES") swComp.UnSuppress("SUCABLE-LEFT");
-                else swComp.Suppress("SUCABLE-LEFT");
-                if (sidePanel == "LEFT" || sidePanel == "BOTH") swComp.UnSuppress("JUNCTION BOX-LEFT");
-                else swComp.Suppress("JUNCTION BOX-LEFT");
+                if (bluetooth == "YES") swComp.UnSuppress("BluetoothCable");
+                else swComp.Suppress("BluetoothCable");
+                if (sidePanel == "LEFT" || sidePanel == "BOTH") swComp.UnSuppress("JunctionBoxUv");
+                else swComp.Suppress("JunctionBoxUv");
             }
             else
             {
-                swComp.Suppress("SUCABLE-LEFT");
-                if (marvel == "YES") swComp.UnSuppress("JUNCTION BOX-LEFT");
-                else swComp.Suppress("JUNCTION BOX-LEFT");
+                swComp.Suppress("BluetoothCable");
+                if (marvel == "YES") swComp.UnSuppress("JunctionBoxUv");
+                else swComp.Suppress("JunctionBoxUv");
             }
             #endregion
         }
         //----------I新风底部CJ孔板----------
-        internal void FNHA0002(Component2 swComp, double length, int frontCjNo, double frontCjFirstDis, int frontPanelHoleNo, double frontPanelHoleDis, string bluetooth, string ledLogo, string waterCollection, string sidePanel)
+        internal void FNHA0002(Component2 swComp, double length, string bluetooth, string ledLogo, string waterCollection, string sidePanel)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-
+            //新风面板螺丝孔数量及间距,最小间距900，距离边缘150
+            int frontPanelNutNo = (int)((length - 300d) / 900d) + 2;
+            double frontPanelNutDis = (length - 300d) / (frontPanelNutNo - 1);
+            //新风CJ孔数量和新风CJ孔第一个CJ距离边缘距离
+            int frontCjNo = (int)((length - 30d) / 32d) + 1;
+            double frontCjFirstDis = (length - (frontCjNo - 1) * 32d) / 2d;
             #region 基本尺寸
-            swPart.ChangeDim("D2@基体-法兰1", length);
-            swPart.ChangeDim("D1@CJHOLES", frontCjNo);
-            swPart.ChangeDim("D10@草图8", frontCjFirstDis);
-            swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
-            swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
-            if (bluetooth == "YES") swComp.UnSuppress("BLUETOOTH");
-            else swComp.Suppress("BLUETOOTH");
-            if (ledLogo == "YES") swComp.UnSuppress("LOGO");
-            else swComp.Suppress("LOGO");
+            swPart.ChangeDim("Length@Base-Flange", length);
+            //第一个CJ孔距离边缘
+            swPart.ChangeDim("Dis@SketchCjSide", frontCjFirstDis);
             #endregion
 
-            #region 集水翻边
-            if (waterCollection == "YES" && (sidePanel == "BOTH" || sidePanel == "RIGHT")) swComp.UnSuppress("DRAINCHANNEL-RIGHT");
-            else swComp.Suppress("DRAINCHANNEL-RIGHT");
+            #region 前面板螺丝孔
+            swPart.ChangeDim("Dis@LPatternFrontPanelNut", frontPanelNutDis);
+            #endregion
 
-            if (waterCollection == "YES" && (sidePanel == "BOTH" || sidePanel == "LEFT")) swComp.UnSuppress("DRAINCHANNEL-LEFT");
-            else swComp.Suppress("DRAINCHANNEL-LEFT");
+            #region Logo与蓝牙
+            if (bluetooth == "YES") swComp.UnSuppress("Bluetooth");
+            else swComp.Suppress("Bluetooth");
+            if (ledLogo == "YES") swComp.UnSuppress("Logo");
+            else swComp.Suppress("Logo");
+            #endregion
+
+
+            #region 集水翻边
+            if (waterCollection == "YES" && (sidePanel == "BOTH" || sidePanel == "RIGHT")) swComp.UnSuppress("DrainChannelRight");
+            else swComp.Suppress("DrainChannelRight");
+
+            if (waterCollection == "YES" && (sidePanel == "BOTH" || sidePanel == "LEFT")) swComp.UnSuppress("DrainChannelLeft");
+            else swComp.Suppress("DrainChannelLeft");
             #endregion
         }
 
 
         //----------I新风前面板----------
-        public void FNHA0003(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, int frontPanelHoleNo, double frontPanelHoleDis)
+        public void FNHA0003(Component2 swComp, double length)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D1@草图1", length - 2d);
-            swPart.ChangeDim("D1@阵列(线性)7", frontPanelKaKouNo);
-            swPart.ChangeDim("D3@阵列(线性)7", frontPanelKaKouDis);
-            swPart.ChangeDim("D1@LPattern1", frontPanelHoleNo);
-            swPart.ChangeDim("D3@LPattern1", frontPanelHoleDis);
+
+            //新风面板螺丝孔数量及间距,最小间距900，距离边缘150
+            int frontPanelNutNo = (int)((length - 300d) / 900d) + 2;
+            double frontPanelNutDis = (length - 300d) / (frontPanelNutNo - 1);
+            var midRoofNutNumber = (int)((length - 300d) / 450d);
+            var midRoofNutDis = (length - 300d)/(midRoofNutNumber-1);
+
+            swPart.ChangeDim("Length@SketchBase", length - 2d);
+            #region 新风前面板卡口，距离与铆螺母数量相同，无需重复计算
+            swPart.ChangeDim("Dis@LPatternPlug", midRoofNutDis);
+            #endregion
+            #region 前面板螺丝孔
+            swPart.ChangeDim("Dis@LPatternFrontPanelNut", frontPanelNutDis);
+            #endregion
         }
 
         //------------F型新风腔主体----------
@@ -2865,7 +2878,7 @@ namespace SolidWorksHelper
                 swPart.ChangeDim("D1@LPattern1", midRoofHoleNo);
             }
             #endregion
-            
+
             #region IR
             if (marvel == "YES") swComp.UnSuppress("Cut-Extrude12");
             else swComp.Suppress("Cut-Extrude12");
@@ -2982,10 +2995,10 @@ namespace SolidWorksHelper
 
 
         //M型烟罩方形新风腔
-        public void FNHA0012(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo,string marvel)
+        public void FNHA0012(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, string marvel)
         {
-           ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D2@基体-法兰1",length);
+            ModelDoc2 swPart = swComp.GetModelDoc2();
+            swPart.ChangeDim("D2@基体-法兰1", length);
             swPart.ChangeDim("D1@阵列(线性)1", frontPanelKaKouNo);
             swPart.ChangeDim("D3@阵列(线性)1", frontPanelKaKouDis);
             swPart.ChangeDim("D1@Sketch2", midRoofSecondHoleDis);
@@ -3001,9 +3014,9 @@ namespace SolidWorksHelper
             else swComp.Suppress("IR-LHC-2");
             #endregion
         }
-        public void FNHA0013(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo,string marvel)
+        public void FNHA0013(Component2 swComp, double length, int frontPanelKaKouNo, double frontPanelKaKouDis, double midRoofSecondHoleDis, double midRoofTopHoleDis, int midRoofHoleNo, string marvel)
         {
-           ModelDoc2 swPart = swComp.GetModelDoc2();
+            ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D2@基体-法兰1", length);
             swPart.ChangeDim("D1@阵列(线性)1", frontPanelKaKouNo);
             swPart.ChangeDim("D3@阵列(线性)1", frontPanelKaKouDis);

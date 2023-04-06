@@ -229,12 +229,12 @@ namespace SolidWorksHelper
                     dataAlignment[8] = p0.Z - p1.Z;
                 }
             }
-            object varAlignment = dataAlignment;
+            
             //Export sheet metal to a single drawing file将钣金零件导出单个dxf文件
             //include flat-pattern geometry，倒数第二位数字1代表钣金展开，options = 1;
             try
             {
-                swPart.ExportToDWG2(swDxfName, swModelName, (int)swExportToDWG_e.swExportToDWG_ExportSheetMetal, true, varAlignment, false, false, 1, null);
+                swPart.ExportToDWG2(swDxfName, swModelName, (int)swExportToDWG_e.swExportToDWG_ExportSheetMetal, true, dataAlignment, false, false, 1, null);
             }
             catch (Exception ex)
             {
