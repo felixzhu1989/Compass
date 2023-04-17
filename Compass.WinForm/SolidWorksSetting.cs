@@ -28,6 +28,8 @@ namespace Compass
                 _swApp.SetUserPreferenceStringValue((int) swUserPreferenceStringValue_e.swFileLocationsMacros, @"D:\halton\01 Tech Dept\01 Design Library\04 Macros");
                 //Material Databases材料库，D:\halton\01 Tech Dept\01 Design Library\02 Material
                 _swApp.SetUserPreferenceStringValue((int) swUserPreferenceStringValue_e.swFileLocationsMaterialDatabases, @"D:\halton\01 Tech Dept\01 Design Library\02 Material");
+                //Textures材质库，D:\halton\01 Tech Dept\01 Design Library\10 Decals
+                _swApp.SetUserPreferenceStringValue((int)swUserPreferenceStringValue_e.swFileLocationsTextures, @"D:\halton\01 Tech Dept\01 Design Library\10 Decals");
 
 
                 //设置消除轻化模式
