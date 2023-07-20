@@ -47,7 +47,7 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             string railPart2 = "FNCE0018-2";
             Component2 swComp = swAssy.UnSuppress(suffix, subAssy);
             ModelDoc2 swPart = swComp.GetModelDoc2();
-            swPart.ChangeDim("D1@Distance3", exWidth + 20d);
+            swPart.ChangeDim("D1@Distance3", exWidth + 40d);
 
             if (exWidth == 300d) swAssy.Suppress(suffix, doorPart2);
             else swAssy.UnSuppress(suffix, doorPart2);
@@ -56,8 +56,8 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             {
                 swComp = swAssy.UnSuppress(suffix, doorPart1);
                 swPart = swComp.GetModelDoc2();
-                swPart.ChangeDim("D1@Sketch1", exLength / 2d + 10d);
-                swPart.ChangeDim("D2@Sketch1", exWidth + 20d);
+                swPart.ChangeDim("Length@SketchBase", exLength / 2d);
+                swPart.ChangeDim("Width@SketchBase", exWidth + 40d);
             }
             if (marvel == "YES") swAssy.Suppress(suffix, railPart2);
             else swAssy.UnSuppress(suffix, railPart2);
@@ -66,8 +66,8 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             {
                 swComp = swAssy.UnSuppress(suffix, railPart1);
                 swPart = swComp.GetModelDoc2();
-                if (exNo == 1) swPart.ChangeDim("D2@Base-Flange1", exLength * 2d + 100d);
-                else swPart.ChangeDim("D2@Base-Flange1", exLength * 3d + exDis + 100d);
+                if (exNo == 1) swPart.ChangeDim("Length@Base-Flange", exLength * 2d + 50d);
+                else swPart.ChangeDim("Length@Base-Flange", exLength * 3d + exDis + 50d);
             }
         }
 
@@ -103,13 +103,16 @@ namespace SolidWorksHelper.CeilingAutoDrawing
                 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@基体-法兰1", exWidth);
                 swPart.ChangeDim("D3@草图1", exHeight);
-                swComp.Suppress("ANDTEC");
+                if (ansul == "YES") swComp.UnSuppress("ANDTEC");
+                else swComp.Suppress("ANDTEC");
+               
 
                 swComp = swAssy.UnSuppress(suffix, rightPart);
                 swPart = swComp.GetModelDoc2();
                 swPart.ChangeDim("D2@基体-法兰1", exWidth);
                 swPart.ChangeDim("D3@草图1", exHeight);
-                swComp.Suppress("ANDTEC");
+                if (ansul == "YES") swComp.UnSuppress("ANDTEC");
+                else swComp.Suppress("ANDTEC");
             }
         }
 

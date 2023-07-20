@@ -198,7 +198,7 @@ namespace SolidWorksHelper
                 //----------其他零件----------
                 swComp = swSubAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCJ0016-1"));
                 swPart = swComp.GetModelDoc2(); //打开零件
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length - 10d) / 1000d;
+                swPart.Parameter("Length@SketchBase").SystemValue = (item.Length - 10d) / 1000d;
                 swComp = swSubAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCJ0024-1"));
                 swPart = swComp.GetModelDoc2(); //打开零件
                 swPart.Parameter("D1@Skizze1").SystemValue = item.Length / 1000d;

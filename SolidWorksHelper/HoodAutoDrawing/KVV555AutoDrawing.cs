@@ -169,8 +169,8 @@ namespace SolidWorksHelper
                 swPart.Parameter("D1@Sketch1").SystemValue = condensatePanelAngle;
                 swPart.Parameter("D2@Sketch1").SystemValue = condensatePanelAngle;
                 swPart.Parameter("D3@Sketch1").SystemValue = condensatePanelHeight / 1000d;
-                //1.5d以下，两个把手HANDER2，其他HANDER4
-                if (item.Length > 1500d)
+                //1.7米以下，两个把手HANDER2，其他HANDER4
+                if (item.Length > 1700d)
                 {
                     swFeat = swComp.FeatureByName("HANDER2");
                     swFeat.SetSuppression2(0, 2, null);//参数1：1解压，0压缩 

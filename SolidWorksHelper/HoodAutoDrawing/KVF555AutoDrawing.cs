@@ -180,7 +180,7 @@ namespace SolidWorksHelper
 
                 //----------MiddleRoof灯板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0001-1");
-                swHoodPart.FNHM0001(swComp, "KV", item.Length, item.Deepth, 555d, 555d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, "NO", "NO", item.MARVEL);
+                //swHoodPart.FNHM0001(swComp, "KV", item.Length, item.Deepth, 555d, 555d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, "NO", "NO", item.MARVEL);
 
                 //----------吊装槽钢----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2900100001-1");

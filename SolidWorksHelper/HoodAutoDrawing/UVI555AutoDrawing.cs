@@ -172,7 +172,7 @@ namespace SolidWorksHelper
 
                 //----------MiddleRoof灯板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0001-1");
-                swHoodPart.FNHM0001(swComp, "UV", item.Length, item.Deepth, 555d, 555d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL);
+                //swHoodPart.FNHM0001(swComp, "UV", item.Length, item.Deepth, 555d, 555d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL);
 
 
                 //----------吊装槽钢----------
@@ -187,15 +187,15 @@ namespace SolidWorksHelper
 
                 //------------I型新风腔主体----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0001-2");
-                swHoodPart.FNHA0001(swComp,item.Length,frontPanelKaKouNo,frontPanelKaKouDis,midRoofHoleNo,midRoofSecondHoleDis,midRoofTopHoleDis,item.MARVEL, item.SidePanel, item.UVType,item.Bluetooth);
+                //swHoodPart.FNHA0001(swComp,item.Length,frontPanelKaKouNo,frontPanelKaKouDis,midRoofHoleNo,midRoofSecondHoleDis,midRoofTopHoleDis,item.MARVEL, item.SidePanel, item.UVType,item.Bluetooth);
 
                 //----------I新风前面板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0003-1");
-                swHoodPart.FNHA0003(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, frontPanelHoleNo, frontPanelHoleDis);
+                //swHoodPart.FNHA0003(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, frontPanelHoleNo, frontPanelHoleDis);
 
                 //----------I新风底部CJ孔板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0002-1");
-                swHoodPart.FNHA0002(swComp,item.Length,frontCjNo,frontCjFirstDis,frontPanelHoleNo,frontPanelHoleDis,item.Bluetooth,item.LEDlogo,item.WaterCollection,item.SidePanel);
+                //swHoodPart.FNHA0002(swComp,item.Length,frontCjNo,frontCjFirstDis,frontPanelHoleNo,frontPanelHoleDis,item.Bluetooth,item.LEDlogo,item.WaterCollection,item.SidePanel);
                 
                 //----------蓝牙----------
                 swHoodPart.Bluetooth(swAssy,suffix,item.Bluetooth,"2900200001-1");

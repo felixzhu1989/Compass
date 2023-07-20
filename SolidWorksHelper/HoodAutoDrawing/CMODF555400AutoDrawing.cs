@@ -280,12 +280,13 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0071-1"));
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D2@Base-Flange1").SystemValue = item.Length / 1000d;
+
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0074-1"));
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Length - 7.5d) / 1000d;
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0088-1"));
                 swPart = swComp.GetModelDoc2();
-                swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Length - 7.5d) / 1000d;
+                swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Length - 8.5d) / 1000d;
 
                 //----------排风滑门/导轨----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0013-2"));
@@ -327,6 +328,7 @@ namespace SolidWorksHelper
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0075-1"));
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Length - 113d) / 2000d;
+
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNHE0078-1"));
                 swPart = swComp.GetModelDoc2();
                 swPart.Parameter("D2@Base-Flange1").SystemValue = (item.Length - 170d) / 2000d;

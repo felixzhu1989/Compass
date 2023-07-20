@@ -18,7 +18,7 @@ namespace SolidWorksHelper
         {
             if (_swApp == null)
             {
-                _swApp = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application")) as SldWorks;
+                _swApp = Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application.31")) as SldWorks;
 
                 _swApp.Visible = true;
                 return _swApp;

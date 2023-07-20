@@ -207,11 +207,11 @@ namespace SolidWorksHelper
 
                 //----------新风前面板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0003-2");
-                swHoodPart.FNHA0003(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, frontPanelHoleNo, frontPanelHoleDis);
+                //swHoodPart.FNHA0003(swComp, item.Length, frontPanelKaKouNo, frontPanelKaKouDis, frontPanelHoleNo, frontPanelHoleDis);
 
                 //----------新风底部CJ孔板/前面----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0002-1");
-                swHoodPart.FNHA0002(swComp, item.Length, frontCjNo, frontCjFirstDis, frontPanelHoleNo, frontPanelHoleDis, item.Bluetooth, item.LEDlogo, item.WaterCollection, item.SidePanel);
+                //swHoodPart.FNHA0002(swComp, item.Length, frontCjNo, frontCjFirstDis, frontPanelHoleNo, frontPanelHoleDis, item.Bluetooth, item.LEDlogo, item.WaterCollection, item.SidePanel);
                 
                 //----------新风底部CJ孔板/背面----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0016-1");

@@ -170,7 +170,7 @@ namespace SolidWorksHelper
 
                 //----------MiddleRoof灯板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHM0001-1");
-                swEdit.FNHM0001(swComp, "UV", item.Length, item.Deepth, 555d, 400d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL);
+                //swEdit.FNHM0001(swComp, "UV", item.Length, item.Deepth, 555d, 400d, item.ExRightDis, midRoofTopHoleDis, midRoofSecondHoleDis, midRoofHoleNo, item.LightType, 0, item.LEDSpotNo, item.LEDSpotDis, item.ANSUL, item.ANDropNo, item.ANYDis, item.ANDropDis1, item.ANDropDis2, item.ANDropDis3, item.ANDropDis4, item.ANDropDis5, "NO", 0, 0, 0, 0, 0, 0, item.Bluetooth, item.UVType, item.MARVEL);
 
                 //----------吊装槽钢----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "2900100001-1");
@@ -191,7 +191,7 @@ namespace SolidWorksHelper
 
                 //----------新风底部CJ孔板----------
                 swComp = swAssy.GetComponentByNameWithSuffix(suffix, "FNHA0002-1");
-                swEdit.FNHA0002(swComp, item.Length, frontCjNo, frontCjFirstDis, frontPanelHoleNo, frontPanelHoleDis, item.Bluetooth, item.LEDlogo, item.WaterCollection, item.SidePanel);
+                //swEdit.FNHA0002(swComp, item.Length, frontCjNo, frontCjFirstDis, frontPanelHoleNo, frontPanelHoleDis, item.Bluetooth, item.LEDlogo, item.WaterCollection, item.SidePanel);
 
                 //----------蓝牙----------
                 swEdit.Bluetooth(swAssy, suffix, item.Bluetooth, "2900200001-1");

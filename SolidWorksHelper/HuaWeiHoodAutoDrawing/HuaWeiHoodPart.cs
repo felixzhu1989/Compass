@@ -1034,12 +1034,12 @@ namespace SolidWorksHelper
             Component2 swComp = swAssy.UnSuppress(suffix, doorPart);
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@Sketch1", exLength / 2d + 10d);
-            swPart.ChangeDim("D2@Sketch1", exWidth + 20d);
+            swPart.ChangeDim("D2@Sketch1", exWidth + 30d);
 
             swComp = swAssy.UnSuppress(suffix, railPart);
             swPart = swComp.GetModelDoc2();
             if (exNo == 1) swPart.ChangeDim("D2@Base-Flange1", exLength * 2d + 100d);
-            else swPart.ChangeDim("D2@Base-Flange1", exLength * 2d + 20d);
+            else swPart.ChangeDim("D2@Base-Flange1", exLength * 2d + 30d);
         }
 
         /// <summary>

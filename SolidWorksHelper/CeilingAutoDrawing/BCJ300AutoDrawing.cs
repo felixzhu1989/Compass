@@ -157,7 +157,7 @@ namespace SolidWorksHelper
                 //----------其他零件----------
                 swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCJ0016-1"));
                 swPart = swComp.GetModelDoc2();//打开零件
-                swPart.Parameter("D2@Sketch1").SystemValue = (item.Length-10d) / 1000d;
+                swPart.Parameter("Length@SketchBase").SystemValue = (item.Length-10d) / 1000d;
 
 
                 swModel.ForceRebuild3(true);//设置成true，直接更新顶层，速度很快，设置成false，每个零件都会更新，很慢
