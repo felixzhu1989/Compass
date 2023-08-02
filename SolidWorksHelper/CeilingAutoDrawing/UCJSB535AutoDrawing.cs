@@ -156,7 +156,7 @@ namespace SolidWorksHelper
                         ceilingPart.FNCE0159(swComp, item.Length, item.UVType, item.LightCable, item.MARVEL, item.ANSUL, item.ANSide, item.ANDetector,  item.Japan, item.ExRightDis, item.ExLength, item.ExWidth);
                     //----------灯腔----------
                     swComp = swAssy.UnSuppress(suffix, "FNCE0112-1");
-                    ceilingPart.FNCE0112(swComp, item.Length, item.LightCable, item.LightType, item.Japan);
+                    ceilingPart.FNCE0112(swComp, item.Length, item.UVType, item.LightCable, item.LightType, item.Japan);
 
                     //-------磁棒板----------
                     swComp = swAssy.UnSuppress(suffix, "FNCE0145-1");

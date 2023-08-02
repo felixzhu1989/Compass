@@ -716,11 +716,18 @@ namespace SolidWorksHelper.CeilingAutoDrawing
 
 
         //-------KCJSB535排风腔内灯腔----------
-        internal void FNCE0112(Component2 swComp, double length, string lightCable, string lightType, string japan)
+        internal void FNCE0112(Component2 swComp, double length, string uvType, string lightCable, string lightType, string japan)
         {
             ModelDoc2 swPart = swComp.GetModelDoc2();
             swPart.ChangeDim("D1@Linear austragen1", length);
-            swComp.Suppress("FC SUPPORT");
+            if (uvType == "NO")
+            {
+                swComp.Suppress("FC SUPPORT");
+            }
+            else
+            {
+                swComp.UnSuppress("FC SUPPORT");
+            }
             #region 灯腔出线孔
             if (lightCable == "LEFT")
             {
