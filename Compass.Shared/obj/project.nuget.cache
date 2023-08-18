@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kbW9JZ4xx6W65IrvROU4i7O/gr9LIVMdmTqOCERvYF9G4nA6wDIKD6nK3OhkHjRAcBDd2dKyrFgy1/RvQTU5QA==",
+  "dgSpecHash": "Hij02ViHZp/qgkevfB/RKzPujutH2UrC6CW93Ht9ec7PeANWVXdq7PB3fn3JNj3H9ROJQgliIP+JPX2/5h8uCw==",
   "success": true,
-  "projectFilePath": "E:\\Compass\\Compass.Shared\\Compass.Shared.csproj",
+  "projectFilePath": "E:\\CSharp\\repos\\Compass\\Compass.Shared\\Compass.Shared.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

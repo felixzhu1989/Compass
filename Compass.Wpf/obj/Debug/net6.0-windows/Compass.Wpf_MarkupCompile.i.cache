@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-E:\Compass\Compass.Wpf\obj\Debug\net6.0-windows\
+E:\CSharp\repos\Compass\Compass.Wpf\obj\Debug\net6.0-windows\
 Compass.Wpf
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-E:\Compass\Compass.Wpf\App.xaml
+E:\CSharp\repos\Compass\Compass.Wpf\App.xaml
 5-696796000
 1-1067898385
 23-2018369882
-202350799808
+202-1676597084
 Views\DrawingPlanView.xaml;Views\MainWindow.xaml;Views\ProductionPlanView.xaml;Views\ProjectTrackingView.xaml;Views\SettingsView.xaml;
 
 False
