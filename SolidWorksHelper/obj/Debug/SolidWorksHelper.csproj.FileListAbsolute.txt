@@ -24,3 +24,16 @@ D:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.pdb
 D:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.CopyComplete
 E:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.CopyComplete
 D:\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csprojAssemblyReference.cache
+E:\CSharp\repos\Compass\SolidWorksHelper\bin\Debug\SolidWorksHelper.dll
+E:\CSharp\repos\Compass\SolidWorksHelper\bin\Debug\SolidWorksHelper.pdb
+E:\CSharp\repos\Compass\SolidWorksHelper\bin\Debug\Common.dll
+E:\CSharp\repos\Compass\SolidWorksHelper\bin\Debug\DAL.dll
+E:\CSharp\repos\Compass\SolidWorksHelper\bin\Debug\Models.dll
+E:\CSharp\repos\Compass\SolidWorksHelper\bin\Debug\Common.pdb
+E:\CSharp\repos\Compass\SolidWorksHelper\bin\Debug\DAL.pdb
+E:\CSharp\repos\Compass\SolidWorksHelper\bin\Debug\Models.pdb
+E:\CSharp\repos\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.AssemblyReference.cache
+E:\CSharp\repos\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.CoreCompileInputs.cache
+E:\CSharp\repos\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.csproj.CopyComplete
+E:\CSharp\repos\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.dll
+E:\CSharp\repos\Compass\SolidWorksHelper\obj\Debug\SolidWorksHelper.pdb

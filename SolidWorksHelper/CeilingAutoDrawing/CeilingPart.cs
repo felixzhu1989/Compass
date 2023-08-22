@@ -167,14 +167,14 @@ namespace SolidWorksHelper.CeilingAutoDrawing
             switch (fcSide)
             {
                 case "LEFT":
-                    if (fcType == "KSA") fcSideLength = (int)(fcSideLeft + fcNo * 2.5d);
+                    if (fcType == "KSA") fcSideLength = (int)(fcSideLeft + fcNo * 1.5d);
                     else fcSideLength = (int)(fcSideLeft - fcNo);
                     swComp = RenameComp(swModel, swAssy, suffix, "BP", module, leftPart, leftNum, fcSideLength, 250);
                     if (swComp != null) FNCE0108(swComp, fcSideLength);
                     SuppressIfExist(swModel, swAssy, suffix, rightPart, rightNum);
                     break;
                 case "RIGHT":
-                    if (fcType == "KSA") fcSideLength = (int)(fcSideRight + fcNo * 2.5d);
+                    if (fcType == "KSA") fcSideLength = (int)(fcSideRight + fcNo * 1.5d);
                     else fcSideLength = (int)(fcSideRight - fcNo);
                     swComp = RenameComp(swModel, swAssy, suffix, "BP", module, rightPart, rightNum, fcSideLength, 250);
                     if (swComp != null) FNCE0109(swComp, fcSideLength);
@@ -182,11 +182,11 @@ namespace SolidWorksHelper.CeilingAutoDrawing
                     break;
                 case "BOTH":
                     //重命名装配体内部
-                    if (fcType == "KSA") fcSideLength = (int)(fcSideLeft + fcNo * 1.25d);
+                    if (fcType == "KSA") fcSideLength = (int)(fcSideLeft + fcNo * 1.5d);
                     else fcSideLength = (int)(fcSideLeft - fcNo / 2d);
                     swComp = RenameComp(swModel, swAssy, suffix, "BP", $"{module}.1", leftPart, leftNum, fcSideLength, 250);
                     if (swComp != null) FNCE0108(swComp, fcSideLength);
-                    if (fcType == "KSA") fcSideLength = (int)(fcSideRight + fcNo * 1.25d);
+                    if (fcType == "KSA") fcSideLength = (int)(fcSideRight + fcNo * 1.5d);
                     else fcSideLength = (int)(fcSideRight - fcNo / 2d);
                     swComp = RenameComp(swModel, swAssy, suffix, "BP", $"{module}.2", rightPart, rightNum, fcSideLength, 250);
                     if (swComp != null) FNCE0109(swComp, fcSideLength);

@@ -20,3 +20,14 @@ D:\Compass\DAL\obj\Debug\DAL.pdb
 D:\Compass\DAL\obj\Debug\DAL.csproj.CopyComplete
 E:\Compass\DAL\obj\Debug\DAL.csproj.CopyComplete
 D:\Compass\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+E:\CSharp\repos\Compass\DAL\bin\Debug\DAL.dll
+E:\CSharp\repos\Compass\DAL\bin\Debug\DAL.pdb
+E:\CSharp\repos\Compass\DAL\bin\Debug\Common.dll
+E:\CSharp\repos\Compass\DAL\bin\Debug\Models.dll
+E:\CSharp\repos\Compass\DAL\bin\Debug\Common.pdb
+E:\CSharp\repos\Compass\DAL\bin\Debug\Models.pdb
+E:\CSharp\repos\Compass\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+E:\CSharp\repos\Compass\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+E:\CSharp\repos\Compass\DAL\obj\Debug\DAL.csproj.CopyComplete
+E:\CSharp\repos\Compass\DAL\obj\Debug\DAL.dll
+E:\CSharp\repos\Compass\DAL\obj\Debug\DAL.pdb

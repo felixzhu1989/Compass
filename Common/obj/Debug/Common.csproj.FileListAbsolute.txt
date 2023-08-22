@@ -10,3 +10,9 @@ D:\Compass\Common\obj\Debug\Common.dll
 D:\Compass\Common\obj\Debug\Common.pdb
 D:\Compass\Common\obj\Debug\Common.csprojAssemblyReference.cache
 E:\Compass\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+E:\CSharp\repos\Compass\Common\bin\Debug\Common.dll
+E:\CSharp\repos\Compass\Common\bin\Debug\Common.pdb
+E:\CSharp\repos\Compass\Common\obj\Debug\Common.csproj.AssemblyReference.cache
+E:\CSharp\repos\Compass\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+E:\CSharp\repos\Compass\Common\obj\Debug\Common.dll
+E:\CSharp\repos\Compass\Common\obj\Debug\Common.pdb
