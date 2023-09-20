@@ -22,6 +22,7 @@ namespace Models
         //其他配置
         public string LightType { get; set; }
         public string LightCable { get; set; }
+
         public string SSPType { get; set; }
         public string Gutter { get; set; }
         public double GutterWidth { get; set; }

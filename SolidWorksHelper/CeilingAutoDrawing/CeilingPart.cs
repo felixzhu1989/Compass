@@ -182,7 +182,7 @@ namespace SolidWorksHelper.CeilingAutoDrawing
                     break;
                 case "BOTH":
                     //重命名装配体内部
-                    if (fcType == "KSA") fcSideLength = (int)(fcSideLeft + fcNo * 2d);
+                    if (fcType == "KSA") fcSideLength = (int)(fcSideLeft + fcNo * 1.5d);
                     else fcSideLength = (int)(fcSideLeft - fcNo / 2d);
                     swComp = RenameComp(swModel, swAssy, suffix, "BP", $"{module}.1", leftPart, leftNum, fcSideLength, 250);
                     if (swComp != null) FNCE0108(swComp, fcSideLength);
@@ -784,6 +784,7 @@ namespace SolidWorksHelper.CeilingAutoDrawing
                 swComp.Suppress("LIGHT HOLE RIGHT");
             }
             #endregion
+
             if (lightType == "T8") swComp.UnSuppress("LIGHT T8");
             else swComp.Suppress("LIGHT T8");
             if (japan == "YES") swComp.UnSuppress("JAP LED M8");
