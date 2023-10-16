@@ -1043,11 +1043,11 @@ namespace SolidWorksHelper
                     swPart.Parameter("D1@Distance3").SystemValue = (item.ExWidth + 20d) / 1000d;
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0018-1"));
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D2@Base-Flange1").SystemValue = (item.ExLength * 2d + 100d) / 1000d;
+                    swPart.Parameter("Length@Base-Flange").SystemValue = (item.ExLength * 2d + 100d) / 1000d;
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0013-1"));
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D1@Sketch1").SystemValue = (item.ExLength / 2d + 10d) / 1000d;
-                    swPart.Parameter("D2@Sketch1").SystemValue = (item.ExWidth + 20d) / 1000d;
+                    swPart.Parameter("Length@SketchBase").SystemValue = (item.ExLength / 2d) / 1000d;
+                    swPart.Parameter("Width@SketchBase").SystemValue = (item.ExWidth + 20d) / 1000d;
                     //FC下导轨
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0009-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
@@ -1085,7 +1085,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0035-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D2@Sketch1").SystemValue = item.Length / 1000d;
+                    swPart.Parameter("Length@SketchBase").SystemValue = item.Length / 1000d;
                     if (item.Gutter == "YES") swModel.Parameter("D1@Distance70").SystemValue = item.GutterWidth / 1000d;
                     else swModel.Parameter("D1@Distance70").SystemValue = 0.5d / 1000d;
                 }
@@ -1094,7 +1094,7 @@ namespace SolidWorksHelper
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0036-1"));
                     swComp.SetSuppression2(2); //2解压缩，0压缩.
                     swPart = swComp.GetModelDoc2();//打开零件
-                    swPart.Parameter("D2@Sketch1").SystemValue = item.Length / 1000d;
+                    swPart.Parameter("Length@SketchBase").SystemValue = item.Length / 1000d;
                     if (item.Gutter == "YES") swModel.Parameter("D1@Distance68").SystemValue = item.GutterWidth / 1000d;
                     else swModel.Parameter("D1@Distance68").SystemValue = 0.5d / 1000d;
                     swComp = swAssy.GetComponentByName(CommonFunc.AddSuffix(suffix, "FNCE0035-1"));
